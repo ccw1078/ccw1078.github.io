@@ -27,7 +27,7 @@
 <meta property="og:description" content="方案一：使用 select for update 命令；方案二：在表中增加一个字段 version，int 类型，查询时，同时读取这个字段，更新时，判断这个字段与查询时获得的值相同，如果相同，更新记录并将 version 字段加1；如果不同，说明查询之后这条记录被更新过了，需要报错并另外处理；">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-01-03T10:39:23.000Z">
-<meta property="article:modified_time" content="2024-09-21T02:49:37.510Z">
+<meta property="article:modified_time" content="2024-09-21T12:41:46.161Z">
 <meta property="article:author" content="ccw">
 <meta property="article:tag" content="软件">
 <meta property="article:tag" content="数据库">
@@ -286,6 +286,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BD%AF%E4%BB%B6/" class="category-chain-item">软件</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
