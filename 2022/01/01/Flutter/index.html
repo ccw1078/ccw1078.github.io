@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Flutter | Ccw&#39;s Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter">
+<meta property="og:url" content="http://example.com/2022/01/01/Flutter/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式">
+<meta property="og:locale">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png">
+<meta property="article:published_time" content="2022-01-01T07:07:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T03:59:49.662Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="Dart">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ccw&#39;s Blogs</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Flutter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/01/Flutter/" class="article-date">
+  <time class="dt-published" datetime="2022-01-01T07:07:00.000Z" itemprop="datePublished">2022-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Flutter
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等；</p>
+<p>官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式，然后再内置包含内容的其他组件，很灵活，实现了样式和内容的解耦；</p>
+<p>有个 pubspec.yaml 文件很像 nodejs 里面的 package.json 文件，用来定义项目的相关信息以及依赖的库；同时还有一个 pub.dev 仓库网站，类似 nodejs 里面的 npm 仓库，可以方便的实现第三方库的集中管理和下载；另外还有一个 pubspec.lock 文件，貌似也跟 nodejs 里面的 package_json.lock 功能差不多；</p>
+<p>flutter pub 命令很像 npm ，用来管理包，例如 flutter pub get 类似 npm install，用来安装依赖文件中指定的各种包，flutter pub add 则用来添加包（发现添加后，好像并没有自动下载，而是需要再运行一下 pub get 才行，但是看 pub.dev 网站的文档好像只需要 add 就可以了）；</p>
+<p>StateLessWidget 表示无状态的应用，即生成后里面的数据就不可变了；如果里面的数据需要可变的，则需要使用 StatefulWidget；但是很有意思的是 StatefulWidget 的实现是在它里面再包含一个 State 类来实现的可变状态（猜测这样是为了兼容性？）；</p>
+<blockquote>
+<p>通过在类名添加下划线前缀，在 Dart 中表示强制私有；在创建 StatefulWidget 时，编辑器自动创建的 State 类即默认为私有的；</p>
+</blockquote>
+<p>创建 State 时，有一个很有意思的点，即新创建的 state 并不是直接继承某个 StateWidget 来实现的，而是给 State 传递一个 StatefulWidegt 来实现，示例如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_RandomWordsState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">RandomWords</span>&gt;  </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 此处的 RandomWords 是一个 StatefulWidget</span></span><br></pre></td></tr></table></figure>
+
+<p>Widget 类有一个内置的 build 方法，用来初始化对象，一般继承父类后，会通过重写 build 方法覆盖父类的方法；</p>
+<p>StatefulWidget 类有一个内置的 createState 方法，用来初始化 State 对象，通过对其进行重写，实现自定义的 State；</p>
+<p>在类内部定义的函数，直接就是该类的方法，如果加上下划线作为前缀，则成为该类的私有方法；</p>
+<p>ListView 有一个内置的 itemBuilder 方法，貌似列表滚动到底后，会自动触发该方法；</p>
+<h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><p>在 Flutter 里面，一切均是 Widget，它既负责展示，也负责交互，很像 Vue 里面的组件；</p>
+<p>通常来说，内置的组件已经设定好了默认样式；如果想修改这些默认样式，例如 margin, padding, border, backgroud 等，有两种方法：</p>
+<ul>
+<li>通过外加一层 Container 的 Widget 来实现，自定义的样式放在 Container 当中去实现，同时将内置 Widget 放在 Container 中，而不是去修改内置 Widget，这样实现了更好的解耦，也方便将来进行统一的管理，例如当更新某些全局设置时，所有内置 Widget 都会相应更新，而不会因为自行修改导致失效；</li>
+<li>直接修改 Widget 的相关属性来实现，例如 color, font, weight 等；</li>
+</ul>
+<p>有一些 widget 是专门负责布局排版的，统称为 layout widget，主要有以下三类：</p>
+<ul>
+<li>single-child：只包含一个子元素；</li>
+<li>multi-child：包含多个子元素；</li>
+<li>silver：其他一些类型；</li>
+</ul>
+<p>所有的 layout widget 不外乎使用以下两种方式中的一种来添加子元素</p>
+<ul>
+<li>child ：仅有单个子元素，例如 Center，Container 等；</li>
+<li>children ：拥有多个子元素，例如 Row，Column，ListView 或 Stack 等；</li>
+</ul>
+<p>大部分 Widget 都有一个 build 方法，当该方法被调用时，将生成界面；</p>
+<h1 id="常用-Widget"><a href="#常用-Widget" class="headerlink" title="常用 Widget"></a>常用 Widget</h1><p>Scaffold：包含顶部标题栏，标题，背景色等元素；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png"></p>
+<p>Row：表示一行，里面可以嵌套各种东西；</p>
+<p>Column：表示一列，里面可以嵌套各种东西；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png"></p>
+<p>Row 或 Column 内部元素的对齐，通过其属性 mainAxisAllignment 和 crossAxisAlignment 来实现；</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  mainAxisAlignment: MainAxisAlignment.spaceEvenly,</span><br><span class="line">  children: [</span><br><span class="line">    Image.asset(<span class="string">&#x27;images/pic1.jpg&#x27;</span>),</span><br><span class="line">    Image.asset(<span class="string">&#x27;images/pic2.jpg&#x27;</span>),</span><br><span class="line">    Image.asset(<span class="string">&#x27;images/pic3.jpg&#x27;</span>),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>如果图片的大小跟所设定的区域尺寸不匹配，可通过将其放到  Expanded 中，来实现自动缩放，示例如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">  children: [</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic1.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic2.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic3.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">  children: [</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic1.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      flex: <span class="number">2</span>,</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic2.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic3.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>默认情况下，Row 或 Column 内部的元素会占据整行或整列的空间，如果需要各个元素按指定尺寸挨着显示，则可以通过设置 mainAxisSize 来实现</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png"></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  mainAxisSize: MainAxisSize.min, <span class="comment">// 设置尺寸</span></span><br><span class="line">  children: [</span><br><span class="line">    Icon(Icons.star, color: Colors.green[<span class="number">500</span>]),</span><br><span class="line">    Icon(Icons.star, color: Colors.green[<span class="number">500</span>]),</span><br><span class="line">    Icon(Icons.star, color: Colors.green[<span class="number">500</span>]),</span><br><span class="line">    <span class="keyword">const</span> Icon(Icons.star, color: Colors.black),</span><br><span class="line">    <span class="keyword">const</span> Icon(Icons.star, color: Colors.black),</span><br><span class="line">  ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/01/Flutter/" data-id="cm1btz6fa0005mshphrk2g5co" data-title="Flutter" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/01/04/Ghidra/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Ghidra
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/04/Firebase/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Firebase</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 11.67px;">C</a> <a href="/tags/C/" style="font-size: 11.67px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.33px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 11.67px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 13.33px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 13.33px;">微信</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.67px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 16.67px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 13.33px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/VirtualDom%20%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/">VirtualDOM 简易实现</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/19/Vue3/">Vue3</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/18/Vue%20Router%20%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">Vue Router 基本用法</a>
+          </li>
+        
+          <li>
+            <a href="/2023/08/04/Linux%20%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux 文件权限</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/30/Paperjs/">Paperjs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ccw<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
