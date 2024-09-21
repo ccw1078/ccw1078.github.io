@@ -3,27 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>python 文件打开模式区别 r, r+, w, w+, a, a+ › Ccw&#39;s Blogs</title>
+  <title>交换机和路由器的区别 › Ccw&#39;s Blogs</title>
   <meta name="author" content="ccw">
   
-  <meta name="description" content="r 模式
-若文件存在，打开文件，光标置于开头，原数据可读，不可写入新数据；
-若文件不存在，报错；
-
-r+ 模式
-若文件存在，打开文件，光标置于开头，原数据保留，可写入新数据；
-若文件不存在，报错；
-
-
-注：打开文件后，若没有读取操作，则光标默认在开头，此时如果马上写入数据，会覆盖原数据
-
-w 模式
-">
+  <meta name="description" content="交换机
+交换机工作在第2层，它维护着一份 Mac 地址和网线连接端口的映射表，所有连接它的设备都写在表中。当它收到一个数据包时，它读取数据包中的 Mac 地址，然后从映射表中查到对应的端口号，然后将数据包转发到对应的连接端口；
+如果从映射表中找不到 Mac 地址映射，则交换机将简单粗暴的将该数据包发">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="python 文件打开模式区别 r, r+, w, w+, a, a+"/>
+  <meta property="og:title" content="交换机和路由器的区别"/>
   <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
 
   
@@ -64,49 +54,47 @@ w 模式
     <header>
       
   
-    <h1 class="title">python 文件打开模式区别 r, r+, w, w+, a, a+</h1>
+    <h1 class="title">交换机和路由器的区别</h1>
   
 
       
-        <time datetime="2019-01-24T02:25:09.000Z">2019-01-24</time>
+        <time datetime="2021-07-18T03:09:00.000Z">2021-07-18</time>
       
     </header>
     <div class="entry">
       
-        <h3 id="r-模式"><a href="#r-模式" class="headerlink" title="r 模式"></a>r 模式</h3><ul>
-<li>若文件存在，打开文件，光标置于开头，原数据可读，<strong>不可写入</strong>新数据；</li>
-<li>若文件不存在，报错；</li>
-</ul>
-<h3 id="r-模式-1"><a href="#r-模式-1" class="headerlink" title="r+ 模式"></a>r+ 模式</h3><ul>
-<li>若文件存在，打开文件，光标置于开头，原数据保留，<strong>可写入</strong>新数据；</li>
-<li>若文件不存在，报错；</li>
-</ul>
+        <h4 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20210718100403.png"></p>
+<p>交换机工作在第2层，它维护着一份 Mac 地址和网线连接端口的映射表，所有连接它的设备都写在表中。当它收到一个数据包时，它读取数据包中的 Mac 地址，然后从映射表中查到对应的端口号，然后将数据包转发到对应的连接端口；</p>
+<p>如果从映射表中找不到 Mac 地址映射，则交换机将简单粗暴的将该数据包发送给所有的端口；之后匹配该 MAC 地址的目标设备会响应交换机，然后交换机就知道拥有该 MAC 地址的设备连接着自己的哪个端口了，然后它会更新自己的映射表，这样下次再有相同的请求进来，就不需要广播，而是直接转发了；</p>
 <blockquote>
-<p>注：打开文件后，若没有读取操作，则光标默认在开头，此时如果马上写入数据，会覆盖原数据</p>
+<p>当交换机将数据包广播给所有端口时，其扮演的角色就有点像 Hub 集线器了；</p>
+<p>疑问：发起请求的设备，是如何知道目标设备的 MAC 地址的呢？</p>
 </blockquote>
-<h3 id="w-模式"><a href="#w-模式" class="headerlink" title="w 模式"></a>w 模式</h3><ul>
-<li>若文件存在，打开文件，清空原数据，光标置于开头，可写入新数据；</li>
-<li>若文件不存在，则创建文件；</li>
+<h4 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20210718100335.png"></p>
+<p>路由器工作在第3层，它有两个职责：</p>
+<ul>
+<li>为所有连接它的终端设备建立一个内部局域网；</li>
+<li>与外部局域网建立通信；</li>
 </ul>
+<p>路由器将从第3层中读取 IP 地址信息，然后从其维护的路由表中找到对应的端口号，将数据包转发给相应的端口号。如果找不到，则直接丢弃数据包；</p>
+<h4 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h4><blockquote>
+<p>Address Resolution Protocol，地址解析协议，其实就是一份 IP 地址和 MAC 地址的映射表</p>
+</blockquote>
+<p>当某个设备  A 连接到路由器上面时，它会被分配一个 IP  地址，同时会被告知网关的 IP 地址。这样，当该设备尝试与另外一台设备通信时，它会先检查自己的 ARP 表中，是否有目标 IP 的 MAC 地址</p>
+<ul>
+<li>如果有，它直接提取该 MAC 地址，写入数据包第2层头部，发送出去；</li>
+<li>如果没有，它需要检查一下该目标设备的 IP 是否与自己在同一个局域网中<ul>
+<li>如果在，它将在局域网中广播一个该 IP 地址的 ARP 请求；持有该 IP 的目标设备将响应该广播，不持有该 IP 的其他设备将忽略该广播；</li>
+<li>如果不在，它将在局域网中广播网关 IP 地址的 ARP 请求，网关在收到该广播后，将会响应自己的 MAC 地址给设备 A；</li>
+</ul>
+</li>
+</ul>
+<p>当通过广播获得 MAC 地址后，设备 A 将该 MAC 地址缓存到自己的 ARP 映射表中，然后将其写入数据包第2层头部发送出去；</p>
 <blockquote>
-<p>注：文件的数据不可读；</p>
+<p>很奇怪，为什么不直接使用路由器的 MAC 地址来打包呢，这样就不需要额外发送一次 ARP 请求了；路由器收到后，再解析到第3层中的 IP 来获知数据包的目的地，貌似这种方法也是可以的，为什么要额外引入 ARP 机制呢？</p>
+<p>答：原来是因为两台设备不一定通过路由器连接。当它们通过路由器来连接时，上面的方式确实是可行的。但是它们也有可能是直连，或者通过交换机来连接，这个时候，在生成第2层时，就无法直接填写路由器的 IP  地址了；因此，通用的方式是广播 ARP 请求，来得知目标 IP 地址的 MAC 地址。ARP 机制可以工作在任意一种连接场景中，直连，集线器、交换机、路由器等都可以；</p>
 </blockquote>
-<h3 id="w-模式-1"><a href="#w-模式-1" class="headerlink" title="w+ 模式"></a>w+ 模式</h3><ul>
-<li>效果同 w 模式，差异在于，可读取写入的数据（可通过移动光标的位置实现）</li>
-</ul>
-<h3 id="a-模式"><a href="#a-模式" class="headerlink" title="a 模式"></a>a 模式</h3><ul>
-<li>若文件存在，打开文件，原数据保留，光标置于末尾，可追加写入新数据；</li>
-<li>若文件不存在，则创建文件；</li>
-</ul>
-<blockquote>
-<p> 注：文件数据不可读；</p>
-</blockquote>
-<h3 id="a-模式-1"><a href="#a-模式-1" class="headerlink" title="a+ 模式"></a>a+ 模式</h3><ul>
-<li>效果同 a 模式，差异在于，文件数据可读</li>
-</ul>
-<blockquote>
-<p>注：打开文件后，由于光标在末尾，此时马上读取数据会为空，因为光标所在位置之后没有数据，此时可先移动光标的位置到开头后再读取；</p>
-</blockquote>
+<p>关键点：当某个终端设备被连接时，该设备是不知道也无须知道自己连接的是什么类型的设备，它只需关心自己的工作，即打包好各层数据即可。当缺少目标 MAC 地址时，就广播 ARP 请求得到它，然后完成打包并发送数据即可，剩下的工作都是别人的。</p>
 
       
     </div>
@@ -116,7 +104,7 @@ w 模式
         
   
   <div class="tags">
-    <a href="/tags/软件/">软件</a>, <a href="/tags/python/">python</a>
+    <a href="/tags/软件/">软件</a>, <a href="/tags/网络/">网络</a>
   </div>
 
         

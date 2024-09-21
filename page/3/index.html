@@ -1,95 +1,159 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
-  
-  <title>Ccw&#39;s Blogs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ccw&#39;s Blogs">
-<meta property="og:url" content="http://example.com/page/3/index.html">
-<meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:locale">
-<meta property="article:author" content="ccw">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+  <title>Page 3 › Ccw&#39;s Blogs</title>
+  <meta name="author" content="ccw">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
 
   
+    <meta property="og:image" content=""/>
   
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Ccw&#39;s Blogs</a>
-      </h1>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">Ccw&#39;s Blogs</a></h1>
+  <h2><a href="/"></a></h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/about">About</a></li>
+      
+      <li><a href="/archives">Archives</a></li>
+      
+      <li><a href="/atom.xml">RSS</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2021/01/17/scons 用法/">scons 用法</a></h1>
+  
+
+      
+        <time datetime="2021-01-17T12:16:00.000Z">2021-01-17</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><p>SConstruct 是一个 Python 脚本，作用类似于 Makefile，我们通过它来告诉 Scons 要构建什么东西</p>
+<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表示读取 SConstruct 脚本文件，开始构建</span></span><br><span class="line">scons</span><br><span class="line"><span class="comment"># -c 选项表示清理现场，将构建出来的东西删除掉</span></span><br><span class="line">scons -c</span><br><span class="line"><span class="comment"># -Q 选项表示安静模式，即不打印构建过程中的提示信息</span></span><br><span class="line">scons -Q</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-简单构建"><a href="#3-简单构建" class="headerlink" title="3. 简单构建"></a>3. 简单构建</h2><h3 id="单个源文件"><a href="#单个源文件" class="headerlink" title="单个源文件"></a>单个源文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Program 用来告知 Scons 要构建可执行文件，参数即是源代码</span></span><br><span class="line">Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果要指代可执行文件的名字，可写在第一个参数上</span></span><br><span class="line">Program(<span class="string">&#x27;my_hello&#x27;</span>,  <span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Object 表示要构建目标文件</span></span><br><span class="line">Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="多个源文件"><a href="#多个源文件" class="headerlink" title="多个源文件"></a>多个源文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果源代码有多个文件，只需将它们放在一个列表中即可</span></span><br><span class="line">Program([<span class="string">&#x27;prog.c&#x27;</span>, <span class="string">&#x27;file1.c&#x27;</span>, <span class="string">&#x27;file2.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Program 默认以列表第一个元素为最终编译结果的可执行文件的文件名，但是可以自定义</span></span><br><span class="line">Program(<span class="string">&#x27;my_prog&#x27;</span>, [<span class="string">&#x27;prog.c&#x27;</span>, <span class="string">&#x27;file1.c&#x27;</span>, <span class="string">&#x27;file2.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果文件很多个，可以使用关键字和 Glob 命令进行匹配</span></span><br><span class="line"><span class="comment"># 通配符包括星号 *，问号 ?，以及部分关键字如 [abc] 表示任意满足 a, b 或  c 的文件均可</span></span><br><span class="line"><span class="comment"># 也可以使用 [!abc] 进行排除，即不包括以上几个字母的，即是目标</span></span><br><span class="line">Program(<span class="string">&#x27;prog&#x27;</span>, Glob(<span class="string">&#x27;*.c&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>事实上，源代码文件在 Scons 内部都是当作列表来处理，单个文件的情况，会自动添加方括号而已；为了统一，建议还是都加上方括号比较好，同时也可以避免 Python 解释器报语法错误</p>
+</blockquote>
+<h3 id="自动加引号"><a href="#自动加引号" class="headerlink" title="自动加引号"></a>自动加引号</h3><p>当有多个文件时，需要为每个文件打上双引号，如果文件一多，确实工作量不小；Scons 额外提供了一个 Split 名称，可以为文件自动添加引号，使用方法如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Split 函数自动添加引号，文件名之间只需要使用空格分隔即可</span></span><br><span class="line">Program(<span class="string">&#x27;prog&#x27;</span>, Split(<span class="string">&#x27;main.c  file1.c file2.c&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以用一个变量来代表多个文件的列表</span></span><br><span class="line">src_files = Split(<span class="string">&#x27;main.c file1.c file2.c&#x27;</span>)</span><br><span class="line">Program(<span class="string">&#x27;program&#x27;</span>, src_files)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件名之间有多个空格也没有关系</span></span><br><span class="line"><span class="comment"># 此处用三个引号是为了符合 Python 对多行字符串的格式要求</span></span><br><span class="line">src_files = Split(<span class="string">&quot;&quot;&quot;main.c</span></span><br><span class="line"><span class="string">                            file1.c</span></span><br><span class="line"><span class="string">                            file2.c&quot;&quot;&quot;</span>)</span><br><span class="line">Program(<span class="string">&#x27;program&#x27;</span>, src_files)</span><br></pre></td></tr></table></figure>
+
+<h3 id="指定参数名"><a href="#指定参数名" class="headerlink" title="指定参数名"></a>指定参数名</h3><p>Program 支持指定参数名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">src_files = Split(<span class="string">&#x27;main.c file1.c file2.c&#x27;</span>)</span><br><span class="line">Program(target = <span class="string">&#x27;program&#x27;</span>, source = src_files)</span><br></pre></td></tr></table></figure>
+
+<h3 id="多个编译目标"><a href="#多个编译目标" class="headerlink" title="多个编译目标"></a>多个编译目标</h3><p>如果想在同一个 scons 文件中编译多个可执行文件，只需多次调用 Program 函数即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Program(<span class="string">&#x27;foo.c&#x27;</span>)</span><br><span class="line">Program(<span class="string">&#x27;bar&#x27;</span>, [<span class="string">&#x27;bar1.c&#x27;</span>, <span class="string">&#x27;bar2.c&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="多目标共享源文件"><a href="#多目标共享源文件" class="headerlink" title="多目标共享源文件"></a>多目标共享源文件</h3><p>办法1：只需要将共享的文件放入源文件列表即可 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处  common1.c 和 common2.c 这两个文件是共享的</span></span><br><span class="line">Program(Split(<span class="string">&#x27;foo.c common1.c common2.c&#x27;</span>))</span><br><span class="line">Program(<span class="string">&#x27;bar&#x27;</span>, Split(<span class="string">&#x27;bar1.c bar2.c common1.c common2.c&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果引用的次数很多，简单的做成变量进行引用即可</span></span><br><span class="line">common = [<span class="string">&#x27;common1.c&#x27;</span>, <span class="string">&#x27;common2.c&#x27;</span>]</span><br><span class="line">foo_files = [<span class="string">&#x27;foo.c&#x27;</span>] + common</span><br><span class="line">bar_files = [<span class="string">&#x27;bar1.c&#x27;</span>, <span class="string">&#x27;bar2.c&#x27;</span>] + common</span><br><span class="line">Program(<span class="string">&#x27;foo&#x27;</span>, foo_files)</span><br><span class="line">Program(<span class="string">&#x27;bar&#x27;</span>, bar_files)</span><br></pre></td></tr></table></figure>
+
+<p>办法2：将共享的文件做为库，由不同的目标进行引号</p>
+<h2 id="4-构建和链接库"><a href="#4-构建和链接库" class="headerlink" title="4. 构建和链接库"></a>4. 构建和链接库</h2><h3 id="构建库"><a href="#构建库" class="headerlink" title="构建库"></a>构建库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Library 函数即可构建库</span></span><br><span class="line">Library(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 除了指定源文件外，也可以在文件列表中加入目标文件</span></span><br><span class="line">Library(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.o&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>, <span class="string">&#x27;f4.o&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Library 函数默认构建静态库，同时还可以使用 StaticLibrary 函数显示的指示要构建静态库</span></span><br><span class="line">StaticLibrary(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建动态库</span></span><br><span class="line">SharedLibrary(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="链接库"><a href="#链接库" class="headerlink" title="链接库"></a>链接库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过在 LIBS 参数中指定库的名称，并在 LIBPATH 指定库的路径，即可完成对库的链接</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处先构建一个静态库</span></span><br><span class="line">Library(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处告知要链接的静态库名称和路径</span></span><br><span class="line"><span class="comment"># 注意：只需要提供库的名称即可，无须在库的名称前面加上 lib 前缀，或者 .a 后缀什么的</span></span><br><span class="line">Program(<span class="string">&#x27;prog.c&#x27;</span>, LIBS=[<span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>], LIBPATH=<span class="string">&#x27;.&#x27;</span>)  </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找库"><a href="#查找库" class="headerlink" title="查找库"></a>查找库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通常情况下，链接器只在系统默认的文件中查找库，但是通过 LIBPATH 参数</span></span><br><span class="line"><span class="comment"># 链接器会在指定的文件夹中查找库</span></span><br><span class="line">Program(<span class="string">&#x27;prog.c&#x27;</span>, LIBS = <span class="string">&#x27;m&#x27;</span>,</span><br><span class="line">                        			LIBPATH = [<span class="string">&#x27;/usr/lib&#x27;</span>, <span class="string">&#x27;/usr/local/lib&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不同的路径可以使用逗号分隔，组成列表；也可以使用冒号连接成单个字符串</span></span><br><span class="line">LIBPATH = <span class="string">&#x27;/usr/lib:/usr/local/lib&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-节点对象"><a href="#5-节点对象" class="headerlink" title="5. 节点对象"></a>5. 节点对象</h2><p>在内部实现上，Scons 将所有的文件和文件夹都当作一个 NodeObject 节点对象来对待；</p>
+<h3 id="构建方法的返回值是节点列表"><a href="#构建方法的返回值是节点列表" class="headerlink" title="构建方法的返回值是节点列表"></a>构建方法的返回值是节点列表</h3><p>所有的构建方法都会返回一个节点列表，用来表示将要构建的目标文件或者参与构建的源文件，返回的这个列表可以作为参数，传递给其他构建方法；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设我们需要为两个目标文件指定不同的构建参数，因此我们为它们调用了各自的 Object 方法</span></span><br><span class="line">hello_list = Object(<span class="string">&#x27;hello.c&#x27;</span>, CCFLAGS=<span class="string">&#x27;-DHELLO&#x27;</span>)</span><br><span class="line">goodbye_list = Object(<span class="string">&#x27;goodbye.c&#x27;</span>, CCFLAGS=<span class="string">&#x27;-DGOODBYE&#x27;</span>)</span><br><span class="line">Program(hello_list + goodbye_list)</span><br></pre></td></tr></table></figure>
+
+<h3 id="显式创建文件和目录的节点"><a href="#显式创建文件和目录的节点" class="headerlink" title="显式创建文件和目录的节点"></a>显式创建文件和目录的节点</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建文件节点和创始目录节点的方法不同</span></span><br><span class="line"><span class="comment"># 创建文件节点使用 File 方法</span></span><br><span class="line">hello_c = File(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line">Program(hello_c)</span><br><span class="line"><span class="comment"># 创建目录节点使用 Dir 方法</span></span><br><span class="line">classes = Dir(<span class="string">&#x27;classes&#x27;</span>)</span><br><span class="line">Java(classes, <span class="string">&#x27;src&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>正常情况下，并不需要手动创建节点，因为构建方法会自动帮助创建；仅在需要显式传递节点参数给构建方法时使用；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Entry 函数可以根据参数类型，创建文件节点或者目录节点</span></span><br><span class="line">xyzzy = Entry(<span class="string">&#x27;xyzzy&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="打印节点的文件名称"><a href="#打印节点的文件名称" class="headerlink" title="打印节点的文件名称"></a>打印节点的文件名称</h3><p>由于构建方法返回的是一个节点列表，因此如果要打印文件名称，很可能需要遍历它，或者使用索引访问它</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">object_list = Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line">program_list = Program(object_list)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;The object file is:&quot;</span>, object_list[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;The program file is:&quot;</span>, program_list[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 事实上此处的 object_list 是节点列表，仅仅是 print 函数将节点转成了字符串来代表文件名</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取节点文件名"><a href="#获取节点文件名" class="headerlink" title="获取节点文件名"></a>获取节点文件名</h3><p>使用 Python 内置的 str 函数即可方便的将一个节点转成一个文件名，例如可以用来判断一个文件是否存在</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line">program_list = Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line">program_name = <span class="built_in">str</span>(program_list[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(program_name):</span><br><span class="line">    <span class="built_in">print</span> program_name, <span class="string">&quot;does not exist!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取节点路径"><a href="#获取节点路径" class="headerlink" title="获取节点路径"></a>获取节点路径</h3><p>env 对象有一个 GetBuildPath方法，可以用来获取单个或多个节点的路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个 env 对象，它代表一个环境，在这个环境中，有一个环境变量的 VAR 的值为 value</span></span><br><span class="line">env=Environment(VAR=<span class="string">&quot;value&quot;</span>)</span><br><span class="line"><span class="comment"># 生成一个文件节点</span></span><br><span class="line">n=File(<span class="string">&quot;foo.c&quot;</span>)</span><br><span class="line"><span class="comment"># 调用 env 对象的 GetBuildPath 方法，获取节点列表的路径列表</span></span><br><span class="line"><span class="built_in">print</span> env.GetBuildPath([n, <span class="string">&quot;sub/dir/$VAR&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打印结果为</span></span><br><span class="line">[&#x27;foo.c&#x27;, &#x27;sub/dir/value&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>除了使用 env 对象的 GetBuildPath 方法外，也有一个函数版本的 GetBuildPath ，它使用全局环境；</p>
+<h2 id="6-依赖出现更新"><a href="#6-依赖出现更新" class="headerlink" title="6. 依赖出现更新"></a>6. 依赖出现更新</h2><h3 id="判断文件是否更新"><a href="#判断文件是否更新" class="headerlink" title="判断文件是否更新"></a>判断文件是否更新</h3><p>如果源文件的内容没有出现更新，是 Scons 不会重复构建已经完成构建的文件，这样可以节省大量的构建时间，不需要每次都从头开始构建每一文件；</p>
+<h4 id="使用-MD5-判断"><a href="#使用-MD5-判断" class="headerlink" title="使用 MD5 判断"></a>使用 MD5 判断</h4><p>SCons 使用 MD5 来判断某个文件的内容是否发生了更新，当然，也可以另外配置让其使用文件时间戳来判断，甚至可以使用单独的 python 函数来进行各种自定义的判断；</p>
+<p>使用 MD5 有一个好处是它只判断内容中的正文部分，同时忽略注释部分，即只要正文内容的构建结果不会出现变化，则 SCons 就不会重现构建它；</p>
+<h4 id="使用时间戳判断"><a href="#使用时间戳判断" class="headerlink" title="使用时间戳判断"></a>使用时间戳判断</h4><p>如果想使用时间戳来判断文件是否发生更新，则只需要调用 Decider 函数进行设置即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="comment"># 将判断方法设置为使用时间戳</span></span><br><span class="line">Decider(<span class="string">&#x27;timestamp-newer&#x27;</span>) </span><br></pre></td></tr></table></figure>
+
+<p>普通的时间戳存在一个问题，即某个文件如果从仓库签出了一个旧版本，由于它的时间戳比当前的目标文件更早，所以不会判断为出现更新，导致编译错误；针对这种情况，可以使用 timestamp-match 规则来进行判断</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="comment"># 使用 timestamp-match 规则进行判断，只要时间戳不吻合，即需要重新构建，不管新旧</span></span><br><span class="line">Decider(<span class="string">&#x27;timestamp-match&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用混合规则"><a href="#使用混合规则" class="headerlink" title="使用混合规则"></a>使用混合规则</h4><p>仅当文件的时间戳出现了变化，再去计算文件的 MD5 值是否发生了变化，这样性能更好；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="comment"># 使用混合的规则</span></span><br><span class="line">Decider(<span class="string">&#x27;MD5-timestamp&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义规则"><a href="#自定义规则" class="headerlink" title="自定义规则"></a>自定义规则</h4><p>可以自己写一个判断规则的函数，然后传递给 Decider 即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decide_if_changed</span>(<span class="params">dependency, target, prev_ni</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.get_timestamp() != prev_ni.timestamp:</span><br><span class="line">        dep = <span class="built_in">str</span>(dependency)</span><br><span class="line">        tgt = <span class="built_in">str</span>(target)</span><br><span class="line">        <span class="keyword">if</span> specific_part_of_file_has_changed(dep, tgt):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    Decider(decide_if_changed)</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
+      
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
+      
+      <div class="clearfix"></div>
+      </footer>
   </div>
-</header>
+</article>
 
-      <div class="outer">
-        <section id="main">
+
+
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-Nginx 配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/11/12/Nginx%20%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time class="dt-published" datetime="2020-11-12T09:08:00.000Z" itemprop="datePublished">2020-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/11/12/Nginx%20%E9%85%8D%E7%BD%AE/">Nginx 常用配置</a>
-    </h1>
+    <h1 class="title"><a href="/2020/11/12/Nginx 配置/">Nginx 常用配置</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2020-11-12T09:08:00.000Z">2020-11-12</time>
+      
+    </header>
+    <div class="entry">
       
         <h2 id="1-限速-Rate-Limiting"><a href="#1-限速-Rate-Limiting" class="headerlink" title="1.限速 Rate Limiting"></a>1.限速 Rate Limiting</h2><h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><p>使用了水池算法，即水池的流入水量代表进入的请求，水池的流出水量代表转发请求给应用程序；当设置了某个水池的容量后，如果在某段时间，流入的水量比较大，超过了流出的水量，将导致水池中的水溢出；溢出的水即代表被拒绝的请求；</p>
 <h3 id="实现办法"><a href="#实现办法" class="headerlink" title="实现办法"></a>实现办法</h3><h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><p>limit_req_zone 表示限速区域 </p>
@@ -133,42 +197,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/12/Nginx%20%E9%85%8D%E7%BD%AE/" data-id="cm1btz6fh000jmshp404u04s1" data-title="Nginx 常用配置" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-为什么需要 webpack" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/10/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%20webpack/" class="article-date">
-  <time class="dt-published" datetime="2020-10-26T08:57:00.000Z" itemprop="datePublished">2020-10-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/10/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%20webpack/">为什么需要 webpack</a>
-    </h1>
+    <h1 class="title"><a href="/2020/10/26/为什么需要 webpack/">为什么需要 webpack</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2020-10-26T08:57:00.000Z">2020-10-26</time>
+      
+    </header>
+    <div class="entry">
       
         <p>在 HTML 网页中使用 js 去完成某些功能的时候，有两种处理办法：</p>
 <ul>
@@ -179,42 +233,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%20webpack/" data-id="cm1btz6ft001bmshpce0m1j7k" data-title="为什么需要 webpack" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-Gnicorn" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/08/19/Gnicorn/" class="article-date">
-  <time class="dt-published" datetime="2020-08-19T02:38:00.000Z" itemprop="datePublished">2020-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/08/19/Gnicorn/">Gunicorn</a>
-    </h1>
+    <h1 class="title"><a href="/2020/08/19/Gnicorn/">Gunicorn</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2020-08-19T02:38:00.000Z">2020-08-19</time>
+      
+    </header>
+    <div class="entry">
       
         <p>在编写好 python 的 web 程序后，可使用 Gunicorn 进行部署，以便快速实现并发目标，避免重复造轮子；</p>
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><h3 id="使用命令"><a href="#使用命令" class="headerlink" title="使用命令"></a>使用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunicorn [OPTIONS] [WSGI_APP]</span><br></pre></td></tr></table></figure>
@@ -244,42 +288,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/19/Gnicorn/" data-id="cm1btz6ff000cmshp7xzcf0to" data-title="Gunicorn" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-微信小程序进度环" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/01/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BF%9B%E5%BA%A6%E7%8E%AF/" class="article-date">
-  <time class="dt-published" datetime="2020-01-20T01:06:40.000Z" itemprop="datePublished">2020-01-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/01/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BF%9B%E5%BA%A6%E7%8E%AF/">微信小程序进度环</a>
-    </h1>
+    <h1 class="title"><a href="/2020/01/20/微信小程序进度环/">微信小程序进度环</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2020-01-20T01:06:40.000Z">2020-01-20</time>
+      
+    </header>
+    <div class="entry">
       
         <p>wx.createCanvasContext 的工作原理很像 JQuery 里面的选择器，通过 canvas-id 来选择 HTML 文件中相应的 canvas，然后对其进行相关操作实现绘图；</p>
 <p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211121838.png"></p>
@@ -288,42 +322,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/01/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BF%9B%E5%BA%A6%E7%8E%AF/" data-id="cm1bl9skf0012g4hpgo28hwpb" data-title="微信小程序进度环" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-CentOS Nginx 安装 Dokuwiki 支持 Https 访问" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/10/20/CentOS%20Nginx%20%E5%AE%89%E8%A3%85%20Dokuwiki%20%E6%94%AF%E6%8C%81%20Https%20%E8%AE%BF%E9%97%AE/" class="article-date">
-  <time class="dt-published" datetime="2019-10-20T04:02:39.000Z" itemprop="datePublished">2019-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/10/20/CentOS%20Nginx%20%E5%AE%89%E8%A3%85%20Dokuwiki%20%E6%94%AF%E6%8C%81%20Https%20%E8%AE%BF%E9%97%AE/">CentOS/Nginx 安装 Dokuwiki 支持 Https 访问</a>
-    </h1>
+    <h1 class="title"><a href="/2019/10/20/CentOS Nginx 安装 Dokuwiki 支持 Https 访问/">CentOS/Nginx 安装 Dokuwiki 支持 Https 访问</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2019-10-20T04:02:39.000Z">2019-10-20</time>
+      
+    </header>
+    <div class="entry">
       
         <h3 id="更新工具包"><a href="#更新工具包" class="headerlink" title="更新工具包"></a>更新工具包</h3><blockquote>
 <p>注：此更新步骤仅为建议，非必须</p>
@@ -402,42 +426,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/10/20/CentOS%20Nginx%20%E5%AE%89%E8%A3%85%20Dokuwiki%20%E6%94%AF%E6%8C%81%20Https%20%E8%AE%BF%E9%97%AE/" data-id="cm1bl9sjl0000g4hp1adchzi2" data-title="CentOS/Nginx 安装 Dokuwiki 支持 Https 访问" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-gcc 链接器工作原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/09/28/gcc%20%E9%93%BE%E6%8E%A5%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2019-09-28T14:22:33.000Z" itemprop="datePublished">2019-09-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/09/28/gcc%20%E9%93%BE%E6%8E%A5%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">gcc 链接器工作原理</a>
-    </h1>
+    <h1 class="title"><a href="/2019/09/28/gcc 链接器工作原理/">gcc 链接器工作原理</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2019-09-28T14:22:33.000Z">2019-09-28</time>
+      
+    </header>
+    <div class="entry">
       
         <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在编译源代码为可执行文件的时候，如果需要链接静态库，我们可能会遇到如下错误提示：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">: In function &#x27;main&#x27; // 或者其他函数名</span><br><span class="line">(.text+0x7): undefined reference to &quot;foo&quot; // 或其他变量名</span><br></pre></td></tr></table></figure>
@@ -482,42 +496,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/28/gcc%20%E9%93%BE%E6%8E%A5%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" data-id="cm1bl9sk2000bg4hpdzmp0cxj" data-title="gcc 链接器工作原理" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/05/26/%E4%BD%BF%E7%94%A8%20CertBot%20%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%20Let's%20Encrypt%20SSL%20%E8%AF%81%E4%B9%A6/" class="article-date">
-  <time class="dt-published" datetime="2019-05-26T04:28:06.000Z" itemprop="datePublished">2019-05-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/05/26/%E4%BD%BF%E7%94%A8%20CertBot%20%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%20Let's%20Encrypt%20SSL%20%E8%AF%81%E4%B9%A6/">使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书</a>
-    </h1>
+    <h1 class="title"><a href="/2019/05/26/使用 CertBot 自动更新 Let's Encrypt SSL 证书/">使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2019-05-26T04:28:06.000Z">2019-05-26</time>
+      
+    </header>
+    <div class="entry">
       
         <h1 id="首次申请"><a href="#首次申请" class="headerlink" title="首次申请"></a>首次申请</h1><h3 id="下载安装-CertBot"><a href="#下载安装-CertBot" class="headerlink" title="下载安装 CertBot"></a>下载安装 CertBot</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 CertBot 脚本到当前目录，假设当前文件夹为 ~ 目录</span></span><br><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line"><span class="comment"># 为 CertBot 脚本增加执行权限，# a 为 all 简写，x 为 execute 简写，a+x 表示所有用户及群组的可执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> a+x ./certbot-auto</span><br></pre></td></tr></table></figure>
 
@@ -553,42 +557,32 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 手动更新</span></span><br><span class="line">./certbot-auto renew -v</span><br></pre></td></tr></table></figure>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/05/26/%E4%BD%BF%E7%94%A8%20CertBot%20%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%20Let's%20Encrypt%20SSL%20%E8%AF%81%E4%B9%A6/" data-id="cm1bl9ska000vg4hp5knuc2hx" data-title="使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-windows 如何共享本地文件夹到 docker machine" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/04/03/windows%20%E5%A6%82%E4%BD%95%E5%85%B1%E4%BA%AB%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%20docker%20machine/" class="article-date">
-  <time class="dt-published" datetime="2019-04-03T08:17:46.000Z" itemprop="datePublished">2019-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/04/03/windows%20%E5%A6%82%E4%BD%95%E5%85%B1%E4%BA%AB%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%20docker%20machine/">windows 如何共享本地文件夹到 docker machine</a>
-    </h1>
+    <h1 class="title"><a href="/2019/04/03/windows 如何共享本地文件夹到 docker machine/">windows 如何共享本地文件夹到 docker machine</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2019-04-03T08:17:46.000Z">2019-04-03</time>
+      
+    </header>
+    <div class="entry">
       
         <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker</p>
 <blockquote>
@@ -607,42 +601,32 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/03/windows%20%E5%A6%82%E4%BD%95%E5%85%B1%E4%BA%AB%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%20docker%20machine/" data-id="cm1bl9sk9000sg4hpb9kz34cr" data-title="windows 如何共享本地文件夹到 docker machine" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <article id="post-界面设计的原则" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/03/28/%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%9F%E5%88%99/" class="article-date">
-  <time class="dt-published" datetime="2019-03-28T00:11:11.000Z" itemprop="datePublished">2019-03-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/03/28/%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%9F%E5%88%99/">界面设计的原则</a>
-    </h1>
+    <h1 class="title"><a href="/2019/03/28/界面设计的原则/">界面设计的原则</a></h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <time datetime="2019-03-28T00:11:11.000Z">2019-03-28</time>
+      
+    </header>
+    <div class="entry">
       
         <h4 id="好看并不是界面设计的第一要义，实现产品目标才是。"><a href="#好看并不是界面设计的第一要义，实现产品目标才是。" class="headerlink" title="好看并不是界面设计的第一要义，实现产品目标才是。"></a>好看并不是界面设计的第一要义，实现产品目标才是。</h4><ul>
 <li>一个好看，却不实现产品目标的设计，是差劲的；</li>
@@ -657,180 +641,89 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/28/%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%9F%E5%88%99/" data-id="cm1bl9skt0025g4hp53ezeilt" data-title="界面设计的原则" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
+        
+        
       
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
 
+
+
+
+<nav id="pagination">
   
-    <article id="post-Nginx 实现域名跳转" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/03/01/Nginx%20%E5%AE%9E%E7%8E%B0%E5%9F%9F%E5%90%8D%E8%B7%B3%E8%BD%AC/" class="article-date">
-  <time class="dt-published" datetime="2019-03-01T09:00:10.000Z" itemprop="datePublished">2019-03-01</time>
-</a>
+    <a href="/page/2/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/4/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:example.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
     
+      <li>
+        <a href="/2024/06/22/VirtualDom 简易实现/">VirtualDOM 简易实现</a>
+      </li>
+    
+      <li>
+        <a href="/2023/08/19/Vue3/">Vue3</a>
+      </li>
+    
+      <li>
+        <a href="/2023/08/18/Vue Router 基本用法/">Vue Router 基本用法</a>
+      </li>
+    
+      <li>
+        <a href="/2023/08/04/Linux 文件权限/">Linux 文件权限</a>
+      </li>
+    
+      <li>
+        <a href="/2023/07/30/Paperjs/">Paperjs</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/C/" style="font-size: 11.67px;">C</a> <a href="/tags/C/" style="font-size: 11.67px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.33px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 11.67px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 13.33px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 13.33px;">微信</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.67px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 16.67px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 13.33px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2019/03/01/Nginx%20%E5%AE%9E%E7%8E%B0%E5%9F%9F%E5%90%8D%E8%B7%B3%E8%BD%AC/">Nginx 实现域名跳转</a>
-    </h1>
-  
+</div>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>目标：当访问 a 域名的目录 abc 时，跳转到 b 域名的目录 abc， nginx 新增一条 server 配置实现：<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span>  &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server</span>      www.a.com;</span><br><span class="line">    <span class="section">location</span>    /abc/  &#123;</span><br><span class="line">            <span class="attribute">rewrite</span>  .+  http://www.b.com/<span class="variable">$request_uri</span> <span class="literal">permanent</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">注：其中 <span class="variable">$request_uri</span> 表示请求参数的原始URI</span><br><span class="line">例如假设访问链接为：http://www.mysite.com:80/test1/test2/test3.html，</span><br><span class="line">则 <span class="variable">$request_uri</span> 表示 /test1/test2/test3.html</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/01/Nginx%20%E5%AE%9E%E7%8E%B0%E5%9F%9F%E5%90%8D%E8%B7%B3%E8%BD%AC/" data-id="cm1bl9sjz0006g4hp8l3z2s1w" data-title="Nginx 实现域名跳转" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">weiter &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 11.67px;">C</a> <a href="/tags/C/" style="font-size: 11.67px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.33px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 11.67px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 13.33px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 13.33px;">微信</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.67px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 16.67px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 13.33px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/06/22/VirtualDom%20%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/">VirtualDOM 简易实现</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/19/Vue3/">Vue3</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/18/Vue%20Router%20%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">Vue Router 基本用法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/08/04/Linux%20%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux 文件权限</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/30/Paperjs/">Paperjs</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2024 ccw<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    <div class="clearfix"></div>
   </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
+  <footer id="footer" class="inner"><div class="alignleft">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  &copy; 2024 ccw
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
 </html>
+
