@@ -1,189 +1,496 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>CentOS/Nginx 安装 Dokuwiki 支持 Https 访问 | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="更新工具包 注：此更新步骤仅为建议，非必须  12sudo yum -y updatesudo yum -y install vim bash-completion wget tar 更新后重启系统 1sudo reboot 安装工具包12345sudo yum install epel-release yum-utilssudo yum install http:&#x2F;&#x2F;rpms.remirepo.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS&#x2F;Nginx 安装 Dokuwiki 支持 Https 访问">
+<meta property="og:url" content="http://example.com/2019/10/20/CentOS%20Nginx%20%E5%AE%89%E8%A3%85%20Dokuwiki%20%E6%94%AF%E6%8C%81%20Https%20%E8%AE%BF%E9%97%AE/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="更新工具包 注：此更新步骤仅为建议，非必须  12sudo yum -y updatesudo yum -y install vim bash-completion wget tar 更新后重启系统 1sudo reboot 安装工具包12345sudo yum install epel-release yum-utilssudo yum install http:&#x2F;&#x2F;rpms.remirepo.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7490238-1fd596e7d3e73a2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2019-10-20T04:02:39.000Z">
+<meta property="article:modified_time" content="2024-09-21T03:24:23.708Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="服务器">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7490238-1fd596e7d3e73a2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+  
+  <title>CentOS/Nginx 安装 Dokuwiki 支持 Https 访问 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="更新工具包
-注：此更新步骤仅为建议，非必须
 
-12sudo yum -y updatesudo yum -y install vim bash-completion wget tar
-更新后重启系统
-1sudo reboot
-安装工具包12345sudo yum install epel-relea">
-  
 
-  
-  
-  <meta name="keywords" content="软件,服务器">
-  
 
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-  <meta property="og:title" content="CentOS/Nginx 安装 Dokuwiki 支持 Https 访问"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>CentOS/Nginx 安装 Dokuwiki 支持 Https 访问</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2019/10/20/CentOS Nginx 安装 Dokuwiki 支持 Https 访问/" rel="bookmark">
-        <time class="entry-date published" datetime="2019-10-20T04:02:39.000Z">
-          2019-10-20
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CentOS/Nginx 安装 Dokuwiki 支持 Https 访问"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-10-20 12:02" pubdate>
+          2019年10月20日 中午
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <h3 id="更新工具包"><a href="#更新工具包" class="headerlink" title="更新工具包"></a>更新工具包</h3><blockquote>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CentOS/Nginx 安装 Dokuwiki 支持 Https 访问</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="更新工具包"><a href="#更新工具包" class="headerlink" title="更新工具包"></a>更新工具包</h3><blockquote>
 <p>注：此更新步骤仅为建议，非必须</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> yum -y update</span><br><span class="line"><span class="built_in">sudo</span> yum -y install vim bash-completion wget tar</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum -y update<br><span class="hljs-built_in">sudo</span> yum -y install vim bash-completion wget tar<br></code></pre></td></tr></table></figure>
 <p>更新后重启系统</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
-<h3 id="安装工具包"><a href="#安装工具包" class="headerlink" title="安装工具包"></a>安装工具包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> yum install epel-release yum-utils</span><br><span class="line"><span class="built_in">sudo</span> yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm</span><br><span class="line"><span class="built_in">sudo</span> yum makecache fast</span><br><span class="line"><span class="built_in">sudo</span> yum-config-manager --<span class="built_in">disable</span> remi-php54</span><br><span class="line"><span class="built_in">sudo</span> yum-config-manager --<span class="built_in">enable</span> remi-php72</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+<h3 id="安装工具包"><a href="#安装工具包" class="headerlink" title="安装工具包"></a>安装工具包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install epel-release yum-utils<br><span class="hljs-built_in">sudo</span> yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm<br><span class="hljs-built_in">sudo</span> yum makecache fast<br><span class="hljs-built_in">sudo</span> yum-config-manager --<span class="hljs-built_in">disable</span> remi-php54<br><span class="hljs-built_in">sudo</span> yum-config-manager --<span class="hljs-built_in">enable</span> remi-php72<br></code></pre></td></tr></table></figure>
 <h3 id="安装-php-和-Nginx"><a href="#安装-php-和-Nginx" class="headerlink" title="安装 php 和 Nginx"></a>安装 php 和 Nginx</h3><blockquote>
 <p>注：若二者已安装，此步可跳过</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> yum -y install php-cli php-fpm php-mysql php-zip php-ldap </span><br><span class="line"><span class="built_in">sudo</span> yum -y install php-devel php-gd php-mcrypt php-mbstring </span><br><span class="line"><span class="built_in">sudo</span> yum -y install php-curl php-xml php-pear php-bcmath</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum -y install php-cli php-fpm php-mysql php-zip php-ldap <br><span class="hljs-built_in">sudo</span> yum -y install php-devel php-gd php-mcrypt php-mbstring <br><span class="hljs-built_in">sudo</span> yum -y install php-curl php-xml php-pear php-bcmath<br></code></pre></td></tr></table></figure>
 <p>安装好了后，检查一下 php 版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">php -v<br></code></pre></td></tr></table></figure>
 <p>若正常，会显示如下信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PHP 7.2.10 (cli) (built: Sep 11 2018 11:22:20) ( NTS )</span><br><span class="line">Copyright (c) 1997-2018 The PHP Group</span><br><span class="line">Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">PHP 7.2.10 (cli) (built: Sep 11 2018 11:22:20) ( NTS )<br>Copyright (c) 1997-2018 The PHP Group<br>Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>注：此处略去安装 Nginx 过程，如有需要，请参考其他教程</p>
 </blockquote>
 <h3 id="安装-Dokuwiki"><a href="#安装-Dokuwiki" class="headerlink" title="安装 Dokuwiki"></a>安装 Dokuwiki</h3><p>下载前，先到 <a target="_blank" rel="noopener" href="https://github.com/splitbrain/dokuwiki/releases">Github</a> 检查一下它的最新稳定版本，此处假设为”2018-04-22b”</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> RELEASE=<span class="string">&quot;2018-04-22b&quot;</span></span><br><span class="line">wget https://github.com/splitbrain/dokuwiki/archive/release_stable_<span class="variable">$&#123;RELEASE&#125;</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> RELEASE=<span class="hljs-string">&quot;2018-04-22b&quot;</span><br>wget https://github.com/splitbrain/dokuwiki/archive/release_stable_<span class="hljs-variable">$&#123;RELEASE&#125;</span>.tar.gz<br></code></pre></td></tr></table></figure>
 <p>解压下载的安装包，并转移到新建的文件夹 &#x2F;var&#x2F;www&#x2F;html&#x2F; 中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar xvf release_stable_<span class="variable">$&#123;RELEASE&#125;</span>.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /var/www/html/ </span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> dokuwiki-release_stable_<span class="variable">$&#123;RELEASE&#125;</span>  /var/www/html/dokuwiki</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar xvf release_stable_<span class="hljs-variable">$&#123;RELEASE&#125;</span>.tar.gz<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /var/www/html/ <br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> dokuwiki-release_stable_<span class="hljs-variable">$&#123;RELEASE&#125;</span>  /var/www/html/dokuwiki<br></code></pre></td></tr></table></figure>
 <p>将文件夹 &#x2F;var&#x2F;www&#x2F;html&#x2F;dokuwiki 所有者权限修改为 nginx_user:nginx_group</p>
 <blockquote>
 <p>注1：更改文件夹的所有者权限，方便 Nginx 有权访问该文件夹中的内容；此处假设 Nginx 进程运行在 nginx_user:nginx_group 下面，如果不是，则相应修改<br>注2：查看 nginx 所属用户 username 的办法为 <code>ps aux | grep nginx</code><br>注3：查看某个用户 username 所属组的方法为 <code>groups username</code></p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R nginx_user:nginx_group /var/www/html/dokuwiki</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R nginx_user:nginx_group /var/www/html/dokuwiki<br></code></pre></td></tr></table></figure>
 <h3 id="安装-SSL-证书"><a href="#安装-SSL-证书" class="headerlink" title="安装 SSL 证书"></a>安装 SSL 证书</h3><p>目的：支持使用 https 访问</p>
 <h5 id="安装-certbot-auto-到本地的-usr-local-bin-下"><a href="#安装-certbot-auto-到本地的-usr-local-bin-下" class="headerlink" title="安装 certbot-auto 到本地的 &#x2F;usr&#x2F;local&#x2F;bin 下"></a>安装 certbot-auto 到本地的 &#x2F;usr&#x2F;local&#x2F;bin 下</h5><p>目的：方便从 Letsencrypt 机构申请免费证书并简化后续的证书到期更新工作</p>
 <blockquote>
 <p>注：若已安装过 certbot-auto 此步骤可略过</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> wget https://dl.eff.org/certbot-auto -P /usr/local/bin</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> a+x /usr/local/bin/certbot-auto</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> wget https://dl.eff.org/certbot-auto -P /usr/local/bin<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> a+x /usr/local/bin/certbot-auto<br></code></pre></td></tr></table></figure>
 <h5 id="配置-pip-国内源"><a href="#配置-pip-国内源" class="headerlink" title="配置 pip 国内源"></a>配置 pip 国内源</h5><p>注：若之前已配置，请跳过此步骤；此步骤的目的是加速 CertBot 下载 python 模块的速度</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建 .pip 文件夹并进入</span></span><br><span class="line"><span class="built_in">mkdir</span> .pip &amp;&amp; <span class="built_in">cd</span> .pip</span><br><span class="line"><span class="comment"># 创建 pip.conf 文件</span></span><br><span class="line">vi pip.conf</span><br><span class="line"><span class="comment"># 在 pip.conf 文件中输入以下内容</span></span><br><span class="line">[global]</span><br><span class="line">index-url=http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=mirrors.aliyun.com</span><br><span class="line"><span class="comment"># 保存退出</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 新建 .pip 文件夹并进入</span><br><span class="hljs-built_in">mkdir</span> .pip &amp;&amp; <span class="hljs-built_in">cd</span> .pip<br><span class="hljs-comment"># 创建 pip.conf 文件</span><br>vi pip.conf<br><span class="hljs-comment"># 在 pip.conf 文件中输入以下内容</span><br>[global]<br>index-url=http://mirrors.aliyun.com/pypi/simple/<br>[install]<br>trusted-host=mirrors.aliyun.com<br><span class="hljs-comment"># 保存退出</span><br></code></pre></td></tr></table></figure>
 
-<h5 id="运行脚本，安装依赖"><a href="#运行脚本，安装依赖" class="headerlink" title="运行脚本，安装依赖"></a>运行脚本，安装依赖</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/certbot-auto --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<h5 id="运行脚本，安装依赖"><a href="#运行脚本，安装依赖" class="headerlink" title="运行脚本，安装依赖"></a>运行脚本，安装依赖</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">/usr/local/bin/certbot-auto --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
 <h5 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h5><p>目的：获取域名证书过程中， Let’s Encrypt 会对域名发起访问，以确认申请者对域名的所有权；故需要配置 nginx，以便能够对 Let’s Encrypt 的访问返回正确的响应；</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建文件夹，用于  Let&#x27;s Encrypt 访问时返回响应内容</span></span><br><span class="line"><span class="built_in">mkdir</span> /home/letsencrypt</span><br><span class="line"><span class="comment"># 打开 nginx 配置文件进行编辑，此处假设 nginx 的配置文件在以下路径：/usr/local/nginx/conf/nginx.conf，如不是，则相应修改路径</span></span><br><span class="line">vi /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 创建文件夹，用于  Let&#x27;s Encrypt 访问时返回响应内容</span><br><span class="hljs-built_in">mkdir</span> /home/letsencrypt<br><span class="hljs-comment"># 打开 nginx 配置文件进行编辑，此处假设 nginx 的配置文件在以下路径：/usr/local/nginx/conf/nginx.conf，如不是，则相应修改路径</span><br>vi /usr/local/nginx/conf/nginx.conf<br></code></pre></td></tr></table></figure>
 
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 nginx 配置文件中，找到 http，添加一条监听 80 端口的新 server</span></span><br><span class="line">http &#123;</span><br><span class="line">    <span class="comment">//...(略)...</span></span><br><span class="line">    <span class="comment">// 添加如下内容，此处假设申请域名为 domain.example.com，请修改为实际申请的域名</span></span><br><span class="line">    server &#123;</span><br><span class="line">        listen <span class="number">80</span>;</span><br><span class="line">        server_name  domain.<span class="property">example</span>.<span class="property">com</span>;</span><br><span class="line">        location ~  <span class="regexp">/.well-known/</span>acme-challenge/ &#123;</span><br><span class="line">            defaulf_type <span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line">            root  /home/letsencrypt/;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">            </span><br><span class="line">        <span class="comment">// ......以下略......</span></span><br></pre></td></tr></table></figure>
-<h5 id="重启-nginx"><a href="#重启-nginx" class="headerlink" title="重启 nginx"></a>重启 nginx</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处假设 nginx 可执行文件在路径 /usr/local/nginx/sbin 下面，如不是则相应修改路径</span></span><br><span class="line"><span class="comment"># 先使用 -t 参数测试配置文件格式是否正确</span></span><br><span class="line">/usr/local/nginx/sbin/nginx -t</span><br><span class="line"><span class="comment"># 若正确，屏幕上将显示以下字样</span></span><br><span class="line">&gt; nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok</span><br><span class="line"><span class="comment"># 重启 Nginx</span></span><br><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 在 nginx 配置文件中，找到 http，添加一条监听 80 端口的新 server</span><br>http &#123;<br>    <span class="hljs-comment">//...(略)...</span><br>    <span class="hljs-comment">// 添加如下内容，此处假设申请域名为 domain.example.com，请修改为实际申请的域名</span><br>    server &#123;<br>        listen <span class="hljs-number">80</span>;<br>        server_name  domain.<span class="hljs-property">example</span>.<span class="hljs-property">com</span>;<br>        location ~  <span class="hljs-regexp">/.well-known/</span>acme-challenge/ &#123;<br>            defaulf_type <span class="hljs-string">&quot;text/plain&quot;</span>;<br>            root  /home/letsencrypt/;<br>        &#125;<br>    &#125;<br>            <br>        <span class="hljs-comment">// ......以下略......</span><br></code></pre></td></tr></table></figure>
+<h5 id="重启-nginx"><a href="#重启-nginx" class="headerlink" title="重启 nginx"></a>重启 nginx</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 此处假设 nginx 可执行文件在路径 /usr/local/nginx/sbin 下面，如不是则相应修改路径</span><br><span class="hljs-comment"># 先使用 -t 参数测试配置文件格式是否正确</span><br>/usr/local/nginx/sbin/nginx -t<br><span class="hljs-comment"># 若正确，屏幕上将显示以下字样</span><br>&gt; nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok<br><span class="hljs-comment"># 重启 Nginx</span><br>/usr/local/nginx/sbin/nginx -s reload<br></code></pre></td></tr></table></figure>
 
-<h5 id="运行脚本，申请证书"><a href="#运行脚本，申请证书" class="headerlink" title="运行脚本，申请证书"></a>运行脚本，申请证书</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处为域名 domain.example.com 申请一张证书，其中的 youremail.com 请替换为你自己的邮箱地址</span></span><br><span class="line">/usr/local/bin/certbot-auto certonly  --email youremail.com --webroot -w /home/letsencrypt -d domain.example.com</span><br></pre></td></tr></table></figure>
+<h5 id="运行脚本，申请证书"><a href="#运行脚本，申请证书" class="headerlink" title="运行脚本，申请证书"></a>运行脚本，申请证书</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 此处为域名 domain.example.com 申请一张证书，其中的 youremail.com 请替换为你自己的邮箱地址</span><br>/usr/local/bin/certbot-auto certonly  --email youremail.com --webroot -w /home/letsencrypt -d domain.example.com<br></code></pre></td></tr></table></figure>
 <p>申请成功后，界面下会有如下的成功提示：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IMPORTANT NOTES:</span><br><span class="line">- Congratulations! Your certificate and chain have been saved at</span><br><span class="line">   /etc/letsencrypt/live/helloworld.com/fullchain.pem. Your cert</span><br><span class="line">   will expire on 2019-08-26. To obtain a new version of the</span><br><span class="line">   certificate <span class="keyword">in</span> the future, simply run Let<span class="string">&#x27;s Encrypt again......</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">IMPORTANT NOTES:<br>- Congratulations! Your certificate and chain have been saved at<br>   /etc/letsencrypt/live/helloworld.com/fullchain.pem. Your cert<br>   will expire on 2019-08-26. To obtain a new version of the<br>   certificate <span class="hljs-keyword">in</span> the future, simply run Let<span class="hljs-string">&#x27;s Encrypt again......</span><br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>注：记下以上提示信息中的 fullchain.pem 和 privkey.pem 两个文件路径，后续配置 nginx 会用到</p>
 </blockquote>
 <h3 id="配置-Nginx"><a href="#配置-Nginx" class="headerlink" title="配置 Nginx"></a>配置 Nginx</h3><p>打开 nginx 配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置文件的路径请根据实际情况修改</span></span><br><span class="line">vi /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 配置文件的路径请根据实际情况修改</span><br>vi /usr/local/nginx/conf/nginx.conf<br></code></pre></td></tr></table></figure>
 <p>在nginx 配置文件中，新增两个 server 条目，内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    <span class="comment"># 注意替换此处的域名</span></span><br><span class="line">    server_name domain.example.com;</span><br><span class="line">    root /var/www/html/dokuwiki;</span><br><span class="line"></span><br><span class="line">    access_log /var/log/dokuwiki.access.log;</span><br><span class="line">    error_log /var/log/dokuwiki.error.log;</span><br><span class="line"></span><br><span class="line">    ssl on;</span><br><span class="line">    <span class="comment"># 注意替换此处的 fullchain.pem 和 privkey.pem 的路径为正确的实际路径</span></span><br><span class="line">    ssl_certificate /etc/letsencrypt/live/domain.example.com/fullchain.pem;</span><br><span class="line">    ssl_certificate_key /etc/letsencrypt/live/domain.example.com/privkey.pem;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers <span class="string">&#x27;AES128+EECDH:AES128+EDH:!aNULL&#x27;</span>;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">    index index.html index.php doku.php;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ @dokuwiki;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location @dokuwiki &#123;</span><br><span class="line">        rewrite ^/_media/(.*) /lib/exe/fetch.php?media=<span class="variable">$1</span> last;</span><br><span class="line">        rewrite ^/_detail/(.*) /lib/exe/detail.php?media=<span class="variable">$1</span> last;</span><br><span class="line">        rewrite ^/_export/([^/]+)/(.*) /doku.php?<span class="keyword">do</span>=export_<span class="variable">$1</span>&amp;<span class="built_in">id</span>=<span class="variable">$2</span> last;</span><br><span class="line">        rewrite ^/(.*) /doku.php?<span class="built_in">id</span>=<span class="variable">$1</span> last;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ /(data|conf|bin|inc)/ &#123;</span><br><span class="line">        deny all;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~* \.(css|js|gif|jpe?g|png)$ &#123;</span><br><span class="line">        expires 1M;</span><br><span class="line">        add_header Pragma public;</span><br><span class="line">        add_header Cache-Control <span class="string">&quot;public, must-revalidate, proxy-revalidate&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        fastcgi_intercept_errors off;</span><br><span class="line">        fastcgi_buffer_size 16k;</span><br><span class="line">        fastcgi_buffers 4 16k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ /\.ht &#123;</span><br><span class="line">        deny all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 若想支持 80 端口访问，则可以在原监听 80 端口的 server 条目中添加一些信息</span></span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name  domain.example.com;</span><br><span class="line">        location ~  /.well-known/acme-challenge/ &#123;</span><br><span class="line">            defaulf_type <span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line">            root  /home/letsencrypt/;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 以上是 location 原申请证书时已写好的信息，下面的新 location 是需要新添加的信息</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            add_header Strict-Transport-Security max-age=2592000;</span><br><span class="line">            rewrite ^ https://$host<span class="variable">$request_uri</span>? permanent;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br>server &#123;<br>    listen 443 ssl;<br>    <span class="hljs-comment"># 注意替换此处的域名</span><br>    server_name domain.example.com;<br>    root /var/www/html/dokuwiki;<br><br>    access_log /var/log/dokuwiki.access.log;<br>    error_log /var/log/dokuwiki.error.log;<br><br>    ssl on;<br>    <span class="hljs-comment"># 注意替换此处的 fullchain.pem 和 privkey.pem 的路径为正确的实际路径</span><br>    ssl_certificate /etc/letsencrypt/live/domain.example.com/fullchain.pem;<br>    ssl_certificate_key /etc/letsencrypt/live/domain.example.com/privkey.pem;<br>    ssl_session_timeout 5m;<br>    ssl_ciphers <span class="hljs-string">&#x27;AES128+EECDH:AES128+EDH:!aNULL&#x27;</span>;<br>    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;<br>    ssl_prefer_server_ciphers on;<br><br>    index index.html index.php doku.php;<br><br>    location / &#123;<br>        try_files <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ @dokuwiki;<br>    &#125;<br><br>    location @dokuwiki &#123;<br>        rewrite ^/_media/(.*) /lib/exe/fetch.php?media=<span class="hljs-variable">$1</span> last;<br>        rewrite ^/_detail/(.*) /lib/exe/detail.php?media=<span class="hljs-variable">$1</span> last;<br>        rewrite ^/_export/([^/]+)/(.*) /doku.php?<span class="hljs-keyword">do</span>=export_<span class="hljs-variable">$1</span>&amp;<span class="hljs-built_in">id</span>=<span class="hljs-variable">$2</span> last;<br>        rewrite ^/(.*) /doku.php?<span class="hljs-built_in">id</span>=<span class="hljs-variable">$1</span> last;<br>    &#125;<br><br>    location ~ /(data|conf|bin|inc)/ &#123;<br>        deny all;<br>    &#125;<br><br>    location ~* \.(css|js|gif|jpe?g|png)$ &#123;<br>        expires 1M;<br>        add_header Pragma public;<br>        add_header Cache-Control <span class="hljs-string">&quot;public, must-revalidate, proxy-revalidate&quot;</span>;<br>    &#125;<br><br>    location ~ \.php$ &#123;<br>        fastcgi_split_path_info ^(.+\.php)(/.+)$;<br>        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;<br>        fastcgi_index index.php;<br>        include fastcgi_params;<br>        fastcgi_param SCRIPT_FILENAME $document_root<span class="hljs-variable">$fastcgi_script_name</span>;<br>        fastcgi_intercept_errors off;<br>        fastcgi_buffer_size 16k;<br>        fastcgi_buffers 4 16k;<br>    &#125;<br><br>    location ~ /\.ht &#123;<br>        deny all;<br>    &#125;<br>&#125;<br><span class="hljs-comment"># 若想支持 80 端口访问，则可以在原监听 80 端口的 server 条目中添加一些信息</span><br>server &#123;<br>        listen 80;<br>        server_name  domain.example.com;<br>        location ~  /.well-known/acme-challenge/ &#123;<br>            defaulf_type <span class="hljs-string">&quot;text/plain&quot;</span>;<br>            root  /home/letsencrypt/;<br>        &#125;<br>        <span class="hljs-comment"># 以上是 location 原申请证书时已写好的信息，下面的新 location 是需要新添加的信息</span><br>        location / &#123;<br>            add_header Strict-Transport-Security max-age=2592000;<br>            rewrite ^ https://$host<span class="hljs-variable">$request_uri</span>? permanent;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h3 id="配置-php-fpm"><a href="#配置-php-fpm" class="headerlink" title="配置 php-fpm"></a>配置 php-fpm</h3><p>打开以下 php-fpm 中的文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim /etc/php-fpm.d/www.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/php-fpm.d/www.conf<br></code></pre></td></tr></table></figure>
 <p>将文件中以下几个键的值设置为如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意替换此处的 nginx_user 和 nginx_group 为实际的用户名和用户组</span></span><br><span class="line">user = nginx_user</span><br><span class="line">group = nginx_group</span><br><span class="line">listen = /var/run/php-fpm/php-fpm.sock</span><br><span class="line">listen.owner = nginx_user</span><br><span class="line">listen.group = nginx_group</span><br><span class="line">listen.mode = 0660</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 注意替换此处的 nginx_user 和 nginx_group 为实际的用户名和用户组</span><br>user = nginx_user<br>group = nginx_group<br>listen = /var/run/php-fpm/php-fpm.sock<br>listen.owner = nginx_user<br>listen.group = nginx_group<br>listen.mode = 0660<br></code></pre></td></tr></table></figure>
 <p>启动 nginx 和 php-fpm</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl start php-fpm</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> php-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start php-fpm<br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> php-fpm<br></code></pre></td></tr></table></figure>
 <p>重启 Nginx</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先使用 -t 参数测试配置文件格式是否正确</span></span><br><span class="line">/usr/local/nginx/sbin/nginx -t</span><br><span class="line"><span class="comment"># 若正确，屏幕上将显示以下字样</span></span><br><span class="line">&gt; nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok</span><br><span class="line"><span class="comment"># 重启 Nginx</span></span><br><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 先使用 -t 参数测试配置文件格式是否正确</span><br>/usr/local/nginx/sbin/nginx -t<br><span class="hljs-comment"># 若正确，屏幕上将显示以下字样</span><br>&gt; nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok<br><span class="hljs-comment"># 重启 Nginx</span><br>/usr/local/nginx/sbin/nginx -s reload<br></code></pre></td></tr></table></figure>
 <h3 id="配置-DokuWiki"><a href="#配置-DokuWiki" class="headerlink" title="配置 DokuWiki"></a>配置 DokuWiki</h3><p>使用浏览器打开网址：<a target="_blank" rel="noopener" href="https://domain.example.com/install.php%EF%BC%8C%E6%89%93%E5%BC%80%E5%90%8E%E9%A1%B5%E9%9D%A2%E5%A6%82%E4%B8%8B%EF%BC%8C%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E8%AF%B7%E5%8F%82%E8%80%83%E5%85%B6%E4%BB%96%E6%95%99%E7%A8%8B">https://domain.example.com/install.php，打开后页面如下，配置方法请参考其他教程</a></p>
 <blockquote>
 <p>注：domain.example.com 请相应替换为实际域名</p>
 </blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/7490238-1fd596e7d3e73a2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7490238-1fd596e7d3e73a2c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Letsenctrypt 的证书有效期为三个月，当剩余一个月时，Letsenctrypt 会发通知邮件到预留的邮箱；收到通知后，只需要登录服务器，运行相关命令，即可自动更新证书</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先使用 --dry-run 选项进行测试，非真正执行更新</span></span><br><span class="line">/usr/local/bin/certbot-auto renew --dry-run</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 先使用 --dry-run 选项进行测试，非真正执行更新</span><br>/usr/local/bin/certbot-auto renew --dry-run<br></code></pre></td></tr></table></figure>
 <p>若显示如下字样，则表示自动更新功能测试成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, all renewals succeeded. The following certs have been renewed:  </span><br><span class="line">   /etc/letsencrypt/live/www.helloworld.com/fullchain.pem (success)</span><br><span class="line">** DRY RUN: simulating <span class="string">&#x27;certbot renew&#x27;</span> close to cert expiry</span><br><span class="line">** (The <span class="built_in">test</span> certificates above have not been saved.)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">Congratulations, all renewals succeeded. The following certs have been renewed:  <br>   /etc/letsencrypt/live/www.helloworld.com/fullchain.pem (success)<br>** DRY RUN: simulating <span class="hljs-string">&#x27;certbot renew&#x27;</span> close to cert expiry<br>** (The <span class="hljs-built_in">test</span> certificates above have not been saved.)<br></code></pre></td></tr></table></figure>
 <p>运行以下实际的更新命令，更新完了后，记得重启 nginx 服务器，以便启用新的证书</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/certbot-auto renew -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>certbot-auto renew -v<br></code></pre></td></tr></table></figure>
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="print-no-link">#服务器</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CentOS/Nginx 安装 Dokuwiki 支持 Https 访问</div>
+      <div>http://example.com/2019/10/20/CentOS Nginx 安装 Dokuwiki 支持 Https 访问/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/01/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BF%9B%E5%BA%A6%E7%8E%AF/" title="微信小程序进度环">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">微信小程序进度环</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/28/gcc%20%E9%93%BE%E6%8E%A5%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="gcc 链接器工作原理">
+                        <span class="hidden-mobile">gcc 链接器工作原理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/服务器/">服务器</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -193,23 +500,207 @@
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

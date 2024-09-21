@@ -1,175 +1,488 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>scons 用法 | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 基本概念SConstruct 是一个 Python 脚本，作用类似于 Makefile，我们通过它来告诉 Scons 要构建什么东西 2. 常用命令123456# 表示读取 SConstruct 脚本文件，开始构建scons# -c 选项表示清理现场，将构建出来的东西删除掉scons -c# -Q 选项表示安静模式，即不打印构建过程中的提示信息scons -Q  3. 简单构建单个源文件12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scons 用法">
+<meta property="og:url" content="http://example.com/2021/01/17/scons%20%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="1. 基本概念SConstruct 是一个 Python 脚本，作用类似于 Makefile，我们通过它来告诉 Scons 要构建什么东西 2. 常用命令123456# 表示读取 SConstruct 脚本文件，开始构建scons# -c 选项表示清理现场，将构建出来的东西删除掉scons -c# -Q 选项表示安静模式，即不打印构建过程中的提示信息scons -Q  3. 简单构建单个源文件12">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-17T12:16:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T06:56:46.895Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>scons 用法 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="1. 基本概念SConstruct 是一个 Python 脚本，作用类似于 Makefile，我们通过它来告诉 Scons 要构建什么东西
-2. 常用命令123456# 表示读取 SConstruct 脚本文件，开始构建scons# -c 选项表示清理现场，将构建出来的东西删除掉scons -c# ">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  
-  
-  <meta name="keywords" content="软件,C++,C">
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="scons 用法"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
-  
-
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>scons 用法</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2021/01/17/scons 用法/" rel="bookmark">
-        <time class="entry-date published" datetime="2021-01-17T12:16:00.000Z">
-          2021-01-17
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="scons 用法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-17 20:16" pubdate>
+          2021年1月17日 晚上
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><p>SConstruct 是一个 Python 脚本，作用类似于 Makefile，我们通过它来告诉 Scons 要构建什么东西</p>
-<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表示读取 SConstruct 脚本文件，开始构建</span></span><br><span class="line">scons</span><br><span class="line"><span class="comment"># -c 选项表示清理现场，将构建出来的东西删除掉</span></span><br><span class="line">scons -c</span><br><span class="line"><span class="comment"># -Q 选项表示安静模式，即不打印构建过程中的提示信息</span></span><br><span class="line">scons -Q</span><br></pre></td></tr></table></figure>
+    </div>
+  </div>
+</div>
 
-<h2 id="3-简单构建"><a href="#3-简单构建" class="headerlink" title="3. 简单构建"></a>3. 简单构建</h2><h3 id="单个源文件"><a href="#单个源文件" class="headerlink" title="单个源文件"></a>单个源文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Program 用来告知 Scons 要构建可执行文件，参数即是源代码</span></span><br><span class="line">Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果要指代可执行文件的名字，可写在第一个参数上</span></span><br><span class="line">Program(<span class="string">&#x27;my_hello&#x27;</span>,  <span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Object 表示要构建目标文件</span></span><br><span class="line">Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</div>
 
-<h3 id="多个源文件"><a href="#多个源文件" class="headerlink" title="多个源文件"></a>多个源文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果源代码有多个文件，只需将它们放在一个列表中即可</span></span><br><span class="line">Program([<span class="string">&#x27;prog.c&#x27;</span>, <span class="string">&#x27;file1.c&#x27;</span>, <span class="string">&#x27;file2.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Program 默认以列表第一个元素为最终编译结果的可执行文件的文件名，但是可以自定义</span></span><br><span class="line">Program(<span class="string">&#x27;my_prog&#x27;</span>, [<span class="string">&#x27;prog.c&#x27;</span>, <span class="string">&#x27;file1.c&#x27;</span>, <span class="string">&#x27;file2.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果文件很多个，可以使用关键字和 Glob 命令进行匹配</span></span><br><span class="line"><span class="comment"># 通配符包括星号 *，问号 ?，以及部分关键字如 [abc] 表示任意满足 a, b 或  c 的文件均可</span></span><br><span class="line"><span class="comment"># 也可以使用 [!abc] 进行排除，即不包括以上几个字母的，即是目标</span></span><br><span class="line">Program(<span class="string">&#x27;prog&#x27;</span>, Glob(<span class="string">&#x27;*.c&#x27;</span>))</span><br></pre></td></tr></table></figure>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">scons 用法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><p>SConstruct 是一个 Python 脚本，作用类似于 Makefile，我们通过它来告诉 Scons 要构建什么东西</p>
+<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 表示读取 SConstruct 脚本文件，开始构建</span><br>scons<br><span class="hljs-comment"># -c 选项表示清理现场，将构建出来的东西删除掉</span><br>scons -c<br><span class="hljs-comment"># -Q 选项表示安静模式，即不打印构建过程中的提示信息</span><br>scons -Q<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-简单构建"><a href="#3-简单构建" class="headerlink" title="3. 简单构建"></a>3. 简单构建</h2><h3 id="单个源文件"><a href="#单个源文件" class="headerlink" title="单个源文件"></a>单个源文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Program 用来告知 Scons 要构建可执行文件，参数即是源代码</span><br>Program(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br><br><span class="hljs-comment"># 如果要指代可执行文件的名字，可写在第一个参数上</span><br>Program(<span class="hljs-string">&#x27;my_hello&#x27;</span>,  <span class="hljs-string">&#x27;hello.c&#x27;</span>)<br><br><span class="hljs-comment"># Object 表示要构建目标文件</span><br>Object(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="多个源文件"><a href="#多个源文件" class="headerlink" title="多个源文件"></a>多个源文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 如果源代码有多个文件，只需将它们放在一个列表中即可</span><br>Program([<span class="hljs-string">&#x27;prog.c&#x27;</span>, <span class="hljs-string">&#x27;file1.c&#x27;</span>, <span class="hljs-string">&#x27;file2.c&#x27;</span>])<br><br><span class="hljs-comment"># Program 默认以列表第一个元素为最终编译结果的可执行文件的文件名，但是可以自定义</span><br>Program(<span class="hljs-string">&#x27;my_prog&#x27;</span>, [<span class="hljs-string">&#x27;prog.c&#x27;</span>, <span class="hljs-string">&#x27;file1.c&#x27;</span>, <span class="hljs-string">&#x27;file2.c&#x27;</span>])<br><br><span class="hljs-comment"># 如果文件很多个，可以使用关键字和 Glob 命令进行匹配</span><br><span class="hljs-comment"># 通配符包括星号 *，问号 ?，以及部分关键字如 [abc] 表示任意满足 a, b 或  c 的文件均可</span><br><span class="hljs-comment"># 也可以使用 [!abc] 进行排除，即不包括以上几个字母的，即是目标</span><br>Program(<span class="hljs-string">&#x27;prog&#x27;</span>, Glob(<span class="hljs-string">&#x27;*.c&#x27;</span>))<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>事实上，源代码文件在 Scons 内部都是当作列表来处理，单个文件的情况，会自动添加方括号而已；为了统一，建议还是都加上方括号比较好，同时也可以避免 Python 解释器报语法错误</p>
 </blockquote>
 <h3 id="自动加引号"><a href="#自动加引号" class="headerlink" title="自动加引号"></a>自动加引号</h3><p>当有多个文件时，需要为每个文件打上双引号，如果文件一多，确实工作量不小；Scons 额外提供了一个 Split 名称，可以为文件自动添加引号，使用方法如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Split 函数自动添加引号，文件名之间只需要使用空格分隔即可</span></span><br><span class="line">Program(<span class="string">&#x27;prog&#x27;</span>, Split(<span class="string">&#x27;main.c  file1.c file2.c&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以用一个变量来代表多个文件的列表</span></span><br><span class="line">src_files = Split(<span class="string">&#x27;main.c file1.c file2.c&#x27;</span>)</span><br><span class="line">Program(<span class="string">&#x27;program&#x27;</span>, src_files)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件名之间有多个空格也没有关系</span></span><br><span class="line"><span class="comment"># 此处用三个引号是为了符合 Python 对多行字符串的格式要求</span></span><br><span class="line">src_files = Split(<span class="string">&quot;&quot;&quot;main.c</span></span><br><span class="line"><span class="string">                            file1.c</span></span><br><span class="line"><span class="string">                            file2.c&quot;&quot;&quot;</span>)</span><br><span class="line">Program(<span class="string">&#x27;program&#x27;</span>, src_files)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 Split 函数自动添加引号，文件名之间只需要使用空格分隔即可</span><br>Program(<span class="hljs-string">&#x27;prog&#x27;</span>, Split(<span class="hljs-string">&#x27;main.c  file1.c file2.c&#x27;</span>))<br><br><span class="hljs-comment"># 也可以用一个变量来代表多个文件的列表</span><br>src_files = Split(<span class="hljs-string">&#x27;main.c file1.c file2.c&#x27;</span>)<br>Program(<span class="hljs-string">&#x27;program&#x27;</span>, src_files)<br><br><span class="hljs-comment"># 文件名之间有多个空格也没有关系</span><br><span class="hljs-comment"># 此处用三个引号是为了符合 Python 对多行字符串的格式要求</span><br>src_files = Split(<span class="hljs-string">&quot;&quot;&quot;main.c</span><br><span class="hljs-string">                            file1.c</span><br><span class="hljs-string">                            file2.c&quot;&quot;&quot;</span>)<br>Program(<span class="hljs-string">&#x27;program&#x27;</span>, src_files)<br></code></pre></td></tr></table></figure>
 
 <h3 id="指定参数名"><a href="#指定参数名" class="headerlink" title="指定参数名"></a>指定参数名</h3><p>Program 支持指定参数名</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">src_files = Split(<span class="string">&#x27;main.c file1.c file2.c&#x27;</span>)</span><br><span class="line">Program(target = <span class="string">&#x27;program&#x27;</span>, source = src_files)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">src_files = Split(<span class="hljs-string">&#x27;main.c file1.c file2.c&#x27;</span>)<br>Program(target = <span class="hljs-string">&#x27;program&#x27;</span>, source = src_files)<br></code></pre></td></tr></table></figure>
 
 <h3 id="多个编译目标"><a href="#多个编译目标" class="headerlink" title="多个编译目标"></a>多个编译目标</h3><p>如果想在同一个 scons 文件中编译多个可执行文件，只需多次调用 Program 函数即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Program(<span class="string">&#x27;foo.c&#x27;</span>)</span><br><span class="line">Program(<span class="string">&#x27;bar&#x27;</span>, [<span class="string">&#x27;bar1.c&#x27;</span>, <span class="string">&#x27;bar2.c&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">Program(<span class="hljs-string">&#x27;foo.c&#x27;</span>)<br>Program(<span class="hljs-string">&#x27;bar&#x27;</span>, [<span class="hljs-string">&#x27;bar1.c&#x27;</span>, <span class="hljs-string">&#x27;bar2.c&#x27;</span>])<br></code></pre></td></tr></table></figure>
 
 <h3 id="多目标共享源文件"><a href="#多目标共享源文件" class="headerlink" title="多目标共享源文件"></a>多目标共享源文件</h3><p>办法1：只需要将共享的文件放入源文件列表即可 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此处  common1.c 和 common2.c 这两个文件是共享的</span></span><br><span class="line">Program(Split(<span class="string">&#x27;foo.c common1.c common2.c&#x27;</span>))</span><br><span class="line">Program(<span class="string">&#x27;bar&#x27;</span>, Split(<span class="string">&#x27;bar1.c bar2.c common1.c common2.c&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果引用的次数很多，简单的做成变量进行引用即可</span></span><br><span class="line">common = [<span class="string">&#x27;common1.c&#x27;</span>, <span class="string">&#x27;common2.c&#x27;</span>]</span><br><span class="line">foo_files = [<span class="string">&#x27;foo.c&#x27;</span>] + common</span><br><span class="line">bar_files = [<span class="string">&#x27;bar1.c&#x27;</span>, <span class="string">&#x27;bar2.c&#x27;</span>] + common</span><br><span class="line">Program(<span class="string">&#x27;foo&#x27;</span>, foo_files)</span><br><span class="line">Program(<span class="string">&#x27;bar&#x27;</span>, bar_files)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 此处  common1.c 和 common2.c 这两个文件是共享的</span><br>Program(Split(<span class="hljs-string">&#x27;foo.c common1.c common2.c&#x27;</span>))<br>Program(<span class="hljs-string">&#x27;bar&#x27;</span>, Split(<span class="hljs-string">&#x27;bar1.c bar2.c common1.c common2.c&#x27;</span>))<br><br><span class="hljs-comment"># 如果引用的次数很多，简单的做成变量进行引用即可</span><br>common = [<span class="hljs-string">&#x27;common1.c&#x27;</span>, <span class="hljs-string">&#x27;common2.c&#x27;</span>]<br>foo_files = [<span class="hljs-string">&#x27;foo.c&#x27;</span>] + common<br>bar_files = [<span class="hljs-string">&#x27;bar1.c&#x27;</span>, <span class="hljs-string">&#x27;bar2.c&#x27;</span>] + common<br>Program(<span class="hljs-string">&#x27;foo&#x27;</span>, foo_files)<br>Program(<span class="hljs-string">&#x27;bar&#x27;</span>, bar_files)<br></code></pre></td></tr></table></figure>
 
 <p>办法2：将共享的文件做为库，由不同的目标进行引号</p>
-<h2 id="4-构建和链接库"><a href="#4-构建和链接库" class="headerlink" title="4. 构建和链接库"></a>4. 构建和链接库</h2><h3 id="构建库"><a href="#构建库" class="headerlink" title="构建库"></a>构建库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Library 函数即可构建库</span></span><br><span class="line">Library(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 除了指定源文件外，也可以在文件列表中加入目标文件</span></span><br><span class="line">Library(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.o&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>, <span class="string">&#x27;f4.o&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Library 函数默认构建静态库，同时还可以使用 StaticLibrary 函数显示的指示要构建静态库</span></span><br><span class="line">StaticLibrary(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建动态库</span></span><br><span class="line">SharedLibrary(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="4-构建和链接库"><a href="#4-构建和链接库" class="headerlink" title="4. 构建和链接库"></a>4. 构建和链接库</h2><h3 id="构建库"><a href="#构建库" class="headerlink" title="构建库"></a>构建库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 Library 函数即可构建库</span><br>Library(<span class="hljs-string">&#x27;foo&#x27;</span>, [<span class="hljs-string">&#x27;f1.c&#x27;</span>, <span class="hljs-string">&#x27;f2.c&#x27;</span>, <span class="hljs-string">&#x27;f3.c&#x27;</span>])<br><br><span class="hljs-comment"># 除了指定源文件外，也可以在文件列表中加入目标文件</span><br>Library(<span class="hljs-string">&#x27;foo&#x27;</span>, [<span class="hljs-string">&#x27;f1.c&#x27;</span>, <span class="hljs-string">&#x27;f2.o&#x27;</span>, <span class="hljs-string">&#x27;f3.c&#x27;</span>, <span class="hljs-string">&#x27;f4.o&#x27;</span>])<br><br><span class="hljs-comment"># Library 函数默认构建静态库，同时还可以使用 StaticLibrary 函数显示的指示要构建静态库</span><br>StaticLibrary(<span class="hljs-string">&#x27;foo&#x27;</span>, [<span class="hljs-string">&#x27;f1.c&#x27;</span>, <span class="hljs-string">&#x27;f2.c&#x27;</span>, <span class="hljs-string">&#x27;f3.c&#x27;</span>])<br><br><span class="hljs-comment"># 构建动态库</span><br>SharedLibrary(<span class="hljs-string">&#x27;foo&#x27;</span>, [<span class="hljs-string">&#x27;f1.c&#x27;</span>, <span class="hljs-string">&#x27;f2.c&#x27;</span>, <span class="hljs-string">&#x27;f3.c&#x27;</span>])<br></code></pre></td></tr></table></figure>
 
-<h3 id="链接库"><a href="#链接库" class="headerlink" title="链接库"></a>链接库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过在 LIBS 参数中指定库的名称，并在 LIBPATH 指定库的路径，即可完成对库的链接</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处先构建一个静态库</span></span><br><span class="line">Library(<span class="string">&#x27;foo&#x27;</span>, [<span class="string">&#x27;f1.c&#x27;</span>, <span class="string">&#x27;f2.c&#x27;</span>, <span class="string">&#x27;f3.c&#x27;</span>]) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处告知要链接的静态库名称和路径</span></span><br><span class="line"><span class="comment"># 注意：只需要提供库的名称即可，无须在库的名称前面加上 lib 前缀，或者 .a 后缀什么的</span></span><br><span class="line">Program(<span class="string">&#x27;prog.c&#x27;</span>, LIBS=[<span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>], LIBPATH=<span class="string">&#x27;.&#x27;</span>)  </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="链接库"><a href="#链接库" class="headerlink" title="链接库"></a>链接库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 通过在 LIBS 参数中指定库的名称，并在 LIBPATH 指定库的路径，即可完成对库的链接</span><br><br><span class="hljs-comment"># 此处先构建一个静态库</span><br>Library(<span class="hljs-string">&#x27;foo&#x27;</span>, [<span class="hljs-string">&#x27;f1.c&#x27;</span>, <span class="hljs-string">&#x27;f2.c&#x27;</span>, <span class="hljs-string">&#x27;f3.c&#x27;</span>]) <br><br><span class="hljs-comment"># 此处告知要链接的静态库名称和路径</span><br><span class="hljs-comment"># 注意：只需要提供库的名称即可，无须在库的名称前面加上 lib 前缀，或者 .a 后缀什么的</span><br>Program(<span class="hljs-string">&#x27;prog.c&#x27;</span>, LIBS=[<span class="hljs-string">&#x27;foo&#x27;</span>, <span class="hljs-string">&#x27;bar&#x27;</span>], LIBPATH=<span class="hljs-string">&#x27;.&#x27;</span>)  <br><br><br></code></pre></td></tr></table></figure>
 
-<h3 id="查找库"><a href="#查找库" class="headerlink" title="查找库"></a>查找库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通常情况下，链接器只在系统默认的文件中查找库，但是通过 LIBPATH 参数</span></span><br><span class="line"><span class="comment"># 链接器会在指定的文件夹中查找库</span></span><br><span class="line">Program(<span class="string">&#x27;prog.c&#x27;</span>, LIBS = <span class="string">&#x27;m&#x27;</span>,</span><br><span class="line">                        			LIBPATH = [<span class="string">&#x27;/usr/lib&#x27;</span>, <span class="string">&#x27;/usr/local/lib&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不同的路径可以使用逗号分隔，组成列表；也可以使用冒号连接成单个字符串</span></span><br><span class="line">LIBPATH = <span class="string">&#x27;/usr/lib:/usr/local/lib&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="查找库"><a href="#查找库" class="headerlink" title="查找库"></a>查找库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 通常情况下，链接器只在系统默认的文件中查找库，但是通过 LIBPATH 参数</span><br><span class="hljs-comment"># 链接器会在指定的文件夹中查找库</span><br>Program(<span class="hljs-string">&#x27;prog.c&#x27;</span>, LIBS = <span class="hljs-string">&#x27;m&#x27;</span>,<br>                        			LIBPATH = [<span class="hljs-string">&#x27;/usr/lib&#x27;</span>, <span class="hljs-string">&#x27;/usr/local/lib&#x27;</span>])<br><br><span class="hljs-comment"># 不同的路径可以使用逗号分隔，组成列表；也可以使用冒号连接成单个字符串</span><br>LIBPATH = <span class="hljs-string">&#x27;/usr/lib:/usr/local/lib&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="5-节点对象"><a href="#5-节点对象" class="headerlink" title="5. 节点对象"></a>5. 节点对象</h2><p>在内部实现上，Scons 将所有的文件和文件夹都当作一个 NodeObject 节点对象来对待；</p>
 <h3 id="构建方法的返回值是节点列表"><a href="#构建方法的返回值是节点列表" class="headerlink" title="构建方法的返回值是节点列表"></a>构建方法的返回值是节点列表</h3><p>所有的构建方法都会返回一个节点列表，用来表示将要构建的目标文件或者参与构建的源文件，返回的这个列表可以作为参数，传递给其他构建方法；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设我们需要为两个目标文件指定不同的构建参数，因此我们为它们调用了各自的 Object 方法</span></span><br><span class="line">hello_list = Object(<span class="string">&#x27;hello.c&#x27;</span>, CCFLAGS=<span class="string">&#x27;-DHELLO&#x27;</span>)</span><br><span class="line">goodbye_list = Object(<span class="string">&#x27;goodbye.c&#x27;</span>, CCFLAGS=<span class="string">&#x27;-DGOODBYE&#x27;</span>)</span><br><span class="line">Program(hello_list + goodbye_list)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 假设我们需要为两个目标文件指定不同的构建参数，因此我们为它们调用了各自的 Object 方法</span><br>hello_list = Object(<span class="hljs-string">&#x27;hello.c&#x27;</span>, CCFLAGS=<span class="hljs-string">&#x27;-DHELLO&#x27;</span>)<br>goodbye_list = Object(<span class="hljs-string">&#x27;goodbye.c&#x27;</span>, CCFLAGS=<span class="hljs-string">&#x27;-DGOODBYE&#x27;</span>)<br>Program(hello_list + goodbye_list)<br></code></pre></td></tr></table></figure>
 
-<h3 id="显式创建文件和目录的节点"><a href="#显式创建文件和目录的节点" class="headerlink" title="显式创建文件和目录的节点"></a>显式创建文件和目录的节点</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建文件节点和创始目录节点的方法不同</span></span><br><span class="line"><span class="comment"># 创建文件节点使用 File 方法</span></span><br><span class="line">hello_c = File(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line">Program(hello_c)</span><br><span class="line"><span class="comment"># 创建目录节点使用 Dir 方法</span></span><br><span class="line">classes = Dir(<span class="string">&#x27;classes&#x27;</span>)</span><br><span class="line">Java(classes, <span class="string">&#x27;src&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="显式创建文件和目录的节点"><a href="#显式创建文件和目录的节点" class="headerlink" title="显式创建文件和目录的节点"></a>显式创建文件和目录的节点</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建文件节点和创始目录节点的方法不同</span><br><span class="hljs-comment"># 创建文件节点使用 File 方法</span><br>hello_c = File(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br>Program(hello_c)<br><span class="hljs-comment"># 创建目录节点使用 Dir 方法</span><br>classes = Dir(<span class="hljs-string">&#x27;classes&#x27;</span>)<br>Java(classes, <span class="hljs-string">&#x27;src&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <p>正常情况下，并不需要手动创建节点，因为构建方法会自动帮助创建；仅在需要显式传递节点参数给构建方法时使用；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Entry 函数可以根据参数类型，创建文件节点或者目录节点</span></span><br><span class="line">xyzzy = Entry(<span class="string">&#x27;xyzzy&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Entry 函数可以根据参数类型，创建文件节点或者目录节点</span><br>xyzzy = Entry(<span class="hljs-string">&#x27;xyzzy&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <h3 id="打印节点的文件名称"><a href="#打印节点的文件名称" class="headerlink" title="打印节点的文件名称"></a>打印节点的文件名称</h3><p>由于构建方法返回的是一个节点列表，因此如果要打印文件名称，很可能需要遍历它，或者使用索引访问它</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">object_list = Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line">program_list = Program(object_list)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;The object file is:&quot;</span>, object_list[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;The program file is:&quot;</span>, program_list[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 事实上此处的 object_list 是节点列表，仅仅是 print 函数将节点转成了字符串来代表文件名</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">object_list = Object(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br>program_list = Program(object_list)<br><span class="hljs-built_in">print</span> <span class="hljs-string">&quot;The object file is:&quot;</span>, object_list[<span class="hljs-number">0</span>]<br><span class="hljs-built_in">print</span> <span class="hljs-string">&quot;The program file is:&quot;</span>, program_list[<span class="hljs-number">0</span>]<br><span class="hljs-comment"># 事实上此处的 object_list 是节点列表，仅仅是 print 函数将节点转成了字符串来代表文件名</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="获取节点文件名"><a href="#获取节点文件名" class="headerlink" title="获取节点文件名"></a>获取节点文件名</h3><p>使用 Python 内置的 str 函数即可方便的将一个节点转成一个文件名，例如可以用来判断一个文件是否存在</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line">program_list = Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line">program_name = <span class="built_in">str</span>(program_list[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(program_name):</span><br><span class="line">    <span class="built_in">print</span> program_name, <span class="string">&quot;does not exist!&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os.path<br>program_list = Program(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br>program_name = <span class="hljs-built_in">str</span>(program_list[<span class="hljs-number">0</span>])<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(program_name):<br>    <span class="hljs-built_in">print</span> program_name, <span class="hljs-string">&quot;does not exist!&quot;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="获取节点路径"><a href="#获取节点路径" class="headerlink" title="获取节点路径"></a>获取节点路径</h3><p>env 对象有一个 GetBuildPath方法，可以用来获取单个或多个节点的路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个 env 对象，它代表一个环境，在这个环境中，有一个环境变量的 VAR 的值为 value</span></span><br><span class="line">env=Environment(VAR=<span class="string">&quot;value&quot;</span>)</span><br><span class="line"><span class="comment"># 生成一个文件节点</span></span><br><span class="line">n=File(<span class="string">&quot;foo.c&quot;</span>)</span><br><span class="line"><span class="comment"># 调用 env 对象的 GetBuildPath 方法，获取节点列表的路径列表</span></span><br><span class="line"><span class="built_in">print</span> env.GetBuildPath([n, <span class="string">&quot;sub/dir/$VAR&quot;</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个 env 对象，它代表一个环境，在这个环境中，有一个环境变量的 VAR 的值为 value</span><br>env=Environment(VAR=<span class="hljs-string">&quot;value&quot;</span>)<br><span class="hljs-comment"># 生成一个文件节点</span><br>n=File(<span class="hljs-string">&quot;foo.c&quot;</span>)<br><span class="hljs-comment"># 调用 env 对象的 GetBuildPath 方法，获取节点列表的路径列表</span><br><span class="hljs-built_in">print</span> env.GetBuildPath([n, <span class="hljs-string">&quot;sub/dir/$VAR&quot;</span>])<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打印结果为</span></span><br><span class="line">[&#x27;foo.c&#x27;, &#x27;sub/dir/value&#x27;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">打印结果为</span><br>[&#x27;foo.c&#x27;, &#x27;sub/dir/value&#x27;]<br></code></pre></td></tr></table></figure>
 
 <p>除了使用 env 对象的 GetBuildPath 方法外，也有一个函数版本的 GetBuildPath ，它使用全局环境；</p>
 <h2 id="6-依赖出现更新"><a href="#6-依赖出现更新" class="headerlink" title="6. 依赖出现更新"></a>6. 依赖出现更新</h2><h3 id="判断文件是否更新"><a href="#判断文件是否更新" class="headerlink" title="判断文件是否更新"></a>判断文件是否更新</h3><p>如果源文件的内容没有出现更新，是 Scons 不会重复构建已经完成构建的文件，这样可以节省大量的构建时间，不需要每次都从头开始构建每一文件；</p>
 <h4 id="使用-MD5-判断"><a href="#使用-MD5-判断" class="headerlink" title="使用 MD5 判断"></a>使用 MD5 判断</h4><p>SCons 使用 MD5 来判断某个文件的内容是否发生了更新，当然，也可以另外配置让其使用文件时间戳来判断，甚至可以使用单独的 python 函数来进行各种自定义的判断；</p>
 <p>使用 MD5 有一个好处是它只判断内容中的正文部分，同时忽略注释部分，即只要正文内容的构建结果不会出现变化，则 SCons 就不会重现构建它；</p>
 <h4 id="使用时间戳判断"><a href="#使用时间戳判断" class="headerlink" title="使用时间戳判断"></a>使用时间戳判断</h4><p>如果想使用时间戳来判断文件是否发生更新，则只需要调用 Decider 函数进行设置即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="comment"># 将判断方法设置为使用时间戳</span></span><br><span class="line">Decider(<span class="string">&#x27;timestamp-newer&#x27;</span>) </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">Object(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br><span class="hljs-comment"># 将判断方法设置为使用时间戳</span><br>Decider(<span class="hljs-string">&#x27;timestamp-newer&#x27;</span>) <br></code></pre></td></tr></table></figure>
 
 <p>普通的时间戳存在一个问题，即某个文件如果从仓库签出了一个旧版本，由于它的时间戳比当前的目标文件更早，所以不会判断为出现更新，导致编译错误；针对这种情况，可以使用 timestamp-match 规则来进行判断</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="comment"># 使用 timestamp-match 规则进行判断，只要时间戳不吻合，即需要重新构建，不管新旧</span></span><br><span class="line">Decider(<span class="string">&#x27;timestamp-match&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">Object(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br><span class="hljs-comment"># 使用 timestamp-match 规则进行判断，只要时间戳不吻合，即需要重新构建，不管新旧</span><br>Decider(<span class="hljs-string">&#x27;timestamp-match&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <h4 id="使用混合规则"><a href="#使用混合规则" class="headerlink" title="使用混合规则"></a>使用混合规则</h4><p>仅当文件的时间戳出现了变化，再去计算文件的 MD5 值是否发生了变化，这样性能更好；</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="comment"># 使用混合的规则</span></span><br><span class="line">Decider(<span class="string">&#x27;MD5-timestamp&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">Program(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br><span class="hljs-comment"># 使用混合的规则</span><br>Decider(<span class="hljs-string">&#x27;MD5-timestamp&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <h4 id="自定义规则"><a href="#自定义规则" class="headerlink" title="自定义规则"></a>自定义规则</h4><p>可以自己写一个判断规则的函数，然后传递给 Decider 即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Program(<span class="string">&#x27;hello.c&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decide_if_changed</span>(<span class="params">dependency, target, prev_ni</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.get_timestamp() != prev_ni.timestamp:</span><br><span class="line">        dep = <span class="built_in">str</span>(dependency)</span><br><span class="line">        tgt = <span class="built_in">str</span>(target)</span><br><span class="line">        <span class="keyword">if</span> specific_part_of_file_has_changed(dep, tgt):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    Decider(decide_if_changed)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">Program(<span class="hljs-string">&#x27;hello.c&#x27;</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">decide_if_changed</span>(<span class="hljs-params">dependency, target, prev_ni</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.get_timestamp() != prev_ni.timestamp:<br>        dep = <span class="hljs-built_in">str</span>(dependency)<br>        tgt = <span class="hljs-built_in">str</span>(target)<br>        <span class="hljs-keyword">if</span> specific_part_of_file_has_changed(dep, tgt):<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    Decider(decide_if_changed)<br></code></pre></td></tr></table></figure>
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>scons 用法</div>
+      <div>http://example.com/2021/01/17/scons 用法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年1月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/07/Jest/" title="Jest">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Jest</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/05/%E9%BB%91%E5%AE%A2%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF%E5%AE%9D%E5%85%B8/" title="黑客攻防技术宝典">
+                        <span class="hidden-mobile">黑客攻防技术宝典</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/C/">C++</a><a href="/tags/C/">C</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -179,23 +492,207 @@
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

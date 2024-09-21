@@ -1,172 +1,475 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>Jest | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Jest 是一个 javacript 测试框架，特点是简单易上手 安装1npm install jest     需要 node 9.2 以上版本，因为 9.2 以下的版本不支持 try…catch 语法，运行时会报语法错误  Matcher1234567891011121314151617&#x2F;&#x2F; 字面值使用 toBeexpect(2 + 2).toBe(4);&#x2F;&#x2F; 对象使用 toEqualcons">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jest">
+<meta property="og:url" content="http://example.com/2021/02/07/Jest/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="Jest 是一个 javacript 测试框架，特点是简单易上手 安装1npm install jest     需要 node 9.2 以上版本，因为 9.2 以下的版本不支持 try…catch 语法，运行时会报语法错误  Matcher1234567891011121314151617&#x2F;&#x2F; 字面值使用 toBeexpect(2 + 2).toBe(4);&#x2F;&#x2F; 对象使用 toEqualcons">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-07T03:49:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T04:12:11.429Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Jest - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="Jest 是一个 javacript 测试框架，特点是简单易上手
-安装1npm install jest
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-需要 node 9.2 以上版本，因为 9.2 以下的版本不支持 try…catch 语法，运行时会报语法错误
-
-Matcher1234567891011121314151617// 字">
-  
-
-  
-  
-  <meta name="keywords" content="软件,javascript">
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="Jest"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>Jest</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2021/02/07/Jest/" rel="bookmark">
-        <time class="entry-date published" datetime="2021-02-07T03:49:00.000Z">
-          2021-02-07
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Jest"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-07 11:49" pubdate>
+          2021年2月7日 中午
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <p>Jest 是一个 javacript 测试框架，特点是简单易上手</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jest</span><br></pre></td></tr></table></figure>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Jest</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Jest 是一个 javacript 测试框架，特点是简单易上手</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">npm install jest<br></code></pre></td></tr></table></figure>
 
 
 
 <blockquote>
 <p>需要 node 9.2 以上版本，因为 9.2 以下的版本不支持 try…catch 语法，运行时会报语法错误</p>
 </blockquote>
-<h2 id="Matcher"><a href="#Matcher" class="headerlink" title="Matcher"></a>Matcher</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字面值使用 toBe</span></span><br><span class="line">expect(<span class="number">2</span> + <span class="number">2</span>).toBe(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象使用 toEqual</span></span><br><span class="line"><span class="type">const</span> <span class="variable">data</span> <span class="operator">=</span> &#123;one: <span class="number">1</span>&#125;;</span><br><span class="line">data[<span class="string">&#x27;two&#x27;</span>] = <span class="number">2</span>;</span><br><span class="line">expect(data).toEqual(&#123;one: <span class="number">1</span>, two: <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取反使用 not</span></span><br><span class="line">expect(<span class="number">4</span>).not.toBe(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串可正则匹配</span></span><br><span class="line">expect(<span class="string">&#x27;team&#x27;</span>).not.toMatch(/I/);</span><br><span class="line">expect(<span class="string">&#x27;Christoph&#x27;</span>).toMatch(/stop/);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组可判断是否包含</span></span><br><span class="line">expect([<span class="number">1</span>, <span class="number">2</span>]).toContain(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Matcher"><a href="#Matcher" class="headerlink" title="Matcher"></a>Matcher</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 字面值使用 toBe</span><br>expect(<span class="hljs-number">2</span> + <span class="hljs-number">2</span>).toBe(<span class="hljs-number">4</span>);<br><br><span class="hljs-comment">// 对象使用 toEqual</span><br><span class="hljs-type">const</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> &#123;one: <span class="hljs-number">1</span>&#125;;<br>data[<span class="hljs-string">&#x27;two&#x27;</span>] = <span class="hljs-number">2</span>;<br>expect(data).toEqual(&#123;one: <span class="hljs-number">1</span>, two: <span class="hljs-number">2</span>&#125;);<br><br><span class="hljs-comment">// 取反使用 not</span><br>expect(<span class="hljs-number">4</span>).not.toBe(<span class="hljs-number">3</span>);<br><br><span class="hljs-comment">// 字符串可正则匹配</span><br>expect(<span class="hljs-string">&#x27;team&#x27;</span>).not.toMatch(/I/);<br>expect(<span class="hljs-string">&#x27;Christoph&#x27;</span>).toMatch(/stop/);<br><br><span class="hljs-comment">// 数组可判断是否包含</span><br>expect([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]).toContain(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
 
 <h2 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h2><h3 id="回调模式"><a href="#回调模式" class="headerlink" title="回调模式"></a>回调模式</h3><p>使用 done 来处理回调模式的异步函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;callback pattern&#x27;</span>, <span class="function"><span class="params">done</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params">data</span>) &#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">           <span class="title function_">done</span>();</span><br><span class="line">       &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">           <span class="title function_">done</span>(error);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="title function_">fetchData</span>(callback);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;callback pattern&#x27;</span>, <span class="hljs-function"><span class="hljs-params">done</span> =&gt;</span> &#123;<br>   <span class="hljs-keyword">function</span> <span class="hljs-title function_">callback</span>(<span class="hljs-params">data</span>) &#123;<br>       <span class="hljs-keyword">try</span> &#123;<br>           <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;something&#x27;</span>);<br>           <span class="hljs-title function_">done</span>();<br>       &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>           <span class="hljs-title function_">done</span>(error);<br>       &#125;<br>   &#125;<br>   <br>    <span class="hljs-title function_">fetchData</span>(callback);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <h3 id="Promise-模式"><a href="#Promise-模式" class="headerlink" title="Promise 模式"></a>Promise 模式</h3><p>返回 Promise 即可；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意此处不要漏了写 return，不然实际返回的是 undefined；</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;promise pattern&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">fetchData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 注意此处不要漏了写 return，不然实际返回的是 undefined；</span><br><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;promise pattern&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetchData</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>        <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;something&#x27;</span>);<br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h3 id="Async-Await-模式"><a href="#Async-Await-模式" class="headerlink" title="Async&#x2F;Await 模式"></a>Async&#x2F;Await 模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;Async pattern&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetchData</span>();</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 带异常的情况</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;Async pattern with error&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetchData</span>();</span><br><span class="line">        <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="title function_">expect</span>(error).<span class="title function_">toMatch</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="Async-Await-模式"><a href="#Async-Await-模式" class="headerlink" title="Async&#x2F;Await 模式"></a>Async&#x2F;Await 模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;Async pattern&#x27;</span>, <span class="hljs-title function_">async</span> () =&gt; &#123;<br>    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchData</span>();<br>    <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;something&#x27;</span>);<br>&#125;);<br><br><span class="hljs-comment">// 带异常的情况</span><br><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;Async pattern with error&#x27;</span>, <span class="hljs-title function_">async</span> () =&gt; &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchData</span>();<br>        <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;something&#x27;</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>        <span class="hljs-title function_">expect</span>(error).<span class="hljs-title function_">toMatch</span>(<span class="hljs-string">&#x27;error&#x27;</span>);<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h2 id="初始化和清理"><a href="#初始化和清理" class="headerlink" title="初始化和清理"></a>初始化和清理</h2><h3 id="重复初始化"><a href="#重复初始化" class="headerlink" title="重复初始化"></a>重复初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">initDB</span>(); <span class="comment">// 如果 initDB 函数是异步的，则应为 return initDB()；</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">afterEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">clearDB</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="初始化和清理"><a href="#初始化和清理" class="headerlink" title="初始化和清理"></a>初始化和清理</h2><h3 id="重复初始化"><a href="#重复初始化" class="headerlink" title="重复初始化"></a>重复初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">initDB</span>(); <span class="hljs-comment">// 如果 initDB 函数是异步的，则应为 return initDB()；</span><br>&#125;);<br><br><span class="hljs-title function_">afterEach</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">clearDB</span>();<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h3 id="一次性初始化"><a href="#一次性初始化" class="headerlink" title="一次性初始化"></a>一次性初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeAll</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">initDB</span>();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">afterAll</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">clearDB</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="一次性初始化"><a href="#一次性初始化" class="headerlink" title="一次性初始化"></a>一次性初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">beforeAll</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">initDB</span>();<br>&#125;)<br><br><span class="hljs-title function_">afterAll</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">clearDB</span>();<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>使用 describe 来建立块的作用域</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeEach</span>(<span class="string">&#x27;parent&#x27;</span>);</span><br><span class="line"><span class="title function_">afterEach</span>(<span class="string">&#x27;parent&#x27;</span>);</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;parent1&#x27;</span>);</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;parent2&#x27;</span>);</span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;block&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">beforeEach</span>(<span class="string">&#x27;child&#x27;</span>);</span><br><span class="line">    <span class="title function_">afterEach</span>(<span class="string">&#x27;child&#x27;</span>);</span><br><span class="line">    <span class="title function_">test</span>(<span class="string">&#x27;child1&#x27;</span>);</span><br><span class="line">    <span class="title function_">test</span>(<span class="string">&#x27;child2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 注意：parent 的 beforeEach 会在 child 的 beforeEach 之前先执行；同时 parent 的 afterEach 在 child 的 afterEach 之后执行；</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">beforeEach</span>(<span class="hljs-string">&#x27;parent&#x27;</span>);<br><span class="hljs-title function_">afterEach</span>(<span class="hljs-string">&#x27;parent&#x27;</span>);<br><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;parent1&#x27;</span>);<br><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;parent2&#x27;</span>);<br><span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;block&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">beforeEach</span>(<span class="hljs-string">&#x27;child&#x27;</span>);<br>    <span class="hljs-title function_">afterEach</span>(<span class="hljs-string">&#x27;child&#x27;</span>);<br>    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;child1&#x27;</span>);<br>    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;child2&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">// 注意：parent 的 beforeEach 会在 child 的 beforeEach 之前先执行；同时 parent 的 afterEach 在 child 的 afterEach 之后执行；</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="顺序控制"><a href="#顺序控制" class="headerlink" title="顺序控制"></a>顺序控制</h3><p>所有的 describe 将在所有的 test 之前先执行；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;outer&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer a&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;inner 1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner 1&#x27;</span>);</span><br><span class="line">        <span class="title function_">test</span>(<span class="string">&#x27;test 1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test 1 inner 1&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer b&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">test</span>(<span class="string">&#x27;test 1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test 1 outer&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;inner 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner 2&#x27;</span>);</span><br><span class="line">        <span class="title function_">test</span>(<span class="string">&#x27;test 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test 2 inner 2&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer c&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 实际的输出顺序如下：</span></span><br><span class="line"><span class="comment">// outer a</span></span><br><span class="line"><span class="comment">// inner 1</span></span><br><span class="line"><span class="comment">// outer b</span></span><br><span class="line"><span class="comment">// inner 2</span></span><br><span class="line"><span class="comment">// outer c</span></span><br><span class="line"><span class="comment">// test 1 inner 1</span></span><br><span class="line"><span class="comment">// test 1 outer</span></span><br><span class="line"><span class="comment">// test 2 inner 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;outer&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;outer a&#x27;</span>);<br>    <br>    <span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;inner 1&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;inner 1&#x27;</span>);<br>        <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;test 1&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;test 1 inner 1&#x27;</span>);<br>        &#125;);<br>    &#125;);<br>    <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;outer b&#x27;</span>);<br>    <br>    <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;test 1&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;test 1 outer&#x27;</span>);<br>    &#125;);<br>    <br>    <span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;inner 2&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;inner 2&#x27;</span>);<br>        <span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;test 2&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;test 2 inner 2&#x27;</span>);<br>        &#125;);<br>    &#125;);<br>    <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;outer c&#x27;</span>);<br>&#125;);<br><span class="hljs-comment">// 实际的输出顺序如下：</span><br><span class="hljs-comment">// outer a</span><br><span class="hljs-comment">// inner 1</span><br><span class="hljs-comment">// outer b</span><br><span class="hljs-comment">// inner 2</span><br><span class="hljs-comment">// outer c</span><br><span class="hljs-comment">// test 1 inner 1</span><br><span class="hljs-comment">// test 1 outer</span><br><span class="hljs-comment">// test 2 inner 2</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="单例测试"><a href="#单例测试" class="headerlink" title="单例测试"></a>单例测试</h3><p>test.only 方法可以使得只有该测试用例被执行；如果多例同时测试失败，但是单例测试可以成功，则说明某两个测试用例之间存在共享的变量，二者在测试过程中出现相互干扰的情况；</p>
 <h2 id="Mock-函数"><a href="#Mock-函数" class="headerlink" title="Mock 函数"></a>Mock 函数</h2><p>mock 函数扮演拦截的作用，当在代码中对某个实际的函数进行调用时，拦截该调用，触发提前写好的 mock 函数，返回预设的结果；</p>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFunc = jest.<span class="title function_">fn</span>(<span class="function"><span class="params">x</span> =&gt;</span> <span class="number">42</span> + x);</span><br><span class="line"><span class="title function_">forEach</span>([<span class="number">0</span>, <span class="number">1</span>], mockFunc);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查 mockFunc 是否被调用了两次</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">calls</span>.<span class="property">length</span>).<span class="title function_">toBe</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查第一次调用时传入的参数值是否为 0</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">0</span>][<span class="number">0</span>]).<span class="title function_">toBe</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查第二次调用时传入的参数值是否为 1</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">1</span>][<span class="number">0</span>]).<span class="title function_">toBe</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查第一次调用时的返回值是否为 42</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">results</span>[<span class="number">0</span>].<span class="property">value</span>).<span class="title function_">toBe</span>(<span class="number">42</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> mockFunc = jest.<span class="hljs-title function_">fn</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">42</span> + x);<br><span class="hljs-title function_">forEach</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], mockFunc);<br><br><span class="hljs-comment">// 检查 mockFunc 是否被调用了两次</span><br><span class="hljs-title function_">expect</span>(mockFunc.<span class="hljs-property">mock</span>.<span class="hljs-property">calls</span>.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>);<br><br><span class="hljs-comment">// 检查第一次调用时传入的参数值是否为 0</span><br><span class="hljs-title function_">expect</span>(mockFunc.<span class="hljs-property">mock</span>.<span class="hljs-property">calls</span>[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// 检查第二次调用时传入的参数值是否为 1</span><br><span class="hljs-title function_">expect</span>(mockFunc.<span class="hljs-property">mock</span>.<span class="hljs-property">calls</span>[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>);<br><br><span class="hljs-comment">// 检查第一次调用时的返回值是否为 42</span><br><span class="hljs-title function_">expect</span>(mockFunc.<span class="hljs-property">mock</span>.<span class="hljs-property">results</span>[<span class="hljs-number">0</span>].<span class="hljs-property">value</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">42</span>);<br></code></pre></td></tr></table></figure>
 
-<h3 id="模拟返回值"><a href="#模拟返回值" class="headerlink" title="模拟返回值"></a>模拟返回值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mock = jest.<span class="title function_">fn</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">mock</span>());</span><br><span class="line"><span class="comment">// &gt; undefined</span></span><br><span class="line"></span><br><span class="line">mock.<span class="title function_">mockReturnValueOnce</span>(<span class="number">10</span>).<span class="title function_">mockReturnValueOnce</span>(<span class="string">&#x27;x&#x27;</span>).<span class="title function_">mockReturnValue</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">mock</span>(), <span class="title function_">mock</span>(), <span class="title function_">mock</span>(), <span class="title function_">mock</span>());</span><br><span class="line"><span class="comment">// &gt; 10, &#x27;x&#x27;, true, true</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟返回值"><a href="#模拟返回值" class="headerlink" title="模拟返回值"></a>模拟返回值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> mock = jest.<span class="hljs-title function_">fn</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">mock</span>());<br><span class="hljs-comment">// &gt; undefined</span><br><br>mock.<span class="hljs-title function_">mockReturnValueOnce</span>(<span class="hljs-number">10</span>).<span class="hljs-title function_">mockReturnValueOnce</span>(<span class="hljs-string">&#x27;x&#x27;</span>).<span class="hljs-title function_">mockReturnValue</span>(<span class="hljs-literal">true</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">mock</span>(), <span class="hljs-title function_">mock</span>(), <span class="hljs-title function_">mock</span>(), <span class="hljs-title function_">mock</span>());<br><span class="hljs-comment">// &gt; 10, &#x27;x&#x27;, true, true</span><br></code></pre></td></tr></table></figure>
 
 <p>模拟函数在多次连续调用时，返回不同的值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filterMock = jest.<span class="title function_">fn</span>();</span><br><span class="line"></span><br><span class="line">filterMock.<span class="title function_">mockReturnValueOnce</span>(<span class="literal">true</span>).<span class="title function_">mockReturnValueOnce</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = [<span class="number">11</span>, <span class="number">12</span>].<span class="title function_">filter</span>(<span class="function"><span class="params">num</span> =&gt;</span> <span class="title function_">filterMock</span>(num));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(filterMock.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(filterMock.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line"><span class="comment">// [11]</span></span><br><span class="line"><span class="comment">// 11</span></span><br><span class="line"><span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> filterMock = jest.<span class="hljs-title function_">fn</span>();<br><br>filterMock.<span class="hljs-title function_">mockReturnValueOnce</span>(<span class="hljs-literal">true</span>).<span class="hljs-title function_">mockReturnValueOnce</span>(<span class="hljs-literal">false</span>);<br><br><span class="hljs-keyword">const</span> result = [<span class="hljs-number">11</span>, <span class="hljs-number">12</span>].<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> <span class="hljs-title function_">filterMock</span>(num));<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(filterMock.<span class="hljs-property">mock</span>.<span class="hljs-property">calls</span>[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(filterMock.<span class="hljs-property">mock</span>.<span class="hljs-property">calls</span>[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]);<br><span class="hljs-comment">// [11]</span><br><span class="hljs-comment">// 11</span><br><span class="hljs-comment">// 12</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="模拟模块的返回值"><a href="#模拟模块的返回值" class="headerlink" title="模拟模块的返回值"></a>模拟模块的返回值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// users.js</span></span><br><span class="line"><span class="comment">// 此处假设 user.js 调用了 axios 模块，调用其中的 get 方法获取用户数据</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Class</span> <span class="title class_">Users</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="title function_">all</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> axios.<span class="title function_">get</span>(<span class="string">&#x27;/user.json&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">resp</span> =&gt;</span> resp.<span class="property">data</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模拟模块的返回值"><a href="#模拟模块的返回值" class="headerlink" title="模拟模块的返回值"></a>模拟模块的返回值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// users.js</span><br><span class="hljs-comment">// 此处假设 user.js 调用了 axios 模块，调用其中的 get 方法获取用户数据</span><br><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span>;<br><br><span class="hljs-title class_">Class</span> <span class="hljs-title class_">Users</span> &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-title function_">all</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user.json&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">resp</span> =&gt;</span> resp.<span class="hljs-property">data</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user.test.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Users</span> <span class="keyword">from</span> <span class="string">&#x27;./users.js&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line">jest.<span class="title function_">mock</span>(<span class="string">&#x27;axios&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should fetch users&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> users = [&#123;<span class="attr">name</span>: <span class="string">&#x27;bob&#x27;</span>&#125;];</span><br><span class="line">    <span class="keyword">const</span> resp = &#123;<span class="attr">data</span>: users&#125;; <span class="comment">// 做了个假数据</span></span><br><span class="line">    axios.<span class="property">get</span>.<span class="title function_">mockResolvedValue</span>(resp); <span class="comment">// 将假数据传进去</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Users</span>.<span class="title function_">all</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="title function_">expect</span>(data).<span class="title function_">toEqual</span>(users));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// user.test.js</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Users</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./users.js&#x27;</span>;<br><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span>;<br><br>jest.<span class="hljs-title function_">mock</span>(<span class="hljs-string">&#x27;axios&#x27;</span>);<br><br><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;should fetch users&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> users = [&#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;bob&#x27;</span>&#125;];<br>    <span class="hljs-keyword">const</span> resp = &#123;<span class="hljs-attr">data</span>: users&#125;; <span class="hljs-comment">// 做了个假数据</span><br>    axios.<span class="hljs-property">get</span>.<span class="hljs-title function_">mockResolvedValue</span>(resp); <span class="hljs-comment">// 将假数据传进去</span><br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Users</span>.<span class="hljs-title function_">all</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toEqual</span>(users));<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h3 id="模拟模块的实现"><a href="#模拟模块的实现" class="headerlink" title="模拟模块的实现"></a>模拟模块的实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.js</span></span><br><span class="line">jest.<span class="title function_">mock</span>(<span class="string">&#x27;../foo&#x27;</span>); <span class="comment">// foo 模块已经被伪装</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="built_in">require</span>(<span class="string">&#x27;../foo&#x27;</span>); <span class="comment">// 此处调用的 foo 已经是一个模拟函数</span></span><br><span class="line"></span><br><span class="line">foo.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> <span class="number">42</span>); <span class="comment">// 定义 foo 的行为</span></span><br><span class="line"><span class="title function_">foo</span>();</span><br><span class="line"><span class="comment">// &gt; 42</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟模块的实现"><a href="#模拟模块的实现" class="headerlink" title="模拟模块的实现"></a>模拟模块的实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// foo.js</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// do something</span><br>&#125;<br><br><span class="hljs-comment">// test.js</span><br>jest.<span class="hljs-title function_">mock</span>(<span class="hljs-string">&#x27;../foo&#x27;</span>); <span class="hljs-comment">// foo 模块已经被伪装</span><br><span class="hljs-keyword">const</span> foo = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../foo&#x27;</span>); <span class="hljs-comment">// 此处调用的 foo 已经是一个模拟函数</span><br><br>foo.<span class="hljs-title function_">mockImplementation</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-number">42</span>); <span class="hljs-comment">// 定义 foo 的行为</span><br><span class="hljs-title function_">foo</span>();<br><span class="hljs-comment">// &gt; 42</span><br></code></pre></td></tr></table></figure>
 
 <p>模拟多次调用时，函数表现不同的行为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.<span class="title function_">fn</span>()</span><br><span class="line">	.<span class="title function_">mockImplementationOnce</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="literal">true</span>))</span><br><span class="line">	.<span class="title function_">mockImplementationOnce</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="literal">false</span>));</span><br><span class="line"></span><br><span class="line"><span class="title function_">mockFn</span>(<span class="function">(<span class="params">err, val</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(val));</span><br><span class="line"><span class="comment">// &gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">mockFn</span>(<span class="function">(<span class="params">err, val</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(val));</span><br><span class="line"><span class="comment">// &gt; false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> mockFn = jest.<span class="hljs-title function_">fn</span>()<br>	.<span class="hljs-title function_">mockImplementationOnce</span>(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> <span class="hljs-title function_">cb</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">true</span>))<br>	.<span class="hljs-title function_">mockImplementationOnce</span>(<span class="hljs-function"><span class="hljs-params">cb</span> =&gt;</span> <span class="hljs-title function_">cb</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>));<br><br><span class="hljs-title function_">mockFn</span>(<span class="hljs-function">(<span class="hljs-params">err, val</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(val));<br><span class="hljs-comment">// &gt; true</span><br><br><span class="hljs-title function_">mockFn</span>(<span class="hljs-function">(<span class="hljs-params">err, val</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(val));<br><span class="hljs-comment">// &gt; false</span><br></code></pre></td></tr></table></figure>
 
 <p>模块多次调用时，不同的行为 + 默认的行为</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myMockFn = jest</span><br><span class="line">  .<span class="title function_">fn</span>(<span class="function">() =&gt;</span> <span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">  .<span class="title function_">mockImplementationOnce</span>(<span class="function">() =&gt;</span> <span class="string">&#x27;first call&#x27;</span>)</span><br><span class="line">  .<span class="title function_">mockImplementationOnce</span>(<span class="function">() =&gt;</span> <span class="string">&#x27;second call&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">myMockFn</span>(), <span class="title function_">myMockFn</span>(), <span class="title function_">myMockFn</span>(), <span class="title function_">myMockFn</span>());</span><br><span class="line"><span class="comment">// &gt; &#x27;first call&#x27;, &#x27;second call&#x27;, &#x27;default&#x27;, &#x27;default&#x27;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> myMockFn = jest<br>  .<span class="hljs-title function_">fn</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;default&#x27;</span>)<br>  .<span class="hljs-title function_">mockImplementationOnce</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;first call&#x27;</span>)<br>  .<span class="hljs-title function_">mockImplementationOnce</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;second call&#x27;</span>);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">myMockFn</span>(), <span class="hljs-title function_">myMockFn</span>(), <span class="hljs-title function_">myMockFn</span>(), <span class="hljs-title function_">myMockFn</span>());<br><span class="hljs-comment">// &gt; &#x27;first call&#x27;, &#x27;second call&#x27;, &#x27;default&#x27;, &#x27;default&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="为模拟函数添加名称"><a href="#为模拟函数添加名称" class="headerlink" title="为模拟函数添加名称"></a>为模拟函数添加名称</h3><p>通过定义模拟的函数的名称，在测试的输出信息中，能够更清晰的定位哪个函数出错了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.<span class="title function_">fn</span>()</span><br><span class="line">	.<span class="title function_">mockReturnValue</span>(<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">	.<span class="title function_">mockImplementation</span>(<span class="function"><span class="params">scalar</span> =&gt;</span> scalar + <span class="number">42</span>)</span><br><span class="line">	.<span class="title function_">mockName</span>(<span class="string">&#x27;add42&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> mockFn = jest.<span class="hljs-title function_">fn</span>()<br>	.<span class="hljs-title function_">mockReturnValue</span>(<span class="hljs-string">&#x27;default&#x27;</span>)<br>	.<span class="hljs-title function_">mockImplementation</span>(<span class="hljs-function"><span class="hljs-params">scalar</span> =&gt;</span> scalar + <span class="hljs-number">42</span>)<br>	.<span class="hljs-title function_">mockName</span>(<span class="hljs-string">&#x27;add42&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h2><p>用来比对界面是否与预期的一致；典型的使用方法是给某个 UI 组件预先存一份快照，然后与测试过程中生成的界面进行比对，检查二者是否一致，若一致，表示应用正常；如不一致，说明界面出现了意外的变化，此时有可能是应用出现异常，或者 快照本身需要更新；</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/javascript/" class="print-no-link">#javascript</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Jest</div>
+      <div>http://example.com/2021/02/07/Jest/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年2月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/09/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%20Kubernetes/" title="阿里云的 Kubernetes">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">阿里云的 Kubernetes</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/17/scons%20%E7%94%A8%E6%B3%95/" title="scons 用法">
+                        <span class="hidden-mobile">scons 用法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/javascript/">javascript</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -176,23 +479,207 @@ Matcher1234567891011121314151617// 字">
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

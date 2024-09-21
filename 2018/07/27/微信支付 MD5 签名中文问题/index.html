@@ -1,123 +1,438 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>微信支付 MD5 签名中文问题 | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示） 微信公众平台支付接口调试工具（左边地址可以对签名进行调试比对） 解决办法：使用支持中文的MD5 模块即可（模块附后）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信支付 MD5 签名中文问题">
+<meta property="og:url" content="http://example.com/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20MD5%20%E7%AD%BE%E5%90%8D%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示） 微信公众平台支付接口调试工具（左边地址可以对签名进行调试比对） 解决办法：使用支持中文的MD5 模块即可（模块附后）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211045406.png">
+<meta property="article:published_time" content="2018-07-27T03:44:09.000Z">
+<meta property="article:modified_time" content="2024-09-21T03:23:59.187Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="微信">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211045406.png">
+  
+  
+  
+  <title>微信支付 MD5 签名中文问题 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示）
-微信公众平台支付">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  
-  
-  <meta name="keywords" content="软件,javascript,微信">
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="微信支付 MD5 签名中文问题"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
-  
-
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>微信支付 MD5 签名中文问题</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2018/07/27/微信支付 MD5 签名中文问题/" rel="bookmark">
-        <time class="entry-date published" datetime="2018-07-27T03:44:09.000Z">
-          2018-07-27
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="微信支付 MD5 签名中文问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-07-27 11:44" pubdate>
+          2018年7月27日 中午
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <p>微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211045406.png"><br>因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示）</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">微信支付 MD5 签名中文问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211045406.png" srcset="/img/loading.gif" lazyload><br>因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示）</p>
 <p><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/tools/signverify/">微信公众平台支付接口调试工具</a>（左边地址可以对签名进行调试比对）</p>
 <p>解决办法：使用支持中文的MD5 模块即可（模块附后）；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> md5 = <span class="built_in">require</span>(<span class="string">&#x27;./lib/js/md5.js&#x27;</span>) <span class="comment">// 此处 md5 的存放地址为假设，应根据实际情况调整，md5 模块详细内容附后；</span></span><br><span class="line"><span class="keyword">var</span> sign = <span class="title function_">md5</span>(stringSignTemp).<span class="title function_">toUpperCase</span>(); <span class="comment">//假设 stringSignTemp 已经整理好</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> md5 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./lib/js/md5.js&#x27;</span>) <span class="hljs-comment">// 此处 md5 的存放地址为假设，应根据实际情况调整，md5 模块详细内容附后；</span><br><span class="hljs-keyword">var</span> sign = <span class="hljs-title function_">md5</span>(stringSignTemp).<span class="hljs-title function_">toUpperCase</span>(); <span class="hljs-comment">//假设 stringSignTemp 已经整理好</span><br></code></pre></td></tr></table></figure>
 <hr>
 <p>以下是 md5 模块，其中用到的 crypto 模块也附在本文后面；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> crypt = <span class="built_in">require</span>(<span class="string">&#x27;./crypto.js&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> charenc = &#123;</span><br><span class="line">  <span class="comment">// UTF-8 encoding</span></span><br><span class="line">  <span class="attr">utf8</span>: &#123;</span><br><span class="line">    <span class="comment">// Convert a string to a byte array</span></span><br><span class="line">    <span class="attr">stringToBytes</span>: <span class="keyword">function</span>(<span class="params">str</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> charenc.<span class="property">bin</span>.<span class="title function_">stringToBytes</span>(<span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(str)));</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert a byte array to a string</span></span><br><span class="line">    <span class="attr">bytesToString</span>: <span class="keyword">function</span>(<span class="params">bytes</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(<span class="built_in">escape</span>(charenc.<span class="property">bin</span>.<span class="title function_">bytesToString</span>(bytes)));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Binary encoding</span></span><br><span class="line">  <span class="attr">bin</span>: &#123;</span><br><span class="line">    <span class="comment">// Convert a string to a byte array</span></span><br><span class="line">    <span class="attr">stringToBytes</span>: <span class="keyword">function</span>(<span class="params">str</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> bytes = [], i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++)</span><br><span class="line">        bytes.<span class="title function_">push</span>(str.<span class="title function_">charCodeAt</span>(i) &amp; <span class="number">0xFF</span>);</span><br><span class="line">      <span class="keyword">return</span> bytes;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert a byte array to a string</span></span><br><span class="line">    <span class="attr">bytesToString</span>: <span class="keyword">function</span>(<span class="params">bytes</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> str = [], i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++)</span><br><span class="line">        str.<span class="title function_">push</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(bytes[i]));</span><br><span class="line">      <span class="keyword">return</span> str.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> utf8 = charenc.<span class="property">utf8</span>;</span><br><span class="line"><span class="keyword">var</span> bin = charenc.<span class="property">bin</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isBuffer</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> !!obj.<span class="property">constructor</span> &amp;&amp; <span class="keyword">typeof</span> obj.<span class="property">constructor</span>.<span class="property">isBuffer</span> === <span class="string">&#x27;function&#x27;</span> &amp;&amp; obj.<span class="property">constructor</span>.<span class="title function_">isBuffer</span>(obj)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The core</span></span><br><span class="line"><span class="keyword">var</span> md5 = <span class="keyword">function</span>(<span class="params">message, options</span>) &#123;</span><br><span class="line">  <span class="comment">// Convert to byte array</span></span><br><span class="line">  <span class="keyword">if</span> (message.<span class="property">constructor</span> == <span class="title class_">String</span>)</span><br><span class="line">    <span class="keyword">if</span> (options &amp;&amp; options.<span class="property">encoding</span> === <span class="string">&#x27;binary&#x27;</span>)</span><br><span class="line">      message = bin.<span class="title function_">stringToBytes</span>(message);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      message = utf8.<span class="title function_">stringToBytes</span>(message);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="title function_">isBuffer</span>(message))</span><br><span class="line">    message = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(message, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="title class_">Array</span>.<span class="title function_">isArray</span>(message))</span><br><span class="line">    message = message.<span class="title function_">toString</span>();</span><br><span class="line">  <span class="comment">// else, assume byte array already</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> m = crypt.<span class="property">util</span>.<span class="title function_">bytesToWords</span>(message),</span><br><span class="line">    l = message.<span class="property">length</span> * <span class="number">8</span>,</span><br><span class="line">    a = <span class="number">1732584193</span>,</span><br><span class="line">    b = -<span class="number">271733879</span>,</span><br><span class="line">    c = -<span class="number">1732584194</span>,</span><br><span class="line">    d = <span class="number">271733878</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Swap endian</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; m.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    m[i] = ((m[i] &lt;&lt; <span class="number">8</span>) | (m[i] &gt;&gt;&gt; <span class="number">24</span>)) &amp; <span class="number">0x00FF00FF</span> |</span><br><span class="line">      ((m[i] &lt;&lt; <span class="number">24</span>) | (m[i] &gt;&gt;&gt; <span class="number">8</span>)) &amp; <span class="number">0xFF00FF00</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Padding</span></span><br><span class="line">  m[l &gt;&gt;&gt; <span class="number">5</span>] |= <span class="number">0x80</span> &lt;&lt; (l % <span class="number">32</span>);</span><br><span class="line">  m[(((l + <span class="number">64</span>) &gt;&gt;&gt; <span class="number">9</span>) &lt;&lt; <span class="number">4</span>) + <span class="number">14</span>] = l;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Method shortcuts</span></span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">FF</span> = md5.<span class="property">_ff</span>,</span><br><span class="line">    <span class="variable constant_">GG</span> = md5.<span class="property">_gg</span>,</span><br><span class="line">    <span class="variable constant_">HH</span> = md5.<span class="property">_hh</span>,</span><br><span class="line">    <span class="variable constant_">II</span> = md5.<span class="property">_ii</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; m.<span class="property">length</span>; i += <span class="number">16</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> aa = a,</span><br><span class="line">      bb = b,</span><br><span class="line">      cc = c,</span><br><span class="line">      dd = d;</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">0</span>], <span class="number">7</span>, -<span class="number">680876936</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">1</span>], <span class="number">12</span>, -<span class="number">389564586</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">2</span>], <span class="number">17</span>, <span class="number">606105819</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">3</span>], <span class="number">22</span>, -<span class="number">1044525330</span>);</span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">4</span>], <span class="number">7</span>, -<span class="number">176418897</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">5</span>], <span class="number">12</span>, <span class="number">1200080426</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">6</span>], <span class="number">17</span>, -<span class="number">1473231341</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">7</span>], <span class="number">22</span>, -<span class="number">45705983</span>);</span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">8</span>], <span class="number">7</span>, <span class="number">1770035416</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">9</span>], <span class="number">12</span>, -<span class="number">1958414417</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">10</span>], <span class="number">17</span>, -<span class="number">42063</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">11</span>], <span class="number">22</span>, -<span class="number">1990404162</span>);</span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">12</span>], <span class="number">7</span>, <span class="number">1804603682</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">13</span>], <span class="number">12</span>, -<span class="number">40341101</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">14</span>], <span class="number">17</span>, -<span class="number">1502002290</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">15</span>], <span class="number">22</span>, <span class="number">1236535329</span>);</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">1</span>], <span class="number">5</span>, -<span class="number">165796510</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">6</span>], <span class="number">9</span>, -<span class="number">1069501632</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">11</span>], <span class="number">14</span>, <span class="number">643717713</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">0</span>], <span class="number">20</span>, -<span class="number">373897302</span>);</span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">5</span>], <span class="number">5</span>, -<span class="number">701558691</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">10</span>], <span class="number">9</span>, <span class="number">38016083</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">15</span>], <span class="number">14</span>, -<span class="number">660478335</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">4</span>], <span class="number">20</span>, -<span class="number">405537848</span>);</span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">9</span>], <span class="number">5</span>, <span class="number">568446438</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">14</span>], <span class="number">9</span>, -<span class="number">1019803690</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">3</span>], <span class="number">14</span>, -<span class="number">187363961</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">8</span>], <span class="number">20</span>, <span class="number">1163531501</span>);</span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">13</span>], <span class="number">5</span>, -<span class="number">1444681467</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">2</span>], <span class="number">9</span>, -<span class="number">51403784</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">7</span>], <span class="number">14</span>, <span class="number">1735328473</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">12</span>], <span class="number">20</span>, -<span class="number">1926607734</span>);</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">5</span>], <span class="number">4</span>, -<span class="number">378558</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">8</span>], <span class="number">11</span>, -<span class="number">2022574463</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">11</span>], <span class="number">16</span>, <span class="number">1839030562</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">14</span>], <span class="number">23</span>, -<span class="number">35309556</span>);</span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">1</span>], <span class="number">4</span>, -<span class="number">1530992060</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">4</span>], <span class="number">11</span>, <span class="number">1272893353</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">7</span>], <span class="number">16</span>, -<span class="number">155497632</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">10</span>], <span class="number">23</span>, -<span class="number">1094730640</span>);</span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">13</span>], <span class="number">4</span>, <span class="number">681279174</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">0</span>], <span class="number">11</span>, -<span class="number">358537222</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">3</span>], <span class="number">16</span>, -<span class="number">722521979</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">6</span>], <span class="number">23</span>, <span class="number">76029189</span>);</span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">9</span>], <span class="number">4</span>, -<span class="number">640364487</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">12</span>], <span class="number">11</span>, -<span class="number">421815835</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">15</span>], <span class="number">16</span>, <span class="number">530742520</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">2</span>], <span class="number">23</span>, -<span class="number">995338651</span>);</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">0</span>], <span class="number">6</span>, -<span class="number">198630844</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">7</span>], <span class="number">10</span>, <span class="number">1126891415</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">14</span>], <span class="number">15</span>, -<span class="number">1416354905</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">5</span>], <span class="number">21</span>, -<span class="number">57434055</span>);</span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">12</span>], <span class="number">6</span>, <span class="number">1700485571</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">3</span>], <span class="number">10</span>, -<span class="number">1894986606</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">10</span>], <span class="number">15</span>, -<span class="number">1051523</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">1</span>], <span class="number">21</span>, -<span class="number">2054922799</span>);</span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">8</span>], <span class="number">6</span>, <span class="number">1873313359</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">15</span>], <span class="number">10</span>, -<span class="number">30611744</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">6</span>], <span class="number">15</span>, -<span class="number">1560198380</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">13</span>], <span class="number">21</span>, <span class="number">1309151649</span>);</span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">4</span>], <span class="number">6</span>, -<span class="number">145523070</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">11</span>], <span class="number">10</span>, -<span class="number">1120210379</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">2</span>], <span class="number">15</span>, <span class="number">718787259</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">9</span>], <span class="number">21</span>, -<span class="number">343485551</span>);</span><br><span class="line"></span><br><span class="line">    a = (a + aa) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    b = (b + bb) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    c = (c + cc) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    d = (d + dd) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> crypt.<span class="property">util</span>.<span class="title function_">endian</span>([a, b, c, d]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Auxiliary functions</span></span><br><span class="line">md5.<span class="property">_ff</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (b &amp; c | ~b &amp; d) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line">md5.<span class="property">_gg</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (b &amp; d | c &amp; ~d) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line">md5.<span class="property">_hh</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (b ^ c ^ d) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line">md5.<span class="property">_ii</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (c ^ (b | ~d)) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Package private blocksize</span></span><br><span class="line">md5.<span class="property">_blocksize</span> = <span class="number">16</span>;</span><br><span class="line">md5.<span class="property">_digestsize</span> = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">message, options</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (message === <span class="literal">undefined</span> || message === <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Illegal argument &#x27;</span> + message);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> digestbytes = crypt.<span class="property">util</span>.<span class="title function_">wordsToBytes</span>(<span class="title function_">md5</span>(message, options));</span><br><span class="line">  <span class="keyword">return</span> options &amp;&amp; options.<span class="property">asBytes</span> ? digestbytes :</span><br><span class="line">    options &amp;&amp; options.<span class="property">asString</span> ? bin.<span class="title function_">bytesToString</span>(digestbytes) :</span><br><span class="line">    crypt.<span class="property">util</span>.<span class="title function_">bytesToHex</span>(digestbytes);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> crypt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./crypto.js&#x27;</span>);<br><span class="hljs-keyword">var</span> charenc = &#123;<br>  <span class="hljs-comment">// UTF-8 encoding</span><br>  <span class="hljs-attr">utf8</span>: &#123;<br>    <span class="hljs-comment">// Convert a string to a byte array</span><br>    <span class="hljs-attr">stringToBytes</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) &#123;<br>      <span class="hljs-keyword">return</span> charenc.<span class="hljs-property">bin</span>.<span class="hljs-title function_">stringToBytes</span>(<span class="hljs-built_in">unescape</span>(<span class="hljs-built_in">encodeURIComponent</span>(str)));<br>    &#125;,<br><br>    <span class="hljs-comment">// Convert a byte array to a string</span><br>    <span class="hljs-attr">bytesToString</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">bytes</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">decodeURIComponent</span>(<span class="hljs-built_in">escape</span>(charenc.<span class="hljs-property">bin</span>.<span class="hljs-title function_">bytesToString</span>(bytes)));<br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-comment">// Binary encoding</span><br>  <span class="hljs-attr">bin</span>: &#123;<br>    <span class="hljs-comment">// Convert a string to a byte array</span><br>    <span class="hljs-attr">stringToBytes</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> bytes = [], i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-property">length</span>; i++)<br>        bytes.<span class="hljs-title function_">push</span>(str.<span class="hljs-title function_">charCodeAt</span>(i) &amp; <span class="hljs-number">0xFF</span>);<br>      <span class="hljs-keyword">return</span> bytes;<br>    &#125;,<br><br>    <span class="hljs-comment">// Convert a byte array to a string</span><br>    <span class="hljs-attr">bytesToString</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">bytes</span>) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> str = [], i = <span class="hljs-number">0</span>; i &lt; bytes.<span class="hljs-property">length</span>; i++)<br>        str.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCharCode</span>(bytes[i]));<br>      <span class="hljs-keyword">return</span> str.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>    &#125;<br>  &#125;<br>&#125;;<br><span class="hljs-keyword">var</span> utf8 = charenc.<span class="hljs-property">utf8</span>;<br><span class="hljs-keyword">var</span> bin = charenc.<span class="hljs-property">bin</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">isBuffer</span>(<span class="hljs-params">obj</span>) &#123;<br>  <span class="hljs-keyword">return</span> !!obj.<span class="hljs-property">constructor</span> &amp;&amp; <span class="hljs-keyword">typeof</span> obj.<span class="hljs-property">constructor</span>.<span class="hljs-property">isBuffer</span> === <span class="hljs-string">&#x27;function&#x27;</span> &amp;&amp; obj.<span class="hljs-property">constructor</span>.<span class="hljs-title function_">isBuffer</span>(obj)<br>&#125;<br><br><span class="hljs-comment">// The core</span><br><span class="hljs-keyword">var</span> md5 = <span class="hljs-keyword">function</span>(<span class="hljs-params">message, options</span>) &#123;<br>  <span class="hljs-comment">// Convert to byte array</span><br>  <span class="hljs-keyword">if</span> (message.<span class="hljs-property">constructor</span> == <span class="hljs-title class_">String</span>)<br>    <span class="hljs-keyword">if</span> (options &amp;&amp; options.<span class="hljs-property">encoding</span> === <span class="hljs-string">&#x27;binary&#x27;</span>)<br>      message = bin.<span class="hljs-title function_">stringToBytes</span>(message);<br>    <span class="hljs-keyword">else</span><br>      message = utf8.<span class="hljs-title function_">stringToBytes</span>(message);<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isBuffer</span>(message))<br>    message = <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">slice</span>.<span class="hljs-title function_">call</span>(message, <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(message))<br>    message = message.<span class="hljs-title function_">toString</span>();<br>  <span class="hljs-comment">// else, assume byte array already</span><br><br>  <span class="hljs-keyword">var</span> m = crypt.<span class="hljs-property">util</span>.<span class="hljs-title function_">bytesToWords</span>(message),<br>    l = message.<span class="hljs-property">length</span> * <span class="hljs-number">8</span>,<br>    a = <span class="hljs-number">1732584193</span>,<br>    b = -<span class="hljs-number">271733879</span>,<br>    c = -<span class="hljs-number">1732584194</span>,<br>    d = <span class="hljs-number">271733878</span>;<br><br>  <span class="hljs-comment">// Swap endian</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; m.<span class="hljs-property">length</span>; i++) &#123;<br>    m[i] = ((m[i] &lt;&lt; <span class="hljs-number">8</span>) | (m[i] &gt;&gt;&gt; <span class="hljs-number">24</span>)) &amp; <span class="hljs-number">0x00FF00FF</span> |<br>      ((m[i] &lt;&lt; <span class="hljs-number">24</span>) | (m[i] &gt;&gt;&gt; <span class="hljs-number">8</span>)) &amp; <span class="hljs-number">0xFF00FF00</span>;<br>  &#125;<br><br>  <span class="hljs-comment">// Padding</span><br>  m[l &gt;&gt;&gt; <span class="hljs-number">5</span>] |= <span class="hljs-number">0x80</span> &lt;&lt; (l % <span class="hljs-number">32</span>);<br>  m[(((l + <span class="hljs-number">64</span>) &gt;&gt;&gt; <span class="hljs-number">9</span>) &lt;&lt; <span class="hljs-number">4</span>) + <span class="hljs-number">14</span>] = l;<br><br>  <span class="hljs-comment">// Method shortcuts</span><br>  <span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FF</span> = md5.<span class="hljs-property">_ff</span>,<br>    <span class="hljs-variable constant_">GG</span> = md5.<span class="hljs-property">_gg</span>,<br>    <span class="hljs-variable constant_">HH</span> = md5.<span class="hljs-property">_hh</span>,<br>    <span class="hljs-variable constant_">II</span> = md5.<span class="hljs-property">_ii</span>;<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; m.<span class="hljs-property">length</span>; i += <span class="hljs-number">16</span>) &#123;<br><br>    <span class="hljs-keyword">var</span> aa = a,<br>      bb = b,<br>      cc = c,<br>      dd = d;<br><br>    a = <span class="hljs-title function_">FF</span>(a, b, c, d, m[i + <span class="hljs-number">0</span>], <span class="hljs-number">7</span>, -<span class="hljs-number">680876936</span>);<br>    d = <span class="hljs-title function_">FF</span>(d, a, b, c, m[i + <span class="hljs-number">1</span>], <span class="hljs-number">12</span>, -<span class="hljs-number">389564586</span>);<br>    c = <span class="hljs-title function_">FF</span>(c, d, a, b, m[i + <span class="hljs-number">2</span>], <span class="hljs-number">17</span>, <span class="hljs-number">606105819</span>);<br>    b = <span class="hljs-title function_">FF</span>(b, c, d, a, m[i + <span class="hljs-number">3</span>], <span class="hljs-number">22</span>, -<span class="hljs-number">1044525330</span>);<br>    a = <span class="hljs-title function_">FF</span>(a, b, c, d, m[i + <span class="hljs-number">4</span>], <span class="hljs-number">7</span>, -<span class="hljs-number">176418897</span>);<br>    d = <span class="hljs-title function_">FF</span>(d, a, b, c, m[i + <span class="hljs-number">5</span>], <span class="hljs-number">12</span>, <span class="hljs-number">1200080426</span>);<br>    c = <span class="hljs-title function_">FF</span>(c, d, a, b, m[i + <span class="hljs-number">6</span>], <span class="hljs-number">17</span>, -<span class="hljs-number">1473231341</span>);<br>    b = <span class="hljs-title function_">FF</span>(b, c, d, a, m[i + <span class="hljs-number">7</span>], <span class="hljs-number">22</span>, -<span class="hljs-number">45705983</span>);<br>    a = <span class="hljs-title function_">FF</span>(a, b, c, d, m[i + <span class="hljs-number">8</span>], <span class="hljs-number">7</span>, <span class="hljs-number">1770035416</span>);<br>    d = <span class="hljs-title function_">FF</span>(d, a, b, c, m[i + <span class="hljs-number">9</span>], <span class="hljs-number">12</span>, -<span class="hljs-number">1958414417</span>);<br>    c = <span class="hljs-title function_">FF</span>(c, d, a, b, m[i + <span class="hljs-number">10</span>], <span class="hljs-number">17</span>, -<span class="hljs-number">42063</span>);<br>    b = <span class="hljs-title function_">FF</span>(b, c, d, a, m[i + <span class="hljs-number">11</span>], <span class="hljs-number">22</span>, -<span class="hljs-number">1990404162</span>);<br>    a = <span class="hljs-title function_">FF</span>(a, b, c, d, m[i + <span class="hljs-number">12</span>], <span class="hljs-number">7</span>, <span class="hljs-number">1804603682</span>);<br>    d = <span class="hljs-title function_">FF</span>(d, a, b, c, m[i + <span class="hljs-number">13</span>], <span class="hljs-number">12</span>, -<span class="hljs-number">40341101</span>);<br>    c = <span class="hljs-title function_">FF</span>(c, d, a, b, m[i + <span class="hljs-number">14</span>], <span class="hljs-number">17</span>, -<span class="hljs-number">1502002290</span>);<br>    b = <span class="hljs-title function_">FF</span>(b, c, d, a, m[i + <span class="hljs-number">15</span>], <span class="hljs-number">22</span>, <span class="hljs-number">1236535329</span>);<br><br>    a = <span class="hljs-title function_">GG</span>(a, b, c, d, m[i + <span class="hljs-number">1</span>], <span class="hljs-number">5</span>, -<span class="hljs-number">165796510</span>);<br>    d = <span class="hljs-title function_">GG</span>(d, a, b, c, m[i + <span class="hljs-number">6</span>], <span class="hljs-number">9</span>, -<span class="hljs-number">1069501632</span>);<br>    c = <span class="hljs-title function_">GG</span>(c, d, a, b, m[i + <span class="hljs-number">11</span>], <span class="hljs-number">14</span>, <span class="hljs-number">643717713</span>);<br>    b = <span class="hljs-title function_">GG</span>(b, c, d, a, m[i + <span class="hljs-number">0</span>], <span class="hljs-number">20</span>, -<span class="hljs-number">373897302</span>);<br>    a = <span class="hljs-title function_">GG</span>(a, b, c, d, m[i + <span class="hljs-number">5</span>], <span class="hljs-number">5</span>, -<span class="hljs-number">701558691</span>);<br>    d = <span class="hljs-title function_">GG</span>(d, a, b, c, m[i + <span class="hljs-number">10</span>], <span class="hljs-number">9</span>, <span class="hljs-number">38016083</span>);<br>    c = <span class="hljs-title function_">GG</span>(c, d, a, b, m[i + <span class="hljs-number">15</span>], <span class="hljs-number">14</span>, -<span class="hljs-number">660478335</span>);<br>    b = <span class="hljs-title function_">GG</span>(b, c, d, a, m[i + <span class="hljs-number">4</span>], <span class="hljs-number">20</span>, -<span class="hljs-number">405537848</span>);<br>    a = <span class="hljs-title function_">GG</span>(a, b, c, d, m[i + <span class="hljs-number">9</span>], <span class="hljs-number">5</span>, <span class="hljs-number">568446438</span>);<br>    d = <span class="hljs-title function_">GG</span>(d, a, b, c, m[i + <span class="hljs-number">14</span>], <span class="hljs-number">9</span>, -<span class="hljs-number">1019803690</span>);<br>    c = <span class="hljs-title function_">GG</span>(c, d, a, b, m[i + <span class="hljs-number">3</span>], <span class="hljs-number">14</span>, -<span class="hljs-number">187363961</span>);<br>    b = <span class="hljs-title function_">GG</span>(b, c, d, a, m[i + <span class="hljs-number">8</span>], <span class="hljs-number">20</span>, <span class="hljs-number">1163531501</span>);<br>    a = <span class="hljs-title function_">GG</span>(a, b, c, d, m[i + <span class="hljs-number">13</span>], <span class="hljs-number">5</span>, -<span class="hljs-number">1444681467</span>);<br>    d = <span class="hljs-title function_">GG</span>(d, a, b, c, m[i + <span class="hljs-number">2</span>], <span class="hljs-number">9</span>, -<span class="hljs-number">51403784</span>);<br>    c = <span class="hljs-title function_">GG</span>(c, d, a, b, m[i + <span class="hljs-number">7</span>], <span class="hljs-number">14</span>, <span class="hljs-number">1735328473</span>);<br>    b = <span class="hljs-title function_">GG</span>(b, c, d, a, m[i + <span class="hljs-number">12</span>], <span class="hljs-number">20</span>, -<span class="hljs-number">1926607734</span>);<br><br>    a = <span class="hljs-title function_">HH</span>(a, b, c, d, m[i + <span class="hljs-number">5</span>], <span class="hljs-number">4</span>, -<span class="hljs-number">378558</span>);<br>    d = <span class="hljs-title function_">HH</span>(d, a, b, c, m[i + <span class="hljs-number">8</span>], <span class="hljs-number">11</span>, -<span class="hljs-number">2022574463</span>);<br>    c = <span class="hljs-title function_">HH</span>(c, d, a, b, m[i + <span class="hljs-number">11</span>], <span class="hljs-number">16</span>, <span class="hljs-number">1839030562</span>);<br>    b = <span class="hljs-title function_">HH</span>(b, c, d, a, m[i + <span class="hljs-number">14</span>], <span class="hljs-number">23</span>, -<span class="hljs-number">35309556</span>);<br>    a = <span class="hljs-title function_">HH</span>(a, b, c, d, m[i + <span class="hljs-number">1</span>], <span class="hljs-number">4</span>, -<span class="hljs-number">1530992060</span>);<br>    d = <span class="hljs-title function_">HH</span>(d, a, b, c, m[i + <span class="hljs-number">4</span>], <span class="hljs-number">11</span>, <span class="hljs-number">1272893353</span>);<br>    c = <span class="hljs-title function_">HH</span>(c, d, a, b, m[i + <span class="hljs-number">7</span>], <span class="hljs-number">16</span>, -<span class="hljs-number">155497632</span>);<br>    b = <span class="hljs-title function_">HH</span>(b, c, d, a, m[i + <span class="hljs-number">10</span>], <span class="hljs-number">23</span>, -<span class="hljs-number">1094730640</span>);<br>    a = <span class="hljs-title function_">HH</span>(a, b, c, d, m[i + <span class="hljs-number">13</span>], <span class="hljs-number">4</span>, <span class="hljs-number">681279174</span>);<br>    d = <span class="hljs-title function_">HH</span>(d, a, b, c, m[i + <span class="hljs-number">0</span>], <span class="hljs-number">11</span>, -<span class="hljs-number">358537222</span>);<br>    c = <span class="hljs-title function_">HH</span>(c, d, a, b, m[i + <span class="hljs-number">3</span>], <span class="hljs-number">16</span>, -<span class="hljs-number">722521979</span>);<br>    b = <span class="hljs-title function_">HH</span>(b, c, d, a, m[i + <span class="hljs-number">6</span>], <span class="hljs-number">23</span>, <span class="hljs-number">76029189</span>);<br>    a = <span class="hljs-title function_">HH</span>(a, b, c, d, m[i + <span class="hljs-number">9</span>], <span class="hljs-number">4</span>, -<span class="hljs-number">640364487</span>);<br>    d = <span class="hljs-title function_">HH</span>(d, a, b, c, m[i + <span class="hljs-number">12</span>], <span class="hljs-number">11</span>, -<span class="hljs-number">421815835</span>);<br>    c = <span class="hljs-title function_">HH</span>(c, d, a, b, m[i + <span class="hljs-number">15</span>], <span class="hljs-number">16</span>, <span class="hljs-number">530742520</span>);<br>    b = <span class="hljs-title function_">HH</span>(b, c, d, a, m[i + <span class="hljs-number">2</span>], <span class="hljs-number">23</span>, -<span class="hljs-number">995338651</span>);<br><br>    a = <span class="hljs-title function_">II</span>(a, b, c, d, m[i + <span class="hljs-number">0</span>], <span class="hljs-number">6</span>, -<span class="hljs-number">198630844</span>);<br>    d = <span class="hljs-title function_">II</span>(d, a, b, c, m[i + <span class="hljs-number">7</span>], <span class="hljs-number">10</span>, <span class="hljs-number">1126891415</span>);<br>    c = <span class="hljs-title function_">II</span>(c, d, a, b, m[i + <span class="hljs-number">14</span>], <span class="hljs-number">15</span>, -<span class="hljs-number">1416354905</span>);<br>    b = <span class="hljs-title function_">II</span>(b, c, d, a, m[i + <span class="hljs-number">5</span>], <span class="hljs-number">21</span>, -<span class="hljs-number">57434055</span>);<br>    a = <span class="hljs-title function_">II</span>(a, b, c, d, m[i + <span class="hljs-number">12</span>], <span class="hljs-number">6</span>, <span class="hljs-number">1700485571</span>);<br>    d = <span class="hljs-title function_">II</span>(d, a, b, c, m[i + <span class="hljs-number">3</span>], <span class="hljs-number">10</span>, -<span class="hljs-number">1894986606</span>);<br>    c = <span class="hljs-title function_">II</span>(c, d, a, b, m[i + <span class="hljs-number">10</span>], <span class="hljs-number">15</span>, -<span class="hljs-number">1051523</span>);<br>    b = <span class="hljs-title function_">II</span>(b, c, d, a, m[i + <span class="hljs-number">1</span>], <span class="hljs-number">21</span>, -<span class="hljs-number">2054922799</span>);<br>    a = <span class="hljs-title function_">II</span>(a, b, c, d, m[i + <span class="hljs-number">8</span>], <span class="hljs-number">6</span>, <span class="hljs-number">1873313359</span>);<br>    d = <span class="hljs-title function_">II</span>(d, a, b, c, m[i + <span class="hljs-number">15</span>], <span class="hljs-number">10</span>, -<span class="hljs-number">30611744</span>);<br>    c = <span class="hljs-title function_">II</span>(c, d, a, b, m[i + <span class="hljs-number">6</span>], <span class="hljs-number">15</span>, -<span class="hljs-number">1560198380</span>);<br>    b = <span class="hljs-title function_">II</span>(b, c, d, a, m[i + <span class="hljs-number">13</span>], <span class="hljs-number">21</span>, <span class="hljs-number">1309151649</span>);<br>    a = <span class="hljs-title function_">II</span>(a, b, c, d, m[i + <span class="hljs-number">4</span>], <span class="hljs-number">6</span>, -<span class="hljs-number">145523070</span>);<br>    d = <span class="hljs-title function_">II</span>(d, a, b, c, m[i + <span class="hljs-number">11</span>], <span class="hljs-number">10</span>, -<span class="hljs-number">1120210379</span>);<br>    c = <span class="hljs-title function_">II</span>(c, d, a, b, m[i + <span class="hljs-number">2</span>], <span class="hljs-number">15</span>, <span class="hljs-number">718787259</span>);<br>    b = <span class="hljs-title function_">II</span>(b, c, d, a, m[i + <span class="hljs-number">9</span>], <span class="hljs-number">21</span>, -<span class="hljs-number">343485551</span>);<br><br>    a = (a + aa) &gt;&gt;&gt; <span class="hljs-number">0</span>;<br>    b = (b + bb) &gt;&gt;&gt; <span class="hljs-number">0</span>;<br>    c = (c + cc) &gt;&gt;&gt; <span class="hljs-number">0</span>;<br>    d = (d + dd) &gt;&gt;&gt; <span class="hljs-number">0</span>;<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> crypt.<span class="hljs-property">util</span>.<span class="hljs-title function_">endian</span>([a, b, c, d]);<br>&#125;;<br><br><span class="hljs-comment">// Auxiliary functions</span><br>md5.<span class="hljs-property">_ff</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, c, d, x, s, t</span>) &#123;<br>  <span class="hljs-keyword">var</span> n = a + (b &amp; c | ~b &amp; d) + (x &gt;&gt;&gt; <span class="hljs-number">0</span>) + t;<br>  <span class="hljs-keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="hljs-number">32</span> - s))) + b;<br>&#125;;<br>md5.<span class="hljs-property">_gg</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, c, d, x, s, t</span>) &#123;<br>  <span class="hljs-keyword">var</span> n = a + (b &amp; d | c &amp; ~d) + (x &gt;&gt;&gt; <span class="hljs-number">0</span>) + t;<br>  <span class="hljs-keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="hljs-number">32</span> - s))) + b;<br>&#125;;<br>md5.<span class="hljs-property">_hh</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, c, d, x, s, t</span>) &#123;<br>  <span class="hljs-keyword">var</span> n = a + (b ^ c ^ d) + (x &gt;&gt;&gt; <span class="hljs-number">0</span>) + t;<br>  <span class="hljs-keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="hljs-number">32</span> - s))) + b;<br>&#125;;<br>md5.<span class="hljs-property">_ii</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">a, b, c, d, x, s, t</span>) &#123;<br>  <span class="hljs-keyword">var</span> n = a + (c ^ (b | ~d)) + (x &gt;&gt;&gt; <span class="hljs-number">0</span>) + t;<br>  <span class="hljs-keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="hljs-number">32</span> - s))) + b;<br>&#125;;<br><br><span class="hljs-comment">// Package private blocksize</span><br>md5.<span class="hljs-property">_blocksize</span> = <span class="hljs-number">16</span>;<br>md5.<span class="hljs-property">_digestsize</span> = <span class="hljs-number">16</span>;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">message, options</span>) &#123;<br>  <span class="hljs-keyword">if</span> (message === <span class="hljs-literal">undefined</span> || message === <span class="hljs-literal">null</span>)<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Illegal argument &#x27;</span> + message);<br><br>  <span class="hljs-keyword">var</span> digestbytes = crypt.<span class="hljs-property">util</span>.<span class="hljs-title function_">wordsToBytes</span>(<span class="hljs-title function_">md5</span>(message, options));<br>  <span class="hljs-keyword">return</span> options &amp;&amp; options.<span class="hljs-property">asBytes</span> ? digestbytes :<br>    options &amp;&amp; options.<span class="hljs-property">asString</span> ? bin.<span class="hljs-title function_">bytesToString</span>(digestbytes) :<br>    crypt.<span class="hljs-property">util</span>.<span class="hljs-title function_">bytesToHex</span>(digestbytes);<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <hr>
 <p>以下是 crypto 模块</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * Crypto-JS v1.1.0</span></span><br><span class="line"><span class="comment"> * http://code.google.com/p/crypto-js/</span></span><br><span class="line"><span class="comment"> * Copyright (c) 2009, Jeff Mott. All rights reserved.</span></span><br><span class="line"><span class="comment"> * http://code.google.com/p/crypto-js/wiki/License</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Crypto</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> base64map = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Crypto utilities</span></span><br><span class="line"><span class="keyword">var</span> util = <span class="title class_">Crypto</span>.<span class="property">util</span> = &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Bit-wise rotate left</span></span><br><span class="line">	<span class="attr">rotl</span>: <span class="keyword">function</span> (<span class="params">n, b</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> (n &lt;&lt; b) | (n &gt;&gt;&gt; (<span class="number">32</span> - b));</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Bit-wise rotate right</span></span><br><span class="line">	<span class="attr">rotr</span>: <span class="keyword">function</span> (<span class="params">n, b</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> (n &lt;&lt; (<span class="number">32</span> - b)) | (n &gt;&gt;&gt; b);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Swap big-endian to little-endian and vice versa</span></span><br><span class="line">	<span class="attr">endian</span>: <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// If number given, swap endian</span></span><br><span class="line">		<span class="keyword">if</span> (n.<span class="property">constructor</span> == <span class="title class_">Number</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> util.<span class="title function_">rotl</span>(n,  <span class="number">8</span>) &amp; <span class="number">0x00FF00FF</span> |</span><br><span class="line">			       util.<span class="title function_">rotl</span>(n, <span class="number">24</span>) &amp; <span class="number">0xFF00FF00</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Else, assume array and swap all items</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n.<span class="property">length</span>; i++)</span><br><span class="line">			n[i] = util.<span class="title function_">endian</span>(n[i]);</span><br><span class="line">		<span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Generate an array of any length of random bytes</span></span><br><span class="line">	<span class="attr">randomBytes</span>: <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> bytes = []; n &gt; <span class="number">0</span>; n--)</span><br><span class="line">			bytes.<span class="title function_">push</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">256</span>));</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a string to a byte array</span></span><br><span class="line">	<span class="attr">stringToBytes</span>: <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++)</span><br><span class="line">			bytes.<span class="title function_">push</span>(str.<span class="title function_">charCodeAt</span>(i));</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to a string</span></span><br><span class="line">	<span class="attr">bytesToString</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> str = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++)</span><br><span class="line">			str.<span class="title function_">push</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(bytes[i]));</span><br><span class="line">		<span class="keyword">return</span> str.<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a string to big-endian 32-bit words</span></span><br><span class="line">	<span class="attr">stringToWords</span>: <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> words = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> c = <span class="number">0</span>, b = <span class="number">0</span>; c &lt; str.<span class="property">length</span>; c++, b += <span class="number">8</span>)</span><br><span class="line">			words[b &gt;&gt;&gt; <span class="number">5</span>] |= str.<span class="title function_">charCodeAt</span>(c) &lt;&lt; (<span class="number">24</span> - b % <span class="number">32</span>);</span><br><span class="line">		<span class="keyword">return</span> words;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to big-endian 32-bits words</span></span><br><span class="line">	<span class="attr">bytesToWords</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> words = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, b = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++, b += <span class="number">8</span>)</span><br><span class="line">			words[b &gt;&gt;&gt; <span class="number">5</span>] |= bytes[i] &lt;&lt; (<span class="number">24</span> - b % <span class="number">32</span>);</span><br><span class="line">		<span class="keyword">return</span> words;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert big-endian 32-bit words to a byte array</span></span><br><span class="line">	<span class="attr">wordsToBytes</span>: <span class="keyword">function</span> (<span class="params">words</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> b = <span class="number">0</span>; b &lt; words.<span class="property">length</span> * <span class="number">32</span>; b += <span class="number">8</span>)</span><br><span class="line">			bytes.<span class="title function_">push</span>((words[b &gt;&gt;&gt; <span class="number">5</span>] &gt;&gt;&gt; (<span class="number">24</span> - b % <span class="number">32</span>)) &amp; <span class="number">0xFF</span>);</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to a hex string</span></span><br><span class="line">	<span class="attr">bytesToHex</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> hex = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">			hex.<span class="title function_">push</span>((bytes[i] &gt;&gt;&gt; <span class="number">4</span>).<span class="title function_">toString</span>(<span class="number">16</span>));</span><br><span class="line">			hex.<span class="title function_">push</span>((bytes[i] &amp; <span class="number">0xF</span>).<span class="title function_">toString</span>(<span class="number">16</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> hex.<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a hex string to a byte array</span></span><br><span class="line">	<span class="attr">hexToBytes</span>: <span class="keyword">function</span> (<span class="params">hex</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> c = <span class="number">0</span>; c &lt; hex.<span class="property">length</span>; c += <span class="number">2</span>)</span><br><span class="line">			bytes.<span class="title function_">push</span>(<span class="built_in">parseInt</span>(hex.<span class="title function_">substr</span>(c, <span class="number">2</span>), <span class="number">16</span>));</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to a base-64 string</span></span><br><span class="line">	<span class="attr">bytesToBase64</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Use browser-native function if it exists</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">typeof</span> btoa == <span class="string">&quot;function&quot;</span>) <span class="keyword">return</span> <span class="title function_">btoa</span>(util.<span class="title function_">bytesToString</span>(bytes));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> base64 = [],</span><br><span class="line">		    overflow;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (i % <span class="number">3</span>) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(bytes[i] &gt;&gt;&gt; <span class="number">2</span>));</span><br><span class="line">					overflow = (bytes[i] &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">4</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(overflow | (bytes[i] &gt;&gt;&gt; <span class="number">4</span>)));</span><br><span class="line">					overflow = (bytes[i] &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">2</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(overflow | (bytes[i] &gt;&gt;&gt; <span class="number">6</span>)));</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(bytes[i] &amp; <span class="number">0x3F</span>));</span><br><span class="line">					overflow = -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Encode overflow bits, if there are any</span></span><br><span class="line">		<span class="keyword">if</span> (overflow != <span class="literal">undefined</span> &amp;&amp; overflow != -<span class="number">1</span>)</span><br><span class="line">			base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(overflow));</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Add padding</span></span><br><span class="line">		<span class="keyword">while</span> (base64.<span class="property">length</span> % <span class="number">4</span> != <span class="number">0</span>) base64.<span class="title function_">push</span>(<span class="string">&quot;=&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> base64.<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a base-64 string to a byte array</span></span><br><span class="line">	<span class="attr">base64ToBytes</span>: <span class="keyword">function</span> (<span class="params">base64</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Use browser-native function if it exists</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">typeof</span> atob == <span class="string">&quot;function&quot;</span>) <span class="keyword">return</span> util.<span class="title function_">stringToBytes</span>(<span class="title function_">atob</span>(base64));</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Remove non-base-64 characters</span></span><br><span class="line">		base64 = base64.<span class="title function_">replace</span>(<span class="regexp">/[^A-Z0-9+\/]/ig</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; base64.<span class="property">length</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (i % <span class="number">4</span>) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">					bytes.<span class="title function_">push</span>((base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i - <span class="number">1</span>)) &lt;&lt; <span class="number">2</span>) |</span><br><span class="line">					           (base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i)) &gt;&gt;&gt; <span class="number">4</span>));</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">					bytes.<span class="title function_">push</span>(((base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i - <span class="number">1</span>)) &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">4</span>) |</span><br><span class="line">					           (base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i)) &gt;&gt;&gt; <span class="number">2</span>));</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">					bytes.<span class="title function_">push</span>(((base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i - <span class="number">1</span>)) &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">6</span>) |</span><br><span class="line">					           (base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i))));</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Crypto mode namespace</span></span><br><span class="line"><span class="title class_">Crypto</span>.<span class="property">mode</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">Crypto</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*!</span><br><span class="hljs-comment"> * Crypto-JS v1.1.0</span><br><span class="hljs-comment"> * http://code.google.com/p/crypto-js/</span><br><span class="hljs-comment"> * Copyright (c) 2009, Jeff Mott. All rights reserved.</span><br><span class="hljs-comment"> * http://code.google.com/p/crypto-js/wiki/License</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Crypto</span> = &#123;&#125;;<br><br>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br><br><span class="hljs-keyword">var</span> base64map = <span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span>;<br><br><br><span class="hljs-comment">// Crypto utilities</span><br><span class="hljs-keyword">var</span> util = <span class="hljs-title class_">Crypto</span>.<span class="hljs-property">util</span> = &#123;<br><br>	<span class="hljs-comment">// Bit-wise rotate left</span><br>	<span class="hljs-attr">rotl</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">n, b</span>) &#123;<br>		<span class="hljs-keyword">return</span> (n &lt;&lt; b) | (n &gt;&gt;&gt; (<span class="hljs-number">32</span> - b));<br>	&#125;,<br><br>	<span class="hljs-comment">// Bit-wise rotate right</span><br>	<span class="hljs-attr">rotr</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">n, b</span>) &#123;<br>		<span class="hljs-keyword">return</span> (n &lt;&lt; (<span class="hljs-number">32</span> - b)) | (n &gt;&gt;&gt; b);<br>	&#125;,<br><br>	<span class="hljs-comment">// Swap big-endian to little-endian and vice versa</span><br>	<span class="hljs-attr">endian</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;<br><br>		<span class="hljs-comment">// If number given, swap endian</span><br>		<span class="hljs-keyword">if</span> (n.<span class="hljs-property">constructor</span> == <span class="hljs-title class_">Number</span>) &#123;<br>			<span class="hljs-keyword">return</span> util.<span class="hljs-title function_">rotl</span>(n,  <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0x00FF00FF</span> |<br>			       util.<span class="hljs-title function_">rotl</span>(n, <span class="hljs-number">24</span>) &amp; <span class="hljs-number">0xFF00FF00</span>;<br>		&#125;<br><br>		<span class="hljs-comment">// Else, assume array and swap all items</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; n.<span class="hljs-property">length</span>; i++)<br>			n[i] = util.<span class="hljs-title function_">endian</span>(n[i]);<br>		<span class="hljs-keyword">return</span> n;<br><br>	&#125;,<br><br>	<span class="hljs-comment">// Generate an array of any length of random bytes</span><br>	<span class="hljs-attr">randomBytes</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> bytes = []; n &gt; <span class="hljs-number">0</span>; n--)<br>			bytes.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">256</span>));<br>		<span class="hljs-keyword">return</span> bytes;<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a string to a byte array</span><br>	<span class="hljs-attr">stringToBytes</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">str</span>) &#123;<br>		<span class="hljs-keyword">var</span> bytes = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-property">length</span>; i++)<br>			bytes.<span class="hljs-title function_">push</span>(str.<span class="hljs-title function_">charCodeAt</span>(i));<br>		<span class="hljs-keyword">return</span> bytes;<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a byte array to a string</span><br>	<span class="hljs-attr">bytesToString</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">bytes</span>) &#123;<br>		<span class="hljs-keyword">var</span> str = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; bytes.<span class="hljs-property">length</span>; i++)<br>			str.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCharCode</span>(bytes[i]));<br>		<span class="hljs-keyword">return</span> str.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a string to big-endian 32-bit words</span><br>	<span class="hljs-attr">stringToWords</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">str</span>) &#123;<br>		<span class="hljs-keyword">var</span> words = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> c = <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>; c &lt; str.<span class="hljs-property">length</span>; c++, b += <span class="hljs-number">8</span>)<br>			words[b &gt;&gt;&gt; <span class="hljs-number">5</span>] |= str.<span class="hljs-title function_">charCodeAt</span>(c) &lt;&lt; (<span class="hljs-number">24</span> - b % <span class="hljs-number">32</span>);<br>		<span class="hljs-keyword">return</span> words;<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a byte array to big-endian 32-bits words</span><br>	<span class="hljs-attr">bytesToWords</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">bytes</span>) &#123;<br>		<span class="hljs-keyword">var</span> words = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>; i &lt; bytes.<span class="hljs-property">length</span>; i++, b += <span class="hljs-number">8</span>)<br>			words[b &gt;&gt;&gt; <span class="hljs-number">5</span>] |= bytes[i] &lt;&lt; (<span class="hljs-number">24</span> - b % <span class="hljs-number">32</span>);<br>		<span class="hljs-keyword">return</span> words;<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert big-endian 32-bit words to a byte array</span><br>	<span class="hljs-attr">wordsToBytes</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">words</span>) &#123;<br>		<span class="hljs-keyword">var</span> bytes = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> b = <span class="hljs-number">0</span>; b &lt; words.<span class="hljs-property">length</span> * <span class="hljs-number">32</span>; b += <span class="hljs-number">8</span>)<br>			bytes.<span class="hljs-title function_">push</span>((words[b &gt;&gt;&gt; <span class="hljs-number">5</span>] &gt;&gt;&gt; (<span class="hljs-number">24</span> - b % <span class="hljs-number">32</span>)) &amp; <span class="hljs-number">0xFF</span>);<br>		<span class="hljs-keyword">return</span> bytes;<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a byte array to a hex string</span><br>	<span class="hljs-attr">bytesToHex</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">bytes</span>) &#123;<br>		<span class="hljs-keyword">var</span> hex = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; bytes.<span class="hljs-property">length</span>; i++) &#123;<br>			hex.<span class="hljs-title function_">push</span>((bytes[i] &gt;&gt;&gt; <span class="hljs-number">4</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>));<br>			hex.<span class="hljs-title function_">push</span>((bytes[i] &amp; <span class="hljs-number">0xF</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>));<br>		&#125;<br>		<span class="hljs-keyword">return</span> hex.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a hex string to a byte array</span><br>	<span class="hljs-attr">hexToBytes</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">hex</span>) &#123;<br>		<span class="hljs-keyword">var</span> bytes = [];<br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> c = <span class="hljs-number">0</span>; c &lt; hex.<span class="hljs-property">length</span>; c += <span class="hljs-number">2</span>)<br>			bytes.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">parseInt</span>(hex.<span class="hljs-title function_">substr</span>(c, <span class="hljs-number">2</span>), <span class="hljs-number">16</span>));<br>		<span class="hljs-keyword">return</span> bytes;<br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a byte array to a base-64 string</span><br>	<span class="hljs-attr">bytesToBase64</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">bytes</span>) &#123;<br><br>		<span class="hljs-comment">// Use browser-native function if it exists</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> btoa == <span class="hljs-string">&quot;function&quot;</span>) <span class="hljs-keyword">return</span> <span class="hljs-title function_">btoa</span>(util.<span class="hljs-title function_">bytesToString</span>(bytes));<br><br>		<span class="hljs-keyword">var</span> base64 = [],<br>		    overflow;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; bytes.<span class="hljs-property">length</span>; i++) &#123;<br>			<span class="hljs-keyword">switch</span> (i % <span class="hljs-number">3</span>) &#123;<br>				<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:<br>					base64.<span class="hljs-title function_">push</span>(base64map.<span class="hljs-title function_">charAt</span>(bytes[i] &gt;&gt;&gt; <span class="hljs-number">2</span>));<br>					overflow = (bytes[i] &amp; <span class="hljs-number">0x3</span>) &lt;&lt; <span class="hljs-number">4</span>;<br>					<span class="hljs-keyword">break</span>;<br>				<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>					base64.<span class="hljs-title function_">push</span>(base64map.<span class="hljs-title function_">charAt</span>(overflow | (bytes[i] &gt;&gt;&gt; <span class="hljs-number">4</span>)));<br>					overflow = (bytes[i] &amp; <span class="hljs-number">0xF</span>) &lt;&lt; <span class="hljs-number">2</span>;<br>					<span class="hljs-keyword">break</span>;<br>				<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>					base64.<span class="hljs-title function_">push</span>(base64map.<span class="hljs-title function_">charAt</span>(overflow | (bytes[i] &gt;&gt;&gt; <span class="hljs-number">6</span>)));<br>					base64.<span class="hljs-title function_">push</span>(base64map.<span class="hljs-title function_">charAt</span>(bytes[i] &amp; <span class="hljs-number">0x3F</span>));<br>					overflow = -<span class="hljs-number">1</span>;<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-comment">// Encode overflow bits, if there are any</span><br>		<span class="hljs-keyword">if</span> (overflow != <span class="hljs-literal">undefined</span> &amp;&amp; overflow != -<span class="hljs-number">1</span>)<br>			base64.<span class="hljs-title function_">push</span>(base64map.<span class="hljs-title function_">charAt</span>(overflow));<br><br>		<span class="hljs-comment">// Add padding</span><br>		<span class="hljs-keyword">while</span> (base64.<span class="hljs-property">length</span> % <span class="hljs-number">4</span> != <span class="hljs-number">0</span>) base64.<span class="hljs-title function_">push</span>(<span class="hljs-string">&quot;=&quot;</span>);<br><br>		<span class="hljs-keyword">return</span> base64.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);<br><br>	&#125;,<br><br>	<span class="hljs-comment">// Convert a base-64 string to a byte array</span><br>	<span class="hljs-attr">base64ToBytes</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">base64</span>) &#123;<br><br>		<span class="hljs-comment">// Use browser-native function if it exists</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> atob == <span class="hljs-string">&quot;function&quot;</span>) <span class="hljs-keyword">return</span> util.<span class="hljs-title function_">stringToBytes</span>(<span class="hljs-title function_">atob</span>(base64));<br><br>		<span class="hljs-comment">// Remove non-base-64 characters</span><br>		base64 = base64.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[^A-Z0-9+\/]/ig</span>, <span class="hljs-string">&quot;&quot;</span>);<br><br>		<span class="hljs-keyword">var</span> bytes = [];<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; base64.<span class="hljs-property">length</span>; i++) &#123;<br>			<span class="hljs-keyword">switch</span> (i % <span class="hljs-number">4</span>) &#123;<br>				<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>					bytes.<span class="hljs-title function_">push</span>((base64map.<span class="hljs-title function_">indexOf</span>(base64.<span class="hljs-title function_">charAt</span>(i - <span class="hljs-number">1</span>)) &lt;&lt; <span class="hljs-number">2</span>) |<br>					           (base64map.<span class="hljs-title function_">indexOf</span>(base64.<span class="hljs-title function_">charAt</span>(i)) &gt;&gt;&gt; <span class="hljs-number">4</span>));<br>					<span class="hljs-keyword">break</span>;<br>				<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>					bytes.<span class="hljs-title function_">push</span>(((base64map.<span class="hljs-title function_">indexOf</span>(base64.<span class="hljs-title function_">charAt</span>(i - <span class="hljs-number">1</span>)) &amp; <span class="hljs-number">0xF</span>) &lt;&lt; <span class="hljs-number">4</span>) |<br>					           (base64map.<span class="hljs-title function_">indexOf</span>(base64.<span class="hljs-title function_">charAt</span>(i)) &gt;&gt;&gt; <span class="hljs-number">2</span>));<br>					<span class="hljs-keyword">break</span>;<br>				<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>					bytes.<span class="hljs-title function_">push</span>(((base64map.<span class="hljs-title function_">indexOf</span>(base64.<span class="hljs-title function_">charAt</span>(i - <span class="hljs-number">1</span>)) &amp; <span class="hljs-number">0x3</span>) &lt;&lt; <span class="hljs-number">6</span>) |<br>					           (base64map.<span class="hljs-title function_">indexOf</span>(base64.<span class="hljs-title function_">charAt</span>(i))));<br>					<span class="hljs-keyword">break</span>;<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">return</span> bytes;<br><br>	&#125;<br><br>&#125;;<br><br><span class="hljs-comment">// Crypto mode namespace</span><br><span class="hljs-title class_">Crypto</span>.<span class="hljs-property">mode</span> = &#123;&#125;;<br><br>&#125;)();<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title class_">Crypto</span>;<br></code></pre></td></tr></table></figure>
 
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/javascript/" class="print-no-link">#javascript</a>
+      
+        <a href="/tags/%E5%BE%AE%E4%BF%A1/" class="print-no-link">#微信</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>微信支付 MD5 签名中文问题</div>
+      <div>http://example.com/2018/07/27/微信支付 MD5 签名中文问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年7月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/08/09/CentOS%20%E5%AE%89%E8%A3%85%20Python3/" title="CentOS 安装 Python3">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CentOS 安装 Python3</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20mch_id%20%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF/" title="微信支付 mch_id 参数格式错误">
+                        <span class="hidden-mobile">微信支付 mch_id 参数格式错误</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/javascript/">javascript</a><a href="/tags/微信/">微信</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -127,23 +442,207 @@
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

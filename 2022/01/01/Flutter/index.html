@@ -1,86 +1,290 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>Flutter | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter">
+<meta property="og:url" content="http://example.com/2022/01/01/Flutter/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png">
+<meta property="article:published_time" content="2022-01-01T07:07:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T03:59:49.662Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="Dart">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png">
+  
+  
+  
+  <title>Flutter - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等；
-官方的 Material 组件库里面有很多前人写好的组件">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  
-  
-  <meta name="keywords" content="软件,Dart,前端">
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="Flutter"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
 
   
-  <meta property="og:image" content="/favicon.ico"/>
-  
-
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>Flutter</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2022/01/01/Flutter/" rel="bookmark">
-        <time class="entry-date published" datetime="2022-01-01T07:07:00.000Z">
-          2022-01-01
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Flutter"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-01 15:07" pubdate>
+          2022年1月1日 下午
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等；</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Flutter</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等；</p>
 <p>官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式，然后再内置包含内容的其他组件，很灵活，实现了样式和内容的解耦；</p>
 <p>有个 pubspec.yaml 文件很像 nodejs 里面的 package.json 文件，用来定义项目的相关信息以及依赖的库；同时还有一个 pub.dev 仓库网站，类似 nodejs 里面的 npm 仓库，可以方便的实现第三方库的集中管理和下载；另外还有一个 pubspec.lock 文件，貌似也跟 nodejs 里面的 package_json.lock 功能差不多；</p>
 <p>flutter pub 命令很像 npm ，用来管理包，例如 flutter pub get 类似 npm install，用来安装依赖文件中指定的各种包，flutter pub add 则用来添加包（发现添加后，好像并没有自动下载，而是需要再运行一下 pub get 才行，但是看 pub.dev 网站的文档好像只需要 add 就可以了）；</p>
@@ -89,7 +293,7 @@
 <p>通过在类名添加下划线前缀，在 Dart 中表示强制私有；在创建 StatefulWidget 时，编辑器自动创建的 State 类即默认为私有的；</p>
 </blockquote>
 <p>创建 State 时，有一个很有意思的点，即新创建的 state 并不是直接继承某个 StateWidget 来实现的，而是给 State 传递一个 StatefulWidegt 来实现，示例如下：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_RandomWordsState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">RandomWords</span>&gt;  </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 此处的 RandomWords 是一个 StatefulWidget</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_RandomWordsState</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">State</span>&lt;<span class="hljs-title">RandomWords</span>&gt;  </span>&#123;&#125;<br><span class="hljs-comment">// 此处的 RandomWords 是一个 StatefulWidget</span><br></code></pre></td></tr></table></figure>
 
 <p>Widget 类有一个内置的 build 方法，用来初始化对象，一般继承父类后，会通过重写 build 方法覆盖父类的方法；</p>
 <p>StatefulWidget 类有一个内置的 createState 方法，用来初始化 State 对象，通过对其进行重写，实现自定义的 State；</p>
@@ -114,56 +318,170 @@
 </ul>
 <p>大部分 Widget 都有一个 build 方法，当该方法被调用时，将生成界面；</p>
 <h1 id="常用-Widget"><a href="#常用-Widget" class="headerlink" title="常用 Widget"></a>常用 Widget</h1><p>Scaffold：包含顶部标题栏，标题，背景色等元素；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png" srcset="/img/loading.gif" lazyload></p>
 <p>Row：表示一行，里面可以嵌套各种东西；</p>
 <p>Column：表示一列，里面可以嵌套各种东西；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png" srcset="/img/loading.gif" lazyload></p>
 <p>Row 或 Column 内部元素的对齐，通过其属性 mainAxisAllignment 和 crossAxisAlignment 来实现；</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  mainAxisAlignment: MainAxisAlignment.spaceEvenly,</span><br><span class="line">  children: [</span><br><span class="line">    Image.asset(<span class="string">&#x27;images/pic1.jpg&#x27;</span>),</span><br><span class="line">    Image.asset(<span class="string">&#x27;images/pic2.jpg&#x27;</span>),</span><br><span class="line">    Image.asset(<span class="string">&#x27;images/pic3.jpg&#x27;</span>),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  mainAxisAlignment: MainAxisAlignment.spaceEvenly,<br>  children: [<br>    Image.asset(<span class="hljs-string">&#x27;images/pic1.jpg&#x27;</span>),<br>    Image.asset(<span class="hljs-string">&#x27;images/pic2.jpg&#x27;</span>),<br>    Image.asset(<span class="hljs-string">&#x27;images/pic3.jpg&#x27;</span>),<br>  ],<br>);<br></code></pre></td></tr></table></figure>
 
 <p>如果图片的大小跟所设定的区域尺寸不匹配，可通过将其放到  Expanded 中，来实现自动缩放，示例如下：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">  children: [</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic1.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic2.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic3.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  crossAxisAlignment: CrossAxisAlignment.center,<br>  children: [<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic1.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic2.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic3.jpg&#x27;</span>),<br>    ),<br>  ],<br>);<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">  children: [</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic1.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      flex: <span class="number">2</span>,</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic2.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child: Image.asset(<span class="string">&#x27;images/pic3.jpg&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  crossAxisAlignment: CrossAxisAlignment.center,<br>  children: [<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic1.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      flex: <span class="hljs-number">2</span>,<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic2.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic3.jpg&#x27;</span>),<br>    ),<br>  ],<br>);<br></code></pre></td></tr></table></figure>
 
 
 
 
 
 <p>默认情况下，Row 或 Column 内部的元素会占据整行或整列的空间，如果需要各个元素按指定尺寸挨着显示，则可以通过设置 mainAxisSize 来实现</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png"></p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Row(</span><br><span class="line">  mainAxisSize: MainAxisSize.min, <span class="comment">// 设置尺寸</span></span><br><span class="line">  children: [</span><br><span class="line">    Icon(Icons.star, color: Colors.green[<span class="number">500</span>]),</span><br><span class="line">    Icon(Icons.star, color: Colors.green[<span class="number">500</span>]),</span><br><span class="line">    Icon(Icons.star, color: Colors.green[<span class="number">500</span>]),</span><br><span class="line">    <span class="keyword">const</span> Icon(Icons.star, color: Colors.black),</span><br><span class="line">    <span class="keyword">const</span> Icon(Icons.star, color: Colors.black),</span><br><span class="line">  ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  mainAxisSize: MainAxisSize.min, <span class="hljs-comment">// 设置尺寸</span><br>  children: [<br>    Icon(Icons.star, color: Colors.green[<span class="hljs-number">500</span>]),<br>    Icon(Icons.star, color: Colors.green[<span class="hljs-number">500</span>]),<br>    Icon(Icons.star, color: Colors.green[<span class="hljs-number">500</span>]),<br>    <span class="hljs-keyword">const</span> Icon(Icons.star, color: Colors.black),<br>    <span class="hljs-keyword">const</span> Icon(Icons.star, color: Colors.black),<br>  ],<br>)<br></code></pre></td></tr></table></figure>
 
 
 
 
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/Dart/" class="print-no-link">#Dart</a>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Flutter</div>
+      <div>http://example.com/2022/01/01/Flutter/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/04/Ghidra/" title="Ghidra">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Ghidra</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/18/Angularjs/" title="Angularjs">
+                        <span class="hidden-mobile">Angularjs</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/Dart/">Dart</a><a href="/tags/前端/">前端</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -173,23 +491,207 @@
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

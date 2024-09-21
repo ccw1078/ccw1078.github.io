@@ -1,93 +1,311 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>数字图像处理 | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数字图像基础视觉感知要素人的主观亮度是进入人眼的光线强度的对数函数，并且在暗光环境和亮光环境下，该函数有所不同；两个函数有交叉的部分。当人眼从一个光线环境切换到另外一个光线环境时，眼睛需要有一个适应的过程，此时人眼会调整自身的光线灵敏度，来完成这种适应；  韦伯比：光线变化量与变化前的光线强度的比值  delta I &#x2F; I；在低照明环境，韦伯比比较大（说明此时人眼较不敏感）；在高照明环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图像处理">
+<meta property="og:url" content="http://example.com/2021/10/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="数字图像基础视觉感知要素人的主观亮度是进入人眼的光线强度的对数函数，并且在暗光环境和亮光环境下，该函数有所不同；两个函数有交叉的部分。当人眼从一个光线环境切换到另外一个光线环境时，眼睛需要有一个适应的过程，此时人眼会调整自身的光线灵敏度，来完成这种适应；  韦伯比：光线变化量与变化前的光线强度的比值  delta I &#x2F; I；在低照明环境，韦伯比比较大（说明此时人眼较不敏感）；在高照明环">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020143840.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144134.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144543.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152020.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152803.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153211.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153309.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021161753.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021141121.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021165034.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142542.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142125.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142348.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021172347.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173149.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173230.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173254.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173328.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173354.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173518.png">
+<meta property="article:published_time" content="2021-10-20T02:20:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T10:31:19.708Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="图像处理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020143840.png">
+  
+  
+  
+  <title>数字图像处理 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="数字图像基础视觉感知要素人的主观亮度是进入人眼的光线强度的对数函数，并且在暗光环境和亮光环境下，该函数有所不同；两个函数有交叉的部分。当人眼从一个光线环境切换到另外一个光线环境时，眼睛需要有一个适应的过程，此时人眼会调整自身的光线灵敏度，来完成这种适应；
 
-韦伯比：光线变化量与变化前的光线强度的比值">
-  
 
-  
-  
-  <meta name="keywords" content="软件,图像处理">
-  
 
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-  <meta property="og:title" content="数字图像处理"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>数字图像处理</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2021/10/20/数字图像处理/" rel="bookmark">
-        <time class="entry-date published" datetime="2021-10-20T02:20:00.000Z">
-          2021-10-20
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数字图像处理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-20 10:20" pubdate>
+          2021年10月20日 上午
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <h1 id="数字图像基础"><a href="#数字图像基础" class="headerlink" title="数字图像基础"></a>数字图像基础</h1><h2 id="视觉感知要素"><a href="#视觉感知要素" class="headerlink" title="视觉感知要素"></a>视觉感知要素</h2><p>人的主观亮度是进入人眼的光线强度的对数函数，并且在暗光环境和亮光环境下，该函数有所不同；两个函数有交叉的部分。当人眼从一个光线环境切换到另外一个光线环境时，眼睛需要有一个适应的过程，此时人眼会调整自身的光线灵敏度，来完成这种适应；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020143840.png"></p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数字图像处理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数字图像基础"><a href="#数字图像基础" class="headerlink" title="数字图像基础"></a>数字图像基础</h1><h2 id="视觉感知要素"><a href="#视觉感知要素" class="headerlink" title="视觉感知要素"></a>视觉感知要素</h2><p>人的主观亮度是进入人眼的光线强度的对数函数，并且在暗光环境和亮光环境下，该函数有所不同；两个函数有交叉的部分。当人眼从一个光线环境切换到另外一个光线环境时，眼睛需要有一个适应的过程，此时人眼会调整自身的光线灵敏度，来完成这种适应；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020143840.png" srcset="/img/loading.gif" lazyload></p>
 <p>韦伯比：光线变化量与变化前的光线强度的比值  delta I &#x2F; I；在低照明环境，韦伯比比较大（说明此时人眼较不敏感）；在高照明环境下，韦伯比降低（说明此时人眼对光线变化变得更加敏感了）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144134.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144134.png" srcset="/img/loading.gif" lazyload></p>
 <p>在背景照明（即环境光线）恒定时，人眼可辨别的亮度级别是有限的（12-24级左右），但是当人眼开始移动时，背景照明会跟着变化，因此导致人眼能够辨别很大的亮度范围；</p>
 <p>当背景照明变化时，由于人眼会重新适应和调整自己，因此这时在变化的边缘区域，会出现有趣的现象，此时人眼的感知不是线性的，而是会出现小范围的波动（上冲和下冲现象，马赫带效应）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144543.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144543.png" srcset="/img/loading.gif" lazyload></p>
 <p>人眼对某个区域的亮度判断，并不完全取决于该区域的光线强度，还跟该区域所处的背景强相关；如果背景是暗的，则物体看起来更白；如果背景是亮的，则物体看起来变暗；</p>
 <h2 id="光和电磁波谱"><a href="#光和电磁波谱" class="headerlink" title="光和电磁波谱"></a>光和电磁波谱</h2><p>光是一种电磁波，不同的电磁波有不同的波长和频率，频率越高的电磁波，其携带的能量越大，此时波长也相应的越短；人眼可感知的光的波长范围大概在 0.43 - 0.79 um 之间；</p>
 <p>除了频率（波长）外，有三个指标可用来描述光的属性：</p>
@@ -97,26 +315,26 @@
 <li>亮度：观察者对感知到的光的主观描绘参数，个体之间存在差异，因此不可度量（大致相当于强度描述）；</li>
 </ul>
 <h2 id="图像感知和获取"><a href="#图像感知和获取" class="headerlink" title="图像感知和获取"></a>图像感知和获取</h2><p>基本原理：使用传感器，将光的能量转换成电压变化的波形，再解析波形成为数字信号；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152020.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152020.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>i 表示入射分量，表示环境光源；r 表示反射分量，表示目标物体的反射光，取值范围为 0-1，表示对环境光源的全反射到全吸收之间的范围；公式中的取值范围是理论上的，现实生活中不可能存在无穷大的光源，不同环境中的光源强度总是在有限的范围内；</p>
 </blockquote>
 <h2 id="图像取样和量化"><a href="#图像取样和量化" class="headerlink" title="图像取样和量化"></a>图像取样和量化</h2><p>由于传感器输出的是连续的电压波形，因此需要进一步做取样和量化动作，以便将这些波形数据数字化；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152803.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152803.png" srcset="/img/loading.gif" lazyload></p>
 <p>对比度：照片中最高和最低灰度级间的灰度差；</p>
 <p>最大可度量灰度和最小可度量灰度构成了图片的动态范围；最小可度量灰度跟噪声有关；</p>
 <p>分辩率：单位距离的线或点的总数量；印刷行业一般用点数，即 dpi（dot per inch）；</p>
 <h1 id="彩色图像处理"><a href="#彩色图像处理" class="headerlink" title="彩色图像处理"></a>彩色图像处理</h1><p>传感器有很多种类型，不同类型的感光特性不同；同一感光材料，对不同波长的敏感度不同；波长越长的电磁波，进入材料越深，因此有更大的可能性被吸收，导致最终结果是光电转换率更低；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153211.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153211.png" srcset="/img/loading.gif" lazyload></p>
 <p>不同颜色的电磁波，在感光材料上面的光电转换效率：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153309.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153309.png" srcset="/img/loading.gif" lazyload></p>
 <p>原始的传感器数据是马赛克形式的，因此首先需要进行插值计算，去除马赛克，得到每一个像素点的三通道值；有很多种去除马赛克的算法，最简单的办法是取邻近点的平均值，缺点是物体边缘会不够锐利；更好的算法会稍微复杂一点，例如考虑变化幅度，当变化幅度超过临界点时，可以判断该点属于物体的边缘，因此只取纵向或横向的平均值（有些算法还会考虑该点所处的位置，例如是角点、边点、还是中间点等情况）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021161753.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021161753.png" srcset="/img/loading.gif" lazyload></p>
 <p>饱和度：指相对的纯净度，即一种颜色混合白光的数量；纯色是全饱和的，加了白色后变成次饱和的；饱和度和所加的白光数量成反比；</p>
 <p>曝光：场景中某些物体表面由于反射的光线少，可能很暗，因此需要延长传感器接收光线的时间，这样才能收集到足够多的信息，得以看清该物体的细节；但是延长传感器的工作时间是一把双刃剑，因为此时画面中也有可能存在比较明亮的物体（反射光线多），如果延长传感器工作的时间，则会导致明亮物体区域接收到过多的光线值，如果该值超过了上限，则会导致该明亮物体最终呈现为白色，丢失了细节；因此，选择合适的曝光时间，尽量多的保留画面中核心区域的细节，是一个不可缺少的环节；</p>
 <p>白平衡：环境光源是多种多样的，不同的环境光源，其不同波长的电磁波组成不同，因此在该环境中，物体会出现色差；有时这种色差正是我们所需要的，但有时候则不是我们想要的。白平衡的目标，就是换出环境光源各部分光线的构成比例，并加予干预调节，让其回归到某个标准光源环境的光线比例，从而让画面中的物体，能够展示在标准光源环境下的色彩；通常白平衡并没有直接调整传感器的模拟信号值，而是调整模拟信号转换后的数字信号值，对每个通道使用不同系数进行调整；</p>
 <p>白天日光环境下 RGB 光波的比例坐标：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021141121.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021141121.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>RIMM RGB: Reference Input&#x2F;Output Medium Metric RGB</p>
 </blockquote>
@@ -126,7 +344,7 @@
 <li>色阶调整（因为需要考虑最终结果的观看环境跟拍摄环境不同，例如图片观看多数在室内，而拍摄通常在室外）</li>
 <li>转换成显示设备的颜色模型；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021165034.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021165034.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>不同的数码相机，这三个步骤有不同的处理算法，并且它们之间不一定有明确的分界线；</p>
 </blockquote>
@@ -134,59 +352,171 @@
 <p>由于人眼对颜色的感知跟人眼所处的环境光线有直接关系，因此在计算色值前，需要考虑最终的图片将在何种光线环境下被查看，并基于该查看环境，来计算合适的色值；通常情况下，会假设存在一个统一的查看环境，将基于该环境进行计算；但有时对于专业摄影场景，则省去该计算步骤，保留原值，让摄像者在后期进行自定义处理；</p>
 <p>相机所采用的颜色模型可以是设备无关的，例如 CIEXYZ 或者 CIELab，但也可以是设备相关的，例如 RIMM RGB 模型；</p>
 <p>经过白平衡计算后的色值，需要进一步考虑曝光参数，计算出曝光校正后的色值，</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142542.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142542.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>非纯性的曝光数据 -&gt; 查 LUT 表转成纯性的曝光数据 -&gt; 颜色校正Matrix，得到 XYZ 色值 -&gt; RIMM 转换Matrix，得到线性 RIMM RGB 色值 -&gt; 查 LUT 表，转成非线性的 RIMM RGB 值；在实际计算时，中间过程的两个矩阵可以合并成一个矩阵；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142125.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142125.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后再按以下公式转成非线性的 RGB；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142348.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142348.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="色阶调整"><a href="#色阶调整" class="headerlink" title="色阶调整"></a>色阶调整</h3><p>照片的观看环境通常与拍摄环境不同，前者通常在室内（光线较暗），拍摄则通常在室外（光线较亮），因此在处理照片数据时，需要有一个色阶调整的环节，通过增加对比度，让照片通常在较暗的环境看得清楚；</p>
 <p>大脑在观看照片时，存在一个心理学现象，即会强化某种现象，例如脑海中的草的颜色，会比现实中的更加鲜艳（纯度更高）；</p>
 <p>照片的动态范围，通常要比实际生活中的更小一些，因此在做照片的处理时，需要丢弃一些动态范围信息（即对信息进行压缩）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021172347.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021172347.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>RIMM 与 ROMM 的映射图</p>
 </blockquote>
 <h3 id="输出模型"><a href="#输出模型" class="headerlink" title="输出模型"></a>输出模型</h3><p>照片最终要在某种显示设备上进行展示，因此最后一个环节需要将数据转成目标设备的颜色模型，目前国际标准是采用 sRGB 模型。这个模型的优点是通用性很强，几乎所有的显示设备都支持。缺点是它显示的颜色范围较小，因此可能无法满足一些高端显示设备的要求；如果已知目标设备，则此步可以将照片直接转成目标设备所使用的颜色模型，而不是通过 sRGB；</p>
 <p>第一步：将非线性的 ROMM RGB 值转成线性的；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173149.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173149.png" srcset="/img/loading.gif" lazyload></p>
 <p>第二步：将线性 ROMM RGB 转在 D50 XYZ 值；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173230.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173230.png" srcset="/img/loading.gif" lazyload></p>
 <p>第三步：将 D50 XYZ 转成 D65 XYZ</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173254.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173254.png" srcset="/img/loading.gif" lazyload></p>
 <p>第四步：将 D65 XYZ 转成线性的 RGB 值</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173328.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173328.png" srcset="/img/loading.gif" lazyload></p>
 <p>第五步：将线性 RGB 转成非线性的 RGB </p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173354.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173354.png" srcset="/img/loading.gif" lazyload></p>
 <p>注：其中第2步到第4步的三个矩阵运算，可以合并成一个矩阵</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173518.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173518.png" srcset="/img/loading.gif" lazyload></p>
 <p>因此，整个计算过程可以简化为 LUT - Matrix - LUT 三部曲；</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="print-no-link">#图像处理</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数字图像处理</div>
+      <div>http://example.com/2021/10/20/数字图像处理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/04/Firebase/" title="Firebase">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Firebase</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/04/Vue2/" title="Vue2">
+                        <span class="hidden-mobile">Vue2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/图像处理/">图像处理</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -196,23 +526,207 @@
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

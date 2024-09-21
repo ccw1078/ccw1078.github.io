@@ -1,92 +1,344 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>操作系统导论 | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 操作系统介绍操作系统的目标 对硬件进行抽象，使得对它们的调用变得简单易用；（易用） 对数据进行持久保存，避免丢失；（存储） 对程序进行隔离，避免出现隐私或安全问题；（安全） 持久可靠的工作，不轻易发生故障；（可靠）  操作系统的历史 库时代：让应用程序可以通过引用库来调用硬件；缺点：应用程序的权限很大，可以无限制的访问所有硬件资源以及其上的数据，缺少安全保护机制； 模式时代：引入了系统调用，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统导论">
+<meta property="og:url" content="http://example.com/2020/09/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="1. 操作系统介绍操作系统的目标 对硬件进行抽象，使得对它们的调用变得简单易用；（易用） 对数据进行持久保存，避免丢失；（存储） 对程序进行隔离，避免出现隐私或安全问题；（安全） 持久可靠的工作，不轻易发生故障；（可靠）  操作系统的历史 库时代：让应用程序可以通过引用库来调用硬件；缺点：应用程序的权限很大，可以无限制的访问所有硬件资源以及其上的数据，缺少安全保护机制； 模式时代：引入了系统调用，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910085532.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910091535.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920082636.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920173144.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920173202.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920175410.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200925082540.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200925083053.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201013095414.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201021081210.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201023080610.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201029074930.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201030082047.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201030090945.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201105085254.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106080653.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085457.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085506.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085539.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085549.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108081233.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108082032.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108082253.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108090220.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201109080302.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201110075912.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201110085625.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111082438.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111082503.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111084223.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201112091459.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201113084417.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118082438.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118085855.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118092020.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118082438.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201120082014.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201125091351.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201125091312.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201126084534.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201201091620.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201201091857.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201203090806.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201204084851.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201204084916.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090416.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208084736.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090202.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090217.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090228.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201209091802.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090801.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090901.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090944.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210092717.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090944.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210100544.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201216081219.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201222091406.png">
+<meta property="article:published_time" content="2020-09-20T14:02:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T12:05:47.836Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910085532.png">
+  
+  
+  
+  <title>操作系统导论 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="1. 操作系统介绍操作系统的目标
-对硬件进行抽象，使得对它们的调用变得简单易用；（易用）
-对数据进行持久保存，避免丢失；（存储）
-对程序进行隔离，避免出现隐私或安全问题；（安全）
-持久可靠的工作，不轻易发生故障；（可靠）
 
-操作系统的历史
-库时代：让应用程序可以通过引用库来调用硬件；缺点：应用程序的">
-  
 
-  
-  
-  <meta name="keywords" content="软件,操作系统">
-  
 
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-  <meta property="og:title" content="操作系统导论"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>操作系统导论</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2020/09/20/操作系统导论/" rel="bookmark">
-        <time class="entry-date published" datetime="2020-09-20T14:02:00.000Z">
-          2020-09-20
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="操作系统导论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-20 22:02" pubdate>
+          2020年9月20日 晚上
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          62k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          515 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <h2 id="1-操作系统介绍"><a href="#1-操作系统介绍" class="headerlink" title="1. 操作系统介绍"></a>1. 操作系统介绍</h2><h3 id="操作系统的目标"><a href="#操作系统的目标" class="headerlink" title="操作系统的目标"></a>操作系统的目标</h3><ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">操作系统导论</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-操作系统介绍"><a href="#1-操作系统介绍" class="headerlink" title="1. 操作系统介绍"></a>1. 操作系统介绍</h2><h3 id="操作系统的目标"><a href="#操作系统的目标" class="headerlink" title="操作系统的目标"></a>操作系统的目标</h3><ul>
 <li>对硬件进行抽象，使得对它们的调用变得简单易用；（易用）</li>
 <li>对数据进行持久保存，避免丢失；（存储）</li>
 <li>对程序进行隔离，避免出现隐私或安全问题；（安全）</li>
@@ -114,7 +366,7 @@
 <li>暂停&#x2F;恢复进程；</li>
 </ul>
 <h3 id="进程创建细节"><a href="#进程创建细节" class="headerlink" title="进程创建细节"></a>进程创建细节</h3><p>当创建一个新进程时，操作系统有一系列的工作需要完成，包括创建新页表、从磁盘加载应用程序的指令到内存、为变量分配内存（栈和堆）完成初始化、更新页表的映射、分配文件描述符、开始执行应用程序的第一条指令等；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910085532.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910085532.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h3><p>一个进程表示一个正在运行中的程序，它有三种状态：运行中、阻塞中、就绪中；当应用程序发起某些耗时较久的 I&#x2F;O 操作时，进程的状态会被置为阻塞中，直到 I&#x2F;O 操作完成的事件后，进程的状态将被更新为“就绪”，之后便可以等待调度给 CPU 继续执行余下的指令了；当然，也有可能直接从阻塞状态变成运行状态，取决于事件发生后，在操作系统中设定的调度策略）；</p>
 <blockquote>
 <p>进程其实还有初始、终结等两个状态，它们分别对应进程刚创建时和进程准备退出时的场景；</p>
@@ -123,15 +375,15 @@
 <blockquote>
 <p> 每个进程都有一些元信息，这些信息以“结构”的形态（C 语言中的一种数据类型，类似对象），存储在内存中；当操作系统切换进程时，进程对象的某些属性将会被更新，以便后续重新运行该进程时，可以从之前停止的地方继续执行余下的指令；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910091535.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200910091535.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="3-插叙：进程-API"><a href="#3-插叙：进程-API" class="headerlink" title="3. 插叙：进程 API"></a>3. 插叙：进程 API</h2><h3 id="fork-系统调用"><a href="#fork-系统调用" class="headerlink" title="fork() 系统调用"></a>fork() 系统调用</h3><p>fork 调用会创建一个子进程，子进程会完全拷贝父进程的一切东西，并且是从调用处的指令开始往下执行剩下的代码，而不是从头开始执行所有代码；这个时候系统中有两个一模一样的进程了，区别只在于父进程的 fork 调用，其返回值是子进程的 pid， 而子进程的 fork 调用返回值是 0（如果调用成功的话）；根据这个返回值，我们就可以区分当前是在哪个进程中，并在接下来运行不同的代码；</p>
 <h3 id="wait-系统调用"><a href="#wait-系统调用" class="headerlink" title="wait() 系统调用"></a>wait() 系统调用</h3><p>wait 函数可用来控制当前进程的执行进入阻塞状态，一直等到自己的子进程执行完毕后，再从暂停的地方重新开始执行自己的代码；</p>
 <h3 id="exec-系统调用"><a href="#exec-系统调用" class="headerlink" title="exec() 系统调用"></a>exec() 系统调用</h3><p>fork 让子进程完全拷贝父进程的代码，exec 则可以让新进程运行和原进程完全不一样的东西，并且它并不是通过创建新进程来实现，而是直接在内存中，用被调用的新程序的数据覆盖旧进程的一切数据；如果在 exec() 之后，旧程序还有一部分代码还没有执行的话，则那部分代码就再也没有机会执行了；</p>
 <h3 id="为什么这么设计进程-API-？"><a href="#为什么这么设计进程-API-？" class="headerlink" title="为什么这么设计进程  API ？"></a>为什么这么设计进程  API ？</h3><p>fork 负责创建子进程，exec 负责用新进程覆盖当前进程，这意味着如果两者配合起来使用，可以实现在运行新进程里面，先跑一段子进程的代码，干一点想干的其他事情；整个过程是先创建新的子进程（复制父进程代码），再覆盖该子进程（用其他新代码），其中最大的重点是在覆盖之前做的相关事情，不会影响到父进程，却又能在覆盖之前，引用父进程的环境和代码，做一些准备工作；</p>
 <p>上面的这种工作方式，很适合 shell 想要实现的功能，即在 shell 中调用程序（通过 fork 创建新进程，然后 exec 新程序，并且父进程调用 wait 等待子进程的返回）；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重定向的实现原理：shell 在 fork 出子进程后，将子进程的标准输出重定向到 newfile 文件；然后用 exec 调用 wc，接下来 wc 的输出就会进入到文件中了</span></span><br><span class="line">&gt; <span class="built_in">wc</span> pc.c &gt; newfile.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 重定向的实现原理：shell 在 fork 出子进程后，将子进程的标准输出重定向到 newfile 文件；然后用 exec 调用 wc，接下来 wc 的输出就会进入到文件中了</span><br>&gt; <span class="hljs-built_in">wc</span> pc.c &gt; newfile.txt<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="comment">// 重定向的实现</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> rc = fork();</span><br><span class="line">	<span class="keyword">if</span> (rc &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fork failed\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (rc == <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="comment">// 可用的文件描述符是从 0 开始计数的，当创建一个进程时，0 一般绑定到标准输出；</span></span><br><span class="line">         <span class="comment">// 通过关闭标准输出，将使得 0 描述符回到可用的状态；</span></span><br><span class="line">         <span class="comment">// 当使用 open 命令打开一个新文件时，它会寻找最小的可用描述符，此时刚好就是 0，因此新文件被绑定到了 0；</span></span><br><span class="line">         <span class="comment">// 完成绑定后，接下来程序中的所有输出，都会被写入文件中；</span></span><br><span class="line">		close(STDOUT_FILENO);</span><br><span class="line">		open(<span class="string">&quot;./p4.output&quot;</span>, O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// now exec &quot;wc&quot;...</span></span><br><span class="line">		<span class="type">char</span> *myargs[<span class="number">3</span>];</span><br><span class="line">		myargs[<span class="number">0</span>] = strdup(<span class="string">&quot;wc&quot;</span>);</span><br><span class="line">		myargs[<span class="number">1</span>] = strdup(<span class="string">&quot;p3.c&quot;</span>);</span><br><span class="line">		myargs[<span class="number">2</span>] = <span class="literal">NULL</span>;</span><br><span class="line">		execvp(myargs[<span class="number">0</span>], myargs);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// wait 会返回子进程的 pid；如果当前进程没有子进程，则会返回 -1，表示调用错误；</span></span><br><span class="line">		<span class="type">int</span> wc = wait(<span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/wait.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fcntl.h&gt;</span></span><br><span class="hljs-comment">// 重定向的实现</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>	<span class="hljs-type">int</span> rc = fork();<br>	<span class="hljs-keyword">if</span> (rc &lt; <span class="hljs-number">0</span>) &#123;<br>		<span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;fork failed\n&quot;</span>);<br>		<span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rc == <span class="hljs-number">0</span>) &#123;<br>         <span class="hljs-comment">// 可用的文件描述符是从 0 开始计数的，当创建一个进程时，0 一般绑定到标准输出；</span><br>         <span class="hljs-comment">// 通过关闭标准输出，将使得 0 描述符回到可用的状态；</span><br>         <span class="hljs-comment">// 当使用 open 命令打开一个新文件时，它会寻找最小的可用描述符，此时刚好就是 0，因此新文件被绑定到了 0；</span><br>         <span class="hljs-comment">// 完成绑定后，接下来程序中的所有输出，都会被写入文件中；</span><br>		close(STDOUT_FILENO);<br>		open(<span class="hljs-string">&quot;./p4.output&quot;</span>, O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);<br><br>		<span class="hljs-comment">// now exec &quot;wc&quot;...</span><br>		<span class="hljs-type">char</span> *myargs[<span class="hljs-number">3</span>];<br>		myargs[<span class="hljs-number">0</span>] = strdup(<span class="hljs-string">&quot;wc&quot;</span>);<br>		myargs[<span class="hljs-number">1</span>] = strdup(<span class="hljs-string">&quot;p3.c&quot;</span>);<br>		myargs[<span class="hljs-number">2</span>] = <span class="hljs-literal">NULL</span>;<br>		execvp(myargs[<span class="hljs-number">0</span>], myargs);<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// wait 会返回子进程的 pid；如果当前进程没有子进程，则会返回 -1，表示调用错误；</span><br>		<span class="hljs-type">int</span> wc = wait(<span class="hljs-literal">NULL</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p> UNIX shell 中的管道功能也是使用这种方式来实现的；前一个程序的输出，被重定向到管道队列中，然后将下一个程序的输入也重定向到管道队列中，这样就可以实现将上一个程序的输出，无缝的作为下一个程序的输入；其背后使用了 pipe 系统调用；</p>
@@ -224,7 +476,7 @@
 <h3 id="无法预知"><a href="#无法预知" class="headerlink" title="无法预知"></a>无法预知</h3><p>一般来说，操作系统对进程任务需要多少时间才能完成并不了解的，因此前面提出的策略都不好使，因为它们都要求操作系统有未卜先知的能力；</p>
 <h2 id="6-调度：多级反馈队列"><a href="#6-调度：多级反馈队列" class="headerlink" title="6.调度：多级反馈队列"></a>6.调度：多级反馈队列</h2><p>现代操作系统使用的是多级反馈队列策略（MLFQ：Multi-Level Feedback Queue）的调度方法，这个方法最早是在 1962 年的时候提出来的；它的目标是兼顾响应时间和周转时间；</p>
 <h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><p>MLFQ 的基本思想是维护多个不同优先级的队列，每次都优先执行高优先级队列中的任务；如果同一个队列中有多个任务，则在这些任务之间使用轮转策略；一个任务在某个时刻只能处于一个队列中；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920082636.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920082636.png" srcset="/img/loading.gif" lazyload></p>
 <p>接下来的核心是，MLFQ 设计了一套规则，用来观察任务接下来的表现，如果根据规则，某个任务被判断为是一个交互为主的任务（例如频繁放弃 CPU 占用，等待用户的键盘输入），则将调高任务的优先级（即把它从低优先的队列中拉出来，放到高优先级的队列中去）；</p>
 <p>在任务刚到达时，系统并不知道它是何种类型的任务，因此默认先将其设为最高优先，如果它短时间内不能完成，则不断降低它的优先级；</p>
 <ul>
@@ -307,12 +559,12 @@
 </ul>
 <h2 id="9-抽象：地址空间"><a href="#9-抽象：地址空间" class="headerlink" title="9.抽象：地址空间"></a>9.抽象：地址空间</h2><h3 id="早期系统"><a href="#早期系统" class="headerlink" title="早期系统"></a>早期系统</h3><p>最早的时候，操作系统没有提供任何内存方面的抽象，内存的头部存储着操作系统的系统（当时 OS 还在库时代），然后从某个地址之后存着程序的代码，内存中也只有一个程序，没有其他程序；</p>
 <p>由于计算机很贵，需要很多人共用，而不是每人一台；因此 OS 开始需要支持多程序并行；这个时候的办法是引入磁盘的帮助，当需要切换程序的时候，就先将当前内存中的数据保存在磁盘里，然后加载另外一个程序；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920173144.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920173144.png" srcset="/img/loading.gif" lazyload></p>
 <p>由于磁盘很慢，上面的方法导致用户需要等待很久，接下来进一步的办法是将内存划分成多个段，每个程序使用其中一个段，然后切换程序的时候，不需要再跟磁盘打交道，只需要从这个段跳到另外一个段即可；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920173202.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920173202.png" srcset="/img/loading.gif" lazyload></p>
 <p>段的技术不错，不过它也引入了一个新的问题，即如何保护程序数据，避免被其他程序非法访问；</p>
 <h3 id="地址空间"><a href="#地址空间" class="headerlink" title="地址空间"></a>地址空间</h3><p>为了解决隔离的问题，操作系统提供了一种虚拟地址空间的约定，在这个约定中，程序拥有巨大的全部内存空间，就像早期系统刚开始时那样，内存中只有一个程序在运行；同时操作系统还引入了地址翻译器，它会将当前进程指令中的虚拟地址，最终翻译为实际的物理地址，然后从该地址中取到数据；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920175410.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200920175410.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="10-插叙：内存操作-API"><a href="#10-插叙：内存操作-API" class="headerlink" title="10.插叙：内存操作 API"></a>10.插叙：内存操作 API</h2><h3 id="内存类型"><a href="#内存类型" class="headerlink" title="内存类型"></a>内存类型</h3><p>C 程度有两种内存类型，一种是栈内存，它会编译器自动分配和回收；还有一种是堆内存，它由用户自行申请分配和自己回收（因此很容易忘了回收）；</p>
 <blockquote>
 <p>调用函数申请分配堆内存后，函数一般会返回分配好的堆内存的地址，接下来一般需要将这个地址存在在栈中，以便供后续的代码使用；</p>
@@ -320,17 +572,17 @@
 <p>答：猜测可以由编译器给出；执行期间，操作系统分配的是物理内存，返回的是物理地址，并且也只是将物理地址写入到页表当中完成映射而已，并不需要返回给应用程序；理论上编译器管理着整个虚拟地址空间；</p>
 </blockquote>
 <h3 id="malloc-调用"><a href="#malloc-调用" class="headerlink" title="malloc() 调用"></a>malloc() 调用</h3><p>malloc 用来申请在堆上分配内存</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br><span class="line"><span class="comment">// 使用示例，一般不直接给 malloc 传递 size 字面值，而是通过 sizeof 表达式来获得 size 值，以避免出现错误</span></span><br><span class="line"><span class="type">double</span> *d = (<span class="type">double</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">double</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> *<span class="hljs-title function_">malloc</span><span class="hljs-params">(<span class="hljs-type">size_t</span> size)</span>;<br><span class="hljs-comment">// 使用示例，一般不直接给 malloc 传递 size 字面值，而是通过 sizeof 表达式来获得 size 值，以避免出现错误</span><br><span class="hljs-type">double</span> *d = (<span class="hljs-type">double</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">double</span>));<br></code></pre></td></tr></table></figure>
 
 <h3 id="free-调用"><a href="#free-调用" class="headerlink" title="free() 调用"></a>free() 调用</h3><p>free 用来释放堆上的内存，只需将指针作为参数传递给它即可；</p>
 <blockquote>
 <p>好奇：为什么 free 只需指针，无须 size_t 参数，即可知道应该回收多大的内存空间？</p>
 <p>答：因为在分配该内存块时，在其头部有存储着一些额外的信息，其中一项记录着当前内存块的大小。这意味着实际分配的空间比申请时更大一点点；分配完了后返回的指令实际上并不是指向整个内存块的起始位置，而是在中间，即头部信息之后；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200925082540.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200925082540.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
-<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><h4 id="忘了分配内存"><a href="#忘了分配内存" class="headerlink" title="忘了分配内存"></a>忘了分配内存</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误示例</span></span><br><span class="line"><span class="type">char</span> *src = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> *dst; <span class="comment">// 没有分配内存，因此该指针并没有指向堆上的空间，是个空指针</span></span><br><span class="line"><span class="built_in">strcpy</span>(dst, src);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确做法</span></span><br><span class="line"><span class="type">char</span> *src = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> *dst = (<span class="type">char</span> *) <span class="built_in">malloc</span>(<span class="built_in">strlen</span>(src) + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(dst, src);</span><br></pre></td></tr></table></figure>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><h4 id="忘了分配内存"><a href="#忘了分配内存" class="headerlink" title="忘了分配内存"></a>忘了分配内存</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 错误示例</span><br><span class="hljs-type">char</span> *src = <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-type">char</span> *dst; <span class="hljs-comment">// 没有分配内存，因此该指针并没有指向堆上的空间，是个空指针</span><br><span class="hljs-built_in">strcpy</span>(dst, src);<br><br><span class="hljs-comment">// 正确做法</span><br><span class="hljs-type">char</span> *src = <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-type">char</span> *dst = (<span class="hljs-type">char</span> *) <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">strlen</span>(src) + <span class="hljs-number">1</span>);<br><span class="hljs-built_in">strcpy</span>(dst, src);<br></code></pre></td></tr></table></figure>
 
-<h4 id="没有分配足够的内存"><a href="#没有分配足够的内存" class="headerlink" title="没有分配足够的内存"></a>没有分配足够的内存</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误示例</span></span><br><span class="line"><span class="type">char</span> *src = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> *dst = (<span class="type">char</span> *) <span class="built_in">malloc</span>(<span class="built_in">strlen</span>(src)); </span><br><span class="line"><span class="comment">// 拷贝字符串时，会在末尾添加结束符，因此长度可能不够，取决于 strlen 返回的值是否包含结束符；</span></span><br><span class="line"><span class="built_in">strcpy</span>(dst, src); </span><br><span class="line"><span class="comment">// 缓冲区溢出可能会成为安全漏洞来源</span></span><br></pre></td></tr></table></figure>
+<h4 id="没有分配足够的内存"><a href="#没有分配足够的内存" class="headerlink" title="没有分配足够的内存"></a>没有分配足够的内存</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 错误示例</span><br><span class="hljs-type">char</span> *src = <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-type">char</span> *dst = (<span class="hljs-type">char</span> *) <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">strlen</span>(src)); <br><span class="hljs-comment">// 拷贝字符串时，会在末尾添加结束符，因此长度可能不够，取决于 strlen 返回的值是否包含结束符；</span><br><span class="hljs-built_in">strcpy</span>(dst, src); <br><span class="hljs-comment">// 缓冲区溢出可能会成为安全漏洞来源</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="忘记初始化分配的内存"><a href="#忘记初始化分配的内存" class="headerlink" title="忘记初始化分配的内存"></a>忘记初始化分配的内存</h4><p>没有初始化的内存，并不意味着里面没有值，里面有时候会有前人留下的值，结果导致读取到的内容造成了程序错误</p>
 <h4 id="忘记释放内存"><a href="#忘记释放内存" class="headerlink" title="忘记释放内存"></a>忘记释放内存</h4><p>如果没有释放内存，则程序在长时间运行后，由于反复分配内存，最终有可能造成内存溢出；</p>
@@ -400,7 +652,7 @@
 <h3 id="底层机制"><a href="#底层机制" class="headerlink" title="底层机制"></a>底层机制</h3><h4 id="分割与合并"><a href="#分割与合并" class="headerlink" title="分割与合并"></a>分割与合并</h4><p>当申请分配的内存比某个空闲块小时，内存分配程序就会对空闲块进行分割；</p>
 <p>当释放某个已分配的内存块时，内存分配程序会尝试合并，即先检查一下该内存块前后的内存块是否是空闲的，如果是的话，就跟它们合并成一个更大的空闲内存块；</p>
 <h4 id="记录已分配空间的大小"><a href="#记录已分配空间的大小" class="headerlink" title="记录已分配空间的大小"></a>记录已分配空间的大小</h4><p>当用户在调用 malloc 分配一块新的内存块时，实际分配的大小并不是用户传递的 size_t 参数，而是比它还要大上一点点，因为内存分配程序需要一个额外的头部空间来存储关于当前内存块的一些元信息，例如 size_t 和 magic number；当后续释放该内存块时，这个头部信息将派上用场。它使得用户在调用 free 函数释放内存时，只须传入指针，而无须传入 size；free 会自动根据指针值倒推（减去 header_t）得到真正的起始位置和实际大小；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200925083053.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20200925083053.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="空闲链表"><a href="#空闲链表" class="headerlink" title="空闲链表"></a>空闲链表</h4><p>空闲链表是一种数据结构，它保存着哪些内存块是空闲的信息，每个内存块在链表中用一个 node 节点来表示，多个 node 相互连接就形成了空闲链表；每个 node 有两个属性，一个是 size，保存着当前内存的大小信息；一个是指向下一个 node 的指针值；</p>
 <p>由于空闲链表用来管理空闲内存，而它自己又是需要内存存储的，因此它的每个节点信息实际是保存在每个空闲内存块的头部里面；</p>
 <h4 id="堆的增长"><a href="#堆的增长" class="headerlink" title="堆的增长"></a>堆的增长</h4><p>大多数内存分配程序在开始只是通过系统调用向操作系统申请一块很小的堆，然后随着时间的推进，如果当前已分配的堆确实已经不够用了（做了各种努力之后，例如已经紧凑过了），分配程序会再次发起系统调用，向操作申请更多的堆空间；操作系统在收到请求后，会分配一块空闲的物理内存页，并将该物理内存的地址，映射到进程的虚拟地址空间中；之后进程就有了更大的堆可以使用了；</p>
@@ -510,7 +762,7 @@
 <li>有 1 个 V 位（有效位）用来表示当前记录的内容是否有效；</li>
 <li>剩下的都是一些暂未使用的位；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201013095414.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201013095414.png" srcset="/img/loading.gif" lazyload></p>
 <p>MIPS 的 TLB 一般总共有 32 个记录或者 64 个记录；大多数留给用户进程使用，但它有一个寄存器，可以用来设置有多少个记录需要预留给内核使用；在这些预留的记录中的映射，用来保存操作系统自己在某些时刻下要用的代码和数据；</p>
 <h2 id="16-分布：较小的表"><a href="#16-分布：较小的表" class="headerlink" title="16.分布：较小的表"></a>16.分布：较小的表</h2><p>简单数组结构的单级线性页表带来的一个问题是占用空间过大，因此需要寻找新的办法，例如通过以时间换空间的方法，来解决内存占用过大的问题。</p>
 <h3 id="方法一：更大的页"><a href="#方法一：更大的页" class="headerlink" title="方法一：更大的页"></a>方法一：更大的页</h3><p>由于地址长度是固定的，因此如果单页变大，则页号的范围变小，因此页表的记录数也随之变少，这样页表就变小了；例如对于 32 位地址，单页设计为 12 位，此时单页的大小为 2^12 字节，约为 4KB，页表条目需要 20 位，因此有 2^20 个条目，每个条目有 4 字节，总共需要 4MB；如果将单页设计为 14 位，大小变成 16 KB，则页表条目只需 2^18 个，少了 4 倍，变成 1MB；</p>
@@ -582,7 +834,7 @@
 <li>有自己的完整虚拟内存，像是另外一个单独的应用程序（缺点：不方便和应用程序之间的数据通信）</li>
 <li>做为应用程序的一段分，使用单独的段（内核段）来映射它（目前为大多数系统所采用）</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201021081210.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201021081210.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>问：好奇是内核否有自己的单独页表，还是与应用程序共用一张页表，因为内核段也有自己的堆，意味着有动态的数据需要存储？如果是共用页表的话，每张页表都有一些重复的项目，有一定的空间浪费；</p>
 <p>答：实际上很可能是使用分段+分页的机制，即总共有三对基址寄存器和界限寄存器（总共6个）；内核段有自己的基址和界限寄存器，而且还是每个应用共用的；在进行应用程序切换时，只需要改变 P0 和 P1 寄存器，无须改变 S 寄存器；</p>
@@ -622,7 +874,7 @@
 <p>进程切换时，需要保存当前进程的状态，使用进程控制块（Process Control Block，PCB）来保存；</p>
 <p>线程切换时，使用原理类似的线程控制块（Thread Control Block，TCB）来保存；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201023080610.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201023080610.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p> 当创建一个线程时，需要传递待执行的例程（即函数）给它，至于这个例程什么时候被 CPU 安排执行，则是不可控的，它有可能比主程序的下一行代码早，也可能比它晚，一切取决于操作系统的调度程序当时心情怎么样。</p>
 </blockquote>
@@ -703,7 +955,7 @@
 </blockquote>
 <h3 id="方案4：链接加载和条件存储指令"><a href="#方案4：链接加载和条件存储指令" class="headerlink" title="方案4：链接加载和条件存储指令"></a>方案4：链接加载和条件存储指令</h3><p>这个方案用到了两条指令，一条用来加载指针指向的值，另外一条会判断该指针地址指向的值是否发生了更新，若没有发生，则将其设置为新值；</p>
 <p>通过这两条指令的配合，可以用来实现锁机制；思路是当执行 lock 函数时，先加载标记变量的值，若为1，则自旋等待，因为表示此时有其他线程占用着锁；若为 0，则使用条件存储指令进行抢占；条件存储指令是原子性的，它会判断标记变量的值是否发生过更新，如果没有，意味着还没有其他线程抢占过，则更新它，并获得锁；如发生过更新，表示有线程提前抢占成功，重新开始循环；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201029074930.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201029074930.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="方案5：获取并增加指令"><a href="#方案5：获取并增加指令" class="headerlink" title="方案5：获取并增加指令"></a>方案5：获取并增加指令</h3><p>这个指令很有意思，它引入了两个标记变量，一个用来表示排队号，一个用来表示当前叫号；跟银行的叫号机工作原理差不多；初始状态下，排号的号码从零开始；第一个线程进来后，取到 n 号，然后排号增加 1，即下一排队号变成了 n + 1 号；取完号后，去窗口看一下当前的叫号，如果刚好是 n 号，则获取锁（开始给它办理业务）；如果不是 n 号，则等候；当线程释放锁时，窗口的服务人员会将叫号增加 1，这样持有该排队号的线程接下来就可以办理业务了；</p>
 <p>这个指令有一个特别大的好处，即每个线程都有机会轮上，而且还是先来后到；前后三种方案则无法保证线程什么时候会被安排，靠运气；</p>
 <h3 id="避免自旋"><a href="#避免自旋" class="headerlink" title="避免自旋"></a>避免自旋</h3><p>显然当一个线程无法获取锁时，一直处于自旋等待是完全没有必要的，纯粹是浪费分配给它的 CPU 时钟周期；如果线程很多的话，就会极大的降低性能，因此有必要当线程进入自旋时，就要求它放弃当前的时间片，切换到其他线程；</p>
@@ -718,13 +970,13 @@
 <p> 单核多线程可以实现并发，但并没有提高性能，只有多核多线程，才通过利用了多核的优势，提高了性能；所谓的可扩展性是指，在引入多核的情况下，原本的锁设计，仍然能够保证对数据结构的访问，能够获得跟单核单线程同样的性能；</p>
 </blockquote>
 <p>它的实现有很多种办法，其中一种叫懒惰计数器，它通过牺牲一点准确性，来保证性能问题；其基本思路是使用全局锁和全局变量来记录全局的计数器，但在每个 CPU 里面，又增加一个局部计数器和局部锁；对于单个 CPU 内部的线程，它只负责当前 CPU 的锁并更新局部的计数器，这样一来没有人跟它竞争，因此它的性能同单核单线程是一样的；然后设定一个阈值，当某个 CPU 的局部计数器值越过这个阈值时，该 CPU 就尝试获取全局锁，将自己的局部计数器值同步写入全局的计数器；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201030082047.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201030082047.png" srcset="/img/loading.gif" lazyload></p>
 <p>整体来说，当 S 足够大时，这种方法的性能跟单核单线程越接近，但是全局计数器会有一定的延迟；即任意时间点下，获取到的全局计数器值，可能并不是最新的，而是对应于过去的某个时间点；</p>
 <h3 id="并发链表"><a href="#并发链表" class="headerlink" title="并发链表"></a>并发链表</h3><p>让链表的操作实现线程安全并不复杂，重点是保证在更新链表的关键时刻（即临界区）加锁即可，并在更新完之后，释放锁，避免将加锁的位置提前到内存分配的时候，因为内存分配有可能发生错误，这样会导致锁没有释放；</p>
 <p>虽然链表的线程安全容易做到，但是多核多线程下的高性能却是很有挑战，因为链表是一种线性查找的数据结构，它无法提前将任务分段，交给不同的 CPU 并发处理；</p>
 <h3 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h3><p>对于先进先出的队列，需要设置两把锁，一把负责头部，一把负责尾部，它们之间可以实现并发，即在头部删除元素和尾部增加元素并不会发生冲突；</p>
 <h3 id="并发散列表"><a href="#并发散列表" class="headerlink" title="并发散列表"></a>并发散列表</h3><p>在不考虑改变散列表大小的情况下，散列表的实现只需要基于之前的链表结构即可，每个桶对应一个单独的链表；而每个链表的背后已经是支持线程安全的；这种结构的散列表具有很好的扩展性，因为它实质上是链表间独立的锁，并不会相互影响；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201030090945.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201030090945.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="24-条件变量"><a href="#24-条件变量" class="headerlink" title="24.条件变量"></a>24.条件变量</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>锁只是解决了线程并发访问某个共享变量的问题，但有时候线程之间需要等待某种条件满足后才能继续往下进行，例如当某个线程执行完毕后，另一个线程再开始执行。最简单的解决方案是引入某个条件变量，需等待的线程在它的时间片中，不断的检查这个变量，如果条件满足了，就继续往下执行，如果不满足，就自旋等待。该方案的好处是实现简单，缺点是性能低下，因为自旋需要浪费掉整个时间片；</p>
 <p>新的解决办法：除了已有的锁和条件变量后，再引入睡眠和循环检查；线程 A 持有锁后，检查到条件不满足时，就让 A 进入释放锁并进入睡眠；B 线程开始持有锁，做完动作，更新条件变量，发信号唤醒 A，并释放锁；A 被唤醒后，尝试重新取得持有锁后，再次检查条件变量，若满足，开始执行自己余下的动作； </p>
 <blockquote>
@@ -755,7 +1007,7 @@
 <blockquote>
 <p>当信号量为负数时，该负数值刚好表示当前有多个线程处于睡眠状态中；</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="type">sem_t</span> s;</span><br><span class="line">sem_init(&amp;s, <span class="number">0</span>, <span class="number">1</span>); <span class="comment">// 初始化信号量，0 表示该信号量被同一进程的多个线程共享；1 表示初始值为 1；</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;semaphore.h&gt;</span></span><br><span class="hljs-type">sem_t</span> s;<br>sem_init(&amp;s, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">// 初始化信号量，0 表示该信号量被同一进程的多个线程共享；1 表示初始值为 1；</span><br><br></code></pre></td></tr></table></figure>
 
 
 
@@ -768,7 +1020,7 @@
 <blockquote>
 <p>问：如何保证所有的线程都有相同的机会被唤醒，而不会出现某些线程被饿死？</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sem_wait(&amp;m);</span><br><span class="line"><span class="comment">// critical section here</span></span><br><span class="line">sem_post(&amp;m);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">sem_wait(&amp;m);<br><span class="hljs-comment">// critical section here</span><br>sem_post(&amp;m);<br></code></pre></td></tr></table></figure>
 
 
 
@@ -783,9 +1035,9 @@
 <blockquote>
 <p>启示：复杂的方案不一定更好，有时候简单的笨办法反而不错；Hill 定律：大而笨更好；</p>
 </blockquote>
-<h3 id="哲学家就餐问题"><a href="#哲学家就餐问题" class="headerlink" title="哲学家就餐问题"></a>哲学家就餐问题</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201105085254.png"></p>
+<h3 id="哲学家就餐问题"><a href="#哲学家就餐问题" class="headerlink" title="哲学家就餐问题"></a>哲学家就餐问题</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201105085254.png" srcset="/img/loading.gif" lazyload></p>
 <p>这个问题的有趣之外在于，哲学家们是坐成一圈的，所以一个人的左边，是另一个人的右边。因此如果每个哲学家取叉子的顺序一样的话，将有可能造成循环等待的问题，结果便是死锁；为了避免死锁，需要至少让一个哲学家的取叉子顺序跟别人不同，这样就至少会有一个哲学家能够吃上饭了；</p>
-<h3 id="如何实现信号量"><a href="#如何实现信号量" class="headerlink" title="如何实现信号量"></a>如何实现信号量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用锁+条件变量的方式，来实现信号量机制</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">zemt_t</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">    <span class="type">pthread_cond_t</span> cond;</span><br><span class="line">    <span class="type">pthread_mutex_t</span> lock;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Zem_init</span><span class="params">(Zem_t *s, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">    s-&gt;value = value;</span><br><span class="line">    Cond_init(&amp;s-&gt;cond);</span><br><span class="line">    Mutex_init(&amp;s-&gt;lock);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Zem_wait</span><span class="params">(Zem_t *s)</span> &#123;</span><br><span class="line">    Mutex_lock(&amp;s-&gt;lock);</span><br><span class="line">    <span class="keyword">while</span>(&amp;s-&gt;value &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 进入睡眠前会释放锁；唤醒后会持有锁</span></span><br><span class="line">        Cont_wait(&amp;s-&gt;cond, &amp;s-&gt;lock);</span><br><span class="line">    &#125;</span><br><span class="line">    s-&gt;value -= <span class="number">1</span>;</span><br><span class="line">    Mutex_unlock(&amp;s-&gt;lock);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Zem_post</span><span class="params">(Zem_t *s)</span> &#123;</span><br><span class="line">    Mutex_lock(&amp;s-&gt;lock);</span><br><span class="line">    s-&gt;value += <span class="number">1</span>;</span><br><span class="line">    Cond_signal(&amp;s-&gt;cond);</span><br><span class="line">    Mutex_unlock(&amp;s-&gt;lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何实现信号量"><a href="#如何实现信号量" class="headerlink" title="如何实现信号量"></a>如何实现信号量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 使用锁+条件变量的方式，来实现信号量机制</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">zemt_t</span> &#123;</span><br>    <span class="hljs-type">int</span> value;<br>    <span class="hljs-type">pthread_cond_t</span> cond;<br>    <span class="hljs-type">pthread_mutex_t</span> lock;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Zem_init</span><span class="hljs-params">(Zem_t *s, <span class="hljs-type">int</span> value)</span> &#123;<br>    s-&gt;value = value;<br>    Cond_init(&amp;s-&gt;cond);<br>    Mutex_init(&amp;s-&gt;lock);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Zem_wait</span><span class="hljs-params">(Zem_t *s)</span> &#123;<br>    Mutex_lock(&amp;s-&gt;lock);<br>    <span class="hljs-keyword">while</span>(&amp;s-&gt;value &lt;= <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 进入睡眠前会释放锁；唤醒后会持有锁</span><br>        Cont_wait(&amp;s-&gt;cond, &amp;s-&gt;lock);<br>    &#125;<br>    s-&gt;value -= <span class="hljs-number">1</span>;<br>    Mutex_unlock(&amp;s-&gt;lock);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Zem_post</span><span class="hljs-params">(Zem_t *s)</span> &#123;<br>    Mutex_lock(&amp;s-&gt;lock);<br>    s-&gt;value += <span class="hljs-number">1</span>;<br>    Cond_signal(&amp;s-&gt;cond);<br>    Mutex_unlock(&amp;s-&gt;lock);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -805,7 +1057,7 @@
 <p>绝大部分的非死锁缺陷（约 97%）都是以上两种类型的缺陷；</p>
 </blockquote>
 <h3 id="死锁缺陷"><a href="#死锁缺陷" class="headerlink" title="死锁缺陷"></a>死锁缺陷</h3><p>有多个锁，且线程的抢锁顺序不同，导致最终陷入相互等待的境地；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106080653.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106080653.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="产生的原因"><a href="#产生的原因" class="headerlink" title="产生的原因"></a>产生的原因</h4><ul>
 <li>复杂系统中，组件之间很可能存在相互依赖，例如虚拟内存需要通过文件系统访问磁盘读取数据到内存，而文件系统又要访问虚拟内存申请一片内存页，存放相应的数据；</li>
 <li>封装：开发人员一般倾向于模块化实现的细节，但是模块化有时无法跟锁很好的契合，导致出现死锁；</li>
@@ -831,20 +1083,20 @@
 <h5 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h5><p>互斥性是锁的本质，如果不提供互斥性，锁就没有存在的意义了；如果不用锁，则需要通过利用硬件指令的原子性，来实现原子性的操作，例如比较并互换指令（但是感觉它的应用场景貌似有限？）；但是这种方案有可能会带来活锁问题；</p>
 <h4 id="通过调度避免死锁"><a href="#通过调度避免死锁" class="headerlink" title="通过调度避免死锁"></a>通过调度避免死锁</h4><p>如果我们能够提前知道不同线程可能对锁的需求不同，则只需避免将会有完全重叠锁需求的线程调度到不同 CPU 上同时运行即可；不过这种方案有硬伤，一是它极大的降低了性能；二是我们需要提前知道所有的任务，并知道它们各自需要什么样的锁，这样才可以设计出调度的方案；</p>
 <p>示例一：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085457.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085506.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085457.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085506.png" srcset="/img/loading.gif" lazyload></p>
 <p>示例二：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085539.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085549.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085539.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201106085549.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="检查和恢复"><a href="#检查和恢复" class="headerlink" title="检查和恢复"></a>检查和恢复</h4><p>最后一个不是办法的办法是允许死锁发生，然后定期做一次检查，如果发生停滞了，就做一次重启；很多数据库采用了这个方案； </p>
 <h2 id="26-基于事件的并发"><a href="#26-基于事件的并发" class="headerlink" title="26.基于事件的并发"></a>26.基于事件的并发</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>事件处理程序一开始啥也不做，坐等事件的到来；它轮询事件队列，获取待处理的事件，然后依次处理</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    events = getEvents();</span><br><span class="line">    <span class="keyword">for</span>  (e in events) &#123;</span><br><span class="line">        processEvent (e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>    events = getEvents();<br>    <span class="hljs-keyword">for</span>  (e in events) &#123;<br>        processEvent (e);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="select-API-介绍"><a href="#select-API-介绍" class="headerlink" title="select() API 介绍"></a>select() API 介绍</h3><p>操作系统提供了一个 select 系统调用函数来实现基于事件循环的并发；它的原理也很简单，该系统调用接收一堆文件描述符的集合和待检查的数量上限；之后操作系统在该数量上限内，依次逐一检查每个文件描述符（包括读、写、错误三类），看某个描述符是否已经进入了就绪的状态；最后，将所有已经处于就绪状态的文件描述符组成一个列表返回；</p>
 <blockquote>
 <p>问：为什么要引入一个上限？</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">select</span> <span class="params">(</span></span><br><span class="line"><span class="params">	<span class="type">int</span> nfds, <span class="comment">// 待检查文件描述符数量上限</span></span></span><br><span class="line"><span class="params">    fd_set *<span class="keyword">restrict</span> readfds,  <span class="comment">// 读</span></span></span><br><span class="line"><span class="params">    fd_set *<span class="keyword">restrict</span> writefds, <span class="comment">// 写</span></span></span><br><span class="line"><span class="params">    fd_set *<span class="keyword">restrict</span> errorfds, <span class="comment">// 异常</span></span></span><br><span class="line"><span class="params">    <span class="keyword">struct</span> timeval *<span class="keyword">restrict</span> timeout  <span class="comment">// 检查时间，超时后返回；若为 NULL 则在未找到任何就绪的描述符前先阻塞；若为 0 则马上返回</span></span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">select</span> <span class="hljs-params">(</span><br><span class="hljs-params">	<span class="hljs-type">int</span> nfds, <span class="hljs-comment">// 待检查文件描述符数量上限</span></span><br><span class="hljs-params">    fd_set *<span class="hljs-keyword">restrict</span> readfds,  <span class="hljs-comment">// 读</span></span><br><span class="hljs-params">    fd_set *<span class="hljs-keyword">restrict</span> writefds, <span class="hljs-comment">// 写</span></span><br><span class="hljs-params">    fd_set *<span class="hljs-keyword">restrict</span> errorfds, <span class="hljs-comment">// 异常</span></span><br><span class="hljs-params">    <span class="hljs-keyword">struct</span> timeval *<span class="hljs-keyword">restrict</span> timeout  <span class="hljs-comment">// 检查时间，超时后返回；若为 NULL 则在未找到任何就绪的描述符前先阻塞；若为 0 则马上返回</span></span><br><span class="hljs-params">)</span>;<br></code></pre></td></tr></table></figure>
 
 <h3 id="使用-select"><a href="#使用-select" class="headerlink" title="使用 select()"></a>使用 select()</h3><p>建立一个无限循环，在循环开始时，初始化并准备好一个文件描述符的集合，然后调用 select，将集合送进去检查；如果某个描述符已经进入了就绪状态，select 会对其进行标记；当 select 标记完毕返回完；再依次遍历集合中的每个描述符，看其标记是否改变，若改变，表示该描述符已经就绪，因此可调用相同的函数，对其进行处理；</p>
 <blockquote>
@@ -870,11 +1122,11 @@
 <p>问题：I&#x2F;O 显然是非常重要的，那要如何将 I&#x2F;O 集成到系统中？常见的机制是什么？如何让其变得高效？</p>
 </blockquote>
 <h3 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h3><p>不同的设备使用不同速度规格的总线相连，取得成本和速度之间的折中平衡；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108081233.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108082032.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108081233.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108082032.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="标准设备"><a href="#标准设备" class="headerlink" title="标准设备"></a>标准设备</h3><p>计算机是由多种设备组合在一起协同工作的，设备与设备之间需要相互配合协作；因此，每个设备都需要定义一套自己的接口和交互协议，以便别人可以调用它提供的功能；而在设备内部，设备需要负责接口所代表的功能的具体实现；实现的办法同样包括拥有自己的微处理器、通用内存、完成特定功能的芯片等；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108082253.png"></p>
-<h3 id="标准协议"><a href="#标准协议" class="headerlink" title="标准协议"></a>标准协议</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (STATUS == BUSY)</span><br><span class="line">	; <span class="comment">// 轮询等待，直到设备空闲</span></span><br><span class="line">write data to DATA <span class="keyword">register</span> <span class="comment">// 设备空闲时，向设备DATA寄存器写入数据</span></span><br><span class="line">write command to COMMAND <span class="keyword">register</span> <span class="comment">// 向设备的 COMMAND 寄存器写入指令，之后设备开始按指令处理数据</span></span><br><span class="line"><span class="keyword">while</span> (STATUS == BUSY)</span><br><span class="line">    ; <span class="comment">// 轮询等待设备处理完毕</span></span><br><span class="line">get data or status from <span class="keyword">register</span> <span class="comment">// 处理完毕后，从设备的寄存器读取状态和数据</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108082253.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="标准协议"><a href="#标准协议" class="headerlink" title="标准协议"></a>标准协议</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span> (STATUS == BUSY)<br>	; <span class="hljs-comment">// 轮询等待，直到设备空闲</span><br>write data to DATA <span class="hljs-keyword">register</span> <span class="hljs-comment">// 设备空闲时，向设备DATA寄存器写入数据</span><br>write command to COMMAND <span class="hljs-keyword">register</span> <span class="hljs-comment">// 向设备的 COMMAND 寄存器写入指令，之后设备开始按指令处理数据</span><br><span class="hljs-keyword">while</span> (STATUS == BUSY)<br>    ; <span class="hljs-comment">// 轮询等待设备处理完毕</span><br>get data or status from <span class="hljs-keyword">register</span> <span class="hljs-comment">// 处理完毕后，从设备的寄存器读取状态和数据</span><br>    <br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>标准协议的交互逻辑还是很简单的，问题在于太过于低效，因为 CPU 要在整个时间片里面不断轮询，浪费了很多无谓的时间；</p>
@@ -890,7 +1142,7 @@
 </blockquote>
 <h3 id="利用-DMA-更高效的传输数据"><a href="#利用-DMA-更高效的传输数据" class="headerlink" title="利用 DMA 更高效的传输数据"></a>利用 DMA 更高效的传输数据</h3><p>当 CPU 在跟设备交互的时候，有一个环节是需要向设备写入或读取数据，这个动作本身也是需要时间的，但是它是非常简单的数据读取或拷贝，并不需要什么计算能力，因此让 CPU 来做这个工作有点屈才和得不偿失；为了避免这个问题，通过引入 DMA（direct memory access）机制，给 CPU 减轻工作压力，让它去处理其他更高价值的工作；</p>
 <p>当进入读写数据的环节时，CPU 就发送相关的指令给 DMA，包括数据在内存中的位置，数据的大小，数据的目的地等信息；之后 CPU 开始去做其他的工作，而 DMA 就负责接下来的数据传输工作；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108090220.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201108090220.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="操作系统与设备交互的方法"><a href="#操作系统与设备交互的方法" class="headerlink" title="操作系统与设备交互的方法"></a>操作系统与设备交互的方法</h3><blockquote>
 <p>问：操作系统用什么方式跟设备发生交互？例如从设备读取数据，或者向设备写入数据？</p>
 </blockquote>
@@ -907,7 +1159,7 @@
 <blockquote>
 <p>某个具体实现与特定设备进行交互的模块，即是常说的设备驱动程序；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201109080302.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201109080302.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>这种架构也有一点缺点，即如果某个比较新款的设备提供了一些市面上不常见的特殊功能，由于通用块接口的开发或者某个系统软件（如文件系统）的开发还没有跟上，暂未实现调用该特殊功能的接口给应用程序，将导致应用程序实际并无法使用到设备提供的最新功能；</p>
 <p>此时貌似需要操作系统尽快推出补丁了？</p>
@@ -938,7 +1190,7 @@
 <h3 id="基本几何形状"><a href="#基本几何形状" class="headerlink" title="基本几何形状"></a>基本几何形状</h3><p>由大到小：盘片-&gt;表面-&gt;磁道-&gt;扇区；表面上的磁道很多，几百个磁道加起来也只有一根头发的粗细，因此整个表面拥有成千上万的磁道；由于越外围的磁道，周长越大，因此如何分配跟内围的磁道相同的扇区数的话，显然会造成极大的浪费；因此，一般将表面分成多个区域，相同区域内的磁道，虽然周长不同，但扇区数相同；不同区域的磁盘，扇区数不同，以最大化利用磁盘表面的空间进行数据存储；</p>
 <h3 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h3><p>寻道时间和旋转延迟是磁盘 I&#x2F;O 操作中时间成本最高的两个操作；为了降低每次读写数据的时间成本，磁盘通常会引入缓存机制，即并不是精准读取指定扇区的数据，而是将整个磁道多个扇区的数据一起读取出来，放到缓存中；由于局部性原理，接下来这些数据有很大概率被访问，从而避免了第二次的寻道和旋转时间；</p>
 <h3 id="I-O-时间"><a href="#I-O-时间" class="headerlink" title="I&#x2F;O 时间"></a>I&#x2F;O 时间</h3><p>对于随机访问和顺序访问两种场景来说，磁盘性能差距巨大，可能有 200-300 倍左右的差距；随机访问可能才 0.5M&#x2F;s，而顺序访问可以达到 100M&#x2F;s；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201110075912.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201110075912.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h3><p>相对于任务调度，磁盘调度有一个好处是可以大概估算完成操作所需要的时间，假设操作系统收到多个磁盘调度的请求，由于可以大致计算每个调度的用时，因此可以使用一些调度策略来提高调度性能；</p>
 <h4 id="最短寻道时间优先"><a href="#最短寻道时间优先" class="headerlink" title="最短寻道时间优先"></a>最短寻道时间优先</h4><p>操作系统可以根据请求的扇区地址，计算出各个请求与当前位置的远近顺序，优先服务最近的请求，延后服务最远的请求；这样可以避免浪费时间在寻道上面；缺点：有可能导致最远磁道的请求饿死；</p>
 <h4 id="电梯扫楼策略"><a href="#电梯扫楼策略" class="headerlink" title="电梯扫楼策略"></a>电梯扫楼策略</h4><p>这个策略很像到写字楼发传单的场景，推广人员乘坐电梯，将底层到顶层，将每一层楼扫一遍；扫完之后，如果还有没有新进来的待处理请求，再从最顶层到最底层扫一遍，以此类推；</p>
@@ -970,7 +1222,7 @@
 <li>容量；</li>
 </ul>
 <h3 id="RAID-0级：条带化"><a href="#RAID-0级：条带化" class="headerlink" title="RAID 0级：条带化"></a>RAID 0级：条带化</h3><p>条带化的思想是将扇区按顺序轮流放在每个磁盘上，示例如下：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201110085625.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201110085625.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="块的大小"><a href="#块的大小" class="headerlink" title="块的大小"></a>块的大小</h4><p>以多大的块作为最小的单位，轮流存储在每个磁盘上，是一个设计时需要权衡的问题；块越小，则文件访问的并行性越好；但是同时会增加寻道和旋转成本；因此并不存在最佳方案，完成取决于主要应用在何种业务场景；一般来说，大多数使用 64KB 的块大小；</p>
 <ul>
 <li>优点：性能好、容量大；</li>
@@ -989,8 +1241,8 @@
 <p>此处 N 表示磁盘的数量，S 表示顺序，2 表示副本数量，R 表示随机，单位为 M&#x2F;s</p>
 </blockquote>
 <h3 id="RAID-4级：通过奇偶校验节省空间"><a href="#RAID-4级：通过奇偶校验节省空间" class="headerlink" title="RAID 4级：通过奇偶校验节省空间"></a>RAID 4级：通过奇偶校验节省空间</h3><p>由于 RAID 1级非常浪费空间，RAID 4 级准备在这个维度上进行改进；它的思路是在普通磁盘上使用异或算法得到计算结果，并增加一个磁盘用来存储该异或结果；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111082438.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111082503.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111082438.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111082503.png" srcset="/img/loading.gif" lazyload></p>
 <p>这样当某个磁盘出错时，可以跟剩余磁盘的位+校验磁盘位，再次异或，得到丢失的位的值；</p>
 <blockquote>
 <p> 这个算法很机智，不过 RAID4 最大只能允许一个磁盘出错，如果有2个或多个以上的磁盘出错，就恢复不了了；</p>
@@ -1003,7 +1255,7 @@
 <li>随机写：R &#x2F; 2，看起来确实很糟糕，因为只有一个校验磁盘，这意味着对任何普通磁盘的写入，都必须汇总到校验盘的读写上面，而它又需要先做一次读，再做一次写，才能完成一个逻辑写入，因此性能下降为单个磁盘的一半；</li>
 </ul>
 <h3 id="RAID-5-级：旋转奇偶校验"><a href="#RAID-5-级：旋转奇偶校验" class="headerlink" title="RAID 5 级：旋转奇偶校验"></a>RAID 5 级：旋转奇偶校验</h3><p>为了解决 RAID4 在随机小写入场景中性能糟糕的问题，引入了 RAID 5级，它的思路是不再将奇偶位单独存储在一个磁盘上，而是像普通数据一样，加入轮转的队列；根据顺序，依次存放在不同的磁盘上，例如 P0 在编号磁盘4，P1 在磁盘3，P2 在磁盘2，以此类推；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111084223.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201111084223.png" srcset="/img/loading.gif" lazyload></p>
 <p>由于奇偶位引入了轮转存储的机制，因此随机小写入的性能会有所提升，达到约 N * R &#x2F; 4 MB&#x2F;s；</p>
 <blockquote>
 <p>此处有 4 倍的损失原来在于每个小写入，都将导致两次读取 + 两次写入；</p>
@@ -1018,11 +1270,11 @@
 <p>问：操作系统应该如何管理文件和存储设备？需要给应用程序提供哪些API？实现环节有哪些注意事项？</p>
 </blockquote>
 <h3 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h3><p>文件和目录是操作系统提供给用户关于管理存储数据的一种抽象；文件和目录都有一个自己的编号（inode号），同时还有一个方便用户阅读识别的名称（名称通常可以由用户任意指定，只要不包含一些限制符号）；目录可以用来组织文件的存储结构；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201112091459.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201112091459.png" srcset="/img/loading.gif" lazyload></p>
 <p>文件在本质上是一个字节的连续数组，每个字节都可以被单独的读取和写入；操作系统实际上只在磁盘上存储或读取该字节数组，它并不关心里面的内容是什么，内容的解析交由应用程序自己来处理；</p>
 <h3 id="文件系统接口"><a href="#文件系统接口" class="headerlink" title="文件系统接口"></a>文件系统接口</h3><p>操作系统提供了一些接口（即系统调用），让应用程序能够进行调用以完成对文件的操作；</p>
 <h4 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h4><p>应用程序通过调用 open 接口实现文件的创建，同时传入一些参数，来指定所创建文件的相关要求；</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd = open(<span class="string">&#x27;foo&#x27;</span>, O_CREAT | O_WRONLY | O_TRUNC);</span><br><span class="line"><span class="comment">// 其中参数 O_CREAT 表示创建新文件，O_WRONLY 表示仅写入，O_TRUNC 表示如果有同名文件，删除其中的内容；</span></span><br><span class="line"><span class="comment">// 返回值 fd 是一个文件描述符，它相当于一个指向新创建文件的指针，通过它可以实现后续对文件的写入或读取操作；</span></span><br><span class="line"><span class="comment">// fd 是每个进程私有的；不同进程的不同 fd，有可能实际上背后指向的是同一个文件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> fd = open(<span class="hljs-string">&#x27;foo&#x27;</span>, O_CREAT | O_WRONLY | O_TRUNC);<br><span class="hljs-comment">// 其中参数 O_CREAT 表示创建新文件，O_WRONLY 表示仅写入，O_TRUNC 表示如果有同名文件，删除其中的内容；</span><br><span class="hljs-comment">// 返回值 fd 是一个文件描述符，它相当于一个指向新创建文件的指针，通过它可以实现后续对文件的写入或读取操作；</span><br><span class="hljs-comment">// fd 是每个进程私有的；不同进程的不同 fd，有可能实际上背后指向的是同一个文件</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="读写文件：从头开始"><a href="#读写文件：从头开始" class="headerlink" title="读写文件：从头开始"></a>读写文件：从头开始</h4><p>基本过程：</p>
 <ul>
@@ -1033,13 +1285,13 @@
 <li>close 文件；</li>
 </ul>
 <h4 id="读写文件：从中间开始"><a href="#读写文件：从中间开始" class="headerlink" title="读写文件：从中间开始"></a>读写文件：从中间开始</h4><p>lseek 系统调用允许应用程序从文件的中间某个指定位置开始读写操作，并一定非得从头开始；</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">off_t</span> <span class="title function_">lseek</span><span class="params">(<span class="type">int</span> fd, <span class="type">off_t</span> off_set, <span class="type">int</span> whence)</span>;</span><br><span class="line"><span class="comment">// off_set 表示偏移量, whence 表示偏移的方式，分别有如下几种情况：</span></span><br><span class="line"><span class="comment">// SEEK_SET：从头部开始，偏移 off_set 字节；</span></span><br><span class="line"><span class="comment">// SEEK_CUR：当前位置，偏移 off_set 字节；</span></span><br><span class="line"><span class="comment">// SEEK_END：从尾部开始，偏移 off_set 字节；</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">off_t</span> <span class="hljs-title function_">lseek</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">off_t</span> off_set, <span class="hljs-type">int</span> whence)</span>;<br><span class="hljs-comment">// off_set 表示偏移量, whence 表示偏移的方式，分别有如下几种情况：</span><br><span class="hljs-comment">// SEEK_SET：从头部开始，偏移 off_set 字节；</span><br><span class="hljs-comment">// SEEK_CUR：当前位置，偏移 off_set 字节；</span><br><span class="hljs-comment">// SEEK_END：从尾部开始，偏移 off_set 字节；</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="用-fsync-立即写入"><a href="#用-fsync-立即写入" class="headerlink" title="用 fsync() 立即写入"></a>用 fsync() 立即写入</h4><p>正常情况下，当应用程序调用 write 接口将数据写入文件后，操作系统并不是立即去执行这个动作，而是会将待写入数据暂时放在内存缓冲区中，每隔一段固定的时候，再统一向磁盘写一次；这样做的原因是为了提高磁盘的使用性能；</p>
 <p>但是有些业务场景需要数据马上写入，例如数据库程序，因此，操作系统有额外提供 fsync() 接口，供应用程序调用；</p>
 <h4 id="文件重命名"><a href="#文件重命名" class="headerlink" title="文件重命名"></a>文件重命名</h4><p>在 Linux 系统下，mv 接口提供了修改文件名的功能，它背后实质上是调用了 rename 接口；rename 接口有一个特性，即它的操作是原子性的，这样做的目的在于避免奇怪的中间状态，导致数据最后丢失，例如重命名的过程当中突然停电了，如果没有原子性，将导致文件即不是原来的名称，也不是新的名称，最后用户找不到了；</p>
 <h4 id="获取文件信息"><a href="#获取文件信息" class="headerlink" title="获取文件信息"></a>获取文件信息</h4><p>除了文件内容外，通常还需要保存一些文件本身的相关信息，即所谓的文件元数据（或者叫头部信息），可以通过 stat 或 fstat 接口来查看；文件系统一般将这些信息存储在一个叫做 inode 的数据结构中，通常包含如下信息：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201113084417.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201113084417.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>好奇这里面怎么好像没有文件名称的信息？</p>
 </blockquote>
@@ -1083,7 +1335,7 @@
 <li>使用位图来标记其映射的 inode 块或者数据块是否空闲，还是已分配；</li>
 <li>使用一个块（称为超级块）来存储关于当前磁盘上的文件系统的一些元信息，例如 inode 块数量、数据块数量、inode 表的起始位置、文件系统类型等；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118082438.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118082438.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>问：inode 表一开始就已经固定大小了吗？还是随着存储文件的增多，其大小是动态变化的？</p>
 </blockquote>
@@ -1093,7 +1345,7 @@
 <p>答：从每级目录的数据块中遍历下一级目录或文件的 inode 编号</p>
 </blockquote>
 <p>只要给定一个 inode 编号，文件系统就可以计算出它在磁盘上的位置（通过起始地址+偏移量计算得到磁盘扇区编号）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118085855.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118085855.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>由于磁盘的存储单位是扇区，一般为 512 字节，而此处块的大小为 4KB，二者不同，因此需要做一个换算；</p>
 </blockquote>
@@ -1104,7 +1356,7 @@
 <li>范围指针：对于连续的块，用一个头部指针 + 一个长度范围来表示；优点：对于大文件，不再需要那么多的块，比较省空间；</li>
 </ul>
 <p>目前大多数文件系统都使用了多重间接指针索引的方式来存储文件，并且在 inode 中包含一定数量的直接指针；之所以这么指针，其原因在于大部分的文件都是一些小文件，因此 12 个左右的直接指针一般就够用了，只有少数大文件，才会用到间接指针；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118092020.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118092020.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>除了间接指针和范围指针外，还有另外一种存储文件的方式是使用链表，将下一个数据块的地址，存放在当前块的末尾；不过这种设计在应对文件内容的随机访问场景时，力有不逮，性能很差，因为需要完全扫描完整个块，才能得到下一个块的地址；</p>
 </blockquote>
@@ -1123,7 +1375,7 @@
 <blockquote>
 <p>一个块有 4KB，8 个空闲块有 32 KB，一个扇区有 512B，因此 8 个空闲块约等于 64 个扇区；那么问题来了：磁盘在读取扇区数据时，一次性读入多少个扇区到缓存中？</p>
 </blockquote>
-<h3 id="访问路径：读取和写入"><a href="#访问路径：读取和写入" class="headerlink" title="访问路径：读取和写入"></a>访问路径：读取和写入</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118082438.png"></p>
+<h3 id="访问路径：读取和写入"><a href="#访问路径：读取和写入" class="headerlink" title="访问路径：读取和写入"></a>访问路径：读取和写入</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201118082438.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h4><p>当访问某个路径下的文件时，例如 open(“&#x2F;foo&#x2F;bar”)，实际发生的动作如下：</p>
 <ul>
 <li>读取根目录的 inode 内容（在 UNIX 系统中，根目录的 inode 编号固定为 2，因此可以很快根据偏移计算出其磁盘地址）；</li>
@@ -1165,7 +1417,7 @@
 <li>待写入的数据暂时放在缓存中，意味着后续对该块的读写，可以直接读取缓存，无须通过 I&#x2F;O 再次访问存储设备；</li>
 </ul>
 <p>一般来说，延迟写入的时间间隔为 5-30 秒，但是它有一个缺点，即在写入之前，如果系统崩溃和停机了，待写入的数据将会丢失；有些应用程序对此无法容忍，例如数据库程序，因此它会直接调用 fsync 实现立即写入，避免延迟；</p>
-<h2 id="32-局部性和快速文件系统-FFS"><a href="#32-局部性和快速文件系统-FFS" class="headerlink" title="32.局部性和快速文件系统 FFS"></a>32.局部性和快速文件系统 FFS</h2><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201120082014.png"></p>
+<h2 id="32-局部性和快速文件系统-FFS"><a href="#32-局部性和快速文件系统-FFS" class="headerlink" title="32.局部性和快速文件系统 FFS"></a>32.局部性和快速文件系统 FFS</h2><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201120082014.png" srcset="/img/loading.gif" lazyload></p>
 <p>早期的 UNIX 系统使用以上结构的文件系统设计，它本质上是将整个磁盘当作一个随机存取的内存来对待（但磁盘跟内存有所不同，内存的随机存取是很快的，但磁盘有寻道成本）；这个设计的好处在于它实现起来非常简单；缺点是随着使用时间的推移，最终将会导致文件的存储变得非常碎片化，从而带来很多的磁盘寻道定位成本（这也是当年为什么会有磁盘碎片整理工具这种东西出现的原因）；</p>
 <blockquote>
 <p>问：如何设计和组织文件系统使用的数据结构，以提高访问性能？以及如何设计分配策略？</p>
@@ -1190,9 +1442,9 @@
 <p>FSCK 相当于做了整个磁盘的扫描工作，包括检查超级块、空闲块、inode 状态、inode 链接、重复指针、坏块指针、目录引用等；虽然这种检查方法是有效的，但是性能代价太高昂了，尤其是对于越来越大的磁盘，每次检查将花去几分钟甚至是几小时的时间；实现的目标仅仅某次写入涉及可能存在错误的3个块而已，很不值得；</p>
 </blockquote>
 <h3 id="方案二：日志"><a href="#方案二：日志" class="headerlink" title="方案二：日志"></a>方案二：日志</h3><p>思路是在将数据写入磁盘之前，将本次要实现的操作，提前单独写在某个指定的地方，形成日志；这样在遇到崩溃的场景时，就可以从日志中提取原来要实现的操作，并检查这些操作是否按预期完成了，如果没有，就重复执行一遍相关的操作，确保它们完成；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201125091351.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201125091351.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="数据日志"><a href="#数据日志" class="headerlink" title="数据日志"></a>数据日志</h4><p>当发生文件的写入时，一般会涉及三个块需要更新，包括 inode、位图、数据块；物理日志的方式，是将这三个块的内容完整的写到日志中，并在其前后各包含一个标识开始 TxB 和结束 TxE 的事务块</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201125091312.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201125091312.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>TxB：Transaction Begin；TxE：Transaction End；</p>
 </blockquote>
@@ -1227,7 +1479,7 @@
 <p>当采用元数据日志的模式时，数据块并没有写入日志，只将元数据写在了日志中；这意味着，与目录有关的更新由于都属于元数据，因此都会写在日志中；当用户在某个目录中添加某个文件时，由于目录的元数据会产生更新，因此，日志中有一条关于该目录更新的日志；</p>
 <p>假设之后用户删除了整个目录，并重新创建一个新文件，当采用元数据日志时，日志和该新文件的数据会首先写入磁盘，假设此时写入的位置复用了此前删除的目录的块，然后在日志提交后，系统发生了崩溃；根据原本的协议，系统在恢复后，用户预期应该能够得到崩溃前写入的数据；</p>
 <p>但是，此时事情并不能如预期一样发生；因为日志中还有一条关于目录的更新会被重放，而且它发生在创建新文件的日志之前，这意味着在重放时，原本数据块上的新文件数据，将会被覆盖；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201126084534.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201126084534.png" srcset="/img/loading.gif" lazyload></p>
 <p>有两种办法可以避免该问题：</p>
 <ul>
 <li>在某条日志被标记为空闲前（即日志对应的操作已顺利完成，日志块将被复用），避免涉及的块的重用；</li>
@@ -1284,10 +1536,10 @@
 <p>如果将 inode map 映射存储在某个固定的位置，则该位置在文件发生写入时，将不断避免的出现频繁更新，这样会增加寻道成本；因此将 inode map 也作为顺序写入数据的一部分，放置在 inode 右边；注意：imap 中保存着多个文件的映射信息，而不只是一个文件；</p>
 <p>另外随着文件的增多，貌似 imap 的体积也会变得越来越大？怎么对应这个问题？另外是否需要标记已经删除的文件，回收 inode 编号？</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201201091620.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201201091620.png" srcset="/img/loading.gif" lazyload></p>
 <p>虽然 imap 和 inode 一起放置，解决了频繁更新 imap 造成的顺序写入破坏，但是它同样导致 imap 本身也不是不断变化位置的。归根结底，仍然需要有一个持久的数据结构，保存着最新版本的 imap 位置；</p>
 <h3 id="检查点区域"><a href="#检查点区域" class="headerlink" title="检查点区域"></a>检查点区域</h3><p>解决定位 imap 的方案是引入一个检查点区域（CR，Checkpoint Region），它固定在磁盘的头部，其中保存着每个文件的 imap 地址；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201201091857.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201201091857.png" srcset="/img/loading.gif" lazyload></p>
 <p>由于随着文件写入时，检查点区域同样会出现频繁更新，因此为了避免由于带来的性能问题，它一般设置为每 30 秒更新一次，两次更新期间的数据先保存在内存中；这样就可以将多次 I&#x2F;O 变成一次 I&#x2F;O 了；</p>
 <blockquote>
 <p>问：检查点区域是否存储着多个 imap？还是只有一个？好奇 CR 里面的内容长什么样子</p>
@@ -1303,7 +1555,7 @@
 <blockquote>
 <p> 从 imap -&gt; inode -&gt; 数据块的查找过程如下：</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201203090806.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201203090806.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h3><p>问题：由于每次更新文件和目录，都是写入新的位置，这不可避免会导致部分旧的数据块失效，变成垃圾块；如果放任不管的话，虽然这些垃圾块并没有指针指向它们，但是它们会在磁盘的空间中形成很多小洞，使用大段连续的空闲空间变得越来越少，从而在未来需要顺序写入的时候，找不到大段的连续空间；同时文件系统也需要额外的机制，来标记这些空闲小洞，负担很大；</p>
 <p>解决步骤1：不将磁盘作为一个连续存储空间来处理，而是将其分成很多个段，以段为单位来写入数据；每次需要写入新数据时，即使原来的段没有满，也写到新的段中；这样一来就可以减轻空闲标记的工作（感觉跟内存的分页机制有点像）；</p>
 <blockquote>
@@ -1383,9 +1635,9 @@
 <p>实现：将数据块 D 视为一个大的二进制数，并将其除以约定的值 k，得到的余数即是 CRC 值；</p>
 <h4 id="检验和布局"><a href="#检验和布局" class="headerlink" title="检验和布局"></a>检验和布局</h4><p>最终计算出来的检验和，需要在磁盘上安排一个位置来存储它，有两种方法：</p>
 <h5 id="磁盘厂商实现"><a href="#磁盘厂商实现" class="headerlink" title="磁盘厂商实现"></a>磁盘厂商实现</h5><p>将原本 512 字节的块，实际设置为 520 字节，这样多出来的 8 个字节刚好用来存储校验和；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201204084851.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201204084851.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="文件系统实现"><a href="#文件系统实现" class="headerlink" title="文件系统实现"></a>文件系统实现</h5><p>单独划分一个 512 字节的块用来存储校验和，每个校验和为 8 字节，因此 512 字节的块可以存储 64 个检验和，刚好对应其后的 64 个连续的数据块；不过这种方法有很大的缺点：即当某个数据块的数据发生改变时，需要同时更新校验和所在的块，增加了寻道、定位等 I&#x2F;O 成本；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201204084916.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201204084916.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="使用校验和"><a href="#使用校验和" class="headerlink" title="使用校验和"></a>使用校验和</h3><p> 使用方法很简单，在读取某个数据块时，同时读取在磁盘上存储的检验和，并与根据数据块计算出来的校验和进行比较，</p>
 <ul>
 <li>如果二者一致，就返回数据给用户；</li>
@@ -1422,14 +1674,14 @@
 </ul>
 <blockquote>
 <p>虽然层数越多，单个存储单元的容量越大，单位价格越低，但是性能会下降；单层的单位容量小，但性能最好；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090416.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090416.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
 <h3 id="从位到片"><a href="#从位到片" class="headerlink" title="从位到片"></a>从位到片</h3><p>显然 SSD 存储器操作的最小单元不可能是比特，而是一个更大的存储单元“页”；SSD 一般由多块存储片构成，每个存储片中有 n 个块；每个块中有 n 个页；</p>
 <ul>
 <li>块大小：128 ~- 256KB（相当于 32 ~ 64 个页）</li>
 <li>页大小：512B ~ 4KB；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208084736.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208084736.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="以块为单位的操作"><a href="#以块为单位的操作" class="headerlink" title="以块为单位的操作"></a>以块为单位的操作</h3><p>闪存芯片一般支持三个低级别的操作：</p>
 <ul>
 <li>读取（页）：给定页编号即可，非常快，没有寻道成本，随机读取和顺序读取的性能几乎相同，约 10 微秒；</li>
@@ -1437,11 +1689,11 @@
 <li>写入（页）：当某个块被擦除后，就可以开始往里面的页写入数据了；写入的时间成本约 100 微秒；</li>
 </ul>
 <h4 id="写入过程"><a href="#写入过程" class="headerlink" title="写入过程"></a>写入过程</h4><p>根据页号找到所在的块，此时整个块的状态为 VALID（表示其上面的数据可读）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090202.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090202.png" srcset="/img/loading.gif" lazyload></p>
 <p>将块的状态变更为 ERASED（此时块上所有页中的存储单元，都会被置为 1）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090217.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090217.png" srcset="/img/loading.gif" lazyload></p>
 <p>根据页号，将某个页中存储单元的电子量设置为预期的状态（设置成功即表示数据写入成功），写入完成后，该页的状态会从 ERASED 变成 VALID；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090228.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201208090228.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>问：好奇剩下的三个页仍为 ERASED 状态，那么未来再向它们写入数据时，它们会处于什么样的状态？是否需要重置整个块？</p>
 <p>答：貌似剩下的三个页下次可以直接往里面写入数据；只有当需要向已经是 VALID 的存储单元写入数据时，才需要将整个块重置为 ERASED 状态；</p>
@@ -1469,7 +1721,7 @@
 <blockquote>
 <p>示例：文件系统的块 100、101、2000、2001，对应内部的页 0、1、2、3；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201209091802.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201209091802.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>问题：SSD 需要将映射表存储在哪里？</p>
 <p>答：理论上猜测肯定是存储在 SSD 本身的存储单元里；对于日志结构策略来说，整个文件系统 imap 表是不断移动的，即随着数据更新，不断写入到最新的位置；而且单个文件的 inode 也会随着更新，不断在变化位置；数据块也是如此；只有当 inode 和数据块中的数据没有发生改变时，它们的位置才是固定的；</p>
@@ -1495,19 +1747,19 @@
 </blockquote>
 <p>当 FTL 收到文件系统的数据写入指令后，先将数据写入新的块，然后将新块的地址保存页映射表中；当某个新块中的页都按顺序被写满后，就把该块的地址迁移到块映射表中；</p>
 <h5 id="切换合并"><a href="#切换合并" class="headerlink" title="切换合并"></a>切换合并</h5><p>块中的页写满后，由原来的页映射切换为块映射；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090801.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090901.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090944.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090801.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090901.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090944.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="部分合并"><a href="#部分合并" class="headerlink" title="部分合并"></a>部分合并</h5><p>假设出现了只有部分页被重写的情况，则 FTL 需要将未被重写的页，复制一份到新的块中；完成这个动作需要额外的 I&#x2F;O 操作，因此会导致一定的写放大；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210092717.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090944.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210092717.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210090944.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="完全合并"><a href="#完全合并" class="headerlink" title="完全合并"></a>完全合并</h5><p>假设某个日志块中的四个页，分别写入了四个不同的逻辑块的数据；当需要将它们从日志表迁移到数据表时，就需要做很多动作；需要读取每个逻辑块余下的页的数据，然后新建一个物理块，写入这些数据；同样的操作，每个逻辑块都需要做一遍，共做四遍；</p>
 <h4 id="页映射缓存"><a href="#页映射缓存" class="headerlink" title="页映射缓存"></a>页映射缓存</h4><p>由于混合映射过于复杂，另外一个解决方案是仍然使用页映射，但为其引入缓存机制（这个机制跟 CPU 中的虚拟内存地址映射缓存一毛一样）；其思路就是使用有效的缓存，来完成映射的工作；由于缓存有限，此时不再能将整个映射表一次加载到缓存中了，只能是部分加载（并且如果满了后，还需要剔除部分不常用的）；由于计算过程中必然存在的局部性，这种机制工作起来能够取得性能和成本的良好平衡；</p>
 <h3 id="减缓老化"><a href="#减缓老化" class="headerlink" title="减缓老化"></a>减缓老化</h3><p>为了避免某个存储单元由于频繁擦写，导致过快出现老化， FTL 需要尽可能的将写入分摊到所有存储单元中；虽然日志写入策略，能够很好的实现分散化；但是电脑中的部分数据有可能在写入之后，就很被再次改写了，这样导致这些存储单元没有分摊到应尽的责任；为了避免这个问题， FTL 需要定期将这些不活跃的数据，迁移到其他存储单元，以便激活它们，承担更多的写入责任；</p>
 <blockquote>
 <p>看来 FTL 还需要额外承担不时照看那些数据长期不更新的块，不定期把块中的数据迁移到其他写入次数比较多的块，以便可以利用这些数据长期不更新块的使用寿命；</p>
 </blockquote>
-<h3 id="性能和成本"><a href="#性能和成本" class="headerlink" title="性能和成本"></a>性能和成本</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210100544.png"></p>
+<h3 id="性能和成本"><a href="#性能和成本" class="headerlink" title="性能和成本"></a>性能和成本</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201210100544.png" srcset="/img/loading.gif" lazyload></p>
 <p>SSD 的随机写入之所以比随机读取性能更好，其原因在于内部 FTL 使用的日志策略；该策略将随机写入在一定程度上转变成了顺序写入；</p>
 <blockquote>
 <p>按理说机械硬盘也存在着相同的现象；</p>
@@ -1569,7 +1821,7 @@
 <p>如何构建共享文件系统？要考虑哪些问题？哪些点容易出错？</p>
 </blockquote>
 <h3 id="基本分布式文件系统"><a href="#基本分布式文件系统" class="headerlink" title="基本分布式文件系统"></a>基本分布式文件系统</h3><p>通常情况下，应用程序访问本地的文件系统来获取想要的持久性数据，对于分布式文件系统来说，应用程序改成访问客户端文件系统，它提供了一层抽象，接口仍然同普通的文件系统一样，所以对于应用程序来说，是透明无感知的；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201216081219.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201216081219.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="开放协议"><a href="#开放协议" class="headerlink" title="开放协议"></a>开放协议</h3><p>最早的比较成功的分布式文件系统是 SUN 公司开发的 NFS，它通过制定协议的标准，引导行业人员采用该协议，并可以自行开发自己的 NFS 服务器，而不是限定只能使用 SUN 公司的版本，这种做法使用该协议迅速成为行业的标准；</p>
 <h3 id="目标：简单快速的崩溃恢复"><a href="#目标：简单快速的崩溃恢复" class="headerlink" title="目标：简单快速的崩溃恢复"></a>目标：简单快速的崩溃恢复</h3><p>对于多客户端单服务器的场景来说，实现快速的崩溃恢复是非常重要的，因为在崩溃期间，客户端完全无法使用文件系统；NFSv2 采取的做法是使用无状态的协议，这使得服务器端无须管理客户端当前的状态，从而最大程度的降低崩溃恢复成本；</p>
 <h3 id="无状态与映射"><a href="#无状态与映射" class="headerlink" title="无状态与映射"></a>无状态与映射</h3><p>普通文件系统的系统调用是基于有状态的场景来设计的（例如使用文件描述符），如果想在客户端和服务器之间实现无状态的协议，就需要对原始的系统调用做一次封装；它们之间不可以是简单的 RPC，只是传递函数名称和参数，而是应该传递更多更完整的文件信息，包括卷标识、文件 inode 编号等；NFSv2 通过引入文件句柄来实现这一目的，每次通信，客户端都需将文件句柄传递给服务端，用来告知服务器自己想访问的是哪一个文件；</p>
@@ -1688,7 +1940,7 @@
 <p>答：莫非 VMM 使用基址映射，来帮忙 CPU 找到真正的 虚拟 OS 的指令地址？正确答案是，VMM 需要提供额外的一层映射，将机器内存虚拟化一层物理内存出来，让虚拟 OS 的地址空间和真正的机器内存之间，实现映射；而且，这种实现必须是透明的；</p>
 <p>听上去 VMM 还需要扮演类似 TLB 的地址翻译角色；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201222091406.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201222091406.png" srcset="/img/loading.gif" lazyload></p>
 <p>由于虚拟 OS 可能不止一个，因此 VMM 需要为每个虚拟 OS 维护一张单独的映射表，这张映射表的大小取决于初始化的时候，为虚拟 OS 分配了多少机器内存；然后虚拟 OS 对物理内存的任何写入，都由该映射表转换到对本地机器内存的写入，并在表上记录着映射关系；</p>
 <blockquote>
 <p>问：地址转换的过程是怎么样子的？</p>
@@ -1716,30 +1968,142 @@
 <p>Docker 使用了操作系统层的虚拟化，它并不是一种完整的系统虚拟机，而是将内核共享给多个独立空间中的应用程序；半虚拟化的例子是 Xen 项目；好奇 Xen 如何实现半虚拟化？</p>
 </blockquote>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="print-no-link">#操作系统</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>操作系统导论</div>
+      <div>http://example.com/2020/09/20/操作系统导论/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年9月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/26/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%20webpack/" title="为什么需要 webpack">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">为什么需要 webpack</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/27/Python%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="Python 深度学习">
+                        <span class="hidden-mobile">Python 深度学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/操作系统/">操作系统</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -1749,23 +2113,207 @@
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

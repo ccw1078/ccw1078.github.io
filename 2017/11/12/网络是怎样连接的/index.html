@@ -1,99 +1,384 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
-  
-  <title>网络是怎样连接的 | Ccw&#39;s Blogs</title>
+  <meta charset="UTF-8">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言  浏览器生成消息生成 HTTP 请求消息从输入网址开始URL 网址开头部分为协议，常见协议有：  http：访问远程 Web 服务器，例如：http:&#x2F;&#x2F;user:password@www.glass.com:80&#x2F;dir&#x2F;file1.html，注意 URL 中可携带用户名和密码，一般都为可省略 ftp：下载或上传文件；同样可以携带用户名和密码（可省略）； file：读取本地文件； mail">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络是怎样连接的">
+<meta property="og:url" content="http://example.com/2017/11/12/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="前言  浏览器生成消息生成 HTTP 请求消息从输入网址开始URL 网址开头部分为协议，常见协议有：  http：访问远程 Web 服务器，例如：http:&#x2F;&#x2F;user:password@www.glass.com:80&#x2F;dir&#x2F;file1.html，注意 URL 中可携带用户名和密码，一般都为可省略 ftp：下载或上传文件；同样可以携带用户名和密码（可省略）； file：读取本地文件； mail">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202084609.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202085608.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211203074549.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211203075657.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204123954.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204124608.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204125244.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204125537.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204130819.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204130912.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202211700.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204132441.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202203557.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207065512.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207070602.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207074726.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207075419.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207201855.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207210529.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207210653.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207211706.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208194814.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208200208.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208203858.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205031.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205052.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205340.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209071038.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209213236.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209214055.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209220249.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210070311.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210071109.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210074559.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210081736.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210082755.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210083821.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211211065950.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211211080731.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212092010.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212095235.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212095612.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212115223.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212120030.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212122709.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212124002.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212123940.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212175920.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212180206.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212180317.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213122505.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213122610.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213170315.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171049.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171110.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171132.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213222041.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213230640.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211214202614.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211214203125.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215083832.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215084240.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215201312.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215201657.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215202718.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215204746.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216081555.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216082200.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216085257.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217073608.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217074225.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217082159.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218070827.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218074210.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218075418.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218075756.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218083942.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211227085902.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211825009.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211826047.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211826196.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211827281.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211827217.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211828355.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211828468.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211829615.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211829705.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211830582.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211830669.png">
+<meta property="article:published_time" content="2017-11-12T09:01:38.000Z">
+<meta property="article:modified_time" content="2024-09-21T10:30:53.654Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202084609.png">
+  
+  
+  
+  <title>网络是怎样连接的 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-  
-  <meta name="description" content="前言
 
-浏览器生成消息生成 HTTP 请求消息从输入网址开始URL 网址开头部分为协议，常见协议有：
 
-http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:80/dir/file1.html，注意 URL 中可携带用户名和密码，一般都为可省">
-  
 
-  
-  
-  <meta name="keywords" content="软件,网络">
-  
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <meta property="og:title" content="网络是怎样连接的"/>
-
-  <meta property="og:site_name" content="Ccw&#39;s Blogs"/>
-
-  
-  <meta property="og:image" content="/favicon.ico"/>
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Ccw&#39;s Blogs" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
 
 
 <body>
-<div class="blog">
-  <div class="content">
+  
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Ccw&#39;s Blogs</a>
-    </h1>
-    <p class="site-description"></p>
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
-    <article>
+</nav>
 
   
-    
-    <h3 class="article-title"><span>网络是怎样连接的</span></h3>
-    
-  
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2017/11/12/网络是怎样连接的/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-11-12T09:01:38.000Z">
-          2017-11-12
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="网络是怎样连接的"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-11-12 17:01" pubdate>
+          2017年11月12日 下午
         </time>
-      </a>
-    </span>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          25k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          212 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-  
+        
+      </div>
 
-  <div class="article-content">
-    <div class="entry">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202084609.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202085608.png"></p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">网络是怎样连接的</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202084609.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202085608.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="浏览器生成消息"><a href="#浏览器生成消息" class="headerlink" title="浏览器生成消息"></a>浏览器生成消息</h1><h2 id="生成-HTTP-请求消息"><a href="#生成-HTTP-请求消息" class="headerlink" title="生成 HTTP 请求消息"></a>生成 HTTP 请求消息</h2><h3 id="从输入网址开始"><a href="#从输入网址开始" class="headerlink" title="从输入网址开始"></a>从输入网址开始</h3><p>URL 网址开头部分为协议，常见协议有：</p>
 <ul>
 <li>http：访问远程 Web 服务器，例如：<a target="_blank" rel="noopener" href="http://user:password@www.glass.com/dir/file1.html%EF%BC%8C%E6%B3%A8%E6%84%8F">http://user:password@www.glass.com:80/dir/file1.html，注意</a> URL 中可携带用户名和密码，一般都为可省略</li>
 <li>ftp：下载或上传文件；同样可以携带用户名和密码（可省略）；</li>
 <li>file：读取本地文件；</li>
-<li>mailto：发送电子邮件；例如：mailto:<a href="mailto:&#x74;&#x6f;&#110;&#x79;&#x40;&#103;&#x6c;&#97;&#x73;&#x73;&#46;&#x63;&#x6f;&#109;">&#x74;&#x6f;&#110;&#x79;&#x40;&#103;&#x6c;&#97;&#x73;&#x73;&#46;&#x63;&#x6f;&#109;</a>，冒号后的部分为邮件地址；</li>
+<li>mailto：发送电子邮件；例如：mailto:<a href="mailto:&#x74;&#111;&#x6e;&#121;&#64;&#103;&#x6c;&#97;&#115;&#115;&#46;&#99;&#x6f;&#x6d;">&#x74;&#111;&#x6e;&#121;&#64;&#103;&#x6c;&#97;&#115;&#115;&#46;&#99;&#x6f;&#x6d;</a>，冒号后的部分为邮件地址；</li>
 <li>news：阅读新闻组的文章，例如：news: comp.protocols.tpc-ip，冒号后的部分为新闻组名称；</li>
 </ul>
-<h3 id="浏览器先解析-URL"><a href="#浏览器先解析-URL" class="headerlink" title="浏览器先解析 URL"></a>浏览器先解析 URL</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211203074549.png"></p>
+<h3 id="浏览器先解析-URL"><a href="#浏览器先解析-URL" class="headerlink" title="浏览器先解析 URL"></a>浏览器先解析 URL</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211203074549.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="省略文件名的情况"><a href="#省略文件名的情况" class="headerlink" title="省略文件名的情况"></a>省略文件名的情况</h3><ul>
 <li><a target="_blank" rel="noopener" href="http://www.lab.glass.com/dir/%EF%BC%8C%E6%9C%AB%E5%B0%BE%E6%9C%89%E6%96%9C%E6%9D%A0%EF%BC%8C%E4%BD%86%E6%B2%A1%E6%9C%89%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%8C%E5%9B%A0%E6%AD%A4%E8%AE%BF%E9%97%AE%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%EF%BC%8C%E4%B8%80%E8%88%AC%E5%90%8D%E7%A7%B0%E4%B8%BA">http://www.lab.glass.com/dir/，末尾有斜杠，但没有文件名，因此访问目录中的默认文件，一般名称为</a> index.html 或者 default.html；</li>
 <li><a target="_blank" rel="noopener" href="http://www.lab.glass.com/dir%EF%BC%8C%E6%9C%AB%E5%B0%BE%E6%B2%A1%E6%9C%89%E6%96%9C%E6%9D%A0%EF%BC%8C%E5%85%88%E5%B0%86">http://www.lab.glass.com/dir，末尾没有斜杠，先将</a> dir 作为文件名来处理，如果找不到，再将其当作目录名来处理；</li>
@@ -105,17 +390,17 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>URI：资源路径，例如 &#x2F;dir&#x2F;file.html；</li>
 <li>协议版本：例如 HTTP1.1</li>
 </ul>
-<h3 id="生成-HTTP-请求消息-1"><a href="#生成-HTTP-请求消息-1" class="headerlink" title="生成 HTTP 请求消息"></a>生成 HTTP 请求消息</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211203075657.png"></p>
+<h3 id="生成-HTTP-请求消息-1"><a href="#生成-HTTP-请求消息-1" class="headerlink" title="生成 HTTP 请求消息"></a>生成 HTTP 请求消息</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211203075657.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="发送请求后会收到响应"><a href="#发送请求后会收到响应" class="headerlink" title="发送请求后会收到响应"></a>发送请求后会收到响应</h3><p>响应的格式和请求基本一致，也是由报头+可选的消息体组成，报头由响应行+可选的头字段组成；响应行由协议版本+状态码+说明组成，例如 HTTP&#x2F;1.1 200 OK；</p>
 <h2 id="向-DNS-服务器查询-Web-服务器的-IP-地址"><a href="#向-DNS-服务器查询-Web-服务器的-IP-地址" class="headerlink" title="向 DNS 服务器查询 Web 服务器的 IP 地址"></a>向 DNS 服务器查询 Web 服务器的 IP 地址</h2><h3 id="IP-地址的基本知识"><a href="#IP-地址的基本知识" class="headerlink" title="IP 地址的基本知识"></a>IP 地址的基本知识</h3><p>整个互联网实际上是由各种小的局域网组成的。每个小的局域网络通过一台路由器对外发放和接受数据，内部则由路由器为各终端设备分配内部 IP 地址进行管理；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204123954.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204123954.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="域名和-IP-地址并用的理由"><a href="#域名和-IP-地址并用的理由" class="headerlink" title="域名和 IP 地址并用的理由"></a>域名和 IP 地址并用的理由</h3><p>IP 地址不好记，而且同一个网站可能会有多个 IP 地址，同时由于设备的宕机和维护，IP 地址还会变动，因此使用人们更容易记住的域名来访问网站是一种更加健壮的方案；</p>
 <h3 id="Socket-库提供查询-IP-地址的功能"><a href="#Socket-库提供查询-IP-地址的功能" class="headerlink" title="Socket 库提供查询 IP 地址的功能"></a>Socket 库提供查询 IP 地址的功能</h3><p>操作系统内置的 socket 库提供了查询 IP 地址的功能，这样应用程序只需直接调用该库的功能，即可将域名解析成 IP 地址；</p>
 <h3 id="通过解析器向-DNS-服务发出查询"><a href="#通过解析器向-DNS-服务发出查询" class="headerlink" title="通过解析器向 DNS 服务发出查询"></a>通过解析器向 DNS 服务发出查询</h3><p>由于 socket 是使用 C 语言编写的，让它被调用时，实际的过程是预先分配一段内部，用来存储后续的结果，然后解析器向 DNS 服务器发出请求，并在得到解析结果后，将其写入预先分配的内存地址中；</p>
 <blockquote>
 <p>域名解析：resolution，解析器：resolver</p>
 </blockquote>
-<h3 id="解析器的内部原理"><a href="#解析器的内部原理" class="headerlink" title="解析器的内部原理"></a>解析器的内部原理</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204124608.png"></p>
+<h3 id="解析器的内部原理"><a href="#解析器的内部原理" class="headerlink" title="解析器的内部原理"></a>解析器的内部原理</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204124608.png" srcset="/img/loading.gif" lazyload></p>
 <p>DNS 服务器的地址可以有多个来源，例如：</p>
 <ul>
 <li>由 ISP 运营商提供；</li>
@@ -126,12 +411,12 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <blockquote>
 <p>注意：这里有一个很重要的点，即 DNS 服务器的解析是分级。不同级的映射记录有可能存储在同一台服务器上面，也有可能存储在不同的服务器上面；另外解析记录还区分类型，例如 A 类型，MX 邮件类型，CNAME 别名类型等；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204125244.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204125244.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="域名的层次结构"><a href="#域名的层次结构" class="headerlink" title="域名的层次结构"></a>域名的层次结构</h3><p>域名是分层次的，每一层使用点号隔开，例如 <a target="_blank" rel="noopener" href="http://www.baidu.com.cn,其中/">www.baidu.com.cn，其中</a> cn 是国家级别的域名，com 是商业类型域名，baidu 则是域名申请者的自定义名称，www 是域名申请者的内部子域名；</p>
-<h3 id="寻找相应的-DNS-服务器并获取-IP-地址"><a href="#寻找相应的-DNS-服务器并获取-IP-地址" class="headerlink" title="寻找相应的 DNS 服务器并获取 IP 地址"></a>寻找相应的 DNS 服务器并获取 IP 地址</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204125537.png"></p>
+<h3 id="寻找相应的-DNS-服务器并获取-IP-地址"><a href="#寻找相应的-DNS-服务器并获取-IP-地址" class="headerlink" title="寻找相应的 DNS 服务器并获取 IP 地址"></a>寻找相应的 DNS 服务器并获取 IP 地址</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204125537.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="通过缓存加快-DNS-服务器的响应"><a href="#通过缓存加快-DNS-服务器的响应" class="headerlink" title="通过缓存加快 DNS 服务器的响应"></a>通过缓存加快 DNS 服务器的响应</h3><p> 为了加快响应速度，一般 DNS 服务器上面有会缓存机制，将最近的查询结果缓存起来，这样再收到相同的解析请求时，就可以立即返回结果，而无须再次对外发起请求了；</p>
-<h2 id="委托协议栈发送消息"><a href="#委托协议栈发送消息" class="headerlink" title="委托协议栈发送消息"></a>委托协议栈发送消息</h2><h3 id="数据收发操作概览"><a href="#数据收发操作概览" class="headerlink" title="数据收发操作概览"></a>数据收发操作概览</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204130819.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204130912.png"></p>
+<h2 id="委托协议栈发送消息"><a href="#委托协议栈发送消息" class="headerlink" title="委托协议栈发送消息"></a>委托协议栈发送消息</h2><h3 id="数据收发操作概览"><a href="#数据收发操作概览" class="headerlink" title="数据收发操作概览"></a>数据收发操作概览</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204130819.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204130912.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="创建套接字阶段"><a href="#创建套接字阶段" class="headerlink" title="创建套接字阶段"></a>创建套接字阶段</h3><p>套接字本质上其实是一个存在于内存中的对象，该对象有多个字段，每个字段存放着管理连接的有关信息，例如 IP 地址、连接状态等；因为网络在本质上是不可靠的，数据在传输过程中会出现丢失或中断，因此需要在本地记录当前的连接状态，这样当发生意外时，仍然能够正常工作；</p>
 <p>当应用程序调用 socket 库创建套接字后，被调用的函数会返回一个文件描述符，用来代表该套接字对象，这样应用程序后续的操作，都可以向读写文件一样，与套接字对象进行交互；</p>
 <h3 id="连接阶段"><a href="#连接阶段" class="headerlink" title="连接阶段"></a>连接阶段</h3><p>‘连接’相对当于客户端和服务器之间的一种准备工作，对方交换一下必要的信息和状态，例如起始字节等；交换成功后，即表示网络是畅通的，并进入了可通信的阶段；</p>
@@ -144,10 +429,10 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>有可能在返回的响应中，发现需要额外的请求数据，例如网页上的图片；</li>
 <li>有可能应用程序没有马上读取返回的数据，如果马上释放文件描述符，又恰好被操作系统分配给了另外的应用程序，会导致原应用程序无法读取到数据，或者其他应用程序读取到本不属于自己的数据；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202211700.png"></p>
-<h1 id="用电信号传输-TCP-IP-数据"><a href="#用电信号传输-TCP-IP-数据" class="headerlink" title="用电信号传输 TCP&#x2F;IP 数据"></a>用电信号传输 TCP&#x2F;IP 数据</h1><h2 id="创建套接字"><a href="#创建套接字" class="headerlink" title="创建套接字"></a>创建套接字</h2><h3 id="协议栈的内部结构"><a href="#协议栈的内部结构" class="headerlink" title="协议栈的内部结构"></a>协议栈的内部结构</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204132441.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202211700.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="用电信号传输-TCP-IP-数据"><a href="#用电信号传输-TCP-IP-数据" class="headerlink" title="用电信号传输 TCP&#x2F;IP 数据"></a>用电信号传输 TCP&#x2F;IP 数据</h1><h2 id="创建套接字"><a href="#创建套接字" class="headerlink" title="创建套接字"></a>创建套接字</h2><h3 id="协议栈的内部结构"><a href="#协议栈的内部结构" class="headerlink" title="协议栈的内部结构"></a>协议栈的内部结构</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211204132441.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="套接字的实体就是通信控制信息"><a href="#套接字的实体就是通信控制信息" class="headerlink" title="套接字的实体就是通信控制信息"></a>套接字的实体就是通信控制信息</h3><p>套接字的本质就是内存中存放着的一段类似对象的数据结构，该数据结构保存着控制整个连接的各项重要信息，例如连接的源地址、目标地址、端口号、各种连接状态等；各个 socket 函数在需要的时候，就会从该对象读取所需要的信息，来完成自身的工作。并在工作完成后，改写信息，标记最新的状态；</p>
-<h3 id="调用-socket-时的操作"><a href="#调用-socket-时的操作" class="headerlink" title="调用 socket 时的操作"></a>调用 socket 时的操作</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202203557.png"></p>
+<h3 id="调用-socket-时的操作"><a href="#调用-socket-时的操作" class="headerlink" title="调用 socket 时的操作"></a>调用 socket 时的操作</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211202203557.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h2><h3 id="连接是什么意思"><a href="#连接是什么意思" class="headerlink" title="连接是什么意思"></a>连接是什么意思</h3><p>所谓连接实际是在做建立通信的初始化动作，这些动作包括准备好发送方和接收方的 IP 地址、端口号、状态、内存分配、MAC 地址等事宜；</p>
 <h3 id="负责保存控制信息的头部"><a href="#负责保存控制信息的头部" class="headerlink" title="负责保存控制信息的头部"></a>负责保存控制信息的头部</h3><p>TCP 协议报文的头部数据来源于在上一步的连接阶段初始化好的那些数据（存放在 socket 对象中），主要字段如下：</p>
 <ul>
@@ -186,16 +471,16 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </ul>
 <p>由于应用程序对自己的数据最了解，而栈议栈并不了解，因此协议栈提供了参数选项，应用程序可传递参数给协议栈，告知其准确高效的发送办法；</p>
 <h3 id="对较大的数据进行拆分"><a href="#对较大的数据进行拆分" class="headerlink" title="对较大的数据进行拆分"></a>对较大的数据进行拆分</h3><p>当所要发送的数据超过了 MSS 时，就需要对包进行拆分，为每个包加上必要的头部信息，示例如下：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207065512.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207065512.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="使用-ACK-号确认网络包已收到"><a href="#使用-ACK-号确认网络包已收到" class="headerlink" title="使用 ACK 号确认网络包已收到"></a>使用 ACK 号确认网络包已收到</h3><p>数据包发送出去后，发送方的事情并没有就到此结束，它还需要确认对方是否已经收到；如果没有收到，需要重新发送，直到对方收到为止；</p>
 <p>为了让接收方知道当前数据包的序号，发送方会将当前包中数据在完整数据中的偏移量放在头部中，作为序号信息，这样接收方收到该包后，马上就知道这段数据，应该放置在整体数据的具体位置；另外，由于头部中还有一个字段是记录当前数据包的头部长度的，因此接收方也能够很快速的知道从数据包中的哪个具体位置开始读取数据；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207070602.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207070602.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="根据网络包平均往返时间调整-ACK-号等待时间"><a href="#根据网络包平均往返时间调整-ACK-号等待时间" class="headerlink" title="根据网络包平均往返时间调整 ACK 号等待时间"></a>根据网络包平均往返时间调整 ACK 号等待时间</h3><p>发送方需要等待接收方返回 ACK 号，然后再判断是否需要重发。这个等待时间的大小很有讲究，因为太大或太小都需要付出代价；太大的，等待过久，用户体验不好；太小的话，重复发送，导致网络堵塞，最终网络速度变慢，同样用户体验不好；</p>
 <p>由于 ACK 的返回速度跟接收方的地理位置有关，理论上双方离得越远，返回的就越慢，因此最好的办法是根据实际情况，动态设置 ACK 等待时间；</p>
 <h3 id="使用窗口有效管理-ACK-号"><a href="#使用窗口有效管理-ACK-号" class="headerlink" title="使用窗口有效管理 ACK 号"></a>使用窗口有效管理 ACK 号</h3><p>当有了 ACK 等待时间后，在 ACK 号返回前，如果傻傻的等待，啥事也不做，显然有点浪费资源，因此便产生了滑动窗口的概念。它的意思是根据窗口大小，一次发出一批多个包，然后在收到接收方的 ACK 信号后，再发送下一批；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207074726.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207074726.png" srcset="/img/loading.gif" lazyload></p>
 <p>由于接收方为接收数据所分配的缓冲区大小是有上限的，因此当到达的数据过快过多，而数据又未能被及时处理并清空缓冲区的话，就有可能导致缓冲区溢出。为了避免这个情况，接收方会在一开始将自己可用的缓冲区大小告知发送方。发送方在收到该信息后，在不超过该值的情况下，发送合适数量的数据包出去，然后等待接收方下一次告知可用缓冲区大小后，再开始新一轮的发送动作；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207075419.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207075419.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>虽然这张图显示的好像发送方有等待的情况出现，但在现实情况中，由于接收方的处理速度往往远大于网络速度，因此这种等待的情况不常出现（除非应用程序不来及时取走数据）。接收方在收到数据并清空缓冲区后，发送方的下一个包经常还没有到达，因此接收方发出的窗口大小仍然是完整的大小；</p>
 </blockquote>
@@ -214,11 +499,11 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <p>客户端在收到该 FIN 包后，会更新 Socket 对象中的状态字段，以标记为断开状态，然后发一个 ACK 包给服务端，表示自己收到 FIN 包了；</p>
 <p>之后当应用程序调用 read 函数来读取数据时，如果缓冲区中有数据，就将数据交给应用程序，直至清空缓冲区 ；如果没有数据，则给应用程序返回信号，告知应用程序数据已经全部接收完毕了，没有更多的数据了。然后应用程序会调用 socket 库的 close 函数，关闭连接。此时客户端会发送一个 FIN 包给服务端；服务端收到该 FIN 包后，会返回一个 ACK 信号；</p>
 <h3 id="删除套接字"><a href="#删除套接字" class="headerlink" title="删除套接字"></a>删除套接字</h3><p>当连接断开后，双方的套接字并不会立即删除，而是会保留一段时间后（一般是几分钟）再删除。之所以如此，是为了避免出现异外情况。例如客户端在收到服务端的 FIN 包后，会返回一个 ACK 信号给服务端，但有可能该 ACK 在网络中丢失了。因此过了一段时间服务端会重发一次 FIN 信号。如果客户端在发出 ACK 信号后，即将套接字删除，并将端口分配给一个新的应用程序，则有可能导致该应用程序收到服务端的 FIN 包，导致连接出错；</p>
-<h3 id="数据收发操作小结"><a href="#数据收发操作小结" class="headerlink" title="数据收发操作小结"></a>数据收发操作小结</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207201855.png"></p>
-<h2 id="IP-与以太网的包收发操作"><a href="#IP-与以太网的包收发操作" class="headerlink" title="IP 与以太网的包收发操作"></a>IP 与以太网的包收发操作</h2><h3 id="包的基本知识"><a href="#包的基本知识" class="headerlink" title="包的基本知识"></a>包的基本知识</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207210529.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207210653.png"></p>
+<h3 id="数据收发操作小结"><a href="#数据收发操作小结" class="headerlink" title="数据收发操作小结"></a>数据收发操作小结</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207201855.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="IP-与以太网的包收发操作"><a href="#IP-与以太网的包收发操作" class="headerlink" title="IP 与以太网的包收发操作"></a>IP 与以太网的包收发操作</h2><h3 id="包的基本知识"><a href="#包的基本知识" class="headerlink" title="包的基本知识"></a>包的基本知识</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207210529.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207210653.png" srcset="/img/loading.gif" lazyload></p>
 <p>MAC 头部也是由 IP 协议栈来写入的，IP 协议栈将下一个转发设备的 MAC 地址作为 MAC 头部的字段。之后以太网协议根据这个 MAC 头部，就可以知道应该将数据包发给哪台转发设备；因此，在整个传输过程中，MAC 头部的信息是不断变化的，由当前转发设备改写它，改写后的新内容是下一个转发设备的 MAC 地址；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207211706.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211207211706.png" srcset="/img/loading.gif" lazyload></p>
 <p>转发设备在收到数据包后，会先去掉 MAC 头部，然后查看里面的目的地服务器的 IP 地址，然后基于该 IP 地址，从自己维护的映射表中，找到下一个转发设备的 MAC 地址，然后为数据包添加新的 MAC 头部；</p>
 <blockquote>
 <p>此处基于以太网来举例，所以用到了 MAC 头部。当数据包在某个非以太网的网络中进行传输时，转发设备就会按照不同的协议规定，为其添加相应的头部，例如无线网、ADSL等，以便该数据包在新的网络中，也可以进行传输。这就是分层的好处，某一层的改变，不会影响到其他层，从而在使用过程中可以非常的灵活，任意的组合，兼容各种使用场景；</p>
@@ -263,40 +548,40 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </ul>
 <h3 id="通过-ARP-查询目标路由器的-MAC-地址"><a href="#通过-ARP-查询目标路由器的-MAC-地址" class="headerlink" title="通过 ARP 查询目标路由器的 MAC 地址"></a>通过 ARP 查询目标路由器的 MAC 地址</h3><p>ARP：address resolution protocol，地址解析协议，基于 IP 地址查询相应的 MAC 地址；</p>
 <p>ARP 有点类似广播机制，它会向同一子网中的所有设备广播一条查询消息；收到消息的设备，会检查自己的 IP 是否与查询信息匹配，如果匹配，就应答；如果不匹配，就保持沉默；（如果是连接到集线器的话，广播是可以理解的；但好奇如果网卡是连接到路由器而，路由器应该不会广播吧，而是直接返回结果？）</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208194814.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208194814.png" srcset="/img/loading.gif" lazyload></p>
 <p>为了避免重复查询，IP 模块使用了 ARP 缓存。每次查询一条新记录后，就将结果保存到缓存中。这样下次查询的时候，先查找一下缓存中的记录，如果能够找到，就不需要对外广播查询了，提高效率；</p>
 <p>由于外部的 IP 地址可能是动态变化，同一个 IP 地址，一段时间后，可能绑定到了一台新的设备上面。因此 ARP 缓存中的数据是会失效的。为了规避失效问题，简单粗暴的办法就是每隔一段时间，让删除缓存记录，这样就可以定期更新了；尽管如此，在刷新之前，有可能缓存记录就已经是错的了，这个时候就只能手动删除缓存来解决了；</p>
 <blockquote>
 <p>添加 MAC 头部的动作理论上也可以交由网卡来完成，但这样会导致网卡（硬件）和网络类型耦合，降低了网卡的通用性，因此设计成由 IP 模块来完成添加 MAC 头部的动作会更加合理；</p>
 </blockquote>
 <h3 id="以太网的基本知识"><a href="#以太网的基本知识" class="headerlink" title="以太网的基本知识"></a>以太网的基本知识</h3><p>最早的以太网是设计成广播式的，以太网中的各个设备通过一条主干网线连接起来，然后任意一台设备发出的数据包，会传输给所有的设备。收到的数据包的设备检查包中的 MAC 地址是否与自己的相符，如果相符，就处理它；如果不符，就丢弃它；显然，这种方式效率有点低，后来进一步进化，衍生出了交换机。交换机作为中介接收数据包，再将数据包发给匹配的设备，不再广播给所有设备了，这样提高了处理效率；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208200208.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208200208.png" srcset="/img/loading.gif" lazyload></p>
 <p>简化来说，以太网可以视作基于 MAC 地址进行相互通讯的一个局域网络；</p>
 <h3 id="将-IP-包转换成电或光信号发送出去"><a href="#将-IP-包转换成电或光信号发送出去" class="headerlink" title="将 IP 包转换成电或光信号发送出去"></a>将 IP 包转换成电或光信号发送出去</h3><p>IP 模块完成添加头部的动作后，接下来就需要将数据包交给网卡驱动进行处理了。网卡驱动负责将数据写入到网卡的缓冲区，然后通知网卡内部的 MAC 模块进行发送；MAC 模块收到指令后，从缓冲区读取数据后，交给 PHY 模块转成电信号发送出去；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208203858.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208203858.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>虽然每张网卡在出厂的时候的内置一个全球唯一的 MAC 地址，但是实际通信过程中不一定会使用它。该地址可由网卡驱动程序从网卡内置的 ROM 中读取，也可以由用户自己设置写入驱动程序，此时会忽略内置的 ROM；</p>
 </blockquote>
-<h3 id="给网络包再加-3-个控制数据"><a href="#给网络包再加-3-个控制数据" class="headerlink" title="给网络包再加 3 个控制数据"></a>给网络包再加 3 个控制数据</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205031.png"></p>
+<h3 id="给网络包再加-3-个控制数据"><a href="#给网络包再加-3-个控制数据" class="headerlink" title="给网络包再加 3 个控制数据"></a>给网络包再加 3 个控制数据</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205031.png" srcset="/img/loading.gif" lazyload></p>
 <p>网卡的 MAC 模块从缓冲区读取完数据后，会为它们再次添加三个数据，分别是：</p>
 <ul>
 <li>报头：56 bit，由 1 和 0 组成的比特序列；这些 1 和 0 序列转成电信号后，会出现特定形状的波形，接收方基于该波形判断什么时候开始读取数据（用来同步双方的时钟周期）；</li>
 <li>起始桢分界符 SFD：8 bit， 也是一个特定 1 和 0 组成的序列，接收方在看到该序列时，就知道接下来的部分是主体数据了；</li>
 <li>FCS：32 bit，校验和，方便接收方判断所接收到的数据是否完整和正确，用来排除传输过程中的信号干扰；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205052.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205052.png" srcset="/img/loading.gif" lazyload></p>
 <p>之所以会有波形的概念，然后在于 1 和 0 会被转化成特定的电压和电流，这样电压和电流就会出现变化，形成波；理论上，接收方在收到电信号波后，可以将其还原成 0 和 1。但这里面存在一个问题，当连续出现 1 或 0 的时候，波形没有变化，这个时候就抓瞎了，不知道该段波形中包含几个 1 或 0；</p>
 <p>为了能够能够一段没有变化的波形中，包含几个 1 或 0，就需要引入时钟单位，每个时钟单位对应一个比特。这样就可以知道一段没有变化的波形包含几个比特的 1 或 0 了；最简单粗暴的办法，是增加一条线路，将时钟信号也发给接收方。这样接收方就可以根据时钟信号，对另外一条线路中的数据信号进行解读。</p>
 <p>但是这又引入了一个新的问题，当有两条线路时，它们很难是一样长度的。随着距离超长，二者的长短误差就会变得越大。大到一定程度时，就会导致时钟偏移（偏左或偏右了），这样最终读取出来的数据就不准确了；</p>
 <p>为了解决偏移问题，一个巧妙的办法是将两种信号叠加起来，然后额外告知对方时钟的变化周期，让双方的时钟周期实现同步。这就是报头的作用，报头本质上是一段让接收方获得发送方时钟周期的特殊信号；接收方在收到数据包后，解析报头，获得时钟信号。然后反算出数据信号；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205340.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211208205340.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="向集线器发送网络包"><a href="#向集线器发送网络包" class="headerlink" title="向集线器发送网络包"></a>向集线器发送网络包</h3><p>网卡的 MAC 模块为数据添加头部、分界符和校验值之后，就可以调用 PHY（MAU）模块将数据转成电信号发送出去。日常生活中经常听到的 10M 或 100M 带宽的意思即是每秒种可以将多少数字信号转成电信号；</p>
 <blockquote>
 <p>集线器的工作方式是半双工的，意思是同一个时刻，要么是发送状态，要么是接收状态，两种状态不能同时存在，有点像对讲机；因此，在给集线器发送信号之前，网卡需要先判断一下当前的线路状态，如果处于空闲就可以发送；如果正在发送上一组信号，或者正在接收信号，则需要等待；当多台设备同时发送信号时，就会出现信号碰撞，导致传输的信号无效。这时检测到碰撞的设备会广播碰撞信号，所有收到广播的设备都会终止发送。然后根据各自的 MAC 地址计算出各自的等待时间，之后再开始发送；</p>
 <p>交换机的工作方式是全双工的，接收和发送可以同时发生，因此不会发生信号碰撞的问题，传输效率要高很多，也比较简单；</p>
 </blockquote>
 <p>MAC 模块转换成的电信号是通用格式，但实际是线路有很多规格，不同规格有不同的电信号模式。因此 PHY 模块需要负责将通用电信号转换成特定类型的电信号。例如 10BASE-T 类型的电信号以变化代表 1，没有变化代表 0，如下图：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209071038.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209071038.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="接收返回包"><a href="#接收返回包" class="headerlink" title="接收返回包"></a>接收返回包</h3><p>包的接收过程和发送过程刚好是反过来的，区别在于 MAC 模块将数据存入缓冲区后，需要发出中断信号，这样 CPU 才会宠幸一下，将控制权转移给中断处理程序，中断处理程序再通知网卡驱动程序，把缓冲区中的数据拿走处理；</p>
 <p>网卡驱动程序取到数据后，从 MAC 头部解析出以太网类型（如 0800 表示 TCP&#x2F;IP），然后调用相应的栈议栈（如 TCP&#x2F;IP）对数据包进行处理。协议栈拿到数据后，对头部进行解析，判断消息应该交给哪个应用程序进行处理；</p>
 <h3 id="将服务器的响应包从-IP-传递给-TCP"><a href="#将服务器的响应包从-IP-传递给-TCP" class="headerlink" title="将服务器的响应包从 IP 传递给 TCP"></a>将服务器的响应包从 IP 传递给 TCP</h3><p>IP 模块在收到网卡驱动程序的数据包后，会先检查一下这个包是否属于自己（通过比对接收方 IP 地址和当前网卡的 IP 地址是否一致）；如果一致，就接收；如果不一致，就报错；</p>
@@ -336,11 +621,11 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <p>有时防火墙会阻止 UDP 协议，因此需要更改规则对 UDP 放行，要么就只能改用 TCP 协议来发送了；</p>
 </blockquote>
 <h1 id="从网线到网络设备"><a href="#从网线到网络设备" class="headerlink" title="从网线到网络设备"></a>从网线到网络设备</h1><h2 id="信号在网线和集线器中传输"><a href="#信号在网线和集线器中传输" class="headerlink" title="信号在网线和集线器中传输"></a>信号在网线和集线器中传输</h2><h3 id="每个包都是独立传输的"><a href="#每个包都是独立传输的" class="headerlink" title="每个包都是独立传输的"></a>每个包都是独立传输的</h3><p>包从网卡出来后，在网络中的传输过程是只涉及到 MAC 头部和 IP 头部，因此 TCP 头部和内容，都与传输过程无关，因为在传输过程中用不到里面的数据；</p>
-<h3 id="防止网线中的信号衰减很重要"><a href="#防止网线中的信号衰减很重要" class="headerlink" title="防止网线中的信号衰减很重要"></a>防止网线中的信号衰减很重要</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209213236.png"></p>
+<h3 id="防止网线中的信号衰减很重要"><a href="#防止网线中的信号衰减很重要" class="headerlink" title="防止网线中的信号衰减很重要"></a>防止网线中的信号衰减很重要</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209213236.png" srcset="/img/loading.gif" lazyload></p>
 <p>信号传输的本质其实是在网线上施加正负变化的电压，但是在发送端很清晰准确的电压值，在传输过程中，随着距离加大，会出现衰减，并且也会受到干扰。因此，当信号到达接收端的时候，其波形以及电压值有可能失真。如果失真的程度很大，则会造成信号值解析错误；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209214055.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209214055.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="双绞是为了抑制噪声"><a href="#双绞是为了抑制噪声" class="headerlink" title="双绞是为了抑制噪声"></a>双绞是为了抑制噪声</h3><p>当网线周围存在电磁波时，由于信号线是金属，因此会在信号线上产生电流，叠加到原本的信号电流，导致电流受到干扰出现失真；双绞线的原理，就是让网线不是直的，而是呈螺旋型，这样网线一直在左右两个方向拐来拐去改变方向。而根据电磁波的原理，它会在不同方向的网线上产生方向相反的电流，因此这两部分电流刚好相互抵销；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209220249.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211209220249.png" srcset="/img/loading.gif" lazyload></p>
 <p>其他降低噪声的措施：</p>
 <ul>
 <li>在信号线外部包裹金属屏蔽网；</li>
@@ -348,16 +633,16 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </ul>
 <h3 id="集线器将信号发往所有线路"><a href="#集线器将信号发往所有线路" class="headerlink" title="集线器将信号发往所有线路"></a>集线器将信号发往所有线路</h3><p>以太网最初的设计是广播机制，即信号被广播到所有连接到同一网络的设备，然后由各个设备自行判断当前数据包是否属于自己；是就接收，不是就丢弃；</p>
 <p>网线支持全双工，这意味着发送信号和接收信号的线是分工单独运行的，因此当两个设备使用网线进行连接的时候，需要使用交叉接线，不然发送对发送，信号就碰撞了；网卡一般是直线接线（MDI），集线器默认是交叉接线（MDI-X），这样网卡可以用网线直接连接到集线器即可正常工作。但是如果是两台集线器之间，就需要做切换转换，集线器一般自带信号转换开关。开关的作用是将当前接口由默认的 MDI-X 模式转换为 MDI 模式；如果是两台计算机直连，则需要使用交叉网线；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210070311.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210070311.png" srcset="/img/loading.gif" lazyload></p>
 <p>集线器的功能非常简单，大部分是使用中断电路，将发送方的信号，原封不动的广播到所有其他设备上面（貌似非常吻合早期的原始场景）；</p>
 <h2 id="交换机的包转发操作"><a href="#交换机的包转发操作" class="headerlink" title="交换机的包转发操作"></a>交换机的包转发操作</h2><h3 id="交换机根据地址表进行转发"><a href="#交换机根据地址表进行转发" class="headerlink" title="交换机根据地址表进行转发"></a>交换机根据地址表进行转发</h3><p>交换机比集线器智能一点，不再广播数据包，而是维护一张 MAC 地址和端口的映射表，然后收到数据包里面，从 MAC 头部解析出 MAC 地址，再从映射表中查询到相应的端口，之后将数据包转发给该端口上面的设备即可；</p>
 <p>当然，为了得到数据包中的 MAC 地址，交换机也是需要会出不少代价的，它需要做一遍普通网卡需要做的数据包解析工作。因此，可以将每个交换机上面的端口近似看做一张网卡。唯一的不同是交换机端口会接收所有的包，不像网卡会丢弃不属于自己的包；</p>
 <blockquote>
 <p>网卡支持开启 MIX 模式，在该模式下，网卡会接收所有的包。如果在计算机中安装一个软件对包按 MAC 地址进行转发，那么计算机就可以扮演交换机的功能，相当于”软交换机“；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210071109.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210071109.png" srcset="/img/loading.gif" lazyload></p>
 <p>交换机通过交换电路来实现转发。交换电路的原理也非常简单，它通过一个二维的开关网格，来实现输入端和输出端之间的电路连接。通过操控网格中的电子开关，就可以将任意一路输入端和任意一路输出端连接起来；而且可以并发转不同的输入端信号；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210074559.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210074559.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="MAC-地址表的维护"><a href="#MAC-地址表的维护" class="headerlink" title="MAC 地址表的维护"></a>MAC 地址表的维护</h3><p>MAC 地址表的维护涉及两个动作，分别如下：</p>
 <ul>
 <li>添加：当收到一个数据包时，解析出其中的发送方 MAC 地址后，将其写入地址表，映射到相应的端口号上面；</li>
@@ -374,18 +659,18 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </blockquote>
 <h3 id="自动协商：确定最优的传输速率"><a href="#自动协商：确定最优的传输速率" class="headerlink" title="自动协商：确定最优的传输速率"></a>自动协商：确定最优的传输速率</h3><p>在以太网的连接中，当双方没有传输数据时，线路并不是空闲的，而是会持续发送脉冲信号，用来检测当前线路是否处于正常连接的状态；当连接正常时，网卡上的 LED 指示灯会显示绿色；</p>
 <p>早期的脉冲信号很简单，仅用来探测连接正常即可。后来人们利用信号中的偶数位置，来传递有意义的信号，用于双方的工作模式和传输速率自动协商；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210081736.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210081736.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="交换机可同时执行多个转发操作"><a href="#交换机可同时执行多个转发操作" class="headerlink" title="交换机可同时执行多个转发操作"></a>交换机可同时执行多个转发操作</h3><p>由于交换机每次只将数据包转发给特定的端口，其他端口并不会接收到该数据包，因此其他端口也可以同时发送或接收自己的数据，即所有的端口都是可以同时工作的，不像集线器模式下，当某个端口广播数据时，其他端口只能停下来并接收数据；</p>
 <h2 id="路由器的包转发操作"><a href="#路由器的包转发操作" class="headerlink" title="路由器的包转发操作"></a>路由器的包转发操作</h2><h3 id="路由器的基本知识"><a href="#路由器的基本知识" class="headerlink" title="路由器的基本知识"></a>路由器的基本知识</h3><p>路由器的核心功能也是包的转发，它与交换机的区别在于，交换机是面向以太网设计的，因此基于 MAC 地址进行转发判断；而路由器是基于互联网设计的，因此它是基于 IP 地址进行转发判断；</p>
 <p>路由器主要由两个模块组成，一个是端口模块，一个是转发模块。转发模块负责判断数据包的目的地（类似 IP 模块，基于路由表的查询），端口模块则负责具体收发操作（类似网卡）；</p>
 <p>不同的路由器拥有一种或多种端口，可以支持多种不同的网络，例如无线局域网、ADSL、FTTH（光纤）、以太网等；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210082755.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210082755.png" srcset="/img/loading.gif" lazyload></p>
 <p>路由器和交换机的一个最大区别在于，交换机只是通过交换电路，帮助收发双方的电路实现连接，它本身并不参与其中。但路由器则不同，它是以独立的中间人身份介入整个收发过程的。发送方和接收方并没有直接互联，而是对接路由器这个中间方；相当于接收方只知道路由器的存在，并没有和发送方直接打交道；为了扮演中间人的作用，路由器上的每个端口都有自己的 IP 地址，而交换机则没有（但也可以有，如果开启 DHCP 功能的话）；</p>
 <blockquote>
 <p>路由器有点像是一个透明代理</p>
 </blockquote>
 <h3 id="路由表中的信息"><a href="#路由表中的信息" class="headerlink" title="路由表中的信息"></a>路由表中的信息</h3><p>交换机维护的是 MAC 地址映射表，而路由器维护的则是 IP 地址映射表；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210083821.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211210083821.png" srcset="/img/loading.gif" lazyload></p>
 <p>10.10.1.0 &#x2F; 255.255.255.0 所表达的含义和 10.10.1.0 &#x2F; 24，是完全相同的，都是用来表示匹配该地址的前 24 个位即可；子网掩码的功能是用来表示需要匹配目标地址多少个位；因此，会存在多种匹配级别，例如前8位、前16位、前24位，前32位等；当为前32位时，由于 IPv4 地址总共也才 32 位，因此已经是全部匹配了，此时一般对应某台具体的主机；</p>
 <p>当匹配到某条路由记录后，就可以读取记录中的端口号，用来作为数据包的转发目标；</p>
 <p>交换机的 MAC 地址表是由交换机自动维护的，而路由器上的路由表，则同时支持自动维护和手工维护两种模式；自动维护会涉及到路由协议，常见的路由协议有 RIP, OSPC, BGP 等；</p>
@@ -397,7 +682,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <h3 id="找不到匹配路由时选择默认路由"><a href="#找不到匹配路由时选择默认路由" class="headerlink" title="找不到匹配路由时选择默认路由"></a>找不到匹配路由时选择默认路由</h3><p>默认路由的子网掩码为 0.0.0.0，它表示需要匹配的比特位数量为 0 个，因此相当于匹配所有了；计算机的网卡 IPv4 属性设置中，也有一个默认网关，其实它就是在设置默认路由；</p>
 <h3 id="包的有效期"><a href="#包的有效期" class="headerlink" title="包的有效期"></a>包的有效期</h3><p>路由器在转发包的时候，会更新其中数据包头部的 TTL 值，以避免回环；默认值一般为 64 或者 128；</p>
 <h3 id="通过分片功能拆分大网络包"><a href="#通过分片功能拆分大网络包" class="headerlink" title="通过分片功能拆分大网络包"></a>通过分片功能拆分大网络包</h3><p>由于路由器支持多种端口，因此可能存在收到的数据包尺寸大于端口能够支持的最大尺寸，此时路由器就需要对包作分片的动作，以便能够将包转发出去；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211211065950.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211211065950.png" srcset="/img/loading.gif" lazyload></p>
 <p>有两种情况不允许分片：</p>
 <ul>
 <li>头部字段禁止分片；遇到情况会丢弃该包，并发送 ICMP 消息通知发送方；</li>
@@ -414,7 +699,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>192.168.0.0 至  192.168.255.255，约可容纳 6 万台</li>
 </ul>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211211080731.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211211080731.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="地址转换的基本原理"><a href="#地址转换的基本原理" class="headerlink" title="地址转换的基本原理"></a>地址转换的基本原理</h3><p>地址转换的原理非常简单，就是将数据包 IP 头部中的私有地址和端口，改成公有地址和新端口，并在内部建立映射表，然后发送出去。建立映射表的目的是当接收方返回数据时，可以根据映射表再次转换，将数据包转发给内网的设备；</p>
 <h3 id="改写端口号的原因"><a href="#改写端口号的原因" class="headerlink" title="改写端口号的原因"></a>改写端口号的原因</h3><p>如果不改写端口号，那么只能通过 IP 地址来区分不同的内网设备，这时就需要分每台内网分配一个唯一的公共 IP 地址，并在连接结束后收回。这种方式虽然也可行，但无法最大化的节省公共 IP 地址。因为当内网设备很多的时候，并且有同时上网的需求，就会分配一大堆的公共 IP 地址；</p>
 <h3 id="从互联网访问公司内网"><a href="#从互联网访问公司内网" class="headerlink" title="从互联网访问公司内网"></a>从互联网访问公司内网</h3><p>地址转换会带来一个有趣的副作用，即如果地址转换映射表中没有记录，从互联网进入内网的包就不知道应转发给哪个设备，此时路由器就会丢弃该包。该副作用是可以保护内网设备的安全性，防止非法入侵；</p>
@@ -422,7 +707,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <blockquote>
 <p>虽然包过滤的原理很简单，但是想要实现正确的配置，在实现正常访问的同时，还能够防止非常入侵，是非常困难的</p>
 </blockquote>
-<h1 id="通过接入网进入互联网内部"><a href="#通过接入网进入互联网内部" class="headerlink" title="通过接入网进入互联网内部"></a>通过接入网进入互联网内部</h1><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212092010.png"></p>
+<h1 id="通过接入网进入互联网内部"><a href="#通过接入网进入互联网内部" class="headerlink" title="通过接入网进入互联网内部"></a>通过接入网进入互联网内部</h1><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212092010.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="ADSL-接入网的结构和工作方式"><a href="#ADSL-接入网的结构和工作方式" class="headerlink" title="ADSL 接入网的结构和工作方式"></a>ADSL 接入网的结构和工作方式</h2><h3 id="互联网的基本结构和家庭、公司网络是相同的"><a href="#互联网的基本结构和家庭、公司网络是相同的" class="headerlink" title="互联网的基本结构和家庭、公司网络是相同的"></a>互联网的基本结构和家庭、公司网络是相同的</h3><p>互联网的基本结构和家庭或公司内部网络是相同的，主要不同点如下：</p>
 <ul>
 <li>由于物理距离变长和线路的信号衰减，因此需要在中间增加很多路由器作为中间转发设备；</li>
@@ -432,8 +717,8 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <blockquote>
 <p>ADSL：asymmetric digital subscriber line，不对称数字用户线路。利用现有电话线进行通信的技术，它的特点是上行和下行不对称；</p>
 </blockquote>
-<h3 id="ADSL-Modem-将包拆分成信元"><a href="#ADSL-Modem-将包拆分成信元" class="headerlink" title="ADSL Modem 将包拆分成信元"></a>ADSL Modem 将包拆分成信元</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212095235.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212095612.png"></p>
+<h3 id="ADSL-Modem-将包拆分成信元"><a href="#ADSL-Modem-将包拆分成信元" class="headerlink" title="ADSL Modem 将包拆分成信元"></a>ADSL Modem 将包拆分成信元</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212095235.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212095612.png" srcset="/img/loading.gif" lazyload></p>
 <p>当使用 ADSL 来接入网络时，接入路由器通常使用 PPPoE 方式进行连接，因此路由器会按照 PPPoE 规则，给包加上PPP 头部、PPPoE 头部和 MAC 头部，然后再将包发送给 ADSL Modem；Modem 的职责是将收到的包拆成 ATML 信元，然后转成电信号发送给运营商的 Modem；</p>
 <blockquote>
 <p>ATM：Asynchronous Transfer Mode，异步传输。ATM 信元也是一种数据包，但是它很小，头部只有 5 个字节，数据主体只有 48 字节，使用 ATM 通信协议；</p>
@@ -441,9 +726,9 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </blockquote>
 <h3 id="ADSL-将信元“调制”成信号"><a href="#ADSL-将信元“调制”成信号" class="headerlink" title="ADSL 将信元“调制”成信号"></a>ADSL 将信元“调制”成信号</h3><p>网线在传输数字信号时，一般使用方波，它的优点是简单，但缺点是容易失真，随着距离变长，出错率会上升。ADSL 为了克服容易失真的缺点，使用了正弦波（圆滑波形）合成信号（调制）来表示 0 和 1；</p>
 <p>调制信号有很多种方法，例如振幅调制、相位调制。它们的区别在于使用不同的方法来表示 0 和 1，甚至表示更多的位，例如用 4 种振幅分别表示 00、01、10、11 等（虽然振幅越多可以表示更多种情况，但也更容易误判出错）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212115223.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212115223.png" srcset="/img/loading.gif" lazyload></p>
 <p>相位调制也可以让波从不同位置开始来表示四种情况，示例如下：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212120030.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212120030.png" srcset="/img/loading.gif" lazyload></p>
 <p>正交振幅调制通过结合振幅调制和相位调制，就可以用表示四种情况；由于振幅和相位是不同维度的特征，因此这种维度结合方案，相对单维度的细分方案，更加健壮不容易出错；</p>
 <h3 id="ADSL-通过使用多个波来提高速率"><a href="#ADSL-通过使用多个波来提高速率" class="headerlink" title="ADSL 通过使用多个波来提高速率"></a>ADSL 通过使用多个波来提高速率</h3><p>波是可以有多种频率的，而通过滤波器我们又可以将不同频率的波分离出来。因此，通过将多种频率的波合成在一起，我们就可以在单位时间内传递更多的信号，而单位时间可以传递的信号数量即是带宽。</p>
 <p>ADSL 通过合成上百个不同频率的波，来实现更大的带宽。为了降低分离难度，每种波使用一定的频率范围，不同波之间的频率间隔为 4.312 KHz，并且都使用正交振幅进行调制；</p>
@@ -451,29 +736,29 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <p>ADSL 之所以能够实现上下行不同的速率，其原因就在于它为上行和下行分配了不同的数量的频段。上行的频段数量少一些，下行的多一些。</p>
 <p>噪声和衰减由环境的影响很大，因此每条线路都会存在不同的情况。在为频段分配比特位时，为了提高分配效率，ADSL 在线路通电初始化时，会先做一个测试。根据测试结果，为不同的频段分配最合理数量的比特数（该过程称为训练，一般需要消耗几秒到几十秒左右的时间）；</p>
 <h3 id="分离器的作用"><a href="#分离器的作用" class="headerlink" title="分离器的作用"></a>分离器的作用</h3><p>由于 ADSL 借助电话线进行信号的传播，因此电话信号和网络信号会同时在电话线上存在。分离器的作用，就是根据信号的频率，将电话信号（低频信号）分离出来，并将电话信号转给电话机。不然电话机如果收到所有的信号，就会导致电话声音包含很多噪声，无法听清；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212122709.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212122709.png" srcset="/img/loading.gif" lazyload></p>
 <p>电话机在接通和挂断信号的瞬间，会导致线路的信号出现突然的增加和减少，因此会改变噪声条件。正常情况下，当噪声条件改变时，Modem 之间就需要重新握手。显然这样很不合理，因为在接听或挂断电话时，就会导致网络中断。分离器的另外一个作用，就是避免这种情况的出现。</p>
 <h3 id="从用户到电话局"><a href="#从用户到电话局" class="headerlink" title="从用户到电话局"></a>从用户到电话局</h3><p>电信号从 Modem 出来后，就是走的日常的电话线路了。一般一幢大楼有很多住户或公司，因此每家住户或公司的电话线会先到达本栋大楼的 IDF（中间配线盘） 或 MDF （主配线盘），然后到达保安器（用来防雷击），最后汇成一股，接到室外的电线杆，延伸到电信局附近，然后走到地下，通过电缆隧道，进入电信局大楼的地下室。之所以最后一段要走地下，是为了避免电信局附近竖起大量的电线杆，一来占地太多，二来有火灾隐患；</p>
 <blockquote>
 <p>配线盘的目的是将电信局出来的线路与各住户或公司进行一一对应；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212124002.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212123940.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212124002.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212123940.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="噪声的干扰"><a href="#噪声的干扰" class="headerlink" title="噪声的干扰"></a>噪声的干扰</h3><p>由于电话线也是使用金属来传递电信号，因此它不可避免也会出现噪声干扰的问题；由于电话线设计之初并未考虑到会用来传递 ADSL 高频信号，因此它比双绞网线更容易受到噪声的干扰；</p>
 <p>由于电话线传递的是多频合成的信号，其中只有和噪声频率相近的频段会受到噪声的影响，其余频段不受影响，因此最终接收方收到的可用信号变少了。由于在通电初始化时会检测可用频段，因此当出现噪声时，它不会像网线一样出现信号丢失，而是可用频段变少，传输速度下降而已；</p>
 <h3 id="通过-DSLAM-到达-BAS"><a href="#通过-DSLAM-到达-BAS" class="headerlink" title="通过 DSLAM 到达 BAS"></a>通过 DSLAM 到达 BAS</h3><p>DSLAM：DSL Access Multiplexer，数字用户线路接入复用设备；相当于多路 Modem 集成器，可以同时处理多个用户端 Modem 发过来的信号；理论上电话局也可以为每个用户配备一个 Modem，但显然这样需要大量的空间来放置 Modem；使用 DSLAM 就可以节省空间了；</p>
 <p>家用 Modem 有一个以太网接口，用来连接用户家里的路由器，而电信局的 DSLAM 一般不使用以太网接口，因为它不跟电信局路由器直接连接，而是使用 ATM 接口，先跟 BAS 设备连接，之后 BAS 设备再跟路由器连接；</p>
 <p>BAS 是一台包转发设备（一种特定类型的专用路由器），它的职责是将 ATM 信元还原成原始的包，然后去掉 MAC 头部和 PPPoE 头部，为余下的 PPP 头部及其主体数据添加隧道协议的专用头部（例如 L2TP 协议），发给后面的隧道专用路由器；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212175920.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212175920.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="光纤接入网（FTTH）"><a href="#光纤接入网（FTTH）" class="headerlink" title="光纤接入网（FTTH）"></a>光纤接入网（FTTH）</h2><h3 id="光纤的基本知识"><a href="#光纤的基本知识" class="headerlink" title="光纤的基本知识"></a>光纤的基本知识</h3><blockquote>
 <p>FTTH：Fiber To The Home，或许可以翻译为光纤入户；</p>
 </blockquote>
 <p>ADSL 在电话中上复合多个不同的频率的电信号来传输数据，光纤则简单得多，它使用明暗两种光线来表示 0 和 1；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212180206.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212180317.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212180206.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211212180317.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="单模与多模"><a href="#单模与多模" class="headerlink" title="单模与多模"></a>单模与多模</h3><p>光本质上也是一种电磁波，因此光之间也会相互干扰；从光源射入光纤的光线有很多束，光束在被反射后，会出现相位的改变，而相位不同的光线会相互抵销；因此，只有特定入射角的光束能够在光纤中顺利向前传播，其他光束则因彼此相互干扰而抵销了；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213122505.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213122610.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213122505.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213122610.png" srcset="/img/loading.gif" lazyload></p>
 <p>光纤分单模和多模，其区别在于单模光纤的直径较细，因此只有最小入射角的光线，才能够保持相位一致并在光纤中传播；多模光纤由于直径较粗，存在多个满足相位一致的入射角光束，可以有多条光线在光纤中传播，因此接收设备对光敏元件的要求比较低，可以降低成本；</p>
 <p>但它带来了另外一个问题，随着反射角度的变大，光线在光纤中反射的次数就会增多，传输距离变长，传输用时变多，因此和反射角度小的光线有到达时间差。如果时间差足够大，就会造成信号失真，因此，多模光纤的传输距离上限较小一些；</p>
 <h3 id="通过光纤分路来降低成本"><a href="#通过光纤分路来降低成本" class="headerlink" title="通过光纤分路来降低成本"></a>通过光纤分路来降低成本</h3><p>FTTH 架构和 ADSL 差不多，只是 ADSL 的 Modem 在 FTTH 中被换成了光纤收发器，它的职责就是将数据转在光信号发送出去。为了避免上行光信号和下行光信号产生互相干扰，上行和下行会使用不同波长的光线来传输数据，并使用棱镜分离原理获取所需的信号；</p>
@@ -482,7 +767,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <p>不管 FTTH 使用直连还是分路的方式，都可以使用 PPPoE 来传输数据包；</p>
 </blockquote>
 <h2 id="接入网中使用的-PPP-和隧道"><a href="#接入网中使用的-PPP-和隧道" class="headerlink" title="接入网中使用的 PPP 和隧道"></a>接入网中使用的 PPP 和隧道</h2><h3 id="用户认证和配置下发"><a href="#用户认证和配置下发" class="headerlink" title="用户认证和配置下发"></a>用户认证和配置下发</h3><p>多数 ADSL 使用 PPPoE 协议来完成认证和配置下发（例如分配公共 IP 地址）的工作。传统的 PPP 拨号流程如下：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213170315.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213170315.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>RADIUS：Remote Access Dial-In User Service，拨号用户远程登录服务；</p>
 <p>LCP：Link Control Protocol，连接控制协议</p>
@@ -495,12 +780,12 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>运营商可以根据用户名，统计用户的流量；</li>
 </ul>
 <p>在拨号上网的时代，使用专线传输，因此 PPP 协议可以使用 HDLC 协议作为容器。但到了非专线的 ADSL 和 FFTH 的时代，PPP 协议无法和以太网兼容，因此需要做一些改进，新的协议标准即为 PPPoE，Point to Point Protocol over Ethernet.</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171049.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171110.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171049.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171110.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>ADSL Modem 在收到路由器发过来的以太网数据包后，需要先将其转成 ATM 信元，之后再转成电信号，然后传送出去，到达电信局的 DSLAM；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171132.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213171132.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>FTTH 光纤收发器在收到路由器的以太网数据包后，无须转 ATM 信元，而是直接转成光信号，然后传送出去，到达电信局的多路光纤收发器；</p>
 </blockquote>
@@ -520,7 +805,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>DSLAM 将电信号还原成 PPPoE 数据包，转给 BAS；</li>
 <li>BAS 去掉数据包的 PPPoE 头部，得到 PPP 包，通过隧道发给运营商内部的路由器；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213222041.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213222041.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>好奇客户端在完成 PPPoE 拨号连接后，后续的包是否需要携带用户名密码？还是携带会话 ID 即可？理论上首次登录时，运营商的 BAS 路由器应该会与认证服务器（存储用户信息）通信，验证用户名和密码是否正确；如果正确，理论上 BAS 应该在本地生成会话，并将会话 ID 下发给客户端即可；这样后续每次收到客户端的数据包，只需检查其中的 PPPoE 头部是否包含有效的会话 ID 即可，无需再次连接认证服务器进行验证；</p>
 </blockquote>
@@ -533,7 +818,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </blockquote>
 <p>集成在一起会减少一些灵活性的损失，例如更换设备时，需要整套更换，而不能只更新其中的一部分。但好处是少了一些头部后，数据包可容纳的数据量变多了，MTU 比较大，间接提高了传输速度；</p>
 <p>另外还可以不使用 PPP，而是使用 DHCP 的方式给用户的路由器下发配置信息，这样就无须用户填写用户名和密码并对其进行验证；由于免去了 PPP 头部，还可以间接增加 MTU；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213230640.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211213230640.png" srcset="/img/loading.gif" lazyload></p>
 <p>虽然 DHCP 也使用 ADSL Modem，但这个 Modem 的作用有所不同，它无须将数据转成信元，而转成 ADSL 信号发直接送出去；</p>
 <blockquote>
 <p>DHCP：Dynamic Host Configuratin Protocol，动态主机配置协议；路由器可以借助该协议，将网络配置信息告知主机，这样主机就可以通过路由器接入互联网；</p>
@@ -543,9 +828,9 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <p>POP：Point of Presense，互联网接入点，即运营商暴露给使用者的路由器；</p>
 <p>NOC：Network Operation Center，网络运行中心，即运营商内部对接多个 POP 设备的中心设备。</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211214202614.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211214202614.png" srcset="/img/loading.gif" lazyload></p>
 <p>POP 设备有很多种类型，具体使用哪种类型，取决于运营商使用哪种线路和上下游进行对接；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211214203125.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211214203125.png" srcset="/img/loading.gif" lazyload></p>
 <p>POP 中连接用户端的路由器需要配备很多端口，以便可以和很多用户同时对接；由于 POP 到用户端的线路速率，因此相对于接骨干网的路由器，接入用户端的路由器的性能要求会低一些；而 NOC 设备由于要同时处理很多 POP 设备的数据，因此它的性能要求很高，其数据吞吐能力是普通 POP 设备的 3-4 个数量级；</p>
 <h3 id="室外通信线路的网络包"><a href="#室外通信线路的网络包" class="headerlink" title="室外通信线路的网络包"></a>室外通信线路的网络包</h3><p>家庭或公司内部的网络连接，由于数据量较小，因此一般使用双绞线就足够了；但对于运营商来说，网线不够用，一般需要使用光纤来传输数据；</p>
 <p>在室外铺设光纤的费用是很高的，只有拥有足够多客户的公司才能够承担。对于小运营商来说，更合理的方案是向大运营商租借线路的通信能力；</p>
@@ -558,13 +843,13 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <blockquote>
 <p>BGP：Border Gateway Protocol，边界网关协议；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215083832.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215083832.png" srcset="/img/loading.gif" lazyload></p>
 <p>有两种路由交换方案：</p>
 <ul>
 <li>转接：A 不但发送自己的子网，还发送自己知道的互联网上所有的路由信息；这种方案的好处是被告知者 B 可以知道 A 背后还有谁，有些包可以通过 A 作为中介到达 A 背后的运营商；</li>
 <li>对等：A 仅发送自己的子网；被告知者 B 只会将属于 A 子网的数据包发给 A，不属于 A 的就不会发了；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215084240.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215084240.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="与公司网络中自动更新路由表机制的区别"><a href="#与公司网络中自动更新路由表机制的区别" class="headerlink" title="与公司网络中自动更新路由表机制的区别"></a>与公司网络中自动更新路由表机制的区别</h3><p>运营商之间的路由器，跟普通公司内部的路由器在本质上并没有什么区别。但是由于运营商之间存在线路费用的关系，因此在制定和交换路由规则上面，需要有所考量，不能像普通路由那样使用最短路径；</p>
 <p>假设某个运营商的线路对外是收费的，那么他就会在路由规则中设置只转发交过费用的运营商的数据包，同时拒收那些未交费的运营商的数据包；另外，由于不同运营商的收费标准不同，因此在选择路由路径时，会设置一定的优先级，以降低成本；</p>
 <p>保证用户能够访问互联网中任意一台机器，是运营商的基本职责。虽然出于成本考量，不一定选择最短路径，但终究是可达的；</p>
@@ -572,13 +857,13 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <blockquote>
 <p>IX：Internet Exchange，互联网交换中心；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215201312.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215201312.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>由于 IX 同时对接多家运营商，因此其数据吞吐量非常大，有些甚至高达 200Gbit 每秒；</p>
 </blockquote>
 <h3 id="运营如何通过-IX-互相连接"><a href="#运营如何通过-IX-互相连接" class="headerlink" title="运营如何通过 IX 互相连接"></a>运营如何通过 IX 互相连接</h3><p>IX 本质上是一台交换机，与普通交换机的区别在于它的端口特别多，而且性能非常好（目前主流是使用 10Gbit&#x2F;s 的光纤端口）；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215201657.png"></p>
-<h1 id="服务器端的局域网中有什么玄机"><a href="#服务器端的局域网中有什么玄机" class="headerlink" title="服务器端的局域网中有什么玄机"></a>服务器端的局域网中有什么玄机</h1><h2 id="Web-服务器的部署地点"><a href="#Web-服务器的部署地点" class="headerlink" title="Web 服务器的部署地点"></a>Web 服务器的部署地点</h2><h3 id="在公司里部署-Web-服务器"><a href="#在公司里部署-Web-服务器" class="headerlink" title="在公司里部署 Web 服务器"></a>在公司里部署 Web 服务器</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215202718.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215201657.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="服务器端的局域网中有什么玄机"><a href="#服务器端的局域网中有什么玄机" class="headerlink" title="服务器端的局域网中有什么玄机"></a>服务器端的局域网中有什么玄机</h1><h2 id="Web-服务器的部署地点"><a href="#Web-服务器的部署地点" class="headerlink" title="Web 服务器的部署地点"></a>Web 服务器的部署地点</h2><h3 id="在公司里部署-Web-服务器"><a href="#在公司里部署-Web-服务器" class="headerlink" title="在公司里部署 Web 服务器"></a>在公司里部署 Web 服务器</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215202718.png" srcset="/img/loading.gif" lazyload></p>
 <p>Web 服务器上面通常会安装很多软件，如果某个软件存在安全漏洞，就会导致服务器受到攻击，但其实大部分服务器上的软件并不对外提供服务；因此，通过引入防火墙，只允许访问特定软件的数据包通过，这样就可以避免服务器受到某个软件漏洞的影响；</p>
 <blockquote>
 <p>目前仅靠防火墙已经不够用了，还需要配合反病毒软件、非法入侵检测软件、访问隔离机制等多套方案，才能有效提高安全性；</p>
@@ -586,7 +871,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <h3 id="将-Web-服务器部署在数据中心"><a href="#将-Web-服务器部署在数据中心" class="headerlink" title="将 Web 服务器部署在数据中心"></a>将 Web 服务器部署在数据中心</h3><p>由于数据中心离 IX 很近，因此可以让服务器获得更快的访问速度。同时由于数据中心通常还提供各种增值服务，因此一般也更加安全；</p>
 <h2 id="防火墙的结构和原理"><a href="#防火墙的结构和原理" class="headerlink" title="防火墙的结构和原理"></a>防火墙的结构和原理</h2><h3 id="主流的包过滤方式"><a href="#主流的包过滤方式" class="headerlink" title="主流的包过滤方式"></a>主流的包过滤方式</h3><p>防火墙的作用是只允许满足条件的流量通过，实现这个目标有很多种方案，但简单和低成本的方案是使用包过滤的方式；</p>
 <h3 id="如何设置包过滤规则"><a href="#如何设置包过滤规则" class="headerlink" title="如何设置包过滤规则"></a>如何设置包过滤规则</h3><p>由于数据包的头部包含一些关键的信息，因此可以基于这些头部信息制作相应的规则来实现包过滤；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215204746.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211215204746.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>上图的例子中，通过加入 TCP 包的控制位规则，实现 Web 服务器无法发起对互联网的访问，而只能响应客户端的请求；</p>
 </blockquote>
@@ -602,14 +887,14 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <h3 id="通过防火墙"><a href="#通过防火墙" class="headerlink" title="通过防火墙"></a>通过防火墙</h3><p>使用防火墙软件时，可考虑开启包丢弃日志，这样可以分析入侵者的攻击方法；路由器由于内置存储很小，一般不适合开启日志功能；</p>
 <h3 id="防火墙无法抵御的攻击"><a href="#防火墙无法抵御的攻击" class="headerlink" title="防火墙无法抵御的攻击"></a>防火墙无法抵御的攻击</h3><p>服务器程序本身的 BUG 引发的安全漏洞，是无法使用包过滤来规避的。常规的方法是增加部署检查包内容的软件或硬件；但这种方法的效力也是有限，因为某个包是否安全，是由服务器程序本身是否存在 BUG 来决定的，而这种 BUG 在早期是未知的，因此包检查软件也难以判断该数据包是否安全；</p>
 <h2 id="通过将请求平均分配给多台服务器来平均负载"><a href="#通过将请求平均分配给多台服务器来平均负载" class="headerlink" title="通过将请求平均分配给多台服务器来平均负载"></a>通过将请求平均分配给多台服务器来平均负载</h2><h3 id="性能不足时需要负载均衡"><a href="#性能不足时需要负载均衡" class="headerlink" title="性能不足时需要负载均衡"></a>性能不足时需要负载均衡</h3><p>负载均衡可以有多种方案，最简单的方案是使用 DNS；在设置 DNS 解析时，新增多条相同域名的解析记录，每一条对应一个不同的 IP 地址；这样每次查询 DNS 时，DNS 服务器都会返回所有地址，但不同的地址顺序；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216081555.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216081555.png" srcset="/img/loading.gif" lazyload></p>
 <p>虽然 DNS 机制最简单，但是它也有一些缺点，例如：</p>
 <ul>
 <li>当某台服务器宕机时，DNS 服务器无法知晓，仍然会给客户端返回宕机的服务器 IP 地址；除非客户端在发现第一个地址无效时，会自动访问第二个 IP 地址（多数浏览器已经实现该功能）；</li>
 <li>当多台服务器时，如果用户的某个会话信息存储在其中一台服务器上面，之后用户访问另外一台服务器时，会导致会话丢失；</li>
 </ul>
 <h3 id="使用负载均衡器分配访问"><a href="#使用负载均衡器分配访问" class="headerlink" title="使用负载均衡器分配访问"></a>使用负载均衡器分配访问</h3><p>负载均衡的另外一种方案是使用专门的负载均衡器；DNS 解析指向该负载均衡器，当客户端访问负载均衡器时，会负载均衡器判断应该将包转发给哪台服务器；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216082200.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216082200.png" srcset="/img/loading.gif" lazyload></p>
 <p>负载均衡器会根据服务器当前的负载情况来转发包，有多种判断办法，例如：</p>
 <ul>
 <li>定期查询服务器的 CPU 和内存使用情况；</li>
@@ -625,10 +910,10 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>使用多台功能不同的服务器：每台服务器分担的工作内容变少</li>
 </ul>
 <h3 id="缓存服务器通过更新时间管理内容"><a href="#缓存服务器通过更新时间管理内容" class="headerlink" title="缓存服务器通过更新时间管理内容"></a>缓存服务器通过更新时间管理内容</h3><p>缓存服务器需要前置在 Web 服务器之前先处理请求，如果没有负载均衡器，那么缓存服务器需要直接注册到 DNS 解析记录中；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216085257.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211216085257.png" srcset="/img/loading.gif" lazyload></p>
 <p>当客户端首次访问某个资源时，缓存服务器没有命中缓存，会直接将请求转给 Web 服务器，之后缓存 Web 服务器返回的结果；当客户端下次再访问相同资源时，缓存服务器在转发请求时，会在头部增加 If-Modified-Since 字段，用来沟通该资源是否发生了变更；</p>
 <h3 id="最原始的代理–正向代理"><a href="#最原始的代理–正向代理" class="headerlink" title="最原始的代理–正向代理"></a>最原始的代理–正向代理</h3><p>缓存服务器的方案最早其实是部署在客户端的（公司），而不像现在部署在服务端。当时客户端的缓存服务器是为了实现防火墙，然后在此过程中发现还可以顺便充当缓存服务器，因为当时的网速很慢，因此使用缓存服务器可以有效提高访问速度；另外公司还可以利用该机制，控制员工可访问的网站列表，避免访问危险的网站；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217073608.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217073608.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>后来由于出现了多种多样的代理方案，不同方案之间为了相互区分，因此才有了正向代理（forward proxy）、反向代理（reverse proxy）之类的名称；</p>
 </blockquote>
@@ -645,14 +930,14 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 </ul>
 </li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217074225.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217074225.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="正向代理的改良版–反向代理"><a href="#正向代理的改良版–反向代理" class="headerlink" title="正向代理的改良版–反向代理"></a>正向代理的改良版–反向代理</h3><p>由于使用正向代理要求用户修改浏览器配置，比较麻烦而且容易出错导致浏览器无法正常工作。因此改进的办法是将缓存服务器部署到服务端，将 HTTP 报文中的 URI 和目标 Web 服务器进行关联（因为 HTTP 1.0 版本没有 Host 字段），这样就可以得到完整的网站，从而能够转发任意消息。为了跟传统的前端代理以示区别，这种方式称为反向代理（reverse proxy）；</p>
 <h3 id="透明代理"><a href="#透明代理" class="headerlink" title="透明代理"></a>透明代理</h3><p>正向代理需要配置浏览器，反向代理需要配置服务器，二者才能正常工作；还有一种方案是根据数据包中 IP 头部来判断转发目标，这样就既不需要配置服务端，也无须配置浏览器，同时还获得了各自的优点；</p>
 <p>由于透明代理作为中间人在工作，因此它必须知道最终访问的目标 IP 地址，而不能让自己像反向代理一样成为被访问目标，否则数据包中的最终目标 IP 地址就变成它自己了（貌似可以通过域名再次查询出来？）；为了实现透明代理的功能，透明代理需要放置于数据包发出方和接收方之间的传输线路上面；</p>
 <h2 id="内容分发服务"><a href="#内容分发服务" class="headerlink" title="内容分发服务"></a>内容分发服务</h2><h3 id="利用内容分发服务分担负载"><a href="#利用内容分发服务分担负载" class="headerlink" title="利用内容分发服务分担负载"></a>利用内容分发服务分担负载</h3><p>如果将缓存服务器放在服务端，那么它可以减轻后端 Web 服务器的负担，提高后端这一段的访问速度，但由于所有的用户流量仍然会到达缓存服务器，因此它无法避免网络传输线路上存在的堵塞；</p>
 <p>如果缓存服务器由用户自己部署在客户端，那么它可以很好的避免网络上的堵塞，但是 Web 服务器无法控制客户端缓存服务器中的内容；</p>
 <p>第三种方案就是将缓存服务器放在互联网的边缘（即客户端所在的运营商机房），这样客户端在进入堵塞区域之前，能够先到达运营商机房内部的缓存服务器，既提高了客户端的访问速度，也减轻了服务端的负担，同时服务端也能够控制缓存服务器上面的内容；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217082159.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211217082159.png" srcset="/img/loading.gif" lazyload></p>
 <p>单个 Web 服务器的运营者跟运营商签合同的话，费用成本很高，因此出现了专门的第三方，他们和主要的几家运营商签合同，之后再租借给单个的 Web 服务器运营者，实现三赢；这种模式称为内容分发服务；</p>
 <h3 id="如何找到最近的缓存服务器"><a href="#如何找到最近的缓存服务器" class="headerlink" title="如何找到最近的缓存服务器"></a>如何找到最近的缓存服务器</h3><p> 寻找最近的缓存服务器有多种方案，其中一种是使用 DNS；大致原理如下：</p>
 <ul>
@@ -674,17 +959,17 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <p>特别注意：套接字跟端口可以是多对一的关系，协议栈会维护一张映射表，根据数据包中的头部信息判断，该数据包隶属于哪个套接字负责；每个套接字中存储着不同的连接信息；</p>
 <p>以前在学 《深入》和 C 语言时，由于 socket 初始化后，总是有一个 bind 的动作，误以为套接字和端口是一对一的关系，现在才发现其实不是；以前没有留意到 accept 动作会返回新的套接字，回头看了一下笔记，才发现当时写的是描述符，因此没有意识到 accept 返回的新描述符背后，其实是一个新的套接字；</p>
 </blockquote>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218070827.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218070827.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="服务器端的套接字和端口号"><a href="#服务器端的套接字和端口号" class="headerlink" title="服务器端的套接字和端口号"></a>服务器端的套接字和端口号</h3><p>服务端的应用程序大致可以划分为两个模块：</p>
 <ul>
 <li>负责建立连接的模块，即下图的连接模块；</li>
 <li>负责生成响应的模块，即下图的通信模块；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218074210.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218074210.png" srcset="/img/loading.gif" lazyload></p>
 <p>调用 accept 并不会马上返回新的套接字，在客户端的请求没有到达之前，它其实是进入阻塞的状态，要一直等到客户端的请求进来后，才会返回新套接字；该新套接字其实不是从头新建的，而是复制旧套接字并进行补充客户端连接信息后而来的；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218075418.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218075418.png" srcset="/img/loading.gif" lazyload></p>
 <p>当出现多个套接字对应同一个端口号时，为避免混乱，协议栈必须维护一张映射表，以便知悉哪个客户端请求对应的是哪个套接字；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218075756.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218075756.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="服务器的接收操作"><a href="#服务器的接收操作" class="headerlink" title="服务器的接收操作"></a>服务器的接收操作</h2><h3 id="网卡将接收到的信号转换成数字信息"><a href="#网卡将接收到的信号转换成数字信息" class="headerlink" title="网卡将接收到的信号转换成数字信息"></a>网卡将接收到的信号转换成数字信息</h3><p>网卡收到电信号后：</p>
 <ul>
 <li>先根据规范约定的波形判断出头部的位置，</li>
@@ -699,7 +984,7 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>若一致，将数字信号放到缓存中，触发中断事件，以便 CPU 介入，并将控制权转移给网卡驱动程序；</li>
 <li>网卡驱动程序读取缓存中的数据，根据 MAC 头部判断使用何种协议；然后触发中断事件，以便 CPU 介入，并将控制权转给相应的协议栈进行处理；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218083942.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211218083942.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="IP-模块的接收操作"><a href="#IP-模块的接收操作" class="headerlink" title="IP 模块的接收操作"></a>IP 模块的接收操作</h3><p>IP 模块收到数据包后的动作：</p>
 <ul>
 <li>检查 IP 头部中的目标 IP 地址，判断该包是否发给自己；</li>
@@ -743,49 +1028,161 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 <li>客户端：同样使用三个随机数生成会话密钥，加密“已完成”的消息，发给服务端，告知对方自己就绪；</li>
 <li>双方完成握手；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211227085902.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211227085902.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="双向认证"><a href="#双向认证" class="headerlink" title="双向认证"></a>双向认证</h3><p>双向认证与单向认证的唯一不同点在于第4步，客户端在发送 premaster 时，还会同时附上自己的公钥证书，以及将之前双方的随机字符串使用自己的私钥进行加密并发送，这样服务端收到该公钥证书，使用 CA 可以进行验证；如果有问题，中断通信，握手失败；如果没问题，后续跟单向认证相同，即开始用自己的私钥解密得到 premaster，然后使用加密套件计算出会话密钥；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211825009.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211826047.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211826196.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211827281.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211827217.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211828355.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211828468.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211829615.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211829705.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211830582.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211830669.png"></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211825009.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211826047.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211826196.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211827281.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211827217.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211828355.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211828468.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211829615.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211829705.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211830582.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211830669.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="非对称密钥"><a href="#非对称密钥" class="headerlink" title="非对称密钥"></a>非对称密钥</h2><ul>
 <li>使用 openssl 等工具，可以生成非对称密钥，即一把公钥和一把私钥，其中一把加密后的内容，可以由另外一把解密；</li>
 <li>所谓的证书，是指使用权威 CA 机构的私钥，对公钥拥有者（例如域名）和公钥本身进行加密后，生成的内容；由于 CA 机构的公钥是公开的，因此任何人都可以使用 CA 机构的公钥对证书进行解密，解密后就可以验证其中的内容（公钥+公钥所有者的身份信息），例如域名是否为预期想访问的网站域名；如果是，说明该证书是有效的；</li>
 <li>权威机构在受理证书申请时，需要验证申请人的身份信息，例如申请网站的域名证书时，就需要验证该域名是否真的被申请人持有；Let’s Encrypt 的方法是生成两个随机字符串，一个做为域名的访问路径，然后发起对该路径的访问，看访问结果是否为另外一个随机字符串；如果是，说明域名确实由申请者所拥有，因为申请者能够将字符串添加到访问路径和访问结果中；</li>
 </ul>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6/" class="print-no-link">#软件</a>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C/" class="print-no-link">#网络</a>
       
     </div>
+  
+</div>
 
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>网络是怎样连接的</div>
+      <div>http://example.com/2017/11/12/网络是怎样连接的/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年11月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <div class="article-footer">
-    <div class="article-meta pull-left">
 
-    
 
-    
-    
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/11/12/js%20%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="js 如何避免使用全局变量">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">js 如何避免使用全局变量</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/11/12/js%20%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/" title="js多重继承">
+                        <span class="hidden-mobile">js多重继承</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/软件/">软件</a><a href="/tags/网络/">网络</a>
-    </span>
-    
-
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
   </div>
-</article>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   
 
@@ -795,23 +1192,207 @@ http：访问远程 Web 服务器，例如：http://user:password@www.glass.com:
 
 
 
+    
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
     
-    &copy; 2024 ccw
-    
-  </p>
-</footer>
-    
-    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
