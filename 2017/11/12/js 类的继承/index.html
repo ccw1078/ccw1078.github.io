@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Ccw&#39;s Blogs</title>
+  <title>js 如何避免使用全局变量 | Ccw&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ccw&#39;s Blogs">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="方法一：通过使用构造函数，prototype，inherit 和 method 方法来实现类的继承；  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970&#x2F;&#x2F;定义一个通用的 clone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js 如何避免使用全局变量">
+<meta property="og:url" content="http://example.com/2017/11/12/js%20%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="方法一：通过使用构造函数，prototype，inherit 和 method 方法来实现类的继承；  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970&#x2F;&#x2F;定义一个通用的 clone">
 <meta property="og:locale">
+<meta property="article:published_time" content="2017-11-12T09:31:02.000Z">
+<meta property="article:modified_time" content="2024-09-21T01:49:08.976Z">
 <meta property="article:author" content="ccw">
+<meta property="article:tag" content="软件">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
@@ -67,9 +72,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-js 类的继承" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-js 类的继承" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/11/12/js%20%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" class="article-date">
   <time class="dt-published" datetime="2017-11-12T09:31:02.000Z" itemprop="datePublished">2017-11-12</time>
@@ -82,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/12/js%20%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/">js 如何避免使用全局变量</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      js 如何避免使用全局变量
     </h1>
   
 
@@ -111,142 +114,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-js 解析 ini 文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/12/js%20%E8%A7%A3%E6%9E%90%20ini%20%E6%96%87%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2017-11-12T09:27:12.000Z" itemprop="datePublished">2017-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/12/js%20%E8%A7%A3%E6%9E%90%20ini%20%E6%96%87%E4%BB%B6/">js 如何避免使用全局变量</a>
-    </h1>
+    <a href="/2017/11/12/js%20%E8%A7%A3%E6%9E%90%20ini%20%E6%96%87%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">js 如何避免使用全局变量</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解析 ini 文件</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">splitLines</span>(<span class="params">string</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> string.<span class="title function_">split</span>(<span class="regexp">/\r?\n/</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">parseINI</span>(<span class="params">string</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> lines = <span class="title function_">splitLines</span>(string);</span><br><span class="line">	<span class="keyword">var</span> categories = [];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">newCategory</span>(<span class="params">name</span>)&#123;</span><br><span class="line">		<span class="keyword">var</span> cat = &#123;<span class="attr">name</span>: name, <span class="attr">fields</span>: []&#125;;</span><br><span class="line">		categories.<span class="title function_">push</span>(cat);</span><br><span class="line">		<span class="keyword">return</span> cat;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> currentCategory = <span class="title function_">newCategory</span>(<span class="string">&quot;TOP&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="title function_">forEach</span>(lines, <span class="keyword">function</span>(<span class="params">line</span>)&#123;</span><br><span class="line">		<span class="keyword">var</span> match;</span><br><span class="line">		<span class="keyword">if</span> (<span class="regexp">/^\s*(;.*)?$/</span>.<span class="title function_">test</span>(line))&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (match = line.<span class="title function_">match</span>(<span class="regexp">/^\[(.*)\]$/</span>))&#123;</span><br><span class="line">			currentCategory = <span class="title function_">newCategory</span>(match[<span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (match = line.<span class="title function_">match</span>(<span class="regexp">/^(\w+)=(.*)$/</span>))&#123;</span><br><span class="line">			currentCategory.<span class="property">fields</span>.<span class="title function_">puch</span>(&#123;<span class="attr">name</span>: match[<span class="number">1</span>], <span class="attr">value</span>: match[<span class="number">2</span>]&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Invalid line: &quot;</span> + line);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> categories;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/12/js%20%E8%A7%A3%E6%9E%90%20ini%20%E6%96%87%E4%BB%B6/" data-id="cm1bhrgpn0001dwhp67yg7hdf" data-title="js 如何避免使用全局变量" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-js 如何避免使用全局变量" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/12/js%20%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" class="article-date">
-  <time class="dt-published" datetime="2017-11-12T09:01:38.000Z" itemprop="datePublished">2017-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/12/js%20%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">js 如何避免使用全局变量</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>为了避免使用全局变量，有两个办法</p>
-<ol>
-<li><p>办法一：设计一个函数，并将函数内的方法添加到全局对象 window 上（这种方法虽然可以避免全局变量，却难免要应对全局对象上方法的命名冲突）</p>
-</li>
-<li><p>办法二：设计一个对象，对象里面存着变量和方法，但它不直接通过定义获得（不然会变成全局变量），而是通过定义匿名函数并马上运行它来返回所需要的对象</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/12/js%20%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" data-id="cm1bhls3x0000gohp3imn8vh1" data-title="js 如何避免使用全局变量" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-js多重继承" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/12/js%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/" class="article-date">
-  <time class="dt-published" datetime="2017-11-12T08:46:48.000Z" itemprop="datePublished">2017-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/12/js%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/">js多重继承</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="方法一：克隆一个A对象，再将-B-对象的属性混入，适用于-A-B-的属性不冲突的场景；"><a href="#方法一：克隆一个A对象，再将-B-对象的属性混入，适用于-A-B-的属性不冲突的场景；" class="headerlink" title="方法一：克隆一个A对象，再将 B 对象的属性混入，适用于 A&#x2F;B 的属性不冲突的场景；"></a>方法一：克隆一个A对象，再将 B 对象的属性混入，适用于 A&#x2F;B 的属性不冲突的场景；</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mixInto</span>(<span class="params">object, mixIn</span>)&#123;</span><br><span class="line">    <span class="title function_">forEachIn</span>(mixIn, <span class="keyword">function</span>(<span class="params">name, value</span>)&#123;</span><br><span class="line">        object[name] = value;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">SmallDetailedItem</span> = <span class="title function_">clone</span>(<span class="title class_">DetailedItem</span>);</span><br><span class="line"><span class="title function_">mixInto</span>(<span class="title class_">SmallDetailedItem</span>, <span class="title class_">SmallItem</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> deadMouse = <span class="title class_">SmallDetailedItem</span>.<span class="title function_">create</span>(<span class="string">&quot;Fred the mouse&quot;</span>, <span class="string">&quot;he is dead&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="方法二：用-A-对象扩展一个子对象，再用-B-对象-扩展并覆盖子对象中的冲突属性；"><a href="#方法二：用-A-对象扩展一个子对象，再用-B-对象-扩展并覆盖子对象中的冲突属性；" class="headerlink" title="方法二：用  A 对象扩展一个子对象，再用 B 对象 扩展并覆盖子对象中的冲突属性；"></a>方法二：用  A 对象扩展一个子对象，再用 B 对象 扩展并覆盖子对象中的冲突属性；</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Monster</span> = <span class="title class_">Item</span>.<span class="title function_">extend</span>(&#123;</span><br><span class="line">	<span class="attr">construct</span>: <span class="keyword">function</span>(<span class="params">name, dangerous</span>)&#123;</span><br><span class="line">		<span class="title class_">Item</span>.<span class="property">construct</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name);</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">dangerous</span> = dangerous;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">kick</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">dangerous</span>)&#123;</span><br><span class="line">			<span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot; bites your head off&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot; squeaks and runs away&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">DetailedMonster</span> = <span class="title class_">DetailedItem</span>.<span class="title function_">extend</span>(&#123;</span><br><span class="line">	<span class="attr">construct</span>: <span class="keyword">function</span>(<span class="params">name, description, dangerous</span>)&#123;</span><br><span class="line">		<span class="title class_">DetailedItem</span>.<span class="property">construct</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name, dangerous);</span><br><span class="line">		<span class="title class_">Monster</span>.<span class="property">construct</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name, dangerous);</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">kick</span>: <span class="title class_">Monster</span>.<span class="property">kick</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> giantSloth = <span class="title class_">DetailedMonster</span>.<span class="title function_">create</span>(</span><br><span class="line">	<span class="string">&quot;the giant sloth&quot;</span>,</span><br><span class="line">	<span class="string">&quot;it is quietly hanging from a tree, munching leaves&quot;</span>,</span><br><span class="line">	<span class="literal">false</span>);</span><br><span class="line">	</span><br><span class="line">giantSloth.<span class="title function_">kick</span>();</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/12/js%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/" data-id="cm1bhb2la00000khpeb7l5aqg" data-title="js多重继承" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
