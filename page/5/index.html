@@ -57,10 +57,10 @@
         
           <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -68,6 +68,532 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-python 文件打开模式区别 r, r+, w, w+, a, a+" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/24/python%20%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E6%A8%A1%E5%BC%8F%E5%8C%BA%E5%88%AB%20r,%20r+,%20w,%20w+,%20a,%20a+/" class="article-date">
+  <time class="dt-published" datetime="2019-01-24T02:25:09.000Z" itemprop="datePublished">2019-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/24/python%20%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E6%A8%A1%E5%BC%8F%E5%8C%BA%E5%88%AB%20r,%20r+,%20w,%20w+,%20a,%20a+/">python 文件打开模式区别 r, r+, w, w+, a, a+</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="r-模式"><a href="#r-模式" class="headerlink" title="r 模式"></a>r 模式</h3><ul>
+<li>若文件存在，打开文件，光标置于开头，原数据可读，<strong>不可写入</strong>新数据；</li>
+<li>若文件不存在，报错；</li>
+</ul>
+<h3 id="r-模式-1"><a href="#r-模式-1" class="headerlink" title="r+ 模式"></a>r+ 模式</h3><ul>
+<li>若文件存在，打开文件，光标置于开头，原数据保留，<strong>可写入</strong>新数据；</li>
+<li>若文件不存在，报错；</li>
+</ul>
+<blockquote>
+<p>注：打开文件后，若没有读取操作，则光标默认在开头，此时如果马上写入数据，会覆盖原数据</p>
+</blockquote>
+<h3 id="w-模式"><a href="#w-模式" class="headerlink" title="w 模式"></a>w 模式</h3><ul>
+<li>若文件存在，打开文件，清空原数据，光标置于开头，可写入新数据；</li>
+<li>若文件不存在，则创建文件；</li>
+</ul>
+<blockquote>
+<p>注：文件的数据不可读；</p>
+</blockquote>
+<h3 id="w-模式-1"><a href="#w-模式-1" class="headerlink" title="w+ 模式"></a>w+ 模式</h3><ul>
+<li>效果同 w 模式，差异在于，可读取写入的数据（可通过移动光标的位置实现）</li>
+</ul>
+<h3 id="a-模式"><a href="#a-模式" class="headerlink" title="a 模式"></a>a 模式</h3><ul>
+<li>若文件存在，打开文件，原数据保留，光标置于末尾，可追加写入新数据；</li>
+<li>若文件不存在，则创建文件；</li>
+</ul>
+<blockquote>
+<p> 注：文件数据不可读；</p>
+</blockquote>
+<h3 id="a-模式-1"><a href="#a-模式-1" class="headerlink" title="a+ 模式"></a>a+ 模式</h3><ul>
+<li>效果同 a 模式，差异在于，文件数据可读</li>
+</ul>
+<blockquote>
+<p>注：打开文件后，由于光标在末尾，此时马上读取数据会为空，因为光标所在位置之后没有数据，此时可先移动光标的位置到开头后再读取；</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/24/python%20%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E6%A8%A1%E5%BC%8F%E5%8C%BA%E5%88%AB%20r,%20r+,%20w,%20w+,%20a,%20a+/" data-id="cm1bkqrsc002o0khpaixvh7uo" data-title="python 文件打开模式区别 r, r+, w, w+, a, a+" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CentOS 安装 OpenCV" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/17/CentOS%20%E5%AE%89%E8%A3%85%20OpenCV/" class="article-date">
+  <time class="dt-published" datetime="2019-01-17T12:13:08.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/17/CentOS%20%E5%AE%89%E8%A3%85%20OpenCV/">CentOS 安装 OpenCV</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="安装一些依赖包"><a href="#安装一些依赖包" class="headerlink" title="安装一些依赖包"></a>安装一些依赖包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y cmake gcc gtk2-devel numpy unzip </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y qt5-qtbase-devel python-devel jasper-devel </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y openexr-devel libwebp-devel libjpeg-turbo-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y freeglut-devel mesa-libGL mesa-libGL-devel libtiff-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y libdc1394-devel tbb-devel eigen3-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y boost boost-thread boost-devel libv4l-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y gstreamer-plugins-base-devel</span><br></pre></td></tr></table></figure>
+<p>注：理论上以上依赖包可以用一行 sudo yum install -y 命令一次性安装，之所以分成多行，是因为单行屏幕显示不下，导致折行后看起来不太方便，故拆分成多行安装，方便阅读；</p>
+<h3 id="进入文件夹"><a href="#进入文件夹" class="headerlink" title="进入文件夹"></a>进入文件夹</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir downloads</span><br><span class="line">cd downloads </span><br></pre></td></tr></table></figure>
+<p>注： 此处假定要将 opencv 安装包下载放在新创建的 downloads 文件夹中，如果不是，则相应修改文件夹名称</p>
+<h3 id="下载-opencv-安装包"><a href="#下载-opencv-安装包" class="headerlink" title="下载 opencv 安装包"></a>下载 opencv 安装包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/opencv/opencv/archive/<span class="number">3.4</span><span class="number">.5</span>.<span class="built_in">zip</span></span><br></pre></td></tr></table></figure>
+<p>注： 此处假定要下载 3.4.5 版本，如果不是，则相应修改版本号</p>
+<h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip 3.4.5.zip</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入解压后的安装包"><a href="#进入解压后的安装包" class="headerlink" title="进入解压后的安装包"></a>进入解压后的安装包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd opencv-3.4.5</span><br></pre></td></tr></table></figure>
+<h3 id="创建-build-目录"><a href="#创建-build-目录" class="headerlink" title="创建 build 目录"></a>创建 build 目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br></pre></td></tr></table></figure>
+<h3 id="进入-build-目录"><a href="#进入-build-目录" class="headerlink" title="进入 build 目录"></a>进入 build 目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd build</span><br></pre></td></tr></table></figure>
+<h3 id="设置-make-参数"><a href="#设置-make-参数" class="headerlink" title="设置 make 参数"></a>设置 make 参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：命令行最后有两个点，表示源代码在当前目录的父目录</p>
+</blockquote>
+<h3 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line"><span class="comment"># 注：此步需要等待较长时间</span></span><br></pre></td></tr></table></figure>
+<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="安装-opencv-python-可选）"><a href="#安装-opencv-python-可选）" class="headerlink" title="安装 opencv-python (可选）"></a>安装 opencv-python (可选）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python</span><br></pre></td></tr></table></figure>
+<h3 id="测试（可选）"><a href="#测试（可选）" class="headerlink" title="测试（可选）"></a>测试（可选）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python</span><br></pre></td></tr></table></figure>
+<p>用 python 命令启动 python 后，录入 import cv2，回车确认，若没有报错，表示安装成功</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211101762.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/17/CentOS%20%E5%AE%89%E8%A3%85%20OpenCV/" data-id="cm1bkb9a2002k0khp3s5ud2mx" data-title="CentOS 安装 OpenCV" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python -m 参数释义" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/02/python%20-m%20%E5%8F%82%E6%95%B0%E9%87%8A%E4%B9%89/" class="article-date">
+  <time class="dt-published" datetime="2019-01-02T03:16:34.000Z" itemprop="datePublished">2019-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/02/python%20-m%20%E5%8F%82%E6%95%B0%E9%87%8A%E4%B9%89/">python -m 参数释义</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p>-m: run library module as a script（将模块当作脚本运行）</p>
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import <module> 导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文件内部，我们一般通过下面的代码来区分当前脚本，是作为模块导入，还是作为脚本直接运行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;模块直接运行&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>当文件作为脚本直接运行时，这段代码会产生副作用，输出字符串“模块直接运行”；<br>当文件作为模块被导入时，不会产生副作用，不输出字符串“模块直接运行”；</p>
+<p>回到正题，当我们知道一个模块的名字，但不知道它的路径时，我们可以通过 -m 参数，在 shell 中将该模块当作脚本运行，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m module_name</span><br></pre></td></tr></table></figure>
+<p>事实上，如果我们知道模块的完整路径（此处假设为”&#x2F;path&#x2F;to&#x2F;module.py”），上述命令的效果，以下面的命令等同</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python /path/to/module.py</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/02/python%20-m%20%E5%8F%82%E6%95%B0%E9%87%8A%E4%B9%89/" data-id="cm1bka70e002g0khph70aglsx" data-title="python -m 参数释义" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-人工智能、机器学习、深度学习的区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/12/22/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2018-12-22T07:29:01.000Z" itemprop="datePublished">2018-12-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/12/22/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8C%BA%E5%88%AB/">人工智能、机器学习、深度学习的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211058801.png" alt="概念"></p>
+<h4 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h4><p>将通常由人类完成的智能任务，尽量实现自动化；</p>
+<h4 id="机器学习与程序设计的区别"><a href="#机器学习与程序设计的区别" class="headerlink" title="机器学习与程序设计的区别"></a>机器学习与程序设计的区别</h4><p>在传统的程序设计中，我们告知计算机数据和计算规则，计算机输出计算结果；<br>对于机器学习，我们告知计算机数据和计算结果，计算机输出计算规则；<br>因此，机器学习应用，是通过数据训练出来的，而不是通过程序编写出来的；</p>
+<h4 id="机器学习与深度学习的区别"><a href="#机器学习与深度学习的区别" class="headerlink" title="机器学习与深度学习的区别"></a>机器学习与深度学习的区别</h4><p>对于机器学习，它需要将输入的数据，<em><strong>转换</strong></em> 成有意义的表示，然后从有意义的表示中，获取我们想要的结果；对于以前传统的机器学习方法，这种 <em><strong>转换</strong></em> 只涉及 1 ~ 2 层，对于深度学习，这种转换可能涉及几十上百甚至上万层，所以叫做”<strong>深度学习</strong>“</p>
+<h4 id="机器学习的三要素"><a href="#机器学习的三要素" class="headerlink" title="机器学习的三要素"></a>机器学习的三要素</h4><ol>
+<li>样本数据集</li>
+<li>预期输出的示例</li>
+<li>衡量结果好坏的方法</li>
+</ol>
+<h4 id="机器学习的核心"><a href="#机器学习的核心" class="headerlink" title="机器学习的核心"></a>机器学习的核心</h4><p>在预先定义的一组方法（即假设空间 hypothesis space ）中，找到一种有意义的变换数据的方法，使得数据转换成更加有用的表示（representation）</p>
+<h4 id="深度学习中“深度”的意思"><a href="#深度学习中“深度”的意思" class="headerlink" title="深度学习中“深度”的意思"></a>深度学习中“深度”的意思</h4><ol>
+<li>深度（depth） 是指学习的过程，涉及很多层级的堆叠，所以深度学习也叫层级表示学习（hierarchical representation learning） ，或叫分层表示学习（layer representation learning）；</li>
+<li>分层的做法，来源于神经网络模型（neural network）启发，但事实上它跟人类大脑的神经网络模型，并没有任何关系；只是恰好用这个启发，来命名这个学习模型而已；</li>
+<li>传统的机器学习由于只涉及 1~2 层的数据表示，因此有时也叫做浅层学习（shallow learning）；</li>
+<li>深度学习可以简单理解为：一种学习数据表示的多级方法；每一级的方法，就像是一个蒸馏的操作，虽然每经过一级变换，数据变得越来越少，但纯度却越来越高，从而跟要解决的任务越来越相关；</li>
+</ol>
+<h4 id="深度学习的工作原理"><a href="#深度学习的工作原理" class="headerlink" title="深度学习的工作原理"></a>深度学习的工作原理</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211057436.png" alt="工作原理"></p>
+<ol>
+<li>权重（weight） ：神经网络中，某一层对数据所做的变换操作，存储于该层的权重中；权重是一组数字，它是该层数据变换操作的参数（parameter） ；每层的数据变换操作，通过权重来实现操作的参数化（parameterize） ；</li>
+<li>学习的过程，即为神经网络中的所有层，找到一组最合适的权重值，使得输入的示例，能够与目标一一对应；</li>
+</ol>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211058471.png" alt="工作原理2"></p>
+<ol start="3">
+<li>损失函数（loss function） ：用于计算神经网络的预测值与真实目标值之间的差距（损失值）；损失函数有时也叫目标函数（objective function）</li>
+</ol>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211058755.png" alt="工作原理3"></p>
+<ol start="4">
+<li>深度学习技巧：根据损失函数计算出的差距（损失值），作为反馈信号，对权重进行微调，以降低下一次计算的损失值；这种调节由优化器（optimizer）来完成，它使用了反向传播算法（back propagation）的原理；</li>
+<li>整个调节的过程，称为训练循环；通过对几千个示例，进行几十次的循环，最后就有可能得到损失值最小的计算模型；</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/12/22/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cm1bk6ljt002c0khpajkv362b" data-title="人工智能、机器学习、深度学习的区别" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-numpy vstack hstack dstack 区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/11/15/numpy%20vstack%20hstack%20dstack%20%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time class="dt-published" datetime="2018-11-15T07:48:53.000Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/11/15/numpy%20vstack%20hstack%20dstack%20%E5%8C%BA%E5%88%AB/">numpy vstack hstack dstack 区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="先假设有如下数据（用于示范三种函数给这些数据带来的操作效果）"><a href="#先假设有如下数据（用于示范三种函数给这些数据带来的操作效果）" class="headerlink" title="先假设有如下数据（用于示范三种函数给这些数据带来的操作效果）"></a>先假设有如下数据（用于示范三种函数给这些数据带来的操作效果）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">data1 = [</span><br><span class="line">[[<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>], [<span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>], [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]],</span><br><span class="line">[[<span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>], [<span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>], [<span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>]],</span><br><span class="line">[[<span class="number">31</span>, <span class="number">32</span>, <span class="number">33</span>], [<span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>], [<span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>]]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">data2 = [</span><br><span class="line">[[<span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>], [<span class="number">44</span>, <span class="number">45</span>, <span class="number">46</span>], [<span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>]],</span><br><span class="line">[[<span class="number">51</span>, <span class="number">52</span>, <span class="number">53</span>], [<span class="number">54</span>, <span class="number">55</span>, <span class="number">56</span>], [<span class="number">57</span>, <span class="number">58</span>, <span class="number">59</span>]],</span><br><span class="line">[[<span class="number">61</span>, <span class="number">62</span>, <span class="number">63</span>], [<span class="number">64</span>, <span class="number">65</span>, <span class="number">66</span>], [<span class="number">67</span>, <span class="number">68</span>, <span class="number">69</span>]]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">arr1 = np.array(data1)</span><br><span class="line">arr2 = np.array(data2)</span><br><span class="line"><span class="comment"># arr1.shape == [3, 3, 3]</span></span><br><span class="line"><span class="comment"># arr2.shape == [3, 3, 3]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="vstack-解释"><a href="#vstack-解释" class="headerlink" title="vstack 解释"></a>vstack 解释</h2><p>vstack 表示将数组在第一维进行堆叠（即最外层的方括号），可将 arr1 和 arr2 第一维内的部分视为一个整体，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr1 == [块<span class="number">1</span>], </span><br><span class="line">arr2 == [块<span class="number">2</span>]</span><br><span class="line">vstack((arr1, arr2)) == [块<span class="number">1</span> + 块<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = np.vstack((arr1, arr2))</span><br><span class="line"><span class="built_in">print</span> a</span><br><span class="line"><span class="comment"># 结果如下</span></span><br><span class="line">[</span><br><span class="line">[[<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>], [<span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>], [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]],</span><br><span class="line">[[<span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>], [<span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>], [<span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>]],</span><br><span class="line">[[<span class="number">31</span>, <span class="number">32</span>, <span class="number">33</span>], [<span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>], [<span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>]],</span><br><span class="line">[[<span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>], [<span class="number">44</span>, <span class="number">45</span>, <span class="number">46</span>], [<span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>]],</span><br><span class="line">[[<span class="number">51</span>, <span class="number">52</span>, <span class="number">53</span>], [<span class="number">54</span>, <span class="number">55</span>, <span class="number">56</span>], [<span class="number">57</span>, <span class="number">58</span>, <span class="number">59</span>]],</span><br><span class="line">[[<span class="number">61</span>, <span class="number">62</span>, <span class="number">63</span>], [<span class="number">64</span>, <span class="number">65</span>, <span class="number">66</span>], [<span class="number">67</span>, <span class="number">68</span>, <span class="number">69</span>]]</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 此时 a.shape == [6, 3, 3]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="hstack-解释"><a href="#hstack-解释" class="headerlink" title="hstack 解释"></a>hstack 解释</h2><p>hstack 表示将数组在第二维进行堆叠（即第二层方括号），可将 arr 第二层括号里面的东西视为一个整体，即</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">arr1 == [</span><br><span class="line">[块<span class="number">1</span>],</span><br><span class="line">[块<span class="number">2</span>],</span><br><span class="line">[块<span class="number">3</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">arr2 == [</span><br><span class="line">[块<span class="number">4</span>],</span><br><span class="line">[块<span class="number">5</span>],</span><br><span class="line">[块<span class="number">6</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后 hstack((arr1, arr2)) 的结果如下：</span></span><br><span class="line">[</span><br><span class="line">[块<span class="number">1</span> + 块<span class="number">4</span>],</span><br><span class="line">[块<span class="number">2</span> + 块<span class="number">5</span>],</span><br><span class="line">[块<span class="number">3</span> + 块<span class="number">6</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">b = np.hstack((arr1, arr2))</span><br><span class="line"><span class="built_in">print</span> b</span><br><span class="line"><span class="comment"># 结果如下：</span></span><br><span class="line">[</span><br><span class="line">[[<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>], [<span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>], [<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>], [<span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>], [<span class="number">44</span>, <span class="number">45</span>, <span class="number">46</span>], [<span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>]],</span><br><span class="line">[[<span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>], [<span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>], [<span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>], [<span class="number">51</span>, <span class="number">52</span>, <span class="number">53</span>], [<span class="number">54</span>, <span class="number">55</span>, <span class="number">56</span>], [<span class="number">57</span>, <span class="number">58</span>, <span class="number">59</span>]],</span><br><span class="line">[[<span class="number">31</span>, <span class="number">32</span>, <span class="number">33</span>], [<span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>], [<span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>], [<span class="number">61</span>, <span class="number">62</span>, <span class="number">63</span>], [<span class="number">64</span>, <span class="number">65</span>, <span class="number">66</span>], [<span class="number">67</span>, <span class="number">68</span>, <span class="number">69</span>]]</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 此时 b.shape == [3, 6, 3]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="dstack-解释"><a href="#dstack-解释" class="headerlink" title="dstack 解释"></a>dstack 解释</h2><p>dstack 表示将数组在第三维进行堆叠（即第三层方括号），可将 arr 第三层括号里面的东西视为一个整体，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">arr1 = [</span><br><span class="line">[[块<span class="number">1</span>], [块<span class="number">2</span>], [块<span class="number">3</span>]],</span><br><span class="line">[[块<span class="number">4</span>], [块<span class="number">5</span>], [块<span class="number">6</span>]],</span><br><span class="line">[[块<span class="number">7</span>], [块<span class="number">8</span>], [块<span class="number">9</span>]]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">arr2 = [</span><br><span class="line">[[块<span class="number">11</span>], [块<span class="number">12</span>], [块<span class="number">13</span>]],</span><br><span class="line">[[块<span class="number">14</span>], [块<span class="number">15</span>], [块<span class="number">16</span>]],</span><br><span class="line">[[块<span class="number">17</span>], [块<span class="number">18</span>], [块<span class="number">19</span>]]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后 dstack((arr1, arr2)) 的结果如下：</span></span><br><span class="line">[</span><br><span class="line">[[块<span class="number">1</span> + 块<span class="number">11</span>],[块<span class="number">2</span> + 块<span class="number">12</span>],[块<span class="number">3</span> + 块<span class="number">13</span>]]</span><br><span class="line">[[块<span class="number">4</span> + 块<span class="number">14</span>],[块<span class="number">5</span> + 块<span class="number">15</span>],[块<span class="number">6</span> + 块<span class="number">16</span>]]</span><br><span class="line">[[块<span class="number">7</span> + 块<span class="number">17</span>],[块<span class="number">8</span> + 块<span class="number">18</span>],[块<span class="number">9</span> + 块<span class="number">19</span>]]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">print</span> c</span><br><span class="line"><span class="comment"># 结果如下:</span></span><br><span class="line">[</span><br><span class="line">[[<span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">41</span> <span class="number">42</span> <span class="number">43</span>],[<span class="number">14</span> <span class="number">15</span> <span class="number">16</span> <span class="number">44</span> <span class="number">45</span> <span class="number">46</span>],[<span class="number">17</span> <span class="number">18</span> <span class="number">19</span> <span class="number">47</span> <span class="number">48</span> <span class="number">49</span>]]</span><br><span class="line">[[<span class="number">21</span> <span class="number">22</span> <span class="number">23</span> <span class="number">51</span> <span class="number">52</span> <span class="number">53</span>],[<span class="number">24</span> <span class="number">25</span> <span class="number">26</span> <span class="number">54</span> <span class="number">55</span> <span class="number">56</span>],[<span class="number">27</span> <span class="number">28</span> <span class="number">29</span> <span class="number">57</span> <span class="number">58</span> <span class="number">59</span>]]</span><br><span class="line">[[<span class="number">31</span> <span class="number">32</span> <span class="number">33</span> <span class="number">61</span> <span class="number">62</span> <span class="number">63</span>],[<span class="number">34</span> <span class="number">35</span> <span class="number">36</span> <span class="number">64</span> <span class="number">65</span> <span class="number">66</span>],[<span class="number">37</span> <span class="number">38</span> <span class="number">39</span> <span class="number">67</span> <span class="number">68</span> <span class="number">69</span>]]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时 c.shape == [3, 3, 6]</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/11/15/numpy%20vstack%20hstack%20dstack%20%E5%8C%BA%E5%88%AB/" data-id="cm1bk3u4000280khphiif7usl" data-title="numpy vstack hstack dstack 区别" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-localhost 添加 SSL 证书 （Windows环境 )" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/17/localhost%20%E6%B7%BB%E5%8A%A0%20SSL%20%E8%AF%81%E4%B9%A6%20%EF%BC%88Windows%E7%8E%AF%E5%A2%83%20)/" class="article-date">
+  <time class="dt-published" datetime="2018-08-17T04:35:10.000Z" itemprop="datePublished">2018-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/08/17/localhost%20%E6%B7%BB%E5%8A%A0%20SSL%20%E8%AF%81%E4%B9%A6%20%EF%BC%88Windows%E7%8E%AF%E5%A2%83%20)/">localhost 添加 SSL 证书 （Windows环境 )</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="安装-OpenSSL"><a href="#安装-OpenSSL" class="headerlink" title="安装 OpenSSL"></a>安装 OpenSSL</h1><p>由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装；<br>下载链接：<a target="_blank" rel="noopener" href="http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe">http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe</a><br><a target="_blank" rel="noopener" href="http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe">点此下载</a></p>
+<p>安装过程略，假设按默认的安装位置为 C:\Program Files (x86)\GnuWin32</p>
+<h1 id="新建配置文件"><a href="#新建配置文件" class="headerlink" title="新建配置文件"></a>新建配置文件</h1><p>使用记事本或者其他编辑器，新建文件，命名为 localhost.cnf （注：后缀为 cnf，不是 txt）<br>文件内容设置如下并保存：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[dn]</span><br><span class="line">CN=localhost</span><br><span class="line"></span><br><span class="line">[req]</span><br><span class="line">distinguished_name = dn</span><br><span class="line"></span><br><span class="line">[EXT]</span><br><span class="line">subjectAltName=DNS:localhost</span><br><span class="line">keyUsage=digitalSignature</span><br><span class="line">extendedKeyUsage=serverAuth</span><br></pre></td></tr></table></figure>
+
+<p>假设以上文件的保存位置为 d:\localhost.cnf，后续会用到</p>
+<h1 id="进入命令行界面"><a href="#进入命令行界面" class="headerlink" title="进入命令行界面"></a>进入命令行界面</h1><p>注：需以管理员身份进入命令行界面<br>进入方式：可以通过右键点击左下角的“开始”按钮<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053193.png"><br>或者<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053188.png"></p>
+<h1 id="进入-OpenSSL-安装文件夹"><a href="#进入-OpenSSL-安装文件夹" class="headerlink" title="进入 OpenSSL 安装文件夹"></a>进入 OpenSSL 安装文件夹</h1><p>注：假设 OpenSSL 的安装位置为 ‘C:\Program Files (x86)\GnuWin32’，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &#x27;C:\Program Files (x86)\GnuWin32\bin&#x27;</span><br></pre></td></tr></table></figure>
+<p>执行后类似下面截图：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053023.png"></p>
+<h1 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\openssl req -x509 -out localhost.crt -keyout localhost.key -newkey rsa:2048 -nodes -sha256  -subj &#x27;/CN=localhost&#x27; -extensions EXT -config d:\localhost.cnf</span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<ul>
+<li>由于没有将 openssl 所在路径添加的系统变量 path 中，所以此处 openssl 命令前面需要有 .\ 两个符号，别漏了；</li>
+<li>命令行中，最后的路径 d:\localhost.cnf 为上一步骤创建的配置文件的保存位置，如果路径不同，则相应修改；</li>
+<li>执行后类似下面的截图：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054057.png"></li>
+</ul>
+<p>证书生成成功</p>
+<h1 id="拷贝证书"><a href="#拷贝证书" class="headerlink" title="拷贝证书"></a>拷贝证书</h1><p>进入 openssl 的安装文件夹，拷贝已经生成好的证书到需要使用的位置</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054091.png"></p>
+<h1 id="使用证书示例"><a href="#使用证书示例" class="headerlink" title="使用证书示例"></a>使用证书示例</h1><p>以下示例假设在 Express 中使用<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054247.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/08/17/localhost%20%E6%B7%BB%E5%8A%A0%20SSL%20%E8%AF%81%E4%B9%A6%20%EF%BC%88Windows%E7%8E%AF%E5%A2%83%20)/" data-id="cm1bk1b0r00240khp3js6gi4r" data-title="localhost 添加 SSL 证书 （Windows环境 )" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CentOS 安装 Python3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/09/CentOS%20%E5%AE%89%E8%A3%85%20Python3/" class="article-date">
+  <time class="dt-published" datetime="2018-08-09T08:09:54.000Z" itemprop="datePublished">2018-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/08/09/CentOS%20%E5%AE%89%E8%A3%85%20Python3/">CentOS 安装 Python3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="创建一个目录用来放下载的安装包源文件"><a href="#创建一个目录用来放下载的安装包源文件" class="headerlink" title="创建一个目录用来放下载的安装包源文件"></a>创建一个目录用来放下载的安装包源文件</h3><p><code>sudo mkdir /usr/local/src/python</code><br>注：若有管理员权限，则 sudo 可以省略，以下同；此处假设源文件存在 &#x2F;usr&#x2F;local&#x2F;src&#x2F;python，也可以存放其他文件夹，相应修改路径即可；</p>
+<h3 id="进入该目录"><a href="#进入该目录" class="headerlink" title="进入该目录"></a>进入该目录</h3><p><code>cd /usr/local/src/python</code></p>
+<h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p><code>sudo wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz</code><br>注：此处假设最新版本为3.7.0，如不是，则相应修改</p>
+<h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><p><code>sudo tar -zxvf Python-3.7.0.tgz</code></p>
+<h3 id="进入解压后的文件夹"><a href="#进入解压后的文件夹" class="headerlink" title="进入解压后的文件夹"></a>进入解压后的文件夹</h3><p><code>cd Python-3.7.0</code></p>
+<h3 id="设置安装目录"><a href="#设置安装目录" class="headerlink" title="设置安装目录"></a>设置安装目录</h3><p>此处假设为 &#x2F;usr&#x2F;local&#x2F;python3</p>
+<p><code>sudo ./configure --prefix=/usr/local/python3</code></p>
+<h3 id="编译源文件"><a href="#编译源文件" class="headerlink" title="编译源文件"></a>编译源文件</h3><p><code>sudo make</code></p>
+<h3 id="安装源文件"><a href="#安装源文件" class="headerlink" title="安装源文件"></a>安装源文件</h3><p><code>sudo make install</code></p>
+<h3 id="建立-python3-软连接（类似建立快捷方式）"><a href="#建立-python3-软连接（类似建立快捷方式）" class="headerlink" title="建立 python3 软连接（类似建立快捷方式）"></a>建立 python3 软连接（类似建立快捷方式）</h3><p><code>sudo ln /usr/local/python3/bin/python3 /usr/bin/python3</code></p>
+<h3 id="建立-pip3-软连接"><a href="#建立-pip3-软连接" class="headerlink" title="建立 pip3 软连接"></a>建立 pip3 软连接</h3><p><code>sudo ln /usr/local/python3/bin/pip3 /usr/bin/pip3</code></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><code>pyhton3 -V</code><br>若成功屏幕会显示如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Python 3.7.0</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/08/09/CentOS%20%E5%AE%89%E8%A3%85%20Python3/" data-id="cm1bk090d00200khpb9b15fll" data-title="CentOS 安装 Python3" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信支付 MD5 签名中文问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20MD5%20%E7%AD%BE%E5%90%8D%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2018-07-27T03:44:09.000Z" itemprop="datePublished">2018-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20MD5%20%E7%AD%BE%E5%90%8D%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/">微信支付 MD5 签名中文问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211045406.png"><br>因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示）</p>
+<p><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/tools/signverify/">微信公众平台支付接口调试工具</a>（左边地址可以对签名进行调试比对）</p>
+<p>解决办法：使用支持中文的MD5 模块即可（模块附后）；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> md5 = <span class="built_in">require</span>(<span class="string">&#x27;./lib/js/md5.js&#x27;</span>) <span class="comment">// 此处 md5 的存放地址为假设，应根据实际情况调整，md5 模块详细内容附后；</span></span><br><span class="line"><span class="keyword">var</span> sign = <span class="title function_">md5</span>(stringSignTemp).<span class="title function_">toUpperCase</span>(); <span class="comment">//假设 stringSignTemp 已经整理好</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>以下是 md5 模块，其中用到的 crypto 模块也附在本文后面；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> crypt = <span class="built_in">require</span>(<span class="string">&#x27;./crypto.js&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> charenc = &#123;</span><br><span class="line">  <span class="comment">// UTF-8 encoding</span></span><br><span class="line">  <span class="attr">utf8</span>: &#123;</span><br><span class="line">    <span class="comment">// Convert a string to a byte array</span></span><br><span class="line">    <span class="attr">stringToBytes</span>: <span class="keyword">function</span>(<span class="params">str</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> charenc.<span class="property">bin</span>.<span class="title function_">stringToBytes</span>(<span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(str)));</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert a byte array to a string</span></span><br><span class="line">    <span class="attr">bytesToString</span>: <span class="keyword">function</span>(<span class="params">bytes</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(<span class="built_in">escape</span>(charenc.<span class="property">bin</span>.<span class="title function_">bytesToString</span>(bytes)));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Binary encoding</span></span><br><span class="line">  <span class="attr">bin</span>: &#123;</span><br><span class="line">    <span class="comment">// Convert a string to a byte array</span></span><br><span class="line">    <span class="attr">stringToBytes</span>: <span class="keyword">function</span>(<span class="params">str</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> bytes = [], i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++)</span><br><span class="line">        bytes.<span class="title function_">push</span>(str.<span class="title function_">charCodeAt</span>(i) &amp; <span class="number">0xFF</span>);</span><br><span class="line">      <span class="keyword">return</span> bytes;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Convert a byte array to a string</span></span><br><span class="line">    <span class="attr">bytesToString</span>: <span class="keyword">function</span>(<span class="params">bytes</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> str = [], i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++)</span><br><span class="line">        str.<span class="title function_">push</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(bytes[i]));</span><br><span class="line">      <span class="keyword">return</span> str.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> utf8 = charenc.<span class="property">utf8</span>;</span><br><span class="line"><span class="keyword">var</span> bin = charenc.<span class="property">bin</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isBuffer</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> !!obj.<span class="property">constructor</span> &amp;&amp; <span class="keyword">typeof</span> obj.<span class="property">constructor</span>.<span class="property">isBuffer</span> === <span class="string">&#x27;function&#x27;</span> &amp;&amp; obj.<span class="property">constructor</span>.<span class="title function_">isBuffer</span>(obj)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The core</span></span><br><span class="line"><span class="keyword">var</span> md5 = <span class="keyword">function</span>(<span class="params">message, options</span>) &#123;</span><br><span class="line">  <span class="comment">// Convert to byte array</span></span><br><span class="line">  <span class="keyword">if</span> (message.<span class="property">constructor</span> == <span class="title class_">String</span>)</span><br><span class="line">    <span class="keyword">if</span> (options &amp;&amp; options.<span class="property">encoding</span> === <span class="string">&#x27;binary&#x27;</span>)</span><br><span class="line">      message = bin.<span class="title function_">stringToBytes</span>(message);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      message = utf8.<span class="title function_">stringToBytes</span>(message);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="title function_">isBuffer</span>(message))</span><br><span class="line">    message = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(message, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="title class_">Array</span>.<span class="title function_">isArray</span>(message))</span><br><span class="line">    message = message.<span class="title function_">toString</span>();</span><br><span class="line">  <span class="comment">// else, assume byte array already</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> m = crypt.<span class="property">util</span>.<span class="title function_">bytesToWords</span>(message),</span><br><span class="line">    l = message.<span class="property">length</span> * <span class="number">8</span>,</span><br><span class="line">    a = <span class="number">1732584193</span>,</span><br><span class="line">    b = -<span class="number">271733879</span>,</span><br><span class="line">    c = -<span class="number">1732584194</span>,</span><br><span class="line">    d = <span class="number">271733878</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Swap endian</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; m.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    m[i] = ((m[i] &lt;&lt; <span class="number">8</span>) | (m[i] &gt;&gt;&gt; <span class="number">24</span>)) &amp; <span class="number">0x00FF00FF</span> |</span><br><span class="line">      ((m[i] &lt;&lt; <span class="number">24</span>) | (m[i] &gt;&gt;&gt; <span class="number">8</span>)) &amp; <span class="number">0xFF00FF00</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Padding</span></span><br><span class="line">  m[l &gt;&gt;&gt; <span class="number">5</span>] |= <span class="number">0x80</span> &lt;&lt; (l % <span class="number">32</span>);</span><br><span class="line">  m[(((l + <span class="number">64</span>) &gt;&gt;&gt; <span class="number">9</span>) &lt;&lt; <span class="number">4</span>) + <span class="number">14</span>] = l;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Method shortcuts</span></span><br><span class="line">  <span class="keyword">var</span> <span class="variable constant_">FF</span> = md5.<span class="property">_ff</span>,</span><br><span class="line">    <span class="variable constant_">GG</span> = md5.<span class="property">_gg</span>,</span><br><span class="line">    <span class="variable constant_">HH</span> = md5.<span class="property">_hh</span>,</span><br><span class="line">    <span class="variable constant_">II</span> = md5.<span class="property">_ii</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; m.<span class="property">length</span>; i += <span class="number">16</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> aa = a,</span><br><span class="line">      bb = b,</span><br><span class="line">      cc = c,</span><br><span class="line">      dd = d;</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">0</span>], <span class="number">7</span>, -<span class="number">680876936</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">1</span>], <span class="number">12</span>, -<span class="number">389564586</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">2</span>], <span class="number">17</span>, <span class="number">606105819</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">3</span>], <span class="number">22</span>, -<span class="number">1044525330</span>);</span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">4</span>], <span class="number">7</span>, -<span class="number">176418897</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">5</span>], <span class="number">12</span>, <span class="number">1200080426</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">6</span>], <span class="number">17</span>, -<span class="number">1473231341</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">7</span>], <span class="number">22</span>, -<span class="number">45705983</span>);</span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">8</span>], <span class="number">7</span>, <span class="number">1770035416</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">9</span>], <span class="number">12</span>, -<span class="number">1958414417</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">10</span>], <span class="number">17</span>, -<span class="number">42063</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">11</span>], <span class="number">22</span>, -<span class="number">1990404162</span>);</span><br><span class="line">    a = <span class="title function_">FF</span>(a, b, c, d, m[i + <span class="number">12</span>], <span class="number">7</span>, <span class="number">1804603682</span>);</span><br><span class="line">    d = <span class="title function_">FF</span>(d, a, b, c, m[i + <span class="number">13</span>], <span class="number">12</span>, -<span class="number">40341101</span>);</span><br><span class="line">    c = <span class="title function_">FF</span>(c, d, a, b, m[i + <span class="number">14</span>], <span class="number">17</span>, -<span class="number">1502002290</span>);</span><br><span class="line">    b = <span class="title function_">FF</span>(b, c, d, a, m[i + <span class="number">15</span>], <span class="number">22</span>, <span class="number">1236535329</span>);</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">1</span>], <span class="number">5</span>, -<span class="number">165796510</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">6</span>], <span class="number">9</span>, -<span class="number">1069501632</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">11</span>], <span class="number">14</span>, <span class="number">643717713</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">0</span>], <span class="number">20</span>, -<span class="number">373897302</span>);</span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">5</span>], <span class="number">5</span>, -<span class="number">701558691</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">10</span>], <span class="number">9</span>, <span class="number">38016083</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">15</span>], <span class="number">14</span>, -<span class="number">660478335</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">4</span>], <span class="number">20</span>, -<span class="number">405537848</span>);</span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">9</span>], <span class="number">5</span>, <span class="number">568446438</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">14</span>], <span class="number">9</span>, -<span class="number">1019803690</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">3</span>], <span class="number">14</span>, -<span class="number">187363961</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">8</span>], <span class="number">20</span>, <span class="number">1163531501</span>);</span><br><span class="line">    a = <span class="title function_">GG</span>(a, b, c, d, m[i + <span class="number">13</span>], <span class="number">5</span>, -<span class="number">1444681467</span>);</span><br><span class="line">    d = <span class="title function_">GG</span>(d, a, b, c, m[i + <span class="number">2</span>], <span class="number">9</span>, -<span class="number">51403784</span>);</span><br><span class="line">    c = <span class="title function_">GG</span>(c, d, a, b, m[i + <span class="number">7</span>], <span class="number">14</span>, <span class="number">1735328473</span>);</span><br><span class="line">    b = <span class="title function_">GG</span>(b, c, d, a, m[i + <span class="number">12</span>], <span class="number">20</span>, -<span class="number">1926607734</span>);</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">5</span>], <span class="number">4</span>, -<span class="number">378558</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">8</span>], <span class="number">11</span>, -<span class="number">2022574463</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">11</span>], <span class="number">16</span>, <span class="number">1839030562</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">14</span>], <span class="number">23</span>, -<span class="number">35309556</span>);</span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">1</span>], <span class="number">4</span>, -<span class="number">1530992060</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">4</span>], <span class="number">11</span>, <span class="number">1272893353</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">7</span>], <span class="number">16</span>, -<span class="number">155497632</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">10</span>], <span class="number">23</span>, -<span class="number">1094730640</span>);</span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">13</span>], <span class="number">4</span>, <span class="number">681279174</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">0</span>], <span class="number">11</span>, -<span class="number">358537222</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">3</span>], <span class="number">16</span>, -<span class="number">722521979</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">6</span>], <span class="number">23</span>, <span class="number">76029189</span>);</span><br><span class="line">    a = <span class="title function_">HH</span>(a, b, c, d, m[i + <span class="number">9</span>], <span class="number">4</span>, -<span class="number">640364487</span>);</span><br><span class="line">    d = <span class="title function_">HH</span>(d, a, b, c, m[i + <span class="number">12</span>], <span class="number">11</span>, -<span class="number">421815835</span>);</span><br><span class="line">    c = <span class="title function_">HH</span>(c, d, a, b, m[i + <span class="number">15</span>], <span class="number">16</span>, <span class="number">530742520</span>);</span><br><span class="line">    b = <span class="title function_">HH</span>(b, c, d, a, m[i + <span class="number">2</span>], <span class="number">23</span>, -<span class="number">995338651</span>);</span><br><span class="line"></span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">0</span>], <span class="number">6</span>, -<span class="number">198630844</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">7</span>], <span class="number">10</span>, <span class="number">1126891415</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">14</span>], <span class="number">15</span>, -<span class="number">1416354905</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">5</span>], <span class="number">21</span>, -<span class="number">57434055</span>);</span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">12</span>], <span class="number">6</span>, <span class="number">1700485571</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">3</span>], <span class="number">10</span>, -<span class="number">1894986606</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">10</span>], <span class="number">15</span>, -<span class="number">1051523</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">1</span>], <span class="number">21</span>, -<span class="number">2054922799</span>);</span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">8</span>], <span class="number">6</span>, <span class="number">1873313359</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">15</span>], <span class="number">10</span>, -<span class="number">30611744</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">6</span>], <span class="number">15</span>, -<span class="number">1560198380</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">13</span>], <span class="number">21</span>, <span class="number">1309151649</span>);</span><br><span class="line">    a = <span class="title function_">II</span>(a, b, c, d, m[i + <span class="number">4</span>], <span class="number">6</span>, -<span class="number">145523070</span>);</span><br><span class="line">    d = <span class="title function_">II</span>(d, a, b, c, m[i + <span class="number">11</span>], <span class="number">10</span>, -<span class="number">1120210379</span>);</span><br><span class="line">    c = <span class="title function_">II</span>(c, d, a, b, m[i + <span class="number">2</span>], <span class="number">15</span>, <span class="number">718787259</span>);</span><br><span class="line">    b = <span class="title function_">II</span>(b, c, d, a, m[i + <span class="number">9</span>], <span class="number">21</span>, -<span class="number">343485551</span>);</span><br><span class="line"></span><br><span class="line">    a = (a + aa) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    b = (b + bb) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    c = (c + cc) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    d = (d + dd) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> crypt.<span class="property">util</span>.<span class="title function_">endian</span>([a, b, c, d]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Auxiliary functions</span></span><br><span class="line">md5.<span class="property">_ff</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (b &amp; c | ~b &amp; d) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line">md5.<span class="property">_gg</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (b &amp; d | c &amp; ~d) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line">md5.<span class="property">_hh</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (b ^ c ^ d) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line">md5.<span class="property">_ii</span> = <span class="keyword">function</span>(<span class="params">a, b, c, d, x, s, t</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> n = a + (c ^ (b | ~d)) + (x &gt;&gt;&gt; <span class="number">0</span>) + t;</span><br><span class="line">  <span class="keyword">return</span> ((n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))) + b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Package private blocksize</span></span><br><span class="line">md5.<span class="property">_blocksize</span> = <span class="number">16</span>;</span><br><span class="line">md5.<span class="property">_digestsize</span> = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">message, options</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (message === <span class="literal">undefined</span> || message === <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Illegal argument &#x27;</span> + message);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> digestbytes = crypt.<span class="property">util</span>.<span class="title function_">wordsToBytes</span>(<span class="title function_">md5</span>(message, options));</span><br><span class="line">  <span class="keyword">return</span> options &amp;&amp; options.<span class="property">asBytes</span> ? digestbytes :</span><br><span class="line">    options &amp;&amp; options.<span class="property">asString</span> ? bin.<span class="title function_">bytesToString</span>(digestbytes) :</span><br><span class="line">    crypt.<span class="property">util</span>.<span class="title function_">bytesToHex</span>(digestbytes);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>以下是 crypto 模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * Crypto-JS v1.1.0</span></span><br><span class="line"><span class="comment"> * http://code.google.com/p/crypto-js/</span></span><br><span class="line"><span class="comment"> * Copyright (c) 2009, Jeff Mott. All rights reserved.</span></span><br><span class="line"><span class="comment"> * http://code.google.com/p/crypto-js/wiki/License</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Crypto</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> base64map = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Crypto utilities</span></span><br><span class="line"><span class="keyword">var</span> util = <span class="title class_">Crypto</span>.<span class="property">util</span> = &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Bit-wise rotate left</span></span><br><span class="line">	<span class="attr">rotl</span>: <span class="keyword">function</span> (<span class="params">n, b</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> (n &lt;&lt; b) | (n &gt;&gt;&gt; (<span class="number">32</span> - b));</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Bit-wise rotate right</span></span><br><span class="line">	<span class="attr">rotr</span>: <span class="keyword">function</span> (<span class="params">n, b</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> (n &lt;&lt; (<span class="number">32</span> - b)) | (n &gt;&gt;&gt; b);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Swap big-endian to little-endian and vice versa</span></span><br><span class="line">	<span class="attr">endian</span>: <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// If number given, swap endian</span></span><br><span class="line">		<span class="keyword">if</span> (n.<span class="property">constructor</span> == <span class="title class_">Number</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> util.<span class="title function_">rotl</span>(n,  <span class="number">8</span>) &amp; <span class="number">0x00FF00FF</span> |</span><br><span class="line">			       util.<span class="title function_">rotl</span>(n, <span class="number">24</span>) &amp; <span class="number">0xFF00FF00</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Else, assume array and swap all items</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n.<span class="property">length</span>; i++)</span><br><span class="line">			n[i] = util.<span class="title function_">endian</span>(n[i]);</span><br><span class="line">		<span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Generate an array of any length of random bytes</span></span><br><span class="line">	<span class="attr">randomBytes</span>: <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> bytes = []; n &gt; <span class="number">0</span>; n--)</span><br><span class="line">			bytes.<span class="title function_">push</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">256</span>));</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a string to a byte array</span></span><br><span class="line">	<span class="attr">stringToBytes</span>: <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.<span class="property">length</span>; i++)</span><br><span class="line">			bytes.<span class="title function_">push</span>(str.<span class="title function_">charCodeAt</span>(i));</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to a string</span></span><br><span class="line">	<span class="attr">bytesToString</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> str = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++)</span><br><span class="line">			str.<span class="title function_">push</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(bytes[i]));</span><br><span class="line">		<span class="keyword">return</span> str.<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a string to big-endian 32-bit words</span></span><br><span class="line">	<span class="attr">stringToWords</span>: <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> words = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> c = <span class="number">0</span>, b = <span class="number">0</span>; c &lt; str.<span class="property">length</span>; c++, b += <span class="number">8</span>)</span><br><span class="line">			words[b &gt;&gt;&gt; <span class="number">5</span>] |= str.<span class="title function_">charCodeAt</span>(c) &lt;&lt; (<span class="number">24</span> - b % <span class="number">32</span>);</span><br><span class="line">		<span class="keyword">return</span> words;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to big-endian 32-bits words</span></span><br><span class="line">	<span class="attr">bytesToWords</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> words = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, b = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++, b += <span class="number">8</span>)</span><br><span class="line">			words[b &gt;&gt;&gt; <span class="number">5</span>] |= bytes[i] &lt;&lt; (<span class="number">24</span> - b % <span class="number">32</span>);</span><br><span class="line">		<span class="keyword">return</span> words;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert big-endian 32-bit words to a byte array</span></span><br><span class="line">	<span class="attr">wordsToBytes</span>: <span class="keyword">function</span> (<span class="params">words</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> b = <span class="number">0</span>; b &lt; words.<span class="property">length</span> * <span class="number">32</span>; b += <span class="number">8</span>)</span><br><span class="line">			bytes.<span class="title function_">push</span>((words[b &gt;&gt;&gt; <span class="number">5</span>] &gt;&gt;&gt; (<span class="number">24</span> - b % <span class="number">32</span>)) &amp; <span class="number">0xFF</span>);</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to a hex string</span></span><br><span class="line">	<span class="attr">bytesToHex</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> hex = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">			hex.<span class="title function_">push</span>((bytes[i] &gt;&gt;&gt; <span class="number">4</span>).<span class="title function_">toString</span>(<span class="number">16</span>));</span><br><span class="line">			hex.<span class="title function_">push</span>((bytes[i] &amp; <span class="number">0xF</span>).<span class="title function_">toString</span>(<span class="number">16</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> hex.<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a hex string to a byte array</span></span><br><span class="line">	<span class="attr">hexToBytes</span>: <span class="keyword">function</span> (<span class="params">hex</span>) &#123;</span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> c = <span class="number">0</span>; c &lt; hex.<span class="property">length</span>; c += <span class="number">2</span>)</span><br><span class="line">			bytes.<span class="title function_">push</span>(<span class="built_in">parseInt</span>(hex.<span class="title function_">substr</span>(c, <span class="number">2</span>), <span class="number">16</span>));</span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a byte array to a base-64 string</span></span><br><span class="line">	<span class="attr">bytesToBase64</span>: <span class="keyword">function</span> (<span class="params">bytes</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Use browser-native function if it exists</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">typeof</span> btoa == <span class="string">&quot;function&quot;</span>) <span class="keyword">return</span> <span class="title function_">btoa</span>(util.<span class="title function_">bytesToString</span>(bytes));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> base64 = [],</span><br><span class="line">		    overflow;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (i % <span class="number">3</span>) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(bytes[i] &gt;&gt;&gt; <span class="number">2</span>));</span><br><span class="line">					overflow = (bytes[i] &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">4</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(overflow | (bytes[i] &gt;&gt;&gt; <span class="number">4</span>)));</span><br><span class="line">					overflow = (bytes[i] &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">2</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(overflow | (bytes[i] &gt;&gt;&gt; <span class="number">6</span>)));</span><br><span class="line">					base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(bytes[i] &amp; <span class="number">0x3F</span>));</span><br><span class="line">					overflow = -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Encode overflow bits, if there are any</span></span><br><span class="line">		<span class="keyword">if</span> (overflow != <span class="literal">undefined</span> &amp;&amp; overflow != -<span class="number">1</span>)</span><br><span class="line">			base64.<span class="title function_">push</span>(base64map.<span class="title function_">charAt</span>(overflow));</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Add padding</span></span><br><span class="line">		<span class="keyword">while</span> (base64.<span class="property">length</span> % <span class="number">4</span> != <span class="number">0</span>) base64.<span class="title function_">push</span>(<span class="string">&quot;=&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> base64.<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Convert a base-64 string to a byte array</span></span><br><span class="line">	<span class="attr">base64ToBytes</span>: <span class="keyword">function</span> (<span class="params">base64</span>) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Use browser-native function if it exists</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">typeof</span> atob == <span class="string">&quot;function&quot;</span>) <span class="keyword">return</span> util.<span class="title function_">stringToBytes</span>(<span class="title function_">atob</span>(base64));</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Remove non-base-64 characters</span></span><br><span class="line">		base64 = base64.<span class="title function_">replace</span>(<span class="regexp">/[^A-Z0-9+\/]/ig</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> bytes = [];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; base64.<span class="property">length</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (i % <span class="number">4</span>) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">					bytes.<span class="title function_">push</span>((base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i - <span class="number">1</span>)) &lt;&lt; <span class="number">2</span>) |</span><br><span class="line">					           (base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i)) &gt;&gt;&gt; <span class="number">4</span>));</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">					bytes.<span class="title function_">push</span>(((base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i - <span class="number">1</span>)) &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">4</span>) |</span><br><span class="line">					           (base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i)) &gt;&gt;&gt; <span class="number">2</span>));</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">					bytes.<span class="title function_">push</span>(((base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i - <span class="number">1</span>)) &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">6</span>) |</span><br><span class="line">					           (base64map.<span class="title function_">indexOf</span>(base64.<span class="title function_">charAt</span>(i))));</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> bytes;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Crypto mode namespace</span></span><br><span class="line"><span class="title class_">Crypto</span>.<span class="property">mode</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">Crypto</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20MD5%20%E7%AD%BE%E5%90%8D%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" data-id="cm1bjptsu001w0khp8potajda" data-title="微信支付 MD5 签名中文问题" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-微信支付 mch_id 参数格式错误" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20mch_id%20%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF/" class="article-date">
+  <time class="dt-published" datetime="2018-07-27T03:26:25.000Z" itemprop="datePublished">2018-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20mch_id%20%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF/">微信支付 mch_id 参数格式错误</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>为了避免使用全局变量，有两个办法</p>
+<ol>
+<li><p>办法一：设计一个函数，并将函数内的方法添加到全局对象 window 上（这种方法虽然可以避免全局变量，却难免要应对全局对象上方法的命名冲突）</p>
+</li>
+<li><p>办法二：设计一个对象，对象里面存着变量和方法，但它不直接通过定义获得（不然会变成全局变量），而是通过定义匿名函数并马上运行它来返回所需要的对象</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20mch_id%20%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF/" data-id="cm1bj0at9000j0khp1i3hhfw7" data-title="微信支付 mch_id 参数格式错误" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-Linux MongoDB 安装并设置开机启动" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -139,498 +665,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2018/06/10/Linux%20MongoDB%20%E5%AE%89%E8%A3%85%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" data-id="cm1bjog3p001r0khp19uggm2m" data-title="Linux MongoDB 安装并设置开机启动" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2018/06/10/Linux%20MongoDB%20%E5%AE%89%E8%A3%85%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" data-id="cm1bjog3p001r0khp19uggm2m" data-title="Linux MongoDB 安装并设置开机启动" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Linux Redis 安装并设置开机启动" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/03/15/Linux%20Redis%20%E5%AE%89%E8%A3%85%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" class="article-date">
-  <time class="dt-published" datetime="2018-03-15T04:05:32.000Z" itemprop="datePublished">2018-03-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/03/15/Linux%20Redis%20%E5%AE%89%E8%A3%85%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/">Linux Redis 安装并设置开机启动</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="安装-redis（注：以下是基于-linux-系统）"><a href="#安装-redis（注：以下是基于-linux-系统）" class="headerlink" title="安装 redis（注：以下是基于 linux 系统）"></a>安装 redis（注：以下是基于 linux 系统）</h1><h5 id="进入源码目录（注：一般将下载的源码文件统一放在这个目录下，当然也可以不放这里，看个人需要）"><a href="#进入源码目录（注：一般将下载的源码文件统一放在这个目录下，当然也可以不放这里，看个人需要）" class="headerlink" title="进入源码目录（注：一般将下载的源码文件统一放在这个目录下，当然也可以不放这里，看个人需要）"></a>进入源码目录（注：一般将下载的源码文件统一放在这个目录下，当然也可以不放这里，看个人需要）</h5><p><code>cd /usr/local/src</code></p>
-<h5 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h5><p><code>wget http://download.redis.io/releases/redis-4.0.8.tar.gz</code><br>注：此处假设最新版本为 4.0.8，如果不是要下载这个版本，则相应修改</p>
-<h5 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h5><p><code>tar -zxvf redis-4.0.8.tar.gz</code></p>
-<h5 id="进入解压后的文件夹"><a href="#进入解压后的文件夹" class="headerlink" title="进入解压后的文件夹"></a>进入解压后的文件夹</h5><p><code>cd redis-4.0.8</code></p>
-<h5 id="创建安装目录（注：一般将程序统一安装在-usr-local-目录下，当然也可以不放这里，看个人需要）"><a href="#创建安装目录（注：一般将程序统一安装在-usr-local-目录下，当然也可以不放这里，看个人需要）" class="headerlink" title="创建安装目录（注：一般将程序统一安装在 &#x2F;usr&#x2F;local&#x2F; 目录下，当然也可以不放这里，看个人需要）"></a>创建安装目录（注：一般将程序统一安装在 &#x2F;usr&#x2F;local&#x2F; 目录下，当然也可以不放这里，看个人需要）</h5><p><code>mkdir /usr/local/redis</code></p>
-<h5 id="安装-redis-到以上目录"><a href="#安装-redis-到以上目录" class="headerlink" title="安装 redis 到以上目录"></a>安装 redis 到以上目录</h5><p><code>make PREFIX=/usr/local/redis install</code></p>
-<h5 id="检查是否安装成功"><a href="#检查是否安装成功" class="headerlink" title="检查是否安装成功"></a>检查是否安装成功</h5><p><code>ls /usr/local/redis/bin</code><br>如果安装成功，可以看到 bin 目录有以下文件<br>redis-benchmark<br>redis-check-rdb<br>redis-sentinel<br>redis-check-aof<br>redis-cli<br>redis-server</p>
-<h1 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h1><h4 id="复制安装包中-utils-目录下的启动脚本文件-redis-init-script-到文件夹-etc-init-d-并命名为-redis"><a href="#复制安装包中-utils-目录下的启动脚本文件-redis-init-script-到文件夹-etc-init-d-并命名为-redis" class="headerlink" title="复制安装包中 utils 目录下的启动脚本文件 redis_init_script 到文件夹 &#x2F;etc&#x2F;init.d&#x2F; 并命名为 redis"></a>复制安装包中 utils 目录下的启动脚本文件 redis_init_script 到文件夹 &#x2F;etc&#x2F;init.d&#x2F; 并命名为 redis</h4><p><code>cp /usr/local/src/redis-4.0.8/utils/redis_init_script /etc/init.d/redis</code><br>注：路径 &#x2F;usr&#x2F;local&#x2F;src&#x2F;redis-4.0.8 是按前面步骤的安装包解压后的位置，如果不是则相应修改；</p>
-<h4 id="编辑-etc-init-d-redis-文件"><a href="#编辑-etc-init-d-redis-文件" class="headerlink" title="编辑 &#x2F;etc&#x2F;init.d&#x2F;redis 文件"></a>编辑 &#x2F;etc&#x2F;init.d&#x2F;redis 文件</h4><h5 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h5><p><code>vi /etc/init.d/redis</code></p>
-<h5 id="修改文件内容"><a href="#修改文件内容" class="headerlink" title="修改文件内容"></a>修改文件内容</h5><ol>
-<li>第一段末尾添加如下内容 #chkconfig: 2345 80 90</li>
-<li>EXEC&#x3D;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;redis-server 改为 EXEC&#x3D;&#x2F;usr&#x2F;local&#x2F;redis&#x2F;bin&#x2F;redis-server<br>注：此处是设定执行文件的路径，以上路径是假设redis 安装的位置在 &#x2F;usr&#x2F;local&#x2F;redis，如果实际不是，则相应修改；以下两点同；</li>
-<li>CLIEXEC&#x3D;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;redis-cli 改为 CLIEXEC&#x3D;&#x2F;usr&#x2F;local&#x2F;redis&#x2F;bin&#x2F;redis-cli<br>注：此处是设定客户端启动文件的路径；</li>
-<li>CONF&#x3D;”&#x2F;etc&#x2F;redis&#x2F;${REDISPORT}.conf” 改为 CONF&#x3D;”&#x2F;usr&#x2F;local&#x2F;redis&#x2F;conf&#x2F;${REDISPORT}.conf”<br>注：此处是设定配置文件的路径；注意 redis 下的目录 conf 是要在下一步手工新增</li>
-</ol>
-<h5 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h5><h4 id="新增配置文件存放目录"><a href="#新增配置文件存放目录" class="headerlink" title="新增配置文件存放目录"></a>新增配置文件存放目录</h4><p><code>mkdir /usr/local/redis/conf</code></p>
-<h4 id="复制安装包中的配置文件-redis-conf-到以上-conf-目录，并重命名为-6379-conf"><a href="#复制安装包中的配置文件-redis-conf-到以上-conf-目录，并重命名为-6379-conf" class="headerlink" title="复制安装包中的配置文件 redis.conf 到以上 conf 目录，并重命名为 6379.conf"></a>复制安装包中的配置文件 redis.conf 到以上 conf 目录，并重命名为 6379.conf</h4><p><code>cp /usr/local/src/redis-4.0.8/redis.conf /usr/local/redis/conf/6379.conf</code></p>
-<h4 id="编辑配置文件-6379-conf"><a href="#编辑配置文件-6379-conf" class="headerlink" title="编辑配置文件 6379.conf"></a>编辑配置文件 6379.conf</h4><ol>
-<li>打开文件</li>
-</ol>
-<p><code>vi /usr/local/redis/conf/6379.conf</code></p>
-<ol start="2">
-<li>修改文件的后台运行选项</li>
-</ol>
-<p>找到 <code>daemonize no</code> 那一行， 将其改为 <code>daemonize yes</code></p>
-<ol start="3">
-<li>保存退出</li>
-</ol>
-<h4 id="修改启动脚本文件的执行权限"><a href="#修改启动脚本文件的执行权限" class="headerlink" title="修改启动脚本文件的执行权限"></a>修改启动脚本文件的执行权限</h4><p><code>chmod +x /etc/init.d/redis</code></p>
-<h4 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h4><p><code>chkconfig redis on</code></p>
-<h4 id="测试启动-redis"><a href="#测试启动-redis" class="headerlink" title="测试启动 redis"></a>测试启动 redis</h4><p><code>service redis start</code><br>注：如果成功，会提示如下：Starting Redis server… Redis is running…</p>
-<h4 id="测试停止-redis"><a href="#测试停止-redis" class="headerlink" title="测试停止 redis"></a>测试停止 redis</h4><p><code>service redis stop</code></p>
-<h4 id="重启服务器"><a href="#重启服务器" class="headerlink" title="重启服务器"></a>重启服务器</h4><p><code>reboot</code></p>
-<h4 id="测试客户端-redis-cli"><a href="#测试客户端-redis-cli" class="headerlink" title="测试客户端 redis-cli"></a>测试客户端 redis-cli</h4><p><code>/usr/local/redis/bin/redis-cli</code><br>注：如果成功，提示如下：127.0.0.1:6379</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/03/15/Linux%20Redis%20%E5%AE%89%E8%A3%85%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" data-id="cm1bjmh0v001i0khpdfou8r6e" data-title="Linux Redis 安装并设置开机启动" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Node Express 转发 GET 和 POST 请求" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/03/07/Node%20Express%20%E8%BD%AC%E5%8F%91%20GET%20%E5%92%8C%20POST%20%E8%AF%B7%E6%B1%82/" class="article-date">
-  <time class="dt-published" datetime="2018-03-06T16:02:00.000Z" itemprop="datePublished">2018-03-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/03/07/Node%20Express%20%E8%BD%AC%E5%8F%91%20GET%20%E5%92%8C%20POST%20%E8%AF%B7%E6%B1%82/">Node Express 转发 GET 和 POST 请求</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>转发GET 和 POST 请求到第三方的 API，实现方式如下，可单独建立一个 route.js 文件供 app.js 主程序文件引用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ---app.js--- 文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拦截带api字样的url</span></span><br><span class="line"><span class="keyword">var</span> route = <span class="built_in">require</span>(<span class="string">&#x27;./route.js&#x27;</span>);</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api/*&#x27;</span>, route);</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// ---route.js 文件---</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="comment">//如果第三方api是https，则以上为var https = require(&#x27;https&#x27;)</span></span><br><span class="line"><span class="comment">//下面的代码 http 处相应更改为 https，并将80端口更新为 443</span></span><br><span class="line"><span class="keyword">var</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"><span class="keyword">var</span> _fn;</span><br><span class="line"><span class="keyword">var</span> apiHost = <span class="string">&#x27;此处填写第三方 api 的域名&#x27;</span> (例如: www.<span class="property">google</span>.<span class="property">com</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//转发 get 请求</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> path = req.<span class="property">originalUrl</span>;</span><br><span class="line">	_fn.<span class="title function_">getData</span>(path, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">		res.<span class="title function_">send</span>(data);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//转发 post 请求</span></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> path = req.<span class="property">originalUrl</span>;</span><br><span class="line">	<span class="keyword">var</span> content = req.<span class="property">body</span>;</span><br><span class="line">	_fn.<span class="title function_">postData</span>(path, content, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">		res.<span class="title function_">send</span>(data);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">_fn = &#123;</span><br><span class="line">	<span class="attr">getData</span>: <span class="keyword">function</span>(<span class="params">path, callback</span>)&#123;</span><br><span class="line">		http.<span class="title function_">get</span>(&#123;</span><br><span class="line">			<span class="attr">hostname</span>: apiHost,</span><br><span class="line">			<span class="attr">path</span>: path</span><br><span class="line">		&#125;, <span class="keyword">function</span>(<span class="params">res</span>)&#123;</span><br><span class="line">			<span class="keyword">var</span> body = [];</span><br><span class="line">			res.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">chunk</span>)&#123;</span><br><span class="line">				body.<span class="title function_">push</span>(chunk);</span><br><span class="line">			&#125;);</span><br><span class="line">			res.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">				body = <span class="title class_">Buffer</span>.<span class="title function_">concat</span>(body);</span><br><span class="line">				<span class="title function_">callback</span>(body.<span class="title function_">toString</span>());</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">postData</span>: <span class="keyword">function</span>(<span class="params">path, data, callback</span>)&#123;</span><br><span class="line">		data = data || &#123;&#125;;</span><br><span class="line">		content = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data);</span><br><span class="line">		<span class="keyword">var</span> options = &#123;</span><br><span class="line">			<span class="attr">host</span>: apiHost,</span><br><span class="line">			<span class="attr">port</span>: <span class="number">80</span>,</span><br><span class="line">			<span class="attr">path</span>: path,</span><br><span class="line">			<span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">			<span class="attr">headers</span>:&#123;</span><br><span class="line">			  <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;multipart/form-data&#x27;</span>,</span><br><span class="line">                          <span class="string">&#x27;Content-Length&#x27;</span>: content.<span class="property">length</span></span><br><span class="line">              <span class="comment">//根据提交请求类型不同而不同，以上适用多媒体文件</span></span><br><span class="line">              <span class="comment">//可查询各种报头类型代表的意思</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		http.<span class="title function_">request</span>(options, <span class="keyword">function</span>(<span class="params">res</span>)&#123;</span><br><span class="line">			<span class="keyword">var</span> _data = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">			res.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">chunk</span>)&#123;</span><br><span class="line">				_data += chunk;</span><br><span class="line">			&#125;);</span><br><span class="line">			res.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">				<span class="title function_">callback</span>(_data);</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">        req.<span class="title function_">write</span>(content);</span><br><span class="line">        req.<span class="title function_">end</span>()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = route; </span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/03/07/Node%20Express%20%E8%BD%AC%E5%8F%91%20GET%20%E5%92%8C%20POST%20%E8%AF%B7%E6%B1%82/" data-id="cm1biulxk000f0khphxnyazl6" data-title="Node Express 转发 GET 和 POST 请求" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-阿里云轻量应用服务器 Nginx 缺少支持HTTPS 的 SSL-MODULE 问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%20Nginx%20%E7%BC%BA%E5%B0%91%E6%94%AF%E6%8C%81HTTPS%20%E7%9A%84%20SSL-MODULE%20%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2018-03-04T01:28:46.000Z" itemprop="datePublished">2018-03-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%20Nginx%20%E7%BC%BA%E5%B0%91%E6%94%AF%E6%8C%81HTTPS%20%E7%9A%84%20SSL-MODULE%20%E9%97%AE%E9%A2%98/">阿里云轻量应用服务器 Nginx 缺少支持HTTPS 的 SSL-MODULE 问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>阿里云轻量应用服务器预安装的 Nginx 默认没有 ssl-module，当需要使用 https 进行访问时，在配置 nginx.conf 并重启后，会提示如下：</p>
-<blockquote>
-<p>nginx: [emerg] the “ssl” parameter requires ngx_http_ssl_module in &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</p>
-</blockquote>
-<p>解决办法：在服务器上重装下载 nginx 相应版本的源码包（原因：镜像上面没有源码包；如有，则可不用重新下载，找到源码包所在目录即可），重新编译安装，过程步骤如下：</p>
-<ul>
-<li>假设 nginx 安装在如下目录： &#x2F;usr&#x2F;local&#x2F;nginx</li>
-<li>运行 <code>cd sbin</code>，进入 sbin 子目录，进入后当前目录为 &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin</li>
-<li>运行 <code>nginx -V</code>，查看版本信息（目的：获取相同版本的源码包用），假设为 v1.12.1；</li>
-<li>回到 &#x2F;usr&#x2F;local 目录， 运行 <code>wget http://nginx.org/download/nginx-1.12.1.tar.gz</code>，获取源码包</li>
-<li>运行 <code>tar zxvf nginx-1.12.1.tar.gz</code>，解码</li>
-<li>运行 <code>cd nginx-1.12.1</code>，进入包的目录</li>
-<li>运行 <code>./configure --prefix=/usr/local/webserver/nginx  --with-http_ssl_module</code>，配置参数</li>
-<li>运行 <code>make</code>，编译（注：不要 make install，避免覆盖原有的配置文件）；</li>
-<li>运行 <code>cp /usr/local/nginx/sbin/nginx  ~/</code> （复制编译后的需要的新的可执行文件，避免覆盖原有的配置文件）</li>
-<li>运行 <code>cp objs/nginx  /usr/local/nginx/sbin/</code>（复制编译后的需要的新的可执行文件，避免覆盖原有的配置文件）</li>
-<li>完成</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%20Nginx%20%E7%BC%BA%E5%B0%91%E6%94%AF%E6%8C%81HTTPS%20%E7%9A%84%20SSL-MODULE%20%E9%97%AE%E9%A2%98/" data-id="cm1bjl6t7001c0khpgjzk92x3" data-title="阿里云轻量应用服务器 Nginx 缺少支持HTTPS 的 SSL-MODULE 问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-阿里云轻量应用服务器远程连接 node 和 npm 命令不可用的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%20node%20%E5%92%8C%20npm%20%E5%91%BD%E4%BB%A4%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2018-03-04T01:12:38.000Z" itemprop="datePublished">2018-03-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%20node%20%E5%92%8C%20npm%20%E5%91%BD%E4%BB%A4%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">阿里云轻量应用服务器远程连接 node 和 npm 命令不可用的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>阿里云轻量应用服务器，有三种远程连接方式，分别如下：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211047470.png"></p>
-<p>其中阿里云推荐使用浏览器连接，但连接后，发现 node 和 npm 命令不可用，显示如下：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211047479.png"></p>
-<p>解决办法：改用本地 putty 客户端使用密钥进行连接</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211048486.png"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%20node%20%E5%92%8C%20npm%20%E5%91%BD%E4%BB%A4%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cm1bjnw2a001l0khp3k730u61" data-title="阿里云轻量应用服务器远程连接 node 和 npm 命令不可用的问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-数据库查询并更新的锁定" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/01/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E5%B9%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E9%94%81%E5%AE%9A/" class="article-date">
-  <time class="dt-published" datetime="2018-01-03T10:39:23.000Z" itemprop="datePublished">2018-01-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/01/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E5%B9%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E9%94%81%E5%AE%9A/">数据库查询并更新的锁定</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>方案一：使用 select for update 命令；<br>方案二：在表中增加一个字段 version，int 类型，查询时，同时读取这个字段，更新时，判断这个字段与查询时获得的值相同，如果相同，更新记录并将 version 字段加1；如果不同，说明查询之后这条记录被更新过了，需要报错并另外处理；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/01/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E5%B9%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E9%94%81%E5%AE%9A/" data-id="cm1bji2ee000x0khp0q3nf5i1" data-title="数据库查询并更新的锁定" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-交互设计模式：导航-面包屑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/15/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%BC%E8%88%AA-%E9%9D%A2%E5%8C%85%E5%B1%91/" class="article-date">
-  <time class="dt-published" datetime="2017-11-15T14:06:06.000Z" itemprop="datePublished">2017-11-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/15/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%BC%E8%88%AA-%E9%9D%A2%E5%8C%85%E5%B1%91/">交互设计模式：导航-面包屑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211048604.png"></p>
-<h3 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h3><p>在层级结构中，用户需要知道他所处的位置，以及能够返回上一级</p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>使用面包屑，展示出各个级别（从顶级到当前级），并允许对每一级进行点击跳转</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li>网站有多层级结构（不少于3级）；</li>
-<li>中型到大型的网站，如电商、产品目录、入口网站（如网址导航）、企业网站；</li>
-<li>配合主导航，主导航允许用户跨越不同分支；</li>
-<li>需要一次性回退多个层级，而非逐级回退；</li>
-<li>用户不熟悉网站的层级；</li>
-</ul>
-<h3 id="设计要点"><a href="#设计要点" class="headerlink" title="设计要点"></a>设计要点</h3><ul>
-<li>路径显示当前页面所在的层级结构；每一层级使用一个标签，做成可点击的链接；</li>
-<li>当面页面的标签要突出标注，并且不可点击（以便让用户知道所处的位置）；</li>
-<li>不要用当前页的标签，做为本页面的唯一标题，需要单独再放置一个标题；</li>
-<li>层级间使用&#x2F;或&gt;进行区隔；</li>
-<li>如果路径很长，中间可以使用省略号…隐藏部分内容；</li>
-<li>路径单独放置在一块区域中，占据整个内容页面的宽度</li>
-<li>放置在靠近内容的区域，建议在内容之上，内容标题之下；</li>
-</ul>
-<h3 id="利弊分析"><a href="#利弊分析" class="headerlink" title="利弊分析"></a>利弊分析</h3><ul>
-<li>面包屑可以告诉用户所在的位置，并展示出网站的层级，方便用户认知；</li>
-<li>占据空间小，能够留更多空间给内容；</li>
-<li>使用链接式标签，使用户可以层级间跳跃浏览；</li>
-<li>面包屑不做为主导航，需要配合主导航使用；</li>
-<li>用户测试显示面包屑很少出现麻烦，总会有部分用户使用，因此可以说有益无害；</li>
-</ul>
-<h3 id="创意改进"><a href="#创意改进" class="headerlink" title="创意改进"></a>创意改进</h3><p>面包屑结合飞出菜单，用来展示标签下的次级导航；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/15/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%BC%E8%88%AA-%E9%9D%A2%E5%8C%85%E5%B1%91/" data-id="cm1bjhc6q000t0khpd6v2hg9x" data-title="交互设计模式：导航-面包屑" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-交互设计模式：导航-手风琴" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/14/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%BC%E8%88%AA-%E6%89%8B%E9%A3%8E%E7%90%B4/" class="article-date">
-  <time class="dt-published" datetime="2017-11-14T14:17:37.000Z" itemprop="datePublished">2017-11-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/14/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%BC%E8%88%AA-%E6%89%8B%E9%A3%8E%E7%90%B4/">交互设计模式：导航-手风琴</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211049597.png"></p>
-<h4 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h4><p>   用户想通过导航找到某个项目</p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>   使用手风琴导航，将多个面板垂直或者水平叠加到一起，展开其中一个面板，缩起其他面板；</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
-<li>常做为主导航或者次级导航；</li>
-<li>本质上类似标签导航；可做为导航树的替代方案；</li>
-<li>经常有人在操作向导中使用手风琴，但其实并不合适；</li>
-<li>用在FAQ非常合适；</li>
-<li>如果设置项目不多的话（少于10个），用来管理设置项也不错；</li>
-</ul>
-<h3 id="设计要点"><a href="#设计要点" class="headerlink" title="设计要点"></a>设计要点</h3><ul>
-<li>一次只展开一个面板（如果可以展开多个，则叫做导航树或可关闭面板）；</li>
-<li>通过点击面板头部来切换不同的面板；</li>
-<li>垂直手风琴展开后，一般展示次级项目；水平手风琴则可以放置大段内容；</li>
-</ul>
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li>适当的动画效果，以便让用户知道发生了什么事情（动画时间少于250ms）</li>
-<li>支持键盘上下方向键；</li>
-<li>展开的面板应高亮显示，以便与缩起的面板进行区分；</li>
-<li>确保面板尺寸能够根据内容自适应，因为如果高度固定，当内容项很少于，会导致面板很空；</li>
-</ul>
-<h3 id="利弊分析"><a href="#利弊分析" class="headerlink" title="利弊分析"></a>利弊分析</h3><ul>
-<li>优点：可以将大量元素压缩在有限的空间内进行展示；元素包括：次级项目、问题、属性；</li>
-<li>缺点：做为主导航时，大部分元素被隐藏，可见性较弱</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>   垂直排列的方式很常见，但动画效果经常做得不好；水平式很少见，但可以带来一些乐趣；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/14/%E4%BA%A4%E4%BA%92%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%AF%BC%E8%88%AA-%E6%89%8B%E9%A3%8E%E7%90%B4/" data-id="cm1bj20i0000n0khph559c8kw" data-title="交互设计模式：导航-手风琴" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-js 函数作为参数不带括号" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/12/js%20%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E4%B8%8D%E5%B8%A6%E6%8B%AC%E5%8F%B7/" class="article-date">
-  <time class="dt-published" datetime="2017-11-12T09:33:00.000Z" itemprop="datePublished">2017-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/12/js%20%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E4%B8%8D%E5%B8%A6%E6%8B%AC%E5%8F%B7/">js 函数作为参数不带括号</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>将函数做为参数传递给另外一个函数时，该函数不用写括号，原因：如果写了括号，相当于把函数的执行返回结果，做为参数传入，而不是传入一个函数对象本身了。</p>
-<pre><code class="javascript">function A();
-function B(func, args);
-// 注意区分B(A, args) 和 B(A(), args) 二者的区别；
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/12/js%20%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E4%B8%8D%E5%B8%A6%E6%8B%AC%E5%8F%B7/" data-id="cm1bhvkim00090khpd32d2tqs" data-title="js 函数作为参数不带括号" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-js 类的继承" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2017/11/12/js%20%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" class="article-date">
-  <time class="dt-published" datetime="2017-11-12T09:31:02.000Z" itemprop="datePublished">2017-11-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2017/11/12/js%20%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/">js 类的继承</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>方法一：<br>通过使用构造函数，prototype，inherit 和 method 方法来实现类的继承；</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个通用的 clone 函数，用来克隆一个新对象，该新对象以参数传入 的对象为原型；</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clone</span>(<span class="params">object</span>)&#123;</span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">OneShotConstructor</span>(<span class="params"></span>)&#123;&#125;;</span><br><span class="line">	<span class="title class_">OneShotConstructor</span>.<span class="property"><span class="keyword">prototype</span></span> = object; <span class="comment">// 将对象做为构造函数的原型；</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OneShotConstructor</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义 inherit 和 method 方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过参数传入构造函数，以其原型克隆出一个对象，并将其作为当前对象的原型，实现了继承；</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">inherit</span> = <span class="keyword">function</span>(<span class="params">baseConstructor</span>)&#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="title function_">clone</span>(baseConstructor.<span class="property"><span class="keyword">prototype</span></span>);</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">constructor</span> = <span class="variable language_">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给对象定义了一些 method 的方法，该方法使得对象可以将传入的函数，添加成为它自己的方法；</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">method</span> = <span class="keyword">function</span>(<span class="params">name, func</span>)&#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property"><span class="keyword">prototype</span></span>[name] = func;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//写个例子</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Item</span>(<span class="params">name</span>)&#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Item</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">inspect</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;It is &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Item</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">kick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;Klunk!&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Item</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">take</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;you cannot lift &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lantern = <span class="keyword">new</span> <span class="title class_">Item</span>(<span class="string">&quot;the brass lantern&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">DetailedItem</span>(<span class="params">name, details</span>)&#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">details</span> = details;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">DetailedItem</span>.<span class="title function_">inherit</span>(<span class="title class_">Item</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">DetailedItem</span>.<span class="title function_">method</span>(<span class="string">&quot;inspect&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;you see &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;,&quot;</span> + <span class="variable language_">this</span>.<span class="property">details</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> giantSloth = <span class="keyword">new</span> <span class="title class_">DetailedItem</span>(<span class="string">&quot;the giant sloth&quot;</span>,</span><br><span class="line">									<span class="string">&quot;it is quietly hanging from a tree, munching leaves&quot;</span>);</span><br><span class="line">									</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SmallItem</span>(<span class="params">name</span>)&#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">SmallItem</span>.<span class="title function_">inherit</span>(<span class="title class_">Item</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">SmallItem</span>.<span class="title function_">method</span>(<span class="string">&quot;kick&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot; files across the room.&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title class_">SmallItem</span>.<span class="title function_">method</span>(<span class="string">&quot;take&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;you take &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pencil = <span class="keyword">new</span> <span class="title class_">SmallItem</span>(<span class="string">&quot;the red pencil&quot;</span>);</span><br><span class="line">pencil.<span class="title function_">kick</span>();</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>方法二：<br>把原型放到一个对象中做为类，然后通过 create 方法来实例化，通过 extend 来创建子类；<br>这种方法的好处是可以忽略 prototype 的使用；<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义 extend 和 create 方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给对象定义了一个 create 方法，该方法使得对象可以复制一个子对象出来；并且这个子对象还会</span></span><br><span class="line"><span class="comment">// 根据传入的参数，调用继承自父对象的 construct 方法，进行自己的初始化；</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">create</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> object = <span class="title function_">clone</span>(<span class="variable language_">this</span>); </span><br><span class="line">	<span class="keyword">if</span> (object.<span class="property">construct</span> != <span class="literal">undefined</span>)</span><br><span class="line">		object.<span class="property">construct</span>.<span class="title function_">apply</span>(object, <span class="variable language_">arguments</span>); </span><br><span class="line">	<span class="keyword">return</span> object;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给对象定义了一个 extend 方法，该方法会创建一个子对象，并将传入的对象的所有属性，复制一份到子对象上；</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">extend</span> = <span class="keyword">function</span>(<span class="params">properties</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> result = <span class="title function_">clone</span>(<span class="variable language_">this</span>);</span><br><span class="line">	<span class="title function_">forEachIn</span>(properties, <span class="keyword">function</span>(<span class="params">name, value</span>)&#123;</span><br><span class="line">		result[name] = value;</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//写个相同的例子</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Item</span> = &#123;</span><br><span class="line">	<span class="attr">construct</span>: <span class="keyword">function</span>(<span class="params">name</span>)&#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">	&#125;,	</span><br><span class="line">    <span class="attr">inspect</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&quot;It is &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">	&#125;,	</span><br><span class="line">    <span class="attr">kick</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&quot;Klunk!&quot;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">	<span class="attr">take</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&quot;You cannot lift &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lantern = <span class="title class_">Item</span>.<span class="title function_">create</span>(<span class="string">&quot;the brass lantern&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">DetailedItem</span> = <span class="title class_">Item</span>.<span class="title function_">extend</span>(&#123;</span><br><span class="line">	<span class="attr">construct</span>: <span class="keyword">function</span>(<span class="params">name, details</span>)&#123;</span><br><span class="line">		<span class="title class_">Item</span>.<span class="property">construct</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>, name);</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">details</span> = details;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">inspect</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&quot;you see &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;,&quot;</span> + <span class="variable language_">this</span>.<span class="property">details</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> giantSloth = <span class="title class_">DetailedItem</span>.<span class="title function_">create</span>(<span class="string">&quot;the giant sloth&quot;</span>, </span><br><span class="line">									<span class="string">&quot;it is quietly hanging from a tree, munching leaves&quot;</span>);</span><br><span class="line">									</span><br><span class="line"><span class="keyword">var</span> <span class="title class_">SmallItem</span> = <span class="title class_">Item</span>.<span class="title function_">extend</span>(&#123;</span><br><span class="line">	<span class="attr">kick</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot; files across the room.&quot;</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">take</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&quot;you take &quot;</span> + <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pencil = <span class="title class_">SmallItem</span>.<span class="title function_">create</span>(<span class="string">&quot;the red pencil&quot;</span>);</span><br><span class="line">pencil.<span class="title function_">take</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h5 id="总结：不管是第1种的-inherit-方法，还是第二种的-create-方法，它们都是通过将父对象做子对象的原型来实现的继承，区别在后者对-prototype-的使用进行了封装，不需要老是打-protoype-这个单词，-降低了出错概率，更好的实现了概念的抽象；"><a href="#总结：不管是第1种的-inherit-方法，还是第二种的-create-方法，它们都是通过将父对象做子对象的原型来实现的继承，区别在后者对-prototype-的使用进行了封装，不需要老是打-protoype-这个单词，-降低了出错概率，更好的实现了概念的抽象；" class="headerlink" title="总结：不管是第1种的 inherit 方法，还是第二种的 create 方法，它们都是通过将父对象做子对象的原型来实现的继承，区别在后者对 prototype 的使用进行了封装，不需要老是打 protoype 这个单词， 降低了出错概率，更好的实现了概念的抽象；"></a>总结：不管是第1种的 inherit 方法，还是第二种的 create 方法，它们都是通过将父对象做子对象的原型来实现的继承，区别在后者对 prototype 的使用进行了封装，不需要老是打 protoype 这个单词， 降低了出错概率，更好的实现了概念的抽象；</h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2017/11/12/js%20%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF/" data-id="cm1bhqs5w00070khp1e7q3i08" data-title="js 类的继承" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
 
     </footer>
   </div>
@@ -644,7 +683,7 @@ function B(func, args);
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -658,7 +697,7 @@ function B(func, args);
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B2%E6%9F%93/" rel="tag">渲染</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag">项目管理</a></li></ul>
     </div>
   </div>
 
@@ -668,16 +707,16 @@ function B(func, args);
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 11.67px;">C</a> <a href="/tags/C/" style="font-size: 11.67px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.33px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 11.67px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 13.33px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 13.33px;">微信</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.67px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 16.67px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 13.33px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a>
+      <a href="/tags/C/" style="font-size: 11.43px;">C</a> <a href="/tags/C/" style="font-size: 11.43px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.57px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 12.86px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15.71px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 10px;">图像处理</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 14.29px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 12.86px;">微信</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.43px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 17.14px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 11.43px;">深度学习</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 11.43px;">网络</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 12.86px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 10px;">项目管理</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
   </div>
 
@@ -685,9 +724,13 @@ function B(func, args);
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/08/21/%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">渲染原理</a>
+          </li>
         
           <li>
             <a href="/2024/06/22/VirtualDom%20%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/">VirtualDOM 简易实现</a>
@@ -703,10 +746,6 @@ function B(func, args);
         
           <li>
             <a href="/2023/08/04/Linux%20%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux 文件权限</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/30/Paperjs/">Paperjs</a>
           </li>
         
       </ul>

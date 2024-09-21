@@ -57,10 +57,10 @@
         
           <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -68,6 +68,68 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Ghidra" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/04/Ghidra/" class="article-date">
+  <time class="dt-published" datetime="2022-01-04T01:04:00.000Z" itemprop="datePublished">2022-01-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/04/Ghidra/">Ghidra</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Ghidra 是一个逆向工具，它除了内置功能外，还支持通过插件实现功能扩展；</p>
+<p>Ghidra 基于项目 project 来管理要所逆向工程的内容，因此第一步需要先创建一个项目，或者导入一个项目；</p>
+<p>新创建的项目并没有什么数据，第二步需要导入相关文件，才有办法实现后续的操作；导入文件时，会生成 program；</p>
+<p>Ghidra tool：插件管理器，当运行某个插件时，会新开一个窗口，可在 “Running Tools” 栏目查看当前正在运行的插件列表；</p>
+<p>Ghidra 本体并不负责实际的功能，各功能由插件来完成，当运行某个插件时，会新打开一个插件窗口，该窗口中有该插件的各相关功能；</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><ul>
+<li>新建项目：File -&gt; New project -&gt; Non-shared Project -&gt; 选择项目存放目录</li>
+</ul>
+<blockquote>
+<p>如果之前已经创建过项目，则可以使用 Open Project 导入之前的项目文件；</p>
+</blockquote>
+<h2 id="运行插件"><a href="#运行插件" class="headerlink" title="运行插件"></a>运行插件</h2><ul>
+<li>启动插件：Tool Chest 栏，点击 code browser 图标</li>
+</ul>
+<h2 id="使用插件"><a href="#使用插件" class="headerlink" title="使用插件"></a>使用插件</h2><ul>
+<li>导入文件：File -&gt; Import file，导入后会开始解析文件，需要较长的时间（原因：对代码进行反汇编），耐心等待解析完成；</li>
+<li>搜索位置<ul>
+<li>按名称搜索：Search -&gt; For Strings</li>
+<li>按行号搜索：Search -&gt; For Scalars</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/01/04/Ghidra/" data-id="cm1bmk8d1005q0khpeuo2buw6" data-title="Ghidra" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-Flutter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -154,11 +216,143 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/01/Flutter/" data-id="cm1bme91000550khpf74a0w2g" data-title="Flutter" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2022/01/01/Flutter/" data-id="cm1bme91000550khpf74a0w2g" data-title="Flutter" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Angularjs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/18/Angularjs/" class="article-date">
+  <time class="dt-published" datetime="2021-11-17T23:55:00.000Z" itemprop="datePublished">2021-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/18/Angularjs/">Angularjs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>组件由三部分组成：</p>
+<ul>
+<li>class：数据、功能（函数）；</li>
+<li>template：HTML 模板</li>
+<li>style：样式</li>
+</ul>
+<p>在 HTML 标签中，点击事件绑定用以下方法来表示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;doSomething&quot;</span>&gt;</span>do something<span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>HTML 模板中所需要的数据，通过使用依赖注入的方法，实现动态更新的效果，示例如下：</p>
+<p>单向绑定</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;hero.name | uppercase&#125;&#125; Details<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此处的“| uppercase” 是一个管道连接符 + 一个内置格式转换函数，它可以将字符串转成大写。在 angular 中，这种方式被称为 pipe 函数，包括 DatePipe, UppercasePipe, LowercasePipe, CurrencyPipe, DecimalPipe, PercentPipe 等；</p>
+</blockquote>
+<p>双向绑定</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;hero-name&quot;</span> [(<span class="attr">ngModel</span>)]=<span class="string">&quot;hero.name&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此处通过 [(ngModel)] 实现双向绑定，这样就不需要在 JS 中监听 input 事件，并手工更新 JS 中的数据，确实方便很多；</p>
+</blockquote>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p>组件的数据可以依赖服务来注入，实现数据和组件之间的解耦。这样当数据的实现发生变化时，不需要变更组件，只需要更新服务内部的代码即可；数据来源可以是本地存储、硬编码、网络接口等；</p>
+<p>通过将服务注入组件内部的 constructor 构建函数，之后在组件的 onInit hook 中调用初始化函数，来实现内部对数据的自定义处理</p>
+<blockquote>
+<p>此处非常有意思，首先外部引入的 HeroService 本身就是一个类（或函数），已经实现了第一层的解耦，但之后在组件中引入该服务时，只是将其添加为组件 Class 的私有属性，同时组件又定义了自己的 Service 函数，在该 Service 函数中调用 HeroSerivice，这样一样就实现了双重解耦，如果 HeroService 的实现有任何变化，都只需要更新组件自己定义的 Service 函数，而不会影响到组件内部的其他位置的代码；</p>
+<p>理论上任何读取外部数据的场景，都最好自定义一个函数，来实现解耦，避免内部代码跟外部数据的实现之间产生耦合；</p>
+</blockquote>
+<p>创建服务的命令：ng generate service <service-name></p>
+<p>@Injectable 修饰符用来定义服务的元属性，例如定义可注入的范围等（root 表示全局可注入），有点类似 @component 用来定义组件的元属性一样；</p>
+<p>当服务的数据来源是网络接口时，数据的获得是异步的，因此服务需要支持该异步场景，对异步状态下的数据进行处理；</p>
+<p>为了支持异常，ng 引入了一个 Observable 类，这个类有点像是 Promise，它会返回一个对象，该对象有一个 Subscribe 方法；该方法接受一个回调函数，并将最终数据做为参数，传递给回调函数；</p>
+<p>constructor 构建函数的初始化很有意思，它有一个快捷方式，即在参数定义中，可以直接将参数赋值给相应名称的属性，这个做法跟 c++ 不太一样，示例如下：</p>
+<blockquote>
+<p> constructor*(private <em>messageService</em>: MessageService) { }</p>
+</blockquote>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>理论上路由貌似应该是一个全局的东西，当用户在浏览器中，或者在页面上点击某个链接时，根据链接中的 path，从路由表中查到对应的组件，然后展示该组件（有点类似后端的路由，只是后端的路由是调用某个视图函数，而前端变成了调用某个视图组件）；</p>
+<p><router-outlet> 貌似是一个内置的组件，用来展示路由返回的结果</p>
+<p>RouterModule 的方法</p>
+<ul>
+<li>forRoot，用来添加路由表；</li>
+<li>routerLink 属性用来在 HTML 页面上的 <a> 标签中指定路由路径；</li>
+</ul>
+<p>定义路径时，可以用冒号来表示变量，例如 “&#x2F;detail&#x2F;:id”，此处 id 是一个变量；</p>
+<p>当用户点击某个包含 routerLink 属性的链接时，路由器将接受到事件对象，并跳转到对应的组件，之后组件有可能需要接受参数数据来完成初始化，此时需要用到 ActivatedRoute 对象来获得所需的参数数据；</p>
+<ul>
+<li>示例：ActivatedRoute.snapshot.paramMap.get(“id”)</li>
+</ul>
+<blockquote>
+<p>但是有时候可能该参数很大，例如是一个对象，此时该如何传递数据呢？</p>
+</blockquote>
+<p>当用户从 A 组件页面跳转到 B 组件页面后，如果需要返回原来的 A 组件页面，貌似有两种方法，一种是在 B 页面上面放置 A 页面的链接。这种方法需要多一些工作量；如果此时能够记住原来的页面栈，而用一个通用返回方法，回到页面栈的上一层就会非常的方便，此时需要用到一个内置的 Location 服务，来获得该页面栈；</p>
+<h3 id="添加路由的过程"><a href="#添加路由的过程" class="headerlink" title="添加路由的过程"></a>添加路由的过程</h3><ul>
+<li>创建：创建 routing 路由模块；通过 CLI 创建时，它会自动在 app 根模块中引入路由模块；</li>
+<li>映射：路由模块中定义路径和组件的映射关系，以便当用户点击或在浏览器中输入路径时，可以展示相应的组件；记得定义一个默认路径，让其重定向到指定的路径；</li>
+<li>展示：在需要展示组件的位置，添加内置的 router-outlet 组件，它会将路由返回的组件展示出来；一般此时还会在 HTML 页面上添加导航，以便在不同的版块之间切换；</li>
+<li>链接：给需要进行跳转的组件添加 routerLink 属性，当用户点击时，实现跳转；</li>
+</ul>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p> 通过引入内置的 HttpClient 模块，可以实现发送 HTTP 请求；由于请求返回的结果是异步的，因此 angular 使用 RxJS 库来处理异步，RxJS 将请求结果封装为 Observable 对象，有点类似 promise，可以调用该对象的 subscribe 方法，来获得异步返回的数据；</p>
+<p>HttpClient 拥有常见的各种请求方法，例如 get&#x2F;post&#x2F;put&#x2F;delete 等，它的调用方式有点特别，需要使用类似 C++ 中的泛型来定义返回数据的类型，例如：</p>
+<blockquote>
+<p>HttpClient.get&lt;Hero[]&gt;(url)，此处 url 为参数，不同的请求方法，接受的参数个数不同；所有的请求方法都会返回一个 RxJS 中的 Observable 对象；</p>
+</blockquote>
+<p>RxJS 的 Observable 对象有一个 pipe 方法，该方法可用来将多个函数组合成一个函数。当条件满足时，该组合函数会被触发（调用），然后它会依次执行组合中的各个函数；例如：</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">http</span>.<span class="property">get</span>&lt;<span class="title class_">Hero</span>&gt;(url)</span><br><span class="line">.<span class="title function_">pipe</span>(</span><br><span class="line"> <span class="title function_">tap</span>(<span class="function"><span class="params">_</span> =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">log</span>(<span class="string">`fetched hero id=<span class="subst">$&#123;id&#125;</span>`</span>)),</span><br><span class="line"> <span class="title function_">catchError</span>(<span class="variable language_">this</span>.<span class="property">handleError</span>&lt;<span class="title class_">Hero</span>&gt;(<span class="string">`getHero id=<span class="subst">$&#123;id&#125;</span>`</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>此处的 tap 和 catchError 都是内置函数，但是它们的执行场景不同，tap 一定会执行，而 catchError 仅在 HTTP Response 报错的情况下才会执行；这两个函数都接受一个回调函数做为其参数，并在得到 Response 后，调用该回调函数；</p>
+</blockquote>
+<p>因此，在 HttpClient 请求中结合 pipe，我们就可以对返回的结果加入一些我们想要实现的额外操作，例如 log 和错误处理等；</p>
+<blockquote>
+<p>RxJS 有很多内置方法（称为 operator），例如 map, tap, catchError 等，这些内置方法可以很方便的实现一些常用的功能，详细可查看官方文档：<a target="_blank" rel="noopener" href="https://rxjs.dev/api">https://rxjs.dev/api</a></p>
+</blockquote>
+<p>RxJS 库中还有另外一个特别的东西叫 Subject，本质上它是一个特定类型的 Observable 对象，因此它同样支持 Observable 的各种方法，它的作用原理很像是一个 EventEmitter，它有一个 next 方法，当调用该方法时，给它传递一个参数，然后就会触发之前通过 pipe 传递进去的那些函数，示例如下：</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化一个 Subject 对象</span></span><br><span class="line">searchTerm = <span class="keyword">new</span> <span class="title class_">Subject</span>&lt;string&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用 Subject 的 pipe 方法，放入回调函数</span></span><br><span class="line">heroes$ = searchTerm.<span class="title function_">pipe</span>(</span><br><span class="line"> <span class="comment">// 在用户输入关键字后，等待 300 毫秒，如果用户没有继续输入，再触发关键字搜索</span></span><br><span class="line"> <span class="title function_">debounceTime</span>(<span class="number">300</span>),</span><br><span class="line"> <span class="comment">// 如果输入和之前的关键字相同，则不触发搜索</span></span><br><span class="line"> <span class="title function_">distinctUntilChanged</span>(),</span><br><span class="line"> <span class="comment">// 当关键字变化时，切换到新的搜索结果</span></span><br><span class="line"> <span class="title function_">switchMap</span>(<span class="function">(<span class="params">term: string</span>) =&gt;</span> <span class="variable language_">this</span>.<span class="property">heroService</span>.<span class="title function_">searchHeroes</span>(term)),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义事件处理函数，当事件发生时，调用 Subject 对象的 next 方法，传递最新的参数数据</span></span><br><span class="line"><span class="title function_">search</span>(<span class="attr">term</span>: string): <span class="keyword">void</span> &#123;</span><br><span class="line"> <span class="variable language_">this</span>.<span class="property">searchTerm</span>.<span class="title function_">next</span>(term);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 Observable 的 pipe 方法返回的是一个 Observable  对象，因此这里加了特殊的符号 heroes$ 来表示该类型，而不是直接用 heroes 的常见变量名，这也直接导致随后在 Component 的 HTML 模板中绑定该变量时，需要使用 angular 内置的 async 来处理，示例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let hero of heroes$ | async&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ul>
+<li>组件：ng generate component <name></li>
+<li>服务：ng generate service <name></li>
+<li>模块：ng generate module <name> –flat –module&#x3D;app<ul>
+<li>–flat：表示不需要为该模块创建单独的文件夹，而是放在根文件夹下面，即 src&#x2F;app 文件夹中；</li>
+<li>–module&#x3D;app：表示将该模块注册登录在 AppModule 模块中（即在 AppModule 模块中 import）；</li>
+</ul>
+</li>
+</ul>
+<h3 id="启动调试服务器"><a href="#启动调试服务器" class="headerlink" title="启动调试服务器"></a>启动调试服务器</h3><p>ng serve –open</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/18/Angularjs/" data-id="cm1c2djao0000wchp7vfyhde2" data-title="Angularjs" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
 
     </footer>
   </div>
@@ -197,11 +391,132 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/Firebase/" data-id="cm1bmbz0t004y0khp8x0l70e2" data-title="Firebase" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2021/11/04/Firebase/" data-id="cm1bmbz0t004y0khp8x0l70e2" data-title="Firebase" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-数字图像处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2021-10-20T02:20:00.000Z" itemprop="datePublished">2021-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="数字图像基础"><a href="#数字图像基础" class="headerlink" title="数字图像基础"></a>数字图像基础</h1><h2 id="视觉感知要素"><a href="#视觉感知要素" class="headerlink" title="视觉感知要素"></a>视觉感知要素</h2><p>人的主观亮度是进入人眼的光线强度的对数函数，并且在暗光环境和亮光环境下，该函数有所不同；两个函数有交叉的部分。当人眼从一个光线环境切换到另外一个光线环境时，眼睛需要有一个适应的过程，此时人眼会调整自身的光线灵敏度，来完成这种适应；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020143840.png"></p>
+<p>韦伯比：光线变化量与变化前的光线强度的比值  delta I &#x2F; I；在低照明环境，韦伯比比较大（说明此时人眼较不敏感）；在高照明环境下，韦伯比降低（说明此时人眼对光线变化变得更加敏感了）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144134.png"></p>
+<p>在背景照明（即环境光线）恒定时，人眼可辨别的亮度级别是有限的（12-24级左右），但是当人眼开始移动时，背景照明会跟着变化，因此导致人眼能够辨别很大的亮度范围；</p>
+<p>当背景照明变化时，由于人眼会重新适应和调整自己，因此这时在变化的边缘区域，会出现有趣的现象，此时人眼的感知不是线性的，而是会出现小范围的波动（上冲和下冲现象，马赫带效应）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020144543.png"></p>
+<p>人眼对某个区域的亮度判断，并不完全取决于该区域的光线强度，还跟该区域所处的背景强相关；如果背景是暗的，则物体看起来更白；如果背景是亮的，则物体看起来变暗；</p>
+<h2 id="光和电磁波谱"><a href="#光和电磁波谱" class="headerlink" title="光和电磁波谱"></a>光和电磁波谱</h2><p>光是一种电磁波，不同的电磁波有不同的波长和频率，频率越高的电磁波，其携带的能量越大，此时波长也相应的越短；人眼可感知的光的波长范围大概在 0.43 - 0.79 um 之间；</p>
+<p>除了频率（波长）外，有三个指标可用来描述光的属性：</p>
+<ul>
+<li>发光强度：光源发出的能量总量，单位瓦特 W；</li>
+<li>光通量：观察者从光源感受到的能量，单位流明数 lm；</li>
+<li>亮度：观察者对感知到的光的主观描绘参数，个体之间存在差异，因此不可度量（大致相当于强度描述）；</li>
+</ul>
+<h2 id="图像感知和获取"><a href="#图像感知和获取" class="headerlink" title="图像感知和获取"></a>图像感知和获取</h2><p>基本原理：使用传感器，将光的能量转换成电压变化的波形，再解析波形成为数字信号；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152020.png"></p>
+<blockquote>
+<p>i 表示入射分量，表示环境光源；r 表示反射分量，表示目标物体的反射光，取值范围为 0-1，表示对环境光源的全反射到全吸收之间的范围；公式中的取值范围是理论上的，现实生活中不可能存在无穷大的光源，不同环境中的光源强度总是在有限的范围内；</p>
+</blockquote>
+<h2 id="图像取样和量化"><a href="#图像取样和量化" class="headerlink" title="图像取样和量化"></a>图像取样和量化</h2><p>由于传感器输出的是连续的电压波形，因此需要进一步做取样和量化动作，以便将这些波形数据数字化；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211020152803.png"></p>
+<p>对比度：照片中最高和最低灰度级间的灰度差；</p>
+<p>最大可度量灰度和最小可度量灰度构成了图片的动态范围；最小可度量灰度跟噪声有关；</p>
+<p>分辩率：单位距离的线或点的总数量；印刷行业一般用点数，即 dpi（dot per inch）；</p>
+<h1 id="彩色图像处理"><a href="#彩色图像处理" class="headerlink" title="彩色图像处理"></a>彩色图像处理</h1><p>传感器有很多种类型，不同类型的感光特性不同；同一感光材料，对不同波长的敏感度不同；波长越长的电磁波，进入材料越深，因此有更大的可能性被吸收，导致最终结果是光电转换率更低；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153211.png"></p>
+<p>不同颜色的电磁波，在感光材料上面的光电转换效率：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021153309.png"></p>
+<p>原始的传感器数据是马赛克形式的，因此首先需要进行插值计算，去除马赛克，得到每一个像素点的三通道值；有很多种去除马赛克的算法，最简单的办法是取邻近点的平均值，缺点是物体边缘会不够锐利；更好的算法会稍微复杂一点，例如考虑变化幅度，当变化幅度超过临界点时，可以判断该点属于物体的边缘，因此只取纵向或横向的平均值（有些算法还会考虑该点所处的位置，例如是角点、边点、还是中间点等情况）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021161753.png"></p>
+<p>饱和度：指相对的纯净度，即一种颜色混合白光的数量；纯色是全饱和的，加了白色后变成次饱和的；饱和度和所加的白光数量成反比；</p>
+<p>曝光：场景中某些物体表面由于反射的光线少，可能很暗，因此需要延长传感器接收光线的时间，这样才能收集到足够多的信息，得以看清该物体的细节；但是延长传感器的工作时间是一把双刃剑，因为此时画面中也有可能存在比较明亮的物体（反射光线多），如果延长传感器工作的时间，则会导致明亮物体区域接收到过多的光线值，如果该值超过了上限，则会导致该明亮物体最终呈现为白色，丢失了细节；因此，选择合适的曝光时间，尽量多的保留画面中核心区域的细节，是一个不可缺少的环节；</p>
+<p>白平衡：环境光源是多种多样的，不同的环境光源，其不同波长的电磁波组成不同，因此在该环境中，物体会出现色差；有时这种色差正是我们所需要的，但有时候则不是我们想要的。白平衡的目标，就是换出环境光源各部分光线的构成比例，并加予干预调节，让其回归到某个标准光源环境的光线比例，从而让画面中的物体，能够展示在标准光源环境下的色彩；通常白平衡并没有直接调整传感器的模拟信号值，而是调整模拟信号转换后的数字信号值，对每个通道使用不同系数进行调整；</p>
+<p>白天日光环境下 RGB 光波的比例坐标：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021141121.png"></p>
+<blockquote>
+<p>RIMM RGB: Reference Input&#x2F;Output Medium Metric RGB</p>
+</blockquote>
+<p>白平衡后的数字信号，到最终显示结果之间，有三个动作需要做：</p>
+<ul>
+<li>将数字信号转成颜色模型；</li>
+<li>色阶调整（因为需要考虑最终结果的观看环境跟拍摄环境不同，例如图片观看多数在室内，而拍摄通常在室外）</li>
+<li>转换成显示设备的颜色模型；</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021165034.png"></p>
+<blockquote>
+<p>不同的数码相机，这三个步骤有不同的处理算法，并且它们之间不一定有明确的分界线；</p>
+</blockquote>
+<p>传感器收集到的原始数据，需要转换为颜色值，此时需要采用某种能够表示色彩的模型；理想情况下，针对不同的环境光线，相机应使用不同的计算公式，计算出对应的色值；但在实际应用中，该步骤一般直接使用白平衡补偿后的数据；虽然这种做法可以让中性色物体恢复到正常的色值，但其他颜色则无法还原准确；理论上相机系统可以根据白平衡参数，计算出光源类型，然后再调用最合适的色彩计算模型进行色值计算；</p>
+<p>由于人眼对颜色的感知跟人眼所处的环境光线有直接关系，因此在计算色值前，需要考虑最终的图片将在何种光线环境下被查看，并基于该查看环境，来计算合适的色值；通常情况下，会假设存在一个统一的查看环境，将基于该环境进行计算；但有时对于专业摄影场景，则省去该计算步骤，保留原值，让摄像者在后期进行自定义处理；</p>
+<p>相机所采用的颜色模型可以是设备无关的，例如 CIEXYZ 或者 CIELab，但也可以是设备相关的，例如 RIMM RGB 模型；</p>
+<p>经过白平衡计算后的色值，需要进一步考虑曝光参数，计算出曝光校正后的色值，</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142542.png"></p>
+<blockquote>
+<p>非纯性的曝光数据 -&gt; 查 LUT 表转成纯性的曝光数据 -&gt; 颜色校正Matrix，得到 XYZ 色值 -&gt; RIMM 转换Matrix，得到线性 RIMM RGB 色值 -&gt; 查 LUT 表，转成非线性的 RIMM RGB 值；在实际计算时，中间过程的两个矩阵可以合并成一个矩阵；</p>
+</blockquote>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142125.png"></p>
+<p>然后再按以下公式转成非线性的 RGB；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021142348.png"></p>
+<h3 id="色阶调整"><a href="#色阶调整" class="headerlink" title="色阶调整"></a>色阶调整</h3><p>照片的观看环境通常与拍摄环境不同，前者通常在室内（光线较暗），拍摄则通常在室外（光线较亮），因此在处理照片数据时，需要有一个色阶调整的环节，通过增加对比度，让照片通常在较暗的环境看得清楚；</p>
+<p>大脑在观看照片时，存在一个心理学现象，即会强化某种现象，例如脑海中的草的颜色，会比现实中的更加鲜艳（纯度更高）；</p>
+<p>照片的动态范围，通常要比实际生活中的更小一些，因此在做照片的处理时，需要丢弃一些动态范围信息（即对信息进行压缩）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021172347.png"></p>
+<blockquote>
+<p>RIMM 与 ROMM 的映射图</p>
+</blockquote>
+<h3 id="输出模型"><a href="#输出模型" class="headerlink" title="输出模型"></a>输出模型</h3><p>照片最终要在某种显示设备上进行展示，因此最后一个环节需要将数据转成目标设备的颜色模型，目前国际标准是采用 sRGB 模型。这个模型的优点是通用性很强，几乎所有的显示设备都支持。缺点是它显示的颜色范围较小，因此可能无法满足一些高端显示设备的要求；如果已知目标设备，则此步可以将照片直接转成目标设备所使用的颜色模型，而不是通过 sRGB；</p>
+<p>第一步：将非线性的 ROMM RGB 值转成线性的；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173149.png"></p>
+<p>第二步：将线性 ROMM RGB 转在 D50 XYZ 值；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173230.png"></p>
+<p>第三步：将 D50 XYZ 转成 D65 XYZ</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173254.png"></p>
+<p>第四步：将 D65 XYZ 转成线性的 RGB 值</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173328.png"></p>
+<p>第五步：将线性 RGB 转成非线性的 RGB </p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173354.png"></p>
+<p>注：其中第2步到第4步的三个矩阵运算，可以合并成一个矩阵</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20211021173518.png"></p>
+<p>因此，整个计算过程可以简化为 LUT - Matrix - LUT 三部曲；</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" data-id="cm1c2djax0007wchpawoo65ml" data-title="数字图像处理" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
 
     </footer>
   </div>
@@ -457,7 +772,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/04/Vue2/" data-id="cm1btkqpu00910khpbosyfcwp" data-title="Vue2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2021/08/04/Vue2/" data-id="cm1btkqpu00910khpbosyfcwp" data-title="Vue2" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -528,7 +843,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/20/Cert-Manager%20%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7/" data-id="cm1bm2h0w004h0khpasx3faqf" data-title="Cert-Manager 证书申请" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2021/07/20/Cert-Manager%20%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7/" data-id="cm1bm2h0w004h0khpasx3faqf" data-title="Cert-Manager 证书申请" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -600,7 +915,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/18/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cm1bywphj0000xchp5e70ebqf" data-title="交换机和路由器的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2021/07/18/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="cm1bywphj0000xchp5e70ebqf" data-title="交换机和路由器的区别" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -655,7 +970,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/06/30/TailsOS%20%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" data-id="cm1bsuppo00890khphgv6csb7" data-title="TailsOS 注意事项" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2021/06/30/TailsOS%20%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" data-id="cm1bsuppo00890khphgv6csb7" data-title="TailsOS 注意事项" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -708,7 +1023,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/06/21/SecurityOS/" data-id="cm1bsrl5300820khpeqsy3uf3" data-title="SecurityOS" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2021/06/21/SecurityOS/" data-id="cm1bsrl5300820khpeqsy3uf3" data-title="SecurityOS" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -722,307 +1037,11 @@
 
 
   
-    <article id="post-Code Review" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/06/21/Code%20Review/" class="article-date">
-  <time class="dt-published" datetime="2021-06-21T00:10:00.000Z" itemprop="datePublished">2021-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/06/21/Code%20Review/">Code Review</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Code-Review"><a href="#Code-Review" class="headerlink" title="Code Review"></a>Code Review</h2><h3 id="标准"><a href="#标准" class="headerlink" title="标准"></a>标准</h3><p>代码审核的目标，是为了让整个项目的代码库，随着时间推移，质量有所进步，而不是发生了退化；</p>
-<p>为了达到这个目标，需要做一些取舍：</p>
-<ul>
-<li>小步迭代胜于追求完美主义；</li>
-<li>确保代码质量不退化，是审核人员的责任；</li>
-<li>审核人员对所审核的代码拥有责任和相同的所有权；</li>
-</ul>
-<p>原则：只要所提交的代码改进了代码库的质量，即使该代码不完美，也应该审核通过；</p>
-<p>质量改进维度：</p>
-<pre><code>* 更容易维护；
-* 更容易阅读；
-* 更容易理解；
-</code></pre>
-<h4 id="经验交流"><a href="#经验交流" class="headerlink" title="经验交流"></a>经验交流</h4><p>代码走查同时是一种交流经验的机会，但不要强制遵守某种经验。可以在注释中某些更好的做法，但同时备注“仅供参考”；</p>
-<h4 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h4><ul>
-<li>事实和数据优于看法和偏好；</li>
-<li>如果有代码风格规定的话，就遵守规定；没有规定的部分，则按作者的偏好；</li>
-<li>软件设计不属于个人偏好的范畴，而应该遵守基本的原则，除非作者能够有充足的理由，能够证明其合理性；</li>
-</ul>
-<h4 id="处理冲突"><a href="#处理冲突" class="headerlink" title="处理冲突"></a>处理冲突</h4><ul>
-<li>当出现冲突时，双方应根据既有原则达成一致意见；</li>
-<li>如果有困难，则向上汇报，由其他人开会讨论协助判断；</li>
-</ul>
-<h3 id="走查什么"><a href="#走查什么" class="headerlink" title="走查什么"></a>走查什么</h3><h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4><ul>
-<li>是否设计良好？</li>
-<li>模块之间是否高内聚，低耦合？</li>
-</ul>
-<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><ul>
-<li>功能是否能如预期那样工作？</li>
-</ul>
-<h4 id="复杂性"><a href="#复杂性" class="headerlink" title="复杂性"></a>复杂性</h4><p>是否过于复杂了，复杂的标准为“无法快速看懂代码要做什么”；主要包括以下几个层面：</p>
-<ul>
-<li>行、函数、类；</li>
-<li>是否存在过度工程？</li>
-</ul>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><ul>
-<li>是否包含单元测试、集成测试、端到端测试？</li>
-<li>测试本身是否正确？</li>
-</ul>
-<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><ul>
-<li>命名是否合适，让人能够直接从名称看出意图或内容？</li>
-</ul>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><ul>
-<li>注释是否用来说明原因，而不是用来描述动作？</li>
-<li>是否为正则和复杂算法写了注释？</li>
-<li>注释是否和文档有所区分，文档用来详细描述代码意图、使用方法、最终效果等；</li>
-</ul>
-<h4 id="风格"><a href="#风格" class="headerlink" title="风格"></a>风格</h4><ul>
-<li>尽量使用既定的风格指南，除非有特殊原因；</li>
-</ul>
-<h4 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h4><ul>
-<li>如果代码涉及外部使用方式的变化，则检查是否更新了文档（增加或者删除）；</li>
-</ul>
-<h4 id="每一行"><a href="#每一行" class="headerlink" title="每一行"></a>每一行</h4><ul>
-<li>走查每一行代码，而不是假设某些代码能够正确运行，而忽略对它们的走查；</li>
-<li>如果觉得某些代码过于复杂，自己没有把握确保它们的正确性，则应请求其他更有经验和能力的成员的帮助；</li>
-<li>如果代码过于难懂，就要求作者解释它们；</li>
-</ul>
-<h4 id="宏观视角"><a href="#宏观视角" class="headerlink" title="宏观视角"></a>宏观视角</h4><ul>
-<li>尝试站在更宏观的角度来思考代码变更可能带来的影响，而不是仅仅看局部出现变化的代码；</li>
-<li>思考新的代码，是否让整个项目的代码质量退化了？如果是的话，应即时修正它；因为大退化总是由无数小退化累积起来的；</li>
-</ul>
-<h4 id="不吝赞美"><a href="#不吝赞美" class="headerlink" title="不吝赞美"></a>不吝赞美</h4><ul>
-<li>当发现某些代码写得很好时，不要吝啬自己的赞美，在注释中把自己的赞美表达出来；</li>
-</ul>
-<h3 id="走查步骤"><a href="#走查步骤" class="headerlink" title="走查步骤"></a>走查步骤</h3><ul>
-<li>先宏观的了解新提交的代码的目标（想要做些什么），并思考目标是否有意义，如果没有意义，就诚恳的提出，并给出新目标（如果这种情况经常发生，说明团队缺乏沟通，导致成员的工作目标不一致，应该改进）；</li>
-<li>查看提交中发生最大变化的位置；如果发现设计问题，应该第一时间给作者指出，以免对方在错误的基础上继续走太远；</li>
-<li>弄清楚目标后，按顺序浏览实现目标的文件；如果可以的话，看主要代码前，先看一下测试，也会对目标的了解提供帮助；</li>
-</ul>
-<h3 id="走查速度"><a href="#走查速度" class="headerlink" title="走查速度"></a>走查速度</h3><ul>
-<li>走查的速度应该越快越好，因为反馈的越快，它带来的负面效果越小，正面效果越大；</li>
-<li>走查的时间不应越过一天；一般来说，今天提交的代码，第二天应该给出反馈；</li>
-<li>如果自己当前正在写代码，则不应停下来去做走查，而应该是当自己手头的任务完成后，再走查；</li>
-<li>如果自己无法在1天内给出回复，则应该救助其他同事帮忙走查，而不是拖延；</li>
-<li>如果提交走查的代码量很大，则应要求作者将它们进行拆分成多个提交；</li>
-</ul>
-<h3 id="如何写走查意见"><a href="#如何写走查意见" class="headerlink" title="如何写走查意见"></a>如何写走查意见</h3><ul>
-<li>保持谦逊的态度；</li>
-<li>说明理由；</li>
-<li>鼓励作者简化代码，或者添加注释；</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/06/21/Code%20Review/" data-id="cm1bm8h8p004n0khp28enh8k2" data-title="Code Review" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-阿里云的 Kubernetes" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/04/09/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%20Kubernetes/" class="article-date">
-  <time class="dt-published" datetime="2021-04-09T01:55:00.000Z" itemprop="datePublished">2021-04-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/09/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%20Kubernetes/">阿里云的 Kubernetes</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>三个版本</p>
-<ul>
-<li>专有版：自建 Master 和 Worker 节点，适用于所有场景，更加细颗粒度的管理；承担两种节点的费用；</li>
-<li>托管版：自建 Worker  节点，适用于所有场景，无须管理 Master 节点；承担工作节点的费用；</li>
-<li>Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI&#x2F;CD 场景；</li>
-</ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211717272.png"></p>
-<blockquote>
-<p>问：什么是 NAT 网关？</p>
-<p>答：它是构成 VPC 虚拟专用网络的一个核心组成部分；机器实例通过网关对外提供服务，并且接受外部的服务请求，它的作用看起来很像局域网中的路由器；路由器管理着内部的电脑，以统一的 IP 地址对外访问，同时也接收外部的请求，并转发给相应的机器实例；</p>
-<p>NAT 下面还细分为 SNAT 和 DNAT 两种场景，前者为内部的机器提供访问外部网络的服务；后者则暴露内部的机器，接受外部的请求，对外提供服务；</p>
-</blockquote>
-<blockquote>
-<p>问：什么是 EIP？</p>
-<p>答：弹性公网 IP，Elastic IP Address；它可以为 NAT 提供物理 IP 地址，这样 NAT 才能正常工作；</p>
-</blockquote>
-<blockquote>
-<p> 问：什么是公网 SLB？</p>
-<p> 答：Service Load Balance，负载均衡服务；用来将公网流量平均分发给多个机器实例；需要创建一个监听实例来实现；感觉相当于创建了一台部署了 Nginx 的实例一样；</p>
-</blockquote>
-<blockquote>
-<p>问：什么是线下 IDC</p>
-<p>答：Internet Data Center，互联网数据中心，名称看着很高大上，其实就是运营商或者一些第三方机构建立的机房，出租给企业使用；企业可以在机房中托管机器；</p>
-</blockquote>
-<blockquote>
-<p>问：什么是 ENI?</p>
-<p>答：ENI，elastic network interface，弹性网络接口，说白了，就是虚拟网卡；在配置局域网络时，内部的 IP  地址其实是指向某个虚拟网卡的；因此，当某台机器实例出现故障时，可以将 ENI 跟原机器解绑，然后绑定到新的机器实例中，这样可以在不改变原有的路由配置关系，对外部来说，一切都是透明的，仍然访问旧的 IP，但流量在不知不觉中，被引到了新的机器上面；</p>
-</blockquote>
-<blockquote>
-<p>问：什么是安全组？</p>
-<p>答：安全组是一种虚拟的防火墙，通过配置一些安全组的规则，来实现对流量的访问控制；</p>
-</blockquote>
-<blockquote>
-<p>问：什么是 ECI？</p>
-<p>答：Elastic Container Instance，弹性容器实例</p>
-</blockquote>
-<h2 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h2><p><img src="https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5862000161/p210946.png" alt="img"></p>
-<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211719693.png"></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211719204.png"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/04/09/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%20Kubernetes/" data-id="cm1btswsv009d0khpa64265yl" data-title="阿里云的 Kubernetes" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Jest" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/02/07/Jest/" class="article-date">
-  <time class="dt-published" datetime="2021-02-07T03:49:00.000Z" itemprop="datePublished">2021-02-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/02/07/Jest/">Jest</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Jest 是一个 javacript 测试框架，特点是简单易上手</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jest</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>需要 node 9.2 以上版本，因为 9.2 以下的版本不支持 try…catch 语法，运行时会报语法错误</p>
-</blockquote>
-<h2 id="Matcher"><a href="#Matcher" class="headerlink" title="Matcher"></a>Matcher</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字面值使用 toBe</span></span><br><span class="line">expect(<span class="number">2</span> + <span class="number">2</span>).toBe(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象使用 toEqual</span></span><br><span class="line"><span class="type">const</span> <span class="variable">data</span> <span class="operator">=</span> &#123;one: <span class="number">1</span>&#125;;</span><br><span class="line">data[<span class="string">&#x27;two&#x27;</span>] = <span class="number">2</span>;</span><br><span class="line">expect(data).toEqual(&#123;one: <span class="number">1</span>, two: <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取反使用 not</span></span><br><span class="line">expect(<span class="number">4</span>).not.toBe(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串可正则匹配</span></span><br><span class="line">expect(<span class="string">&#x27;team&#x27;</span>).not.toMatch(/I/);</span><br><span class="line">expect(<span class="string">&#x27;Christoph&#x27;</span>).toMatch(/stop/);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组可判断是否包含</span></span><br><span class="line">expect([<span class="number">1</span>, <span class="number">2</span>]).toContain(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h2><h3 id="回调模式"><a href="#回调模式" class="headerlink" title="回调模式"></a>回调模式</h3><p>使用 done 来处理回调模式的异步函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;callback pattern&#x27;</span>, <span class="function"><span class="params">done</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params">data</span>) &#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">           <span class="title function_">done</span>();</span><br><span class="line">       &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">           <span class="title function_">done</span>(error);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="title function_">fetchData</span>(callback);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="Promise-模式"><a href="#Promise-模式" class="headerlink" title="Promise 模式"></a>Promise 模式</h3><p>返回 Promise 即可；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意此处不要漏了写 return，不然实际返回的是 undefined；</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;promise pattern&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">fetchData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Async-Await-模式"><a href="#Async-Await-模式" class="headerlink" title="Async&#x2F;Await 模式"></a>Async&#x2F;Await 模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;Async pattern&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetchData</span>();</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 带异常的情况</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;Async pattern with error&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetchData</span>();</span><br><span class="line">        <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;something&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="title function_">expect</span>(error).<span class="title function_">toMatch</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化和清理"><a href="#初始化和清理" class="headerlink" title="初始化和清理"></a>初始化和清理</h2><h3 id="重复初始化"><a href="#重复初始化" class="headerlink" title="重复初始化"></a>重复初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">initDB</span>(); <span class="comment">// 如果 initDB 函数是异步的，则应为 return initDB()；</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">afterEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">clearDB</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="一次性初始化"><a href="#一次性初始化" class="headerlink" title="一次性初始化"></a>一次性初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeAll</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">initDB</span>();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">afterAll</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">clearDB</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>使用 describe 来建立块的作用域</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeEach</span>(<span class="string">&#x27;parent&#x27;</span>);</span><br><span class="line"><span class="title function_">afterEach</span>(<span class="string">&#x27;parent&#x27;</span>);</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;parent1&#x27;</span>);</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;parent2&#x27;</span>);</span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;block&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">beforeEach</span>(<span class="string">&#x27;child&#x27;</span>);</span><br><span class="line">    <span class="title function_">afterEach</span>(<span class="string">&#x27;child&#x27;</span>);</span><br><span class="line">    <span class="title function_">test</span>(<span class="string">&#x27;child1&#x27;</span>);</span><br><span class="line">    <span class="title function_">test</span>(<span class="string">&#x27;child2&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 注意：parent 的 beforeEach 会在 child 的 beforeEach 之前先执行；同时 parent 的 afterEach 在 child 的 afterEach 之后执行；</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="顺序控制"><a href="#顺序控制" class="headerlink" title="顺序控制"></a>顺序控制</h3><p>所有的 describe 将在所有的 test 之前先执行；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;outer&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer a&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;inner 1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner 1&#x27;</span>);</span><br><span class="line">        <span class="title function_">test</span>(<span class="string">&#x27;test 1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test 1 inner 1&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer b&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">test</span>(<span class="string">&#x27;test 1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test 1 outer&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;inner 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inner 2&#x27;</span>);</span><br><span class="line">        <span class="title function_">test</span>(<span class="string">&#x27;test 2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;test 2 inner 2&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;outer c&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 实际的输出顺序如下：</span></span><br><span class="line"><span class="comment">// outer a</span></span><br><span class="line"><span class="comment">// inner 1</span></span><br><span class="line"><span class="comment">// outer b</span></span><br><span class="line"><span class="comment">// inner 2</span></span><br><span class="line"><span class="comment">// outer c</span></span><br><span class="line"><span class="comment">// test 1 inner 1</span></span><br><span class="line"><span class="comment">// test 1 outer</span></span><br><span class="line"><span class="comment">// test 2 inner 2</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="单例测试"><a href="#单例测试" class="headerlink" title="单例测试"></a>单例测试</h3><p>test.only 方法可以使得只有该测试用例被执行；如果多例同时测试失败，但是单例测试可以成功，则说明某两个测试用例之间存在共享的变量，二者在测试过程中出现相互干扰的情况；</p>
-<h2 id="Mock-函数"><a href="#Mock-函数" class="headerlink" title="Mock 函数"></a>Mock 函数</h2><p>mock 函数扮演拦截的作用，当在代码中对某个实际的函数进行调用时，拦截该调用，触发提前写好的 mock 函数，返回预设的结果；</p>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFunc = jest.<span class="title function_">fn</span>(<span class="function"><span class="params">x</span> =&gt;</span> <span class="number">42</span> + x);</span><br><span class="line"><span class="title function_">forEach</span>([<span class="number">0</span>, <span class="number">1</span>], mockFunc);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查 mockFunc 是否被调用了两次</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">calls</span>.<span class="property">length</span>).<span class="title function_">toBe</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查第一次调用时传入的参数值是否为 0</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">0</span>][<span class="number">0</span>]).<span class="title function_">toBe</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查第二次调用时传入的参数值是否为 1</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">1</span>][<span class="number">0</span>]).<span class="title function_">toBe</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查第一次调用时的返回值是否为 42</span></span><br><span class="line"><span class="title function_">expect</span>(mockFunc.<span class="property">mock</span>.<span class="property">results</span>[<span class="number">0</span>].<span class="property">value</span>).<span class="title function_">toBe</span>(<span class="number">42</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="模拟返回值"><a href="#模拟返回值" class="headerlink" title="模拟返回值"></a>模拟返回值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mock = jest.<span class="title function_">fn</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">mock</span>());</span><br><span class="line"><span class="comment">// &gt; undefined</span></span><br><span class="line"></span><br><span class="line">mock.<span class="title function_">mockReturnValueOnce</span>(<span class="number">10</span>).<span class="title function_">mockReturnValueOnce</span>(<span class="string">&#x27;x&#x27;</span>).<span class="title function_">mockReturnValue</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">mock</span>(), <span class="title function_">mock</span>(), <span class="title function_">mock</span>(), <span class="title function_">mock</span>());</span><br><span class="line"><span class="comment">// &gt; 10, &#x27;x&#x27;, true, true</span></span><br></pre></td></tr></table></figure>
-
-<p>模拟函数在多次连续调用时，返回不同的值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> filterMock = jest.<span class="title function_">fn</span>();</span><br><span class="line"></span><br><span class="line">filterMock.<span class="title function_">mockReturnValueOnce</span>(<span class="literal">true</span>).<span class="title function_">mockReturnValueOnce</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = [<span class="number">11</span>, <span class="number">12</span>].<span class="title function_">filter</span>(<span class="function"><span class="params">num</span> =&gt;</span> <span class="title function_">filterMock</span>(num));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(filterMock.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(filterMock.<span class="property">mock</span>.<span class="property">calls</span>[<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line"><span class="comment">// [11]</span></span><br><span class="line"><span class="comment">// 11</span></span><br><span class="line"><span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="模拟模块的返回值"><a href="#模拟模块的返回值" class="headerlink" title="模拟模块的返回值"></a>模拟模块的返回值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// users.js</span></span><br><span class="line"><span class="comment">// 此处假设 user.js 调用了 axios 模块，调用其中的 get 方法获取用户数据</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Class</span> <span class="title class_">Users</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="title function_">all</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> axios.<span class="title function_">get</span>(<span class="string">&#x27;/user.json&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">resp</span> =&gt;</span> resp.<span class="property">data</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// user.test.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Users</span> <span class="keyword">from</span> <span class="string">&#x27;./users.js&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line">jest.<span class="title function_">mock</span>(<span class="string">&#x27;axios&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;should fetch users&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> users = [&#123;<span class="attr">name</span>: <span class="string">&#x27;bob&#x27;</span>&#125;];</span><br><span class="line">    <span class="keyword">const</span> resp = &#123;<span class="attr">data</span>: users&#125;; <span class="comment">// 做了个假数据</span></span><br><span class="line">    axios.<span class="property">get</span>.<span class="title function_">mockResolvedValue</span>(resp); <span class="comment">// 将假数据传进去</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Users</span>.<span class="title function_">all</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="title function_">expect</span>(data).<span class="title function_">toEqual</span>(users));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="模拟模块的实现"><a href="#模拟模块的实现" class="headerlink" title="模拟模块的实现"></a>模拟模块的实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.js</span></span><br><span class="line">jest.<span class="title function_">mock</span>(<span class="string">&#x27;../foo&#x27;</span>); <span class="comment">// foo 模块已经被伪装</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="built_in">require</span>(<span class="string">&#x27;../foo&#x27;</span>); <span class="comment">// 此处调用的 foo 已经是一个模拟函数</span></span><br><span class="line"></span><br><span class="line">foo.<span class="title function_">mockImplementation</span>(<span class="function">() =&gt;</span> <span class="number">42</span>); <span class="comment">// 定义 foo 的行为</span></span><br><span class="line"><span class="title function_">foo</span>();</span><br><span class="line"><span class="comment">// &gt; 42</span></span><br></pre></td></tr></table></figure>
-
-<p>模拟多次调用时，函数表现不同的行为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.<span class="title function_">fn</span>()</span><br><span class="line">	.<span class="title function_">mockImplementationOnce</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="literal">true</span>))</span><br><span class="line">	.<span class="title function_">mockImplementationOnce</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="literal">false</span>));</span><br><span class="line"></span><br><span class="line"><span class="title function_">mockFn</span>(<span class="function">(<span class="params">err, val</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(val));</span><br><span class="line"><span class="comment">// &gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">mockFn</span>(<span class="function">(<span class="params">err, val</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(val));</span><br><span class="line"><span class="comment">// &gt; false</span></span><br></pre></td></tr></table></figure>
-
-<p>模块多次调用时，不同的行为 + 默认的行为</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myMockFn = jest</span><br><span class="line">  .<span class="title function_">fn</span>(<span class="function">() =&gt;</span> <span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">  .<span class="title function_">mockImplementationOnce</span>(<span class="function">() =&gt;</span> <span class="string">&#x27;first call&#x27;</span>)</span><br><span class="line">  .<span class="title function_">mockImplementationOnce</span>(<span class="function">() =&gt;</span> <span class="string">&#x27;second call&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">myMockFn</span>(), <span class="title function_">myMockFn</span>(), <span class="title function_">myMockFn</span>(), <span class="title function_">myMockFn</span>());</span><br><span class="line"><span class="comment">// &gt; &#x27;first call&#x27;, &#x27;second call&#x27;, &#x27;default&#x27;, &#x27;default&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="为模拟函数添加名称"><a href="#为模拟函数添加名称" class="headerlink" title="为模拟函数添加名称"></a>为模拟函数添加名称</h3><p>通过定义模拟的函数的名称，在测试的输出信息中，能够更清晰的定位哪个函数出错了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.<span class="title function_">fn</span>()</span><br><span class="line">	.<span class="title function_">mockReturnValue</span>(<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">	.<span class="title function_">mockImplementation</span>(<span class="function"><span class="params">scalar</span> =&gt;</span> scalar + <span class="number">42</span>)</span><br><span class="line">	.<span class="title function_">mockName</span>(<span class="string">&#x27;add42&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h2><p>用来比对界面是否与预期的一致；典型的使用方法是给某个 UI 组件预先存一份快照，然后与测试过程中生成的界面进行比对，检查二者是否一致，若一致，表示应用正常；如不一致，说明界面出现了意外的变化，此时有可能是应用出现异常，或者 快照本身需要更新；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/07/Jest/" data-id="cm1bmsuos00670khpdv4raome" data-title="Jest" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
   </nav>
 
 </section>
@@ -1036,7 +1055,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dart/" rel="tag">Dart</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/" rel="tag">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B2%E6%9F%93/" rel="tag">渲染</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1/" rel="tag">设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91/" rel="tag">逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag">项目管理</a></li></ul>
     </div>
   </div>
 
@@ -1046,16 +1065,16 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 11.67px;">C</a> <a href="/tags/C/" style="font-size: 11.67px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.33px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 11.67px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 13.33px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 13.33px;">微信</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.67px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 16.67px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 13.33px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a>
+      <a href="/tags/C/" style="font-size: 11.43px;">C</a> <a href="/tags/C/" style="font-size: 11.43px;">C++</a> <a href="/tags/Dart/" style="font-size: 10px;">Dart</a> <a href="/tags/Kubernetes/" style="font-size: 10px;">Kubernetes</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/javascript/" style="font-size: 18.57px;">javascript</a> <a href="/tags/kubernetes/" style="font-size: 12.86px;">kubernetes</a> <a href="/tags/python/" style="font-size: 15.71px;">python</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 10px;">图像处理</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 14.29px;">安全</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 12.86px;">微信</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.43px;">数据库</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 17.14px;">服务器</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 11.43px;">深度学习</a> <a href="/tags/%E6%B8%B2%E6%9F%93/" style="font-size: 10px;">渲染</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 11.43px;">网络</a> <a href="/tags/%E8%AE%BE%E8%AE%A1/" style="font-size: 12.86px;">设计</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 20px;">软件</a> <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10px;">逆向</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 10px;">项目管理</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
   </div>
 
@@ -1063,9 +1082,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/08/21/%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">渲染原理</a>
+          </li>
         
           <li>
             <a href="/2024/06/22/VirtualDom%20%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/">VirtualDOM 简易实现</a>
@@ -1081,10 +1104,6 @@
         
           <li>
             <a href="/2023/08/04/Linux%20%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">Linux 文件权限</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/30/Paperjs/">Paperjs</a>
           </li>
         
       </ul>
