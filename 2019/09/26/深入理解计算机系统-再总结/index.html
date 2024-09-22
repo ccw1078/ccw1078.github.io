@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机系统漫游 编译原理 预处理：将引用文件插入源文件； 编译：将源文件转成汇编代码； 汇编：将汇编代码转成机器代码； 链接：将多个机器代码文件合并成一个文件（可执行文件）   系统的硬件组成：CPU、内存、I&#x2F;O设备，三者通过主板连接起来，并使用主板上的总线互相传输数据； 由于 CPU 和内存之间的速度差异，中间引入多级调整缓存的机制，每一级做为下一级的缓存，利用程序的时间和空间局部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解计算机系统-再总结">
+<meta property="og:url" content="http://example.com/2019/09/26/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E5%86%8D%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="计算机系统漫游 编译原理 预处理：将引用文件插入源文件； 编译：将源文件转成汇编代码； 汇编：将汇编代码转成机器代码； 链接：将多个机器代码文件合并成一个文件（可执行文件）   系统的硬件组成：CPU、内存、I&#x2F;O设备，三者通过主板连接起来，并使用主板上的总线互相传输数据； 由于 CPU 和内存之间的速度差异，中间引入多级调整缓存的机制，每一级做为下一级的缓存，利用程序的时间和空间局部">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-09-26T01:04:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T00:21:55.640Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>深入理解计算机系统-再总结 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="深入理解计算机系统-再总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-09-26 09:04" pubdate>
+          2019年9月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">深入理解计算机系统-再总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>计算机系统漫游<ol>
+<li>编译原理<ol>
+<li>预处理：将引用文件插入源文件；</li>
+<li>编译：将源文件转成汇编代码；</li>
+<li>汇编：将汇编代码转成机器代码；</li>
+<li>链接：将多个机器代码文件合并成一个文件（可执行文件）</li>
+</ol>
+</li>
+<li>系统的硬件组成：CPU、内存、I&#x2F;O设备，三者通过主板连接起来，并使用主板上的总线互相传输数据；</li>
+<li>由于 CPU 和内存之间的速度差异，中间引入多级调整缓存的机制，每一级做为下一级的缓存，利用程序的时间和空间局部性原理，来提高数据读写性能；</li>
+</ol>
+</li>
+<li>信息的表示和处理<ol>
+<li>C 语言通过 &lt;stdin.h&gt; 头文件的宏，来解决不同数据类型在不同种类机器上的长度不同问题，实现可移植性；</li>
+<li>C 语言中由于存在无符号类型，当它与其他类型的整数一起计算时，会触发类型转换，导致可能计算出错，所以应特别小心；</li>
+<li>无符号整数使用原码表示法，有符号整数使用补码表示法；小数使用 IEEE 表示法，或者定点表示法；</li>
+<li>IEEE 浮点表示法，将小数表示为 (-1)s * M * 2E 的方式，这种方式可以用来表示非常小的小数；M 取值在 1-2 之间或者在 0-1之间；E 的取值范围在 -127<del>127 之间（单精度）或 -1022</del>1023 之间（双精度）</li>
+<li>浮点运算不具备交换律和结合律，故计算时要小心；</li>
+</ol>
+</li>
+<li>程序的机器级表示<ol>
+<li>机器级编程的两个重要抽象：指令集、虚拟内存；</li>
+<li>常见指令包括：算术运算（加减乘除）、逻辑运算（与&#x2F;或&#x2F;非&#x2F;异或）、移位、传送、跳转、比较、返回、压栈&#x2F;出栈、加载地址、递增&#x2F;递减；</li>
+<li>结构的实现方式：结构头指针+偏移量；</li>
+<li>数据在内存中大小一般以 8 字节长度的倍数进行分配，即使数据本身不需要那么大；原因在于 CPU 取值时，是按 8 的倍数的内存地址来取的，以避免不足8字节，却跨2个8字节存储，导致取两次；</li>
+<li>C 语言中的指针是一种数据类型，它包含所指向对象的长度信息，这样计算指针的偏移的时候，才能够自动加上对象的长度，得到正确的结果；当强制改变指针的类型时，会导致其计算的偏移量发生变化；</li>
+<li>在函数调用的时候，由于上一个函数可能有部分数据存放于寄存器中，而这些寄存器接下来马上要给被调用函数使用，因此，上一个函数在跳转前，需要提前将自己的数据保存一份下来；待跳转回来的时候，才能够恢复跳转前的状态；</li>
+<li>浮点数的运算，使用与整数不同的另外一系列指令，但二者的风格大致相同；</li>
+</ol>
+</li>
+<li>处理器体系结构<ol>
+<li>实现数字系统需要有三个部分：电路组合逻辑、存储单元、时钟信号；</li>
+<li>电路组合逻辑是由多个逻辑门组合而成的，它能够实现的功能是根据输入的电信号，按某种设定好的规则，产生输出的电信号；</li>
+<li>处理器的流水线阶段：取指、译码、执行、访存、写回；</li>
+<li>感觉整个处理器的流水线作业状态，像极了工厂里面的流水线操作；当发生异常的时候，全线暂停，根据异常跳转表，呼叫相应的负责人过来收拾现场，之后要么从中断处继续，要么撤线，切换为新产品（其他进程）；</li>
+<li>流水线冒险的三种常见处理方式：暂停、气泡、转发；</li>
+</ol>
+</li>
+<li>优化程序性能<ol>
+<li>优化三板斧：选择合适的算法和数据结构；确保源代码能够被编译器翻译成高效的目标代码；将单个大任务拆分成多个并行的小任务；</li>
+<li>注意事项：减少不必要的过程调用、减少不必要的内存引用、减少循环中的重复计算；</li>
+<li>先使用工具分析性能瓶颈，之后再有针对性的进行改进；</li>
+</ol>
+</li>
+<li>存储器层次结构<ol>
+<li>随机访问存储器有动态和静态两种，后者的实现需要更大的晶体管，因此单位面积更大一些，成本更高，功耗更大，但速度也相应更快；</li>
+<li>内存模块（即内存条）由多个内存芯片组成，同一个字节的数据在多个内存芯片之间是分段存储的，这样可以提高读写效率；</li>
+<li>在由多个盘片组成的磁盘上面，同一个字节的数据也是分段存储的，目的也同样是可以提高读写效率；</li>
+<li>磁盘读写时间由三部分组成：寻道时间（最大头）、旋转时间、传送时间（最小头）；</li>
+<li>磁盘控制器通过抽象“盘面+磁道+扇区”的三元逻辑地址，与内核进行数据读写的通信；</li>
+<li>缓存策略可行的原因在于局部性，即取指和数据引用的局部性；</li>
+<li>由于标记位+索引位可以用来标记唯一的内存块，但是缓存块却只用索引位来唯一标识，因此这会导致多个不同标记位的内存块，映射相同的缓存块；而由于索引位在地址的中段，因此，保证了缓存块映射内存块的离散性，这样才可以利用局部性的原理；</li>
+</ol>
+</li>
+<li>链接<ol>
+<li>重定位是一个很有意思的过程；在合并生成可执行文件，可重定位的目标文件，并不知各个符号最终的内存地址；因此，对于每一处的符号引用，它先在重定位节中为其生成一个条目；待有了最终运行时的地址后，它遍历这个条目列表，将每一处的符号引用，替换为正确的运行时地址；</li>
+<li>可执行的目标文件，相对于可重定位的目标文件，增加了两个小节，同时也去掉两个小节；增加的两个小节是段头部表、init 节，去掉的两节是 .rel.text 节和 .rel.data，这两个节是用来重定位用的，由于可执行文件已经完成了链接合并，所以这两个小节就不再需要了；</li>
+<li>通过 execve 函数调用加载器，从磁盘加载可执行文件到内存时，一开始并没有发生实际的数据复制操作，而只是在虚拟内存中分配了相应的空间，并标注为未缓存，然后等到某个块真正需要被使用时，才会触发缺页异常，从而开始真正的从磁盘复制数据到物理内存的工作，并相应的完成虚拟内存与物理内存的映射；</li>
+<li>共享库可以被多个程序引用，因此它在物理内存中只有一个副本，而不同程序的虚拟内存中各有一段空间与该物理内存进行映射；动态库文件是存在变化的可能性的，即本次加载跟下次加载的两个文件，虽然文件名一样，但内容可能发生了变化，因此它们连大小都可能是不同的；初步设想，在加载的时候，根据文件路径找到文件后，需要从文件的头部信息获取文件的大小，然后在虚拟内存中分配相应的空间；在有了头部的虚拟地址后，根据共享库中的偏移表，计算出所有符号表的符号的全局地址，然后更新程序的符号引用为相应的地址；</li>
+<li>共享库本质是一个由机器代码组成的文件，因此它的代码节符合 CPU 的指令集格式；对于第三方语言，例如 JAVA 和 PYTHON，它们可以通过操作系统提供的一组共享库操作函数，实现调用由 C&#x2F;C++ 创建的共享库代码；这便是第三方语言与 C&#x2F;C++ 的实现原理；</li>
+</ol>
+</li>
+<li>异常控制流<ol>
+<li>异常是操作系统和硬件之间合作的一种接口，在 CPU 眼里，只有 I&#x2F;O 和主存两种设备；CPU 与 I&#x2F;O 使用中断机制进行配合；CPU 与内存使用故障机制进行配合（即缺页异常）；同时，异常也是应用程序调用内核服务的一种配合机制（即 trap 陷阱或 syscall 系统调用）；</li>
+<li>当发生异常时，需要调用提前准备好的异常处理程序来处理现场，此时需要先将整个处理器的状态保存下来，以便将异常处理程序完成工作后，可以恢复到异常发生前的现场状态；因此，引入了内核栈来保存状态；调用异常处理程序，很像调用一个普通的函数，只是它使用内核栈，而不是用户栈，而且这段函数将运行在内核模式下，这意味着它对所有资源拥有完全的访问权限；<ol>
+<li>疑问：内核栈在哪里？貌似是在虚拟内存中的内核段；</li>
+<li>异常处理程序貌似也是在虚拟内存中的内核代码段；</li>
+</ol>
+</li>
+<li>进程是操作系统为应用程序提供的一种抽象，其中有一项重要的功能是将内核代码映射到虚拟内存中的内核段，同时这一段中还有内核栈和堆，用来保存内核模式下的上下文状态；当发生系统调用时，控制权会转移到内核代码中的指令，同时通过改变控制位，实现用户模式到内核模式的切换；</li>
+<li>不同进程间的调度，除了改变程序计数器，使其指向新进程的某条指令外，还需要改变页表寄存器，使其指向新进程的页表，这样才能实现正确的虚拟内存和物理内存的映射；</li>
+<li>创建进程的两种方式：fork 和 execve；前者复制当前的虚拟地址空间，创建一个子进程；后者直接覆盖当前的虚拟地址空间，但会继承原来的文件描述符，同时可接收参数变量和环境变量参数数组；</li>
+<li>信号可以用来实现进程间的通信，但它也有一些自己的缺点，例如不排队（即最多只能有一个相同信号处于待处理的状态）；可中断（即捕获信号并调用相应处理程序的过程中，可能会被其他信号中断）；不可移植（不同操作系统对信号的语义定义有所不同，因此需要统一封装，以实现可移植的一致效果）</li>
+<li>使用 sigsuspend 函数来显式等待信号，可以兼顾性能和正确性；</li>
+</ol>
+</li>
+<li>虚拟内存<ol>
+<li>虚拟内存的三大作用：协助实现缓存、简化内存管理、实现内存保护；</li>
+<li>虚拟内存的代价是增加了翻译工作；虚拟地址与物理地址的映射关系，需要保存在物理内存中的页表数据结构中；因此，理论上要得到翻译结果，就需要按虚拟地址到内存中查询相应的物理地址；根据程序的局部性原理，可以通过引入缓存机制，加快翻译工作，避免每次都到内存中查询；</li>
+<li>页表的设计跟高速缓存的设计密切相关，因为它们都涉及页单元的大小，还好这两个部分都在 CPU 内部，因此可以避免不兼容的风险；</li>
+<li>页表负责虚拟地址到物理地址中的页的完整映射，因此貌似这个信息在内存中必须是完整保存的，不然就无法实现查询；为了提高访问速度，利用局部性原理引入缓存机制很有必要；但如果将整个页表都缓存起来，显然成本过高；因此，通过引入多级页表的方式，实现用一个较少的缓存空间，映射一个全量页表的目的；虽然还是有可能发生不命中，但是由于局部性原理的存在，这种概率并不高，从而实现了速度和成本之间的平衡；</li>
+<li>虚拟内存中的内核段非常有意思，它有三部分组成，分别是：内核代码和数据（每个进程都相同），物理内存段（每个进程都相同，与实际的物理内存完全一一对应）、进程自身相关信息的数据结构段；</li>
+<li>由于部分程序使用的数据，是在运行过程中，由外部输入的，而我们无法提前知道这些数据的大小，因此使用堆的机制，来动态分配存储空间是必不可少的；虽然虚拟内存接近无限大小，但是物理内存却是有限的，因此，对于部分不再使用的虚拟内存空间，对其回收是有必要的，因为对它们的回收，也同时意味着对物理内存的回收释放；因此，如果最有效率的使用堆空间变成一个有待解决的问题；</li>
+<li>虚拟堆空间是否连续，跟物理内存空间是否连续，貌似并没直接的关系；那么要如何实现物理内存的连续和最有效化使用？由于物理内存不需要连续存储，貌似它或许可以不管碎片化的问题？而只需要做好标记工作，表示当前空间是否空闲或者已分配即可？如果是这样的话，那么接下来的问题变成是虚拟堆内存如何及时回收自己不用的那部分空间，以便改变物理内存的标记，让其他程序可以使用；</li>
+<li>由于虚拟堆空间接近无限，但其实它也不是真的无限，还是有地址上限的；如果对它的地址增长不加以限制的话，有可能会突破这个上限，导致无法再分配内存；这就导致了需要引入及时对已经标记空闲的内存块进行合并，以及重复利用的机制；</li>
+<li>垃圾回收：由于 C&#x2F;C++ 语言中，没有给指针保存类型信息，这导致无法判断某个字节的数据是指针类型，还是整数类型，或者其他类型；因此也埋下了隐患，即在遍历某个内存块中的字节时，无法判断某个字节是否为指针并指向其他块；这样导致无法判断某个块是否有其他块中的指针在指向它，从而也无法判断该块是否已经无人指向它变成了垃圾有待回收；在 C++ 中，编译器可以知道现在有哪些块，然后有每个块的大小信息和起始地址，因此它按块头地址大小维护一个二叉树，然后判断每一个指针是否在某个块的起始和终止的地址段中，来判断该指针所指向的块是否仍然有效，若无效，则回收该指针所指向的块；若有效，则不回收；这是一种保守的回收方式，它不会误回收有用的块，但却会漏过一些已经成为垃圾的块（即某个块已经不可达，但却发现不了）<ol>
+<li>假设在 C 语言中某个函数 A 内部动态分配了内存块，在A函数返回后，假设没有主动释放它，那么指向该块的局部指针变量消失了，但块仍然存在，一直无法被发现并释放；</li>
+<li>印象中 C++ 可以使用智能指针通过引用计数来实现垃圾回收；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>系统级I&#x2F;O<ol>
+<li>所有的输入输出设备都被抽象为文件；主存与设备间的数据传输也因此抽象为对文件的读取和写入；当打开一个文件时，内核会为该文件创建一个数据结构，存放该文件的相关属性信息，例如类型、大小、当前位置等，同时使用一个文件描述符来代表它；应用程序使用该文件描述符进行文件的相关操作；<ol>
+<li>对于文件的维护印象中有三级的结构，包括文件描述符表，文件表，文件头表；描述符表是进程私有的，后二者则是所有进程共享的；</li>
+</ol>
+</li>
+<li>文件有很多种类型，不同类型的文件，可以用来实现不同的用途；</li>
+<li>CSAPP 提供了一组更加健壮的 I&#x2F;O 函数库，即 RIO 包，用于规避 C 标准函数在读取网络套接字时存在的一些缺点；</li>
+</ol>
+</li>
+<li>网络编程<ol>
+<li>路由器和交换机的区别是什么？路由器主要用来实现网间连接，交换机主要用来实现端口扩展；</li>
+<li>当需要发送的数据内容从应用程序出发后，它先由应用层协议如 HTTP 为其加上头部，注明源信息和目的地信息，然后接下来经过各层硬件，包括网卡、路由器、电缆，它们每一层的硬件之间都使用不一样的传输协议，因此每一层都会对上一层发过来的数据，进行再次的加工，并加上自己的头部，然后发往下一层，最终这电缆或者无线WIFI传输出去；而接收方则再根据每一层的协议进行数据内容的解析，最终得到应用层发出的数据；</li>
+<li>全球的 IP 地址是由一个非官方机构统一维护的，它给每个国家分配了一些 IP 段以供使用，但是并不是根据每个国家的人口进行分配，导致不同国家每千人的平均可用 IP 地址存在很大的差异，例如美国每千人可用近5000个IP，而中国每千人只有300个 IP 左右，导致在中国 IP 地址非常紧张；</li>
+<li>socket&#x2F;connect 组合可用于在客户端建立套接字并进行连接，之后可发起请求；socket&#x2F;listen&#x2F;accept 可用于服务端创建套接字，并进行监听以及接受连接请求，实现与客户端的通信；<ol>
+<li>浏览器首次向某个网站发起请求时，估计调用一次 socket&#x2F;connect 函数组合建立连接得到文件描述符，然后通过这个文件描述符发送和接收数据；</li>
+<li>服务每次收到某个客户端的首次请求后，通过调用 accept 函数建立连接，得到文件描述符，然后通过它接收到客户端的请求数据，并发送响应给客户端；</li>
+<li>在实际使用中，一般使用封装过的 open_clientfd 和 open_listenfd 来替代以上两种组合实现相同的功能，这样更简单和健壮；</li>
+</ol>
+</li>
+<li>HTTP 报文使用一回车+一换行符来表示一行的结束，并使用一个空行表示报头的结束；</li>
+<li>服务端在接收到请求后，调用 fork+execve 函数加载 &#x2F;cgi-bin&#x2F;adder 程序（即CGI程序），重定位标准输出到已连接描述符；由 CGI 程序负责生成动态内容后，写入标准输出，并写入报头等信息；父进程在创建 CGI 子进程后，会调用 wait 等待其返回；待返回后，回收子进程的资源；</li>
+</ol>
+</li>
+<li>并发编程<ol>
+<li>几种进程间通信的方法：管道、命名管道、信号、消息队列、共享内存、套接字；</li>
+<li>几种并发编程的方法：进程、线程、I&#x2F;O多路复用；</li>
+<li>进程并发：为每个请求建立新的子进程，优点是编程简单，缺点是进程切换成本高导致性能较差，进程间共享数据麻烦；</li>
+<li>I&#x2F;O 多路复用：维持连接池集合，通过请求事件驱动；优点是共享同一进程上下文，性能较好，共享数据方便；缺点是编程麻烦，随着并发粒度越小，难度上升；以及不能利用多核处理器的优势；</li>
+<li>线程并发：在同一进程中维护多个线程池，由内核在线程池间切换；优点是兼顾编程容易度和性能，共享数据方便；缺点是需要引入同步机制避免修改读取共享变量潜在的冲突，性能好于进程但弱于I&#x2F;O多路复用：</li>
+<li>并发挑战：线程安全、可重入性、第三方函数、竞争、死锁；</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>深入理解计算机系统-再总结</div>
+      <div>http://example.com/2019/09/26/深入理解计算机系统-再总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年9月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/28/gcc%20%E9%93%BE%E6%8E%A5%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="gcc 链接器工作原理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">gcc 链接器工作原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/21/3DMax/" title="3DMax">
+                        <span class="hidden-mobile">3DMax</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

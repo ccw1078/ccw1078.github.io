@@ -1,0 +1,1562 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="信息架构简介：IA是一种设计原则，关注的是让信息可查找和易于理解 信息架构要解决的问题 挑战：信息过载、访问信息的更多方式； 人们基于信息做出决策和行动，应着眼于更广阔的抽象大局 不同的场所，不同的信息体验方式，却仍能够保持内在的一致性； 语义结构保持一致，降低用户的学习成本； 信息架构优先于导航设计，导航只是展现信息架构思考的结果； 信息与承载的物理载体的分离，去介质化； 我们的产品和服务是由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息架构-超越Web设计">
+<meta property="og:url" content="http://example.com/2017/03/09/%E4%BF%A1%E6%81%AF%E6%9E%B6%E6%9E%84-%E8%B6%85%E8%B6%8AWeb%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="信息架构简介：IA是一种设计原则，关注的是让信息可查找和易于理解 信息架构要解决的问题 挑战：信息过载、访问信息的更多方式； 人们基于信息做出决策和行动，应着眼于更广阔的抽象大局 不同的场所，不同的信息体验方式，却仍能够保持内在的一致性； 语义结构保持一致，降低用户的学习成本； 信息架构优先于导航设计，导航只是展现信息架构思考的结果； 信息与承载的物理载体的分离，去介质化； 我们的产品和服务是由">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-09T13:50:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T01:02:49.918Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>信息架构-超越Web设计 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息架构-超越Web设计"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-03-09 21:50" pubdate>
+          2017年3月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          88 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息架构-超越Web设计</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>信息架构简介：IA是一种设计原则，关注的是让信息可查找和易于理解<ol>
+<li>信息架构要解决的问题<ol>
+<li>挑战：信息过载、访问信息的更多方式；</li>
+<li>人们基于信息做出决策和行动，应着眼于更广阔的抽象大局</li>
+<li>不同的场所，不同的信息体验方式，却仍能够保持内在的一致性；</li>
+<li>语义结构保持一致，降低用户的学习成本；</li>
+<li>信息架构优先于导航设计，导航只是展现信息架构思考的结果；</li>
+<li>信息与承载的物理载体的分离，去介质化；</li>
+<li>我们的产品和服务是由信息构成的场所</li>
+</ol>
+</li>
+<li>信息架构的定义<ol>
+<li>信息，设计结构、决定组织方式和制定标签，查找和管理</li>
+<li>用户、情景、内容之三角关系</li>
+<li>情景：所有的数字化项目都存在于特定的商业或者组织环境中，每个组织都有自己的目标、任务、策略、流程和程序，了解它们很重要；</li>
+<li>内容：所有权，格式，结构，元数据，数量，动态性（增长和周转）</li>
+<li>用户：关注人的情感</li>
+<li>市场是可以有细分的，找到自己的目标群体，围绕他们设计产品和服务，提供价值，获得共赢，相辅相成；</li>
+</ol>
+</li>
+<li>为查找而设计<ol>
+<li>人不会无缘无故的搜寻信息，他们获得信息总是有某种缘由或者目的，找到它（5W方法）；</li>
+<li>4种不同的信息需求<ol>
+<li>已知条目搜索</li>
+<li>探索式搜索</li>
+<li>无遗漏式研究</li>
+<li>回顾搜索（记忆遗忘或稍后处理）</li>
+</ol>
+</li>
+<li>了解用户的主要信息需求和可能的信息搜寻行为，方法：搜索分析（日志文件），情景式调查</li>
+</ol>
+</li>
+<li>为理解而设计<ol>
+<li>创建可以被人类理解和使用的环境</li>
+<li>场所感：由信息组成的场所，组织原则，结构和秩序，模块化和可扩展性（应对变化，借喻了建筑不同组成部分的比喻）</li>
+<li>信息架构的设计必须面向场景</li>
+<li>可考虑多种交互模式的组合来应对更加复杂和挑战性的场景</li>
+<li>好的网站应该是通过进化而来的，刚开始以最核心的场景，最精简的方式出场，然后逐步迭代它；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>信息架构的基本原理：组织系统、标签系统、导航系统、搜索系统<ol>
+<li>信息架构详解<ol>
+<li>信息架构的可视化<ol>
+<li>组织系统：以各种方式为我们展示信息（例如分组归类等）</li>
+<li>导航系统：协助用户在内容中移动</li>
+<li>搜索系统：让用户搜索内容</li>
+<li>标签系统：使用对用户来说有意义的语言描述分类；</li>
+</ol>
+</li>
+<li>自顶向下的信息架构</li>
+<li>自底向上的信息架构：从内容中提出建议；</li>
+<li>一些浏览帮手<ol>
+<li>组织系统：将网站网站内容分组或分类的主要方式（例如：按主题、按用户、按任务等）</li>
+<li>全站导航系统：在全站中的位置，可以去哪里</li>
+<li>局部导航系统：在子站中的位置，可以去哪里</li>
+<li>站点地图&#x2F;目录：支持主导航和次导航，提供一个简明总览和链接的入口</li>
+<li>索引：辅助性导航，按字母排序的内容链接列表</li>
+<li>指南：辅助性导航，针对特定主题提供特定的信息，以及链接到子主题</li>
+<li>网站向导：辅助性导航，通过一系列步骤引导用户</li>
+<li>情景导航：内嵌于内容中，提供更深度化的内容链接；</li>
+</ol>
+</li>
+<li>一些搜索帮手<ol>
+<li>根据不同的搜索情景（包括探索、已知、无遗漏、回顾），来设计不同的搜索功能，例如：视频网站对内容推荐和回顾的单独突出（单独页面来呈现）</li>
+<li>搜索结果：单独的结果、显示多少结果、结果的分级、排序、归类；</li>
+</ol>
+</li>
+<li>内容和任务：用户的最终目标<ol>
+<li>标题：内容的标签</li>
+<li>嵌入式链接：文本中的链接，指向相关联的内容</li>
+<li>嵌入式元数据：可以作为元数据的信息，可以先提取以便可以被索引来支持另外维度的搜索</li>
+<li>块：内容的逻辑单元，可大可小可嵌套</li>
+<li>清单：一组成块信息，或者连向成块信息的链接，按组分类，以特定的顺序显示（例如按时间）</li>
+<li>顺序式帮手：暗示用户在任务或流程中的位置的线索，以及完成任务余下的步骤</li>
+<li>标识符：暗示用户在信息系统中的位置的线索（例如面包屑，筛选条件标签）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>组织系统<ol>
+<li>我们对世界的理解在很大程度上取决于我们组织信息的能力</li>
+<li>目标：设计让用户可以理解的组织和标签系统</li>
+<li>挑战：模糊性、异质性</li>
+<li>组织系统由组织方案和组织结构组成；<ol>
+<li>组织方案定义了内容条目之间的共同特性，而且会影响这些条目的逻辑分组；</li>
+<li>组织结构定义了内容条目和群组之间的关系类型</li>
+</ol>
+</li>
+<li>组织方案<ol>
+<li>精确式：适用于已知条目的搜索<ol>
+<li>字母顺序方案</li>
+<li>年代顺序方案</li>
+<li>地理位置方案</li>
+</ol>
+</li>
+<li>模糊式：模糊是世界的常态，适用于浏览和联想式学习<ol>
+<li>主题组织方案：重要的是定义内容范围，也就是用户想在系统区域中找到的东西</li>
+<li>任务导向方案：通常内嵌在主题方案中</li>
+<li>特定受众方案：产品有两个或多个明确受众的情况下使用</li>
+<li>隐喻驱动方案：需要非常小心，要成功，隐喻必须是用户熟悉的</li>
+<li>混合方案：<ol>
+<li>反映出一个事实：组织和用户都以查找内容和完成重要任务作为最高优先级别的工作</li>
+<li>只要各种方案在网页上不同的位置，它们就仍然有为用户建议一个心智模型的能力</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>组织结构<ol>
+<li>层级结构：自顶向下的方法<ol>
+<li>记住一些原则<ol>
+<li>层级类别之间是互斥的，但也不被它束缚住（如果一个条目是模糊的，多种理解的，那么可以大胆的让它跨界出现，以便用户可以找到它）</li>
+<li>重要的是考虑层级系统在广度和深度上面的平衡（重点考虑人的视觉扫描能力和思维的认知局限）（相对广度，应更保守的考虑深度，人对尝试的耐心，相对于广度的扫描力，更低一些）</li>
+<li>层级模式是设计的起点，但不要纠结于此，它更多是凝聚性组织系统的一个组成部分，某些内容区域需要采用数据库和超文本的做法更合适；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>数据库模式：自底向上的方法<ol>
+<li>为了便于搜索和检索而设置的数据集合<ol>
+<li>自动产生按字母排序的索引</li>
+<li>动态演示相关的“请参见”链接的内容</li>
+<li>按字段搜索</li>
+<li>高级过滤和搜索结果的排序</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>超文本<ol>
+<li>优点：灵活性高</li>
+<li>缺点：依赖个人经验，容易迷失</li>
+<li>适用场景：<ol>
+<li>不适用于主要的导航结构</li>
+<li>适用于补充基于基层或者数据库模型的结构，在已建立的层级结构中建立条目和区域之间的创造性关系</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>社会化分类：自由式标签是简单又强大的工具，在某些情景下特种的适用，能够提供常规分类所无法产生的效果</li>
+<li>创建凝聚式组织系统<ol>
+<li>大型系统通常需要几种结构类型</li>
+<li>内容条目之间的弱结构化、强创造性关系，可以通过作者提供的超文本或者使用者贡献的标签来处理（例如：豆瓣、Facebook等）；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>标签系统<ol>
+<li>标签的目标是有效传达信息；</li>
+<li>标签应该教导用户理解新的概念，并协助他们快速识别出熟悉的概念；</li>
+<li>标签类型<ol>
+<li>情景式标签：<ol>
+<li>依赖场景（上下文，解释性文字，明确的标题）</li>
+<li>认真反思产品中使用到的每个标签是否具备足够的自解释性，如果没有，是否有说明性描述</li>
+<li>回答：用户点击后期待看到什么东西？</li>
+</ol>
+</li>
+<li>标题标签<ol>
+<li>层级关系可以通过视觉设计来传达；</li>
+<li>如果内容具备足够的自解释性，则标题不一定是必须的；</li>
+</ol>
+</li>
+<li>导航标签<ol>
+<li>首页、主页、总页；</li>
+<li>搜索、查找、浏览、搜索&#x2F;浏览</li>
+<li>站点地图、内容、目录、索引</li>
+<li>联系方式、联系我们</li>
+<li>帮助、FAQ、常见问题解答</li>
+<li>新闻、新闻&amp;事件、新闻&amp;声明、声明</li>
+<li>关于、关于我们、关于（公司名称）、我们是谁</li>
+</ol>
+</li>
+<li>索引词标签<ol>
+<li>更精确的搜索</li>
+<li>省略细节的同时仍能提供价值；</li>
+</ol>
+</li>
+<li>图标标签<ol>
+<li>节约了空间，增加了美感，也增加了不确定性；</li>
+<li>会因为反复出现而在用户认知中建立模式</li>
+<li>不要让形式凌驾于功能之上</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>标签的设计<ol>
+<li>通用原则<ol>
+<li>尽可能的缩小范围<ol>
+<li>锁定目标受众</li>
+<li>专注主题领域（先模块化之后，再依据情景设计标签，嵌入到相应的模块中，这样更有针对性，而不用一开始上来就想覆盖所有）</li>
+</ol>
+</li>
+<li>开发一致的标签系统，而不是标签<ol>
+<li>风格：标点符号和大小写（此点在中文中不明显）</li>
+<li>版面形式：字体、字号、颜色、间距、分组</li>
+<li>语法：动词、名词</li>
+<li>粒度：含义大致等同于其范围，不同粒度会引起很大的困惑</li>
+<li>全面性：不存在明显的缺口，尽量反映出覆盖的内容（如果部分内容没有细分，或许可以使用类似“其他”的字样来涵盖全面性）</li>
+<li>用户：如果用户使用不同的语言和术语，则有必要单独设计不同的标签系统，即使这些系统描述的是相同的内容</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>使用现有标签系统的来源<ol>
+<li>当前的信息环境<ol>
+<li>研究现有标签系统最大的好处在于它们是系统化的</li>
+<li>建立标签表格，可以更完整、更集中、更精确的看待网站的导航系统，表格内容包括：<ol>
+<li>标签</li>
+<li>目的地的标题标签</li>
+<li>目的地的<TITLE>标签</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>类似网站和竞争对手的网站</li>
+<li>受控词表和叙词表：taxonomywarehouse.com</li>
+</ol>
+</li>
+<li>创建新标签系统的来源<ol>
+<li>内容分析</li>
+<li>内容作者</li>
+<li>用户代言人和主题专家</li>
+<li>用户（直接）：卡片分类法（开放式和封闭式）、自由列举（通过头脑风暴来寻找对条目的标签描述）</li>
+<li>用户（间接）：搜索日志分析、Google AdWords 获取搜索词；</li>
+</ol>
+</li>
+<li>持续的优化和调整<ol>
+<li>标签代表的是内容和用户之间的有关系，而这种关系是经常变化的</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>导航系统<ol>
+<li>种类<ol>
+<li>嵌入式：<ol>
+<li>目标：提供情景和灵活性，帮助用户了解他们现在的位置，以及他们可以去哪里</li>
+<li>分类<ol>
+<li>全局导航：时时可见</li>
+<li>局部导航：虽然内容可以不同，但应使用统一的设计规范，保证视觉风格和用户理解的一致性</li>
+<li>情景式导航<ol>
+<li>视觉惯例：在固定的位置出现</li>
+<li>注意适度性：不要喧宾夺主</li>
+<li>例子：<ol>
+<li>购物网站的同类商品推荐</li>
+<li>作用：提供了交叉销售、提升销售转化率、打造品牌和提供顾客价值的机会</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>挑战：需要在用户移动的灵活性和提供过多选项的风险之间取得平衡</li>
+</ol>
+</li>
+<li>辅助式<ol>
+<li>站点地图<ol>
+<li>显示了信息层次的前几级，为用户提供了宽广的视野</li>
+<li>如果网站本身架构不强，或许使用索引会更加合适</li>
+</ol>
+</li>
+<li>索引<ol>
+<li>相对扁平，适合那些已知条目的用户</li>
+<li>站点地图则会鼓励用户探索，而索引会跳过层级结构，方便于已知条目的搜索</li>
+<li>粒度问题是一个挑战：通过分析搜索日志和进行用户研究，以了解用户的需求来解决这个问题</li>
+<li>单阶段索引：关键词与内容之间只需要一步</li>
+<li>双阶段索引：从索引中选择术语，然后从以术语为索引的文档清单中进行选择</li>
+<li>术语轮排和参照关系</li>
+</ol>
+</li>
+<li>指南<ol>
+<li>包括导游、教程、以及针对特定主题或任务的走查（比如初始化配置）</li>
+<li>有营销作用，对外和对内（例子：Salesforce针对不同角色的功能导游）</li>
+<li>原则<ol>
+<li>指南应该简短</li>
+<li>无论何时都可以退出</li>
+<li>来回移动的导航应该一致；</li>
+<li>基于回答问题而设计</li>
+<li>截图应该清晰和优化的，支持关键功能的放大效果</li>
+<li>如果指南有多页，则应考虑有自己的目录</li>
+</ol>
+</li>
+<li>挑战：用户只用一次或者不用，因此它不是系统的重点，需要在投入的设计时间之间取得平衡</li>
+</ol>
+</li>
+<li>配置器<ol>
+<li>帮助用户配置产品的向导，可以让用户轻易完成复杂的决策或初始化过程</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>浏览器的导航：<ol>
+<li>浏览器有自己的导航机制，注意它的存在可能带来的影响</li>
+<li>PC、手机、非浏览器等不同使用环境对导航设计的限制和支持</li>
+</ol>
+</li>
+<li>场所营造<ol>
+<li>通过语言创造场景感并提供探索网站的清晰路径，是导航系统的重要作用之一</li>
+<li>确保你的设计提供情景线索</li>
+<li>以清晰一致的方式展现尽可能多的信息层级结构</li>
+<li>凡是使用图标的地方，都应该考虑加上工具提示；</li>
+<li>使用语言的地方，是否添加工具提示，需要在地雷阵、用户预期、自解释性之间取得平衡</li>
+</ol>
+</li>
+<li>高级导航方法<ol>
+<li>个性化和自定义<ol>
+<li>个性化：<ol>
+<li>我们猜测用户想要什么，例如亚马逊的首页推荐</li>
+<li>挑战：没有足够的信息基础，很难猜测</li>
+</ol>
+</li>
+<li>自定义：<ol>
+<li>用户告诉我们他想要什么</li>
+<li>用户只在少数对他很重要的功能愿意投入时间去做自定义（具有重复访问用户的企业网站适合使用此模式）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>可视化<ol>
+<li>当用户通过产品的外观在一系列结果中进行选择时，可视化是最有用的，例如购物</li>
+</ol>
+</li>
+<li>社会化导航<ol>
+<li>单个用户的价值可能来自对其他用户行为的观察</li>
+<li>基于社交图谱</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>搜索系统<ol>
+<li>第一个思考的问题：产品是否需要搜索？<ol>
+<li>要考虑内容的数量（需要投入的创建和维护搜索引擎时间之间取得平衡）</li>
+<li>关注更有用的导航系统（如果搜索能够利用强大导航系统的各项优点，搜索会工作的更好）（全局导航貌似会将情况变得复杂起来）</li>
+<li>优化搜索系统的时间和技术（搜索可以很容易启动并运行，但不一定能实现有效的效果，如果做不到，则重新考虑）</li>
+<li>其他替代方案：比如索引，虽然一开始需要投入时间，但更容易维护</li>
+<li>考虑用户首选的交互方式</li>
+</ol>
+</li>
+<li>什么时候会到达需要搜索系统的地步：<ol>
+<li>有太多的信息需要浏览</li>
+<li>搜索可以帮助片段化的网站实现统一（例如公司存在多个子系统或子网站）</li>
+<li>搜索是一种学习工具：可以获得搜索日志并进行分析来改进系统 </li>
+<li>搜索应该在那里，因为用户期待它在那里；</li>
+<li>搜索可以驯服动态性：比如网站是新闻类的高度动态内容，通过手工索引整理内容太麻烦且不现实</li>
+</ol>
+</li>
+<li>搜索通常是迭代的：经常需要搜索几次后才得到想要的结果</li>
+<li>不同搜索引擎有不同的优缺点，需要了解它们，才能结合场景和用户，选择最合适的搜索引擎，而不能仅由技术人员单方面决定（有哪几种搜索引擎？）；</li>
+<li>如何选择可被搜索的内容<ol>
+<li>确定搜索区域：<ol>
+<li>优点：创建信息环境的子集，切割数量庞大的内容</li>
+<li>缺点：很多用户在开始使用搜索时会忽略搜索区域，待思考如何以更明显的方式突出</li>
+<li>切割方法<ol>
+<li>导航 vs 目标：通过导航实现区域化</li>
+<li>为特定用户建立索引：不同角色登录，搜索不同内容</li>
+<li>按主题索引：对搜索结果提供分类筛选</li>
+<li>索引最近的内容：按时间分类</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>选择要建立索引的内容组件：并非页面上的组件都具有相同的重要性，只对重要的组件建立索引，减少无效信息的干扰</li>
+</ol>
+</li>
+<li>搜索算法：查全率与准确率，二者是逆相关的，选择哪个取决于用户场景</li>
+<li>查询生成器：能够有效提高搜索性能，包括：<ol>
+<li>拼写检查工具</li>
+<li>语音工具：smith 与 smyth</li>
+<li>词干提取工具：lodge 与 lodging </li>
+<li>自然语言处理工具： how to 和 how can i</li>
+<li>受控词表和叙词表：同义语</li>
+</ol>
+</li>
+<li>显示结果<ol>
+<li>要显示哪些内容组件<ol>
+<li>已知条目搜索：显示较少的信息；探索型：提供较多的信息</li>
+<li>考虑多种视图查看方式：列表、图片、地理位置</li>
+<li>避免首页的搜索结果提供太多信息，导致后续页面的结果被淹没</li>
+<li>注意思考用户搜索的目的，怎样才能以最短的路径让用户看到内容（搜索结果展现的重新排版）；</li>
+<li>如果内容中没有太多结构，显示在“上下文”的中搜索词是一种变通的方法</li>
+</ol>
+</li>
+<li>要显示多少文档<ol>
+<li>文档内容多，小的结果集；文档内容少，多的结果集；同时还需要考虑屏幕分辨率、网速、浏览器设置等；简单化是最安全的（只显示少量的结果，用户可以根据自己的需求做进一步的选择）</li>
+<li>建议让用户知道检索结果总数</li>
+<li>结果集的二次过滤查询</li>
+<li>搜索结果的显示，信息可以重新排版，内容丰富程度取决于用户的动机和对显示所有结果的影响</li>
+</ol>
+</li>
+<li>列出结果 <ol>
+<li>排序：适用用户寻求做决策或采取行动<ol>
+<li>按字母排序 </li>
+<li>按年表排序</li>
+</ol>
+</li>
+<li>排名：适用用户需要理解信息或学习事物<ol>
+<li>按相关性排名：有多种算法，例如文档中有多少查询词，出现频率、出现位置多近、出现的位置、文档本身的受欢迎程序；对于不同的内容，不同的相关性算法各有其意义；文档异质性越高，越需要谨慎使用相关性算法（比如清单文档和内容文档）；</li>
+<li>按受欢迎程度排名</li>
+<li>按用户或者专家的评价排名</li>
+<li>按位置付费排名</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>将结果分组：方便用户针对不同内容类型二次过滤查看</li>
+<li>对结果采取行动<ol>
+<li>号召行动：购买、下载等</li>
+<li>选择结果的子集：例如购物车</li>
+<li>保存搜索：供下次使用</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>设计搜索界面<ol>
+<li>搜索框</li>
+<li>自动完成和自动建议：可考虑用于取代高级搜索机制</li>
+<li>高级搜索</li>
+<li>支持修改：进一步的过滤和定位<ol>
+<li>在结果页中重复搜索</li>
+<li>说明结果来自何处</li>
+<li>说明用户做了什么<ol>
+<li>重述查询：文字描述型，标签型</li>
+<li>描述所有合适的过滤器</li>
+<li>显示其他当前设置，例如排序 </li>
+<li>提取检索到的搜索结果</li>
+</ol>
+</li>
+<li>整合搜索与浏览<ol>
+<li>左侧过滤器可以随着用户对搜索结果的深入进行变化，适用于探索型搜索</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>当用户被卡住时<ol>
+<li>修改搜索的方式</li>
+<li>改进搜索的建议</li>
+<li>改进浏览方式：导航、站点地图</li>
+<li>建议和人联系</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>叙词表、受控词表和元数据<ol>
+<li>作用：后端的叙词表可以让前端的用户感受到更令人满意的无缝体验</li>
+<li>元数据：关于数据本身的属性</li>
+<li>由元数据来驱动内容的管理，而非人工逐条分类，建立规则，新条目自动分类</li>
+<li>受控词表：同义词环形式的等价术语清单，或者是规范文档形式的首先术语清单；</li>
+<li>同义词环：把一组定义为等价关系的词汇连接起来，以供检索使用（同一事物，不同的人会有不同的叫法）</li>
+<li>规范文档：<ol>
+<li>首选术语或可接受值的清单；规范文档也是同义词环，只是它将术语定义成首选术语或可接受的值；</li>
+<li>好处：提供信息交流对接的统一标准，例如跨系统的数据库整合</li>
+</ol>
+</li>
+<li>分类方案：用来表示首选术语的排列，例如：奈飞使用微类型给电影分类</li>
+<li>叙词表：一种受控词表，包含等价关系、层级关系、关联关系，目的是改进检索<ol>
+<li>等价关系：同义词管理</li>
+<li>层级关系：类别和子类别 </li>
+<li>关联关系：不会被层级或者等价关系处理的有意义的连接</li>
+</ol>
+</li>
+<li>技术术语：<ol>
+<li>首选术语、异形术语、上位类术语、下位类术语、相关术语</li>
+<li>使用、用于、范围注释</li>
+</ol>
+</li>
+<li>叙词类型：经典叙词表、索引叙词表、搜索叙词表</li>
+<li>语义关系<ol>
+<li>等价：创建丰富的入口词，连接用户与内容；</li>
+<li>层级：最终目标是增强用户找到他们所需要东西的能力<ol>
+<li>属于：生物中的纲-种关系</li>
+<li>整体-部分：手-手指</li>
+<li>实例；海-地中海</li>
+</ol>
+</li>
+<li>关联：强烈暗示，强隐含语义关系，没有等价和层级关系</li>
+</ol>
+</li>
+<li>首选术语<ol>
+<li>术语形式<ol>
+<li>语法：优先名词</li>
+<li>拼写：一致性</li>
+<li>单数和复数：可数，复数；概念名词：单数</li>
+<li>简写和缩写：最常见的写法</li>
+</ol>
+</li>
+<li>术语选择<ol>
+<li>文献保证原则：文档中出现的术语</li>
+<li>用户保证原则：满足大多数用户的需求</li>
+</ol>
+</li>
+<li>术语定义：管理模糊性<ol>
+<li>括号式术语限定词：Cells(biology), Cells(electric)</li>
+<li>范围注释</li>
+</ol>
+</li>
+<li>术语特异性：随着内容增长，使用复合术语的概率提高，以便取得准确性</li>
+</ol>
+</li>
+<li>多元层级<ol>
+<li>对于大型信息系统，多元层级结构不可避免；</li>
+<li>带来的挑战是如何处理导航情景的表示，可考虑主要位置和次要位置的概念</li>
+</ol>
+</li>
+<li>分面分类法：通过多维度的描述来给事物分类<ol>
+<li>初创者的5维度：本体、物质、能量、空间、时间</li>
+<li>商界常用6维度：主题、产品、文档类型、用户、地理位置、价格</li>
+<li>好处：提供了强大的能力和灵活性（基于描述性元数据和结构）</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>完成信息架构<ol>
+<li>研究<ol>
+<li>研究框架：<ol>
+<li>用户：受众、任务、需求、信息搜寻行为、体验、词表</li>
+<li>情景：商业目标、资金、政治、技术、人力资源</li>
+<li>内容：文件&#x2F;数据类型，内容对象，元数据，数据量，现存结构</li>
+</ol>
+</li>
+<li>情景<ol>
+<li>获得支持<ol>
+<li>你是谁？为什么要问我这些问题？</li>
+<li>什么是信息框架？我为什么要在乎它？</li>
+<li>你的方法是什么？它如何与你的工作相联系？</li>
+</ol>
+</li>
+<li>背景研究<ol>
+<li>短期和长期目标是什么？</li>
+<li>商业计划是什么？政治因素有哪些？</li>
+<li>日程安排和预算如何？</li>
+<li>目标受众是谁？</li>
+<li>用户为什么要访问这个网站？他们为什么会常来？</li>
+<li>用户可以执行哪些任务？</li>
+<li>如何建立和管理内容？谁来做？</li>
+<li>技术基础架构是什么？</li>
+<li>以前什么行得通？什么行不通？</li>
+</ol>
+</li>
+<li>初步演示报告<ol>
+<li>信息架构是什么？它为什么这么重要？</li>
+<li>信息架构如何与网站的其他组成部分和组织本身关联？</li>
+<li>主要的里程碑和可交付成果是什么？</li>
+</ol>
+</li>
+<li>研究会议<ol>
+<li>策略小组会议：设定高层目标、定义任务、愿景、受众、内容和功能；5-7人比较理想，避免人多产生的政治干扰<ol>
+<li>系统的目标是什么？</li>
+<li>目标受众是谁？</li>
+<li>规划的内容和功能是什么？</li>
+<li>人们会使用什么渠道来访问系统？</li>
+<li>谁会参与这项工作？</li>
+<li>什么时候需要展示成果？</li>
+<li>预期会有哪些障碍？</li>
+</ol>
+</li>
+<li>内容管理会议<ol>
+<li>有关内容部分，正式和非正式的政策是什么？</li>
+<li>是否有处理创作和发布的内容管理系统（CMS）？</li>
+<li>这些内容是否使用受控词表和属性管理内容？</li>
+<li>内容由谁以及如何输入系统？</li>
+<li>采用了何种技术？</li>
+<li>每个拥有者处理什么内容？</li>
+<li>内容的目的是什么？建立该内容区域的目标的愿景是什么？</li>
+<li>受众是谁？</li>
+<li>用户如何访问系统？</li>
+<li>内容的格式是什么？它是动态的还是静态的？</li>
+<li>谁维护内容？</li>
+<li>未来的内容和服务规划是什么？</li>
+<li>内容来自何处？如何淘汰它？</li>
+<li>哪些法律问题会影响内容管理过程？</li>
+</ol>
+</li>
+<li>信息技术会议<ol>
+<li>我们能利用内容管理软件吗？</li>
+<li>我们如何创建必要的基础架构来支持标签？</li>
+<li>内容管理系统可以处理文档的自动分类吗？</li>
+<li>自动索引生成怎么样？</li>
+<li>个性化怎么样？</li>
+<li>搜索引擎的灵活性如何？</li>
+<li>搜索引擎支持和叙词表的整合吗？</li>
+<li>我们如何定期获取搜索日志和使用分析？</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>利益相关者访谈<ol>
+<li>访谈主要的领导和相关投资人通常是商业情景调查中最有价值的部分</li>
+<li>访谈中，多问他们开放性的问题，包括对现有系统的评估，以及对未来的愿景</li>
+<li>他们在政治上的长期支持，比在访谈中给的答案重要的多；</li>
+<li>问题样本<ol>
+<li>你在组织中的角色是什么？你的团队做些什么？</li>
+<li>在理想世界中，你的公司如何利用企业内网建立竞争优势？</li>
+<li>在你看来，你的公司内部网络面临的关键挑战是什么？</li>
+<li>哪些企业范围的倡议应该是策略团队知道的？</li>
+<li>你会使用现有的企业内部网络吗？如果不，原因是什么？如果要使用，你要使用哪部分？使用频率如何？</li>
+<li>你如何访问企业内部网络？</li>
+<li>部门和员工分享知识的动机是什么？</li>
+<li>企业内部网络成功的关键因素是什么？</li>
+<li>这些因素如何被衡量？投资回报率是多少？</li>
+<li>重新设计企业内部网络时，最重要的3件事是什么？</li>
+<li>如果你要告诉企业内部网络策略团队一件事，会是什么？</li>
+<li>有什么问题是我们该问却没有问的？</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>技术评估</li>
+</ol>
+</li>
+<li>内容：用户必须寻找到内容才能进行使用，可寻性优于可用性<ol>
+<li>启发式评估：一个或多个专家评审，用一组设计准则来测试网站<ol>
+<li>网站应该提供多种方式来访问相同信息；</li>
+<li>应该采用索引和站点地图来弥补分类法的不足；</li>
+<li>导航系统应该给用户情景意识；</li>
+<li>网站应该使用一致且适合用户的语言；</li>
+<li>搜索和浏览应该整合并彼此强化</li>
+</ol>
+</li>
+<li>内容分析：一种自底向上的方法，涉及仔细检查信息环境中现有的文档和对象；<ol>
+<li>内容的收集：格式，文档类型，来源，主题，现有架构</li>
+<li>内容分析<ol>
+<li>内容分析的边际效应之一就是熟悉对组织和人很重要的主题</li>
+<li>结构化元数据：对象的信息层级</li>
+<li>描述性元数据：可以描述该对象的多种方式</li>
+<li>管理型元数据：描述该对象如何与商业情景相关联</li>
+<li>问题列表<ol>
+<li>这个对象是什么？</li>
+<li>我可以如何给人和机器描述该对象？</li>
+<li>这个对象和其他对象有何区别？</li>
+<li>我如何才能让这个对象被人和机器发现？</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>内容地图：用可视化的方式将内容展示出来</li>
+<li>标杆法<ol>
+<li>竞争式标杆法：<ol>
+<li>从竞争对手那里借用信息架构是有价值的，但必有很谨慎</li>
+<li>优点<ol>
+<li>生成信息架构特色的详细清单，并将很多新想法摆上台面；</li>
+<li>挑战嵌入到脑海中的假设，并避免由于错误的原因而复制错误的本色；</li>
+<li>以竞争对手为基准建立当前位置，并创建衡量改进的参考点；</li>
+<li>将一般性描述转化为具体可操作的定义</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>前后式标杆法：<ol>
+<li>投资回报率<ol>
+<li>重新设计平均可以减少多少用户查找文档的时间？</li>
+<li>重新设计是否提高了用户查找文档的能力？</li>
+<li>重新设计在哪些方面对用户效率或者效益产生了负面影响？</li>
+</ol>
+</li>
+<li>优点<ol>
+<li>识别并优先处理现有信息架构中的特色；</li>
+<li>创建一个可以衡量改进的参考点</li>
+<li>将一般性描述转化为具体可操作的定义</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>用户<ol>
+<li>使用分析<ol>
+<li>内容性能：一段时间内对网站内容的访问次数和交互数；</li>
+<li>访问信息：访客来源、IP位置、浏览器</li>
+<li>点击流：移动路径，让其有价值的是用户的反馈，为何来，为何离开；可以考虑在离开时弹出问卷调查；</li>
+</ol>
+</li>
+<li>搜索日志分析<ol>
+<li>哪些热门查询搜索不到结果？</li>
+<li>是因为他们输错了关键词，还是网站本身没有相关内容？</li>
+<li>哪些热门查询可以查到上百条结果？</li>
+<li>找出几百条结果的这些用户真正想查找的是什么？</li>
+<li>哪些查询越来越受欢迎，哪些查询越来越不受欢迎；</li>
+</ol>
+</li>
+<li>客户支持数据：回答顾客或者员工问题的人，如人事、客服、前台等，他们是知道问题所在的人</li>
+</ol>
+</li>
+<li>参与者定义和招募<ol>
+<li>调查<ol>
+<li>宽而浅的研究工具，可以快速廉价的获取数据，无法搜集到用户信息搜集行为的详细数据</li>
+<li>适合场景<ol>
+<li>用户认为哪些内容和任务是最有价值的；</li>
+<li>用户对当前产品最失望的是什么；</li>
+<li>用户有什么改进方案</li>
+<li>用户当前的满意水平</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>情景调查：可以得到非常有价值信息的工具；</li>
+<li>焦点小组<ol>
+<li>对网站内容和功能产生各种想法的好工具</li>
+<li>测试网站可用性的非常差劲的工具</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>用户研究会议<ol>
+<li>访谈：放松的问题，由易到难的问题，结束的措词</li>
+<li>卡片分类法：非常强大的工具<ol>
+<li>开放式</li>
+<li>封闭式</li>
+</ol>
+</li>
+<li>用户测试：非常强大的工具</li>
+</ol>
+</li>
+<li>研究的保卫战：克服研究的阻力</li>
+</ol>
+</li>
+<li>策略<ol>
+<li>信息架构策略是构建和组织信息环境的高级概念性架构，策略通常会在策略报告中进行详细说明，常用策略建议：<ol>
+<li>信息架构管理：建立出一种用于开发和维护信息架构的实用策略</li>
+<li>技术整合：思考可使用哪些技术工具</li>
+<li>自顶向下或者自底向上的重要性</li>
+<li>组织和标签系统（自顶向下）</li>
+<li>文档类型识别（自底向上）</li>
+<li>元数据字段定义</li>
+<li>导航系统设计</li>
+</ol>
+</li>
+<li>策略的开发<ol>
+<li>思考：将研究的数据转化成创造性的理念</li>
+<li>表述：图表、隐喻、故事、场景、蓝图、框架图（先用纸笔形成框架，初期远离绘图工具）</li>
+<li>沟通：演示、互动、头脑风暴，向其他人声明这是草稿，欢迎批判和补充；</li>
+<li>测试：封闭式卡片分类法、原型</li>
+</ol>
+</li>
+<li>工作产品和可交付成果<ol>
+<li>隐喻探索：在熟悉和不熟悉的事物间建立联系<ol>
+<li>组织型隐喻</li>
+<li>功能型隐喻</li>
+<li>视觉隐喻</li>
+</ol>
+</li>
+<li>场景<ol>
+<li>帮助其他人了解用户如何在你设计的网站中浏览和体验的最佳工具</li>
+<li>谁在用你的网站，他们为什么用，怎么用，匆忙使用，还是想探索；</li>
+</ol>
+</li>
+<li>案例研究和故事：实现信息架构概念的好方法</li>
+<li>概念图表</li>
+<li>站点地图和框架图：将混乱变得有序</li>
+</ol>
+</li>
+<li>策略报告<ol>
+<li>执行摘要：提供目标和方法的纲要，以及主要问题和主要建议；</li>
+<li>网站的受众、使命和愿景</li>
+<li>经验教训：观察-结论-建议，通过标杆法、用户访谈和内容分析，显示提出的建议其来有自，以建立信心和信任；</li>
+<li>架构策略和方法：展示成果，用图表和原型的方式</li>
+<li>内容管理<ol>
+<li>规则：标准化、可重复的流程，帮助组织管理和运转其内容；</li>
+<li>角色：管理内容的员工或其他人员；</li>
+<li>资源：内容本身的各种不同形式；</li>
+<li>模板：让相同类型的数据可以重用共享结构化的网页</li>
+<li>元数据：元数据元素、范例</li>
+<li>叙词表：为元数据建立叙词表，可以帮用户更容易找到信息</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>项目计划：可以和其他团队的计划整合，为整个网站的设计取得结构化的时间安排<ol>
+<li>我们该怎么做</li>
+<li>需要多长时间</li>
+<li>谁来做</li>
+<li>需要哪些可交付成果</li>
+<li>依赖关系是什么</li>
+</ol>
+</li>
+<li>演示：信息架构的可交付成果如果无人问津，就会死得很快，人们通常不喜欢读50页的策略报告，如果没有一些演示和讨论，最佳建议会永远不见天日；</li>
+</ol>
+</li>
+<li>设计和文档<ol>
+<li>创建信息架构图的准则<ol>
+<li>使用多张图表提供信息架构的不同维度的风貌（设计草图、站点地图、线框图、内容模型和清单等）</li>
+<li>为特定受众和需求制定观点：针对不同角色使用不同的语言来描述</li>
+<li>其他<ol>
+<li>尽可能亲自介绍</li>
+<li>事先了解他们需要从中得到什么</li>
+<li>最常用的是站点地图和线框图</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>视觉沟通<ol>
+<li>图表可用于沟通信息结构的两个基本方面<ol>
+<li>内容组件：内容单元由什么组成，以及它们如何分组和排序</li>
+<li>内容组件之间的连接：组件之间如何连接才能支持对它们的操作</li>
+</ol>
+</li>
+<li>目标：传达你的网站内容组件是什么，以及它们是如何连接的</li>
+</ol>
+</li>
+<li>站点地图：可以显示出信息元素之间的关系（例如网页和它的内容组件），并可以用来描述组织、导航和标签系统；<ol>
+<li>高级站点地图<ol>
+<li>最有用的探索组织体系的工具</li>
+<li>非常适合于内容的组织管理，和用户的访问路径讨论；</li>
+</ol>
+</li>
+<li>深入站点地图<ol>
+<li>避免拘泥于某种特定的布局，而应该让站点地图的形式适应功能；</li>
+<li>网站不只是关注内容，还可以面向事务性和以任务为导向的场景</li>
+<li>站点地图关注的是网站的主要区域和结构，并忽略导航元素和页面细节</li>
+<li>原则：少即是多</li>
+</ol>
+</li>
+<li>保持站点地图的简单性<ol>
+<li>四个图例：网页、内容组件、链接、内容组群（相关、相似），颗粒度：内容组群&gt;网页&gt;内容组件</li>
+</ol>
+</li>
+<li>详细的站点地图<ol>
+<li>展示从主页到目的地之间的完整信息层次结构，详细说明每个区域的标签和导航系统</li>
+<li>它能反映出整个网站，让生产小组可以在你不参与的情况下实施项目；</li>
+<li>它仍由四个图例组成，只是给将图例实例化</li>
+</ol>
+</li>
+<li>组织你的站点地图<ol>
+<li>图表可能没有办法在一页纸上面打印，可以考虑通过模块化和唯一标识的ID来串联这些打印在单页纸张上面的模块</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>线框图<ol>
+<li>描述了从架构观点出发，单个网页或者模板应该是什么样子，它将产品的信息架构和交互设计结合了起来；</li>
+<li>目标不是为系统的每个页面，而是为那些复杂而独特的网页建立线框图，或者是为了给其他网页建立一种复用的模式（如模板）</li>
+<li>线框图可以帮助思考不同屏幕大小的影响</li>
+<li>保真度<ol>
+<li>低保真度：重点在于内容和元素的布局，而不是内容的精确性</li>
+<li>中保真度：引入内容、布局、导航，有更多详细的细节</li>
+<li>高保真度：增加了颜色、字体、排版，即更多视觉设计的内容</li>
+</ol>
+</li>
+<li>线框图准则<ol>
+<li>一致性是关键：确保客户和同事易于理解和阅读；</li>
+<li>使用模板来解决复用问题；</li>
+<li>通过元件标注提供网页元素的更多细节</li>
+<li>如果涉及多名成员开发，注意建立一套开发、维护共享的模板</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>内容映射和清单：将内容拆开或组成块，从而能够将它们引入到网站中（前面是自顶向下的设计，现在通过分析内容，实现自顶向下和内容自底同上二者的结合）<ol>
+<li>定义内容块<ol>
+<li>该内容是否应该分成用户想要分开访问的、更小的内容块？</li>
+<li>需要单独编制索引的最小内容是什么？</li>
+<li>该内容需要在多个文档中重复使用，或者是作为多个流程的一部分吗？</li>
+</ol>
+</li>
+<li>通过为每个内容块指定一个唯一的识别码，可以记录所有内容的来源和目的地；</li>
+<li>内容清单：描述可用内容和这些内容的位置，以及需要补充的空白；</li>
+</ol>
+</li>
+<li>内容模型：支持产品内部的情景式导航<ol>
+<li>将一组内容以一种有意义的逻辑关系进行组织，使得用户可以识别它的范式并快速理解信息；</li>
+<li>支持情景式导航：根据上下文，猜测用户下一步可能去向哪里，提前将选项放在用户的面前，缩短用户的访问路径</li>
+<li>处理大量内容：大量信息之间存在共通性，通过链接它们提高内容之间互相访问的可预测性；当引入自动化链接时，可以花很小的时间成本，有序有效的管理大量内容，从而获得巨大的收益；</li>
+<li>可以通过卡片法来测试验证内容之间的链接关系：看一张卡片，询问想去哪里，找出下一张目的地卡片，建立连线（桌子+绳子，或者白板+白板笔画线）；以及可以询问哪些遗漏的对象可以放进来</li>
+<li>依赖元数据做为连接内容块的基础：内容对象、链接的其他内容对象、可利用的常见元数据属性</li>
+<li>制作内容模型的两个好处：<ol>
+<li>迫使确认哪些内容对内容模型而言是重要的；</li>
+<li>迫使从众多元数据中选出可以让内容模型运行的元数据；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>受控词表：用能够管理词汇的元数据矩阵和应用程序来传达<ol>
+<li>元数据矩阵：词汇（产品类型）、说明（3Com销售的产品类型）、范例（集线器、调制解调器）、维护难度（中等）</li>
+</ol>
+</li>
+<li>设计协作：不同角色的成员互相交流共同启发，做出更好更有价值的成果：可以使用设计草图和交互原型两种工具来辅助沟通和暴露问题；</li>
+<li>信息架构风格指南<ol>
+<li>一份文档，用于说明网站使命和愿意，组织方式、这样组织的原因、其受众、以及架构如何随着系统扩展</li>
+<li>目的：<ol>
+<li>随着外部环境的变化，内容的增加，确保让网站的维护走在正确的方向上，不会造成原有的组织、导航、标签和索引系统被破坏；</li>
+<li>辅助判断新产生的变更是否需要纳入考虑，或者拒绝暂不考虑；</li>
+</ol>
+</li>
+<li>指南的具体组件<ol>
+<li>标准：维护和改变网站时，通常至少要遵循的某些规则；</li>
+<li>指南：建议信息架构应该怎么维护（非强制）</li>
+<li>维护程序：记录必备的日常维护任务</li>
+<li>模式库：记录和获取产品设计的可重用方面；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息架构-超越Web设计</div>
+      <div>http://example.com/2017/03/09/信息架构-超越Web设计/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年3月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/03/28/%E9%98%BF%E7%B1%B3%E5%B7%B4%E7%BB%8F%E8%90%A5/" title="阿米巴经营">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">阿米巴经营</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/02/15/%E5%93%81%E7%89%8C%E6%9C%8D%E8%A3%85%E5%BA%97%E7%B2%BE%E7%BB%86%E5%8C%96%E7%AE%A1%E7%90%86/" title="品牌服装店精细化管理">
+                        <span class="hidden-mobile">品牌服装店精细化管理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,893 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一章 认识HTML  Web服务器存储并提供由HTML和CSS创建的网页，浏览器获取页面，并根据HTML和CSS显示网页的内容； HTML用来建立网页的结构，CSS用来控制HTML的表现； 通过HTML，我们利用标记来标示内容提供结构。我们把匹配标记以及它们包围的内容称为元素； 元素由3部分组成：一个开始标记、内容和一个结束标记。不过有些元素有所例外； 开始标记有可以有属性； 结束标记在左尖括号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Headfirst HTML&amp;CSS">
+<meta property="og:url" content="http://example.com/2015/05/26/Headfirst%20HTML&CSS/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="第一章 认识HTML  Web服务器存储并提供由HTML和CSS创建的网页，浏览器获取页面，并根据HTML和CSS显示网页的内容； HTML用来建立网页的结构，CSS用来控制HTML的表现； 通过HTML，我们利用标记来标示内容提供结构。我们把匹配标记以及它们包围的内容称为元素； 元素由3部分组成：一个开始标记、内容和一个结束标记。不过有些元素有所例外； 开始标记有可以有属性； 结束标记在左尖括号">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-05-26T13:49:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T03:04:51.681Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Headfirst HTML&amp;CSS - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Headfirst HTML&amp;CSS"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2015-05-26 21:49" pubdate>
+          2015年5月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Headfirst HTML&amp;CSS</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>第一章 认识HTML</p>
+<ol>
+<li>Web服务器存储并提供由HTML和CSS创建的网页，浏览器获取页面，并根据HTML和CSS显示网页的内容；</li>
+<li>HTML用来建立网页的结构，CSS用来控制HTML的表现；</li>
+<li>通过HTML，我们利用标记来标示内容提供结构。我们把匹配标记以及它们包围的内容称为元素；</li>
+<li>元素由3部分组成：一个开始标记、内容和一个结束标记。不过有些元素有所例外；</li>
+<li>开始标记有可以有属性；</li>
+<li>结束标记在左尖括号后面、标记名前面有一个”&#x2F;“，以明确这是结束标记；</li>
+<li>所有页面都要有一个html元素，其中要有一个,head元素和一个body元素；</li>
+<li>大多数空白符（制表符、空格、回车）会被浏览器忽略，不过可以利用空白符让代码更有可读性；</li>
+<li>可以在style元素中写CSS规则，为HTML网页增加CSS；style元素总要放在head元素里；</li>
+<li>可以使用CSS在HTML中指定元素的特性；</li>
+</ol>
+<p>第二章 了解超文本</p>
+<ol>
+<li>想从一个页面链接到另外一个页面，使用a元素；a元素的href属性指定了链接的目标文件；</li>
+<li>a元素的内容就是链接的标签；这个标签就是你在网页上看到的链接文本；这个标签默认会有下划线，指示这是可以点击的；</li>
+<li>文字或图像都可以用作链接的标签；</li>
+<li>单击一个链接时，浏览器会加载href属性中指定的Web页面；可以链接到相同文件夹中的文件，也可以链接到其他文件夹中的文件；</li>
+<li>相对路径是相对于链接的源Web页面指向网站中其他文件的一个链接；就像在地图上一样，终点总是相对于起点；</li>
+<li>使用“..”可以链接到源文件上一层文件夹中的一个文件；</li>
+<li>“..”表示“父文件夹”；</li>
+<li>记住要用”&#x2F;“字符分隔路径中的各个部分；</li>
+<li>指向一个图像的路径不正确时，会在Web页面上看到一个损坏的图像；</li>
+<li>为网站选择的文件名和文件夹名中不要使用空格；</li>
+<li>最好在构建网站初期组织网站文件，这样就不用在网站升级时修改一大堆的路径；</li>
+</ol>
+<p>第三章 构建模块</p>
+<ol>
+<li>开始输入内容之前要规划好Web页面的结构。首先画出一个草图，然后创建一个略图，最后再写出HTML；</li>
+<li>规划页面时，首先设计大的元素，然后用内联元素完善；记住，要尽可能使用元素来告诉浏览器的内容的含义；</li>
+<li>一定要使用与内容含义最接近的元素；</li>
+<li>p, blockquote, ol, ul, li都是是块元素；它们单独显示，在内容前后默认分别有一个换行；</li>
+<li>q, em是内联元素，这些元素中的内容与其包含元素的其余内容放在一起；</li>
+<li>需要插入你自己的换行时，可以使用<br>元素；<br>是一个void元素；void元素没有内容，只有一个标记组成；空元素没有内容，不过它有开始和结束标记；</li>
+<li>嵌套元素是指完全包含在另一个元素中的元素；如果元素能正确地嵌套，所有标记都能正确匹配；</li>
+<li>要结合两个元素建立一个HTML列表：使用ol和li建立有序列表，使用ul和li可以建立一个无序列表；</li>
+<li>浏览器显示一个有序列表时，它会为列表创建序号，所以无需再费心；</li>
+<li>可以在列表中建立嵌套，将ol或ul元素放在li元素中；</li>
+<li>要对HTML内容中的特殊字符使用字符实体；</li>
+</ol>
+<p>第四章 连接起来</p>
+<ol>
+<li>要把网站发布到Web上，通常最好的办法就是找一家托管公司来托管你的Web页面；</li>
+<li>域名是一个唯一的名字，用来唯一标识网站；</li>
+<li>托管公司可能会为你的域创建一个或多个Web服务器；服务器通常命名为”www”；</li>
+<li>文件传输协议FTP是向服务器传输web页面和内容的常用方法；</li>
+<li>URL是统一资源定位符或web地址，可以用来标识Web上的任何资源；</li>
+<li>典型的URL由一个协议、一个网站名和资源的一个绝对地址组成；</li>
+<li>HTTP是一个请求和响应协议，用来在Web服务器和浏览器之间传送Web页面；</li>
+<li>浏览器使用file协议从本地的计算机读取页面；</li>
+<li>绝对路径是从根文件夹到一个文件的路径；</li>
+<li>“index.html”和”default.html”都是默认页面；如果指定一个目录而没有指定文件名，则Web服务器会查找一个默认页面返回浏览器；</li>
+<li>a元素的href属性中可以使用相对路径或URL链接其他Web页面；对于你的网站的其他页面，最好使用相对路径，外部链接才使用URL；</li>
+<li>可以用id属性在页面中创建一个目标；使用#后面加一个目标id，可以链接到页面中的位置(定位)；</li>
+<li>为了便于访问，可以在a元素中使用title属性提供链接一个描述；</li>
+<li>使用target属性在另一个浏览器窗口中打开链接；不要忘了，对于使用各种不同设备和浏览器的用户，target属性可能会有问题；a target&#x3D;”_blank”</li>
+</ol>
+<p>第五章 为页面增加图像</p>
+<ol>
+<li>使用img在页面中放置图像；</li>
+<li>浏览器对img的处理办法与其他元素不同，它会先读取整个HTML页面后，再从服务器取图像；</li>
+<li>如果页面上有多个大图，建议创建一份小的缩略图，初次先加载缩略图，提高速度；</li>
+<li>img是一个内联元素，不会切换行；</li>
+<li>可以用src属性指定图像位置，可以相对路径，也可以是URL；</li>
+<li>img元素中的alt属性是对图像的文字描述；无法找到图像时会显示文字替代，同时也可以方便盲人；</li>
+<li>图像宽度要小于800像素；太大会使得加载很慢；</li>
+<li>JPEG&#x2F;PNG&#x2F;GIF，是目前3种主流格式，JPGE适合保存照片和其他复杂图像；PNG和GIF适合保存LOGO或其他包含单色、线条或文本的简单图形；</li>
+<li>JPEG可以按照不同质量压缩，可以方便权衡质量和文件大小；</li>
+<li>PNG和GIF适合创建有透明背景的图像；</li>
+<li>PNG和GIF是无损格式，因此一般都比JPEG大；</li>
+<li>PNG可以比GIF更好的透明度控制，而且不像GIF只支持256种颜色，PNG可以支持更多颜色；</li>
+<li>PNG有3种不同大小的选择，分别为PNG-24（百万级颜色）、PNG-16（千种颜色）、PNG-8（256种颜色）；</li>
+<li>Matte（蒙版）选项可以选择合适的颜色，柔化PNG或GIF图像的边缘；</li>
+<li>图像可以做为一个链接，只需将img做为a元素的内容即可；</li>
+</ol>
+<p>第六章 标准及其他</p>
+<ol>
+<li>使用文档类型定义（doctype）来告诉浏览器要使用的HTML版本；</li>
+<li>head元素中的meta元素告诉浏览器关于一个Web页面的额外信息，如内容类型和字符编码；</li>
+<li>meta中的charset属性告诉浏览器所使用的字符编码；一般都使用utf-8；</li>
+<li>alt属性是img的必要属性；</li>
+<li>W3C验证工具可以免费在线检查页面是否符合标准；确保HTML合法，元素和属性符合标准；</li>
+<li>符合标准的话，页面会更快的显示，浏览器兼容问题更小，CSS也能更好的工作；</li>
+</ol>
+<p>第七章 CSS入门</p>
+<ol>
+<li>CSS包含一些简单语句称为规则，每个规则为选定的HTML元素提供样式；</li>
+<li>典型的规则包含一个选择器，以及一个或多个的属性和值；</li>
+<li>选择器指定规则要适用到哪些元素；</li>
+<li>每个属性声明以一个分号“;”结束；规则中的所有属性和值都放在一对{}大括号内；</li>
+<li>可以使用元素名来做为选择器，来选择任意元素；</li>
+<li>通过用逗号分隔元素名，可以一次选择多个元素；</li>
+<li>要在HTML中包含一个样式，最容易的办法就是使用style标记；</li>
+<li>对于HTML以及相当复杂的网站，可能要链接到一个外部样式表；</li>
+<li>link元素用于包含一个外部样式表；</li>
+<li>很多元素都能继承。例如给body设置了一个可继承的属性，那么body的所有子元素都会继承这个属性；</li>
+<li>通过为想改变的元素创建一个更特定的规则，能覆盖继承的属性；</li>
+<li>可以使用class属性加元素增加到一个类；</li>
+<li>通过在元素名和类名之间加一个”.”，可以选择该类中的一个特定元素；</li>
+<li>使用“.classname”可以选择这个类的所有元素；</li>
+<li>通过在class属性中放入多个类名，可以指定一个元素属于多个类，类名之间用空格分隔；</li>
+<li>可以使用W3C验证工具验证CSS；</li>
+</ol>
+<p>第八章 增加字体和颜色样式</p>
+<ol>
+<li>CSS提供了很多属性对字体外观进行控制，包括font-family, font-weight, font-size, font-style；</li>
+<li>font-family是一组有共同特征的字体；</li>
+<li>用于web的字体系列有serif、sans-serif、monospace、cursive、fantasy，其中前2个最常用；</li>
+<li>页面访问都在浏览器看到什么字体，取决于他的电脑装了什么字体，除非我们使用了Web字体；</li>
+<li>在font-family中最好指定候选字体，以免用户的电脑没有安装我们的首选字体；最后一个候选字体一般是通用的serif或sans-serif字体；</li>
+<li>如果要使用某种字体，但默认情况下用户没有安装，可以在CSS中使用@font-face规则；</li>
+<li>字体大小通常使用像素、em、百分数或关键字指定；</li>
+<li>如果使用像素”px“来指定字体大小，即是告诉浏览器字母的高度是多少像素；</li>
+<li>em和%是相对字体的大小，所以使用em和%指定字体大小时，就意味着字体大小要相对于其父元素的字体大小指定；</li>
+<li>使用相对字体大小可以让页面更方便维护；</li>
+<li>在body规则中使用字体大小关键字来设置基本字体大小，这样如果用户希望让文本更大或者更小，所有浏览器就能按比例缩放字体大小；</li>
+<li>可以使用font-weight将字体设置为粗体；</li>
+<li>font-style用来创建斜体或倾斜文本；</li>
+<li>Web颜色是混合不同数量的红、绿、蓝得到的；如果三者都是100%则得到白色，如果都是0%则得到黑色；</li>
+<li>CSS有16个基本色，以及150种扩展颜色；</li>
+<li>可以使用百分数、数值或十六进制码来得到想要的颜色；举例：rgb(100%, 50%, 0%), 或者rgb(255, 125, 0), 或者#00BCF5;</li>
+<li>表示颜色的十六进制码有6位，前两位表示红色数量，中间两位表示绿色数量，后两位表示蓝色数量；</li>
+<li>可以使用text-decoration为文本创建一个下划线；或者取消链接文本的下划线；</li>
+</ol>
+<p>第九章 盒模型</p>
+<ol>
+<li>CSS使用盒模型来控制一个元素如何显示；</li>
+<li>盒子由内容区、内边距、边框和外边距组成；</li>
+<li>内边距用来在内容区周围创建可见的空间；边框包围内边距和内容，它提供了从视觉上分享内容的一种手段；外边距包含边框、内边距和内容，允许在元素和其他元素之间创建空间；三者都是可选的；</li>
+<li>元素的背景会在内容和内边距下面显示，但不会延伸到外边距下面；</li>
+<li>内边距和外边距大小可以用像素或者百分数设置；</li>
+<li>边框宽度可以用像素表示，也可以用Thin&#x2F;Medium&#x2F;Thick来指定；</li>
+<li>有8种不同的边框样式，包括实线、破折线、虚线和脊线；</li>
+<li>对于外边距、内边距和边框，CSS提供了相应的属性，可以一次对所有四个边（上下左右）完成设置，也可以单独设置任意一边；</li>
+<li>使用border-radius属性可以对有边框的元素创建圆角；</li>
+<li>使用line-height可以增加文本行之间的间距；</li>
+<li>可以用background-image属性在元素的背景上放置图像；</li>
+<li>使用background-position和background-repeat可以设置背景图像的位置和平铺行为；</li>
+<li>对于希望成组指定样式的元素要使用class属性；</li>
+<li>使用id属性为元素指定一个唯一的名字，还可以使用id属性为元素提供唯一的样式；</li>
+<li>一个页面有给定id的元素只能有一个；</li>
+<li>可以使用id选择器按id选择元素。例如#myfavorated；</li>
+<li>一个元素只能有一个id，但它可以属于多个类；</li>
+<li>在HTML中可以使用多个样式表；</li>
+<li>如果两个元素表包含冲突的属性定义，HTML文件中最后链接的样式表最为优先；</li>
+<li>可以在lind元素中使用媒体查询或者使用CSS中的@media规则来指定设备；</li>
+</ol>
+<p>第十章 div和span</p>
+<ol>
+<li>div用于将相关的元素归组在一起，放在逻辑区中；创建逻辑区有助于标识主内容区和页面的页眉和页脚；</li>
+<li>可以使用div元素将需要共同样式的元素归组在一起；</li>
+<li>使用嵌套div元素为文件增加更多的结构，这有利于保证结构清晰或者方便增加样式；不过除非确实必要，否则不要过多的增加结构；</li>
+<li>一旦用div元素将内容区归组在一起，类似于其他块元素，可以对这些div增加样式。例如，对于包含在div中的一组元素，可以使用嵌入这些元素的div的边框属性，对这组元素增加一个边框；</li>
+<li>width属性设置一个元素内容区的宽度；</li>
+<li>一个元素的总宽度等于内容区宽度，加上所增加的内边距、边框和外边距的宽度；</li>
+<li>一旦设置一个元素的宽度，它便不会延伸来占满整个屏幕的宽度；</li>
+<li>text-align是块元素的一个属性，用来将这个块元素中的所有内容进行对齐，可以居中，左对齐或右对齐；这个属性可以由所有嵌套的块元素继承；</li>
+<li>可以使用子孙选择器来选择嵌套在其他元素中的元素，例如子孙选择器div h2{…}会选择嵌套在div元素中的所有h2元素（包括子元素、孙子元素等）；</li>
+<li>可以对相关的属性使用快捷方式，例如padding,margin的四个方向的值；还有边框、背景和字体等；</li>
+<li>span与div类似，不过它用于将相关的内联元素和文本归组在一起；它也可以使用类或者唯一的id，以便对它们增加样式；</li>
+<li>有些元素有不同的状态，如a元素有link, visited, hover等状态；可以使用伪类单独的为各个状态指定样式。伪类最常用于a元素, :link对应于未访问的链接， :visited对应于已访问的链接，:hover对应于悬停状态；</li>
+<li>伪类也可以使用于其他元素，而不仅限于a，其他伪类包括:active, :focus, :first-child, :last-child, :first-letter, :last-letter</li>
+</ol>
+<p>第十一章 布局与定位</p>
+<ol>
+<li>浏览器使用流在页面中放置元素；</li>
+<li>块元素从上往下流，各元素之间有一个换行。默认每个块元素都会占据整个浏览器的宽度；</li>
+<li>内联元素从块元素内部的左上方流向右下方。如果需要多行，浏览器会会换行，在垂直方向上扩展外围块元素，来包含这些内联元素；</li>
+<li>正常页面流中两个块元素上下相邻的外边距会折叠为最大外边距的大小，或者如果两个外边距大小相同，会折叠为一个外边距；</li>
+<li>浮动元素会从正常流中取出，浮动到左边或右边；浮动元素放在块元素之上，不会影响到正常的页面流。不过，内联内容会考虑浮动元素的边界，围绕着这个浮动元素；</li>
+<li>clear属性用来指定一个块元素的左边或右边不能有浮动元素（或者左右两边）。设置了clear属性的块元素会下移直到它的两边没有浮动元素；</li>
+<li>浮动元素必须有特定的宽度，不能设置为auto；</li>
+<li>流体布局是指，扩展浏览器窗口时，页面中的内容会扩展以适应页面；</li>
+<li>冻结布局是指，其中内容的宽度是固定的，不会随着浏览器窗口扩展或收缩。好处是可以对布局更多的控制，坏处是不能利用浏览器的宽度了；</li>
+<li>凝胶布局是居中的冻结布局，其中好处同；</li>
+<li>position属性可以设置为4个值：static（静态，默认值），absolute（绝对），fixed（固定），relative（相对）；</li>
+<li>绝对定位元素会相对于页面边界来放置；</li>
+<li>如果一个绝对定位元素嵌套在另一个定位元素中，这个元素就会相对于外包含元素定位；</li>
+<li>使用绝对、固定、相对定位时，属性top&#x2F;right&#x2F;bottom&#x2F;left可以用来指定元素的位置；</li>
+<li>绝对定位元素可以使用z-index属性分层设置，元素的z-index的值越大，就越在上层；</li>
+<li>固定定位元素总是相对于浏览器窗口定位，页面滚动时，固定定位的元素不会移动。页面中的其他内容会在这些固定定位元素下面正常滚动；</li>
+<li>相对定位元素首先正常流入页面，然后按指定的量偏移，从而留出它们原来所有的空间；left&#x2F;right&#x2F;top&#x2F;bottom的值是指相对正常流中该元素位置的偏移量；</li>
+<li>CSS表格显示允许按一种表格布局来摆放元素；display:table、table-row、table-cell；（有什么优缺点，什么情况下合适使用？）</li>
+<li>要创建CSS表格显示时，需要使用到3种块元素，分别为对应表格的一个块元素，对应行的一个块元素，和对应单元格的一个块元素；通常，这3个元素都是div元素；</li>
+<li>如果需要建立多栏布局，而且内容栏是均匀的，表格显示就是一个很好的布局策略；</li>
+</ol>
+<p>第十二章 HTML5标记</p>
+<ol>
+<li>HTML5为HTML增加了很多新元素，包括section,article,aside,nav,header,footer，与使用div相对，它们可以提供更多的含义；</li>
+<li>section用来对相关的内容分组；</li>
+<li>article用来类似博客帖子、论坛帖子和新闻报道等独立的内容；</li>
+<li>aside用来表示不做为页面主内容的次要内容，例如插图或者边栏；</li>
+<li>nav用来组织页面的导航链接；</li>
+<li>header将标题、LOGO、署名等通常放在页面或区块最上方的内容组织在一起；</li>
+<li>footer将诸如文档信息、法律措辞和版权说明等通常放在页面或区块最下方的内容组织在一起；</li>
+<li>time也是HTML5中的一个新元素，这个元素用来标记日期和时间；</li>
+<li>div仍然用来组织结构，它通常将元素组织在一起指定样式，或者有些内容可能不适合用HTML5中那些与结构相关的新元素中，这些内容就可以使用div来创建结构；</li>
+<li>较早的浏览器不支持HTML5的新元素，所有需要提前确认一下主要用户使用哪些浏览器访问网站，否则不要贸然使用新元素；</li>
+<li>video是一个新的HTML元素，用于为页面增加视频；</li>
+<li>视频编码是用来创建视频文件的编码。常用的编码包括h.264、Vp8和Theora；</li>
+<li>视频容器文件包含视频、音频和元数据。流行的容器格式有MP4、OGG和WebM；</li>
+<li>要提供多个视频源文件，确保用户可以在他们的浏览器中观看你的视频文件；</li>
+</ol>
+<p>第十三章 表格与更多列表</p>
+<ol>
+<li>HTML表格用来创建表格数据结构，使用的元素包括table、tr、th、td；</li>
+<li>table定义并包含整个表格；tr用来定义行；th用来定义标题；td用来定义数据单元格；</li>
+<li>可以使用caption提供关于表格的额外信息，一般放在表格上面，可以使用caption-side属性改变位置；</li>
+<li>表格有边框间距，也就是单元格之间的间距；表格数据单元格也可以有内边距和边框；可以用CSS进行控制；</li>
+<li>border-collapse是针对表格的一个特殊CSS属性，允许将单元格的边框合并为一个边框；</li>
+<li>可以使用text-align和vertical-align对单元格内的数据进行对齐；</li>
+<li>可以用background-color为整个表格、某行或某个单元格增加背景色；</li>
+<li>使用nth-child伪类可以为表格隔行增加背景色；</li>
+<li>如果一个单元格没有数据，则td&#x2F;td内可以不放置内容，但需要有一个td&#x2F;td保持单元格对齐；</li>
+<li>根据你的数据单元格需要跟多少行或者多列，可以使用td元素的rowspan或colspan属性；</li>
+<li>可以在表格中嵌套表格，将table元素及所有内容放在一个单元格中；</li>
+<li>表格应当用于展示数据，而不是建立页面布局；可以使用CSS表格来创建多栏布局；</li>
+<li>可以使用CSS指定列表的样式，有几个特定于列表的CSS属性，包括list-style-type和list-style-image；前者用来指定标记类型，后者用来指定列表的标记图像；（忘了啥意思怎么弄了）</li>
+</ol>
+<p>第十四章 HTML表单</p>
+<ol>
+<li>form元素定义了表单，所有表单输入元素都嵌套在这个元素中；action属性包含服务器脚本的URL；method属性包含发送表单数据的方法，可以是POST或GET；POST打包表单数据，并将其做为请求的一部分发送到服务器；GET打包表单数据，并将数据追加到URL；如果表单数据是私有的，或者表单数据很多，如使用textareainput元素，或者fileinput元素，就应当使用POST；对于可以加书签的请求，要使用GET；</li>
+<li>input元素在web页面上可以做为多种输入控件，取决于它的type属性值；</li>
+<li>type为“text”时，会创建一个单行文本输入框；</li>
+<li>type为“submit”时，会创建一个提交按钮；</li>
+<li>type为“radio”时，会创建一个单选按钮。所有同名的单选按钮构成一组互斥的按钮；</li>
+<li>type为“checkbox”时，会创建一个复选框控件。通过为多个复选框控件指定一组名字，可以创建一组选择；（注意name属性、value属性）</li>
+<li>type为“number”时，会创建一个只允许数字字符的单行文本输入控件；</li>
+<li>type为”range”时，会创建一个划动条控件提供数字输入（min和max属性值）；</li>
+<li>“color”类型会在支持这个类型的浏览器中创建一个颜色选择器（否则为单行文本）；</li>
+<li>“date”类型会在支持这个类型的浏览器中创建一个日期选择器（否则为单行文本）；</li>
+<li>“email”、”url”和”tel”类型会创建单行文本输入，在一些移动浏览器上会出现定制键盘来方便数据输入；</li>
+<li>textarea元素会创建一个多行文本输入区；</li>
+<li>select元素会创建一个菜单，包括一个或者多个option元素，option元素定义了菜单中的菜单项；通过“multiple”属性可以设置多选；</li>
+<li>如果将文本放在textarea元素的内容中，这会成为Web页面上文本区控件中的默认文本；</li>
+<li>textinput的”value”属性值可以用来为单行文本提供一个初始值；</li>
+<li>在提交按钮上面设置value属性可以改变在按钮上面显示的文字；</li>
+<li>提交一个Web表单时，表单数据值与相应的数据名配对，所有名和值会发送到服务器；</li>
+<li>由于表单有一个表格结构，通常会用CSS表格显示来建立布局。CSS还可以用来指定表单的颜色、字体风格、边框样式；</li>
+<li>HTML允许用fieldset元素组织表单元素，提醒视觉区分；配套legend元素使用；</li>
+<li>可以用label元素以一种有助于提高可访问性的方式关联标签与表单元素；（例如radio，通过点击标签本身即可以选中radio）</li>
+<li>使用placeholder属性可以为表单用户提供一个提示，指出你希望在一个输入域中输入什么内容；(例如：输入框里面的提示文字）</li>
+<li>required属性指示一个输入域是必要的；要让表单成功提交，这个输入域中必须有值。有些浏览器在你提交表单之间会强制要求在这些中输入数据；</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HTML/" class="print-no-link">#HTML</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Headfirst HTML&amp;CSS</div>
+      <div>http://example.com/2015/05/26/Headfirst HTML&amp;CSS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2015年5月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2015/06/06/%E4%BD%9B%E5%AD%A6%E6%A6%82%E8%AE%BA/" title="佛学概论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">佛学概论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2015/04/26/%E7%95%99%E4%BD%8F%E5%A5%BD%E5%91%98%E5%B7%A5-%E5%A6%82%E4%BD%95%E8%AE%A9%E5%B7%A5%E4%BD%9C%E6%9B%B4%E6%9C%89%E6%BF%80%E6%83%85/" title="留住好员工-如何让工作更有激情">
+                        <span class="hidden-mobile">留住好员工-如何让工作更有激情</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

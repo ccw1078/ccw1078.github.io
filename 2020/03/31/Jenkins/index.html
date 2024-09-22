@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率； 流水线 pipeline pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以随">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins">
+<meta property="og:url" content="http://example.com/2020/03/31/Jenkins/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率； 流水线 pipeline pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以随">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221131824.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221134930.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135204.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135141.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135829.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136270.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136699.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136144.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221137814.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138157.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138254.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138167.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138460.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221141403.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139073.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139363.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221140749.png">
+<meta property="article:published_time" content="2020-03-31T03:45:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T03:42:41.717Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221131824.png">
+  
+  
+  
+  <title>Jenkins - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Jenkins"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-03-31 11:45" pubdate>
+          2020年3月31日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          920 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Jenkins</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率；</p>
+<h2 id="流水线-pipeline"><a href="#流水线-pipeline" class="headerlink" title="流水线 pipeline"></a>流水线 pipeline</h2><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221131824.png" srcset="/img/loading.gif" lazyload></p>
+<p>pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以随着代码进行版本管理，实现跟实际代码版本的匹配，以及实现可追溯；</p>
+<h3 id="名称解释"><a href="#名称解释" class="headerlink" title="名称解释"></a>名称解释</h3><p><strong>pipeline</strong>： 用来定义构建流程，包括构建、测试、部署等环节；<br><strong>node</strong>：节点，表示一台机器，是构建环境的组成部分，可用来执行 pipeline 代码；<br><strong>stage</strong>: 阶段，流水线任务中的不同阶段，例如构建阶段、测试阶段、部署阶段等；每个阶段由1到多个任务组成，<br><strong>step</strong>: 任务，用来告知 jenkins 在某个时点，应该做的操作，例如执行某个 shell 命令；</p>
+<h4 id="声明式-Pipeline"><a href="#声明式-Pipeline" class="headerlink" title="声明式 Pipeline"></a>声明式 Pipeline</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221134930.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135204.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="使用-Pipeline"><a href="#使用-Pipeline" class="headerlink" title="使用 Pipeline"></a>使用 Pipeline</h3><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><ul>
+<li>Jenkins 2.x 以上版本；</li>
+<li>已安装 Pipeline 插件；</li>
+</ul>
+<h4 id="定义-Pipeline"><a href="#定义-Pipeline" class="headerlink" title="定义 Pipeline"></a>定义 Pipeline</h4><p>有三种方法：</p>
+<ul>
+<li>使用 Blue Ocean 插件；</li>
+<li>使用 UI 界面；</li>
+<li>在源代码中手写 Jenkinsfile 文件；</li>
+</ul>
+<h4 id="自动生成代码片段"><a href="#自动生成代码片段" class="headerlink" title="自动生成代码片段"></a>自动生成代码片段</h4><blockquote>
+<p>创建 Pipeline 项目后，在项目主页的左侧，有一个 Pipeline Syntax 菜单项，可以用来学习如何写 Jenkinsfile；</p>
+</blockquote>
+<h4 id="使用全局变量"><a href="#使用全局变量" class="headerlink" title="使用全局变量"></a>使用全局变量</h4><ul>
+<li>env </li>
+<li>params</li>
+<li>currentBuild</li>
+</ul>
+<h3 id="使用-Jenkinsfile"><a href="#使用-Jenkinsfile" class="headerlink" title="使用 Jenkinsfile"></a>使用 Jenkinsfile</h3><p>将 Jenkinsfile 放入代码所在的文件夹，一同纳入版本管理后，当 git push 到 github 后，通过 github 的 webhook，会触发 Jenkins 的自动构建；之后 Jenkins 会从 github 摘取最新版本的代码，并按照 Jenkinsfile 中写法的 pipeline 内容自动进行构建、测试和部署等操作；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135141.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>def str &#x3D; “World”</p>
+<blockquote>
+<p>注意需要使用双引号来包含字符串，因为只有双引号括起来的字符串，后续才可以使用美元符 $ 进行引用，例如: ${str}</p>
+</blockquote>
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><ul>
+<li>BUILD_ID</li>
+<li>BUILD_NUMBER</li>
+<li>BUILD_TAG</li>
+<li>BUILD_URL</li>
+<li>EXECUTOR_NUMBER</li>
+<li>JAVA_HOME</li>
+<li>JENKINS_URL</li>
+<li>JOB_NAME：项目名称</li>
+<li>NODE_NAME：机器节点名称，例如 master</li>
+<li>WORKSPACE: WORKSPACE 绝对路径</li>
+</ul>
+<p>环境变量通过 $ {env.变量名} 进行访问，例如：”${env.BUILD_ID}”</p>
+<h4 id="设置静态环境变量"><a href="#设置静态环境变量" class="headerlink" title="设置静态环境变量"></a>设置静态环境变量</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135829.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="设置动态环境变量"><a href="#设置动态环境变量" class="headerlink" title="设置动态环境变量"></a>设置动态环境变量</h4><p>调用 sh 执行命令，获取 returnStdout 或者 returnStatus 的返回结果，赋值给相应的变量；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136270.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="处理机密信息"><a href="#处理机密信息" class="headerlink" title="处理机密信息"></a>处理机密信息</h4><h5 id="文本、用户名、密码和机密文件"><a href="#文本、用户名、密码和机密文件" class="headerlink" title="文本、用户名、密码和机密文件"></a>文本、用户名、密码和机密文件</h5><p>声明式的 Pipeline 通过在 environment 指令中使用 credentials(“凭据ID”) 函数来读取在全局凭据中提前设置好的文本、用户名、密码、机密文件等机密信息，并赋值给相应的变量，以便后续阶段可用凭据 ID 进行调用；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136699.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136144.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="处理参数"><a href="#处理参数" class="headerlink" title="处理参数"></a>处理参数</h4><p>使用 parameters 指令，可以在运行时接用户指定的参数；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221137814.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="处理失败"><a href="#处理失败" class="headerlink" title="处理失败"></a>处理失败</h4><p>通过在 post 代码块中，指定一些构建结束后要运行的操作；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138157.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="使用多个-agents"><a href="#使用多个-agents" class="headerlink" title="使用多个 agents"></a>使用多个 agents</h4><p>适用一些复杂的用例，例如构建后，在不同平台(linux\windows)进行测试</p>
+<h4 id="可选的命令参数"><a href="#可选的命令参数" class="headerlink" title="可选的命令参数"></a>可选的命令参数</h4><p>命令的参数可以不用括号，并直接指定参数名称；</p>
+<p>以下两种格式都是可以的：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138254.png" srcset="/img/loading.gif" lazyload></p>
+<p>当命令只有一个参数时，则还可以省略参数名</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138167.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="高级的指令"><a href="#高级的指令" class="headerlink" title="高级的指令"></a>高级的指令</h4><h5 id="并行执行"><a href="#并行执行" class="headerlink" title="并行执行"></a>并行执行</h5><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138460.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="使用-Docker"><a href="#使用-Docker" class="headerlink" title="使用 Docker"></a>使用 Docker</h3><p>当在 Jenkinsfile 中指定了镜像后，Jenkins 会自动创建基于该镜像的容器，并在容器中执行相应的指令；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221141403.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="容器数据缓存"><a href="#容器数据缓存" class="headerlink" title="容器数据缓存"></a>容器数据缓存</h4><p>通过映射本地目录，可以存储容器中的数据</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139073.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="使用多个容器"><a href="#使用多个容器" class="headerlink" title="使用多个容器"></a>使用多个容器</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139363.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="使用-Dockerfile"><a href="#使用-Dockerfile" class="headerlink" title="使用 Dockerfile"></a>使用 Dockerfile</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221140749.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BF%90%E7%BB%B4/" class="print-no-link">#运维</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Jenkins</div>
+      <div>http://example.com/2020/03/31/Jenkins/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年3月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/12/Kubernetes%20%E5%AE%9E%E6%88%98/" title="Kubernetes 实战">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Kubernetes 实战</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/02/06/Docker-Compose/" title="Docker-Compose">
+                        <span class="hidden-mobile">Docker-Compose</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

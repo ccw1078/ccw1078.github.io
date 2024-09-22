@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="需求分析过程获取和引导需求分析和定义需求：有多少用户需要，能承受什么价位、实现所需时间与成本、各个需求的优先级验证需求软件生命周期中的需求管理：开发过程中需求会产生变化 分类对产品功能性的需求对产品开发过程的需求非功能性的需求：服务质量需求，例如访问速度、并发量等 利益相关者用户顾客：购买人市场部监管机构软件工程师 获取用户需求焦点小组：集中目标用户的代表，加上利益相关者，讨论用户想要什么深入面谈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构建之法">
+<meta property="og:url" content="http://example.com/2015/01/11/%E6%9E%84%E5%BB%BA%E4%B9%8B%E6%B3%95/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="需求分析过程获取和引导需求分析和定义需求：有多少用户需要，能承受什么价位、实现所需时间与成本、各个需求的优先级验证需求软件生命周期中的需求管理：开发过程中需求会产生变化 分类对产品功能性的需求对产品开发过程的需求非功能性的需求：服务质量需求，例如访问速度、并发量等 利益相关者用户顾客：购买人市场部监管机构软件工程师 获取用户需求焦点小组：集中目标用户的代表，加上利益相关者，讨论用户想要什么深入面谈">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-01-11T01:29:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T03:10:33.450Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="项目管理">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>构建之法 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="构建之法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2015-01-11 09:29" pubdate>
+          2015年1月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">构建之法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>获取和引导需求<br>分析和定义需求：有多少用户需要，能承受什么价位、实现所需时间与成本、各个需求的优先级<br>验证需求<br>软件生命周期中的需求管理：开发过程中需求会产生变化</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>对产品功能性的需求<br>对产品开发过程的需求<br>非功能性的需求：服务质量需求，例如访问速度、并发量等</p>
+<h3 id="利益相关者"><a href="#利益相关者" class="headerlink" title="利益相关者"></a>利益相关者</h3><p>用户<br>顾客：购买人<br>市场部<br>监管机构<br>软件工程师</p>
+<h3 id="获取用户需求"><a href="#获取用户需求" class="headerlink" title="获取用户需求"></a>获取用户需求</h3><p>焦点小组：集中目标用户的代表，加上利益相关者，讨论用户想要什么<br>深入面谈：可用性、易用性<br>（以上二者会产生需求分析的结果：用户场景）<br>卡片分类：对杂乱无章的需求进行整理<br>用户问卷调查：感觉适用场景更多面向简单的问题，不需要深入交谈，用户可简单做出判断给出答案的问题<br>民族志&#x2F;人类学调查<br>眼动跟踪研究<br>快速原型<br>A&#x2F;B测试</p>
+<h3 id="竞争性需求分析的框架"><a href="#竞争性需求分析的框架" class="headerlink" title="竞争性需求分析的框架"></a>竞争性需求分析的框架</h3><p>NABCD<br>N需求：你的创意解决了用户的什么需求？要充分了解用户的痛苦，对已有软件、服务不满意的地方。<br>A做法：产品的解决方案<br>B好处：产品能给用户带来什么好处，是否有迁移成本？<br>C竞争：分析竞争对手的产品，看清楚我方的优势在哪里，我方的劣势在哪里<br>D推广：如果将产品推广到用户的手中？</p>
+<h3 id="功能的定位"><a href="#功能的定位" class="headerlink" title="功能的定位"></a>功能的定位</h3><p>四象限法<br>杀手功能&#x2F;外围功能<br>必要需求&#x2F;辅助需求</p>
+<p>必要+杀手：第一象限，差异化，产生同类产品比不了的功能和优势，我有人无，或者一个数量级上的优势，全力以赴投资在这个领域。<br>必要+外围：第二象限，抵消，快速达到和别人差不多，对于大家都特别看重的功能，采取”优化“的办法，达到行业最佳<br>辅助+外围：第三象限，维持，以最低代价维持此功能<br>辅助+杀手：第四象限，建议采取维持的办法，或者现在不做，等待好的时机，或者让小部分人做实验</p>
+<h3 id="计划和估计"><a href="#计划和估计" class="headerlink" title="计划和估计"></a>计划和估计</h3><p>分清楚几个概念：目标（未必能够实现）、估计（人力物力时间）、决心（保证）<br>在每一轮估计中，注意探询数值背后的假设，探险者总是高估自己的能力<br>办法一：参考前人的经验<br>办法二：快速原型法-用一两个先锋去探路<br>Y时间&#x3D;X（估计的时间）+-X&#x2F;N（类似工作的次数）</p>
+<h3 id="分而治之WBS-（work-breakdown-structure）"><a href="#分而治之WBS-（work-breakdown-structure）" class="headerlink" title="分而治之WBS （work breakdown structure）"></a>分而治之WBS （work breakdown structure）</h3><p>父节点、子节点、叶子节点</p>
+<ol>
+<li>保证子节点能够覆盖父节点的所有内容</li>
+<li>保证各个子节点不要相互覆盖</li>
+<li>叶子节点要足够小，能够在一个里程碑中完成，成本最好不要超过两周</li>
+<li>从结果出发构建WBC，而不是从团队的活动出发<br>Those entrepreneurs who start out with the idea that they’ll make it big - and in a hurry -  can be guaranteed failure.</li>
+</ol>
+<h2 id="项目经理"><a href="#项目经理" class="headerlink" title="项目经理"></a>项目经理</h2><p>一个团队可以有几类PM</p>
+<ol>
+<li>做功能设计的</li>
+<li>对商业和客户有很强的了解能力的</li>
+<li>有广泛的经验和知识面，以及商业拓展能力的</li>
+<li>驱动流程的，推动团队完成一个版本的开发，准时上线的</li>
+<li>专门深入某一领域的，例如软件的国际化&#x2F;本地化等</li>
+<li>和研究人员合作，琢磨前沿技术如何能进入主流产品，进行技术转化的等等</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>不是行政领导，和大家平等工作，推动团队完成软件的功能</li>
+<li>一个团队可以有很多PM</li>
+<li>和其他团队成员一起形成决议</li>
+<li>管事不管人</li>
+<li>一定做具体工作</li>
+</ol>
+<p>具体任务</p>
+<ol>
+<li>带领团队形成团队的目标、远景，把抽象的目标转化成可执行的、具体的、优美的设计</li>
+<li>管理软件的具体功能的生命周期（需求&#x2F;设想&#x2F;设计&#x2F;实现&#x2F;测试&#x2F;修改&#x2F;发布&#x2F;升级&#x2F;迁移&#x2F;淘汰）</li>
+<li>创建并维护软件的规格说明书，让它成为开发&#x2F;测试人员及时准确的指导而不是障碍</li>
+<li>代表客户和用户的利益，主动收集用户反馈、预期用户新的需求。协调并决定各种需求的优先级</li>
+<li>分析并带领其他成员形成对缺陷&#x2F;变更的一致意见、并确保实施</li>
+<li>带领其他成员确保项目保持功能&#x2F;时间&#x2F;资源的合理平衡，跟踪项目进展，确保团队发布让客户满意的软件</li>
+<li>收集团队项目管理和软件工程的各种数据，客观分析项目实施过程中的做缺点，推动项目成员持续改进，从而提振士气</li>
+</ol>
+<h2 id="软件设计与实现"><a href="#软件设计与实现" class="headerlink" title="软件设计与实现"></a>软件设计与实现</h2><p>典型的开发流程</p>
+<ol>
+<li>功能需求</li>
+<li>SPEC复审&amp;设计</li>
+<li>详细设计</li>
+<li>代码实现</li>
+<li>DEV自测</li>
+<li>同伴复审</li>
+<li>源代码同步、合并、构建</li>
+<li>签入测试</li>
+<li>提交签入关联Work Item</li>
+<li>构建成功</li>
+<li>BVT成功</li>
+<li>自动测试</li>
+<li>功能全面测试</li>
+<li>功能完成</li>
+<li>如果在测试过程中发现BUG，则需BUG分析和修复</li>
+</ol>
+<p>开发阶段的一些管理办法</p>
+<ol>
+<li>每日构建：可以提高团队成员的积极性</li>
+<li>小强地狱：当某人的BUG超过设定的阈值时，停止开发新功能，进入修改BUG状态，直到BUG数量降低到阈值以下。</li>
+<li>构建大师：由导致构建失败的人担任，负责管理构建服务器；调试构建，负责找错，并分析出错原因；负责把构建大师称号转给下一任构建失败的成员。</li>
+</ol>
+<h2 id="用户体验"><a href="#用户体验" class="headerlink" title="用户体验"></a>用户体验</h2><p>用户体验的要素</p>
+<ol>
+<li>用户的第一印象：用户第一次登录产品，我们想传达给用户一个什么印象？简单，大胆的减法。</li>
+<li>从用户的角度思考问题：同理心。</li>
+<li>软件服务始终要记住用户的选择：选择过一次设定后，其他场景或下次都默认这个设定，直至其修改。</li>
+<li>一次使用与多次使用：一个功能一次性使用感觉好用，但如果多次使用呢？会不会厌烦？或者没有新东西？</li>
+<li>不让用户犯简单的错误：设计成让用户很难犯错的模式</li>
+<li>用户体验和质量：是否可以牺牲一些质量，换取让用户体验更好一些？</li>
+</ol>
+<p>5W1H<br>who，谁是我们的目标用户？<br>when，用户在什么时间段使用我们的产品？<br>where，用户在什么地方或环境下使用我们的产品？<br>what，我们的产品是什么？用户想达到什么目的？他们的期待是什么？<br>why，用户为什么使用我们的产品？和其他竞争产品相比，为什么他们要选择我们？他们的动机是什么？<br>How，用户是如何与产品发生交互的，他们是怎么用的？在使用过程中有什么问题吗？</p>
+<p>用户体验设计的目标和步骤<br>目标：降低用户的认知阻力，即用户对软件界面的认知（想象某事应该怎么做，想象某操作应该产生什么结果）和实际结果之间的差异。</p>
+<p>步骤：</p>
+<ol>
+<li>概要设计：需求分析阶段，用户要解决的痛苦是什么？如何给用户提供价值？</li>
+<li>行为（交互）设计：场景设计阶段，通过一系列用户和软件系统的交互，帮助用户解决问题。</li>
+<li>界面设计：具体实现阶段，通过读取用户的输入，以及创造和改进交互的媒介，帮忙用户进行交互。</li>
+</ol>
+<p>几个原则：</p>
+<ol>
+<li>尽快提供可感触的反馈</li>
+<li>系统界面符合用户的现实惯例，避免专业术语，而多采用生活化的语言。</li>
+<li>用户有自由控制权：操作失误可回退，可以定制显示信息的多少，可以定制常用的设置</li>
+<li>一致性和标准化：用语各处保持一致。</li>
+<li>适合各种类型的用户：新手、专家、残疾人</li>
+<li>帮助用户识别、诊断并修复错误：错误操作给出提示和帮助修正错误，关键操作要确认</li>
+<li>有必要的提示和帮助文档，以及首次进入软件的引导页</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" class="print-no-link">#项目管理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>构建之法</div>
+      <div>http://example.com/2015/01/11/构建之法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2015年1月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2015/02/12/UML/" title="UML">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">UML</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2014/12/09/%E7%AC%A8%E5%8A%9E%E6%B3%95%E5%AD%A6%20Python/" title="笨办法学 Python">
+                        <span class="hidden-mobile">笨办法学 Python</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

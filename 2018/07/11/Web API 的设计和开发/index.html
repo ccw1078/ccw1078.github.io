@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="什么是 Web API 软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API； API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力； 面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web API 的设计和开发">
+<meta property="og:url" content="http://example.com/2018/07/11/Web%20API%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="什么是 Web API 软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API； API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力； 面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美”">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-11T01:14:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T00:46:08.492Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="API">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Web API 的设计和开发 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Web API 的设计和开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-07-11 09:14" pubdate>
+          2018年7月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Web API 的设计和开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>什么是 Web API<ol>
+<li>软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API；</li>
+<li>API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力；</li>
+<li>面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美”的定义不同；</li>
+</ol>
+</li>
+<li>响应数据的格式<ol>
+<li>JSONP<ol>
+<li>目的：规避同源策略的限制</li>
+<li>用法：将响应数据作为 script 进行引用；</li>
+<li>原理：因为 Script 的加载不受同源策略约束；</li>
+<li>建议：能不支持尽量不支持，原因：安全问题，可以会被攻击；</li>
+</ol>
+</li>
+<li>数据内部结构<ol>
+<li>原则：尽量减少 API 请求次数，一次性返回所需要的数据；</li>
+<li>让用户选择响应的内容；指定单个字段太麻烦的话，可以考虑使用小组及组合或嵌套的策略，将所需要的字段根据场景做进一步的抽象；</li>
+<li>封装可以让响应格式统一，但有点浪费 HTTP 协议本身自带的封装效果；</li>
+<li>数据尽量扁平化，除非层级有绝对优势才考虑使用层级；</li>
+<li>列表建议做 { } 封装，原因：封装后不符 js 语法，可以避免攻击；</li>
+<li>列表的响应，可以添加 hasNext 字段，来表示是否还有后续内容；</li>
+</ol>
+</li>
+<li>数据的格式<ol>
+<li>JSON：驼峰命名法</li>
+<li>性别：GENDER 是社会意义的，SEX 是生物意义的；</li>
+<li>日期的格式： RFC3339，2015-10-12T11:30:22+09:00</li>
+<li>大数据：由于JS处理64bit长度的局限性，可以转成字符串传输；</li>
+</ol>
+</li>
+<li>响应数据的格式<ol>
+<li>出错信息用状态码表示，遵循HTTP的规范，即2开头表示成功，4开头表示客户端请求有误，5开头表示服务器内部处理有误（原因：更加易懂）；</li>
+<li>向客户端返回详细的错误信息，以便其了解原因，方便调试</li>
+<li>可以考虑使用 devMsg 和 userMsg 来区分显示给用户和开发人员的消息内容；</li>
+<li>另外还可以加上 info 字段放上文档链接，方便人员查询错误代码的具体意义；</li>
+<li>有时需要返回意义不明确的信息，例如登录错误（涉及安全），好友屏蔽（涉及隐私）等；开发环境和生产环境也可以做区分，开发环境返回真实的信息，生产环境返回模糊的信息；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>尽量利用 HTTP 协议<ol>
+<li>尽量使用通用规范的好处：让他人的学习成本更低，易于理解；</li>
+<li>状态码：2、3、4、5，每个数字下面，都对应有几十种细分，非常丰富，所以应尽量使用它们来表示想要的状态；</li>
+<li>202：表示服务端已经开始处理，但还没有弄好；此时可以在响应消息的 Retry-after 字段里面，放上时间（目测这个功能可以用来在客户端显示进度？）</li>
+<li>Etag：一种缓存校验机制；缓存的目的是提高通信效率，但可能存在的问题是如何获取最新版本，此时通过给数据的版本加上唯一标识符，即可以知悉资源是否更新；如果标识符发生变化，则表示需要获取最新版本；</li>
+<li>3开头，其中的强制重定向，可以用来避免客户端在原页面重复进行操作，当请求处理成功后，返回给客户端一个新的页面，这在付款、下单、下载资源等场景非常有用；</li>
+<li>4开头：认证错，授权错，资源不存在，资源冲突，方法错，格式不支持，曾经存在，超时，太长太大，超次数</li>
+<li>5开头：内部错，存在不可用；</li>
+</ol>
+</li>
+<li>缓存与HTTP规范<ol>
+<li>涉及方：客户端缓存、客户端代理服务器缓存、服务端代理服务器缓存；</li>
+<li>过期模型：通过在首部指定过期时间（绝对时间，相对时间等），可以有效减少请求次数；</li>
+<li>校验模型：通过判断资源是否更新（虽然没有减少请求次数，但适用于大数据交互的场景）；通过 Entity Tag 来实现，即 ETAG，在首部加上这个信息用于判断；根据场景可分为强验证和弱验证两种；</li>
+<li>启发式过期：服务器端没有指定具体的过期时间，客户端（浏览器）自己判断；比如首部中有 last modified 字段，假设为1年前，则客户端可以猜测缓存有效期可以设置为1年左右；如果 last modified 是昨天，则缓存有效期可以设置为半天；</li>
+<li>不希望缓存： no-cache（其实有缓存，只是每次都需要验证），no-store（真的没有缓存）</li>
+<li>vary 字段：用来增加资源的唯一识别，除了 URI 外，再加上 vary 批定的字段，只有这些字段的值全部一致时，才读取缓存数据，如果不一致，则重新到服务器进行请求；</li>
+<li>cache-control 支持多种参数，其中有一种 stale-while-revalidate，假设该字段值设置为1000，则表示1000到期后，缓存仍然有效，并且，此时会异步去服务器请求最新的数据；这样的好处是即提高了响应速度，也能保证数据及时更新；</li>
+<li>媒体类型：由于有时客户端采用的第三方库，会根据返回的媒体类型进行不同的操作，因为返回正确的媒体类型很重要，避免客户端处理出错；</li>
+<li>x- 开头的媒体类型，表示该类型尚未在官方组织正式注册；但新的 RFC 规范已经废止通过这种方式来自定义媒体类型，而采用了“注册树”的办法；</li>
+<li>x- 也常用于表示私有首部；</li>
+</ol>
+</li>
+<li>API 的设计要方便更改<ol>
+<li>常用做法：在 URI  中嵌入主版本号</li>
+<li>最大程度的减少 API 的更新；如果必须更新，注意向下兼容；</li>
+<li>发布新版 API 后，如果需要停止对老版本的支持，则建议正常先保留老版本半年；</li>
+</ol>
+</li>
+<li>安全性与可靠性<ol>
+<li>安全问题<ol>
+<li>劫持服务端与客户端之间的通讯信息；<ol>
+<li>应对措施：使用 HTTPS 进行加密；缺点：会增加一些访问的时间，性能有所下降；</li>
+</ol>
+</li>
+<li>攻击服务器获取服务端的数据；</li>
+</ol>
+</li>
+<li>攻击类型<ol>
+<li>XSS：在传输的数据中，注入恶意的代码（例如 js），然后触发它被执行；例如先伪造一个 URL，吸引用户点击，之后传输包含恶意代码的网页给用户，用户端的浏览器显示该网页时，触发恶意代码被执行；该攻击有3种类型，其中一些只危害用户端，另2种会危害服务器端<ol>
+<li>防范：对用户的输入进行检查，确保其中不包含恶意的代码</li>
+</ol>
+</li>
+<li>XSRF：跨站点请求伪造；站点 B 伪造成用户的身份登录站点 A 进行操作；<ol>
+<li>前提：用户登录了 站点 A，同时，用户打开了站点 B</li>
+<li>原理：当用户点击 B 时，执行恶意代码，获取了站点 A 给用户的 Cookie，凭借这个 Cookie，站点 B 假装自己是用户，向站点 A 发起了非法的请求；</li>
+<li>防范：除了 Cookie 外，增加其他验证用户身份的方式；比如：<ol>
+<li>只能使用 POST 方法进行数据更新的操作（原因：因为 GET 方法缺少验证）</li>
+<li>使用 TOKEN 验证；</li>
+<li>使用 一些只能人工识别的验证方式，例如识别图片上面的字符</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>来自怀有恶意的用户的攻击<ol>
+<li>修改参数达到有利自己的目的（防范：仔细检查参数的有效性）</li>
+<li>多次发送（防范：增加状态的判断，例如通过增加虚拟的订单和收据，然后根据单据的状态变化，来判断是否允许再次操作）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>同安全相关的 HTTP 首部<ol>
+<li>X-XSS-Protection: 1<ol>
+<li>开户后，浏览器可以检测和防御 XSS 攻击（Chrome 和 Safari 此功能是默认开启的，且无法禁用）</li>
+</ol>
+</li>
+<li>X-Frame-Options: Deny<ol>
+<li>攻击者在用户的页面上添加透明的 iFrame 元素，当用户点击时，执行了恶意代码（即点击劫持）</li>
+</ol>
+</li>
+<li>Content-Security-Policy: default-src ‘none’<ol>
+<li>用于指定读取的HTML内元素指向的资源范围（例如：IMG, SCRIPT, LINK 等元素），用于降低 XSS 攻击的风险；</li>
+</ol>
+</li>
+<li>Strict-Transport-Security： max-age&#x3D;15768000<ol>
+<li>预先告知浏览器只能通过 HTTPS 进行访问</li>
+<li>max-age 值，即是告知浏览器，在这个时间期限内，只能使用 HTTPS 访问；</li>
+<li>该首部只有通过 HTTPS 发放时才会生效，通过 HTTP 发放是不生效的；</li>
+<li>缺点：第一次使用 HTTPS 访问前，如果已经通过 HTTP 访问过，则该首部不会产生效果</li>
+</ol>
+</li>
+<li>Set-Cookie: session&#x3D;e827ea…..3i1689jp; Path&#x3D;&#x2F;; Secure; HttpOnly<ol>
+<li>Secure 表示 session 值只能在 HTTPS 下发送，HTTP 下不发送（避免泄露）</li>
+<li>HttpOnly 表示仅在 HTTP 通信方式下，才能读取该 session 值，不能通过其他方式读取，避免被恶意脚本获取 session 值；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>应对大规模访问<ol>
+<li>限制每个用户的访问：<ol>
+<li>前提：需要能够识别用户</li>
+<li>方法：给每个用户设置 Token 或 key 来识别；</li>
+</ol>
+</li>
+<li>设置访问次数的上限：时间单位需要考虑用户如果超出限制，需要等待多久；</li>
+<li>当超出次数限制时，返回 429 状态码，Too many requests</li>
+<li>告知用户详细的限制信息，包括：单位时间允许次数，剩余次数，重置时间；<ol>
+<li>方式一：通过专门的API，让用户主动查询</li>
+<li>方式二：在返回的消息的首部注明，包括：<ol>
+<li>X-RateLimit-Limit，单位时间的访问上限；</li>
+<li>X-RateLimit-Remaining，剩余的访问次数；</li>
+<li>X-RateLimit-Reset，访问次数重置的时间；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>服务器端可使用 Redis 来记录限制信息；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>附录<ol>
+<li>公开 Web API 的准备工作<ol>
+<li>提供文档，可参考 <a target="_blank" rel="noopener" href="https://apiblueprint.org/">https://apiblueprint.org</a> 倡导的规范；</li>
+<li>提供沙盒，让用户可以在这个环境中随意测试；</li>
+<li>提供 console，让用户可以通过浏览器对 API 进行操作测试；例如：<a target="_blank" rel="noopener" href="https://developers.facebook.com/tools/explorer">https://developers.facebook.com/tools/explorer</a></li>
+<li>提供 SDK，让开发人员能够快速上手使用，避免自己写代码进行连接的工作；缺点：如果 API 更新频率很高，则维护 SDK 的工作量也很大；</li>
+</ol>
+</li>
+<li>确认清单<ol>
+<li>URI 是否短小且容易输入</li>
+<li>URI 是否能够让人一眼看懂；</li>
+<li>URI 是否只由小写字母组成；</li>
+<li>URI 是否容易修改；</li>
+<li>URI 是否反映了服务端的架构；</li>
+<li>URI 规则是否统一；</li>
+<li>是否使用了合适的 HTTP 方法；</li>
+<li>URI 用到的单词是否和业界相同；</li>
+<li>URI 用到的名词是否使用了复数形式；</li>
+<li>URI 里面有没有空格及需要编码的字符；</li>
+<li>URI 单词之间是否使用了连字符；</li>
+<li>分布的设计是否恰当；</li>
+<li>登录是否使用了 OAuth 2.0</li>
+<li>响应数据格式是否默认使用 JSON</li>
+<li>是否支持通过查询参数指定数据格式；</li>
+<li>是否支持不必要的 JSONP</li>
+<li>响应数据的内容是否支持客户端指定；</li>
+<li>响应数据是否存在不必要的封装；</li>
+<li>响应数据的结构是否尽量扁平化；</li>
+<li>响应数据是否使用对象描述，而非数组</li>
+<li>响应数据使用的单词名称是否和业界一致；</li>
+<li>响应数据的名称是否尽可能短小；</li>
+<li>响应数据的多个单词是否使用了连字符；</li>
+<li>响应数据名称是否使用了奇怪的缩写；</li>
+<li>响应数据单词的单复数形式是否和内容一致；</li>
+<li>出错时的响应数据是否包含有助于客户分析原因的信息；</li>
+<li>出错时有没有返回 HTML 数据；</li>
+<li>有没有返回合适的状态码；</li>
+<li>服务器在维护时有没有返回 503 状态码；</li>
+<li>有没有返回合适的媒体类型；</li>
+<li>必要时是否支持 CORS</li>
+<li>有没有返回 Cache-Control，ETag，Last-Modified, Vary 等首部信息，以便客户端制定合适的缓存策略；</li>
+<li>不想缓存的数据是否指定 no-cache 或 no-store</li>
+<li>有没有对 API 进行版本管理</li>
+<li>API 版本的命名是否遵守版本控制规范；</li>
+<li>有没有在 URI 里嵌入主版本编号，并且能够让人一目了然；</li>
+<li>有没有考虑 API 终止提供时的相关事项；</li>
+<li>有没有在文档里注明 API 的最低提供期限；</li>
+<li>有没有使用 HTTPS 提供 API </li>
+<li>有没有执行 JSON 转义；</li>
+<li>能不能识别 X-Requested-With 首部，让浏览器无法通过 Scrip 元素读取 JSON 数据；</li>
+<li>通过浏览器访问的API 有没有使用 XSRF Token</li>
+<li>API 在接收参数时，有没有检查非法参数；</li>
+<li>能否避免重复发送，导致数据多次更新；</li>
+<li>有没有在响应消息里添加各种增强安全的首部；</li>
+<li>有没有实施访问限速；</li>
+<li>对预想的用例来说，限制的次数是否可能设置得过少；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/API/" class="print-no-link">#API</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Web API 的设计和开发</div>
+      <div>http://example.com/2018/07/11/Web API 的设计和开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20mch_id%20%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF/" title="微信支付 mch_id 参数格式错误">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">微信支付 mch_id 参数格式错误</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/06/10/Linux%20MongoDB%20%E5%AE%89%E8%A3%85%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" title="Linux MongoDB 安装并设置开机启动">
+                        <span class="hidden-mobile">Linux MongoDB 安装并设置开机启动</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

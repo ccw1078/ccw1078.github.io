@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言 可以尝试在业余时间考虑如何改进市面上的一些产品，做为一种练习； 本书的内容补充与更新: http:&#x2F;&#x2F;designingwebinterfaces.com 交互设计模式库: http:&#x2F;&#x2F;www.welie.com   原理一：直截了当（永远在脑袋中思考现在使用的方法是直截了当的吗？有没有更加直接的办法？） 页面编辑：不离开页面直接编辑（行内编辑：可以不脱离上下文） 单字段行内编辑： 易发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web界面设计">
+<meta property="og:url" content="http://example.com/2016/04/16/Web%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="前言 可以尝试在业余时间考虑如何改进市面上的一些产品，做为一种练习； 本书的内容补充与更新: http:&#x2F;&#x2F;designingwebinterfaces.com 交互设计模式库: http:&#x2F;&#x2F;www.welie.com   原理一：直截了当（永远在脑袋中思考现在使用的方法是直截了当的吗？有没有更加直接的办法？） 页面编辑：不离开页面直接编辑（行内编辑：可以不脱离上下文） 单字段行内编辑： 易发">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-16T07:03:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T01:05:09.248Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="设计">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Web界面设计 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Web界面设计"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2016-04-16 15:03" pubdate>
+          2016年4月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Web界面设计</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>前言<ol>
+<li>可以尝试在业余时间考虑如何改进市面上的一些产品，做为一种练习；</li>
+<li>本书的内容补充与更新: <a target="_blank" rel="noopener" href="http://designingwebinterfaces.com/">http://designingwebinterfaces.com</a></li>
+<li>交互设计模式库: <a target="_blank" rel="noopener" href="http://www.welie.com/">http://www.welie.com</a></li>
+</ol>
+</li>
+<li>原理一：直截了当（永远在脑袋中思考现在使用的方法是直截了当的吗？有没有更加直接的办法？）<ol>
+<li>页面编辑：不离开页面直接编辑（行内编辑：可以不脱离上下文）<ol>
+<li>单字段行内编辑：<ol>
+<li>易发现性；悬停邀请；编辑按钮始终可见（如果易读性更重要，则使用悬停）；</li>
+<li>易访问性：针对残疾人士，提供备用方案；</li>
+</ol>
+</li>
+<li>多字段行内编辑<ol>
+<li>如果改动一个字段后，必然涉及改动其他字段，则采用本模式更优，因为这样可以降低用户漏编辑的可能性；</li>
+<li>可能占用更多空间，尽量保持显示与编辑两种状态的大小相同，这样可以减少页面抖动；</li>
+<li>保持“显示”与“编辑”模式之间的变换平滑而连续；</li>
+</ol>
+</li>
+<li>覆盖层编辑：轻量级悬浮层<ol>
+<li>当上下文不重要，且编辑区域需要占据较大的空间时考虑使用；</li>
+<li>本模式也可以降低意外修改的可能性；</li>
+<li>不要针对多个字段创建多个覆盖层；考虑使用一个覆盖层编辑一系列元素（例如JIRA的编辑操作）；</li>
+<li>空间允许的情况下，通过“保存”与“取消”按钮来完成或撤销编辑（按钮更具有仪式感，给用户带来更多的确定性）；</li>
+<li>如果可能，允许用户拖动覆盖层，以便看到被覆盖层遮住的内容；</li>
+</ol>
+</li>
+<li>表格编辑<ol>
+<li>易读性优于易发现性；</li>
+<li>通过单击启动编辑，避免使用悬停，不然一移动鼠标就会带来阅读干扰（捕鼠器）；</li>
+<li>相对显示状态，编辑状态占据更大的空间，以示与“显示”状态的区别；</li>
+</ol>
+</li>
+<li>群组编辑<ol>
+<li>用一个开关控制开启和关闭编辑状态；易读性与易发现性之间的一种平衡；</li>
+</ol>
+</li>
+<li>模块配置<ol>
+<li>允许用户直接配置模式（例如控制模块内显示的内容条数）；</li>
+<li>当配置是一个主要功能时使用；</li>
+<li>如果显示内容（易读性）很重要，考虑以全局的方式开启&#x2F;关闭模块配置；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>利用拖放<ol>
+<li>拖放模块<ol>
+<li>如果需要清晰显示预览效果，则使用占位符；</li>
+<li>如果需要尽量避免页面抖动，则使用插入条；</li>
+<li>使用被覆盖模块的中心点来确定放置位置；</li>
+<li>半透明被拖动对象；</li>
+<li>如果使用缩略图来表示被拖动的模块，则使用插入条；</li>
+</ol>
+</li>
+<li>拖放列表<ol>
+<li>如果可能，尽量使用占位符实时显示拖动效果；</li>
+<li>使用鼠标来定位拖动的位置；（如果能实时显示拖动后的预览效果，本点我个人倒是觉得不太重要；当然，如果偏移太厉害，会给用户带来排版不准确的坏印象）</li>
+<li>如果响应速度很重要，则考虑使用插入条，因为插入条涉及的计算量比较小；</li>
+<li>由于拖动的易发现性不好，所以应提供备用替代方案；</li>
+<li>在用户使用替代方案时，考虑如何置入提示，让用户知道有拖放功能；</li>
+<li>拖动比较适合在一屏内的有限区域范围内使用，如果是多页长列表，则应考虑辅助方案，如按字母顺序定位，比例滚动条标尺定位，全景缩略+放大镜定位等；</li>
+</ol>
+</li>
+<li>拖放对象<ol>
+<li>如果对象间的关系可以形象化，则使用拖动来配置关系，是非常有效的方案；</li>
+<li>如果对象间的视觉关系很复杂，则使用插入条来表示放置位置，降低拖动带来的视觉干扰（想起了salesforce的一个反模式）；</li>
+<li>对于父子关系，突出显示父对象，也可以表示放置位置（想起了iPhone播放图标进入某个文件夹中）；</li>
+<li>悬停时显示提示，提高可发现性；</li>
+<li>当对象被拖动3像素，或者鼠标按下超过0.5秒时，启动拖动；</li>
+<li>与鼠标同步显示拖动对象（可以考虑右偏移+半透明，来解决可能遮住目标位置的问题）；</li>
+</ol>
+</li>
+<li>拖放操作<ol>
+<li>不要对拖动进行过度设计，一来其易发现性不好，二来其操作路线并不短，只是形象化方面比较突出，因此能简单化的绝对不要复杂化（例如“点赞”“收藏”等功能）；</li>
+<li>记得提供可替代方案；</li>
+<li>悬停时提供明确邀请提示；甚至在页面上放置一个说明也未尝不可，例如上传图片的操作；</li>
+</ol>
+</li>
+<li>拖放集合<ol>
+<li>将某些相关项集中保存到一个列表中，比如将商品加入购物车（感觉一个“加入购物车”的按钮的操作路径更短更快）；</li>
+<li>提供可替代的方式；</li>
+<li>当拖动启动时，突出显示可放置拖动项的区域；</li>
+<li>提供备用提示，以便让用户发现可以使用拖动功能；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>原理二：简化交互<ol>
+<li>上下文中的工具<ol>
+<li>内容即是界面，无需划定功能区，每个对象都可以直接操作；</li>
+<li>费茨定律：到达目标的时间，是到达目标的距离和目标大小的函数；（因此，为了降低到达时间，应考虑缩短到达的距离，以及增加目标的大小）；</li>
+<li>几种方式：<ol>
+<li>实时可见工具<ol>
+<li>优点：突出显示，明确邀请；易发现性好；缺点：页面可能比较拥挤；</li>
+<li>适用场景：如果某个操作非常重要，则把它直接放在界面中（例如“赞”）；</li>
+<li>注意事项：保持视觉干扰最小化，保持可见项目最少化；</li>
+<li>通过按钮实现主要操作，通过链接实现次要操作；（前者目标更大，更吸引注意力）</li>
+</ol>
+</li>
+<li>悬停即现工具<ol>
+<li>可以减少视觉干扰；易发现性稍弱，故应尽量使用熟悉的方式来帮忙用户发现隐藏的工具（例如下拉箭头意味着更多功能，超链接意味着执行操作等）；</li>
+<li>使用覆盖层显示附加信息或工具要额外小心，因为覆盖层可能会妨碍正常的导航或遮挡住重要的信息（如有可能，考虑使用嵌入层，或者在排版上预留空间用显示初始隐藏的工具链接）；</li>
+<li>工具覆盖层在悬停时应立即激活，附加信息可以有0.5秒延迟，因为前者是操作，用户希望最短时间进行；后者是一种内容补充，用户不一定想知道，可能只是误触；</li>
+<li>不要让用户为了搞清楚工具的含义而悬停鼠标（因此如果空间不是非常有限，或者图标非常不言而喻，则尽量使用文字来表示工具用途）；</li>
+<li>保证页面布局不被悬停显示干扰出现抖动，因为这样会分散用户的注意力；</li>
+</ol>
+</li>
+<li>开关显示工具<ol>
+<li>如果操作不是常用主要功能，但又想为用户提供直接操作页面对象的便利时，可以使用一个开关来打开和关闭编辑；</li>
+<li>尽量保持打开和关闭的对称性；</li>
+<li>编辑和非编辑状态的过渡尽可能平滑稳定；即开关开启后，用户操作或不操作均可，不会困于其中导致必须操作；</li>
+</ol>
+</li>
+<li>级联递进工具<ol>
+<li>尽量将常用的操作，放在激活位置最近的地方，例如如果是放射圆盘，对于播放器，可以将播放按钮放在中心；</li>
+<li>永远不要让目标太小，目标足够大才容易被注意到，也容易操作；</li>
+<li>对于重要的操作按钮，可以提升其在级联菜单中的层次；</li>
+<li>一般来说，最好避免使用级联，因为让用户执行过多的鼠标操作容易带来反感，而且用户也会感觉复杂度提升；</li>
+</ol>
+</li>
+<li>二级菜单<ol>
+<li>类似桌面程序的右键菜单，但这种模式的易发现性很差，因此不要通过它显示除备用命令以外的操作；</li>
+<li>好处是可以应付批量编辑；</li>
+<li>不要在与传统界面类似的场景下使用二级菜单，因此可能会与浏览器和用户习惯相冲突；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>原理三：足不出户：为创造连续视觉感知的心流最高境界服务；<ol>
+<li>覆盖层<ol>
+<li>不要使用老式的弹出窗口，因为无论从速度、资源、外观等来看，都比不上覆盖层好用；</li>
+<li>对话框覆盖层<ol>
+<li>使用亮盒效果强调模态特性或吸引用户的注意力；</li>
+<li>避免使用不必要的对话框，以防打断用户的流程；（若非必要，慎用）</li>
+<li>在页内交互可以满足的情况下，不要使用覆盖层；</li>
+<li>尽量不要使用JS的警告框，因为各浏览器的样式不统一；</li>
+</ol>
+</li>
+<li>详情覆盖层<ol>
+<li>使用详情覆盖层显示详细信息，避免用户打开新的页面；</li>
+<li>悬停激活的场景，建议有0.5秒的延迟，避免地雷阵；</li>
+<li>悬停激活，移开关闭（开启与关闭的对称性）；</li>
+<li>如果想确认用户更明确的意图后再展示详情页，则可以使用点击，但需要显示点击的入口，例如一个“更多内容”的链接；</li>
+</ol>
+</li>
+<li>输入覆盖层<ol>
+<li>使用输入覆盖层简化表单的外观，帮助信息只在覆盖层中显示；</li>
+<li>表单字段与覆盖层中的字段，可以加以区分，例如加粗的外框；</li>
+<li>用户点击任何其他地方都可以退出覆盖层，同时捕捉TAB事件；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>嵌入层：好处是可以保持上下文，像打开一个抽屉一样，然后用完还可以关上；<ol>
+<li>对话框嵌入层<ol>
+<li>可以用来实现页面自定义，这样既可以调整页面，又可以马上看到结果；</li>
+<li>建议使用快速的滑动动画，免得打开太生硬；</li>
+<li>一般用来显示一些不太重要的，不属于页面主流程的工具或操作（如果是主要的操作，则应该放在外面，方便快速点击，提高易发现性）；</li>
+</ol>
+</li>
+<li>列表嵌入层<ol>
+<li>列表是使用嵌入层的理想场所；</li>
+<li>如果列表项的其他项作为上下文有助于用户理解可见的嵌入层，则应该使用列表嵌入层（如果组合的搜索条件）；</li>
+<li>可以避免用户打开新页面或新覆盖层来查看细节信息；</li>
+<li>如果空间大小有限，则每次只展开一项，每当有新一项打开时，缩起隐藏其他项；</li>
+<li>在显示并列性内容时，可以一次打开多个项（例如搜索条件的筛选）；</li>
+</ol>
+</li>
+<li>详情嵌入层<ol>
+<li>可以在上下文中显示附加信息，且不会遮挡其他信息；</li>
+<li>可以避免悬停与遮挡的反模式；</li>
+<li>关闭嵌入层的操作要简单（考虑对称方式）；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>标签页<ol>
+<li>可以用标签页在当前页面中，显示更多的附加信息；</li>
+<li>避免在一个页面中使用多组标签页；如果确实需要使用，则内容区域在视觉上要有所区分；</li>
+<li>最重要的内容放在第一项，因为其他项打开的机率会逐渐减小；</li>
+<li>一般通过鼠标单点来激活TAB标签（有时候意外划过，导致启动TAB会让人感觉意外，不过如果是延迟0.5秒呢？）；除非其他标签的内容很重要，才使用悬停，帮助用户更快的发现其他重要的内容；</li>
+</ol>
+</li>
+<li>虚拟页面<ol>
+<li>虚拟滚动<ol>
+<li>适合显示搜索结果，不太适合显示邮件或者任务，因为前者用户不需要查看所有结果，但后者一般用户需要查看到底；</li>
+<li>保证用户随时知道自己的位置，告诉他们滚动后呈现的数据范围；</li>
+<li>在用户等待数据加载期间给出反馈；</li>
+<li>可以既定的数据集，可以创造一个完全加载状态的假象（有利于滚动条的定位和暗示）；</li>
+<li>对于搜索结果，可以随着滚动持续扩展虚拟空间</li>
+<li>为用户提供好的往返导航的体验，比如隐喻有限的空间，方便其操作定位；</li>
+</ol>
+</li>
+<li>内置分页<ol>
+<li>内置分页可以呈现自然的“分块”效果；同时也能保证切换页面时的平滑流畅的体验；</li>
+<li>正确处理“后退”按钮，让后退按钮对分页有效；（是否可以用局部的上一页与下一页按钮？）</li>
+<li>只刷新“虚拟页面”，则不是整个页面；</li>
+<li>以渐进加载的方式，向虚拟空间中加载更多的内容，而不是一次加载，不然当结果很大时，会很慢；</li>
+</ol>
+</li>
+<li>滚动分页：传送带<ol>
+<li>特点：以动画方式滚进视图；非常适合显示有视觉差异的内容，尤其是有图片的类型；（如果没有差异，用户不能立即分辨出内容之间的区别，显得单调无聊，浏览效率也比较低，此时用列表浏览可能更好）</li>
+<li>一般来说，传送带左端的内容优先级更高，用户更经常访问，右端的访问概率逐渐降低；故传送带适合有显示优先级的内容；</li>
+<li>如果要显示的内容很多，需要用户浏览，则传送带的浏览效果较低，并不方便；</li>
+<li>一般内容要够大，内容间的留白也要大一些，以便区分；</li>
+<li>将往返箭头放在一起虽然会方便操作，但不容易被发现，因为用户的心理预期经常是放在两端；</li>
+</ol>
+</li>
+<li>虚拟摇摄<ol>
+<li>可以作为滚动无穷大的2D画面的替代手段；（昨晚在TED看见了一个新式的图片浏览技术，即是用摇摄的办法；不过其最牛逼之处还在于将集合同一事物的不同用户的图片数据库，生成浏览集合拼贴）</li>
+<li>尽量在摇摄中加入惯性，这样可以提高浏览效果，也更加接近现实效果；</li>
+</ol>
+</li>
+<li>伸缩式用户界面<ol>
+<li>通过虚拟的3D空间（增加深度一轴），来扩展显示更多的内容；</li>
+<li>在移动画面时，可以考虑使用虚拟摇摄，例如谷歌地图</li>
+</ol>
+</li>
+<li>分页与滚动<ol>
+<li>如果内容实际上具有连续性，则使用滚动会比例好；</li>
+<li>如果有批量操作功能，则滚动会比分页好，除非增加一个临时空间来存放（但不好处理全选后的滚动场景）；</li>
+<li>对于临时数据，如搜索结果，则分页比较好，因为越后面的结果相关性越低，查看必要性越弱；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>流程处理<ol>
+<li>魔法原理：一个摆脱技术驱动的技巧，问自己一个问题“能否考虑通过某种魔法来帮助用户快速神奇的完成任务？”（通过设计隐藏复杂性）；</li>
+<li>交互式单页、嵌入式部件<ol>
+<li>将多个过程缩减在一页中处理，简化了步骤，例如淘宝购物的“颜色”“尺码”选择（实时显示各种有效选项）；</li>
+<li>加快了用户的决策速度；</li>
+<li>可以在上下文中显示预览；</li>
+</ol>
+</li>
+<li>对话框覆盖层<ol>
+<li>可以将多个步骤汇集到页面的上下文中；用户会感觉比使用多个页面更轻松；</li>
+<li>亮盒效果有助于用户集中注意力；显示步骤进度，让用户有进度预期；由易入难，避免一开始吓跑了用户；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>配置程序<ol>
+<li>即时反馈：让用户可以看到选择后的效果（感觉跟对话框嵌入层有点像）；</li>
+</ol>
+</li>
+<li>静态单页<ol>
+<li>如果过程比较复杂，可以考虑使用多页流程；如果步骤较少较简单，则应考虑使用静态单页（可以考虑渐进展示）；</li>
+<li>使用视觉技巧减少用户心理上的步骤数（例如通过颜色对步骤二次分组）；</li>
+<li>对用户当前的步骤及所剩步骤给出提示；</li>
+<li>尽可能汇集默认选项，以简单整个流程；</li>
+<li>把最简单的操作放在多步流程的前面；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>原理四：提供邀请<ol>
+<li>邀请是引导用户进入下一个交互层次的提醒和暗示；</li>
+<li>静态邀请<ol>
+<li>引导操作邀请<ol>
+<li>针对主要操作使用；</li>
+<li>针对简单的1-2-3步骤使用；</li>
+<li>把引导操作的区域设计得容易吸引用户注意力，但不干扰整个页面的视觉外观；</li>
+<li>可以利用空白区域来引导用户操作；</li>
+<li>可以利用看起来未完成的区域引导用户操作（但用户怎么知道它是未完成的呢？嗯，是个挑战）</li>
+</ol>
+</li>
+<li>漫游探索邀请<ol>
+<li>在重新设计站点或发布新站点，需要向用户介绍一系列新功能时使用；</li>
+<li>尽可能密切漫游探索邀请与站点本身的联系（如果没有联系，干嘛出现？）</li>
+<li>保持简明扼要，使其容易退出且容易重新启动；</li>
+<li>不要指望通过它解决界面本身存在的问题（使用前记得先反省）；</li>
+<li>保持漫游过程简单；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>动态邀请<ol>
+<li>悬停邀请<ol>
+<li>当操作不如内容重要且需要操持界面整洁时使用；</li>
+<li>可以通过改变光标、背景、显示工具提示等共同配合表明所邀请的操作；</li>
+<li>在悬停邀请期间，尽量为用户提供单击后产生结果的预览；</li>
+<li>在交互的不同阶段，尽量使用一些用户熟悉的元素，以助于用户的理解（如按钮、链接、下拉箭头和通用图标）；</li>
+<li></li>
+</ol>
+</li>
+<li>预期功能邀请<ol>
+<li>把邀请安排在适当的上下文中，特别是要靠近交互的主体；</li>
+</ol>
+</li>
+<li>拖放邀请<ol>
+<li>拖放期间，尽可能利用多个趣味瞬间确保用户理解每一次邀请；</li>
+<li>在位于可拖动区域时，应该改变光标形状；</li>
+<li>为用户拖动明确提供一个可以抓握的空间；</li>
+</ol>
+</li>
+<li>推论邀请<ol>
+<li>类似代码自动补全；</li>
+<li>Sketchup的下一步功能提示；</li>
+</ol>
+</li>
+<li>更多内容邀请<ol>
+<li>可以利用悬停提示更多内容的存在，同时显示少量更多的内容；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>原理五：巧用变换<ol>
+<li>把动画加入到应用程序中必须有一个理由，滥用反而会带来干扰；</li>
+<li>变换模式<ol>
+<li>加亮和减暗，适用情形如下：<ol>
+<li>吸引用户注意力至界面中某一特定的部位；</li>
+<li>提醒用户某个对象正处于交互的状态；</li>
+<li>通过暗化减少界面中干扰视觉的元素；</li>
+<li>表示界面中某一部分还未就绪，不能响应操作；</li>
+</ol>
+</li>
+<li>扩展与折叠，适用情形如下：<ol>
+<li>处理大量的内容或模块；</li>
+<li>有效利用屏幕空间；</li>
+<li>进一步展示列表项的细节；</li>
+<li>辅助编辑内容</li>
+</ol>
+</li>
+<li>自恢复式淡出（删除-缺口-闭合），适用情形：<ol>
+<li>从列表或风格中删除一个对象；</li>
+<li>形象的表示移动过程，哪里来；</li>
+<li>表示拖动操作完成（即放下的对象从旧位置成功移到了新位置）</li>
+</ol>
+</li>
+<li>动画效果（运动的重量与加速度）<ol>
+<li>减少一半的规则（定义变换效果后，减少一半效果值会更加理想）；</li>
+<li>如果直接移动对象到不同位置上让人容易困惑，则考虑使用动画展现过程；</li>
+</ol>
+</li>
+<li>聚光灯效果<ol>
+<li>表明某个对象的状态已经改变或已经更新为新的信息；（方便用户预览修改的效果）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>变换的目的<ol>
+<li>增添魅力<ol>
+<li>让界面变化看起来更加优雅；</li>
+</ol>
+</li>
+<li>增进沟通<ol>
+<li>在视图变化时保持上下文</li>
+<li>解释刚刚发生了什么</li>
+<li>提示对象之间的关系</li>
+<li>吸引用户的注意力</li>
+<li>缩短时间感知</li>
+<li>创建虚拟空间的假象</li>
+</ol>
+</li>
+<li>最佳实践<ol>
+<li>变化越快，表明事件越重要；</li>
+<li>快速移动看起来比快速的颜色变化更重要；</li>
+<li>朝向用户移动看起来比远离用户移动更重要；</li>
+<li>非常慢的变化可以用在不干扰用户注意力的场景；</li>
+<li>移动可以表达对象的位置有变化（听起来像是废话）；</li>
+<li>正常情况下，应该对称性设计；</li>
+<li>一定不要过渡使用变换（滥用效果的广告即是例证，变换应该是对用户操作后的反馈）；</li>
+<li>尽量不要只依靠变换来表达界面的变化（那还有什么其他方法呢？）</li>
+<li>让变换发生在用户视力的焦点区附近（这样比较容易引起用户察觉）；</li>
+<li>花里胡哨的效果容易适得其反，干扰用户；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>原理六：即时反应<ol>
+<li>查询模式<ol>
+<li>自动完成<ol>
+<li>智能的体现，减轻用户的输入负担，辅助用户更快的完成输入；</li>
+<li>问题：多长时间内给出反馈？（我觉得取决于待搜索选项的多少，如果很多，则在用户停止输入时，再反馈；如果很少，则可以每输入一个字符就马上给出反馈）</li>
+<li>问题：如何选项选项？当用户输入时，手是放在键盘上面的，所以应该支持快捷键，例如回车或者TAB等，减少用户再转移到鼠标操作；</li>
+<li>问题：如何用户的输入涉及多个文本框，则应该根据逻辑关系进行配合，尽量减少用户的操作负担；</li>
+</ol>
+</li>
+<li>实时建议<ol>
+<li>针对大选项的情况，通过算法给出建议，从大概率上减少用户的输入负担</li>
+<li>问题：应避免无效选项分散用户注意力，好的算法很重要；</li>
+<li>由于猜不准用户的真实想法，所以实时建议应该做为辅助选项，而不是像“自动完成”做为直接的搜索关键词；</li>
+<li>提供建议时，应该考虑给出上下文，这样用户易于理解建议的合理性；</li>
+<li>由于面向未知，所以应在用户停止输入后，再显示建议，不然估计服务器吃不消；</li>
+</ol>
+</li>
+<li>实时搜索<ol>
+<li>利用用户输入关键词的时间，从服务器获得结果并给予展示，相对常规搜索，某些程度上节省了时间，因为用户有可能输入到一半的时候，就已经发现选项，不需要输入全部的关键词；</li>
+<li>实时搜索的结果应该有摘要或部分内容预览，这样有利于用户判断结果是否自己想要的内容；</li>
+<li>注意：提供太多的搜索结果，也会一定程度分散用户的注意力；</li>
+</ol>
+</li>
+<li>微调搜索<ol>
+<li>通过侧边栏显示多种筛选选项，来调整搜索结果的范围（个人经验证明，此种方式效果甚好，但也不一定在侧边，现在很多购物网站如淘宝京东是放在上边）</li>
+<li>避免刷新整个页面，而应迅速显示筛选后的结果（此处估计需要用到缓存的办法）（同时考虑使用动画，视觉上面减少等待时间，过渡也更加平滑）</li>
+<li>交互式单页也算是一种微调；</li>
+<li>具有多种特征的商品，适合使用微调搜索；</li>
+<li>适当延迟再触发搜索，因为有可能用户会勾选多个微调条件；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>反馈模式<ol>
+<li>实时预览<ol>
+<li>可以有效预防用户犯错，如果出现错误，在第一时间即可以知道并修正（用户在这个过程中也会更有参与感）；</li>
+<li>把预览放在操作的上下文中；</li>
+<li>尽量让用户看到操作后对象的实时变化；</li>
+<li>实时预览应避免页面切换；</li>
+<li>预览的触发：最好能“每个字符”，其次“焦点离开”，再次“明确的邀请操作的按钮”；</li>
+</ol>
+</li>
+<li>渐进展现<ol>
+<li>从视觉上减少复杂度，避免用户被太多内容吓到，产生心理负担；</li>
+<li>在必要时，才展示出帮助信息，界面更加清爽简洁；</li>
+<li>可以用来引导用户完成较长的流程；</li>
+</ol>
+</li>
+<li>进度指示<ol>
+<li>从视觉上减少用户的时间感知；</li>
+<li>使用各种指示器：进度条、百分比、菊花等有趣的循环动画；（我特别喜欢将内容分享至Evernote进行收藏的动画）</li>
+<li>指示器应该放在发生操作的位置旁边；例如，焦点是输入框，则在输入框旁边显示；如果焦点是操作的结果，则在显示结果的区域显示；</li>
+<li>尽可能用指示器显示实际的进度（微信的骗人的进度条也行），如果不行，才考虑使用循环动画；</li>
+</ol>
+</li>
+<li>定时刷新<ol>
+<li>适用持续动态有新内容的场景，比如新闻、社交状态等，目的是为了保持内容的新鲜；</li>
+<li>但需要考虑易读性，所以也不能太频繁；而且当有新内容进入时，应该考虑使用动画让其显得不突兀；</li>
+<li>也可以考虑为用户提供控制刷新的手段，例如邮件中的“收信”、“刷新”等按钮；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1/" class="print-no-link">#设计</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Web界面设计</div>
+      <div>http://example.com/2016/04/16/Web界面设计/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2016年4月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2016/04/25/%E9%94%80%E5%94%AE%E5%9C%A3%E7%BB%8F/" title="销售圣经">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">销售圣经</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2016/04/11/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8UI%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="移动应用UI设计模式">
+                        <span class="hidden-mobile">移动应用UI设计模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

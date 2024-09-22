@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="商业模式Joel 提到了两种商业模式  微软式的：前者进入的是一个充分竞争的市场，因此需要找好自己的定位，一步一个脚步的去慢慢发展自己，没有快速增长的可能性； 亚马逊式：后者进入的是一个几乎没有竞争者、有规模效应或网络效应的市场，因此需要在前期大量花钱快速占领市场份额，因为最后只有一个公司会生存下来；  Joel 这个分析很有道理，它让我不得不思考自己的公司将来要如何定位自己的方向和模式； 鸡和蛋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Joel on software">
+<meta property="og:url" content="http://example.com/2020/12/06/Joel%20on%20software/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="商业模式Joel 提到了两种商业模式  微软式的：前者进入的是一个充分竞争的市场，因此需要找好自己的定位，一步一个脚步的去慢慢发展自己，没有快速增长的可能性； 亚马逊式：后者进入的是一个几乎没有竞争者、有规模效应或网络效应的市场，因此需要在前期大量花钱快速占领市场份额，因为最后只有一个公司会生存下来；  Joel 这个分析很有道理，它让我不得不思考自己的公司将来要如何定位自己的方向和模式； 鸡和蛋">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-06T10:32:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T23:53:19.461Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="思考">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Joel on software - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Joel on software"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-12-06 18:32" pubdate>
+          2020年12月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Joel on software</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="商业模式"><a href="#商业模式" class="headerlink" title="商业模式"></a>商业模式</h4><p>Joel 提到了两种商业模式</p>
+<ul>
+<li>微软式的：前者进入的是一个充分竞争的市场，因此需要找好自己的定位，一步一个脚步的去慢慢发展自己，没有快速增长的可能性；</li>
+<li>亚马逊式：后者进入的是一个几乎没有竞争者、有规模效应或网络效应的市场，因此需要在前期大量花钱快速占领市场份额，因为最后只有一个公司会生存下来；</li>
+</ul>
+<p>Joel 这个分析很有道理，它让我不得不思考自己的公司将来要如何定位自己的方向和模式；</p>
+<h4 id="鸡和蛋的问题"><a href="#鸡和蛋的问题" class="headerlink" title="鸡和蛋的问题"></a>鸡和蛋的问题</h4><p>有些商业模式会遇到先有鸡和先有蛋的问题，Joel 给出的意见是提供向后兼容性，这样就可以破解这个问题，他说得很有道理；</p>
+<p>他举了几个例子：</p>
+<ul>
+<li>MS-DOS 系统对 CP&#x2F;M 上的文字处理软件的兼容性；</li>
+<li>PayMyBills 在开始时先让客户的账单寄送到自己的地址，然后为客户人工扫描成电子版；</li>
+</ul>
+<h4 id="如何阅读别人的代码"><a href="#如何阅读别人的代码" class="headerlink" title="如何阅读别人的代码"></a>如何阅读别人的代码</h4><p>关键：放慢阅读的速度；</p>
+<p>原因：同样长度的编程语言包含的信息量，要远大于普通的语言；但人们总是习惯是普通语言的阅读速度，学尝试阅读代码，这会让他们很挫败。因此人们总是倾向于重写代码，但这其实这将花费更多的时间；</p>
+<p>方法：</p>
+<ul>
+<li>结队：和另外一个同事结队工作；将看到和想到的东西，大声说出来；</li>
+<li>讨论：如果不同意或不明白对方的意思，马上要求对方进行解释；</li>
+<li>跳过：有时候看不明白中间的某个东西，可以暂时跳过，等看完头尾后，再回来重新看中断部分，这个时候很有可能就看懂了；</li>
+<li>宏观与微观：从微观的角度，将单行代码翻译成普通语言；然后从宏观的角度，将整段代码翻译成普通语言；</li>
+</ul>
+<h4 id="产品竞争策略"><a href="#产品竞争策略" class="headerlink" title="产品竞争策略"></a>产品竞争策略</h4><p>如果产品进入的是一个已经被竞争对方完全占领的市场，那么就会面临如何让用户切换到使用自己的产品的问题；</p>
+<p>用户的切换是有成本的，应提前罗列出每一个用户可能遇到的困难，并为它们想好对策，消除任何可能的障碍；避免用户在切换过程中，因为遇到困难而放弃了；</p>
+<p>同时还要考虑如何让用户能够切换回旧的方式也很重要；例如 EXCEL 的例子；切换的过程不是一夜间全部发生的，而是一个陆续渐进的过程，这意味着即期有一部分尝鲜的客户很喜欢 EXCEL，他们也将面临一个障碍，即他们生成的 EXCEL 无法被同事或者客户打开；针对这个情况，EXCEL 为用户提供了兼容性，即可以将 EXCEL 存储成 LOTUS123 的版本；</p>
+<h4 id="如何吸引人才"><a href="#如何吸引人才" class="headerlink" title="如何吸引人才"></a>如何吸引人才</h4><ul>
+<li>为他们提供舒适的、有吸引力的工作环境；</li>
+<li>去除在招聘过程中任何可能让候选人感到一丝丝犹豫的障碍；</li>
+<li>提供金钱之外的一些福利（由于批量采购的关系，福利实际比表面上的价格更省钱，至少省一半）；</li>
+<li>以可接受的薪资成交，然后第二天再告知提高5%，让其心怀感激；</li>
+</ul>
+<h4 id="五个为什么与清单"><a href="#五个为什么与清单" class="headerlink" title="五个为什么与清单"></a>五个为什么与清单</h4><p>人的大脑是不可靠的，而黑天鹅事件是不可预估的，因此通过五个为什么的方法，找到问题发生的根本原因；</p>
+<p>将避免问题再次发生的操作写到工作清单中，让后续的每一次操作，都能够对照清单来执行，就像飞行员开飞机一样；</p>
+<p>让清单代替大脑的思考，避免遗漏；</p>
+<h4 id="想赚钱别怕脏"><a href="#想赚钱别怕脏" class="headerlink" title="想赚钱别怕脏"></a>想赚钱别怕脏</h4><p>帮客户解决的问题越是困难，其价值就越大，同时也意味着能够赚到更多的钱；</p>
+<h4 id="Office-复杂的文件格式"><a href="#Office-复杂的文件格式" class="headerlink" title="Office 复杂的文件格式"></a>Office 复杂的文件格式</h4><p>完全搞懂复杂的东西可能要付出很大的代价，一种变通的方法是把它封装起来，在需要的调用它即可，这样可以实现复杂性的隔离；</p>
+<h4 id="管理方法"><a href="#管理方法" class="headerlink" title="管理方法"></a>管理方法</h4><p>提供愿景和使命，反复传播这些使命，让大家认同；激发每个人内心想变成更好的自己的欲望，变成由内部激励来驱动自己的工作，而不是从外部激励，因为那样很容易导致动作变形；</p>
+<h4 id="寸土必争"><a href="#寸土必争" class="headerlink" title="寸土必争"></a>寸土必争</h4><p>不放过每一个可以改进的小小细节，当积累到足够多数量后，它就会产生质变，让最终产品一眼看上去，就呈现出一种卓越的精品特质；</p>
+<h4 id="少即是多"><a href="#少即是多" class="headerlink" title="少即是多"></a>少即是多</h4><p>不要给用户太多选择，因为人的大脑容量有限；选择太多的话，反而增加了决策的成本和负担，这样容易让用户感到无法胜任的无力感和不开心；</p>
+<h4 id="易用性的优先级"><a href="#易用性的优先级" class="headerlink" title="易用性的优先级"></a>易用性的优先级</h4><p>不解决问题的产品，易用性再好也是徒劳；能够解决问题的产品，是讨论易用性的前提；易用性确实是非常重要，它有助于留下更多的用户数量，但首先要有用户愿意进来；</p>
+<h4 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h4><p>在工作和家庭之外，人们需要第三种空间。以前这些空间是实体的，如咖啡馆、酒吧、球馆等；现在这些空间变成虚拟的了；社区空间需要管理，否则它将会出现公地悲剧。总是有一些人自私的人，为了自己的利益，不惜牺牲他人，注意管理好他们；因为在社区中，有价值的总是少数人，多数人并不能贡献什么有趣的内容。但千万不要让那些无趣的人，把有价值的少数人给逼走了；</p>
+<blockquote>
+<p>人们对社区有一种基因上需求，这方面有待读一些社会心理学方面的书籍进行深入了解；</p>
+</blockquote>
+<h4 id="开发时间规划"><a href="#开发时间规划" class="headerlink" title="开发时间规划"></a>开发时间规划</h4><p>对于大的任务，我们估算的时间将非常不准确，因此不要以大任务为单位估算它们。应该将大任务，按照实现的步骤，拆分成多个小任务；这些小任务必须要非常小，小到可以在以小时为单位的时间内完成。之后将小任务的完成时间累计起来，就会得到大任务的完成时间；</p>
+<p>事后记录小任务的实际完成时间，调整它在脑海中的概念，做为下一次估算的依据，这样一段时间下来，估算就越会越来越准确；</p>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><p>原则：</p>
+<ul>
+<li>自己写的代码不要让它会抛出异常，这样后续调用它们时，就完全不用担心它们会抛异常，因此也不需要额外的去处理它们；</li>
+<li>调用别人写的代码时，因为不知道它们是否会抛异常，因此，在调用它们的地方，直接写上异常处理的办法，即当场 try…catch…，不留任何的后患；</li>
+</ul>
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>由于摩尔定律的存在，性能是开发软件过程中，考虑的优先级最低，因为即使短期内面临性能障碍，也很快会被硬件的不断进步所解决；</p>
+<h4 id="创办公司"><a href="#创办公司" class="headerlink" title="创办公司"></a>创办公司</h4><p>提供最好的条件-&gt;找到最好的人-&gt;生产最好的产品-&gt;利润</p>
+<blockquote>
+<p>点子和想法并不重要，因为只要有了优秀的人，他们自己会生产点子；</p>
+</blockquote>
+<h4 id="办公室设计"><a href="#办公室设计" class="headerlink" title="办公室设计"></a>办公室设计</h4><p>设计师：Roy Leone</p>
+<ul>
+<li>足够多的电源接口，有20个；</li>
+<li>八口的交换机，方便给多台电脑提供有线连接；</li>
+<li>预置布线槽，隐藏杂乱的电线；</li>
+<li>条型办公桌，方便结队编程；</li>
+<li>三面窗，两面采光；</li>
+<li>电脑桌墙上有一个可以看到隔壁办公室窗户的窗口（相当于每扇窗户被三个办公室共用）；</li>
+<li>有休息区和娱乐区，让办公室比家更舒适和方便；</li>
+</ul>
+<h4 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h4><p>软件并不开源，但向客户提供源代码，这样当他们发现问题时，也可以尝试自行修复，之后将修复的代码合并进来，以便后续版本升级时，客户不会被影响；</p>
+<h4 id="简化性"><a href="#简化性" class="headerlink" title="简化性"></a>简化性</h4><p>重点是每个功能都能够帮客户解决问题，这样每个功能都能够带来收入；虽然 80&#x2F;20 真的存在，但不同客户之间的 20% 并不相同；仅开发只有 20% 功能的精简版，但极大的影响收入来源；</p>
+<h4 id="重构与推翻"><a href="#重构与推翻" class="headerlink" title="重构与推翻"></a>重构与推翻</h4><p>当一个软件已经上线运行一段时间后，例如1年，由于各种历史的原因，在一开始的时候埋下了一些错误，它有可能变得难以维护。这时候千万不要推翻重来，而是先要各种简单容易的重构，例如将代码按规范格式化、将大函数拆成小函数、优化成有意义的变量名称等；这些工作都非常小，也不容易引入错误，同时也不会影响现有软件的运行。</p>
+<p>当这个工作持续到一定的程度，代码就会在不知不觉变得好了起来，相比推翻重来，它将省下大量的时间，因为它并不触及到对原有核心代码的修改，却让代码变得容易维护了。</p>
+<h4 id="客服支持"><a href="#客服支持" class="headerlink" title="客服支持"></a>客服支持</h4><p>客户遇到问题，你帮他解决了，客户实际上变得比没有问题时还要满意。</p>
+<h4 id="无理由退款"><a href="#无理由退款" class="headerlink" title="无理由退款"></a>无理由退款</h4><p>90天内，无偿退款。即使超过了90天，也仍然可以退款，任何时候，都可以退款。</p>
+<p>原因：确实有人会退款，但是那只占很少的比例。但是由于有无限制的退款策略，会让下单的人感觉到很放心，因此试用的人反而会去增加很多很多，因为他们没有任何的决策成本。</p>
+<h4 id="发布策略"><a href="#发布策略" class="headerlink" title="发布策略"></a>发布策略</h4><p>在完成一个比较成熟的软件版本前，先不要大规模的宣传，而是寻找一些愿意尝鲜的客户，让他们先试用产品，帮助他们解决问题，然后在这个过程中不断完善产品，直到 2.0 版就绪；因为面市的是一个不成熟的产品，那么人们会留下不好的第一印象，之后很难改变人们的第一印象，即使后续软件已经改进了，他们也不愿意再做一次尝试；</p>
+<h4 id="发布频率"><a href="#发布频率" class="headerlink" title="发布频率"></a>发布频率</h4><p>软件不适宜过于频繁的发布，因为它可能导致用户经常处于学习的状态中，导致想起他们的反感。每隔一段时间再集中发布一次，并且在界面样式上能够感觉到更新，这样用户会不自觉的发现有变化，然后在使用的过程中会小心一点；</p>
+<h4 id="确定优先级"><a href="#确定优先级" class="headerlink" title="确定优先级"></a>确定优先级</h4><ol>
+<li>罗列所有待开发的功能；</li>
+<li>用1到10为每个功能的开发成本打分，区分小型任务、中型任务、大型任务；</li>
+<li>给每个人有限的预算，例如 50 元，让他们购买他们想要的功能；</li>
+<li>每个功能的销售额除以成本，得到投入产出比；</li>
+<li>按投入产出比从大到小，作为开发顺序；</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%80%9D%E8%80%83/" class="print-no-link">#思考</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Joel on software</div>
+      <div>http://example.com/2020/12/06/Joel on software/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年12月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/17/scons%20%E7%94%A8%E6%B3%95/" title="scons 用法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">scons 用法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/05/%E9%BB%91%E5%AE%A2%E6%94%BB%E9%98%B2%E6%8A%80%E6%9C%AF%E5%AE%9D%E5%85%B8/" title="黑客攻防技术宝典">
+                        <span class="hidden-mobile">黑客攻防技术宝典</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,952 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="缘起 由于 C 和 C++ 比较糟糕的库的链接设计的历史遗留问题，当编译源代码的时候，一般使用 Make 和 Makefile 来指定文件之间的依赖关系，这样可以带来两个好处：一是让编译工作尽量自动化，一条 Makefile 指令可以管一片；二是可以让编译工作加速，当只有少数几个文件中的代码出现变动时，则只需要编译与该代码有依赖或关联的部分文件即可，不需要将整个项目都重新编译，节省时间； 尽管已">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cmake">
+<meta property="og:url" content="http://example.com/2019/05/17/Cmake/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="缘起 由于 C 和 C++ 比较糟糕的库的链接设计的历史遗留问题，当编译源代码的时候，一般使用 Make 和 Makefile 来指定文件之间的依赖关系，这样可以带来两个好处：一是让编译工作尽量自动化，一条 Makefile 指令可以管一片；二是可以让编译工作加速，当只有少数几个文件中的代码出现变动时，则只需要编译与该代码有依赖或关联的部分文件即可，不需要将整个项目都重新编译，节省时间； 尽管已">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-17T01:30:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T03:49:33.551Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Cmake - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Cmake"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-05-17 09:30" pubdate>
+          2019年5月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Cmake</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>缘起<ol>
+<li>由于 C 和 C++ 比较糟糕的库的链接设计的历史遗留问题，当编译源代码的时候，一般使用 Make 和 Makefile 来指定文件之间的依赖关系，这样可以带来两个好处：一是让编译工作尽量自动化，一条 Makefile 指令可以管一片；二是可以让编译工作加速，当只有少数几个文件中的代码出现变动时，则只需要编译与该代码有依赖或关联的部分文件即可，不需要将整个项目都重新编译，节省时间；</li>
+<li>尽管已经有了 Make 这么好用的工具，仍然存在一个问题，即 Makefile 的编译工作跟操作系统有一定的依赖关系，即不同的操作系统，Makefile 的内容需要有所不同，才能正确编译代码；为了解决这个平台依赖的问题，引入了 CMake 工具，它的目标是只需写一次 CMakeLists，就可以根据所要编译的平台环境，自动生成对应的 Makefile，这样一来就可以极大的减少针对不同平台编写 Makefile 的工作量；</li>
+<li>CMake 有自己的语法，可以算是一种 DSL 了，按王垠说法，绝大部分 DSL 都设计的很糟糕，我也有同感，据说可能是因为它们都是由非 PL 专业的人员设计的，所以总是不如一门图灵完备的语言那么强大和高表达性；<ol>
+<li>后来，在 CMake  教程学完后，发现了另外一个以 python 作为作为语法表达的工具 SCons，估计这个工具就要强大多了，据说得到了很多名家的推荐，包括 Eric S. Raymond、Timothee Besset、Zed A. Shaw 等；有待日后抽空学习了解一下；</li>
+</ol>
+</li>
+<li>升级步骤<ol>
+<li>到官网下载源代码包，解压，进入解压后的文件夹</li>
+<li>cmake .</li>
+<li>make</li>
+<li>make install （注：此步可选）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>语法<ol>
+<li>说明<ol>
+<li>由指令+指令参数组成；</li>
+<li>指令的名称一般使用小写字母表示（实际并不区分大小写），指令的参数部分一般用圆括号括起来，例如 cmake_minimum_required (VERSION 2.8)</li>
+<li>参数部分中的变量名称一般使用大写字母表示，例如 VERSION，引用变量时的格式为美元符加花括号，例如 ${VERSION}</li>
+<li>注释使用 # 符号；间隔使用空格</li>
+<li>后来我发现 CMake 有很多自己的全局变量；包括<ol>
+<li>CMAKE_BINARY_DIR，顶级二进制文件目录</li>
+<li>CMAKE_SOURCE_DIR，顶级源文件目录</li>
+<li>CMAKE_CURRENT_BINARY_DIR，当前二进制文件目录</li>
+<li>CMAKE_CURRENT_SOURCE_DIR，当前源文件目录</li>
+<li>PROJECT_NAME，项目名称</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>具体指令<ol>
+<li>cmake_minimum_required<ol>
+<li>用来指定版本要求，例如：cmake_minimum_required (VERSION 2.8)</li>
+</ol>
+</li>
+<li>project<ol>
+<li>用来指定项目名称，例如 project (Demo)</li>
+</ol>
+</li>
+<li>add_executable<ol>
+<li>用来指定要生成的目标，以及目标所依赖的源文件，例如 add_executable(Demo main.cc)</li>
+<li>其他源文件支持多个；当有很多时，可以使用变量来替换表示；</li>
+</ol>
+</li>
+<li>aux_source_directory<ol>
+<li>用来查找指定目录下的所有源文件，首参数为目录路径，第二个参数是变量名，用来存储找到的结果；<ol>
+<li>例如 aux_source_directory(. DIR_SRCS)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>add_subdirectory<ol>
+<li>用来添加子目录，这样子目录下的 CMakeLists 也会进行处理；</li>
+<li>子目录的 CMakeLists 用来处理子目录里面的内容，例如生成库文件；</li>
+</ol>
+</li>
+<li>include_directories<ol>
+<li>指定头文件的搜索目录</li>
+</ol>
+</li>
+<li>link_directories<ol>
+<li>指定要链接的库文件的搜索目录</li>
+</ol>
+</li>
+<li>link_libraries<ol>
+<li>指定要链接的库文件的名称和路径（绝对地址）</li>
+</ol>
+</li>
+<li>target_link_libraries<ol>
+<li>指定要链接的库文件的名称，第一个参数表示主文件，第二个参数表示主文件需要链接的库文件；<ol>
+<li>例如 target_link_libraries(Demo MathFunctions)</li>
+<li>如果有多个库，估计也支持多参数，以及使用变量来表示多个库文件；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>add_library<ol>
+<li>用来指定要生成的库文件，第一个参数表示要生成的库文件，第二个参数所用到的源文件；<ol>
+<li>例如 add_library (MathFunctions ${DIR_LIB_SRCS})</li>
+<li>第二个参数也同样支持用变量表示多个文件；</li>
+</ol>
+</li>
+<li>格式<ol>
+<li>add_library(<name> [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL]  [source1] [source2 …])</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>target_include_directories<ol>
+<li>指定编译 target 时要使用的 include 目录；其中的 target 需要由 add_library 或者 add_executable 指定；</li>
+<li>格式<ol>
+<li>target_include_directories(<ol>
+<li><target> [SYSTEM] [BEFORE]</li>
+<li>&lt;INTERFACE | PUBLIC | PRIVATE&gt; [items1…]  </li>
+<li>[&lt;INTERFACE | PUBLIC | PRIVATE&gt; [items2…] …])</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>configure_file<ol>
+<li>根据输入的文件，替换其中的变量，生成另外一个文件；第一个参数表示输入的文件，第二个参数表示要生成的文件</li>
+<li>输入文件中的变量定义格式为： #CMakedefine VAR …</li>
+<li>输出文件中的变量会被替换为：#define VAR …   或者  &#x2F;* #undef VAR *&#x2F; （表示此变量被注释掉了，不启用）</li>
+<li>例如： configure_file ( “${PROJECT_SOURCE_DIR}&#x2F;config.h.in”  “${PROJECT_BINARY_DIR}&#x2F;config.h” )</li>
+<li>在输入的文件中，可以引用在 CMakeLists 文件中定义的变量</li>
+<li>输出的文件可以作为源代码文件的一部分引用；</li>
+</ol>
+</li>
+<li>options<ol>
+<li>用来定义可供用户选择的配置项开关，第一个参数是选项变量名，第二个参数是选项提示信息，第三个参数是默认初始值（可选，未注明则默认为 OFF ）</li>
+<li>选项只有两种默认值，ON 或者 OFF</li>
+<li>例如 option (USE_MYMATH “Use custom math implementation” ON)</li>
+</ol>
+</li>
+<li>if<ol>
+<li>用来设置条件判断，<ol>
+<li>格式为<ol>
+<li>if (<condition>)<ol>
+<li><commands>  # command 可由多行组成，每行建议缩进以方便阅读</li>
+</ol>
+</li>
+<li>elseif(<condition>)<ol>
+<li><commands></li>
+</ol>
+</li>
+<li>else()<ol>
+<li><commands></li>
+</ol>
+</li>
+<li>endif()</li>
+</ol>
+</li>
+<li>示例<ol>
+<li>if (USE_MATH)<ol>
+<li>include_directories (“${PROJECT_SOURCE_DIR}&#x2F;math”)</li>
+<li>add_subdirectory (math)</li>
+<li>set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)</li>
+</ol>
+</li>
+<li>endif ()</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>一般源文件中也会有基于全局条件变量的部分代码，例如<ol>
+<li>#ifdef USE_MYMATH<ol>
+<li>#include “math&#x2F;MathFuncitons.h”</li>
+</ol>
+</li>
+<li>#else<ol>
+<li>#include</li>
+</ol>
+</li>
+<li>#endif</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>set<ol>
+<li>用来设置变量及其初始值，第一个参数为变量名，第二个参数为变量值，第三个参数是父级作用域 [PARENT_SCOPE]（可选）<ol>
+<li>格式：set (<variable> <value>… [PARENT_SCOPE])</li>
+<li>我们在 CMakeLists 中设置的变量，是可以在 config.h.in 文件中引用的；</li>
+</ol>
+</li>
+<li>用来设置 CACHE，它用来将某个变量值存储到缓存中，重新运行 cmake 时，会使用缓存值，除非使用 [FORCE] 选项显式的重新赋值；<ol>
+<li>格式：set (<variable> <value>… CACHE <type> <docstring> [FORCE])</li>
+<li>其中 type 表示要缓存的变量类型，支持以下五种<ol>
+<li>BOOL，布尔值，ON&#x2F;OFF 两个值；</li>
+<li>PATH，文件夹路径</li>
+<li>FILEPATH，文件名路径；</li>
+<li>STRING，字符串</li>
+<li>INTERNAL，同 STRING，也是字符串；据说是隐式的 FORCE，暂时不知道使用场景；</li>
+</ol>
+</li>
+<li><docstring> 用来对缓存的变量做简单说明，仅支持字符串格式；</li>
+</ol>
+</li>
+<li>用来设置环境变量<ol>
+<li>格式：set (ENV{<variable>} [<value>])</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>install<ol>
+<li>用来设置安装规则，DESTINATION 用来表示要安装的目标路径，FILES 用来表示文件安装规则，TARGETS 用来表示target 目标的安装规则</li>
+<li>示例<ol>
+<li>install (TARGETS Demo DESTINATION bin)</li>
+<li>install (FILES “${PROJECT_BINARY_DIR}&#x2F;conifig” DESTINATION include)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>add_test<ol>
+<li>用来添加测试用例，格式为 add_test (NAME <name> COMMAND <command> [<arg>…])<ol>
+<li>第一个参数表示测试用例的名称，第二个名称表示要执行的测试命令，第三个参数表示测试选项</li>
+<li>示例：add_test (test_5_2 Demo 5 2)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>enable_testing<ol>
+<li>用来表示启用测试，可以没有参数<ol>
+<li>示例：enable_testing( )</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>set_tests_properties<ol>
+<li>用为设置测试的参数，一般用来验证测试结果是否正确，格式 set_tests_properties (test1 [test2…]  PROPERTIES prop1 value1 prop2 value2)<ol>
+<li>其中 test1, test2 等表示测试用例的名称，通过 add_test 指令设定；</li>
+</ol>
+</li>
+<li>示例<ol>
+<li>set_tests_properties (test_5_2 PROPERTIES PASS_REGULAR_EXPRESSION “is 25”)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>include<ol>
+<li>加载指定的CMake文件或模块，以便加载并运行文件或模块中的 CMake 代码，格式为 include (&lt;file | module&gt; [OPTIONAL])</li>
+<li>示例<ol>
+<li>include (${CMAKE_ROOT}&#x2F;Modules&#x2F;CheckFunctinExists.cmake)</li>
+</ol>
+</li>
+<li>问题：Modules 是哪来的？CMake 自带的；</li>
+</ol>
+</li>
+<li>check_function_exists<ol>
+<li>用来检查某个 C 函数是否可以被链接，格式为：check_function_exists(<function> <variable>)<ol>
+<li>第一个参数 function 表示系统标准库提供的函数名，第二个参数是用来存储结果的变量 variable （临时创建，存储在缓存中）</li>
+</ol>
+</li>
+<li>示例<ol>
+<li>include (${CMAKE_ROOT}&#x2F;Modules&#x2F;CheckFunctionExists.cmake)  # 需要先引入 CMake 自带的宏文件</li>
+<li>check_function_exists (pow HAVE_POW)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>find_package<ol>
+<li>用来查找并导入外包的库</li>
+<li>格式： find_package(<PackageName> [version] [EXACT] [QUIET] [MODULE] [REQUIRED] [[COMPONENTS] [components…]] [OPTIONAL_COMPONENTS components…] [NO_POLICY_SCOPE])<ol>
+<li>REQUIRED 选项，表示该库文件是必须的，没有找到会终止 CMake 执行并退出；</li>
+</ol>
+</li>
+<li>示例：find_package( OpenCV REQUIRED )</li>
+<li>这个指令执行完毕后，会有一些内置变量保存查询结果，包括<ol>
+<li><PackageName>_FOUND，</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>foreach<ol>
+<li>对列表中的元素进行遍历，并对每个元素执行一遍指令</li>
+<li>格式<ol>
+<li>foreach(<loop_var> <items>)  <ol>
+<li><commands></li>
+</ol>
+</li>
+<li>endforeach()</li>
+</ol>
+</li>
+<li>这个命令可以用来执行多个子项目的编译；</li>
+</ol>
+</li>
+<li>添加编译选项<ol>
+<li>SET (GCC_COMPLIE_FLAGS “-lrt”)</li>
+<li>add_definitions(${GCC_COMPLIE_FLAGS})</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>场景<ol>
+<li>构建安装包<ol>
+<li>CMakeLists 配置<ol>
+<li>include (InstallRequiredSystemLibraries)  # 导入包安装的模块</li>
+<li>set (CPACK_RESOURCE_FILE_LICENSE “${CMAKE_CURRENT_SOURCE_DIR}&#x2F;License.txt”)  # 设置版本声明变量</li>
+<li>set (CPACK_PACKAGE_VERSION_MAJOR “${Demo_VERSION_MAJOR}”)  # 设置大版本号</li>
+<li>set (CPACK_PACKAGE_VERSION_MINOR “${Demo_VERSION_MINOR}”)  # 设置小版本号</li>
+<li>include (CPack) # 导入CPack 包；</li>
+</ol>
+</li>
+<li>命令行执行的命令<ol>
+<li>cpack -C CPackConfig.cmake  # 生成二进制安装包<ol>
+<li>或者  cpack -C CPackSourceConfig.cmake   # 生成源码安装包</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Cmake</div>
+      <div>http://example.com/2019/05/17/Cmake/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年5月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/26/%E4%BD%BF%E7%94%A8%20CertBot%20%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%20Let&#39;s%20Encrypt%20SSL%20%E8%AF%81%E4%B9%A6/" title="使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/14/%E4%BA%A7%E5%93%81%E6%B8%B8%E6%88%8F%E5%8C%96/" title="产品游戏化">
+                        <span class="hidden-mobile">产品游戏化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

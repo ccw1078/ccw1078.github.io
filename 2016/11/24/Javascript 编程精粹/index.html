@@ -1,0 +1,1166 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基础：值、变量、控制流程 这是一个值的世界； 六种值：数字、字符串、布尔、函数、对象、undefined（未知）； 与或非三种逻辑运算是否即可组成全世界？ 运算符的运算是有顺序的，不一定要全部算完才有答案； 表达式是一段创造值的代码；（程序是用值来表示的世界） 语句是比表达式更大的单位，以分号结束（大多数需要分号结束，少数情况可以不用，但作者强烈建议这么做，不然会变得复杂）； 一个程序由一组语句">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 编程精粹">
+<meta property="og:url" content="http://example.com/2016/11/24/Javascript%20%E7%BC%96%E7%A8%8B%E7%B2%BE%E7%B2%B9/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="基础：值、变量、控制流程 这是一个值的世界； 六种值：数字、字符串、布尔、函数、对象、undefined（未知）； 与或非三种逻辑运算是否即可组成全世界？ 运算符的运算是有顺序的，不一定要全部算完才有答案； 表达式是一段创造值的代码；（程序是用值来表示的世界） 语句是比表达式更大的单位，以分号结束（大多数需要分号结束，少数情况可以不用，但作者强烈建议这么做，不然会变得复杂）； 一个程序由一组语句">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-11-23T23:28:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T04:02:30.525Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Javascript 编程精粹 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Javascript 编程精粹"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2016-11-24 07:28" pubdate>
+          2016年11月24日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Javascript 编程精粹</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>基础：值、变量、控制流程<ol>
+<li>这是一个值的世界；</li>
+<li>六种值：数字、字符串、布尔、函数、对象、undefined（未知）；</li>
+<li>与或非三种逻辑运算是否即可组成全世界？</li>
+<li>运算符的运算是有顺序的，不一定要全部算完才有答案；</li>
+<li>表达式是一段创造值的代码；（程序是用值来表示的世界）</li>
+<li>语句是比表达式更大的单位，以分号结束（大多数需要分号结束，少数情况可以不用，但作者强烈建议这么做，不然会变得复杂）；</li>
+<li>一个程序由一组语句组成；</li>
+<li>一个语句只有发挥改变世界的作用，才是一个成功的语句；这些改变称为副作用；</li>
+<li>变量可以捕获值，并拥有值（当然，也可以继续捕获，就像狗熊掰棒子，一次只能拿一个）；<ol>
+<li>问：可以抓两个吗？看作者意思好像可以，但我觉得应该不可以，不然事情就变得复杂了；</li>
+</ol>
+</li>
+<li>关键字和保留字不能做为变量名（所以，起个好名字很重要）（名字没起好，程序会出错，比如char和class常躺枪）（禁忌列表很长，但没有双单词，所以，起个双单词的应该万无一失）；</li>
+<li>在给定的时间存在的变量和变量值的集合，叫做环境；初始环境非空，有一些标准变量，并不是空的（就像房子要能住，好歹需要些基本设施）；</li>
+<li>打开新页面，会有新的初始变量；当前页的变量，直到打开新页才会消失；（貌似二者都相当于重新开房，创造了新环境）</li>
+<li>环境初始状态里面，有很多值是函数类型的（这样好，省得自己写函数，可以马上拿来用）（注意，函数和对象也是值的一种）</li>
+<li>&amp;&amp;和||的真正意思：一种能够提供可靠值的简单方式<ol>
+<li>或：先检查左边，如果左边是true，则返回左边；否则返回右边；</li>
+<li>与：先检查左边， 如果左边是false，则返回左边；否则返回右边</li>
+</ol>
+</li>
+<li>函数是包含在值中的一段程序；通常这段程序会执行一些操作，使用包含的函数值调用这段程序；举例：浏览器，alert(“Good Morning”)，称为：变量 alert 拥有一个函数，此函数用于弹出带有消息的小对话框；<ol>
+<li>问：变量alert拥有一个函数后，是否变成函数alert？它还可以拥有其他函数吗？如果给它重新赋其他函数值的话？是的，变成了一个函数；重新赋值可以变成其他函数；</li>
+</ol>
+</li>
+<li>执行函数里面的代码称为调用或应用（用前面的单词好了，比较常听说），使用括号来完成这一过程；<ol>
+<li>问：“生成函数值的表达式都可以通过在后面添加括号来执行，尽管通常会直接引用包含该函数的变量”</li>
+<li>括号是用来调用函数里面的代码的，即使不需要参数，也需要有空括号？是的，没错；</li>
+<li>如果需要有函数值，则将表达式写在括号里面，得到函数值；此时如果函数有代码，则将值做为参数，调用代码进行计算？是的</li>
+<li>那么if()是否也可以这么理解呢？还是说if仅仅是语句的语法单词？不对，if后面不接着括号，它只是一个语句，while才有可能是函数，它只有一个参数，是一个条件表达式；</li>
+<li>经查询，for循环果然是一个函数，这个函数有三个参数，分别为初始值的赋值表达式，条件表达式的布尔值，递增或递减表达式的结果值；</li>
+</ol>
+</li>
+<li>给函数传递的值，叫形参或者实参（好像通常叫参数）；</li>
+<li>函数可能只需要一个参数，也可能需要多个；<ol>
+<li>思：只做一次运算好像不需要创建函数；只有需要使用相同算法重复运算的时候，创造函数才有价值，就好像axure里面的模板，可以一处定义，处处重复使用；</li>
+<li>但通过函数对复杂的运算进行抽象，在一定程度上，也有简化程序的作用，让程序变得更容易理解一些；</li>
+</ol>
+</li>
+<li>理论上可以给任何变量赋一个新值，但这样做很危险（听说也很有用），比如一个变量是函数，然后给它赋值8，它便不再有函数的作用了，变成了一个普通的变量；</li>
+<li>有些函数返回的结果是字符串，可以通过Number函数，将字符串转化成数字，例子：Number(prompt(“pick a number”,””))；<ol>
+<li>问：转化的规则是什么？只有搞清楚规则，才能避免转化出不想要的结果；</li>
+</ol>
+</li>
+<li>条件执行：不希望所有的语句都按顺序执行（有些语句在有些情况下不需要执行，以免浪费资源）</li>
+<li>循环：很像一个条件语句，用于让语句执行多次；如果循环体内的表达式产生的布尔值是true，循环就会继续执行，直到出现false（所以在定义循环前，先定义好退出机制很重要）<ol>
+<li>思：是否可以理解为批量工作？不是，更像是反复工作；</li>
+</ol>
+</li>
+<li>大括号，里面包含一组语句，组成一个代码块，对于外界，这个大括号相当于一个语句；</li>
+<li>while与do的区别：前者可能不执行语句，如果条件不满足的话；后者至少执行一次语句，然后再判断条件是否满足，以便考虑是否再循环执行；</li>
+<li>for循环<ol>
+<li>思：你看，for带了括号，根据函数的定义，好像它即是一个函数，观察了一下while和do，好像也是一样的道理；</li>
+<li>函数是包含在值中的一段程序，通常这段程序会执行一些有用的操作，产生一些副作用；</li>
+</ol>
+</li>
+<li>（当看到第2章时，发现以下这段理解是错误的） 函数后面的大括号包起来内容，可以视作一条语句（或者叫一块语句），它不是函数的必需品；没有的话，也没有关系，有的话，就会执行；理论上代码块是需要由大括号包括起来的，不过也可以不使用大括号，此时就要做好缩进，以便能够识别语句是属于某个函数的；<ol>
+<li>思：当不止一条语句的时候，想不使用大括号都不行了，因为有多个分号，无法判断在哪里结束；</li>
+</ol>
+</li>
+<li>&#x2F;* *&#x2F;用来表示注释的开始和结束，常用于整块注释；&#x2F;&#x2F;则用于整行注释，后者更简洁，但不适用于块；</li>
+<li>如果一个函数没有特别指定返回值，如print和alert函数，则它的返回值会是undefined（这么说，函数一定会返回值咯？是的，会返回值；）</li>
+<li>值有6种类型，分别为：number, string, Boolean, object, function, undefined. (但从百度搜索到的一些博客中，分法有些不一样，他们有些将function做为object的一种，同时还新增一种null类型；另外还分出一种引用类型）（事实上，甚至可以理解为，一切皆为对象，number 和 string 也是一种对象，它们是提前内建的对象）；</li>
+<li>当想要通过有限小数来表示无限小数的时候，就会存在不精确的情况，此时只能得到近似值，而不是精确值；</li>
+<li>5种算术运算符，分别为加减乘除求余数（+，-，*，&#x2F;，%）；</li>
+<li>字符串通过单引号‘’或者双引号“”来标记；</li>
+<li>当要显示一些特殊符号是，用反斜杠\来标记；特殊符号有：单引号’，双引号“，换行n，TAB键t，反斜杠自己\；</li>
+<li>运算符有分一元和二元两种：<ol>
+<li>一元：typeof，-(减号)，！(非)；</li>
+<li>二元：+, -, *, &#x2F;, &amp;&amp;,  ||, &gt;&#x3D;, &lt;&#x3D;, &lt;, &gt;, &#x3D;&#x3D;, !&#x3D;；</li>
+</ol>
+</li>
+<li>大写字母在Unicode的字符集里面，是小于小写字母的；（不知在utf-8中表现如何？）；</li>
+<li>成功的语句需要有改变世界的作用；（比喻有点生动哦）</li>
+<li>语句会有副作用，比如改变程序的内部状态以此来影响后面的语句；</li>
+<li>应该把变量想象成一个触手，它会不断抓取值，而不是一个盒子，用来容纳值；（所以通过循环语句可以使某个变量不断递增&#x2F;递减或递乘）（变量只是一个插头，通过它，可以按路径导到引用的值）</li>
+<li>几乎任何单词都可以做为变量名，除了关键字和保留字；</li>
+<li>在给定时间内存在的变量和变量值叫做环境；环境不是空的，它一开始有一些标准变量；浏览器加载一个新页面时会创建一个新环境，关闭一个页面时会关闭一个旧环境；</li>
+<li>条件执行：if, switch；</li>
+<li>while, do, for等3个循环；<ol>
+<li>while：声明，判断，循环或结束；</li>
+<li>do：与while的差别是，先执行一次后再判断要不要进入循环（do, 如其义，先干一次）；</li>
+<li>for：大多数情况下，书写起来比while来得简洁和清晰；</li>
+</ol>
+</li>
+<li>跳出循环：break;</li>
+<li>更新变量简便法： counter++, counter–；或者counter+&#x3D;1, counter-&#x3D;1, counter*&#x3D;base(等同于counter&#x3D;counter*base)；</li>
+<li>注释：单行用&#x2F;&#x2F;，块用&#x2F;* 注释内容*&#x2F;；</li>
+<li>不同类型的值进行比较时，会触发类型的自动转换；</li>
+<li>||或运算符：a||b, 首先检查左边的a能够转换为布尔值且为true的时候，返回a的值，否则返回b的值；</li>
+<li>&amp;&amp;与运算符：a&amp;&amp;b, 首先检查左边的a能够转换为布尔值且为false的时候，返回a的值，否则返回b的值；</li>
+</ol>
+</li>
+<li>函数<ol>
+<li>function用于创建函数，function后面跟的变量名会作为函数的名字；函数名后面的括号()内的内容，是函数的参数；后面大括号则包含着函数体（作者说，与while循环和if语句不同，此处的大括号是必须有的）（if 不是函数，while 不是定义函数，而是调用函数）；</li>
+<li>函数体里面的return会使得函数产生返回值，没有表达式会返回undefined，但如果连return都没有呢？（一个不产生返回值的函数，有什么用处没？没有副作用，没有改变世界？）(后面发现没有return也会返回undefined；这么说来，函数的调用必定会返回值；也是吼，这是一个由值组成的世界）</li>
+<li>函数参数的作用类似于变量（注意，作者说类似于），其值是由函数的调用者传递的，而不是函数自身传递的（这么说来，函数参数一开始只是一个名字，没有赋予值，要一直等到被调用的时候，才会给参数赋予一个值？）（作者还说，函数还可以像处理普通变量一样，为这些参数赋予新值，即这个值虽然是由调用者传递过来，但在函数内部处理的时候，仍然可以改变参数的值）（在函数内部定义同名变量，将参数值赋给同名变量）</li>
+<li>函数的处理时间轴不同，它是优先的；跟位置无关（原因：计算机在执行语句前，会先通过function找到所有定义的函数，然后保存下来）</li>
+<li>局部变量包括函数参数和函数内部定义的变量；如果没有定义同名的局部变量，函数可以访问全局变量（先在函数内部寻找，如果没有找到，再到上一级命名空间寻找）；</li>
+<li>词法作用域：关于变量的可访问性；对于js，函数是唯一能创建新作用域的地方，大括号是不行的（此处与其他编程语言的处理方式不同，据作者说，新版本的会增加这个功能）<ol>
+<li>思：函数外面，是否可以访问函数内部的局部变量？据说会尽量保留，叫做闭包特性；</li>
+</ol>
+</li>
+<li>栈：存放上下文的地方<ol>
+<li>目的：当函数体执行完以后，知道从哪里继续往下运行</li>
+<li>原因：跟函数体内部可以再定义函数有关（即嵌套），每次内部嵌套函数的时候，就需要保存上下文；新增加的上下文会存入栈的顶部，先进后出，后进先出；函数返回时，存放在顶部的上下文会被弹出栈被重新获得；</li>
+<li>注意：如果栈太大，就会溢出，因为存不下了（例如函数无限循环的情况）；</li>
+</ol>
+</li>
+<li>函数都是值；</li>
+<li>如果函数后面的括号（）没有内容，表示此函数不传递参数；</li>
+<li>可以用function()创建无名函数；</li>
+<li>闭包特性：包裹一些局部变量的一个函数叫做一个闭包；<ol>
+<li>特点：只要这个局部变量是可达的，就会尽量保存这个局部变量；</li>
+</ol>
+</li>
+<li>可选参数<ol>
+<li>假设函数只有一个参数，可以多传，但会被忽略，不会出错（所有参数，包括多传的，都可以通过函数内部的默认 arguments 变量进行访问） ；</li>
+<li>假设函数有两个参数，可以少传，如果条件判断允许，仍会执行；</li>
+<li>好处：函数可以接收可选参数，即传不传进来，可以设置条件让它进行不同的处理；</li>
+</ol>
+</li>
+<li>发明函数的原因是为了代码复用；</li>
+<li>最佳的函数是只处理单个简单行为函数（因此，创建复杂嵌套这种类型的，能少用或许更好，除非不得已，没有更好的办法）（简单会降低出错的概率，而且也容易理解）</li>
+<li>陷阱：为小功能编辑复杂的框架，考虑各种情况；<ol>
+<li>措施：在明确自己需要该函数之前，不要自作聪明；</li>
+</ol>
+</li>
+<li>function zeroPad(number, width){<ol>
+<li>var string&#x3D;String(Math.round(number));</li>
+<li>while (string.length&lt;width);<ol>
+<li>string&#x3D;”0”+string;</li>
+</ol>
+</li>
+<li>return string;</li>
+<li>}（使用循环是一种方法，但这个循环需要做很多次运算，是否还可以一次性把 0 加足的方法？比如 zeroNeed &#x3D; width - string.length; string &#x3D; “0” * zeroNeed + “string” （这里的乘法运算 python 是支持的，但就不知道 js 是否也支持了）</li>
+</ol>
+</li>
+<li>纯函数：<ol>
+<li>不产生副作用，返回值只取决于参数，参数相同，结果相同；可以用具体值替代函数，而不会产生任何变化；纯函数比非纯函数的适用范围更广；</li>
+<li>如果我们想写的东西能够很自然的用纯函数来表示，就使用纯函数；未来的我们会感谢自己这么做；</li>
+<li>如果不能，则也不要觉得编写非纯函数很低级；</li>
+</ol>
+</li>
+<li>递归：<ol>
+<li>函数通过调用自身，不断向下循环直至得到结果值；</li>
+<li>好处：代码简洁优雅</li>
+<li>缺点：执行效率差</li>
+<li>原则：<ol>
+<li>只有在证明程序运行太慢时，才去关注效率的问题（原因：计算机最擅长的地方就是运行速度快，要发扬这种长处）；</li>
+<li>如果效率高的代码很复杂难懂，而可以考虑编写成简单的递归方式，牺牲一点效率；</li>
+<li>不要狂热追求效率，因为对于计算机来说，这种效率的提升只有很小的差别，但却使得代码变得很臃肿，很复杂，错误更多；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>数据结构：对象与数组<ol>
+<li>null和undefined没有属性；</li>
+<li>数字和布尔有属性，但据说没有任何意义（好奇是什么属性）（拥有意义的属性的值：字符串、函数）；</li>
+<li>函数暂时不知道是否有属性；但函数可以为做为对象的属性，此时它叫做方法；（函数也有属性）</li>
+<li>对象实际上是一个属性的集合；</li>
+<li>对象的属性可以添加和修改；其他值的属性，如果有的话，是固定的；</li>
+<li>属性速记法，对象名称.属性名称（二者用点连接），前提：属性名称是合法名称，即不以数字开头，无空格，无符号；</li>
+<li>属性名称可以是任意字符串，不限于合法的变量名；</li>
+<li>读取不存在的属性会得到undefined；属性存在，但此属性没有值，读取会得到什么？（可能会得到 null ？此处的情况相当于一个没有赋值的属性，貌似这种情况不可能存在，因为为对象添加属性的同时，需要对其进行赋值）</li>
+<li>delete用于删除属性（内建属性是 delete 不可删除的）；</li>
+<li>用 &#x3D; 等号设定一个不存在的属性，则会添加新属性，例如set.tanGo&#x3D;5；</li>
+<li>如果属性值非法，则不能用速记法，而是用中括号[]，并用引号引住非法的属性名称（数字型的属性名称可以不用引号，但用了也没事）；</li>
+<li>中括号内可以是任意表达式，中括号会将表达式转化成字符串，再判断对象是否有该字符串对应的属性名称；因此，在括号号内，也可以把变量名称当成属性名称（估计需要小心使用，如果这个变量是有赋值的，此时会出现什么情况？）；</li>
+<li>操作符in可以用来判断一个对象是否有某个属性，它产生的是布尔值；</li>
+<li>对象即集合：数组；数组是一种特殊的对象，它提供了一些便利；</li>
+<li>独立创建的两个对象，即使它们的属性和属性值完全一模一样，都是不同的两个对象；用&#x3D;&#x3D; 比较内容相同的两个对象返回的值是false；（对象之间是不可比较的，它们是不同的实例，即使完全一样，也是不同的实例）</li>
+<li>包含函数的属性叫做方法（目测通过方法可以操作对象；由于对象的属性可以随意增删，那么，目测可以自己写一个函数，然后将它做为某对象的属性，从而实现对对象的操作，其实好像就是 delete）（操作可分多种，改变对象的操作，还是不改变对象的操作，如果是不改变对象的操作，想到得某个值，应该也可以将对象做为参数调用函数进行计算）；</li>
+<li>字符串的方法：string.charAt（数字），用于返回字符串的第“数字+1”个位置的字符（之所以加1，是因为是从零起算的）；</li>
+<li>既然字符串有方法，说明不仅数据和对象才可以使用方法；那数字和函数也有自己的方法没？（函数肯定是有自己的方法的，数字则暂不清楚，所谓的方法，不过就是该属性也恰好为一个函数）（由于一切皆为对象，所以都可以添加自己的办法）</li>
+<li>string.split(“符号”)：根据符号将字符串分开多小段的方法；</li>
+<li>string.slice(数字,数字）：提取字符串的两个数字间的字符的方法；如果slice只有一个参数，则表示截取从参数位置开始到整个字符串结束之间的片段；（这个函数可以方便的实现左截和右截）</li>
+<li>方法可以用来封装成函数，比如startWith(string, pattern)，这个函数用来判断string是否包含pattern，如果是就返回true，如果不是，就返回false；</li>
+<li>string.indexOf(“字符”)方法可以用来获得字符在字符串的位置；（如果字符串中有两个相同的字符呢？如果字符是字符串呢？获得的位置是起始还是终止位置？答：是起始位置）</li>
+<li>new是创建对象值的一种方式，它不是指定所有的属性和值，而是用函数来创建对象（这么说，通常的做法是用非函数也创建对象，直接指定属性和值？对，即使用大括号和分号“{}；”）（与var创建对象有何不同?还有其他创建对象值的方式没？）（听说这种创建函数的标准过程，叫做构造函数）（之所以叫做标准过程，猜测是因为这个创建过程中，直接定义了标准的属性名称，每个名称的位置固定的，数量也是固定的）；（通过构造函数来创建对象，可以实现类的继承效果）<ol>
+<li>示例：new Date(1980,8,1)；</li>
+</ol>
+</li>
+<li>几个新函数：getFullYear(), getMonth(), getDate(), getDay(), getHours(), getMinutes(), getSeconds(), getTime()（取毫秒数）；这些函数的作用是提取某个存储着日期（时间）值的对象的相关属性，比如date是一个对象，date.getFullYear()的意思是将这个存储着时间的对象中的年份提取出来；</li>
+<li>catRecord是一个单独的函数，用来创建一些存储对象，在其他情况下它可能也有用处，所以把它单独编写在增删函数的外面；这种对象使用的术语通常是Record，用于聚合一定数量的值；<ol>
+<li>怎么看这个命名，像是作者自定义的一个函数嘛，至于这个函数是用来干什么的，只有看到函数的详细信息才能够判断了；</li>
+</ol>
+</li>
+<li>data[name]和data.name的区别：二者都可以用来表示对象的属性，前者是通用写法，后者是速记法，后者只有在属性名称是合法名称时，才可以生效，为了避免出现意外，比如这个属性名字是外部传入，不可控制，则使用中括号比较稳妥；如果这个属性名称是我们自己内部定义的，则可以使用速记法，比较简便；（前面有问了一个问题，关于中括号内部使用的变量有值怎么办，突然想起区别在于有没有使用引号，如果用了，引号括起来的内容就不再是一个变量了，而变成了一个字符串）</li>
+<li>函数Math.min和Math.max揭示了一个本质，Math是一个对象，min和max是Math对象下面的两个属性；对象扮演的另外一个角色：一个位置拥有若干相关的值；（跟前面讲的对象是集合好像是同一个概念的嘛？）<ol>
+<li>对象的属性是一个函数，也即一个方法，或者也可以理解为这个对象是系列函数的集合；（对象的本质是一系列值的集合，或者叫属性的集合）</li>
+</ol>
+</li>
+<li>arguments 变量，参数的数组，但不是真的数组，例如没有push方法，很有用处，它有length属性可以使用；在存在可选参数的情景挺有用，比如参数少于目标数量时应如何处理；向该变量添加属性时，不会自动更新length属性；</li>
+<li>for(var name in data)意思是遍历一个数组的属性，叫做for in循环；此循环只能返回能够通过对象访问的、可枚举的属性；不可枚举的属性不会返回；因为所有的对象都拥有一些通常的方法，例如toString，为了避免这些带来干扰，就屏蔽隐藏了起来；开发人员自己定义的属性是可枚举，不可隐藏的；（原来可枚举和不可枚举的区别，就在于这些属性是天生的，还是后天的）</li>
+</ol>
+</li>
+<li>错误处理<ol>
+<li>错误有两种类型<ol>
+<li>程序员错误</li>
+<li>运行时错误：外界输入的存在非法的可能性；（听起来好像可以起个名字叫输入错误）</li>
+</ol>
+</li>
+<li>返回特殊值：<ol>
+<li>通常在可能出现错误时，应认真检查错误，通过返回一个特殊值来指出错误是最好的方式；</li>
+<li>缺点：<ol>
+<li>例如函数可以返回任意一种值，即我们定义的特殊值，在某些情况下可能是正常值；</li>
+<li>如果一个函数调用10次，则需要做10次检查；</li>
+<li>如果函数返回特殊值，则调用它的函数也要做值的检查，以便应对返回特殊值的情况，避免出错；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>异常处理：如果函数出现异常，应立即停止操作，并跳转到能够处理异常的位置</li>
+<li>什么是引发异常的关键字？<ol>
+<li>关键字：一些预设的单词，用来表示特定的操作；</li>
+<li>throw 关键字，当异常发生时，可以使用这个关键字来抛出设定好的异常提示；</li>
+</ol>
+</li>
+<li>什么叫做设置异常障碍？</li>
+<li>try 的用途是什么？<ol>
+<li>不同的浏览器，报错提示不同，使用 try catch 可以捕获浏览器的报错内容；</li>
+<li>try：可以让我们执行需要进行测试的代码块</li>
+<li>catch：当 try 里面的代码块出现错误时，则执行 catch 里面的代码块；</li>
+<li>throw：允许我们创建自定义的错误；</li>
+<li>finally：如果前面的 try 出现异常，finally 里面的代码会被执行，但 finally 后面的代码则不会被执行；如果 前面的 try 没有出现异常，则 finally 的代码执行后，finally 后面的代码会被执行；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>其他<ol>
+<li>什么是脚本语言？<ol>
+<li>由于翻译的问题，脚本二字让人感到困惑，事实上，如果使用指令语言代替脚本语言，或许会让事情变得简单一些；脚本的意思，即是一系列指令，这些指令告诉计算机（或叫脚本翻译引擎）要做些什么事情；</li>
+</ol>
+</li>
+<li>重新声明变量时，如果没有赋值的话，不会改变第一次声明变量时的赋值，例如<ol>
+<li>var carname &#x3D; “Volvo”;</li>
+<li>var carname；</li>
+<li>注：此时的 carname 的值仍然是是 Volvo，而不会变成了 undefined；</li>
+</ol>
+</li>
+<li>创建数组的几种不同方式<ol>
+<li>方法1<ol>
+<li>var cars &#x3D; new Array();</li>
+<li>cars[0] &#x3D; “Volvo”;</li>
+<li>cars[1] &#x3D; “Ford”;</li>
+<li>cars[2] &#x3D; “Toyoto”;</li>
+</ol>
+</li>
+<li>方法2<ol>
+<li>var cars &#x3D; new Array(“Volvo”, “Ford”, “Toyoto”);</li>
+</ol>
+</li>
+<li>方法3<ol>
+<li>var cars &#x3D; [“Volvo”, “Ford”, “Toyoto”];</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>js 的对象是属性的集合，感觉类似于 python 的字典，跟 python 的对象好像不太一样； python 的对象是可以有方法的，不知 js 的对象是否可以？发现也可以，而且，在 js 中，一切均为对象，对象是拥有属性和方法的数据（感觉跟 python 一模一样），例如，对于汽车这种对象：<ol>
+<li>属性：<ol>
+<li>car.color &#x3D; “white”;</li>
+<li>car.weight &#x3D; “850kg”;</li>
+<li>car.model &#x3D; “cc2017”;</li>
+</ol>
+</li>
+<li>方法<ol>
+<li>car.drive()</li>
+<li>car.brake()</li>
+<li>car.start()</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>js 的变量均为对象，当声明了一个新的变量时，即声明了一个新的对象；</li>
+<li>声明新变量时，可以用关键字 new 来指定变量的类型，例如<ol>
+<li>var carname &#x3D; new String;</li>
+<li>var x &#x3D; new Number;</li>
+<li>var y &#x3D; new Boolean; </li>
+<li>var z &#x3D; new Array;</li>
+<li>var person &#x3D; new Object;</li>
+</ol>
+</li>
+<li>在面向对象的语言中，属性和方法被称为对象的成员；对象有一些内建的方法，例如当我们创建一个字符串变量时，var car &#x3D; “Volvo”；本质上我们是创建了一个字符串类型的对象，这个对象有一些内建的方法，例如：car.length，用来计算字符串的长度；类似的还有 car.indexof(), car.search(), car.replace() 等；</li>
+<li>如果把值赋给尚未声明的变量，则该变量会被做为全局变量对待，即使它的位置是在函数内部；</li>
+<li>局部变量在函数内部创建，也在函数完毕后删除；局部变量只有在函数内被访问，它不能在函数外面被访问，因此，两个函数拥有相同的局部变量名称是允许的，因为当第二个函数被执行时，前一个函数的变量已经被删除了；</li>
+<li>全局变量在网页打开时创建，在网页关闭后删除；</li>
+<li>如果把字符串和数字相加，结果会变成字符串；</li>
+<li>&#x3D;&#x3D;&#x3D; 表示全等的意思，全等是指运算符左右两边的内容，值相同，类型也相同，全部相同；</li>
+<li>条件运算，示例： variablename &#x3D; (condition)? value1 : value 2<ol>
+<li>表示根据条件 condition 进行判断，当条件为 true 时，取 value1；当条件为 false 时，取值 value2；</li>
+</ol>
+</li>
+<li>with 函数：用来引用特定对象的属性，好处是可以减少一些代码量，避免重复劳动，示例：<ol>
+<li>没有使用 with:<ol>
+<li>x &#x3D; Math.cos(3*Math.PI) + Math.sin(Math.LN10) ,  y &#x3D; Math.tan(14 * Math.E)</li>
+</ol>
+</li>
+<li>使用 with:<ol>
+<li>with(Math){<ol>
+<li>x &#x3D; cos(3<em>PI) +sin(LN10),  y &#x3D; tan(14</em>E)</li>
+<li>}</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>focus 函数</li>
+<li>RegExp 对象<ol>
+<li>创建一个 RegExp 对象，将需要检索的值做为它的参数，然后通过调用它的方法（有3个），将需要检索的字符串做为方法的参数，然后得到想要的结果（方法的返回值）<ol>
+<li>var patt1 &#x3D; new RegExp(“e”);</li>
+<li>document.write(patt1.test(“The best things in life are free.”))</li>
+</ol>
+</li>
+<li>感觉这是一种很奇怪的用法，为什么不直接把它写成函数呢，而要将函数单独封装在一个对象中做为其方法？这两种方式有何区别？如果做为单独的函数，是否单独封装在一个模块中就可以了，需要的使用 import 进行调用？</li>
+<li>三个方法<ol>
+<li>test()：用于检索目标值是否存在于字符串中，如果有返回 true；如果没有返回 false；</li>
+<li>exec()：用于检索目标值是否存在于字符串中，如果有返回目标值；如果没有返回 null ；<ol>
+<li>可以使用第二个参数来设定检索模式，例如 “g” 参数，这个参数的用途是执行 exec() 返回结果后，将记住检索结果的位置，如果再次执行这个方法，会从记住的位置开始往后搜索；这样做的好处是我们可以使用它来完成对一个字符串完整的全局搜索，并返回找到的每一个结果；不过它需要配合循环才能实现；</li>
+</ol>
+</li>
+<li>compile()：这个方法用于在不改变变量名称的情况下，替换创建 RegExp 对象时的值参数，例如：<ol>
+<li>patt1 &#x3D; new RegExp(“e”);   &#x2F;&#x2F;表示以值 e 作为RegExp 的参数；</li>
+<li>patt1.compile(“d”);  &#x2F;&#x2F;表示将 “e” 替换成 “d”，即变成了 patt1 &#x3D; new RegExp(“d”);</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>犯过的错误<ol>
+<li>for 循环忘了加{}</li>
+<li>innerHTML 写成了 interHTML;</li>
+<li>使用变量前忘了先声明；</li>
+<li>代码块结束时忘了加 } （考虑在写第一个 { 的时候，就顺便把最后的 } 也一块写好，之后再在中间添加代码块的内容；</li>
+<li>有语句中最外层使用双引号时，内层应使用单引号，不然好像无法识别；</li>
+<li>将脚本写在 head 里面，和写在 body 里面是有区别的；由于 HTML 是有加载顺序的，如果有一些不需要立即执行的代码，则放在 head 里面不合适；如果有一些代码需要获取某些标签，则代码应该写在标签后面，不然由于标签还没有加载，会获取不到；</li>
+<li>在函数的参数中，使用变量的话， 不需要给变量添加引号；</li>
+<li>函数名称的大小写是敏感的；例如: slideDown() 和 slidedown() 是不同的；</li>
+<li>调用对象的方法，记得在方法名称右侧加括号，例如<ol>
+<li>killerRabbit.dance()，而不是 killerRabbit.dance</li>
+<li>括号表示执行函数体内部的代码；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>心得<ol>
+<li>如果想要在网页上做一些事情，其中的方法之一，是在 html 标签中写一个事件让 js 捕获，然后在 js 中定义一个函数，在函数中写一些动作；调用这个函数，就执行这些写好的动作；</li>
+<li>提示框 prompt() 接收两个参数，第一个参数是标题，第二个参数是输入框的默认文本，例如： prompt(“请输入名字：”, “Bill Gates”)</li>
+<li>setTimeout() 可以用来设置某个时间后要执行的代码，语法：setTimeout(“要执行的 js 代码”, 时间)<ol>
+<li>注：时间指现在开始，以毫秒计算；例如 1000，表示 1 秒后；</li>
+</ol>
+</li>
+<li>使用 var 和不使用 var 进行变量赋值的区别：<ol>
+<li>函数体外<ol>
+<li>使用 var：全局变量，不可删除</li>
+<li>不使用 var：全局变量，可删除</li>
+</ol>
+</li>
+<li>函数体内<ol>
+<li>使用 var：局部变量，作用域外不可访问，作用域内不可删除；</li>
+<li>不使用 var：全局变量，可删除；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>indexof()：用来检索指定字符值在字符串中的位置<ol>
+<li>对字符值的大小写敏感</li>
+<li>如果没有找到，会返回 -1;</li>
+<li>第一个参数指要检索的字符值，必选；</li>
+<li>第二个参数指要开始检索的位置，可选；</li>
+</ol>
+</li>
+<li>escape()：<ol>
+<li>用来对字符串进行编码，但不会对 ASCII 字母和数字进行编码；</li>
+<li>所谓的编码即是将一些符号进行转义，以便在所有的计算机上都可以阅读该字符串；</li>
+<li>以下是一些符号不会被转义：<ol>
+<li>加减乘除：+ - * &#x2F;</li>
+<li>@ . _</li>
+</ol>
+</li>
+<li>通过 unescape 可以反转义；</li>
+</ol>
+</li>
+<li>substring()<ol>
+<li>用来提取字符串的片段，作用有类似 slice() 和 substr()</li>
+<li>substring(3, 7)：提取位置 3 到位置 6 的字符<ol>
+<li>例如 hello world，会提出：lo w</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>slice(start, end)<ol>
+<li>用来从数组中提取部分元素组成子数据</li>
+<li>end 是可选参数，如果 end 不指定，会提取从 start 开始之后的所有元素；</li>
+<li>支持负数的参数，负数表示倒数，比如 -1 表示倒数第1个元素，-2 表示倒数第2个元素；</li>
+</ol>
+</li>
+<li>prompt( txt, defaultTxt)<ol>
+<li>用来显示一个消息提示框，提示用户输入文本</li>
+<li>txt 是说明文字，dafaultTxt 是输入文本的默认值，两个参数都是可选的；</li>
+</ol>
+</li>
+<li>setDate(d)<ol>
+<li>用来设置日期对象的月份天</li>
+<li>myDate &#x3D; new Date()</li>
+<li>myDate.setDate(20)</li>
+<li>在参数中</li>
+</ol>
+</li>
+<li>getDate<ol>
+<li>用来获取日期对象的月份天</li>
+<li>myDate &#x3D; new Date()</li>
+<li>myDate.getDate()</li>
+</ol>
+</li>
+<li>如果某个 HTML 元素一开始不想让它显示出来，而是某个事件后，再显示出来，则一开始它的属性 display 可以设置为 none，例如：<ol>
+<li><div id = "div1"  style = "display:none;"></div></li>
+</ol>
+</li>
+<li>concat()<ol>
+<li>作用：它是数组对象的一个方法，用来将参数，连接到当有数组中</li>
+<li>示例： arrayA.concat(arrayB, [1, 2, 3], [“a”, “b”, “c”]);</li>
+</ol>
+</li>
+<li>js 的对象扮演着两个角色，一个是拥有方法的值，一个是属性集；可以通过编写一个构造函数并指定原型，以便将对象视为一个属性集并进行获取，这个时候，它有点像字典，因为可以使用它进行名称查询；这个字典可以编写四种方法，一个是增加新属性的 store，一个是查询属性的 lookup，一个是立判断属性是否存在的 contains，一个是遍历属性并进行操作的 each；（此处要编写 each 时，需要先编写一个函数 forEachIn 来实现）</li>
+<li>js 的 for … in 循环中，变量 i 是一个自增的数值；</li>
+<li>arguments 是一个伪数组，它存储了函数的参数，可以使用 length 和 index 方法，但是没有 push 和 pop 方法；</li>
+<li>在 js 中，不需要明确指定的参数名也可以访问参数，例如： arguments[0], arguments[1] 这样；</li>
+<li>apply 方法和 call 方法类似，只是 apply 函数要求其第二个参数必须是一个数组，而 call 则没有这个要求；<ol>
+<li>示例：apply(func, [a, b, c])</li>
+<li>示例：call(func, a, b, c)</li>
+<li>假设有一个函数和一个对象如下：<ol>
+<li>x &#x3D; 10;</li>
+<li>function f(){<ol>
+<li>alert(this.x)};</li>
+</ol>
+</li>
+<li>obj &#x3D; {x: 15};</li>
+<li>当运行 f() 时，函数中的 this 指向的是全局对象，此时刚好定义了一个全局对象下的变量x，因此代码可以运行，并显示值 10;</li>
+<li>当运行 f.apply(obj) 时，此时函数中的 this 不再指向全局对象，而是指向了 obj 对象，因此，它相当于 obj 多出了一个方法 f()，类似如下代码：<ol>
+<li>obj.f &#x3D; function(){alert(this.x)};</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>apply 和 call 有一个非常重要的点，它可以改变函数动作的作用域；这一点非常重要，它使得 this 在不同环境中，可以指代到想要指代到想要指代的对象，而不会受环境影响；</li>
+</ol>
+</li>
+<li>关于类与继承的实现<ol>
+<li>this<ol>
+<li>this 总是依据运行环境而定，而不是在函数定义时决定；在不同的运行环境中，this 代表不同的东西；</li>
+<li>在全局环境下，this 代表 window</li>
+<li>定义全局变量，等同于定义 window 的一个属性；</li>
+</ol>
+</li>
+<li>prototype<ol>
+<li>每个构造函数都有一个默认的 prototype 属性；</li>
+<li>这个 prototype 指向一个对象，它是当前构造函数的原型；</li>
+<li>构造函数创建的对象，基于这个原型进行创建；</li>
+<li>我们可以给这个原型添加一些方法（相当于给原型对象添加属性）；</li>
+<li>这样使用构造函数创建出来的对象，也会继承拥有这些方法；</li>
+</ol>
+</li>
+<li>constructor<ol>
+<li>对象的 constructor 属性始终指向创建当前对象的构造函数；</li>
+</ol>
+</li>
+<li>实现方式一：原型由对象描述，create 和 extend<ol>
+<li>将原型放到一个对象中，成为基类；然后通过 create 方法实现类的实例化，通过 extend 的方法来实现子类的创建；</li>
+<li>优点：可以忽略 prototype 的使用（或许应该理解为封装起来了？）</li>
+</ol>
+</li>
+<li>实现方式二：构造函数，inherit 和 method，new 和 prototype<ol>
+<li>使用构造函数，并在对象上定义 inherit 和 method 方法；通过 new 来实现类的实例化（创建对象）；</li>
+</ol>
+</li>
+<li>继承的使用，最终目的是想要提高效率，减少一些重复代码的编写，所以应该避免陷入为了继承而继承的陷阱，专注于让代码能够正常运行，并且真正实现减少工作量才是本质；</li>
+</ol>
+</li>
+<li>为了避免使用全局变量，有两个办法<ol>
+<li>办法一：设计一个函数，并将函数内的方法添加到全局对象 window 上（这种方法虽然可以避免全局变量，可以却难免要应对全局对象上的方法的命名冲突）</li>
+<li>办法二：设计一个对象，对象里面存着变量和方法，但它不直接通过定义获得（不然会变成全局变量），而是通过定义匿名函数并马上运行它来返回所需要的对象</li>
+</ol>
+</li>
+<li>正则表达式<ol>
+<li>search</li>
+<li>match</li>
+<li>replace：两种用法<ol>
+<li>用法一：可以使用 $1 到 $9 来代表寻找到的匹配值<ol>
+<li>var names &#x3D; “Picaso, Pablo\nGauuin, Paul\nVan Goth, Vincent\n”</li>
+<li>names.replace(&#x2F;([\w]+),([\w]+)&#x2F;g, “$2 $1”);</li>
+</ol>
+</li>
+<li>用法二：通过将函数做为参数，对每一个寻找到的匹配值进行处理<ol>
+<li>“the cia and fbi”.replace(&#x2F;\b(cia|fbi)\b&#x2F;g, function(str){</li>
+<li><pre><code class="hljs">return str.toUpperCase();
+</code></pre>
+</li>
+<li>});</li>
+<li>原理：每次找到匹配的值，参数函数就会被调用一次，匹配值就会被参数的返回值替换掉；传给该函数的参数是成功匹配的元素，它与 match 函数的返回结果类似，是一个数组，第一个元素是整体匹配，后面是每个括号匹配的部分；</li>
+<li>注：&#x2F;g 这里的 g 是非必须的，它表示全局替换的意思；如果没有 g，则只替换第一个匹配项；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/javascript/" class="print-no-link">#javascript</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Javascript 编程精粹</div>
+      <div>http://example.com/2016/11/24/Javascript 编程精粹/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2016年11月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/02/15/%E5%93%81%E7%89%8C%E6%9C%8D%E8%A3%85%E5%BA%97%E7%B2%BE%E7%BB%86%E5%8C%96%E7%AE%A1%E7%90%86/" title="品牌服装店精细化管理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">品牌服装店精细化管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2016/11/04/%E9%AB%98%E6%95%88%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91/" title="高效团队开发">
+                        <span class="hidden-mobile">高效团队开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

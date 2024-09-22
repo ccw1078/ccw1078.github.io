@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言 各种不同系统和设备越来越具备了自己特点的规范标准； 至少花六周时间熟悉为之设计应用的设备；让自己的设计契合设备本身的特性和规范，保持用户使用习惯的一致性；   导航 主导航模式-全局导航（Persistent） 好处是显示出所有选项，结构一目了然，坏处是会受到屏幕空间的限制 全局还是瞬时，选择前应考虑如下问题： 应用层次是否扁平？应用的菜单分类是同级的还是有优先级的？主要类别是否只有少数几">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动应用UI设计模式">
+<meta property="og:url" content="http://example.com/2016/04/11/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8UI%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="前言 各种不同系统和设备越来越具备了自己特点的规范标准； 至少花六周时间熟悉为之设计应用的设备；让自己的设计契合设备本身的特性和规范，保持用户使用习惯的一致性；   导航 主导航模式-全局导航（Persistent） 好处是显示出所有选项，结构一目了然，坏处是会受到屏幕空间的限制 全局还是瞬时，选择前应考虑如下问题： 应用层次是否扁平？应用的菜单分类是同级的还是有优先级的？主要类别是否只有少数几">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-11T12:50:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T01:06:13.016Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="设计">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>移动应用UI设计模式 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="移动应用UI设计模式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2016-04-11 20:50" pubdate>
+          2016年4月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">移动应用UI设计模式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>前言<ol>
+<li>各种不同系统和设备越来越具备了自己特点的规范标准；</li>
+<li>至少花六周时间熟悉为之设计应用的设备；让自己的设计契合设备本身的特性和规范，保持用户使用习惯的一致性；</li>
+</ol>
+</li>
+<li>导航<ol>
+<li>主导航模式-全局导航（Persistent）<ol>
+<li>好处是显示出所有选项，结构一目了然，坏处是会受到屏幕空间的限制</li>
+<li>全局还是瞬时，选择前应考虑如下问题：<ol>
+<li>应用层次是否扁平？应用的菜单分类是同级的还是有优先级的？主要类别是否只有少数几个，比如3-5个？</li>
+<li>是否需要菜单一直处于可见的状态以便用户快速访问？</li>
+<li>菜单分类有无状态指示，比如未读邮件数，或者未读消息数等？</li>
+<li>如果以上有一个答案回答“是”，则应考虑使用全局导航；</li>
+</ol>
+</li>
+<li>常见设计模式<ol>
+<li>跳板式（启动面板式）<ol>
+<li>优点：可放置多个选项（甚至分页）；</li>
+<li>缺点：选项间没有优先级（可适当改进，例如磁贴的大小和颜色）；未直接呈现内容（多了一个层级）；</li>
+</ol>
+</li>
+<li>卡片式<ol>
+<li>优点：相对跳板，可以直接优雅的展示内容；</li>
+<li>缺点：在定位到自己想查看的内容前，需要划过多张卡片以进行筛选，操作动作的次数相对跳板式会更一点；</li>
+<li>适用场景：内容更加重要且是内容之间是同等优先级；</li>
+</ol>
+</li>
+<li>列表菜单式<ol>
+<li>优点：可放置较多选项，并支持较长的选项名称；</li>
+<li>缺点：不能直接展示内容；</li>
+</ol>
+</li>
+<li>仪表盘式<ol>
+<li>优点：直接呈现汇总的数据结果，给用户提供关键信息；</li>
+<li>缺点：非数据类则不可用；</li>
+<li>适用场景：例如记帐或理财类应用；</li>
+</ol>
+</li>
+<li>陈列馆式（或者叫列表风格？）<ol>
+<li>优点：视觉效果突出，用图片做为内容呈现吸引注意力；</li>
+<li>缺点：如果图片不能动态更新，则类似跳板式的磁贴效果了</li>
+<li>适用场景：经常更新、视觉效果直观的无层级内容，例如新闻类、菜谱类应用；</li>
+</ol>
+</li>
+<li>选项卡菜单式<ol>
+<li>优点：选项一目了然，可以快速切换；</li>
+<li>缺点：选项个数有限，最多5个；（如果超过5个，则可能需要引入一个“更多”的选项了）</li>
+<li>适用场景：用户需要经常在选项间切换；</li>
+</ol>
+</li>
+<li>新生模式<ol>
+<li>折叠选项卡：可隐藏，可呼出（例如知乎的操作按钮，往下滚动时缩起，以便用户可以有更大的空间来阅读，也减少干扰；向上滚动时呼出，以便用户对文章进行操作）；</li>
+<li>可配置选项卡：可增删选项，可拖动排序；</li>
+</ol>
+</li>
+<li>隐喻式<ol>
+<li>狙击游戏；碟片音乐；相机；文件夹；书架杂志架；航班时刻表；</li>
+<li>需要谨慎的使用隐喻式，因为如果设计不好，则会成为反模式；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>主导航模式-瞬时导航（Transient）<ol>
+<li>好处是打破了屏幕的空间限制，扩大了边界；优先呈现内容；</li>
+<li>坏处是用户需要学习才能知道如何使用，且每次触发导航也需要更多的操作；</li>
+<li>常见模式：<ol>
+<li>侧边抽屉式<ol>
+<li>优点：可放置丰富选项；可带结构；（功能强大，但建议不要放太多功能，而是专注于导航本身，例如结合spinner来提供下一级的内容分类）；</li>
+<li>缺点：用户不易发现（可通过动画演示来培养用户习惯，先显示主页，之后自动弹出抽屉）；</li>
+</ol>
+</li>
+<li>下拉菜单式<ol>
+<li>优点：适用选项较少时使用；</li>
+<li>缺点：不易发现；</li>
+<li>注意事项：<ol>
+<li>无论什么手势，都能打开菜单，包括点击、轻滑、平移；</li>
+<li>安卓的SPINNER控件用于同级细分，而非上级选项；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>转盘菜单式<ol>
+<li>优点：新颖，有趣；</li>
+<li>缺点：可放置的选项不多；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>次级导航模式<ol>
+<li>所有主导航模式都可以用做次级导航模式，即可以用几种主导致模式来排列组合；</li>
+<li>常见设计模式：<ol>
+<li>翻页式：有点像传送带<ol>
+<li>优点：可全屏呈现内容，减少干扰，更有沉浸感；</li>
+<li>缺点：需要页面指示器告诉用户还有其他页面；</li>
+</ol>
+</li>
+<li>滚动选项卡式（或许叫滚动TAB更容易理解一些）<ol>
+<li>优点：可放置多个分类；每个分类占据尽量大的屏幕面积；</li>
+<li>缺点：需要按顺序切换分类；</li>
+</ol>
+</li>
+<li>折叠菜单式（手风琴式）<ol>
+<li>优点：可放置丰富的内容，可带结构；方便快速切换；</li>
+<li>适用场景：可只展现部分内容，如果用户有兴趣了解更多，再点击深入（例如应用中心的APP介绍，一开始只显示摘要，通过点击了解更多，会展示隐藏的折叠内容）；</li>
+<li>注意事项：使用常见图标告诉用户可展开或折叠；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>表单<ol>
+<li>目的：数据输入和配置（糟糕的设计经常导致用户中途放弃和流失）；</li>
+<li>常见模式：<ol>
+<li>登录表单<ol>
+<li>尽可能少的输入；</li>
+<li>自动获得焦点；</li>
+<li>可显示&#x2F;隐藏密码的开关；</li>
+<li>也可考虑使用设备账号做为用户名，而用户只需设置密码即可（例如取手机号）；</li>
+<li>如有可能，无须登录，先行使用；</li>
+<li>登录采用标准设计，减少花哨的创新，可以减少用户的学习成本，从而提高转化率；</li>
+</ol>
+</li>
+<li>注册表单<ol>
+<li>尽量少的要求用户提供信息；</li>
+<li>用忘记密码功能来减少密码核对的两次输入；</li>
+<li>如有需要，可在提交的时候，再提示核对用户名；</li>
+<li>用户名输入时，实时反馈是否重名；（避免提交时才提示失败，从而给用户带来挫败感）；如果重名，猜测用户可能面临的原因，提供选项给用户选择，而不是让他重新开始（比如跳转到登录页面，或者可能遗忘密码，需要重置）；</li>
+<li>去掉传统的姓、名分录，采用FULL NAME一次搞定；</li>
+<li>垂直标签优于水平标签；</li>
+<li>使用提示文字（水印式标签），减少标签名的空间；还可以加上动态悬浮效果，避免用户输到一半时忘记自己在输入什么信息；</li>
+<li>提交后马上给予实时反馈结果；（避免用户不放心是否成功）</li>
+<li>如有可能，每个字段的输入，都进行实时验证并给予反馈；</li>
+<li>注册表单尽量简短，控制在一屏之内，同时操作按钮要放在可视范围内并突出显示；</li>
+</ol>
+</li>
+<li>个性化设置表单<ol>
+<li>尽量减少用户的操作工作量，有时候创新的交互会让用户感觉有趣，但如果工作量增加太多，则会带来厌恶；</li>
+</ol>
+</li>
+<li>多步骤表单<ol>
+<li>去掉进程栏（因空间有限）；可用步骤数字提示替代，显得更加简洁；</li>
+<li>可考虑单页设计，同时配合选择性展开模式；（此模式可方便用户回顾之前的输入结果）；</li>
+<li>去掉不必要的字段，最小化页面的数量和步骤数量；</li>
+<li>可以步骤中间提供详情入口，以便用户预览前面的数据输入；</li>
+</ol>
+</li>
+<li>结账表单<ol>
+<li>同时提供注册、登录选项和游客模式，方便用户最快完成支付动作；</li>
+<li>简化流程，比如单一结账页面；</li>
+<li>提供省时的快捷方式（如果有什么信息是可以复用的，提供快捷方式，减少用户的手工输入，比如从通讯录调用电话、地址，用拍照扫描银行卡信息等）</li>
+<li>提供快速结账的方式（如亚马逊的一键下单）</li>
+<li>充分利用手机的一些原生技术，而不必照搬网页端的设计模式（比如二维码扫描、指纹识别）；</li>
+</ol>
+</li>
+<li>计算表单<ol>
+<li>注意表单的排版，包括对齐方式、字体、标签、颜色、按钮位置、视线路径等，它们都会影响易用性；</li>
+<li>如有可能，尽量可视化输入结果；</li>
+<li>不要求精细数据的时候，可以使用划块来输入粗略的数字；</li>
+</ol>
+</li>
+<li>搜索表单<ol>
+<li>尽可能减少输入，而是在搜索结果中提供筛选功能；</li>
+<li>实时显示搜索结果的数目；</li>
+<li>保存搜索选项，方便下次快速复用；</li>
+<li>搜索条件尽量控制在一页内；</li>
+<li>思考用户最常用的条件，预输入条件；</li>
+</ol>
+</li>
+<li>长表单<ol>
+<li>单页+滚动条，优于分页；</li>
+<li>果断放弃没有必要的输入字段；</li>
+<li>按钮位置遵守设计规范，以便相应设备的用户可以根据习惯快速定位；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>表格<ol>
+<li>不要照搬PC端的设计；由于空间有限，需要更加严格的审视哪些信息是用户真正需要关注的（不要盲目猜测，而应该通过测试来验证）；</li>
+<li>常见模式<ol>
+<li>基本表格<ol>
+<li>不要使用深色的网格线；</li>
+<li>如果不使用垂直分隔线，则应确保列对齐；</li>
+<li>文字左对齐，数字右对齐；</li>
+<li>如果一屏内要显示大量信息，则采用非基本表格的形式；</li>
+</ol>
+</li>
+<li>无表头表格<ol>
+<li>适用内容本身可以自说明自己是何信息的场景，例如图片，关键字等；突出显示关键字；</li>
+<li>优点：更加简洁；</li>
+<li>技巧：<ol>
+<li>如果详情信息不多，可考虑使用嵌入式显示，避免用户跳转页面；</li>
+<li>去除一切多余的噪音，例如毫无意义的图标、边框等视觉元素，精确对齐，以方便浏览；</li>
+<li>对于次要信息，用较淡的颜色、较小的字体显示；</li>
+<li>重要的信息不超过两项，如果太多，反而失去了重点；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>固定列表格<ol>
+<li>适用：需要展示较多列信息的场景；</li>
+<li>默认显示最重要的列；同时注意提示用户可以左右划动，比如故意半露半遮部分信息；</li>
+<li>固定列边缘采用阴影；</li>
+</ol>
+</li>
+<li>概览加数据型表格<ol>
+<li>适用：用户想知道趋势的场景，例如财经，天气等；</li>
+<li>如果概览图表太大，则可以考虑采用逐级深入的方式来显示余下信息；</li>
+</ol>
+</li>
+<li>行分组表格<ol>
+<li>优点：更方便阅读；</li>
+<li>从视觉上将汇总行和其他行区别开来，一般来说汇总行较窄些，字体颜色浅一些；</li>
+</ol>
+</li>
+<li>带有视觉指标器的表格（即图标）<ol>
+<li>如果视觉指示器不能提升信息显示效果，则宁可不用，因为它会造成干扰；</li>
+</ol>
+</li>
+<li>可编辑表格<ol>
+<li>适用：就苹果、谷歌、微软三家的电子表格独有，其他应用一般都没有这个功能（这个功能其实很难设计，尤其在移动设备上更甚，投入产出比不高）；</li>
+<li>注意事项：<ol>
+<li>清晰显示选中的单元格、行或列；</li>
+<li>如果单元格有特定格式，例如日期&#x2F;颜色，则提供对应的适当的编辑器；</li>
+<li>除非编辑后出现错误，不然不需要每次的编辑都提供确认反馈，等最后保存整个文件时再确认即可；</li>
+<li>如果需要批量数据输入，或者可能需要大量的编辑工作，避免使用本模式；（因为效率和体验很差，与其如此，还不如让用户去PC端编辑）</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1/" class="print-no-link">#设计</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>移动应用UI设计模式</div>
+      <div>http://example.com/2016/04/11/移动应用UI设计模式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2016年4月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2016/04/16/Web%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/" title="Web界面设计">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Web界面设计</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2016/04/04/%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%9B%A2%E9%98%9F/" title="重新定义团队">
+                        <span class="hidden-mobile">重新定义团队</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

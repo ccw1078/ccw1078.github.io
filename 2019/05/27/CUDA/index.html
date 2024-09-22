@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Tutorial 使用 global 可以将一个普通函数转换成 kernel 函数； 猜测此处的 global 可能是一个宏；   使用 cudaMallocManaged 函数，可以实现在 GPU 上分配内存 示例 float *x; cudaMallocManaged(&amp;x, N*sizeof(float));     使用 cudaFree 可释放分配的 GPU 内存 cudaFr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA">
+<meta property="og:url" content="http://example.com/2019/05/27/CUDA/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="Tutorial 使用 global 可以将一个普通函数转换成 kernel 函数； 猜测此处的 global 可能是一个宏；   使用 cudaMallocManaged 函数，可以实现在 GPU 上分配内存 示例 float *x; cudaMallocManaged(&amp;x, N*sizeof(float));     使用 cudaFree 可释放分配的 GPU 内存 cudaFr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-27T09:38:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T03:48:00.869Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="GPU">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>CUDA - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CUDA"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-05-27 17:38" pubdate>
+          2019年5月27日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CUDA</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>Tutorial<ol>
+<li>使用 <strong>global</strong> 可以将一个普通函数转换成 kernel 函数；<ol>
+<li>猜测此处的 global 可能是一个宏；</li>
+</ol>
+</li>
+<li>使用 cudaMallocManaged 函数，可以实现在 GPU 上分配内存<ol>
+<li>示例<ol>
+<li>float *x;</li>
+<li>cudaMallocManaged(&amp;x, N*sizeof(float));</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>使用 cudaFree 可释放分配的 GPU 内存<ol>
+<li>cudaFree(x);</li>
+</ol>
+</li>
+<li>使用三个尖括号表示对 kernel 函数的调用<ol>
+<li>add&lt;&lt;&lt;1, 1&gt;&gt;&gt;(N, x, y);</li>
+<li>它会创建一个 GPU 线程，来执行所调用的核函数；</li>
+<li>由于 GPU 线程的执行，不会中断 CPU 线程，有点像是异步的；</li>
+<li>因此如果 CPU 要使用 GPU 的计算结果，则需要显式的让 CPU 线程进行等待；</li>
+</ol>
+</li>
+<li>使用 cudaDeviceSynchronize() 函数，让 CPU 线程进入等待；</li>
+<li>使用 GPU 加速的文件，后缀名需要更改为 .cu；</li>
+<li>使用 nvcc 命令调用 CUDA C++ 编译器，对代码进行编译；</li>
+<li>调用核函数所用的尖括号内部，原来是用来做并行计算的选项配置的；<ol>
+<li>尖括号中的第二个数字表示一个线程块中的线程数量；块的基本单位为32；因此块中的线程数量需要是32的倍数；（越高级的显卡，块中能够并行的线程数量越多，例如 P100 显卡可以达到2048个线程）；</li>
+<li>对于 &lt;&lt;&lt;1, 256&gt;&gt;&gt; 它表示在1个线程周期中，使用 256个线程来做并行计算；但是，每个线程只会做一次计算；而不是把所有的计算分配到所有线程中；</li>
+<li>CUDA 可以让核函数获得线程在其所在块中的下标；<ol>
+<li>threadIdx.x 存放线程在其所在块中的下标，假设命名为 index；</li>
+<li>blockDim.x 存放块中的线程数量，假设命名为 stride；</li>
+<li>通过将循环条件设置为 for (int i &#x3D; index; i &lt; n; i +&#x3D; stride) ，将计算分配到每个线程中；</li>
+</ol>
+</li>
+<li>原理：GPU 有很多个处理器，组合成所谓的 SM（streaming Multiprocessors）流处理器；每个流处理器可以运行多个并行线程块；例如 P100显卡总共有56个流处理器，每个流处理器可以处理 2048 个线程（如果每个块按256个线程，算下来，貌似每个流处理器可以处理 64个块 block）；为了能够充分利用这些线程，对核函数的调用应该转换化多个线程块进行调用；</li>
+<li>尖括号的第一个数字，表示线程块的数量；并行线程的块组成 grid；由于我们有 N 个元素需要处理，每个线程块有256个线程，我们只需要计算出计算 N 个元素所需要的块数量，即使用 N 除以块大小（如果 N 不能整除，需要小心）；<ol>
+<li>int blockSize &#x3D; 256;</li>
+<li>int numBlocks &#x3D; (N + blockSize - 1) &#x2F; blockSize;</li>
+<li>add&lt;&lt;&lt;numBlocks, blockSize&gt;&gt;&gt;(N, x, y);</li>
+</ol>
+</li>
+<li>blockIdx.x 存放块的下标；</li>
+<li>gridDim.x 存放总共的块数量；</li>
+<li>今天重新看了官方的 CUDA 编程文档，发现 block 只是一种方便程序员的抽象；通过 block，让线程的组织看起来更符合某种规律，有时候会更加直观；但其实背后的本质仍然是通过计算指针的位置，来实现对目标位置的取值、计算和赋值；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>programming guide<ol>
+<li>介绍<ol>
+<li>GPU 原理：CPU 给控制单元和寄存器预留了很多空间，用来处理有很多控制条件类型的运算；GPU 是相反，它的控制单元和寄存器很小，但 ALU 计算单元很多，这特别适合用来计算控制条件少，但有大量相同类型计算任务的场景；</li>
+<li>CUDA 有三个重要的抽象：线程组合层级、共享内存、屏障同步；通过这些抽象机制，让开发者能够将应用程序中的单个计算任务拆解成多个并行计算的小任务的方式；只要运行环境可以获取到流处理器的数量，代码就可以根据环境变量，自动调整，以最大化利用多个流处理器进行并行计算；</li>
+</ol>
+</li>
+<li>编程模型<ol>
+<li>CUDA 通过将普通函数包装成核函数，将计算工作分发到不同的线程中并行处理，从而提高了计算速度；</li>
+<li>普通函数包装成核函数后，使用 &lt;&lt;&lt;&gt;&gt;&gt; 两对尖括号进行调用，尖括号里面填写块数量和块线程数量两个参数；每个线程在其所有的块中，有一个下标；在包装普通函数时，需要将这个下标引入代码中，让代码中的数值计算，对应每个下标值（也即对应的线程）；<ol>
+<li>&lt;&lt;&lt;&gt;&gt;&gt; 接受两种类型的参数，分别是 int 和 dim3 类型；</li>
+</ol>
+</li>
+<li>事实上，包装成核函数后，除了原来会传入的那些实参；默认还会传入另外几个参数，包括线程下标 ThreadIdx，块下标 blockIdx，块尺寸 blockDimx；这些信息可以用来改造原有的函数，使其计算工作匹配到单个线程中；</li>
+<li>块可以有3种维度，分别可以用来对应三种场景的计算，分别是 vector, matrix, volume；<ol>
+<li>但实际上，单个块内部的线程数量由硬件决定的，因此是固定的；区别在于单个块内的这些线程，貌似会共享内存？答：是的，当形参是一个多维的时候，一次传入的实参值，刚好可以实现在一次计算中共同，不需要重复传入相同的实参；</li>
+</ol>
+</li>
+<li>块内部的线程，正常是并行进行的，每个线程之间没有顺序依赖关系；如果某个计算步骤有顺序的要求，需要所有线程将计算结果算出来后，才能继续向下进行，则此时可以通过 __syncthreads 函数来实现；它会让所有线程进入等待的状态，直到所有线程执行完毕，才会继续；<ol>
+<li>在 Cooperative Groups API 中，据说有更多的接口，可以用来实现线程同步的需求；</li>
+<li>另外通过 shared memory 共享内存的接口，可以实现更快的性能；</li>
+</ol>
+</li>
+<li>内存层级<ol>
+<li>per-thread local memory：线程内部私有；</li>
+<li>per-block shared memory：块内共享，仅块内的线程可以访问；</li>
+<li>global memory：全局共享，所有块都能够访问；</li>
+</ol>
+</li>
+<li>异构编程<ol>
+<li>编程模型假设 GPU 部分的代码和 CPU 部分的代码是独立进行的，二者没有依赖关系；并假设它们拥有各自独立的 DRAM 动态内存；</li>
+<li>通过 unified memory 模块，可以实现两种内存之间的桥梁；</li>
+</ol>
+</li>
+<li>GPU 的版本号由 Major 和 Minor 两部分组成，其中的大版本号表示 GPU 的架构类型，而架构类型决定了 GPU 的计算能力；小版本号则用来表示 GPU 的局部更新；</li>
+</ol>
+</li>
+<li>编程接口<ol>
+<li>CUDA 对 C 语言的语法进行了小拓展，并提供了一个运行时库；<ol>
+<li>有一节专门讲所有的 C 语言语法拓展；当使用这些拓展时，需要使用专门的 nvcc 编辑器来编译源代码；</li>
+<li>运行时库提供了一些函数，可以用来在 host 分配和释放内存，在 host 和 device 的内存之间转移数据，管理多个 device 等；完整功能在 CUDA 手册中有介绍；</li>
+<li>运行时库是比 CUDA 驱动 API 的更高层次的封装，它可以让编程更容易，不用关心底层的驱动细节；</li>
+</ol>
+</li>
+<li>CUDA 指令集称为 PTX；但一般通过 C 来编程会更直观；</li>
+<li>nvcc 工作流程<ol>
+<li>先将 device 源代码编译成 PTX 指令集的汇编格式，或者二进制 cubin 对象格式（它在执行期间还会进一步做 JIT 编译）；</li>
+<li>将 host 代码中，标记有 &lt;&lt;&lt;&gt;&gt;&gt; 两个尖括号的地方，替换为运行时库函数，这些函数在执行时，会加载和调用第一步编译完成的 device 目标代码；</li>
+<li>最后替换完成的源代码，交给 host 编译器完成剩下的编译工作；</li>
+<li>引入 PTX 的机制，相当于增加了一层抽象，通过这层抽象，使得代码能够在多种不同规格和架构的 GPU 之间兼容，不会受到硬件实现细节的影响；</li>
+</ol>
+</li>
+<li>运行时库<ol>
+<li>通过 cudart 库实现，应用一般通过链接静态库 cudart.lib 或者 libcudart.a，或者 cudart.dll 或 libcudart.so 来调用；</li>
+<li>模块介绍<ol>
+<li>device memory 用来管理 GPU 内存；</li>
+<li>shared memory 用来设置共享内存；</li>
+<li>Graphics Interoperability 提供了多个函数来与 OpenGL 和 Direct3D 进行交互；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>初始化：没有显式的初始化函数，来做初始化的动作，而是当第一次执行 device code 的时候，才会触发初始化；初始化的时候，会为每个 GPU 设备生成一个上下文环境，这个环境可以被所有 host 的应用共享；<ol>
+<li>如果显式调用 cudaDeviceReset()函数，则会销毁这个环境，然后等到下一次调用 device code 的时候，才会再次初始化一个新环境；</li>
+</ol>
+</li>
+<li>显存<ol>
+<li>cudaMalloc 函数用来分配显存；</li>
+<li>cudaFree 用来释放显存；</li>
+<li>cudaMemcpy 用来在主存和显存之间传输数据；</li>
+<li>cudaMallocPitch 和 cudaMalloc3D 可用来分配二维和三维数组的显存，它们可以确保满足对齐要求；<ol>
+<li>cudaMallocPitch 和 cudaMalloc3D 的参数格式有点奇怪，待查询下手册；</li>
+</ol>
+</li>
+<li>cudaMemcpy2D 和 cudaMemcpy3D 则专用来复制内存中的二维和三维数据；</li>
+<li>cudaMemcpyToSymbol</li>
+<li>cudaMemcpyFromSymbol</li>
+<li><strong>constant</strong>, <strong>device</strong> 用来访问全局变量；</li>
+</ol>
+</li>
+<li>共享内存<ol>
+<li>复制类对象到显存的方法，先在显存中声明一个新的类对象，值数据成员，直接手工进行赋值初始化；指针指向的数据成员，使用 cudaMalloc 加 cudaMemcpy 来实现拷贝<ol>
+<li>不知为何，写到这里，我重新看了一下代码，我感觉对象仍然是声明和存放在主存中的，只是对象的指针成员，指向了显存好像</li>
+</ol>
+</li>
+<li>对于改造后的 kernel 函数，它被各个 GPU 线程调用的时候，代码都是一模一样的，唯一的区别在于计算 index 的环境变量不同，因此它使得每个线程会根据下标去获取实参的不同部分进行计算；</li>
+<li>对于矩阵乘法运算，由于其特殊的性质，可以将大矩阵分成小矩阵进行计算，然后再累加结果；当分解成多个小矩阵时，每个小矩阵由一个单块进行运算，可以实现共享内存</li>
+<li>原理：GPU 有多个流处理器，每个流处理器都有自己的寄存器，这个寄存器的存储容易不大，但是它的读取速度很快，因此，如果能够将单个流处理器中，多个线程所需要用到的数据，都提前加载到各自的寄存器中，则可以减少对 GPU 显存的访问，大大提高了计算性能；</li>
+<li>如何实现将数据加载到流处理器的寄存器，使得单个流处理器中的多个线程可以共享这些数据，从而不必要每个线程都对主显存发起访问？<ol>
+<li>答：使用 <strong>shared</strong> 关键字来声明变量，由于每个线程只拷贝初始化一个变量值，因此需要再做一下线程同步，才能使得共享内存全部完成初始化，之后再进入下一步使用共享数据进行计算</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>硬件实施<ol>
+<li>使用 deviceQuery 可以查询当前机器上面的显卡信息，包括流处理器数量，每个SM 的最大线程数，每个 block 支持的最大线程数等</li>
+</ol>
+</li>
+<li>性能优化</li>
+<li>附录</li>
+</ol>
+</li>
+<li>编译 nvcc <ol>
+<li>静态库编译步骤<ol>
+<li>nvcc -rdc&#x3D;true -c -o temp.o foo.cu<ol>
+<li>将 cu 文件编译成中间临时 object 文件 temp.o</li>
+<li>rdc 表示 relocatable device code，可重新定位的GPU代码的文件</li>
+<li>-rdc&#x3D;true 表示生成的 GPU 代码文件不可执行，需要链接后才能执行；默认是 false ，表示直接生成可执行的GPU 代码文件；<ol>
+<li>怎么感觉这里跟 gcc 里面的 -fPIC 好像是一样的道理？</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>nvcc -dlink -o foo.o temp.o -lcudart<ol>
+<li>-dlink 表示将不可执行的 rdc 文件链接到可执行的GPU代码文件中<ol>
+<li>感觉这个选项很像 gcc 里面的 -ldl，即 dynamic link；</li>
+</ol>
+</li>
+<li>-lcudart 表示链接 cudart 库；这个库的完整名称为 cuda_runtime</li>
+</ol>
+</li>
+<li>ar rc libfoo.a foo.o temp.o<ol>
+<li>将两个 object 文件合并成一个库文件 libfoo</li>
+</ol>
+</li>
+<li>ranlib libfoo.a<ol>
+<li>ranlib 表示更新静态库的符号表索引</li>
+</ol>
+</li>
+<li>g++ main.cpp -L. lfoo -o main -L&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64 -lcudart<ol>
+<li>编译主程序文件，需要分别链接静态库和动态库</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>编译选项<ol>
+<li>–cuda (-cuda)<ol>
+<li>用来将 cu 文件编译成 C&#x2F;C++ 格式的源文件，输出的文件可以被 host 的编译器进行处理；</li>
+</ol>
+</li>
+<li>–device-c（-dc)<ol>
+<li>等同于原来 -rdc&#x3D;true 和 –compile 的效果叠加；即将 cu 文件单独编译成 .o 对象文件；</li>
+</ol>
+</li>
+<li>–device-link(-dlink)<ol>
+<li>将有 rdc 代码的 obj 文件和 ptx, cubin、fatbin 文件链接成一个新的 obj 文件，这个文件含有可执行代码，可传递给 host 链接器；</li>
+</ol>
+</li>
+<li>–library(-l)<ol>
+<li>指定要在链接阶段要使用的库名（库名无须写后缀）</li>
+<li>库的搜索路径由另外一个选项 –library-path 进行指定</li>
+</ol>
+</li>
+<li>–library-path(-L)<ol>
+<li>指定要链接的库的搜索路径；</li>
+</ol>
+</li>
+<li>–output-file (-o)<ol>
+<li>指定输出文件的名称</li>
+</ol>
+</li>
+<li>–lib(-lib)<ol>
+<li>将输入的文件，编译成 .o 文件；同时还可以将结果输出到指定的库文件中；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>编译流程<ol>
+<li>步骤<ol>
+<li>源文件先进行预处理，然后编译成 CUDA 二进制机器码或者 PTX 中间码；</li>
+<li>源文件再次预处理，将上一步的 fatbinary 嵌入进去；将 CUDA 专用的 C++ 扩展转换成标准 C++ 结构，变成合成码；</li>
+<li>主机编译器将合成码转成主机对象文件；</li>
+</ol>
+</li>
+<li>编译样例<ol>
+<li>生成可执行文件<ol>
+<li>nvcc -arch&#x3D;sm_50 –device-c a.cu b.cu</li>
+<li>nvcc -arch&#x3D;sm_50 a.o b.o<ol>
+<li>注：-arch&#x3D;sm_50，在官方文档中有提示这个选项的作用会决定最终可执行代码内容）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>生成静态库<ol>
+<li>nvcc -arch&#x3D;sm_50 -dc a.cu b.cu</li>
+<li>nvcc –lib a.o b.o -o test.a<ol>
+<li>官方文档提示 device linker 仅支持处理静态库；</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>编译问题<ol>
+<li>当 host 文件调用了 device 文件中代码时，host 文件在链接时，都需要加入 device 文件，不然会找不到所调用的代码，出现如下报错：<ol>
+<li>undefined symbol __fatbinwrap_name (原来如此，终于找到原因了）</li>
+<li>晕，当时忘了写下如何添加 device 文件了；<ol>
+<li>详见 test&#x2F;lib_test&#x2F;demo8</li>
+<li>需要在 g++ 编译时写下需要链接的库名称，例如：<ol>
+<li>LIBPATH &#x3D; &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64</li>
+<li>g++ main.o -lgpu -L. -lcudadevrt -lcudart -L$(LIBPATH)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GPU/" class="print-no-link">#GPU</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CUDA</div>
+      <div>http://example.com/2019/05/27/CUDA/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年5月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/16/OD&amp;CheatEngine/" title="OD &amp; CheatEngine">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OD &amp; CheatEngine</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/26/%E4%BD%BF%E7%94%A8%20CertBot%20%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0%20Let&#39;s%20Encrypt%20SSL%20%E8%AF%81%E4%B9%A6/" title="使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书">
+                        <span class="hidden-mobile">使用 CertBot 自动更新 Let&#39;s Encrypt SSL 证书</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

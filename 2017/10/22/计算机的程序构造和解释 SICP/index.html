@@ -1,0 +1,1011 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="构造过程抽象 程序设计的基本元素 总述 基本表达形式：简单的元素 组合的方法：由简单元素组合到复合元素 抽象的方法：为复合元素命名，作为独立单元进行操作；   表达式：将表达式用括号包起来，形成了组合式，左侧是前缀的运算符，右侧是运算对象；运算符背后代表一种过程，它也是过程的一种抽象；运算对象背后代表一个值； 命名和环境 命名：获得通过名字去使用计算对象的方法，简化细节，其实这也是一种最基本的对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机的程序构造和解释 SICP">
+<meta property="og:url" content="http://example.com/2017/10/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A%20SICP/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="构造过程抽象 程序设计的基本元素 总述 基本表达形式：简单的元素 组合的方法：由简单元素组合到复合元素 抽象的方法：为复合元素命名，作为独立单元进行操作；   表达式：将表达式用括号包起来，形成了组合式，左侧是前缀的运算符，右侧是运算对象；运算符背后代表一种过程，它也是过程的一种抽象；运算对象背后代表一个值； 命名和环境 命名：获得通过名字去使用计算对象的方法，简化细节，其实这也是一种最基本的对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-10-22T08:42:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T00:56:33.732Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>计算机的程序构造和解释 SICP - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机的程序构造和解释 SICP"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-10-22 16:42" pubdate>
+          2017年10月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计算机的程序构造和解释 SICP</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>构造过程抽象<ol>
+<li>程序设计的基本元素<ol>
+<li>总述<ol>
+<li>基本表达形式：简单的元素</li>
+<li>组合的方法：由简单元素组合到复合元素</li>
+<li>抽象的方法：为复合元素命名，作为独立单元进行操作；</li>
+</ol>
+</li>
+<li>表达式：将表达式用括号包起来，形成了组合式，左侧是前缀的运算符，右侧是运算对象；运算符背后代表一种过程，它也是过程的一种抽象；运算对象背后代表一个值；</li>
+<li>命名和环境<ol>
+<li>命名：获得通过名字去使用计算对象的方法，简化细节，其实这也是一种最基本的对计算过程的抽象；</li>
+<li>环境：一种存储的能力，实现名字-值的对偶关系的追溯；用于确定表达式中各个符号所代表的意义；</li>
+</ol>
+</li>
+<li>组合式的求值<ol>
+<li>求值规则：<ol>
+<li>先对子表达式进行求值，其次将最左子表达式作为过程，右侧子表达式的结果做为运算对象，再次进行求值；（这个过程不断调用规则本身，本质上是一种递归的思想）</li>
+<li>由通用规则和一些特殊形式的规则组成；而事实上，特殊形式的规则也不过是对一些通用规则的封装，更便于使用和理解，即语法糖（据说语法糖太多也不好，会增加复杂性）；</li>
+</ol>
+</li>
+<li>递归：一种处理层次性结构的好办法；</li>
+</ol>
+</li>
+<li>复合过程<ol>
+<li>对复合操作的一种抽象，用一个名字来表示这种复合的操作；</li>
+</ol>
+</li>
+<li>过程应用的代换模型<ol>
+<li>正则序：先展开而后归约（展开：先用表达式去替换参数，而不是先对参数进行求值；一直等到需要的时候，再去对表达式求值；如果因为某些条件判断导致一直没有需要，则此表达式不求值）（听起来像是惰性求值的样子）</li>
+<li>应用序：先求值参数而后应用</li>
+<li>实际上，解释器并不是通过“代换”参数的形式在工作，而是通过“局部环境”来取得相同的效果；（估计是在不同的局部环境中切换）</li>
+</ol>
+</li>
+<li>条件表达式和谓词<ol>
+<li>(cond (<p1> <e1>) (<p2> <e2>)…(<pn> <en>)；<ol>
+<li>如果所有条件都不为真，则 cond 没有值</li>
+<li>最后一个条件可以用 else 来表示永远为真，这样最后一个 <en> 总是会被执行；</li>
+</ol>
+</li>
+<li>if 是 cond 的特殊形式，只适用于只有两个条件的情景下；</li>
+<li>and, or, not<ol>
+<li>and 和 or 不是普通过程，因为它的子表达式不一定会求值，它们是一种特殊形式（或许可以理解为它们是一种复合过程，对普通过程进行了封装）；</li>
+<li>not 是普通过程；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>过程作为黑箱抽象<ol>
+<li>局部名：如果一个名字，只能在它所在的那集表达式中使用，称为名字的作用域；</li>
+<li>内部定义和块结构：一种局部环境的思想，涉及词法作用域的理念，即名字只在定义这个过程的局部环境中去寻找；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>过程与它们所产生的计算<ol>
+<li>总述：<ol>
+<li>看清各种不同种类的过程，会产生什么样的计算过程；</li>
+<li>计算过程会以不同的速度消耗各种重要的计算资源（时间和空间）；</li>
+</ol>
+</li>
+<li>线性的递归和迭代<ol>
+<li>递归：由一个个推迟进行的操作所构造起来的链条；</li>
+<li>迭代：可以用固定数目的状态变量进行描述的计算过程（优点：空间资源相对消耗少）；</li>
+<li>递归计算过程和递归过程表达的是不同的意思，前者表示某个计算过程是由一个个推迟进行的操作所构成的链条，是一种计算的进展方式；后者表示某个过程定义，引用了过程本身；</li>
+<li>尾递归：它是一个递归过程，会调用自身，但是它只在常量空间里执行迭代计算，即空间消耗没有变化；</li>
+</ol>
+</li>
+<li>树形递归<ol>
+<li>好处：程序容易理解和设计</li>
+<li>坏处：可能开销很大，存在很多冗余计算（一种常用的解决方式叫动态编程，即将过程中的计算结果存储下来，每次新的计算，优先查找已存储的历史结果，如果没找到，再进行计算）</li>
+</ol>
+</li>
+<li>增长的阶<ol>
+<li>O(n)：读 theta n，用来计算当 n 变化时，所需消耗的资源量的一个粗略估算值；</li>
+</ol>
+</li>
+<li>求幂<ol>
+<li>设计一个变量，让它在迭代过程中记录结果，并带入下一个迭代，从而实现尾递归，常用于设计迭代算法；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>用高阶函数做抽象<ol>
+<li>过程作为参数<ol>
+<li>将某种公用模式的计算过程，抽象为一个函数，此函数接受其他函数做为参数，并将其他函数的值，用已抽象好的计算过程去求值；</li>
+</ol>
+</li>
+<li>用 lambda 构造过程<ol>
+<li>lambda 表达式可以直接作为另外一个表达式的过程前缀，跟常规的用名称来表示过程是一样的效果；即：( lambda <formal-parameters> <body> )</li>
+<li>let 可以用来创建局部变量，使用效果上跟 define 来创建变量是一样的；let 表达式更多是做为 lambda 的语法外衣，使得代码更容易阅读和理解；<ol>
+<li>( let  ( ( <var1><exp1> )<ol>
+<li>( <var2><exp2> ))</li>
+</ol>
+</li>
+<li><body> )</li>
+</ol>
+</li>
+<li>let 让我们可以在接近局部变量使用的地方创建变量，这样更进一步方便代码的阅读理解；</li>
+<li>let 定义的变量的表达式所用到的变量的值，是在 let 外面计算的；</li>
+</ol>
+</li>
+<li>过程作为一般性的方法<ol>
+<li>用来表述一般性的一个计算过程，与其中涉及的特定函数无关；</li>
+<li>通过区间折半寻找方程的根<ol>
+<li>假设 f 是一个连续的函数</li>
+<li>对于给定的 a 和 b ，存在 f(a) &lt; 0 &lt; f(b)</li>
+<li>那么存在一个点 k，使得 f(k) &#x3D; 0；</li>
+</ol>
+</li>
+<li>找出函数的不动点<ol>
+<li>如果存在 f(x) &#x3D; x</li>
+<li>则 x 称为函数 f 的不动点（将 x  做为参数代入函数 f 进行计算后，结果仍然得到 x ，所以叫做不动点？）</li>
+<li>平均阻尼技术：取逼进一个解的一系列值的平均值的方法；常常用于不动点的搜寻场景，可以用来帮助收敛；</li>
+<li>寻找不动点的用途，貌似这种技术可以做为一些函数的解法，比如求平方根，求立方根，它内在的本质，貌似也可以算是一种收敛性的猜测，即给出一个猜测值，然后根据结果缩小猜测范围的猜测下一个值，为避免出现例外情况，此处引入平均阻尼的方法（如果没有引入平均阻尼的方法，不动点技术不一定在空间上有太多优势，因为有可能它收敛的很慢，甚至振荡而不收敛，当然，貌似它也可能收敛的很快，但目测再快也没有平均阻尼快了；又想了想，好像也不一定）；</li>
+<li>不动点技术是一种有趣有用的好技术，但不是所有的函数都存在不动点；如果一个函数没有不动点，则这个技术就不适用了；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>过程作为返回值<ol>
+<li>当一个过程，需要以函数作为参数时；此时另外一个过程，其返回值是一个函数，那么这两个过程就可以进行组合了；</li>
+<li>牛顿法：这又是一个神奇的方法，通过使用函数的导数，进行不动点的迭代，求得方程的根；</li>
+<li>抽象和第一级过程<ol>
+<li>第一级元素的特权<ol>
+<li>可以用变量命名；</li>
+<li>可以提供给过程作为参数；</li>
+<li>可以由过程作为结果返回；</li>
+<li>可以包含在数据结构中；</li>
+</ol>
+</li>
+<li>scheme 给了过程第一级元素的状态，这使得 scheme 获得了强有力的描述能力；它的代价是，需要为过程中的自由变量保留空间，即使这一过程并不执行；这些变量被存储在过程的环境里；(说明过程是提前被存储起来的，猜测就像变量一样存储在内存常量区？答：是的，所有过程本质是都是一系列指令的集合，当它们被编译器转成机器指令时，需要占用内存空间，但根据条件不同，有时候不一定会跳转到该段位置执行指令）</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>构造数据抽象<ol>
+<li>数据抽象导引<ol>
+<li>本质：将数据的构造细节和使用方式进行分离；</li>
+<li>好处：可以在程序中建立起抽象屏障，将“使用”数据对象的程序（上层）与“实现”数据对象的程序（下层）分开来；<ol>
+<li>示例，有理数的表示<ol>
+<li>(define (make-rat n d)<ol>
+<li>(cons n d))  \此处通过序对来表示有理数</li>
+</ol>
+</li>
+<li>(define (numer x)<ol>
+<li>(car x))  \基于上面序对的表示方式，定义了取得分子的过程；</li>
+</ol>
+</li>
+<li>(define (denom x)<ol>
+<li>(cdr x)) \定义了取得分母的过程；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在有了上面三项之后，未来如果想要更改序对的表示方式，只要同时更新分子和分母的获取实现过程即可，但不改变 make-rat、numer、denom 的名称，这样就可以使得那些基于这三个名称构建出来的程序，完全不必修改，仍然可以正常工作；</li>
+</ol>
+</li>
+<li>思想：<ol>
+<li>构造出一些使用复合数据对象的程序，而不是基本数据对象，这样程序像是在“抽象数据”上操作一样；好处是建立了抽象屏障，底层数据构造细节的变化，不变影响到上层的程序；数据是如何构造出来的，跟数据是如何使用的无关（此处让我想起了面向对象编程中的对外暴露的方法，即访问一个对象的数据，是通过该对象的方法来获得，而不是直接访问对象的属性本身，这样其实也是实现了一种抽象和隔离，让未来对象数据结构的变化，带来的影响减至最小）；</li>
+<li>为每一类数据对象标识出一组基本操作，使得针对这些数据对象的所有操作，都可以由这些基本操作来组成，并且也只用这些基本操作组成；</li>
+</ol>
+</li>
+<li>构造函数：用来构造数据对象；</li>
+<li>选择函数：用来访问数据对象；</li>
+<li>数据：由一组适当的构造函数和选择函数组成，以及它们必须满足的一组特定条件（以便使构造和选择过程可以成为合法的表示）（思考：貌似面向对象的思想，就是一种数据抽象封装的方式）（由此想到，对于对象的数据的访问方式，应该通过定义好的方法，而不应该通过对象的属性进行直接访问，因为这样缺少隔离的屏障，甚至不小心修改了对象的属性，很危险）</li>
+<li>从序对构造起来的数据对象称为表结构数据（为什么叫做表结构数据呢？）</li>
+<li>区间算术：由于区间表示的数本身具备一定的不确定性，即缺少唯一性的问题，所以，区间算术的运算，根据运算形式的不同，结果有可能不同；在一次运算过程中，不确定性变量出现的次数越多，最后结果所包含的不确定性就会越大。因此，如果能够通过算术变换，尽量减少不确定性变量的使用次数，那么结果会更加收敛；</li>
+</ol>
+</li>
+<li>层次性数据和闭包特性<ol>
+<li>闭包是指通过某个过程组合起来的数据对象结果，仍然可以使用相同的过程再进行组合；在代数术语中，它的意思是某个集合里面的元素，经过计算后，得到的结果，仍然属于这个集合；</li>
+<li>序列：<ol>
+<li>定义：一批数据对象的一种有序组合；</li>
+<li>实现的方式有很多种，通过嵌套的序对来实现是其中的一种方法；</li>
+<li>通过嵌套的 cons 来实现的序列，称为一个表；它还可以使用关键字 list 来创建，这样写起来更方便一些；（list 是链表结构，其他还有数组结构，链表结构的优点是可以用O(1)实现更新和删除，但查找需要O(n)；而数组的方式，优点是查找只需要O(1)，但更新和删除是O(n)（如果使用哈希表呢？是否更新、删除、查找都是O(1)？）；</li>
+</ol>
+</li>
+<li>表：<ol>
+<li>car 可以用来在表的前面增加一个元素，但不能用来在表后面增加元素；可以用 append 在表的后面增加元素，不过貌似要自己定义这个函数，没有内置；（注：append 是O(n)的成本）</li>
+<li>nil 可以用来表示序列链的结束，也可以用来表示一个空表；</li>
+</ol>
+</li>
+<li>null?  它是 scheme 自带的一个函数，用来判断一个表是否为空表；</li>
+<li>层次性结构：树，表中又包含表；</li>
+<li>表的映射：(define (map proc items) … )， 用 car 逐项处理 items，并用 cons 将处理结果和剩下的 cdr items 递归处理结果进行连接；（这玩意儿看上去就是一个迭代的过程，好比 js 或 python 里面的 map 函数，简直一样样的）；</li>
+<li>树的映射<ol>
+<li>方式一：分支判断，递归左分支和右分支；用 cons 连接递归结果；</li>
+<li>方式二：(map lambda tree)，其实跟上面本质相同，只是将 cons 和递归抽象在 map 中，将处理抽象在 lambda 中</li>
+</ol>
+</li>
+<li>使用约定的接口<ol>
+<li>定义一些标准的部件库，这些部件定义约定的接口，以便部件之间能够相互灵活的连接，组合出更模块化的程序；<ol>
+<li>示例：例如枚举，映射，过滤，累加等几个函数，通过它们的组合，达到模块化的效果；</li>
+</ol>
+</li>
+<li>将程序操作转换为对序列的操作，然后只需依赖几个为数不多的序列，就可以实现复杂的操作效果；</li>
+<li>嵌套映射：(define (flatmap proc seq)) ，用 map 做映射，然后用 append 对结果进行累积；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>符号数据<ol>
+<li>eq? 用于判断两个符号是否相同；</li>
+<li>memq 判断某个符号是否在某个表中，如果不在，返回假；如果在，返回这个符号首次出现的位置余下的表；</li>
+<li>equal? 用于判断两个表是否相同；</li>
+<li>number? 用于判断某个变量是否为数字；</li>
+<li>symbol? 用于判断某个变量是否为符号；</li>
+<li>代数表达式的表示：用符号组成的表来表示，并定义出加减乘除的方法，这样就可以在这个基础上进行符号计算了；</li>
+<li>element-of-set？ 用于判断给定元素是否为某个给定集合的成员；</li>
+<li>集合的表示<ol>
+<li>集合为未排序的表：O(n^2)；</li>
+<li>集合为已排序的表：O(n)</li>
+<li>集合作为二叉树：O(log n)</li>
+</ol>
+</li>
+<li>集合与信息检索<ol>
+<li>定长编码：比较浪费空间；</li>
+<li>变长编码：利用相对频度，改变符号在树中的位置，可以明显节约空间；<ol>
+<li>Huffman 编码树<ol>
+<li>原则：最低频度的符号出现在离树根最远的地方；</li>
+<li>算法：找出最低频度的两个符号，生成一个新节点，加入原集合中，去掉这两个符号；重复这个过程，直到处理完所有的符号；</li>
+<li>表示：<ol>
+<li>叶子：(define ‘leaf symbol weight)</li>
+<li>节点：(list left right symbols weight)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>抽象数据的多重表示<ol>
+<li>显式分派风格<ol>
+<li>使用带标志的数据；选择函数首先检查参数的标志，然后对应寻找到处理这类数据的过程；<ol>
+<li>(define (real-part z)<ol>
+<li>(cond ((rectangular? z)<br> 1. (real-part-rectangular (contents z))<ol>
+<li>((polar? z)<ol>
+<li>(real-part-polar (contents z)))</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>数据导向风格<ol>
+<li>将数据的不同表示方式和操作，加上标志，独立出来组成一个表格，形成一个包；当需要使用的时候，传入标志参数进行调用；</li>
+<li>好处：<ol>
+<li>如果未来有新的方式，只需要在表格中进行注册即可；其他地方都可以不用更改；</li>
+<li>表格中注册的每种方式，由于是各个标志进行内部的命名，作用域方面也不会存在冲突；这样可以最大程度的整合不同人员的不同表示方式；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>消息传递风格<ol>
+<li>将数据对象做为一个实体，以消息的方式接收到所需操作的名字<ol>
+<li>(define (make-from-real-imag x y)<ol>
+<li>(define (dispatch op)<ol>
+<li>(cond ((eq? op ‘real-part) x)<ol>
+<li>……(略)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>dispatch)))</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>带有通用型操作的系统<ol>
+<li>通过数据导向的设计，将不同类型的操作放进包中；</li>
+<li>包中的过程，可以引用已有的包，在其基础上进一步抽象，让它变得更加通用；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>模块化、对象和状态<ol>
+<li>面向对象是一种设计策略，目的在于让程序更加健壮，易于拓展；相对于函数式的代换模型，它引入了环境模型，更加机械化，理论上更不容易把握，因为我们需要与时间做搏斗；流模型可以解决与时间的冲突，它通过延迟求值的方式实现；</li>
+<li>赋值和局部状态<ol>
+<li>为了模拟真实系统里面的实际对象，我们需要使用局部状态变量，来描述对象的状态；由于实际对象的状态会随着时间而变化，因此我们又需要引入赋值，来改变这个状态变量；</li>
+<li>引进赋值的收益：引进赋值，可以让我们将对象的状态隐藏在内部，避免对外显示的操作和传递，这样可以减轻我们的负担，使我们更容易模块化的构造系统；</li>
+<li>引进赋值的代价：由于时间和状态的存在，同一个东西在不同的时间不再可以相互替换，因为它们导致的结果可能不同，因此我们也将失去引用的透明性；这将使对使用赋值的程序做推理变得非常困难；（我们失去了同一性，不再能两次踏进同一条河流）</li>
+<li>引进赋值的缺陷：由于状态的存在，迫使我们不得不考虑赋值的相对顺序，以确保变量在引用的时候，是最新正确的版本；当程序需要应对并发的时候，这个情况将会变得很糟糕；</li>
+</ol>
+</li>
+<li>求值的环境模型<ol>
+<li>什么是环境？环境是框架的一个序列；<ol>
+<li>序列是被排成一列的对象，每个元素不是在其他元素之前，就是在其他元素之后，元素之间的顺序很重要；</li>
+<li>框架是包含着一些约束的表格；约束将变量关联于某个对应的值；每个框架还包含着一个指针，它指向这个框架对应的外部环境；</li>
+</ol>
+</li>
+<li>一个表达式的意义依赖于它所在的环境，因为这个环境提供了解释这个表达式意义的上下文；</li>
+<li>环境模型中，过程的应用和定义使用以下两条规则：<ol>
+<li>相对于某个给定环境，求值一个 lambda 表达式，将创建一个过程对象，这个过程对象是一个序对，由两部分组成，一部分是 lambda 表达式的正式，一部分是指向环境的指针，指向创建这个过程对象的环境；</li>
+<li>将一个过程对象应用于一组实际参数时，它将构造出一个新框架，在这个新框架中，过程原来的形式参数，将约束于实际参数，然后在构造起来的这个新环境里面，求值过程体；这个新环境的外围环境，指向定义过程对象的那个环境（这里很重要，它不是指向调用它的那个环境，而是创建它的环境）；</li>
+</ol>
+</li>
+<li>当在当前环境找（假设为C）不到变量的约束时，将会去当前环境指向的外围环境（假设为B）进行查找，如果还是找不到，将会一路往上，直到全局环境（假设为A），如果仍然没有找到，则会报错提示；特别地再次提醒，一旦找到（假设在A找到），并且变量的约束关联的值，是一个过程对象，那么这个过程对象所创建的新环境，其外围环境是指向定义这个过程对象的环境（即A，而不是B）；</li>
+<li>内部定义的特质<ol>
+<li>内部定义会创建一个局部环境，局部过程对象存在于这个环境中，它们不会与外围环境的同名过程对象发生命令冲突；</li>
+<li>对局部过程对象的调用，会构建一个新的子环境，在这个子环境中，可以访问母环境的实际参数，因为实际参数的值被约束在母环境的形式参数中；虽然在局部子环境不能找到要使用的变量的约束，但向上一级的母环境中查找，就可以找到了；</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>用变动数据做模拟<ol>
+<li>如果一个数据对象定义了变动数据的操作，称之为变动数据对象；（如果我们不马上求值，我们就不需要马上对求值结果进行保存，从而使得暂时不需要赋值和数据变动，莫非这就是延迟求值技术的核心理念所在？）</li>
+<li>变动的表结构（表此处即 list，可以通过 cons 来构造）<ol>
+<li>共享和相等：在 scheme 里面，对应每个名字的符号是唯一的，scheme 不提供改变符号的方式；而不同序对的实现，是通过构造新序对，然后通过指针指向所需要的符号来实现的；这种实现方式，不可避免的会造成两个不同的序对，共享相同的符号；<ol>
+<li>好处：scheme 可以通过判断指针是否相等来实现 eq？</li>
+<li>坏处：指针的指向有可能造成循环；</li>
+</ol>
+</li>
+<li>改变即赋值：赋值与变动具有相等的地位，因为可以将环境也看做一种数据结构。从理论上说，为了表示变动数据的行为，所需要的全部东西，只是赋值就够了，即只要将赋值纳入语言即可实现；</li>
+</ol>
+</li>
+<li>队列的表示<ol>
+<li>由于通过 cons 构造的表，节点之间已经通过指针形成了链接，意思是当知道了头，就可以顺藤摸瓜找到尾，因此通过一个新序对，将它分别指向链表的头和尾，就可以构造出队列，即(cons front-ptr  rear-ptr)</li>
+<li>双端队列的表示：通过 (cons (cons item prev) next) 双层结构来构建（思考：如果有更复杂的要求，或许可以考虑使用3层、4层或更多层的结构来实现？）；</li>
+</ol>
+</li>
+<li>表格的表示<ol>
+<li>一维表格：通过双层结构的序对实现</li>
+<li>二维表格：通过两个关键码+子表格实现（基于一维表格的双层结构）；</li>
+<li>多维表格</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>错误集<ol>
+<li>define 既可以用来定义函数，也可以用来赋值，语法为： (define var value)，这里 value 可以是一个值，也可以是一个表达式；</li>
+<li>当需要返回一个过程时，函数体里面使用的是 lambda 来定义这个过程，如果没有使用 lambda 就不会返回过程，而变成返回数值了；</li>
+<li>(define (cons x y)<ol>
+<li>(define (dispatch m)<ol>
+<li>…)</li>
+</ol>
+</li>
+<li>dispatch) ;注意此处返回了一个过程；当定义一个函数，需要返回一个过程时，可以使用这种方式；</li>
+</ol>
+</li>
+<li>let 定义的变量只能在 let 的 body 内使用，无法让跟 let 平级的其他函数使用；但使用 define 定义的变量，可以被和它平级的内部环境的函数使用；</li>
+<li>在递归调用的时候，如果想要实现赋值，需要在 let 定义变量后，再使用内部定义新函数，建立起一个局部环境，在这个局部环境中，可以访问 let 定义的变量，并对其进行赋值，从而记录状态，而不能直接调用全局环境的父函数来实现递归，因为那样会导致另外重新构建另外一个新环境，得到另外一个平行的 temp，这样局部环境的赋值就失效了；正确的做法应该是在父函数建立起来的环境内部，创建局部环境实现递归；</li>
+<li>cons 函数会返回一个新序对，不会改变老序对；如果需要赋值，需要通过 set! 来实现；</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="print-no-link">#计算机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计算机的程序构造和解释 SICP</div>
+      <div>http://example.com/2017/10/22/计算机的程序构造和解释 SICP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年10月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/11/12/js%20%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/" title="js多重继承">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">js多重继承</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/08/14/jQuery/" title="jQuery">
+                        <span class="hidden-mobile">jQuery</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

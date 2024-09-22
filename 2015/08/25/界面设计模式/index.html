@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="合理的设计过程：  找出目标用户和他们的实际行为； 进行目标和任务分析，描述用户将如何对待你的产品； 进行模型设计，包括人物角色、情景、界面原型； 做可用性测试，以及现场观察用户如何使用产品；（验证想法）；  一、用户做些什么  好的设计源于对人的理解：人们喜欢什么，为什么会使用某种特定的软件，他们可能会怎样与之交互；用户的动机和意图是什么？他们希望使用的词汇、图标和应用姿态是什么？应用怎样才能为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="界面设计模式">
+<meta property="og:url" content="http://example.com/2015/08/25/%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="合理的设计过程：  找出目标用户和他们的实际行为； 进行目标和任务分析，描述用户将如何对待你的产品； 进行模型设计，包括人物角色、情景、界面原型； 做可用性测试，以及现场观察用户如何使用产品；（验证想法）；  一、用户做些什么  好的设计源于对人的理解：人们喜欢什么，为什么会使用某种特定的软件，他们可能会怎样与之交互；用户的动机和意图是什么？他们希望使用的词汇、图标和应用姿态是什么？应用怎样才能为">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-08-25T13:37:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T03:00:51.363Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="设计">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>界面设计模式 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="界面设计模式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2015-08-25 21:37" pubdate>
+          2015年8月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">界面设计模式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>合理的设计过程：</p>
+<ol>
+<li>找出目标用户和他们的实际行为；</li>
+<li>进行目标和任务分析，描述用户将如何对待你的产品；</li>
+<li>进行模型设计，包括人物角色、情景、界面原型；</li>
+<li>做可用性测试，以及现场观察用户如何使用产品；（验证想法）；</li>
+</ol>
+<p>一、用户做些什么</p>
+<ol>
+<li>好的设计源于对人的理解：人们喜欢什么，为什么会使用某种特定的软件，他们可能会怎样与之交互；用户的动机和意图是什么？他们希望使用的词汇、图标和应用姿态是什么？应用怎样才能为用户设置适当的期望？</li>
+<li>软件对用户而言，是达到某种目的的手段：寻找信息或对象、学习知识、进行交易、控制或监视、建造某种东西、和其他人交谈、娱乐；</li>
+<li>设计界面的第一步：找出用户真正要达到的目标；</li>
+<li>界面设计真正的艺术：解决正确的问题；（说明也有一些错误的问题，这种问题不值得去解决，或不应该由我们来解决，或者不是通过设计解决）</li>
+<li>了解用户的最好方法：走出去，和他们接触；（有各种各样的调研方法）</li>
+<li>需要从用户身上学习的内容：他们使用软件的目标；他们实现这些目标需要完成的具体任务；他们平常使用的语言和词汇；他们使用同等软件的技术水平；他们对你设计的目标对象的态度；以及不同的设计对这些态度的影响；</li>
+<li>用户研究的方法：直接观察、案例研究、问卷调查、人物角色建模、焦点小组；（还包括用户访谈、现场试验、体验陈述、卡片法等）</li>
+<li>用户的学习动机：有多强烈，导致设计界面的风格，比如功能强大方便熟练用户，或者功能简单方便新手用户；</li>
+<li>人的行为特点：安全探索、即时满足、满意即可、中途变卦、延后选择、递增构建、习惯、小片时间、空间记忆、前瞻记忆、简化重复工作、支持键盘、旁人建议、个性化推荐；</li>
+</ol>
+<p>二、组织内容：信息架构和应用结构</p>
+<ol>
+<li>我们已经知道目标和任务，那么现在从数据和内容来反方向思考一下，如何组织、展示这些数据和内容，用户需要对他们进行什么操作、有几种展示方式？</li>
+<li>任何页面都是为了完成以下几件事：显示一个对象、显示一个列表或一组对象、为创建某个对象提供工具、辅助完成一项任务；</li>
+<li>模式：是什么？什么时候用？为什么用？使用要点？<ol>
+<li>主题、搜索和浏览：存在一个长列表；方便两种用户，一种知道找什么的人用搜索，一种不知道的用浏览；（购物网站即是典型）</li>
+<li>新闻流：为用户提供及时的内容；容易对最新的消息进行跟踪；注意提供快速更新和刷新的机会；</li>
+<li>图片管理器：用户想对图片进行处理；这是一个习惯用法，目的明确；</li>
+<li>信息板：需要持续监视一些数据；仪表盘，习惯用法；注意视觉层次结构，尽量不滚动；</li>
+<li>画布加调色板工具条：创建新对象时；习惯用法，有现实隐喻；</li>
+<li>向导：任务有分支、或者冗长且单调无趣；分而治之，简化任务；</li>
+<li>设置编辑器：需要设置偏好、需要登录、产品配置器–允许自定义设置；好找、分组；（90%的用户不会用，只用默认设置，10%的专家用户才会来用好像）</li>
+<li>可选视图：应用的内容很复杂；用户偏好不同、需要不同查看方式、细节&amp;预览；</li>
+<li>多工作空间：应用是用来查看或编辑某种内容；用户在进行多项任务，需要在任务间切换；</li>
+<li>多级帮助：应用很复杂；针对不同级别的用户提供帮助文本；</li>
+</ol>
+</li>
+</ol>
+<p>三、导航、路标和找路</p>
+<ol>
+<li>人们不迷路的一些常识性办法：阅读标记、环境线索、查看地图；</li>
+<li>打开一个新网页或窗口都会带来认识上的代价；需要让距离尽量保持简短；</li>
+<li>下一步去哪的决策过程：阅读标签、图标解码、单击不确定的链接；</li>
+<li>载入时间会影响决策；（例如购物类网站，载入越慢，转化率越低）</li>
+<li>常见导航模型：中心辐条（例如微信底栏）、充分连接（网状的，例如抽屉导航）、多级导航、渐进模型、金字塔模型（图片浏览）、平移和缩放（地图）、扁平导航、模态面板、清楚的入口点、书签、逃生舱；（这些模型之间可以混合使用）</li>
+<li>常见模式：是什么？什么时候用？为什么用？如何使用？<ol>
+<li>清楚的入口点：只显示几个入口；新用户或不常登录的网站；减少认识难度，容易上手试用；</li>
+<li>菜单页面：填满链接；做一份目录让用户要可以选择去哪里；没有导航选择的干扰；（前提：用户知道自己来这里要寻找什么）</li>
+<li>金字塔：BACK&#x2F;NEXT关联一组页面+1个主页面；想让用户看完一个后看下一个；减少点击次数，同时页面更具顺序性；</li>
+<li>模态面板：只显示一个页面；需要处理，不然不准离开；因为必须处理；不用滥用；</li>
+<li>深度链接：一个超链接；需要找到特定位置；省去时间精力直接跑到想要达到的地方；将当前位置做成URL保存下来；</li>
+<li>逃生舱：一个链接可以点击离开；当用户被锁住的时候；可以安全撤离，鼓励探索；</li>
+<li>胖菜单：下拉菜单中飞出长长的导航选择列表；很多分类和3个以上层次结构；让复杂的网站可发现性更好；组织、分类、标题；</li>
+<li>页脚站点地图：不想占用页头和侧边进行导航；增强网站的可发现性；页头导航面向任务，页脚面向网站层级结构；</li>
+<li>登录工具：经常需要登录；习惯用法；包含内容：退出、设置、帮助、消息、购物车、收藏夹、首页；</li>
+<li>序列地图：线性访问；保持方向感；</li>
+<li>面包屑层级结构：当有2级以上的层次结构，可以显示“你在这里”的标志；帮助用户得知当前的位置，上下文相关；</li>
+<li>注释滚动条：当以文档为中心的应用或者需要平移+缩放的应用；页面快速滚动，用户不便阅读正文，此时注意力刚好在滚动条上；</li>
+<li>动画转换：突然出现的东西或位置突然移动；理解变化的逻辑，保持空间感；(变亮、变暗、展开、收起、淡入、淡出、交叉淡化、自修复、滑动、探照灯)</li>
+</ol>
+</li>
+</ol>
+<p>四、组织页面：页面元素的布局</p>
+<ol>
+<li>什么是好的视觉层次？体现各页面元素的相对重要性、各元素之间的关系；</li>
+<li>如果体现相对重要性？字体（大小、颜色）、密度、背景颜色、位置和大小、节奏（列表、网格、错开的元素、空白隔开）</li>
+<li>如何体现元素间的关系？有关系的放一起、无关系的隔开（格式塔的相似性与封闭性原理）、相似的元素彼此对等、包含关系；</li>
+<li>好的层次-&gt;提供焦点，视觉流-&gt;将注意力从焦点引导到次要内容上面；</li>
+<li>突出重点，不要贪心，不要用其他吸引眼球的东西来打断视觉流；</li>
+<li>4个重要的格式塔原则：相邻性（找相关）、相似性（找规律）、连续性（强迫症）、封闭性（分块）；</li>
+<li>相对平面设计的优点：可以动态显示，如模态TAB、手风琴、可收起面板、可移动面板、响应式展开、响应式允许；</li>
+<li>常见模式：<ol>
+<li>视觉框架：总体规范，包括基本布局、颜色、格式方案等；为了让网站看起来像整体；不变+变化的部分，突出内容，不易迷失；</li>
+<li>中央舞台：为用户显示连续的信息，构建某样东西；让清晰的元素一下抓住用户的注意力；大小、颜色、标题、上下文；</li>
+<li>对等网格：很多内容元素，网格差不多，重要程度差不多；告诉用户它们类似，让页面看起来干净有序；</li>
+<li>带标题的区域：内容分几个栏目，每栏目有个醒目标题；需要展示的内容很多，又要保持整洁，容易扫描和理解；为了用户容易消化、浏览、发现结构；</li>
+<li>模态TAB：需要显示大量内容，但没法全部显示；有效的对大块内容进行分组和隐藏，保持界面整洁；</li>
+<li>手风琴模式：需要显示大量的内容；有效的分组，保持界面整洁；（我觉得它更像是竖着放的TAB，但增加了层级，变得更强大了）</li>
+<li>可收起面板：例如侧滑面板；显示次要内容，或者默认不需要展开；隐藏无关内容，让界面整洁；</li>
+<li>可移动的面板：让用户有一定的控制权；不同用户有不同的关注点；</li>
+<li>右&#x2F;左对齐：左边标签右对齐，右边标签左对齐；长短不一导致的太远或折行；</li>
+<li>对角线平衡：通过将视觉重量放在左上角和右下角来使页面操持平衡；视觉上突出的元素，应该对页面平衡做出贡献；</li>
+<li>响应式展开：任务复杂或者任务有分支；让任务简单化；</li>
+<li>响应式允许：不想跳转页面，而是在一个页面保持所有元素；将任务简单化，避免用户出错；</li>
+<li>流体布局：其实是页面内容自适应保持填满的状态；让用户根据设备情况拥有更多的屏幕控制权，可以更方便的工作；<br>五、列表</li>
+</ol>
+</li>
+<li>列表的使用场景：获取概览、逐项浏览、查找特定列表项、排序和过滤、重新安排、删除、添加、分类列表项；</li>
+<li>列表的非可视化特征：长度、顺序、分组、列表项类型、交互、动态行为；</li>
+<li>常见模式：<ol>
+<li>双面板选择器：用户对每一项内容都有兴趣，想让用户看到整体结构，并在视图中一直保留列表；好处：减轻操作、视觉认知、空间记忆等三方面的负担；</li>
+<li>单窗口深入：只有非常小的空间，不足以放置双面板或列表嵌入，或者列表项的内容非常大，需要整屏显示；受限空间几乎唯一的选择；</li>
+<li>列表嵌入：列表项的细节信息不会占用很大的空间，想让用户看到整体结构；用户可以看到上下文，可以看到多个列表项的细节并进行比较；</li>
+<li>缩略图网格：列表项拥有小的图形化展示方式，用户想获取整个列表的概览，并且快速扫视来找到特定对象；图片更容易识别；</li>
+<li>传送带：列表项拥有图形化展示方式，没有足够空间使用缩略图网格；用户只能按顺序浏览，不能跳跃，鼓励用户探索；</li>
+<li>斑马行：各行在视觉上难以区分，而用户需要在表格中查找特定数据；帮助用户从左到右浏览；</li>
+<li>分页：列表非常长，用户只是查找特定项，不想看整个列表；将是否查看更多选项的选择权交给用户；</li>
+<li>条目跳转：当用户键入名字，在表格中直接跳转到对应的列表项；用户更愿意通过键盘快速和准确的选择某一特定项；人类不善于在由单词或数字组成的列表中查找特定项，同时此方法可以让用户手不离开键盘；</li>
+<li>字母滚动条：让用户尽可能便捷的找到特定项；使用方法自说明，为列表内容提供交互式的映射；</li>
+<li>级联列表：层级结构很深，且每层都有很多列表项；相比大钢格式（windows采用的方式，级联是Mac采用的方式），视觉效果更好更美观；</li>
+<li>树表：列表项是高度结构化，并具有用户感兴趣的特定属性；</li>
+<li>新列表行：在第一个或最后一个就地创建新的列表项；用户需要添加新项，但没有过多空间放置按钮；创建方式简洁高效，简单明了；(如果放最后一个，则列表不能太长）</li>
+</ol>
+</li>
+</ol>
+<p>六、完成任务：动作与命令</p>
+<ol>
+<li>常规的动作表现形式：按钮、菜单条、弹出菜单、下拉菜单、工具条、链接、动作面板、悬浮工具、在对象上双击、键盘动作、拖拽、命令行键入；</li>
+<li>常见模式：<ol>
+<li>按钮组：相关动作分成一组；动作很多且需确保可见，不显杂乱；自我描述性，格式塔的相邻性；（163邮件列表上方的操作按钮）</li>
+<li>悬浮工具：鼠标悬停时出现的按钮和动作；为了保持简洁，通常用于列表型界面，只适用鼠标界面，不适用触摸屏；最大好处：保持干净整洁；（163邮件列表，Evernote列表等）</li>
+<li>动作面板：总是可见的在一个UI面板上显示一组动作；对一组对象的公用动作，保持可见性更好；好处：可见性、更多展示空间、自由展示的需要；（Picasa底部的图片编辑大按钮）</li>
+<li>突出“完成”按钮：把完成一项事务的按钮放在视觉流的末尾，加大它的尺寸并提供合适的标签；让用户有一种完成的感觉；</li>
+<li>智能菜单项：动态改变菜单的标签，以便在调用前显示其功能；确切表明它们将会做什么的菜单项会让用户容易理解；（什么是触发它的显示？）</li>
+<li>预览：用户即将做一个重量级的操作时使用，或者执行一个很难预测结果的操作时使用；好处：可以避免用户错误操作，让应用变得有自我描述性；</li>
+<li>进度提示：如果操作需要较长时间才能完成，比如超过2秒；如果界面一动不动，用户会失去耐心；</li>
+<li>可取消性：提供某种方式取消一个耗时的操作；如果一个操作太过耗时即可使用；用户可能会改变主意，或用户知道可以取消会更愿意探索；（回收站是一个伟大的发明）</li>
+<li>多级撤销：让容易可以摊销一系列操作；构建一个高度交互的界面时使用；用户能够安全的探索，不必担心犯错；（PS的操作历史记录）</li>
+<li>命令历史：保存一份关于某些操作的可见性记录；当用户执行一系列冗长而且复杂的操作时；好处：回顾操作、重复操作、追踪操作；</li>
+<li>宏：对一些小操作的组合；简化重复工作时使用；</li>
+</ol>
+</li>
+</ol>
+<p>七、显示复杂数据：树、表格及其他信息图形</p>
+<ol>
+<li>用户使用信息图形的目的是了解一些信息，设计师需要弄清楚用户想了解什么；（所以不要随便设计信息图形，除非已经知道用户使用它的目的）</li>
+<li>回答这些问题：数据是如何组织的、它们之间的关系如何、我能怎样进一步了解这些数据、我可以重新组织数据换一种查看方式吗、如何只把我想知道的数据显示给我、具体的数据值是多少；</li>
+<li>数据模型：线性模型、表格模型、层次模型、网络模型、地理模型、文本型数据等；</li>
+<li>前摄变量：谁和谁有关系，颜色、位置与对齐、亮度、方向、颜色饱和度、大小 、底纹、形状；</li>
+<li>对数据进行探索：“焦点+上下文”，允许用户将注意力放在一个兴趣点上，同时在它周围显示足够多的素材，从而让用户有一种空间感；</li>
+<li>常见的导航浏览技术：滚动和平移、缩放、打开和关闭兴趣点、深入到兴趣点内部；</li>
+<li>排序和重新排列：更关注极端情况；（所以条形图或横条图都是从大到小或从小到大的顺序）</li>
+<li>搜索和过滤：只为我显示我需要知道的内容；高度交互，尽快响应用户的搜索和过滤请求；迭代，不断细化搜索、查询和过滤；上下文相关；复杂类型，让用户可以通过条件测试对数据的假设，探索数据集；</li>
+<li>得到具体数据值的几种方法：标签 、图例、坐标轴&#x2F;标尺&#x2F;比例&#x2F;时间轴、数据提示、数据焦点、数据刷；</li>
+<li>常见模式：<ol>
+<li>总览加细节：总览图+细节图；让用户拥有总体感觉保持方向感，同时希望放大它们得一定程度的细节信息；好处：可以充当“你在这里”的标记；</li>
+<li>数据提示：划过+浮窗；总体+隐藏时使用；好处：在总体视图中仍然可以查看特定数据值；</li>
+<li>数据焦点：悬停兴趣点时高亮并模糊其他；图表包含太多信息，便于从中获取关系和追踪数据变得困难；好处：清除凌乱，聚焦兴趣点；</li>
+<li>动态查询：即时和交互式的提供过滤数据集的方式；一份大型的、多变量的数据集，用户需要过滤某些数据来完成几个目标；好处：容易学习、鼓励探索；（比如可以勾选或不勾选几个变量）</li>
+<li>数据刷：一个视图中选择数据，另一个视图中同步显示这些选中的数据；一个数据集显示了多个信息图形；好处：比动态查询更直观的数据探索，在更丰富的上下文中观察数据，多个视图的同步让数据得以更深入的了解；</li>
+<li>局部缩放：鼠标位置的数据项变大易于阅读；当显示一个大型数据集时使用；好处：浏览细节的同时保留了上下文；（总览加细节、数据提示是替代方案）</li>
+<li>可排序表格：界面显示多变量信息，用户需要进行探索、排序、搜索某个特定项；好处：有处于数据探索；</li>
+<li>径向图：将表格显示为一个圆形；有一个长列表且需要显示任意数据间的关系；好处：可视化效果好；</li>
+<li>多Y值图：堆积多个图表的线段，共享一个X轴；共享一个X轴，但在Y轴上描述不同的东西；好处：展示数据相关性；</li>
+<li>多个小对象：用2-3个维度创建很多小图片，并用1-2个额外的维度平铺到整个页面；场景：需要2个以上的维度显示一个大型数据集；好处：多个小对象有丰富的数据，每一个小图片都讲一个独立的故事，当将它们放在一起时，讲了一个更大的故事；</li>
+<li>树状地图：用不同大小的矩形来表示多维数据或层级结构的数据；场景：数据是树型的、或者多变量的，允许我们根据变量进行分组；好处：将一份大的数据集打包到一个空间中，有利于用户寻找变量之间的关系、趋势或一些特别的数据点;</li>
+</ol>
+</li>
+</ol>
+<p>八，获取用户的输入：表单与控件</p>
+<ol>
+<li>几个原则：<ol>
+<li>确保用户了解需要提供什么信息，以及为什么要提供这些信息；</li>
+<li>如果可以的话，根本不要提任何问题； </li>
+<li>外界知识经常比脑袋中的知识更准确；</li>
+<li>对错误敏感，并尽可能宽容；</li>
+<li>小心表单的用词不要用编程的语言； </li>
+<li>进行可用性测试；</li>
+<li>选择的控件会影响用户对所问内容的期望，因此要进行明智的选择；</li>
+</ol>
+</li>
+<li>控件选择应考虑的因素：<ol>
+<li>可用的空间；</li>
+<li>用户的电脑使用经验；</li>
+<li>用户的领域经验；</li>
+<li>来自其他应用的期望；</li>
+<li>可用的技术；</li>
+</ol>
+</li>
+<li>常见模式：<ol>
+<li>容错格式：输入的数据混合了多种类型；用户只想把事情搞定，不考虑正确的格式；</li>
+<li>结构化的格式：用一组文本框来反映输入的格式；让用户知道需要提供什么样的数据；</li>
+<li>填空：将一些字段变成用户填写的空格；当标签声明的样式不够清楚的时候使用；好处：界面不言而喻；坏处：国际化时不方便，需要重排UI设计；</li>
+<li>输入提示：用户不清楚文本框应填写的内容，标签又不想放太多文字；提示提供了标签没有的上下文；提示字体建议小两号；可以考虑获得输入焦点时再显示提示，这样界面会更简洁，但需要预留空间；</li>
+<li>输入提醒：用提示信息预先填写在文本框中；输入提醒会更直接吸引视觉用户注意力；输入提醒有时可以替代标签；用底色区分必填项；</li>
+<li>密码强度计：为用户提供即时反馈；防止用户使用弱口令；</li>
+<li>自动完成：根据用户输入的内容，补全可能的选项；可以节省用户输入的工作量；</li>
+<li>下拉选择器：通过下拉列表或者弹出面板，扩展成一个包含更多选择的界面；用户提供的输入是一种选择来自于一个集合；好处：把复杂的界面封装在一个很小的空间里；</li>
+<li>列表构造器：源列表＋目的列表；从一个列表选择项目来创建另外一个列表；也可以使用带复选框的单一列表，但如果源列表很大，则不太适合；（将选项从左边列表移动到右边的列表，挺常用的）</li>
+<li>良好的默认值：只要合适就提供默认值；好处：可以节省用户的输入工作；</li>
+<li>同页错误信息：把错误信息和表单放在一起，如果可能，在产生错误的控件旁边也进行提示；好处：比弹窗的方式减少了跳转；（还少了用户点击）</li>
+</ol>
+</li>
+</ol>
+<p>九，利用社交媒体</p>
+<ol>
+<li>使用社交媒体的原则：<ol>
+<li>倾听：知道人们在哪里讨论你的品牌／组织／产品，或者竞争对手；哪些宽泛的话题涉及你们品牌的目标和使命，以及人们在这些话题上面说了什么；如果你的组织会有积极的贡献，那么介入这些话题；</li>
+<li>产生好的内容；（这一点本身就有很大的难度）</li>
+<li>将好的内容提供给读者；</li>
+<li>让读者决定内容的优劣；</li>
+<li>让好内容可查找；</li>
+<li>将读者的好内容和你的内容混合在一起；</li>
+<li>促进社区；</li>
+</ol>
+</li>
+<li>常见模式：<ol>
+<li>编辑混合：混合新闻／故事／图片／视频等，避免自卖自夸；目的：提高知名度／组织亲善度／改善客户关系；主题和媒体类型越广泛越能吸引读者，内容本身要有趣；</li>
+<li>个人声音：鼓励个人声音；如果组织里面有人愿意站出来；好处：为品牌注入个性，读者更愿意和真人建立联系；</li>
+<li>转帖和评论：</li>
+<li>发起会话：</li>
+<li>倒置纳米金字塔：</li>
+<li>择时策略：</li>
+<li>专用流：</li>
+<li>社交链接：</li>
+<li>共享组件：</li>
+<li>新闻框：</li>
+<li>内容列表区域：</li>
+<li>新近谈话：</li>
+</ol>
+</li>
+</ol>
+<p>十、迈向移动设计</p>
+<ol>
+<li>在设计前应当思考的问题：<ol>
+<li>用户在使用移动设备时的真实需求是什么；</li>
+<li>精简网站，只保留最基本的内容；</li>
+<li>尽可能使用移动设备的硬件功能（地址位置、语音集成、手势操作、摄像机、振动、跳动等）；</li>
+<li>把内容线性化；</li>
+<li>优化最常用的交互序列（避免文本输入、精简页面减少加载次数、避免横向滚动、减少点击次数）；</li>
+</ol>
+</li>
+<li>常见模式：<ol>
+<li>纵向堆叠：纵向排列+文本折行；如果文本和表单为主、或切换页面成本过高；屏幕尺寸多种多样不可控；</li>
+<li>胶片：传送带的移动版；通过小圆点暗示；鼓励用户探索新鲜内容；滑动是友好的手势操作，但此模式的扩展性较差，不适用页面很多的情况；</li>
+<li>触摸工具：点触后显示工具按钮，如果视频播放器、图书阅读器，在沉浸式应用中鼓励使用；工具选项如果使用半透明更可以产生临时显示的效果；</li>
+<li>底部导航：站点地图的移动简约版；需要呈现导航链接，但优先级不高时使用；确保足够高度使用每个导航链接容易点击；</li>
+<li>小图片加文字列表：缩略图+文本；当需要呈现具有复杂内容的列表时且该内容都有相关图片时使用；</li>
+<li>无限列表：列表询问放“加载更多”的按钮；如果列表很长时使用；加载更快，保留上下文，避免切换页面；</li>
+<li>宽边界：加宽内容的周边使得可点击范围变大；</li>
+<li>文本清除按钮：凡是有文本框的地方都应考虑放置这个按钮；（输入框内部右侧的小叉叉）</li>
+<li>加载提示：由于移动带宽的慢速度，通过加载提示给用户心理过渡；样式有：进度条、圆圈等；</li>
+<li>应用互联：在应用内放置其他应用的链接；如果应用内的数据具有明显可以使用其他应用操作的特征时应当使用；有利于在应用之间传递数据；</li>
+<li>精简品牌形象：包括使用一致的商标、颜色方案及其他品牌元素；可靠、熟悉的品牌元素让用户反应良好；</li>
+</ol>
+</li>
+</ol>
+<p>十一、修饰外观：视觉风格和美感</p>
+<ol>
+<li>一些设计的原则：<ol>
+<li>颜色：冷色调（冷静、严肃、准确）和暖色调（活泼、温暖、放松）、深色背景（深刻、阴暗、张力）和浅色背景（安静、放松、干净）、高对比度（紧张、有力、大胆）和低对比度（平滑、放松、舒适）、饱和色（有活力但长时间易疲劳）和不饱和色（单调宁静但长时间下比较舒适）、色调搭配（吸引注意力）；</li>
+<li>排版：字体（有自己的声音）、空间和拥挤程度、曲线和角度、底纹和旋律；</li>
+<li>图片：图片的存在是为了给设计设定一种感觉；</li>
+<li>文化因素：具有主化含义的元素，同时考虑受众的年龄；</li>
+<li>不断重现的视觉主题：角度处理、边界回应字体，目的：视觉完整性；</li>
+</ol>
+</li>
+<li>常见模式：<ol>
+<li>深色背景：用图片或渐变色做背景；让内容与背景之间产生距离感，吸引目光到内容上面；使用要点：柔和的焦点、颜色渐变、深度暗示、没有强烈的焦点；</li>
+<li>少一点颜色、多一点价值：1种或2种颜色即可，不超过3种颜色；颜色过多会使界面变嘈杂分散用户注意力；使用要点：通过饱和度和明度的变化形成色板；</li>
+<li>角度处理：用圆角代替直角；目的：比较不单调和更加舒缓而不是尖锐；</li>
+<li>边界回应字体：边框的线条使用与字体相同的颜色和粗细；目的：有助于视觉的统一；</li>
+<li>发丝：在边界或底线或分隔线上使用1像素宽的线条；效果：界面看起来更加精致优雅；</li>
+<li>粗细字体对比：使用两种字体互相对照；效果：结构更清晰，页面更生动不单调（由于视觉对比造成的）；</li>
+<li>皮肤和主题：提供开放的外观和视觉架构，让第三方可以定制图像风格；使用场景：界面的认识要求不高，非高度压力环境；使用原因：让用户参与设计创建会使其对网站更有拥有感；</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1/" class="print-no-link">#设计</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>界面设计模式</div>
+      <div>http://example.com/2015/08/25/界面设计模式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2015年8月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2015/10/08/%E4%BC%81%E4%B8%9AE%E5%8C%96%E4%B8%83%E6%AD%A5/" title="企业E化七步">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">企业E化七步</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2015/08/02/%E4%B8%80%E7%9B%AE%E4%BA%86%E7%84%B6/" title="一目了然">
+                        <span class="hidden-mobile">一目了然</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
