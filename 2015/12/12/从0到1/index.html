@@ -19,27 +19,25 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="着色器着色器类似于一个计算器，用于根据给定的参数，制作特效； 法线贴图这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；  所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光线效">
+    <meta name="description" content="第1章：寻求创新多数人局限于持有对当前世界的看法，但其实更重要的是尽可能让自己看到未来；  水平进步与垂直进步：   在大企业中创新并不如一般人想得那么容易，因为既得利益者不愿意冒险。创新前期不可避免伴随着失败，但前期这些失败会给既得利益者带来负面效果。 第2章：居安思危90年代美国出现了一波互联网泡沫。在泡沫膨胀过程中，很多人失去了理智，忘了经济的基本原理，错钭泡沫时期的特殊现象，当做未来的潮流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="渲染原理">
-<meta property="og:url" content="http://example.com/2024/08/21/%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="从0到1">
+<meta property="og:url" content="http://example.com/2015/12/12/%E4%BB%8E0%E5%88%B01/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="着色器着色器类似于一个计算器，用于根据给定的参数，制作特效； 法线贴图这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；  所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光线效">
+<meta property="og:description" content="第1章：寻求创新多数人局限于持有对当前世界的看法，但其实更重要的是尽可能让自己看到未来；  水平进步与垂直进步：   在大企业中创新并不如一般人想得那么容易，因为既得利益者不愿意冒险。创新前期不可避免伴随着失败，但前期这些失败会给既得利益者带来负面效果。 第2章：居安思危90年代美国出现了一波互联网泡沫。在泡沫膨胀过程中，很多人失去了理智，忘了经济的基本原理，错钭泡沫时期的特殊现象，当做未来的潮流">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628616.png">
-<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628272.png">
-<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628894.png">
-<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408210825758.png">
-<meta property="article:published_time" content="2024-08-21T00:27:00.000Z">
-<meta property="article:modified_time" content="2024-09-21T23:13:11.175Z">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202305222040884.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202305222052935.png">
+<meta property="article:published_time" content="2015-12-12T15:36:00.000Z">
+<meta property="article:modified_time" content="2024-09-22T23:19:15.852Z">
 <meta property="article:author" content="ccw">
-<meta property="article:tag" content="渲染">
+<meta property="article:tag" content="管理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628616.png">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202305222040884.png">
   
   
   
-  <title>渲染原理 - Ccw&#39;s Blogs</title>
+  <title>从0到1 - Ccw&#39;s Blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="渲染原理"></span>
+            <span id="subtitle" data-typed-text="从0到1"></span>
           
         </div>
 
@@ -217,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-21 08:27" pubdate>
-          2024年8月21日 早上
+        <time datetime="2015-12-12 23:36" pubdate>
+          2015年12月12日 晚上
         </time>
       </span>
     
@@ -229,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          775 字
+          1.9k 字
         
       </span>
     
@@ -240,7 +238,7 @@
         
         
         
-          7 分钟
+          17 分钟
         
       </span>
     
@@ -277,65 +275,57 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">渲染原理</h1>
+            <h1 id="seo-header">从0到1</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="着色器"><a href="#着色器" class="headerlink" title="着色器"></a>着色器</h3><p>着色器类似于一个计算器，用于根据给定的参数，制作特效；</p>
-<h3 id="法线贴图"><a href="#法线贴图" class="headerlink" title="法线贴图"></a>法线贴图</h3><p>这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；</p>
+                <h1 id="第1章：寻求创新"><a href="#第1章：寻求创新" class="headerlink" title="第1章：寻求创新"></a>第1章：寻求创新</h1><p>多数人局限于持有对当前世界的看法，但其实更重要的是尽可能让自己看到未来；</p>
 <blockquote>
-<p>所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光线效果，让相应的部位看起来像是有真实的模型存在一样。但实际上没有，完成是基于参数计算出来的效果；</p>
+<p>水平进步与垂直进步：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202305222040884.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
-<p>法线：垂直于某个平面的线，这条线可用来计算物体和光线之间的夹角。 有了夹角后，就可以计算物体表面接收到多少光线；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628616.png" srcset="/img/loading.gif" lazyload></p>
-<p>物体呈现出体积形状，其实是由物体表面所反向的光线决定的。对于一个多边形圆柱体，如果我们将法线的角度变化，调整成圆柱形的，那么计算出来的着色也将是平滑过渡的，最后在我们肉眼看来，多边形变成了圆形。但实际上，底层的参数存储的是多边形；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628272.png" srcset="/img/loading.gif" lazyload></p>
-<p>将表面的法线角度与真实角度的偏差，单独抽离出来存储，那么这个偏差值的集合，就是所谓的法线贴图；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628894.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="CPU-渲染逻辑"><a href="#CPU-渲染逻辑" class="headerlink" title="CPU 渲染逻辑"></a>CPU 渲染逻辑</h3><p>主要有四个工作：</p>
+<p>在大企业中创新并不如一般人想得那么容易，因为既得利益者不愿意冒险。创新前期不可避免伴随着失败，但前期这些失败会给既得利益者带来负面效果。</p>
+<h1 id="第2章：居安思危"><a href="#第2章：居安思危" class="headerlink" title="第2章：居安思危"></a>第2章：居安思危</h1><p>90年代美国出现了一波互联网泡沫。在泡沫膨胀过程中，很多人失去了理智，忘了经济的基本原理，错钭泡沫时期的特殊现象，当做未来的潮流和趋势；但泡沫终究是会破裂的，务必在那一天到来之前，准备好充足的粮草，以便可以渡过寒冬；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202305222052935.png" srcset="/img/loading.gif" lazyload></p>
+<p>每个人都不可避免会被社会洪流裹挟，重要的不是抵抗潮流，而是潮流中仍然坚持独立思考，而不是人云亦云；</p>
+<h1 id="第3章：寻求垄断"><a href="#第3章：寻求垄断" class="headerlink" title="第3章：寻求垄断"></a>第3章：寻求垄断</h1><p>进入完全竞争的领域，基本上意味着微利甚至是无利可图。因此，不管使用何种方法，务必要建立自己的竞争力护城河。这个护城河可以是专利，也可以是技术上的创新。当然，所有的技术创新都是有生命周期的，没有任何一种技术创新可以一劳永逸，竞争对手的追赶和复制只是时间问题。所以，最重要的是拥有持续创新的能力；</p>
+<h1 id="第4章：避免跟风"><a href="#第4章：避免跟风" class="headerlink" title="第4章：避免跟风"></a>第4章：避免跟风</h1><p>重点不是关注竞争对方在做什么，不要去跟风；而是关注客户需要解决的问题，以及如果想到效果好很多倍的解决方案；</p>
+<p>竞争是不可避免的，很多时候，除了想方设法打败竞争对手之外，更好的做法或许是和竞争对手进行合作；</p>
+<h1 id="第5章：思考未来"><a href="#第5章：思考未来" class="headerlink" title="第5章：思考未来"></a>第5章：思考未来</h1><p>关注公司的未来，思考公司在十年之后，是否依然能够存在，而不是短期的增长指标。允许收益延迟，因为创新需要时间；如果主要将精力放在短期增长上面，容易迷失未来的正确方向；</p>
+<p>垄断企业的特征：</p>
 <ul>
-<li>剔除工作：<ul>
-<li>视锥体剔除；</li>
-<li>图层剔除；</li>
-<li>遮挡剔除；</li>
+<li>专利技术：公司的产品难以被竞争者快速复制；仅仅一点改进是不够的，需要拥有10倍的改进，才能够形成垄断优势；而能够实现10倍改进的产品，决非在旧有产品上面的小优化，而是需要创建全新的事物；</li>
+<li>网络效应：用的人越多，产品越好用；</li>
+<li>规模经济：当规模变得越大时，成本被摊得越低；</li>
+<li>品牌优势：事实上品牌优势需要先基于优秀的产品产生，之后才有可能出现品牌优势；</li>
 </ul>
-</li>
-<li>设置渲染顺序：<ul>
-<li>不透明队列：根据距离摄像头的距离，由近到远依次渲染；</li>
-<li>半透明队列：从远到近渲染；</li>
-</ul>
-</li>
-<li>打包数据：将数据打包发送给 GPU 渲染；<ul>
-<li>模型信息：顶点坐标、法线、UV、切线、顶点颜色、索引列表等；</li>
-<li>变换矩阵：世界变换矩阵、VP 矩阵（基于相机位置和 FOV 参数）；</li>
-<li>灯光、材质参数：着色器和材质参数，灯光信息等；</li>
-</ul>
-</li>
-<li>调用渲染函数<ul>
-<li>SetPassCall<ul>
-<li>shader 脚本中的一个 Pass 语义块就是一个完整的渲染过程；一个着色器可包含多个 Pass 语义块；</li>
-</ul>
-</li>
-<li>DrawCall：CPU 调用图像编程接口，命令 GPU 渲染的操作，即渲染命令；渲染命令的参数为图元列表，其计算结果为显示在屏幕上的像素；</li>
-</ul>
-</li>
-</ul>
-<p>CPU 渲染阶段的一个重要输出是渲染图元，图元中包括 GPU 渲染需要用到的各种参数信息，例如点、线、面等几何信息；</p>
-<h3 id="GPU-渲染管线"><a href="#GPU-渲染管线" class="headerlink" title="GPU 渲染管线"></a>GPU 渲染管线</h3><p>GPU 渲染管线包含以下多个步骤：</p>
+<p>建立垄断企业的办法：</p>
 <ul>
-<li>顶点处理<ul>
-<li>顶点着色器：主要执行坐标转换，将顶点的坐标转换到齐次裁剪 </li>
-<li>曲面细分着色器（可选）</li>
-<li>几何着色器（可选）</li>
+<li>占领小市场：初创公司应该先从一个小市场（利基市场）起步，这样难度要小得多，因为竞争者比较少；</li>
+<li>扩大规模：当在利基市场站稳脚跟后，再逐渐打入更大的市场；</li>
+<li>不要搞破坏：避免将精力放在如何对抗或挑战同行，形成互补是更好的选择；</li>
 </ul>
-</li>
-<li>图元装配</li>
-<li>光栅化</li>
-<li>片元着色器</li>
-<li>输出合并</li>
+<h1 id="第6章：掌握因果"><a href="#第6章：掌握因果" class="headerlink" title="第6章：掌握因果"></a>第6章：掌握因果</h1><p>成功主要不是源于运气，而是掌握因果关系；</p>
+<h1 id="第7章：幂次法则"><a href="#第7章：幂次法则" class="headerlink" title="第7章：幂次法则"></a>第7章：幂次法则</h1><p>幂次法则在生活中普通存在 ；想清楚最重要的事情是什么，然后专注做最重要的那件事，放弃其他事情；不要平均分配自己的精力；</p>
+<h1 id="第8章：发现秘密"><a href="#第8章：发现秘密" class="headerlink" title="第8章：发现秘密"></a>第8章：发现秘密</h1><p>相信这个世界还存在很多求解之迷，还有很多进步的空间。找到这些空间，想好更好的解决方案</p>
+<h1 id="第9章：基础决定命运"><a href="#第9章：基础决定命运" class="headerlink" title="第9章：基础决定命运"></a>第9章：基础决定命运</h1><p>对于初创公司，开头是最重要的。选谁作为合伙人，类似选谁一起结婚，在很大概率上决定了未来公司的成败；不稳固的合伙人关系，就像不稳固的地基，不可能搭建稳固的建筑物；</p>
+<p>对于初创公司，尽量少用现金报酬，因为任何现金报酬，都有可能让成员变得短视；更好的做法是使用股票作为报酬；避免平均分配股票，而是以对公司的贡献大小进行分配；另外，务必做好保密工作，否则将引发巨大的冲突；</p>
+<h1 id="第10章：帮派文化"><a href="#第10章：帮派文化" class="headerlink" title="第10章：帮派文化"></a>第10章：帮派文化</h1><ul>
+<li>使命：我们打算完成什么样的创新事物；</li>
+<li>团队：我们是怎样的一帮人，我们喜欢和什么人一起共事；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408210825758.png" srcset="/img/loading.gif" lazyload></p>
+<p>避免使用福利待遇去吸引求职者，因为初创公司不可能比大公司做得更好，而是要提供大公司所不能提供的，即使命和团队文化；</p>
+<p>当公司很小的时候，每个人负责的事项不要重叠，这样一来可以方便管理，二来可以避免同事间的岗位竞争，减少矛盾；</p>
+<p>如果可以的话，让团队成员拥有像邪教成员一样的归属感是很好的，它可以极大的提高工作效率；</p>
+<h1 id="第11章：销售策略"><a href="#第11章：销售策略" class="headerlink" title="第11章：销售策略"></a>第11章：销售策略</h1><p>销售很重要，如果在尝试了各种销售策略后，都无法有效推广产品，那么公司很可能要关门了；</p>
+<p>虽然销售策略有很多种，但是这中间存在一个隐形的瓶颈；如果产品定价足够高，那么聘请专职销售人员是划算的。如果产品定价低，例如洗发水，那么显然面对面销售是不足以覆盖成本的。当产品的定价介于二者中间时，就会面临隐形的瓶颈。打广告转化率过底，上门销售成本过高；</p>
+<h1 id="第12章：人和机器"><a href="#第12章：人和机器" class="headerlink" title="第12章：人和机器"></a>第12章：人和机器</h1><p>历史上多次出现突破性的技术，大幅提高了当时的生产效率。例如纺织机器与纺织工人，汽车与马车夫等；技术并没有减少工作岗位，事实刚好相反，技术创造了更多的工作岗位；人类与机器并非相互取代的关系，而更多是互补的关系；</p>
+<p>在人类前进的道路上，还有无数的难题有待我们去攻克和解决；利用好计算机这个工具，有助于我们更快的实现突破，大幅提高我们的生产效率；</p>
+<h1 id="第13章：创业陷阱"><a href="#第13章：创业陷阱" class="headerlink" title="第13章：创业陷阱"></a>第13章：创业陷阱</h1><p>很多创业公司会陷入一个陷阱，即认为自己的方案是市场的唯一方案，是未来的趋势；但事实并非如此，市场会变化，其他领域的技术会进步；当前所谓的最佳方案，很可能是有前提的。而这些前提条件，本身却是动态变化的；如果没有提前可能出现的变化，当变化出现时，有可能出现毁灭性的打击；例如作为传统化工能源的页岩天然气开采成本的大幅下降，给光伏产业造成致命打击；</p>
+<p>仅仅进入某个行业是远远不够的，只有拿出特定问题最佳解决方案的公司，才能赢利并生存下来；</p>
+<h1 id="第14章：创始人的悖论"><a href="#第14章：创始人的悖论" class="headerlink" title="第14章：创始人的悖论"></a>第14章：创始人的悖论</h1><p> 创始人是一把双刃剑，对公司的成功起决定性的作用，但同时如果他不能保持谦逊，过分自大，也将起到毁灭性的作用；</p>
+<h1 id="第15章：结语"><a href="#第15章：结语" class="headerlink" title="第15章：结语"></a>第15章：结语</h1><p>追求创新，让世界变得更加美好；</p>
 
                 
               </div>
@@ -354,7 +344,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%96%87%E7%AB%A0/" class="category-chain-item">文章</a>
+  <a href="/categories/%E7%A4%BE%E7%A7%91/" class="category-chain-item">社科</a>
   
   
 
@@ -369,7 +359,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B8%B2%E6%9F%93/" class="print-no-link">#渲染</a>
+        <a href="/tags/%E7%AE%A1%E7%90%86/" class="print-no-link">#管理</a>
       
     </div>
   
@@ -381,8 +371,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>渲染原理</div>
-      <div>http://example.com/2024/08/21/渲染原理/</div>
+      <div>从0到1</div>
+      <div>http://example.com/2015/12/12/从0到1/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +384,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月21日</div>
+          <div>2015年12月12日</div>
         </div>
       
       
@@ -426,12 +416,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2015/12/15/CSS/" title="CSS">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSS</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/22/VirtualDom%20%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0/" title="VirtualDOM 简易实现">
-                        <span class="hidden-mobile">VirtualDOM 简易实现</span>
+                      <a href="/2015/11/30/%E8%AE%BE%E8%AE%A1%E8%B0%83%E7%A0%94/" title="设计调研">
+                        <span class="hidden-mobile">设计调研</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

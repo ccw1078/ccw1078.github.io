@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第1章  初识 GPT-4LLM 概述探索语言模型和 NLP 的基础GPT-4 和 ChatGPT 基于一种特定的神经网络架构 Transformer； Transformer 通过关注句子和段落的不同部分，学习到句子中各个单词的模式和关系，从而能够理解上下文；因此，Transformer 很擅长语言翻译、问题回答和文本生成类的任务；  最早的语言模型是 n-gram，它的原理很简单，就是统计各个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大模型应用开发极简入门">
+<meta property="og:url" content="http://example.com/2024/08/22/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="第1章  初识 GPT-4LLM 概述探索语言模型和 NLP 的基础GPT-4 和 ChatGPT 基于一种特定的神经网络架构 Transformer； Transformer 通过关注句子和段落的不同部分，学习到句子中各个单词的模式和关系，从而能够理解上下文；因此，Transformer 很擅长语言翻译、问题回答和文本生成类的任务；  最早的语言模型是 n-gram，它的原理很简单，就是统计各个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221715502.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221802033.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221804215.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231018506.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231103755.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231602686.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231735305.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231751549.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231756052.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231830898.png">
+<meta property="article:published_time" content="2024-08-22T09:06:00.000Z">
+<meta property="article:modified_time" content="2024-09-23T01:23:26.526Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="人工智能">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221715502.png">
+  
+  
+  
+  <title>大模型应用开发极简入门 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="大模型应用开发极简入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-22 17:06" pubdate>
+          2024年8月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">大模型应用开发极简入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="第1章-初识-GPT-4"><a href="#第1章-初识-GPT-4" class="headerlink" title="第1章  初识 GPT-4"></a>第1章  初识 GPT-4</h1><h2 id="LLM-概述"><a href="#LLM-概述" class="headerlink" title="LLM 概述"></a>LLM 概述</h2><h3 id="探索语言模型和-NLP-的基础"><a href="#探索语言模型和-NLP-的基础" class="headerlink" title="探索语言模型和 NLP 的基础"></a>探索语言模型和 NLP 的基础</h3><p>GPT-4 和 ChatGPT 基于一种特定的神经网络架构 Transformer；</p>
+<p>Transformer 通过关注句子和段落的不同部分，学习到句子中各个单词的模式和关系，从而能够理解上下文；因此，Transformer 很擅长语言翻译、问题回答和文本生成类的任务；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221715502.png" srcset="/img/loading.gif" lazyload></p>
+<p>最早的语言模型是 n-gram，它的原理很简单，就是统计各个单词之间按顺序出现的概率。当给出 A 单词时，它根据概率预测预测下一个单词 B；</p>
+<p>为了提高 n-gram 的性能，之后引入了循环神经网络（RNN，recurrent neural networ）和长短期记忆（LSTM，long short term memory）的方法，以便模型能够更好的理解上下文；</p>
+<h3 id="理解-Transformer"><a href="#理解-Transformer" class="headerlink" title="理解 Transformer"></a>理解 Transformer</h3><p>在处理短文本时，RNN 效果还行，但如果是长文本，上下文很大，超过了 RNN 的处理能力，容易出现上下文遗忘的问题；</p>
+<p>Transformer 通过使用注意力机制，解决了 RNN 面临问题；所谓的注意力机制，即模型不再将所有单词视为同等重要，而是只关注其中少数几个关键词，这样既降低了数据处理的负担，又提高了准确性；</p>
+<p>注意力机制有两个模块，分别为：</p>
+<ul>
+<li>交叉注意力：输入与输出的相关性匹配；（关注重点）</li>
+<li>自注意力：区分输入的不同部分之间的相对重要性；（分清主次）</li>
+</ul>
+<blockquote>
+<p>自注意力机制给句子中的不同单词分配不同的权重后，有助于抓出核心单词，构建新的抽象概念；</p>
+</blockquote>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221802033.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408221804215.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="解密-GPT-模型的标记化和预测步骤"><a href="#解密-GPT-模型的标记化和预测步骤" class="headerlink" title="解密 GPT 模型的标记化和预测步骤"></a>解密 GPT 模型的标记化和预测步骤</h3><p>文本补全：接受一段输入（提示词），生成一段输出；</p>
+<p>Transformer 架构使得模型能够识别关键信息和上下文；它在生成预测时，也用到了迭代机制，即先预测下一个最有可能出现的词，之后基于包含预测词的新句子，再次预测下一个可能出现的词。不断迭代重复这个过程，直到生成整个完整的句子；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231018506.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="GPT-模型简史"><a href="#GPT-模型简史" class="headerlink" title="GPT 模型简史"></a>GPT 模型简史</h2><p>早期的 NLP 模型是监督式的，用于分类预测，需要使用标注数据进行训练，但标注的成本很高，难以获得大规模的训练数据；GPT 则是无监督式的，突破了这个限制，模型参数的数量也因此急剧膨胀；</p>
+<p>基于预测的工作模式，并不能满足大部分使用场景，因此 GPT3 引入了微调和反馈，即使用提示词让模型根据反馈再次学习，从而得出更准确的结果；</p>
+<p>所谓的微调和反馈，即人工编写一个示例打个样，然后做为训练数据，让模型学习；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231103755.png" srcset="/img/loading.gif" lazyload></p>
+<p>微调的三个步骤：</p>
+<ul>
+<li>制作示例，训练模型</li>
+<li>基于相同问题，设置不同的随机数（temperature），以便模型输出多个不同的结果，然后给结果打分；</li>
+<li>基于打分结果，设置奖励机制，再次训练模型；</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><ul>
+<li>Be My Ayes：作为盲人的虚拟助手，帮助他们获得视觉信息；</li>
+<li>摩根士丹利：从公司报告库中，快速检索文本，以获得答案；</li>
+<li>可汗学院：生成虚拟的教学助手，回答学生的提问，并给予鼓励；</li>
+<li>多邻国：通过角色扮演，让学生获得沉浸式的学习氛围</li>
+<li>Yabble：分析消费者的数据，提供见解，辅助决策；</li>
+<li>Waymark：快速生成视频脚本，提高视频制作人员的效率；</li>
+<li>Inworld AI：生成有趣、有独特性格特点的游戏角色，提高游戏开发效率；</li>
+</ul>
+<h2 id="AI-幻觉"><a href="#AI-幻觉" class="headerlink" title="AI 幻觉"></a>AI 幻觉</h2><p>模型很适合用来处理创意型的任务，因为这些任务并没有标准答案。但目前还不太适合用来生成严肃问题的答案，例如医学诊断等；因为这些任务的准确性要求很高，而且 AI 的本质上是预测，因此有时候它提供的答案并不正确，却对错误答案信誓旦旦，有可能会误导提问者；</p>
+<h2 id="使用插件和微调优化-GPT-模型"><a href="#使用插件和微调优化-GPT-模型" class="headerlink" title="使用插件和微调优化 GPT 模型"></a>使用插件和微调优化 GPT 模型</h2><p>使用插件能够让 GPT 能够更好的处理特定任务；</p>
+<h1 id="第2章-深入了解-API"><a href="#第2章-深入了解-API" class="headerlink" title="第2章  深入了解 API"></a>第2章  深入了解 API</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>针对不同的使用场景，OpenAI 提供了不同的模型，几种场景包括：</p>
+<ul>
+<li>聊天</li>
+<li>助手</li>
+<li>补全</li>
+<li>文本转语音</li>
+</ul>
+<h2 id="OpenAI-的模型"><a href="#OpenAI-的模型" class="headerlink" title="OpenAI 的模型"></a>OpenAI 的模型</h2><ul>
+<li>InstructGPT</li>
+<li>ChatGPT</li>
+<li>GPT-4</li>
+</ul>
+<h2 id="使用-GPT-模型"><a href="#使用-GPT-模型" class="headerlink" title="使用 GPT 模型"></a>使用 GPT 模型</h2><p>预设提示词的使用示例，每个示例提供了一些特定的自定义参数；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231602686.png" srcset="/img/loading.gif" lazyload></p>
+<p>OpenAI 既可以使用 GUI 来调用，也可以通过 API 来调用；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> openai<br>openai.api_key = os.getenv(<span class="hljs-string">&quot;OPENAI_API_KEY&quot;</span>)<br>response = openai.Completion.create(<br>    model=<span class="hljs-string">&quot;text-davinci-003&quot;</span>,<br>    prompt=<span class="hljs-string">&quot;As Descartes said, I think therefore&quot;</span>,<br>    temperature=<span class="hljs-number">0.7</span>,<br>    max_tokens=<span class="hljs-number">3</span>,<br>    top_p=<span class="hljs-number">1</span>,<br>    frequency_penalty=<span class="hljs-number">0</span>,<br>    presence_penalty=<span class="hljs-number">0</span>,<br>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="OpenAI-Python"><a href="#OpenAI-Python" class="headerlink" title="OpenAI Python"></a>OpenAI Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> openai<br><span class="hljs-comment">#对GPT-3.5 Turbo来说，端点是ChatCompletion</span><br>openai.ChatCompletion.create(<br>    <span class="hljs-comment">#对GPT-3.5 Turbo来说，模型是gpt-3.5-turbo</span><br>    model=<span class="hljs-string">&quot;gpt-3.5-turbo&quot;</span>,<br>    <span class="hljs-comment">#消息列表形式的对话</span><br>    messages=[<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;You are a helpful teacher.&quot;</span>&#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,<br>            <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Are there other measures than time \</span><br><span class="hljs-string">            complexity for an algorithm?&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;assistant&quot;</span>,<br>            <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Yes, there are other measures besides time \</span><br><span class="hljs-string">            complexity for an algorithm, such as space complexity.&quot;</span>,<br>        &#125;,<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;What is it?&quot;</span>&#125;,<br>    ],<br>)<br></code></pre></td></tr></table></figure>
+
+<p>每次调用 API 时，都需要附带整个对话记录，因为模型并不记忆上下文，所以需要在请求中携带上下文；</p>
+<h3 id="从文本补全到函数"><a href="#从文本补全到函数" class="headerlink" title="从文本补全到函数"></a>从文本补全到函数</h3><p>以下示例通过文字描述想要查询的目标，由 GPT 转成 SQL 语句，然后调用预设好的函数，执行该 SQL 语句；得到数据库的查询结果后，再发给 GPT，转换成普遍人能够读懂的结果（用文字来描述查询结果）；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 示例函数（有点像 JS 里面的回调函数）</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_product</span>(<span class="hljs-params">sql_query</span>):<br>    results = [<br>        &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;pen&quot;</span>, <span class="hljs-string">&quot;color&quot;</span>: <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;price&quot;</span>: <span class="hljs-number">1.99</span>&#125;,<br>        &#123;<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;pen&quot;</span>, <span class="hljs-string">&quot;color&quot;</span>: <span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;price&quot;</span>: <span class="hljs-number">1.78</span>&#125;,<br>    ]<br>    <span class="hljs-keyword">return</span> results<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 函数定义</span><br>functions = [<br>    &#123;<br>        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;find_product&quot;</span>,<br>        <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Get a list of products from a sql query&quot;</span>,<br>        <span class="hljs-string">&quot;parameters&quot;</span>: &#123;<br>            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>,<br>            <span class="hljs-string">&quot;properties&quot;</span>: &#123;<br>                <span class="hljs-string">&quot;sql_query&quot;</span>: &#123;<br>                    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,<br>                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;A SQL query&quot;</span>,<br>                &#125;<br>            &#125;,<br>            <span class="hljs-string">&quot;required&quot;</span>: [<span class="hljs-string">&quot;sql_query&quot;</span>],<br>        &#125;,<br>    &#125;<br>]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#示例问题</span><br>user_question = <span class="hljs-string">&quot;I need the top 2 products where the price is less</span><br><span class="hljs-string">    than 2.00&quot;</span><br>messages = [&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: user_question&#125;]<br><span class="hljs-comment">#使用函数定义调用ChatCompletion端点</span><br>response = openai.ChatCompletion.create(<br>        model=<span class="hljs-string">&quot;gpt-3.5-turbo-0613&quot;</span>, messages=messages,<br>            functions=functions<br>)<br>response_message = response[<span class="hljs-string">&quot;choices&quot;</span>][<span class="hljs-number">0</span>][<span class="hljs-string">&quot;message&quot;</span>]<br>messages.append(response_message)<br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">&quot;function_call&quot;: &#123;</span><br><span class="hljs-string">        &quot;name&quot;: &quot;find_product&quot;,</span><br><span class="hljs-string">        &quot;arguments&quot;: &#x27;&#123;\n &quot;sql_query&quot;: &quot;SELECT * FROM products \</span><br><span class="hljs-string">    WHERE price &lt; 2.00 ORDER BY price ASC LIMIT 2&quot;\n&#125;&#x27;,</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#调用函数</span><br>function_args = json.loads(<br>    response_message[<span class="hljs-string">&quot;function_call&quot;</span>][<span class="hljs-string">&quot;arguments&quot;</span>]<br>)<br>products = find_product(function_args.get(<span class="hljs-string">&quot;sql_query&quot;</span>))<br><span class="hljs-comment">#将函数的响应附加到消息中</span><br>messages.append(<br>    &#123;<br>        <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;function&quot;</span>,<br>        <span class="hljs-string">&quot;name&quot;</span>: function_name,<br>        <span class="hljs-string">&quot;content&quot;</span>: json.dumps(products),<br>    &#125;<br>)<br><span class="hljs-comment">#将函数的响应格式化为自然语言</span><br>response = openai.ChatCompletion.create(<br>    model=<span class="hljs-string">&quot;gpt-3.5-turbo-0613&quot;</span>,<br>    messages=messages,<br>)<br></code></pre></td></tr></table></figure>
+
+<p>基于聊天模型的输入，必须使用对话格式；而补全模型的输入则可以是单独的提示词；</p>
+<h2 id="其他-API-功能"><a href="#其他-API-功能" class="headerlink" title="其他 API 功能"></a>其他 API 功能</h2><h3 id="嵌入"><a href="#嵌入" class="headerlink" title="嵌入"></a>嵌入</h3><p>将不是数值类型的元素，转换成数值向量；嵌入有个突出的特点，即它将数据转换成数值格式后，这些数值之间仍然保持语义相似性；即含义相近的词，在数值空间的距离也更近；</p>
+<p>嵌入在 LLM 中用得非常广泛，一般使用 512 维来表示，这使得模型能够存储复杂的关系；</p>
+<h3 id="内容审核模型"><a href="#内容审核模型" class="headerlink" title="内容审核模型"></a>内容审核模型</h3><p>为了确保用户输入的提示词，符合法律规定，OpenAI 还部署了一个内容审核模型，以确保用户的输入合法；</p>
+<h3 id="Whipser-和-DALL-E"><a href="#Whipser-和-DALL-E" class="headerlink" title="Whipser 和 DALL-E"></a>Whipser 和 DALL-E</h3><p>Whipser 用于语音识别、翻译等场景；</p>
+<p>DALL-E 则能够根据自然语言的描述，生成图片；</p>
+<h1 id="第3章-构建应用程序"><a href="#第3章-构建应用程序" class="headerlink" title="第3章  构建应用程序"></a>第3章  构建应用程序</h1><h2 id="应用程序开发概述"><a href="#应用程序开发概述" class="headerlink" title="应用程序开发概述"></a>应用程序开发概述</h2><p>从环境变量读取密钥</p>
+<h2 id="软件架构设计原则"><a href="#软件架构设计原则" class="headerlink" title="软件架构设计原则"></a>软件架构设计原则</h2><p>OpenAPI 的接口很可能会更新，因此有必要在前端与 OpenAI 之间增加一层抽象，以便将前端和 OpenAI 之间进行解耦</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231735305.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="LLM-驱动型应用程序的漏洞"><a href="#LLM-驱动型应用程序的漏洞" class="headerlink" title="LLM 驱动型应用程序的漏洞"></a>LLM 驱动型应用程序的漏洞</h2><p>由于用户的输入存在不可控的因素，因此有必要采取措施，对输入进行检查，否则有可能会发生注入攻击；</p>
+<h2 id="示例项目"><a href="#示例项目" class="headerlink" title="示例项目"></a>示例项目</h2><h3 id="新闻稿生成器"><a href="#新闻稿生成器" class="headerlink" title="新闻稿生成器"></a>新闻稿生成器</h3><p>根据某个事实发生的事件，生成新闻稿；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> openai<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">ask_chatgpt</span>(<span class="hljs-params">messages</span>):<br>    response = openai.ChatCompletion.create(<br>        model=<span class="hljs-string">&quot;gpt-3.5-turbo&quot;</span>, messages=messages<br>    )<br>    <span class="hljs-keyword">return</span> response[<span class="hljs-string">&quot;choices&quot;</span>][<span class="hljs-number">0</span>][<span class="hljs-string">&quot;message&quot;</span>][<span class="hljs-string">&quot;content&quot;</span>]<br><br><br>prompt_role = <span class="hljs-string">&quot;You are an assistant for journalists. \</span><br><span class="hljs-string">    Your task is to write articles, based on the FACTS that are given to you. \</span><br><span class="hljs-string">    You should respect the instructions: the TONE, the LENGTH, \</span><br><span class="hljs-string">	and the STYLE&quot;</span><br><br><br><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Listdef assist_journalist(<br>    facts: <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>], tone: <span class="hljs-built_in">str</span>, length_words: <span class="hljs-built_in">int</span>, style: <span class="hljs-built_in">str</span><br>):<br>    facts = <span class="hljs-string">&quot;, &quot;</span>.join(facts)<br>    prompt = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;prompt_role&#125;</span> \</span><br><span class="hljs-string">        FACTS: <span class="hljs-subst">&#123;facts&#125;</span> \</span><br><span class="hljs-string">        TONE: <span class="hljs-subst">&#123;tone&#125;</span> \</span><br><span class="hljs-string">        LENGTH: <span class="hljs-subst">&#123;length_words&#125;</span> words \</span><br><span class="hljs-string">        STYLE: <span class="hljs-subst">&#123;style&#125;</span>&quot;</span><br>    <span class="hljs-keyword">return</span> ask_chatgpt([&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: prompt&#125;])<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 测试</span><br><span class="hljs-built_in">print</span>(<br>    assist_journalist(<br>        [<span class="hljs-string">&quot;The sky is blue&quot;</span>, <span class="hljs-string">&quot;The grass is green&quot;</span>], <span class="hljs-string">&quot;informal&quot;</span>, \<br>            <span class="hljs-number">100</span>, <span class="hljs-string">&quot;blogpost&quot;</span><br>    )<br>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 生成结果</span><br>&quot;Hey, everyone! Did you know that the sky is blue and the grass is green?<br>I mean, it&#x27;s something we see every day and probably take for granted,<br>but it&#x27;s still pretty amazing if you think about it! The sky appears<br>blue to us because of something called Rayleigh scattering – basically,<br>the molecules in the Earth&#x27;s atmosphere scatter sunlight in all different<br>directions. Blue light has a shorter wavelength, so it gets scattered<br>more than the other colors in the spectrum. That&#x27;s why the sky looks<br>blue most of the time! As for the grass being green... that&#x27;s due to<br>chlorophyll, the pigment that helps plants capture sunlight to make<br>their food. Chlorophyll absorbs red and blue light, but reflects<br>green light, which is why we see plants as green.<br>It&#x27;s pretty cool how science explains these things we take for granted,<br>don&#x27;t you think? Next time you&#x27;re outside, take a moment to appreciate<br>the color palette around you!&quot;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Youtube-视频摘要"><a href="#Youtube-视频摘要" class="headerlink" title="Youtube 视频摘要"></a>Youtube 视频摘要</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> openai<br><br><span class="hljs-comment">#从文件中读取文字记录with open(&quot;transcript.txt&quot;, &quot;r&quot;) as f:</span><br>transcript = f.read()<br><br><span class="hljs-comment">#调用ChatCompletion端点，并使用gpt-3.5-turbo模型</span><br>response = openai.ChatCompletion.create(<br>    model=<span class="hljs-string">&quot;gpt-3.5-turbo&quot;</span>,<br>    messages=[<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;You are a helpful assistant.&quot;</span>&#125;,<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Summarize the following text&quot;</span>&#125;,<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;assistant&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;Yes.&quot;</span>&#125;,<br>        &#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: transcript&#125;,<br>    ],<br>)<br><br><span class="hljs-built_in">print</span>(response[<span class="hljs-string">&quot;choices&quot;</span>][<span class="hljs-number">0</span>][<span class="hljs-string">&quot;message&quot;</span>][<span class="hljs-string">&quot;content&quot;</span>])<br></code></pre></td></tr></table></figure>
+
+<p>如果视频脚本很长，超过了 API 字数上限的话，那么可以考虑将脚本分成多个段落，每个段落生成一份小摘要，最后再汇总小摘要，生成一份大摘要；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231751549.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="打造游戏专家"><a href="#打造游戏专家" class="headerlink" title="打造游戏专家"></a>打造游戏专家</h3><p>除了以下两种常见的微调模型的方法</p>
+<ul>
+<li>基于特定的数据集，对模型进行二次训练；</li>
+<li>小样本学习；</li>
+</ul>
+<p>还有第三种方法：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231756052.png" srcset="/img/loading.gif" lazyload></p>
+<p>即将整个过程拆分三个步骤：</p>
+<ul>
+<li>先让 GPT 解析答案的意图（提前关键词，并转成嵌入）；</li>
+<li>基于解析后的意图，从数据库中搜索匹配的数据（数据需要提前转成嵌入）；</li>
+<li>将数据提交给 GPT，让其整理后返回最终答案；</li>
+</ul>
+<h3 id="语音控制"><a href="#语音控制" class="headerlink" title="语音控制"></a>语音控制</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408231830898.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="print-no-link">#人工智能</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>大模型应用开发极简入门</div>
+      <div>http://example.com/2024/08/22/大模型应用开发极简入门/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/21/%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/" title="渲染原理">
+                        <span class="hidden-mobile">渲染原理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
