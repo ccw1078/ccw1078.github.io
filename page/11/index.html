@@ -228,6 +228,69 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20MD5%20%E7%AD%BE%E5%90%8D%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" target="_self">
+          微信支付 MD5 签名中文问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20MD5%20%E7%AD%BE%E5%90%8D%E4%B8%AD%E6%96%87%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          微信支付流程中， 需要先调用微信商户平台的统一下单接口，生成 prepay_id，传输的参数值通常包含中文，示例如下：因此，在进行 MD5 生成签名时，需要注意能够支持中文（注：部分第三方模块存在不支持中文的情况，导致生成的签名，与微信后台生成的签名不一致，出现”签名错误“的提示） 微信公众平台支付接口调试工具（左边地址可以对签名进行调试比对） 解决办法：使用支持中文的MD5 模块即可（模块附后）
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-07-27 11:44" pubdate>
+              2018-07-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%96%87%E7%AB%A0/" class="category-chain-item">文章</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/javascript/">#javascript</a>
+            
+              <a href="/tags/%E5%BE%AE%E4%BF%A1/">#微信</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2018/07/27/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%20mch_id%20%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E9%94%99%E8%AF%AF/" target="_self">
           微信支付 mch_id 参数格式错误
         </a>
@@ -735,67 +798,6 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
             <time datetime="2018-03-04 09:28" pubdate>
-              2018-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%BF%90%E7%BB%B4/" class="category-chain-item">运维</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%20node%20%E5%92%8C%20npm%20%E5%91%BD%E4%BB%A4%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
-          阿里云轻量应用服务器远程连接 node 和 npm 命令不可用的问题
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2018/03/04/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%BB%E9%87%8F%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%20node%20%E5%92%8C%20npm%20%E5%91%BD%E4%BB%A4%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/" target="_self">
-        <div>
-          阿里云轻量应用服务器，有三种远程连接方式，分别如下： 其中阿里云推荐使用浏览器连接，但连接后，发现 node 和 npm 命令不可用，显示如下：  解决办法：改用本地 putty 客户端使用密钥进行连接
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2018-03-04 09:12" pubdate>
               2018-03-04
             </time>
           </div>
