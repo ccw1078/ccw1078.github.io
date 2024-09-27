@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202407311501287.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202407311816737.png">
 <meta property="article:published_time" content="2017-07-25T10:34:00.000Z">
-<meta property="article:modified_time" content="2024-09-22T23:08:41.995Z">
+<meta property="article:modified_time" content="2024-09-27T06:13:57.189Z">
 <meta property="article:author" content="ccw">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
@@ -809,7 +809,7 @@
 <p>executor.map() 主要用于一个函数，并发处理多个不同的参数</p>
 <p>executor.submit() 则更灵活一些，多个不同的函数，并处理各自不同的参数；最后通过 as_completed 方法收集计算结果；</p>
 <h1 id="第21章-异步编程"><a href="#第21章-异步编程" class="headerlink" title="第21章 异步编程"></a>第21章 异步编程</h1><blockquote>
-<p>虽然可以通过 async def 来定义异步函数，但是如果函数体中包含一些非异步的操作，比如将文件写入本地，貌似该同步操作有可能会造成堵塞，占用整个线程，直到写入成功？经查证，发现确实如此，在异步函数中，只要有任意一个</p>
+<p>虽然可以通过 async def 来定义异步函数，但是如果函数体中包含一些非异步的操作，比如将文件写入本地，貌似该同步操作有可能会造成堵塞，占用整个线程，直到写入成功？经查证，发现确实如此，在异步函数中，只要有任意一个函数是非异步阻塞的，将导致整个调用链都是阻塞的；</p>
 </blockquote>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>海象符 :&#x3D;，为了省写一行代码，先检查，确认有值后，再赋值；没值的话，就不赋值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 没有海象符的时候</span><br>name = abc.get(<span class="hljs-string">&quot;name&quot;</span>)<br><span class="hljs-keyword">if</span> name:<br>    <span class="hljs-comment"># doA</span><br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-comment"># doB</span><br>    <br>    <br><span class="hljs-comment"># 有海象符后</span><br><span class="hljs-keyword">if</span> name := abc.get(<span class="hljs-string">&quot;name&quot;</span>):<br>    <span class="hljs-comment"># doA</span><br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-comment"># doB</span><br></code></pre></td></tr></table></figure>
