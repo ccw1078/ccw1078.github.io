@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202407191649143.png">
 <meta property="article:published_time" content="2022-07-19T00:05:00.000Z">
-<meta property="article:modified_time" content="2024-09-23T01:27:36.202Z">
+<meta property="article:modified_time" content="2024-09-27T12:03:40.256Z">
 <meta property="article:author" content="ccw">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -370,7 +370,7 @@
 
 
 
-<h1 id="第7章-封装"><a href="#第7章-封装" class="headerlink" title="第7章 封装"></a>第7章 封装</h1><p>之所以要做访问控制，主要出现在类库的开发场景，即所开发的类库会被他人调用。如果不限制访问某些属性，任意由调用者访问，会导致后续难以重构该类库的某些功能实现。因此里面有些属性可能被旧代码访问，因此重构后，可能会导致旧的代码无法正常工作。类库作者因此被绑住了手脚，无法实施进一步的迭代升级；</p>
+<h1 id="第7章-封装"><a href="#第7章-封装" class="headerlink" title="第7章 封装"></a>第7章 封装</h1><p>之所以要做访问控制，主要出现在类库的开发场景，即所开发的类库会被他人调用。如果不限制访问某些属性，任意由调用者访问，会导致后续难以重构该类库的某些功能实现，因为里面有些属性可能被旧代码访问。因此重构后，可能会导致旧的代码无法正常工作。类库作者因此被绑住了手脚，无法实施进一步的迭代升级；</p>
 <h2 id="包的概念"><a href="#包的概念" class="headerlink" title="包的概念"></a>包的概念</h2><p>包是一种组织管理源代码文件的方式，以减少命名冲突，让文件更加结构化，方便理解和查找；</p>
 <p>.java 后缀的文件被称为源文件，每个源文件中，只能允许有一个 public 类，但可能有多个非 public 类；同时 public 类的名称需要与源文件名相同；</p>
 <p>当源文件位于某个包中时，需要在源文件的头部写 “package &lt;包名&gt;”</p>
