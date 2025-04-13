@@ -1,0 +1,1042 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.Understanding large language models LLM，Large Language Models，大语言模型  LLM 大语言模型（例如 ChatGPT）是一种基于深度学习的神经网络模型，主要用于自然语言处理（NLP）领域。在 LLM 出现之前，传统的 NLP 主要使用简单模型或者人工编写的规则，应用场景有限。大语言模型的出现翻开了新的篇章，它将模型对语言的理解、分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始构建大模型">
+<meta property="og:url" content="https://ccw1078.github.io/2025/03/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="1.Understanding large language models LLM，Large Language Models，大语言模型  LLM 大语言模型（例如 ChatGPT）是一种基于深度学习的神经网络模型，主要用于自然语言处理（NLP）领域。在 LLM 出现之前，传统的 NLP 主要使用简单模型或者人工编写的规则，应用场景有限。大语言模型的出现翻开了新的篇章，它将模型对语言的理解、分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503100747391.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110634357.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110657249.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110705615.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110710618.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110714311.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110723099.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110742937.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503120727158.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503120738154.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130712013.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130731717.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130738030.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130743620.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130743839.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503140714552.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503150942666.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170519238.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170521323.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170540115.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170617077.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170713612.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170717866.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170756860.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503190736390.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503190739048.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503190802208.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503200652234.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503200655255.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503210734863.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503210746689.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503210805247.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220620677.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220621687.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220636426.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220653964.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220705018.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220758390.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503240635490.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503240713634.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250649329.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250623811.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250634159.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250711998.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503270623437.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503270735653.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503310658487.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503310708068.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503310736036.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504010719065.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504010754996.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504020736917.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504020743900.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030601160.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030616589.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030618948.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030647367.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030701369.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030801842.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504100800737.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504110654926.png">
+<meta property="article:published_time" content="2025-03-09T22:41:00.000Z">
+<meta property="article:modified_time" content="2025-04-13T14:18:45.343Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503100747391.png">
+  
+  
+  
+  <title>从零开始构建大模型 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ccw1078.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从零开始构建大模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-10 06:41" pubdate>
+          2025年3月10日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          105 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从零开始构建大模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Understanding-large-language-models"><a href="#1-Understanding-large-language-models" class="headerlink" title="1.Understanding large language models"></a>1.Understanding large language models</h1><blockquote>
+<p>LLM，Large Language Models，大语言模型</p>
+</blockquote>
+<p>LLM 大语言模型（例如 ChatGPT）是一种基于深度学习的神经网络模型，主要用于自然语言处理（NLP）领域。在 LLM 出现之前，传统的 NLP 主要使用简单模型或者人工编写的规则，应用场景有限。大语言模型的出现翻开了新的篇章，它将模型对语言的理解、分析以及复杂任务的处理提升到了一个全新的高度。例如过往的模型是完全无法基于几个关键字，编写一篇意思通顺的文章，而这个任务对现在的大语言模型来说不过是小菜一碟。</p>
+<p>大模型给出的答案语义连贯，逻辑清晰，但它输出的每个词，其实都是基于概率计算出来的，暂时还没看出来它具有类似人类的那种“自我意识”。</p>
+<p>大模型的突破主要来自在 Transformer 注意力机制的发现，它构成了现在各种大模型的基础，同时配合海量的数据进行训练，这两方面的因素让大模型对人类语言的理解实现了质的飞跃。</p>
+<h2 id="什么是大语言模型"><a href="#什么是大语言模型" class="headerlink" title="什么是大语言模型"></a>什么是大语言模型</h2><p>大模型之所以称为“大”，主要是因为模型中的参数非常多，以亿为单位，动不动就百亿、千亿级别。同时也指它训练的数据量很大。这些数据主要来源自过往几十年人类信息化后生产的各种电子文档，例如 wiki 网页、数字图书等。</p>
+<p>大模型的基本原理很简单，就是基于句子的前半部分，根据概率大小，预测下一个单词应该是什么。简单的原理配合海量的数据和注意力机制进行训练后，最终得到的结果大大超出了研究人员的预期。模型出现了所谓的“涌现”，即模型对人类语言，当训练的数据量超过一个临界值后，不管是哪个国家的自然语言或者计算机语言，模型突然展示出了对各种语言的惊人理解能力。</p>
+<p>由于大模型擅于生成内容，因此有时候也被人们称为 GenAI（生成式 AI），以下是它与各种人工智能概念的关系：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503100747391.png" srcset="/img/loading.gif" lazyload></p>
+<p>深度学习是实现 AI 的主流算法，它通过设计训练和验证数据集，让模型自己反复学习和调整自身的参数，以提高预测的准确率。当准确达到某个标准后，即完成了训练。传统的编程方法由人类设计计算规则，深度学习则是给定结果，让模型自己猜测规则。只要猜测和调整的次数足够多，模型就会不断向正确答案靠拢。</p>
+<p>但人工智能不只有深度学习一种实现方法，还有其他一些传统的方法，例如特征工程，这些方法在某些特定的应用场景中效果也很好，甚至能够解决一些深度学习算法无法解决的问题。</p>
+<h2 id="大语言模型应用场景"><a href="#大语言模型应用场景" class="headerlink" title="大语言模型应用场景"></a>大语言模型应用场景</h2><p>应用场景有很多，例如机器翻译，文案生成，语义分析，摘要总结，代码生成，聊天机器人，虚拟助手，医学或法律等领域的知识检索（对文档进行筛选和总结，以便专业性的技术问题）。</p>
+<p>LLM 大模型很可能将重新定义我们与技术的交互方式，让交互过程变得更加符合人类的直觉，同时更加易于使用。</p>
+<h2 id="构建和使用大语言模型的步骤"><a href="#构建和使用大语言模型的步骤" class="headerlink" title="构建和使用大语言模型的步骤"></a>构建和使用大语言模型的步骤</h2><p>构建大模型主要由预训练和微调两个步骤组成。在预训练阶段，将给模型输入海量和多样化的数据，以便模型能够习得对各种自然语言的广泛理解。预训练后将得到一个基座模型，之后再基于特定领域的标注数据，对模型进行微调训练，这样模型能够有效提高模型在特定领域上的任务表现。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110634357.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>传统的监督学习方法在预训练阶段即需要使用人工标注数据，因此会有数据标注成本。但大模型的预训练刚好不需要进行人工标注，因为它是基于句子的前半部分去预测下一个单词，那么所有的输入数据，天然就是正确的预标注数据了，因此不需要额外的人工标注，设计非常巧妙。如果不是因为这一点，大模型的训练将是不可能的，因为数据量太庞大了，成本和时间都将是天文数字。</p>
+</blockquote>
+<h2 id="Transformer-架构介绍"><a href="#Transformer-架构介绍" class="headerlink" title="Transformer 架构介绍"></a>Transformer 架构介绍</h2><p>大部分 LLM 模型都是基于 Transformer 架构，该架构由 2017 年的论文 “Attention is all you need” 中首次提出。它的原理是针对句子中的各个单词给予不同的注意力权重，而不是一视同仁。因此每个单词对整个句子在语义维度的贡献程度是不一样的。通过使用注意力机制，能够让模型更准确的抓住句子的精髓部分。</p>
+<p>最早的 Transformer 架构由编码器和解码器两部分组成，当时研究的场景是语言翻译，例如将英语翻译为德语。因此先使用编码器将源语言（如英语）编码成向量，然后再使用解码器，将向量编译成目标语言（如德语）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110657249.png" srcset="/img/loading.gif" lazyload></p>
+<p>它背后的思想大致为，虽然语言之间使用的单词和语法不同，但对于相同意思的句子，在经过注意力机制的筛选后，其对应的向量空间坐标值应该是相同的。经过实践证明，事实也确实如此。而且实验后发现，模型还可以进一步简化，编码器都不需要了，直接使用解码器就可以了，整个模型变得更加简洁和优雅了。</p>
+<h2 id="利用大数据"><a href="#利用大数据" class="headerlink" title="利用大数据"></a>利用大数据</h2><p>训练大模型需要的数据量非常惊人，好处是整个模型变得非常通用，经过适当的微调后中，能够有效应对各种细分领域的工作任务。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110705615.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="深入-GPT-架构"><a href="#深入-GPT-架构" class="headerlink" title="深入 GPT 架构"></a>深入 GPT 架构</h2><p>GPT 架构最早在 OpenAI 公司的论文 “Improving Language Understanding by Generative Pre-Training” 中提出，它直译的意思是”生成预训练“，即训练模型，让它能够不断生成句子的下一个单词。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110710618.png" srcset="/img/loading.gif" lazyload></p>
+<p>GPT 架构对未标注的数据进行自动标注和自监督学习，是一种自回归的模型，即将上一步的结果，当作生成下一步结果的输入参数，这种模式有助于提升输出的语义连贯性。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110714311.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="构建大语言模型"><a href="#构建大语言模型" class="headerlink" title="构建大语言模型"></a>构建大语言模型</h2><p>大模型的构建主要由几个步骤构成，分别如下：</p>
+<ul>
+<li>准备数据</li>
+<li>使用注意力机制</li>
+<li>设计模型的结构</li>
+<li>反复迭代训练</li>
+<li>模型评估</li>
+<li>模型微调</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110723099.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="2-Working-with-text-data"><a href="#2-Working-with-text-data" class="headerlink" title="2.Working with text data"></a>2.Working with text data</h1><h2 id="理解嵌入"><a href="#理解嵌入" class="headerlink" title="理解嵌入"></a>理解嵌入</h2><p>深度学习模型，包括 LLM 大模型，实际上无法直接处理原始文本，因为原始文件无法直接用于数学运算，因此需要先将文本转换成数字，这个转换的过程叫做嵌入（embedding）；所谓的嵌入，就是将非标数据进行标准化的一个过程。</p>
+<p>各种类型的数据都需要进行嵌入转换，例如文本、音频、视频等。嵌入一般由大模型的第一层进行处理，也可以由单独的模型进行处理。但不同模型的嵌入格式不同，因此 A 模型生成的嵌入数据，通常无法直接给 B 模型使用。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503110742937.png" srcset="/img/loading.gif" lazyload></p>
+<p>本质上，嵌入就是将离散对象，例如文本、图片甚至整个文件，映射到一个连续的向量空间，以方便模型进行处理和计算。虽然最常使用的嵌入是以单词为单位，但其实也可以句子、段落、章节、文档为单位，常用于检索增加生成（Retrival Augmented Generation，简称RAG）场景，例如知识库。 </p>
+<p>嵌入有很多种实现算法，例如 Word2Vec，它的原理是训练模型根据单词所在的上下文，生成单词的嵌入。它的思想为在相似上下文中出现的单词，其代表的意思更加相似。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503120727158.png" srcset="/img/loading.gif" lazyload></p>
+<p>大模型通常会在输入层中包含嵌入功能，并且在训练过程中该层的参数会进行更新，以便对其不断优化。上面的示例图表只有两个维度，即嵌入的向量空间是二维的，能够表示的分类非常有限。真实的大模型其向量空间的维度是非常多的，例如 120M 个参数的 GPT-2 有 768 维，175B 个参数的 GPT-3 有 12288 维。</p>
+<h2 id="文本转-token"><a href="#文本转-token" class="headerlink" title="文本转 token"></a>文本转 token</h2><p>token 主要由单词、标点符号、特殊符号等构成，因此第一步我们需要先将文本拆分（split）成各种单词和标点符号。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503120738154.png" srcset="/img/loading.gif" lazyload></p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 下载示例文本 get_file.py</span><br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> urllib.request<br><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">&quot;the-verdict.txt&quot;</span>):<br>    url = <span class="hljs-string">&quot;https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/main/ch02/01_main-chapter-code/the-verdict.txt&quot;</span><br>    file_path = <span class="hljs-string">&quot;the-verdict.txt&quot;</span><br>    urllib.request.urlretrieve(url, file_path)<br></code></pre></td></tr></table></figure>
+
+<h2 id="token-转-ID"><a href="#token-转-ID" class="headerlink" title="token 转 ID"></a>token 转 ID</h2><p>基于拆分后的单词和标点符号，创建一个字典，这样每个单词和标点符号都将为其分配一个 ID，之后我们就可以转 token 转成 ID 了，也可以将 ID 转成文本。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130712013.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建字典</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;the-verdict.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    raw_text = f.read()<br>    preprocessed = re.split(<span class="hljs-string">r&#x27;([,.:;?_!&quot;()\&#x27;]|--|\s)&#x27;</span>, raw_text)<br>    preprocessed = [item.strip() <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> preprocessed <span class="hljs-keyword">if</span> item.strip()]<br>    all_words = <span class="hljs-built_in">sorted</span>(<span class="hljs-built_in">set</span>(preprocessed))<br>    vocab = &#123;token:integer <span class="hljs-keyword">for</span> integer, token <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(all_words)&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130731717.png" srcset="/img/loading.gif" lazyload></p>
+<p>将编码和解码的函数整合在一起，封装成一个对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># tokenizer.py</span><br><span class="hljs-keyword">import</span> re<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleTokenizerV1</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, vocab</span>):<br>        <span class="hljs-variable language_">self</span>.str_to_int = vocab<br>        <span class="hljs-variable language_">self</span>.int_to_str = &#123;v: k <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> vocab.items()&#125;<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">encode</span>(<span class="hljs-params">self, text</span>):<br>        preprocessed = re.split(<span class="hljs-string">r&#x27;([,.:;?_!&quot;()\&#x27;]|--|\s)&#x27;</span>, text)<br>        <br>        preprocessed = [item.strip() <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> preprocessed <span class="hljs-keyword">if</span> item.strip() != <span class="hljs-string">&#x27;&#x27;</span>]<br>        ids = [<span class="hljs-variable language_">self</span>.str_to_int[s] <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> preprocessed]<br>        <span class="hljs-keyword">return</span> ids<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">self, ids</span>):<br>        text = <span class="hljs-string">&quot; &quot;</span>.join([<span class="hljs-variable language_">self</span>.int_to_str[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ids])<br>        text = re.sub(<span class="hljs-string">r&#x27;\s([,.:;?_!&quot;()\&#x27;])&#x27;</span>, <span class="hljs-string">r&#x27;\1&#x27;</span>, text)<br>        <span class="hljs-keyword">return</span> text<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130738030.png" srcset="/img/loading.gif" lazyload></p>
+<p>有了封装的对象后，获取文本 ID 就变得很简单了，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">tokenizer = SimpleTokenizerV1(vocab)<br>text = <span class="hljs-string">&quot;Hello world&quot;</span><br>ids = tokenizer.encode(text)<br><span class="hljs-built_in">print</span>(ids)<br></code></pre></td></tr></table></figure>
+
+<h2 id="添加特殊-token"><a href="#添加特殊-token" class="headerlink" title="添加特殊 token"></a>添加特殊 token</h2><p>特殊 token 通常有两个用途：</p>
+<ul>
+<li>处理不包括在字典中的未知单词或符号；</li>
+<li>让模型对文本的理解变得更容易，例如显式的用一个特殊符号文档的开始和结束，这样模型不用自己判断；</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130743620.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503130743839.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 改进后的版本，以便能够处理未知单词或符号</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleTokenizerV2</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, vocab</span>):<br>        <span class="hljs-variable language_">self</span>.str_to_int = vocab<br>        <span class="hljs-variable language_">self</span>.int_to_str = &#123;v: k <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> vocab.items()&#125;<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">encode</span>(<span class="hljs-params">self, text</span>):<br>        preprocessed = re.split(<span class="hljs-string">r&#x27;([,.:;?_!&quot;()\&#x27;]|--|\s)&#x27;</span>, text)<br>        <br>        preprocessed = [item.strip() <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> preprocessed <span class="hljs-keyword">if</span> item.strip() != <span class="hljs-string">&#x27;&#x27;</span>]<br>        <span class="hljs-comment"># 将未知单词或符号替换为 &#x27;&lt;UNK&gt;&#x27;</span><br>        preprocessed = [item <span class="hljs-keyword">if</span> item <span class="hljs-keyword">in</span> <span class="hljs-variable language_">self</span>.str_to_int <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;&lt;UNK&gt;&#x27;</span> <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> preprocessed]<br>        ids = [<span class="hljs-variable language_">self</span>.str_to_int[s] <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> preprocessed]<br>        <span class="hljs-keyword">return</span> ids<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">self, ids</span>):<br>        text = <span class="hljs-string">&quot; &quot;</span>.join([<span class="hljs-variable language_">self</span>.int_to_str[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ids])<br>        text = re.sub(<span class="hljs-string">r&#x27;\s+([,.:;?_!&quot;()\&#x27;])&#x27;</span>, <span class="hljs-string">r&#x27;\1&#x27;</span>, text)<br>        <span class="hljs-keyword">return</span> text<br></code></pre></td></tr></table></figure>
+
+<p>一些常用的特殊符号：</p>
+<ul>
+<li>[BOS]，beginning of sequence，序列起点；</li>
+<li>[EOS]，end of sequence，序列终点；</li>
+<li>[PAD]，padding，占位符（为提高训练速度，训练过程中，允许一次提交多个输入；由于不同句子长度不同，因此需要使用占位符，让不同句子拥有相同的长度，方便模型使用相同的函数进行计算）；</li>
+</ul>
+<h2 id="字节对编码"><a href="#字节对编码" class="headerlink" title="字节对编码"></a>字节对编码</h2><p>GPT 模型并没有使用 [unk] 符号来处理未知单词，而是使用 BPE 算法（byte pair encoding，字节对编码），将单词进一步拆分为更小的单位，例如子词（subword）或者字母；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503140714552.png" srcset="/img/loading.gif" lazyload></p>
+<p>BPE 的工作过程如下：</p>
+<ol>
+<li>先将训练数据中的所有单词拆分成单个字符，并在单词的末尾添加结束符，以便能够区分不同的单词；这样就得到了初始的词汇表</li>
+<li>统计相邻字符对的出现频率；例如单词 low，其中 lo 算一次；ow 也算一次；</li>
+<li>根据统计结果，将出现频率最高的字符对，作为一个词汇，添加到词汇表中；</li>
+<li>重复第2、3步，直到字符对的最高频率降为 1 或者某个预设的值；</li>
+</ol>
+<blockquote>
+<p>这个方法通过递归的方式找出在各种文档中使用过一次以上的字符组合；</p>
+</blockquote>
+<p>BPE 的优点是将单词进一步拆分成字符对，有效提升了模型处理未知词汇的能力，以及模型的泛化能力。</p>
+<h2 id="数据抽样"><a href="#数据抽样" class="headerlink" title="数据抽样"></a>数据抽样</h2><p>大模型的工作方式是基于句子的已知部分，预测下一个单词。因此，接下来的一个工作，便是生成句子（作为输入）+ 下一个单词（作为目标）的嵌入，作为训练用的数据。在生成嵌入时，会用到一个叫滑动窗口的方法，它跟图像模型的采样方法有点像，区别在于这里的滑动窗口的起始位置不变，示例如下：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503150942666.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tiktoken<br><br>tokenizer = tiktoken.get_encoding(<span class="hljs-string">&quot;gpt2&quot;</span>)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;the-verdict.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    raw_text = f.read()<br><br><br>enc_txt = tokenizer.encode(raw_text)<br><span class="hljs-comment"># print(len(enc_txt))</span><br><br>enc_sample = enc_txt[<span class="hljs-number">50</span>:]<br><br>context_size = <span class="hljs-number">4</span> <span class="hljs-comment"># 滑动窗口大小</span><br>x = enc_sample[:context_size]<br>y = enc_sample[<span class="hljs-number">1</span>:context_size+<span class="hljs-number">1</span>]<br><span class="hljs-comment"># print(f&quot;X: &#123;x&#125;&quot;)</span><br><span class="hljs-comment"># print(f&quot;Y: &#123;y&#125;&quot;)</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, context_size+<span class="hljs-number">1</span>):<br>    context = enc_sample[:i]<br>    desired = enc_sample[i]<br>    <span class="hljs-comment"># print(context, &quot;-----&gt;&quot;, desired)</span><br>    <span class="hljs-comment"># print(tokenizer.decode(context), &quot;-----&gt;&quot;, tokenizer.decode([desired]))</span><br></code></pre></td></tr></table></figure>
+
+<p>以上代码的输出如下：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170519238.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170521323.png" srcset="/img/loading.gif" lazyload></p>
+<p>在将 token 转成嵌入之前，还有一项最后的工作，即将 token 转换成 tensor（张量，PyTorch 或 Tensorflow 等框架所使用的数据结构）</p>
+<blockquote>
+<p>tensor 通常以浮点数来表示，以下示例使用原始字符串表示主要是为了方便理解 tensor 所表示的内容；</p>
+</blockquote>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170540115.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>理论上目标张量只需包含下一个待预测的单词即可，但是这里貌似为了让输出和输出的长度相等，除了待预测的目标单词外，还包含了前面的部分。因此输入和输出存在重叠；</p>
+</blockquote>
+<p>创建一个类，能够将输入文本，例如一本书，转换成“输入+输出”对，以便用于训练；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GPTDatasetV1</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, txt, tokenizer, max_length, stride</span>):<br>        <span class="hljs-variable language_">self</span>.input_ids = []<br>        <span class="hljs-variable language_">self</span>.target_ids = []<br><br>        <span class="hljs-comment"># 将 txt 转换成 token_ids</span><br>        token_ids = tokenizer.encode(txt)<br><br>        <span class="hljs-comment"># 使用滑动窗口的方法，按 max_length 将文本切分成多个样本</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(token_ids) - max_length, stride):<br>            input_chunk = token_ids[i : i + max_length]<br>            target_chunk = token_ids[i + <span class="hljs-number">1</span> : i + max_length + <span class="hljs-number">1</span>]<br>            <span class="hljs-variable language_">self</span>.input_ids.append(torch.tensor(input_chunk))<br>            <span class="hljs-variable language_">self</span>.target_ids.append(torch.tensor(target_chunk))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.input_ids)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, idx</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.input_ids[idx], <span class="hljs-variable language_">self</span>.target_ids[idx]<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">tokenize</span>(<span class="hljs-params">self, data</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.tokenizer.encode(data)<br></code></pre></td></tr></table></figure>
+
+<p>将“输入+输出”对进行分批。相对单个输入输出对，按批次处理有助于提高训练效率，缩短训练时间；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 基于 PyTorch 的 Dataloader，创建一个生成数据器的函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_dataloader_v1</span>(<span class="hljs-params"></span><br><span class="hljs-params">    txt,</span><br><span class="hljs-params">    batch_size=<span class="hljs-number">4</span>,</span><br><span class="hljs-params">    max_length=<span class="hljs-number">256</span>,</span><br><span class="hljs-params">    stride=<span class="hljs-number">128</span>,</span><br><span class="hljs-params">    shuffle=<span class="hljs-literal">True</span>,</span><br><span class="hljs-params">    drop_last=<span class="hljs-literal">True</span>,</span><br><span class="hljs-params">    num_workers=<span class="hljs-number">0</span>,</span><br><span class="hljs-params"></span>):<br>    tokenizer = tiktoken.get_encoding(<span class="hljs-string">&quot;gpt2&quot;</span>)<br>    dataset = GPTDatasetV1(txt, tokenizer, max_length, stride)<br>    dataloader = DataLoader(<br>        dataset,<br>        batch_size=batch_size,<br>        shuffle=shuffle,<br>        drop_last=drop_last,<br>        num_workers=num_workers,<br>    )<br>    <span class="hljs-keyword">return</span> dataloader<br></code></pre></td></tr></table></figure>
+
+<p>使用 create_dataloader_v1 创建一个数据加载器，加载小说 the-verdict.txt </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;the-verdict.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:<br>    raw_text = f.read()<br><br>dataloader = create_dataloader_v1(<br>    raw_text, batch_size=<span class="hljs-number">1</span>, max_length=<span class="hljs-number">4</span>, stride=<span class="hljs-number">1</span>, shuffle=<span class="hljs-literal">False</span><br>)<br>data_iter = <span class="hljs-built_in">iter</span>(dataloader)<br>first_batch = <span class="hljs-built_in">next</span>(data_iter)<br><span class="hljs-built_in">print</span>(first_batch)<br><br><span class="hljs-comment"># 输出如下（由于 max_length 设置为 4，所以长度只有 4 个token）</span><br><span class="hljs-comment"># [tensor([[  40,  367, 2885, 1464]]), tensor([[ 367, 2885, 1464, 1807]])]</span><br><br><span class="hljs-comment"># 实际训练时，max_length 通常是 256</span><br></code></pre></td></tr></table></figure>
+
+<p>参数 stride &#x3D; 1 用来设置滑动窗口的滑动步伐，1 表示每次滑动一个 token；如果是 4，则每次滑动 4 个 token；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170617077.png" srcset="/img/loading.gif" lazyload></p>
+<p>批量参数 batch_size 用来表示每个训练批次的数据量，1 表示每次只输入一个 token 对；4 表示每次输入 4 对；批量小的话，需要的内存也小，但在训练过程中，会带来更多的模型参数波动幅度。合适的批量的大小，需要通过反复实验进行权衡，最终设置一个合理的折中值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 当 batch_size = 8, stride = 4 的效果</span><br>dataloader = create_dataloader_v1(<br>    raw_text, batch_size=<span class="hljs-number">8</span>, max_length=<span class="hljs-number">4</span>, stride=<span class="hljs-number">4</span>, shuffle=<span class="hljs-literal">False</span><br>)<br>data_iter = <span class="hljs-built_in">iter</span>(dataloader)<br>first_batch = <span class="hljs-built_in">next</span>(data_iter)<br><span class="hljs-built_in">print</span>(first_batch)<br><br><span class="hljs-comment"># [tensor([[   40,   367,  2885,  1464],</span><br><span class="hljs-comment">#         [ 1807,  3619,   402,   271],</span><br><span class="hljs-comment">#         [10899,  2138,   257,  7026],</span><br><span class="hljs-comment">#         [15632,   438,  2016,   257],</span><br><span class="hljs-comment">#         [  922,  5891,  1576,   438],</span><br><span class="hljs-comment">#         [  568,   340,   373,   645],</span><br><span class="hljs-comment">#         [ 1049,  5975,   284,   502],</span><br><span class="hljs-comment">#         [  284,  3285,   326,    11]]), </span><br><span class="hljs-comment">#  tensor([[  367,  2885,  1464,  1807],</span><br><span class="hljs-comment">#         [ 3619,   402,   271, 10899],</span><br><span class="hljs-comment">#         [ 2138,   257,  7026, 15632],</span><br><span class="hljs-comment">#         [  438,  2016,   257,   922],</span><br><span class="hljs-comment">#         [ 5891,  1576,   438,   568],</span><br><span class="hljs-comment">#         [  340,   373,   645,  1049],</span><br><span class="hljs-comment">#         [ 5975,   284,   502,   284],</span><br><span class="hljs-comment">#         [ 3285,   326,    11,   287]])]</span><br><br><span class="hljs-comment"># 当 max_length=4, stride=4 时，每个批次的 token 对之间没有重叠，这样做的好处是可以减少过拟合；</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="创建-token-嵌入"><a href="#创建-token-嵌入" class="headerlink" title="创建 token 嵌入"></a>创建 token 嵌入</h2><p>初始化嵌入层的权重参数。参数值一开始是随机的，但随着训练次数的增加，这些参数会慢慢收敛，并在某个值附近稳定下来。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 假定词汇表总共只有 6 个单词（BPE 有 50257 个单词）</span><br>vocab_size = <span class="hljs-number">6</span><br><span class="hljs-comment"># 假设嵌入的尺寸为 3（GPT-3 的嵌入尺寸为 12288，尺寸越大，能够存放的参数个数越多，参数越多，模型就越能够记住这个 token 在多种不同场景下的使用方法）</span><br>output_dim = <span class="hljs-number">3</span> <br><br><br>torch.manual_seed(<span class="hljs-number">123</span>) <span class="hljs-comment"># 用于初始化随机数</span><br>embedding = torch.nn.Embedding(vocab_size, output_dim) <span class="hljs-comment"># 生成嵌入层</span><br><span class="hljs-built_in">print</span>(embedding.weight)<br><br><span class="hljs-comment"># 结果如下：</span><br><span class="hljs-comment"># tensor([[ 0.3374, -0.1778, -0.1690],</span><br><span class="hljs-comment">#         [ 0.9178,  1.5810,  1.3010],</span><br><span class="hljs-comment">#         [ 1.2753, -0.2010, -0.1606],</span><br><span class="hljs-comment">#         [-0.4015,  0.9666, -1.1481],</span><br><span class="hljs-comment">#         [-1.1589,  0.3255, -0.6315],</span><br><span class="hljs-comment">#         [-2.8400, -0.7849, -1.4096]], requires_grad=True</span><br><br><span class="hljs-comment"># 词汇表的 6 个token，对应此处的 6 行，每行代表一个token；3 列则对应嵌入的尺</span><br><br><span class="hljs-comment"># 例如取 token_id = 3，print(embedding(torch.tensor([3]))) 结果如下（对应前面的第4行）</span><br><span class="hljs-comment"># tensor([[-0.4015,  0.9666, -1.1481]], grad_fn=&lt;EmbeddingBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 当输入的 token_ids 为 [2, 3, 5, 1] 时</span><br>input_ids = torch.tensor([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>])<br><span class="hljs-built_in">print</span>(embedding(input_ids))<br><br><span class="hljs-comment"># tensor([[ 1.2753, -0.2010, -0.1606],</span><br><span class="hljs-comment">#         [-0.4015,  0.9666, -1.1481],</span><br><span class="hljs-comment">#         [-2.8400, -0.7849, -1.4096],</span><br><span class="hljs-comment">#         [ 0.9178,  1.5810,  1.3010]], grad_fn=&lt;EmbeddingBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170713612.png" srcset="/img/loading.gif" lazyload alt="image-20250317071318473"></p>
+<h2 id="编码单词位置"><a href="#编码单词位置" class="headerlink" title="编码单词位置"></a>编码单词位置</h2><p>按照上面的方法，每个 token_id 会映射一个 embeding 向量，但是这里有个小问题，即同一个 token_id，不管它出现在文本中的任意位置，它映射后的向量都是一模一样的，这意味着向量中没有包含位置信息。但在真实的语言中，同一个单词，出现在句子中的不同位置时，它的意思是有可能产生变化的。因此，我们需要将单词的位置信息，也添加到嵌入中作为参数，以便让模型能够学到的位置信息的相关知识。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170717866.png" srcset="/img/loading.gif" lazyload></p>
+<p>位置有两种表示方法：</p>
+<ul>
+<li>绝对位置：每个位置用一个数值进行表示，然后添加到原嵌入上；(GPT 模型也是使用绝对位置，并会在训练过程中优化该参数值)；</li>
+<li>相对位置：计算 token 之间的相对位置，即 token 之间的相对距离；该方法的优点是有助于模型学习到更好的泛化能力，在处理不同长度的句子时，效果更出色；</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503170756860.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;the-verdict.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:<br>        raw_text = f.read()<br><br>max_length = <span class="hljs-number">4</span> <span class="hljs-comment"># 句子长度为 4 个单词</span><br>batch_size = <span class="hljs-number">8</span> <span class="hljs-comment"># 每批 8 个句子</span><br>dataloader = create_dataloader_v1(<br>    raw_text, batch_size=batch_size, max_length=max_length, stride=max_length, shuffle=<span class="hljs-literal">False</span><br>)<br>data_iter = <span class="hljs-built_in">iter</span>(dataloader)<br>inputs, targets = <span class="hljs-built_in">next</span>(data_iter)<br><span class="hljs-comment"># print(&quot;Token IDs:\n&quot;, inputs)</span><br><span class="hljs-comment"># print(&quot;\nInputs shape:\n&quot;, inputs.shape)</span><br><br><span class="hljs-comment"># Token IDs: 每个批次 8 个句子，每个句子 4 个单词</span><br><span class="hljs-comment">#  tensor([[   40,   367,  2885,  1464],</span><br><span class="hljs-comment">#         [ 1807,  3619,   402,   271],</span><br><span class="hljs-comment">#         [10899,  2138,   257,  7026],</span><br><span class="hljs-comment">#         [15632,   438,  2016,   257],</span><br><span class="hljs-comment">#         [  922,  5891,  1576,   438],</span><br><span class="hljs-comment">#         [  568,   340,   373,   645],</span><br><span class="hljs-comment">#         [ 1049,  5975,   284,   502],</span><br><span class="hljs-comment">#         [  284,  3285,   326,    11]])</span><br><br><span class="hljs-comment"># Inputs shape:</span><br><span class="hljs-comment"># torch.Size([8, 4])</span><br><br><br>vocab_size = <span class="hljs-number">50257</span> <span class="hljs-comment"># 50257 个 token</span><br>output_dim = <span class="hljs-number">256</span> <span class="hljs-comment"># 每个 token 有 256 个参数，用来记住这个 token 的各种用法</span><br>token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim)<br><br>token_embeddings = token_embedding_layer(inputs)<br><span class="hljs-built_in">print</span>(token_embeddings.shape)<br><span class="hljs-comment"># torch.Size([8, 4, 256]) 每个 token 有 256 个维度</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>模型需要将文本数据转化成数值类型的向量数据（即嵌入）；文本或图像原本是离散型的数据，通过构建词汇表以及分配 token id，它们被转换成了连续的向量空间中的数值，以便能够输入神经网络模型进行计算；</p>
+</blockquote>
+<h1 id="3-Coding-attention-mechanisms"><a href="#3-Coding-attention-mechanisms" class="headerlink" title="3.Coding attention mechanisms"></a>3.Coding attention mechanisms</h1><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503190736390.png" srcset="/img/loading.gif" lazyload></p>
+<p>注意力机制有四种不同的变体，一些变体建立在另外一些变体的基础上，它们分别是：</p>
+<ul>
+<li>简化的自注意力；</li>
+<li>自注意力；</li>
+<li>因果（掩码）注意力；</li>
+<li>多头注意力（并行关注输入的不同维度）；</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503190739048.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="模型化长序列的问题"><a href="#模型化长序列的问题" class="headerlink" title="模型化长序列的问题"></a>模型化长序列的问题</h2><p>在注意力机制出现之前，一般使用 encoder-decoder 机制来处理实现语言翻译，例如将德语翻译为英语。由于不同语言的语法结构不同，显然一个单词一个单词的直接翻译是不可行的。为解决这个剖，encoder-decoder 引入了一个中间层（hidden state）；这个中间有点像是一层嵌入，用来存储句子的核心思想。然后再使用 decoder 将核心思想翻译为目标语言。</p>
+<p>RNN 是实现 encoder-decoder 机制的一种架构，它先是逐个单词进行编码，然后将编译后的结果，和下一个单词，作为下一次编码的输入，直到迭代出最终结果，放到 hidden state 隐藏层中。但问题是在迭代的过程中，隐藏层一直在变化，存储的是最新结果，这会导致在处理复杂的长文本时，尤其是相互依赖的内容间隔较远时，RNN 无法记住前面的上下文。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503190802208.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="通过注意力机制捕获数据依赖"><a href="#通过注意力机制捕获数据依赖" class="headerlink" title="通过注意力机制捕获数据依赖"></a>通过注意力机制捕获数据依赖</h2><p>为解决 RNN 因为无法获取前文，导致只因翻译短句的短板，引了一种新的注意力机制 Bahdanau；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503200652234.png" srcset="/img/loading.gif" lazyload></p>
+<p>Bahdanau 机制引入几年后，人们意外的发现，其实貌似没有必要使用 encoder + decoder 的机制，直接单独使用 decoder 就够了；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503200655255.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="通过自注意力机制关注输入的不同部分"><a href="#通过自注意力机制关注输入的不同部分" class="headerlink" title="通过自注意力机制关注输入的不同部分"></a>通过自注意力机制关注输入的不同部分</h2><p>自注意力机制的核心，在于它能够识别一个输入序列中不同部分之前的相互关系和依赖，它通过计算权重来表示这种关系。传统的注意力机制则更多是关注两个序列的元素之间的关系（即传统的 encoder 和 decoder 机制）。</p>
+<h3 id="不带训练参数的自注意力机制"><a href="#不带训练参数的自注意力机制" class="headerlink" title="不带训练参数的自注意力机制"></a>不带训练参数的自注意力机制</h3><p>计算目标：上下文向量（context vector），用该向量来存储某个 token 的上下文信息，所以也叫增强嵌入向量（enriched embedding vector）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503210734863.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br>inputs = torch.tensor(<br>    [<br>        [<span class="hljs-number">0.43</span>, <span class="hljs-number">0.15</span>, <span class="hljs-number">0.89</span>],  <span class="hljs-comment"># Your    (x^1)</span><br>        [<span class="hljs-number">0.55</span>, <span class="hljs-number">0.87</span>, <span class="hljs-number">0.66</span>],  <span class="hljs-comment"># journey (x^2)</span><br>        [<span class="hljs-number">0.57</span>, <span class="hljs-number">0.85</span>, <span class="hljs-number">0.64</span>],  <span class="hljs-comment"># starts  (x^3)</span><br>        [<span class="hljs-number">0.22</span>, <span class="hljs-number">0.58</span>, <span class="hljs-number">0.33</span>],  <span class="hljs-comment"># with    (x^4)</span><br>        [<span class="hljs-number">0.77</span>, <span class="hljs-number">0.25</span>, <span class="hljs-number">0.10</span>],  <span class="hljs-comment"># one     (x^5)</span><br>        [<span class="hljs-number">0.05</span>, <span class="hljs-number">0.80</span>, <span class="hljs-number">0.55</span>],  <span class="hljs-comment"># step    (x^6)</span><br>    ]<br>)<br><br>query = inputs[<span class="hljs-number">1</span>]  <span class="hljs-comment"># 第二个 token &quot;journey&quot;</span><br>attn_scores_2 = torch.empty(inputs.shape[<span class="hljs-number">0</span>])<br><span class="hljs-keyword">for</span> i, x_i <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(inputs):<br>    attn_scores_2[i] = torch.dot(query, x_i)<br><span class="hljs-built_in">print</span>(attn_scores_2)  <br><br><span class="hljs-comment"># 结果：tensor([0.9544, 1.4950, 1.4754, 0.8434, 0.7070, 1.0865])</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503210746689.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算各个 token 注意力权重的占比，以便实现归一化</span><br>attn_weights_2_tmp = attn_scores_2 / attn_scores_2.<span class="hljs-built_in">sum</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Attention weights:&quot;</span>, attn_weights_2_tmp)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Sum:&quot;</span>, attn_weights_2_tmp.<span class="hljs-built_in">sum</span>())<br><br><span class="hljs-comment"># Attention weights: tensor([0.1455, 0.2278, 0.2249, 0.1285, 0.1077, 0.1656])</span><br><span class="hljs-comment"># Sum: tensor(1.0000)</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503210805247.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 为避免过大值或过小值导致计算溢出，改用 PyTorch 内置的归一化函数</span><br>attn_weights_2 = torch.softmax(attn_scores_2, dim=<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Attention weights:&quot;</span>, attn_weights_2)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Sum:&quot;</span>, attn_weights_2.<span class="hljs-built_in">sum</span>())<br><span class="hljs-comment"># Attention weights: tensor([0.1385, 0.2379, 0.2333, 0.1240, 0.1082, 0.1581])</span><br><span class="hljs-comment"># Sum: tensor(1.)</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 有了权重系数，接下来便是计算上下文向量 context vector</span><br>query = inputs[<span class="hljs-number">1</span>]  <span class="hljs-comment"># 此处取第二个 token，原单词 journey 作为示例</span><br>context_vec_2 = torch.zeros(query.shape)<br><span class="hljs-keyword">for</span> i, x_i <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(inputs):<br>    context_vec_2 += attn_weights_2[i] * x_i<br><span class="hljs-built_in">print</span>(context_vec_2)<br><span class="hljs-comment"># tensor([0.4419, 0.6515, 0.5683])</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220620677.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="计算各输入-token-的注意力权重"><a href="#计算各输入-token-的注意力权重" class="headerlink" title="计算各输入 token 的注意力权重"></a>计算各输入 token 的注意力权重</h3><p>每个 token 相当于其他 token，都会有一个注意力权重系数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算各个 token 之间的注意力分数</span><br>attn_scores = torch.empty(<span class="hljs-number">6</span>, <span class="hljs-number">6</span>)<br><span class="hljs-keyword">for</span> i, x_i <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(inputs):<br>    <span class="hljs-keyword">for</span> j, x_j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(inputs):<br>        attn_scores[i, j] = torch.dot(x_i, x_j)<br><span class="hljs-built_in">print</span>(attn_scores)<br><br><span class="hljs-comment"># 由于 for 循环的计算性能较弱，以上计算可用优化过的矩阵乘法，计算结果相同</span><br>attn_scores = inputs @ inputs.T<br><span class="hljs-built_in">print</span>(attn_scores)<br><br><span class="hljs-comment"># tensor([[0.9995, 0.9544, 0.9422, 0.4753, 0.4576, 0.6310],</span><br><span class="hljs-comment">#         [0.9544, 1.4950, 1.4754, 0.8434, 0.7070, 1.0865],</span><br><span class="hljs-comment">#         [0.9422, 1.4754, 1.4570, 0.8296, 0.7154, 1.0605],</span><br><span class="hljs-comment">#         [0.4753, 0.8434, 0.8296, 0.4937, 0.3474, 0.6565],</span><br><span class="hljs-comment">#         [0.4576, 0.7070, 0.7154, 0.3474, 0.6654, 0.2935],</span><br><span class="hljs-comment">#         [0.6310, 1.0865, 1.0605, 0.6565, 0.2935, 0.9450]])</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220621687.png" srcset="/img/loading.gif" lazyload></p>
+<p>整个计算过程由以下三步组成：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220636426.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 第二步：计算权重系数，dim = -1 表示在最后一维进行归一化计算</span><br>attn_weights = torch.softmax(attn_scores, dim=-<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(attn_weights) <span class="hljs-comment"># 6 x 6 的矩阵</span><br><br><span class="hljs-comment"># tensor([[0.2098, 0.2006, 0.1981, 0.1242, 0.1220, 0.1452],</span><br><span class="hljs-comment">#         [0.1385, 0.2379, 0.2333, 0.1240, 0.1082, 0.1581],</span><br><span class="hljs-comment">#         [0.1390, 0.2369, 0.2326, 0.1242, 0.1108, 0.1565],</span><br><span class="hljs-comment">#         [0.1435, 0.2074, 0.2046, 0.1462, 0.1263, 0.1720],</span><br><span class="hljs-comment">#         [0.1526, 0.1958, 0.1975, 0.1367, 0.1879, 0.1295],</span><br><span class="hljs-comment">#         [0.1385, 0.2184, 0.2128, 0.1420, 0.0988, 0.1896]])</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 第三步：计算上下文向量</span><br>all_context_vecs = attn_weights @ inputs<br><span class="hljs-built_in">print</span>(all_context_vecs)<br><br><span class="hljs-comment"># tensor([[0.4421, 0.5931, 0.5790],</span><br><span class="hljs-comment">#         [0.4419, 0.6515, 0.5683],</span><br><span class="hljs-comment">#         [0.4431, 0.6496, 0.5671],</span><br><span class="hljs-comment">#         [0.4304, 0.6298, 0.5510],</span><br><span class="hljs-comment">#         [0.4671, 0.5910, 0.5266],</span><br><span class="hljs-comment">#         [0.4177, 0.6503, 0.5645]])</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="用可训练系数实现自注意力机制"><a href="#用可训练系数实现自注意力机制" class="headerlink" title="用可训练系数实现自注意力机制"></a>用可训练系数实现自注意力机制</h2><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220653964.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="计算注意力参数"><a href="#计算注意力参数" class="headerlink" title="计算注意力参数"></a>计算注意力参数</h3><p>引入三个可训练的注意力权重参数，它们分别是 W<sub>q</sub>，W<sub>k</sub>，W<sub>v</sub>，这三个参数用来将 token 映射成向量 query, key, value；</p>
+<blockquote>
+<p>有意思的是，input token 是三维的，但映射后 q, k, v 是二维的；但实际的 GPT 模型中，这三个维度通常是一样的。此处出于演示的目的，进行了简化，少了一维；</p>
+</blockquote>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220705018.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为 W 参数是可训练的，所以初始值可先设置为一个随机值；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化训练参数</span><br>d_in = inputs.shape[<span class="hljs-number">1</span>] <span class="hljs-comment"># token 的嵌入此处是 3 维</span><br>d_out = <span class="hljs-number">2</span> <span class="hljs-comment"># 输出设置为 2 维</span><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>W_query = torch.nn.Parameter(torch.rand(d_in, d_out), requires_grad=<span class="hljs-literal">False</span>)<br>W_key = torch.nn.Parameter(torch.rand(d_in, d_out), requires_grad=<span class="hljs-literal">False</span>)<br>W_value = torch.nn.Parameter(torch.rand(d_in, d_out), requires_grad=<span class="hljs-literal">False</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算第二个 token 的 q，k，v</span><br>x_2 = inputs[<span class="hljs-number">1</span>]<br>query_2 = x_2 @ W_query<br>key_2 = x_2 @ W_key<br>value_2 = x_2 @ W_value<br><span class="hljs-built_in">print</span>(query_2)<br><span class="hljs-comment"># tensor([0.4306, 1.4551])</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>权重参数和注意力参数的区别，前者用于神经网络中的输入层和输出层之间的连接计算，它有点像是一个卷积核，是一种数据变换和信息提取的操作。在训练过程中会不断优化收敛，训练结束后，它的值便固定了；后者用于表示一个句子中，每个 token 跟其他 token 的相互关系。因此它则跟上下文有关。同一个 token，放在不同的上下文中，它跟其他 token 的注意力参数不同；每一次输入，注意力参数都是动态变化的，但权重参数是固定的；</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算所有的q,k,v</span><br>querys = inputs @ W_query<br>keys = inputs @ W_key<br>values = inputs @ W_value<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;querys.shape:&quot;</span>, querys.shape)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;keys.shape:&quot;</span>, keys.shape)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;values.shape:&quot;</span>, values.shape)<br><span class="hljs-comment"># querys.shape: torch.Size([6, 2])</span><br><span class="hljs-comment"># keys.shape: torch.Size([6, 2])</span><br><span class="hljs-comment"># values.shape: torch.Size([6, 2])</span><br></code></pre></td></tr></table></figure>
+
+<p>在前面简化版的注意力机制中，注意力分数是由各个 token 向量相互计算得出的，没有实际的意义。此处改进后的版本则是先使用权重参数对 token 进行三个维度的转换，分别转成 query, key, value；然后再由 query * key 得到注意力参数；</p>
+<blockquote>
+<p>问：为什么 query * key 的结果可以作为注意力分数？</p>
+<p>答：权重 W<sub>q</sub> 应该是对所有的 token 的一种抽象和转换。W<sub>k</sub> 貌似代表一个 token 在某种语境中的重要程度；</p>
+</blockquote>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503220758390.png" srcset="/img/loading.gif" lazyload></p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 计算第二个 token 的注意力分数，注意此处的 keys.T</span><br>attn_scores_2 = query_2 @ keys.T<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;attn_scores_2: &quot;</span>, attn_scores_2)<br><br><span class="hljs-comment"># 结果是一个 6 维的数组，它表示该 token 相对其他 6 个token 的注意力重要程度</span><br><span class="hljs-comment"># attn_scores_2:  tensor([1.2705, 1.8524, 1.8111, 1.0795, 0.5577, 1.5440])</span><br></code></pre></td></tr></table></figure>
+
+<p>接下来可以将注意力分数归一化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">d_k = keys.shape[-<span class="hljs-number">1</span>] <span class="hljs-comment"># keys.shape = [6, 2]，此处取其参数维度 2</span><br><span class="hljs-comment"># 此处使用 softmax 进行权重归一化，但跟之前不同的点在于，额外除以 d_k 平方根，为什么呢？</span><br><span class="hljs-comment"># 答：该操作对归一化的点积值进行了缩放（缩小）。因为点积值过大的话，在反向传播的训练过程中，softmax 更像是阶梯函数，导致梯度接近于零，即没有平滑的过渡，这样会导致训练卡住，难以有效收敛；因此，自注意力机制也被叫做缩放点积注意力机制；</span><br>attn_weights_2 = torch.softmax(attn_scores_2 / d_k**<span class="hljs-number">0.5</span>, dim=-<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(attn_weights_2)<br><span class="hljs-comment"># attn_weights_2:  tensor([0.1500, 0.2264, 0.2199, 0.1311, 0.0906, 0.1820])</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503240635490.png" srcset="/img/loading.gif" lazyload></p>
+<p>得到归一化的权重参数后，最后一步便是 value vector 乘以相应的权重参数，得到最终的上下文向量 context vector；</p>
+<blockquote>
+<p>query * key 归一化后得到 weight，weight * value 得到 context；（此处的 query, key, value 都是使用可训练参数对原 token 嵌入进行了提炼后的结果；但是暂时没有看到 token 位置信息在哪个环节纳入考虑和计算；</p>
+</blockquote>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503240713634.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">context_vec_2 = attn_weights_2 @ values<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;context_vec_2: &quot;</span>, context_vec_2)<br><span class="hljs-comment"># context_vec_2:  tensor([0.3061, 0.8210])</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>据说此处的 query, key, value 借鉴自数据库的概念，key 类似主键，value 类似值（记录），query 类似搜索查询；但我个人感觉不太像；</p>
+</blockquote>
+<h3 id="实现一个简单的自注意力-Python-类"><a href="#实现一个简单的自注意力-Python-类" class="headerlink" title="实现一个简单的自注意力 Python 类"></a>实现一个简单的自注意力 Python 类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-comment"># 使用 torch.rand 生成随机数，特点：纯随机，因此训练时会需要更多的时间收敛</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SelfAttention_V1</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_in, d_out</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.W_query = nn.Parameter(torch.rand(d_in, d_out))<br>        <span class="hljs-variable language_">self</span>.W_key = nn.Parameter(torch.rand(d_in, d_out))<br>        <span class="hljs-variable language_">self</span>.W_value = nn.Parameter(torch.rand(d_in, d_out))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        querys = inputs @ <span class="hljs-variable language_">self</span>.W_query<br>        keys = inputs @ <span class="hljs-variable language_">self</span>.W_key<br>        values = inputs @ <span class="hljs-variable language_">self</span>.W_value<br><br>        attn_scores = querys @ keys.T<br>        attn_weights = torch.softmax(attn_scores / keys.shape[-<span class="hljs-number">1</span>] ** <span class="hljs-number">0.5</span>, dim=-<span class="hljs-number">1</span>)<br><br>        context_vecs = attn_weights @ values<br>        <span class="hljs-keyword">return</span> context_vecs<br><br><span class="hljs-comment"># 使用 nn.linear 生成随机数，特点：按一定规律随机，可加快训练收敛过程，避免一开始过于发散</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SelfAttention_V2</span>(nn.module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_in, d_out, qkv_bias=<span class="hljs-literal">False</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.W_key = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        querys = <span class="hljs-variable language_">self</span>.W_query(inputs)<br>        keys = <span class="hljs-variable language_">self</span>.W_key(inputs)<br>        values = <span class="hljs-variable language_">self</span>.W_value(inputs)<br><br>        attn_scores = querys @ keys.T<br>        attn_weights = torch.softmax(attn_scores / keys.shape[-<span class="hljs-number">1</span>] ** <span class="hljs-number">0.5</span>, dim=-<span class="hljs-number">1</span>)<br><br>        context_vecs = attn_weights @ values<br>        <span class="hljs-keyword">return</span> context_vecs<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.manual_seed(<span class="hljs-number">789</span>)<br>sa_v2 = SelfAttention_V2(d_in, d_out)<br><span class="hljs-built_in">print</span>(sa_v2(inputs))<br><br><span class="hljs-comment"># tensor([[-0.0739,  0.0713],</span><br><span class="hljs-comment">#         [-0.0748,  0.0703],</span><br><span class="hljs-comment">#         [-0.0749,  0.0702],</span><br><span class="hljs-comment">#         [-0.0760,  0.0685],</span><br><span class="hljs-comment">#         [-0.0763,  0.0679],</span><br><span class="hljs-comment">#         [-0.0754,  0.0693]], grad_fn=&lt;MmBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250649329.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="通过因果注意力机制屏蔽下一个单词"><a href="#通过因果注意力机制屏蔽下一个单词" class="headerlink" title="通过因果注意力机制屏蔽下一个单词"></a>通过因果注意力机制屏蔽下一个单词</h2><p>前面提到的自注意力机制，在计算上下文向量时，是基于整个完整的句子进行计算的。但在实际训练时，需要基于已知的部分内容进行计算，以推测下一个可能的单词，因此需要隐藏部分内容，并对已知内容的权重参数重新做归一化计算。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250623811.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250634159.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 SelfAttention_V2 计算权重参数</span><br>queries = sa_v2.W_query(inputs)<br>keys = sa_v2.W_key(inputs)<br>attn_scores = queries @ keys.T<br>attn_weights = torch.softmax(attn_scores / d_out**<span class="hljs-number">0.5</span>, dim=-<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(attn_weights)<br><br><span class="hljs-comment"># tensor([[0.1921, 0.1646, 0.1652, 0.1550, 0.1721, 0.1510],</span><br><span class="hljs-comment">#         [0.2041, 0.1659, 0.1662, 0.1496, 0.1665, 0.1477],</span><br><span class="hljs-comment">#         [0.2036, 0.1659, 0.1662, 0.1498, 0.1664, 0.1480],</span><br><span class="hljs-comment">#         [0.1869, 0.1667, 0.1668, 0.1571, 0.1661, 0.1564],</span><br><span class="hljs-comment">#         [0.1830, 0.1669, 0.1670, 0.1588, 0.1658, 0.1585],</span><br><span class="hljs-comment">#         [0.1935, 0.1663, 0.1666, 0.1542, 0.1666, 0.1529]],</span><br><span class="hljs-comment">#        grad_fn=&lt;SoftmaxBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 PyTorch 自带的 tril 函数生成下三角矩阵</span><br>context_length = attn_scores.shape[<span class="hljs-number">0</span>]<br>mask_simple = torch.tril(torch.ones(context_length, context_length))<br><span class="hljs-built_in">print</span>(mask_simple)<br><span class="hljs-comment"># tensor([[1., 0., 0., 0., 0., 0.],</span><br><span class="hljs-comment">#         [1., 1., 0., 0., 0., 0.],</span><br><span class="hljs-comment">#         [1., 1., 1., 0., 0., 0.],</span><br><span class="hljs-comment">#         [1., 1., 1., 1., 0., 0.],</span><br><span class="hljs-comment">#         [1., 1., 1., 1., 1., 0.],</span><br><span class="hljs-comment">#         [1., 1., 1., 1., 1., 1.]])</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 权重参数 * 下三角矩阵得到掩模后的结果</span><br>masked_simple = attn_weights * mask_simple<br><span class="hljs-built_in">print</span>(masked_simple)<br><span class="hljs-comment"># tensor([[0.1921, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2041, 0.1659, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2036, 0.1659, 0.1662, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.1869, 0.1667, 0.1668, 0.1571, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.1830, 0.1669, 0.1670, 0.1588, 0.1658, 0.0000],</span><br><span class="hljs-comment">#         [0.1935, 0.1663, 0.1666, 0.1542, 0.1666, 0.1529]],</span><br><span class="hljs-comment">#        grad_fn=&lt;MulBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 对掩模结果重新归一化</span><br>row_sums = masked_simple.<span class="hljs-built_in">sum</span>(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)<br>masked_simple_norm = masked_simple / row_sums<br><span class="hljs-built_in">print</span>(masked_simple_norm)<br><span class="hljs-comment"># tensor([[1.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.5517, 0.4483, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.3800, 0.3097, 0.3103, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2758, 0.2460, 0.2462, 0.2319, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2175, 0.1983, 0.1984, 0.1888, 0.1971, 0.0000],</span><br><span class="hljs-comment">#         [0.1935, 0.1663, 0.1666, 0.1542, 0.1666, 0.1529]],</span><br><span class="hljs-comment">#        grad_fn=&lt;DivBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<p>前述的几个步骤，包含了两次的归一化，事实上可以合并成一次归一化，提高运算速度。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503250711998.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python">mask = torch.triu(torch.ones(context_length, context_length), diagonal=<span class="hljs-number">1</span>)<br>masked = attn_scores.masked_fill(mask.<span class="hljs-built_in">bool</span>(), -torch.inf)<br><span class="hljs-built_in">print</span>(masked)<br><span class="hljs-comment"># tensor([[0.2899,   -inf,   -inf,   -inf,   -inf,   -inf],</span><br><span class="hljs-comment">#         [0.4656, 0.1723,   -inf,   -inf,   -inf,   -inf],</span><br><span class="hljs-comment">#         [0.4594, 0.1703, 0.1731,   -inf,   -inf,   -inf],</span><br><span class="hljs-comment">#         [0.2642, 0.1024, 0.1036, 0.0186,   -inf,   -inf],</span><br><span class="hljs-comment">#         [0.2183, 0.0874, 0.0882, 0.0177, 0.0786,   -inf],</span><br><span class="hljs-comment">#         [0.3408, 0.1270, 0.1290, 0.0198, 0.1290, 0.0078]],</span><br><span class="hljs-comment">#        grad_fn=&lt;MaskedFillBackward0&gt;)</span><br><br>attn_weights = torch.softmax(masked / keys.shape[-<span class="hljs-number">1</span>] ** <span class="hljs-number">0.5</span>, dim=<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(attn_weights)<br><span class="hljs-comment"># tensor([[1.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.5517, 0.4483, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.3800, 0.3097, 0.3103, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2758, 0.2460, 0.2462, 0.2319, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2175, 0.1983, 0.1984, 0.1888, 0.1971, 0.0000],</span><br><span class="hljs-comment">#         [0.1935, 0.1663, 0.1666, 0.1542, 0.1666, 0.1529]],</span><br><span class="hljs-comment">#        grad_fn=&lt;SoftmaxBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="引入-dropout-避免过拟合"><a href="#引入-dropout-避免过拟合" class="headerlink" title="引入 dropout 避免过拟合"></a>引入 dropout 避免过拟合</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.manual_seed(<span class="hljs-number">123</span>)<br>dropout = torch.nn.Dropout(<span class="hljs-number">0.5</span>)  <span class="hljs-comment"># 50% dropout, 实际训练时一般设置为 0.1 或 0.2</span><br>example = torch.ones(<span class="hljs-number">6</span>, <span class="hljs-number">6</span>)<br><span class="hljs-built_in">print</span>(dropout(example))<br><span class="hljs-comment"># tensor([[2., 2., 2., 2., 2., 2.],</span><br><span class="hljs-comment">#         [0., 2., 0., 0., 0., 0.],</span><br><span class="hljs-comment">#         [0., 0., 2., 0., 2., 0.],</span><br><span class="hljs-comment">#         [2., 2., 0., 0., 0., 2.],</span><br><span class="hljs-comment">#         [2., 0., 0., 0., 0., 2.],</span><br><span class="hljs-comment">#         [0., 2., 0., 0., 0., 0.]])</span><br><span class="hljs-comment"># 由于 dropout 50%，因此有一半的值被置为 0, 一半的值被放大为 2, 以保持合计值不变</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">torch.manual_seed(<span class="hljs-number">123</span>)<br><span class="hljs-built_in">print</span>(dropout(attn_weights))<br><span class="hljs-comment"># tensor([[2.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.0000, 0.8966, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.0000, 0.0000, 0.6206, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.5517, 0.4921, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.4350, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.0000, 0.3327, 0.0000, 0.0000, 0.0000, 0.0000]],</span><br><span class="hljs-comment">#        grad_fn=&lt;MulBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="实现一个紧凑的-Causal-Attention-类"><a href="#实现一个紧凑的-Causal-Attention-类" class="headerlink" title="实现一个紧凑的  Causal Attention 类"></a>实现一个紧凑的  Causal Attention 类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CausalAttention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_in, d_out, context_length, dropout, qkv_bias=<span class="hljs-literal">False</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.d_out = d_out<br>        <span class="hljs-variable language_">self</span>.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.W_key = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.dropout = nn.Dropout(dropout)<br>        <span class="hljs-comment"># register_buffer 会将缓存数据自动移动到 CPU 或 GPU 上, 无需再手工检查</span><br>        <span class="hljs-variable language_">self</span>.register_buffer(<br>            <span class="hljs-string">&quot;mask&quot;</span>, torch.triu(torch.ones(context_length, context_length), diagonal=<span class="hljs-number">1</span>)<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        b, num_tokens, d_in = inputs.shape  <span class="hljs-comment"># batch size, number of tokens, input dim</span><br>        queries = <span class="hljs-variable language_">self</span>.W_query(inputs)<br>        keys = <span class="hljs-variable language_">self</span>.W_key(inputs)<br>        values = <span class="hljs-variable language_">self</span>.W_value(inputs)<br><br>        attn_scores = queries @ keys.transpose(<br>            <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br>        )  <span class="hljs-comment"># 只转置最后两个维度, 保持第一个维度不变, 因为第一个维度是 batch size</span><br>        attn_scores = attn_scores.masked_fill_(<br>            <span class="hljs-variable language_">self</span>.mask.<span class="hljs-built_in">bool</span>()[:num_tokens, :num_tokens], -torch.inf<br>        )<br>        attn_weights = torch.softmax(attn_scores / keys.shape[-<span class="hljs-number">1</span>] ** <span class="hljs-number">0.5</span>, dim=-<span class="hljs-number">1</span>)<br>        attn_weights = <span class="hljs-variable language_">self</span>.dropout(attn_weights)<br>        context_vecs = attn_weights @ values<br>        <span class="hljs-keyword">return</span> context_vecs<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 CausalAttention 来计算输入的上下文向量</span><br>batch = torch.stack((inputs, inputs), dim=<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(batch.shape)<br><span class="hljs-comment"># torch.Size([2, 6, 3])</span><br><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>context_length = batch.shape[<span class="hljs-number">1</span>]<br>ca = CausalAttention(d_in, d_out, context_length, <span class="hljs-number">0.0</span>)<br>context_vecs = ca(batch)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;context_vecs.shape&quot;</span>, context_vecs.shape)<br><span class="hljs-comment"># context_vecs.shape torch.Size([2, 6, 2])</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="将单头注意力扩展为多头注意力"><a href="#将单头注意力扩展为多头注意力" class="headerlink" title="将单头注意力扩展为多头注意力"></a>将单头注意力扩展为多头注意力</h2><p>一套权重参数对应的 Causal Attension 相当于一个单头注意力（single head attention，单个专家），我们可以训练多套权重参数，这样就可以获得多头注意力 multi-head attention（多个专家）。不同专家关注输入数据的不同维度，类似于使用不同的视角来看数据。</p>
+<blockquote>
+<p>貌似多头注意力有可能和多模态场景结合起来？但又好像有些区别，多头注意力是同一份数据，进行不同的解读；多模态是不同的数据，解读后整合各自的解读结果，作为下一步行动的依据；</p>
+</blockquote>
+<h3 id="叠加多个单头注意力"><a href="#叠加多个单头注意力" class="headerlink" title="叠加多个单头注意力"></a>叠加多个单头注意力</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503270623437.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个能够聚合多个单头注意力的类</span><br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> CausalAttention <span class="hljs-keyword">import</span> CausalAttention<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiHeadAttentionWrapper</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_in, d_out, context_length, dropout, num_heads, qkv_bias=<span class="hljs-literal">False</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.heads = nn.ModuleList(<br>            [<br>                CausalAttention(d_in, d_out, context_length, dropout, qkv_bias)<br>                <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_heads)<br>            ]<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        <span class="hljs-keyword">return</span> torch.cat([head(inputs) <span class="hljs-keyword">for</span> head <span class="hljs-keyword">in</span> <span class="hljs-variable language_">self</span>.heads], dim=-<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 多头类使用示例</span><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>context_length = batch.shape[<span class="hljs-number">1</span>]<br>d_in, d_out = <span class="hljs-number">3</span>, <span class="hljs-number">2</span><br>mha = MultiHeadAttentionWrapper(d_in, d_out, context_length, <span class="hljs-number">0.0</span>, num_heads=<span class="hljs-number">2</span>)<br>context_vecs = mha(batch)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;context_vecs.shape&quot;</span>, context_vecs.shape)<br><span class="hljs-built_in">print</span>(context_vecs)<br><span class="hljs-comment"># context_vecs.shape torch.Size([2, 6, 4]) # context_vec 的输出是 2 维，但由于有2个单头叠加，所以是 4 维</span><br><span class="hljs-comment"># tensor([[[-0.4519,  0.2216,  0.4772,  0.1063],</span><br><span class="hljs-comment">#          [-0.5874,  0.0058,  0.5891,  0.3257],</span><br><span class="hljs-comment">#          [-0.6300, -0.0632,  0.6202,  0.3860],</span><br><span class="hljs-comment">#          [-0.5675, -0.0843,  0.5478,  0.3589],</span><br><span class="hljs-comment">#          [-0.5526, -0.0981,  0.5321,  0.3428],</span><br><span class="hljs-comment">#          [-0.5299, -0.1081,  0.5077,  0.3493]],</span><br><br><span class="hljs-comment">#         [[-0.4519,  0.2216,  0.4772,  0.1063],</span><br><span class="hljs-comment">#          [-0.5874,  0.0058,  0.5891,  0.3257],</span><br><span class="hljs-comment">#          [-0.6300, -0.0632,  0.6202,  0.3860],</span><br><span class="hljs-comment">#          [-0.5675, -0.0843,  0.5478,  0.3589],</span><br><span class="hljs-comment">#          [-0.5526, -0.0981,  0.5321,  0.3428],</span><br><span class="hljs-comment">#          [-0.5299, -0.1081,  0.5077,  0.3493]]], grad_fn=&lt;CatBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="用-weight-split-实现多头注意力"><a href="#用-weight-split-实现多头注意力" class="headerlink" title="用 weight split 实现多头注意力"></a>用 weight split 实现多头注意力</h3><p>MultiHeadAttentionWrapper 使用 for 循环来叠加多个单头，由于 for 循环是线性计算，因此可考虑使用矩阵的平行计算来提升性能。另外，还可以将 MultiHeadAttentionWrapper 和 CausalAttention 整合到一起，创建一个单独的 MultiHeadAttention 类；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503270735653.png" srcset="/img/loading.gif" lazyload></p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiHeadAttention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, d_in, d_out, context_length, dropout, num_heads, qkv_bias=<span class="hljs-literal">False</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-keyword">assert</span> d_out % num_heads == <span class="hljs-number">0</span>  <span class="hljs-comment"># 确保 d_out 可以被 num_heads 整除</span><br>        <span class="hljs-variable language_">self</span>.d_out = d_out<br>        <span class="hljs-variable language_">self</span>.num_heads = num_heads<br>        <span class="hljs-variable language_">self</span>.head_dim = d_out // num_heads<br>        <span class="hljs-variable language_">self</span>.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.W_key = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)<br>        <span class="hljs-variable language_">self</span>.dropout = nn.Dropout(dropout)<br>        <span class="hljs-variable language_">self</span>.register_buffer(<br>            <span class="hljs-string">&quot;mask&quot;</span>, torch.triu(torch.ones(context_length, context_length), diagonal=<span class="hljs-number">1</span>)<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs</span>):<br>        b, num_tokens, d_in = inputs.shape<br>        queries = <span class="hljs-variable language_">self</span>.W_query(inputs)<br>        keys = <span class="hljs-variable language_">self</span>.W_key(inputs)<br>        values = <span class="hljs-variable language_">self</span>.W_value(inputs)<br>        <span class="hljs-comment"># 将 queries, keys, values 拆分为 num_heads 份</span><br>        queries = queries.view(b, num_tokens, <span class="hljs-variable language_">self</span>.num_heads, <span class="hljs-variable language_">self</span>.head_dim)<br>        keys = keys.view(b, num_tokens, <span class="hljs-variable language_">self</span>.num_heads, <span class="hljs-variable language_">self</span>.head_dim)<br>        values = values.view(b, num_tokens, <span class="hljs-variable language_">self</span>.num_heads, <span class="hljs-variable language_">self</span>.head_dim)<br>        <span class="hljs-comment"># 转置 (b, num_tokens, num_heads, head_dim) -&gt; (b, num_heads, num_tokens, head_dim)</span><br>        queries = queries.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        keys = keys.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        values = values.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br><br>        attn_scores = queries @ keys.transpose(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br>        mask_bool = <span class="hljs-variable language_">self</span>.mask.<span class="hljs-built_in">bool</span>()[:num_tokens, :num_tokens]<br><br>        attn_scores.maksed_fill_(mask_bool, -torch.inf)<br><br>        attn_weights = torch.softmax(attn_scores / keys.shape[-<span class="hljs-number">1</span>] ** <span class="hljs-number">0.5</span>, dim=-<span class="hljs-number">1</span>)<br>        attn_weights = <span class="hljs-variable language_">self</span>.dropout(attn_weights)<br><br>        context_vec = (attn_weights @ values).transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        <span class="hljs-comment"># 使用 view 方法 reshape: self.d_out = self.num_heads * self.head_dim</span><br>        <span class="hljs-comment"># contiguous 方法可调整数据在内存上存储的顺序，与逻辑顺序保持一致，以提高后续的计算性能</span><br>        context_vec = context_vec.contiguous().view(b, num_tokens, <span class="hljs-variable language_">self</span>.d_out)<br><br>        context_vec = <span class="hljs-variable language_">self</span>.out_proj(context_vec)  <span class="hljs-comment"># 输出映射（非必须）</span><br>        <span class="hljs-keyword">return</span> context_vec<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 MultiHeadAttention 计算 context_vecs</span><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>batch_size, context_length, d_in = batch.shape<br>d_out = <span class="hljs-number">2</span><br>ha = MultiHeadAttention(d_in, d_out, context_length, <span class="hljs-number">0.0</span>, num_heads=<span class="hljs-number">2</span>)<br>context_vecs = mha(batch)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;context_vecs.shape:&quot;</span>, context_vecs.shape)<br><span class="hljs-built_in">print</span>(context_vecs)<br><span class="hljs-comment"># context_vecs.shape: torch.Size([2, 6, 4])</span><br><span class="hljs-comment"># tensor([[[-0.4519,  0.2216,  0.4772,  0.1063],</span><br><span class="hljs-comment">#          [-0.5874,  0.0058,  0.5891,  0.3257],</span><br><span class="hljs-comment">#          [-0.6300, -0.0632,  0.6202,  0.3860],</span><br><span class="hljs-comment">#          [-0.5675, -0.0843,  0.5478,  0.3589],</span><br><span class="hljs-comment">#          [-0.5526, -0.0981,  0.5321,  0.3428],</span><br><span class="hljs-comment">#          [-0.5299, -0.1081,  0.5077,  0.3493]],</span><br><br><span class="hljs-comment">#         [[-0.4519,  0.2216,  0.4772,  0.1063],</span><br><span class="hljs-comment">#          [-0.5874,  0.0058,  0.5891,  0.3257],</span><br><span class="hljs-comment">#          [-0.6300, -0.0632,  0.6202,  0.3860],</span><br><span class="hljs-comment">#          [-0.5675, -0.0843,  0.5478,  0.3589],</span><br><span class="hljs-comment">#          [-0.5526, -0.0981,  0.5321,  0.3428],</span><br><span class="hljs-comment">#          [-0.5299, -0.1081,  0.5077,  0.3493]]], grad_fn=&lt;CatBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上示例中的 MultiHeadAttention，嵌入向量 为 3 维，有 2 个 Head；在实际的 LLM 大模型中，维度和 Head 数量要多得多的多。例如最小的 GPT-2 模型，有 12 个 Head，嵌入向量为 768 维，总共 1.2 亿个参数；最大的 GPT-2 模型，有 25 个 Head，嵌入向量有 1600 维，总共有 15 亿个参数。</p>
+</blockquote>
+<h1 id="4-Implementing-a-GPT-model-from-scratch-to-generate-text"><a href="#4-Implementing-a-GPT-model-from-scratch-to-generate-text" class="headerlink" title="4.Implementing a GPT model from scratch to generate text"></a>4.Implementing a GPT model from scratch to generate text</h1><p>前面一章主要关注如何实现自注意力机制，这一章则主要关注构建 LLM 架构余下的部分。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503310658487.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="编写-LLM-架构"><a href="#编写-LLM-架构" class="headerlink" title="编写 LLM 架构"></a>编写 LLM 架构</h3><p>LLM 架构的核心之一是 Transformer 模块，该模块包含前面实现的掩码多头注意力机制（Masked Multi-Head Attention）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503310708068.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化模型的超参数</span><br>GPT_CONFIG_124M = &#123;<br>    <span class="hljs-string">&quot;vocab_size&quot;</span>: <span class="hljs-number">50257</span>,  <span class="hljs-comment"># Vocabulary size，词汇表大小</span><br>    <span class="hljs-string">&quot;context_length&quot;</span>: <span class="hljs-number">1024</span>,  <span class="hljs-comment"># Context length，上下文长度</span><br>    <span class="hljs-string">&quot;emb_dim&quot;</span>: <span class="hljs-number">768</span>,  <span class="hljs-comment"># Embedding dimension，嵌入向量的维度</span><br>    <span class="hljs-string">&quot;n_heads&quot;</span>: <span class="hljs-number">12</span>,  <span class="hljs-comment"># Number of heads，专家数量</span><br>    <span class="hljs-string">&quot;n_layers&quot;</span>: <span class="hljs-number">12</span>,  <span class="hljs-comment"># Number of layers，层数</span><br>    <span class="hljs-string">&quot;drop_rate&quot;</span>: <span class="hljs-number">0.1</span>,  <span class="hljs-comment"># Dropout rate，随机失活率</span><br>    <span class="hljs-string">&quot;qkv_bias&quot;</span>: <span class="hljs-literal">False</span>,  <span class="hljs-comment"># Query/Key/Value bias，是否开启QKV偏置（目的：增强模型灵活性，避免全部依赖权重参数；开启后，会对 QKV 的计算结果进行偏移</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>先搭一个骨架，然后将各个模块组合在一起。其中一个 Transformer 模块由四个子模块组成。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202503310736036.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 预定义一个简单的Transformer Block, 之后会被真正的 TransformerBlock 替换</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DummyTransformerBlock</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, cfg</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># 预定义一个简单的LayerNorm, 之后会被真正的 LayerNorm 替换</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DummyLayerNorm</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, normlized_shape, eps=<span class="hljs-number">1e-5</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DummyGPTModel</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, cfg</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-comment"># token embedding 和 position embedding</span><br>        <span class="hljs-variable language_">self</span>.tok_emb = nn.Embedding(cfg[<span class="hljs-string">&quot;vocab_size&quot;</span>], cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>])<br>        <span class="hljs-variable language_">self</span>.pos_emb = nn.Embedding(cfg[<span class="hljs-string">&quot;context_length&quot;</span>], cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>])<br>        <span class="hljs-comment"># dropout layer</span><br>        <span class="hljs-variable language_">self</span>.drop_emb = nn.Dropout(cfg[<span class="hljs-string">&quot;drop_rate&quot;</span>])<br>        <span class="hljs-comment"># 预定义的 transformer block（此时每个 transformer 都一样，估计与实际的 GPT2 不同）</span><br>        <span class="hljs-variable language_">self</span>.trf_blocks = nn.Sequential(<br>            *[DummyTransformerBlock(cfg) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cfg[<span class="hljs-string">&quot;n_layers&quot;</span>])]<br>        )<br>        <span class="hljs-comment"># 预定义的最终 LayerNorm</span><br>        <span class="hljs-variable language_">self</span>.final_norm = DummyLayerNorm(cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>])<br>        <span class="hljs-variable language_">self</span>.out_head = nn.Linear(cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>], cfg[<span class="hljs-string">&quot;vocab_size&quot;</span>], bias=<span class="hljs-literal">False</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, in_idx</span>):<br>        batch_size, seq_len = in_idx.shape<br>        tok_embeds = <span class="hljs-variable language_">self</span>.tok_emb(in_idx)<br>        pos_embeds = <span class="hljs-variable language_">self</span>.pos_emb(torch.arange(seq_len, device=in_idx.device))<br>        x = tok_embeds + pos_embeds<br>        x = <span class="hljs-variable language_">self</span>.drop_emb(x)<br>        x = <span class="hljs-variable language_">self</span>.trf_blocks(x)<br>        x = <span class="hljs-variable language_">self</span>.final_norm(x)<br>        logits = <span class="hljs-variable language_">self</span>.out_head(x)<br>        <span class="hljs-keyword">return</span> logits<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504010719065.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tiktoken<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> DummyGPTModel <span class="hljs-keyword">import</span> DummyGPTModel<br><br>GPT_CONFIG_124M = &#123;<br>    <span class="hljs-string">&quot;vocab_size&quot;</span>: <span class="hljs-number">50257</span>,  <span class="hljs-comment"># Vocabulary size</span><br>    <span class="hljs-string">&quot;context_length&quot;</span>: <span class="hljs-number">1024</span>,  <span class="hljs-comment"># Context length</span><br>    <span class="hljs-string">&quot;emb_dim&quot;</span>: <span class="hljs-number">768</span>,  <span class="hljs-comment"># Embedding dimension</span><br>    <span class="hljs-string">&quot;n_heads&quot;</span>: <span class="hljs-number">12</span>,  <span class="hljs-comment"># Number of heads</span><br>    <span class="hljs-string">&quot;n_layers&quot;</span>: <span class="hljs-number">12</span>,  <span class="hljs-comment"># Number of layers</span><br>    <span class="hljs-string">&quot;drop_rate&quot;</span>: <span class="hljs-number">0.1</span>,  <span class="hljs-comment"># Dropout rate</span><br>    <span class="hljs-string">&quot;qkv_bias&quot;</span>: <span class="hljs-literal">False</span>,  <span class="hljs-comment"># Query, Key, Value bias</span><br>&#125;<br><br>tokenizer = tiktoken.get_encoding(<span class="hljs-string">&quot;gpt2&quot;</span>)<br>batch = []<br>txt1 = <span class="hljs-string">&quot;Every effort moves you&quot;</span><br>txt2 = <span class="hljs-string">&quot;Every day holds a&quot;</span><br><br>batch.append(torch.tensor(tokenizer.encode(txt1)))<br>batch.append(torch.tensor(tokenizer.encode(txt2)))<br>batch = torch.stack(batch, dim=<span class="hljs-number">0</span>)<br><span class="hljs-built_in">print</span>(batch)<br><span class="hljs-comment"># tensor([[6109, 3626, 6100,  345],</span><br><span class="hljs-comment">#         [6109, 1110, 6622,  257]])</span><br><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>model = DummyGPTModel(GPT_CONFIG_124M)<br>logits = model(batch)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Output shape:&quot;</span>, logits.shape)<br><span class="hljs-built_in">print</span>(logits)<br><span class="hljs-comment"># 2 个句子，每个句子 4 个 token，每个 token 有 50257 个维度，刚好对应了 GPT2 的词表大小，之后会经过 softmax 处理，得到每个 token 的概率，最终选择概率最大的 token 作为下一个 token</span><br><span class="hljs-comment"># Output shape: torch.Size([2, 4, 50257])</span><br><span class="hljs-comment"># tensor([[[-0.9289,  0.2748, -0.7557,  ..., -1.6070,  0.2702, -0.5888],</span><br><span class="hljs-comment">#          [-0.4476,  0.1726,  0.5354,  ..., -0.3932,  1.5285,  0.8557],</span><br><span class="hljs-comment">#          [ 0.5680,  1.6053, -0.2155,  ...,  1.1624,  0.1380,  0.7425],</span><br><span class="hljs-comment">#          [ 0.0447,  2.4787, -0.8843,  ...,  1.3219, -0.0864, -0.5856]],</span><br><br><span class="hljs-comment">#         [[-1.5474, -0.0542, -1.0571,  ..., -1.8061, -0.4494, -0.6747],</span><br><span class="hljs-comment">#          [-0.8422,  0.8243, -0.1098,  ..., -0.1434,  0.2079,  1.2046],</span><br><span class="hljs-comment">#          [ 0.1355,  1.1858, -0.1453,  ...,  0.0869, -0.1590,  0.1552],</span><br><span class="hljs-comment">#          [ 0.1666, -0.8138,  0.2307,  ...,  2.5035, -0.3055, -0.3083]]],</span><br><span class="hljs-comment">#        grad_fn=&lt;UnsafeViewBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="使用归一层对激活值进行归一化"><a href="#使用归一层对激活值进行归一化" class="headerlink" title="使用归一层对激活值进行归一化"></a>使用归一层对激活值进行归一化</h3><p>深度神经网络由很多层构成，但层数一多，训练过程中很容易出现梯度消失或者梯度爆炸问题，导致训练结果无法收敛。常见的解决方案是对输出结果进行归一化，以提高训练效率和稳定性。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504010754996.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 添加归一化层的示例</span><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>batch_example = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)<br>layer = nn.Sequential(nn.Linear(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>), nn.ReLU())  <span class="hljs-comment"># ReLU 负责将负数置零</span><br>out = layer(batch_example)<br><span class="hljs-built_in">print</span>(out)<br><span class="hljs-comment"># tensor([[0.2260, 0.3470, 0.0000, 0.2216, 0.0000, 0.0000],</span><br><span class="hljs-comment">#         [0.2133, 0.2394, 0.0000, 0.5198, 0.3297, 0.0000]],</span><br><span class="hljs-comment">#        grad_fn=&lt;ReluBackward0&gt;)</span><br>mean = out.mean(<br>    dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span><br>)  <span class="hljs-comment"># dim=-1 表示最后一个维度，keepdim=True 表示保持整体维度，而不是压缩成一维</span><br>var = out.var(<br>    dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span><br>)  <span class="hljs-comment"># var 表示方差，即各点到均值的距离平方的平均值（如果再开方就是标准差）</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Mean:&quot;</span>, mean)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Variance:&quot;</span>, var)<br><span class="hljs-comment"># Mean: tensor([[0.1324],</span><br><span class="hljs-comment">#         [0.2170]], grad_fn=&lt;MeanBackward1&gt;)</span><br><span class="hljs-comment"># Variance: tensor([[0.0231],</span><br><span class="hljs-comment">#         [0.0398]], grad_fn=&lt;VarBackward0&gt;)</span><br><br><br>out_norm = (out - mean) / torch.sqrt(var)  <span class="hljs-comment"># 归一化，减去均值除以标准差</span><br>mean = out_norm.mean(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)<br>var = out_norm.var(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;out_norm:&quot;</span>, out_norm)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;mean:&quot;</span>, mean)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;var:&quot;</span>, var)<br><span class="hljs-comment"># out_norm: tensor([[ 0.6159,  1.4126, -0.8719,  0.5872, -0.8719, -0.8719],</span><br><span class="hljs-comment">#         [-0.0189,  0.1121, -1.0876,  1.5173,  0.5647, -1.0876]],</span><br><span class="hljs-comment">#        grad_fn=&lt;DivBackward0&gt;)</span><br><span class="hljs-comment"># mean: tensor([[9.9341e-09],</span><br><span class="hljs-comment">#         [5.9605e-08]], grad_fn=&lt;MeanBackward1&gt;)</span><br><span class="hljs-comment"># var: tensor([[1.0000],</span><br><span class="hljs-comment">#         [1.0000]], grad_fn=&lt;VarBackward0&gt;)</span><br>torch.set_printoptions(sci_mode=<span class="hljs-literal">False</span>)  <span class="hljs-comment"># 关闭科学计数法</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;mean:&quot;</span>, mean)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;var:&quot;</span>, var)<br><span class="hljs-comment"># mean: tensor([[    0.0000],</span><br><span class="hljs-comment">#         [    0.0000]], grad_fn=&lt;MeanBackward1&gt;)</span><br><span class="hljs-comment"># var: tensor([[1.0000],</span><br><span class="hljs-comment">#         [1.0000]], grad_fn=&lt;VarBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用类来封装归一化层</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">LayerNorm</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, emb_dim</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.eps = <span class="hljs-number">1e-5</span><br>        <span class="hljs-variable language_">self</span>.scale = nn.Parameter(torch.ones(emb_dim))<br>        <span class="hljs-variable language_">self</span>.shift = nn.Parameter(torch.zeros(emb_dim))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        mean = x.mean(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)<br>        var = x.var(<br>            dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>, unbiased=<span class="hljs-literal">False</span><br>        )  <span class="hljs-comment"># unbiased=False 表示方差计算公式为 1/N * sum((x - mean)^2)，否则为 1/(N-1) * sum((x - mean)^2)，因为 embedding 的维度通常很大，所以使用常规的 1/N-1 没有太大影响，但为了和 GPT2 保持一致，这里使用了 1/N 的方式, 也就是 unbiased=False</span><br>        norm_x = (x - mean) / torch.sqrt(var + <span class="hljs-variable language_">self</span>.eps)  <span class="hljs-comment"># 加上 eps 防止分母为 0</span><br>        <span class="hljs-keyword">return</span> (<br>            norm_x * <span class="hljs-variable language_">self</span>.scale + <span class="hljs-variable language_">self</span>.shift<br>        )  <span class="hljs-comment"># scale 和 shift 为可学习参数, 跟图像处理中的缩放和平移很点像</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># LayerNorm 类的使用示例</span><br>ln = LayerNorm(emb_dim=<span class="hljs-number">5</span>)<br>out_ln = ln(batch_example)<br>mean = out_ln.mean(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)<br>var = out_ln.var(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>, unbiased=<span class="hljs-literal">False</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Mean:\n&quot;</span>, mean)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Variance:\n&quot;</span>, var)<br><span class="hljs-comment"># Mean:</span><br><span class="hljs-comment"># tensor([[    -0.0000],</span><br><span class="hljs-comment">#         [     0.0000]], grad_fn=&lt;MeanBackward1&gt;)</span><br><span class="hljs-comment"># Variance:</span><br><span class="hljs-comment"># tensor([[1.0000],</span><br><span class="hljs-comment">#         [1.0000]], grad_fn=&lt;VarBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>相比传统的 batch normalization，使用 layer normalization 的好处是单独对特征维度（最后一维）进行归一化计算，可以不用管 batch 维度，这样在分布式计算中更方便；</p>
+</blockquote>
+<p>至此已经完成 backbone 和归一化层，接下来将实现 GELU 激活层；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504020736917.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="使用-GELU-激活函数实现前馈网络"><a href="#使用-GELU-激活函数实现前馈网络" class="headerlink" title="使用 GELU 激活函数实现前馈网络"></a>使用 GELU 激活函数实现前馈网络</h3><blockquote>
+<p>问：为什么要使用前馈网络？</p>
+<p>答：在得到归一化的结果后，需要对结果进行梳理和筛选，淘汰不合格的值，保留合格的值，以供下一步计算使用。此时常用所谓的激活函数来实现梳理和筛选。它会让离散的结果值，变得更加平滑，这样有利于计算值与值之间的变化梯度。进而可以根据变化梯度，判断权重参数的调整幅度；</p>
+</blockquote>
+<p>传统的深度学习方法中，经常使用 ReLU 作为实现非线性计算的激活函数。但是它在某些场景中过于简单，无法取得最好的效果。因此，在 LLM 中引入了 GELU（Gaussian error linear unit，高斯误差线性单元，它使用基于高斯分布即正态分布的累积分布函数，来实现更平滑的非线性计算，而不是像 ReLU 基于简单的阈值）；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504020743900.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用 matplotlib 用图表展示 GELU 更加平滑的过渡效果</span><br><span class="hljs-keyword">from</span> DummyGPTModel <span class="hljs-keyword">import</span> GELU<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br>gelu, relu = GELU(), nn.ReLU()<br>x = torch.linspace(-<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">100</span>)  <span class="hljs-comment"># 创建 100 个点，范围从 -3 到 3</span><br>y_gelu, y_relu = gelu(x), relu(x)<br>plt.figure(figsize=(<span class="hljs-number">8</span>, <span class="hljs-number">3</span>))<br><span class="hljs-keyword">for</span> i, (y, label) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-built_in">zip</span>([y_gelu, y_relu], [<span class="hljs-string">&quot;GELU&quot;</span>, <span class="hljs-string">&quot;ReLU&quot;</span>]), <span class="hljs-number">1</span>):<br>    plt.subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, i)<br>    plt.plot(x, y)<br>    plt.title(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;label&#125;</span> activation function&quot;</span>)<br>    plt.xlabel(<span class="hljs-string">&quot;x&quot;</span>)<br>    plt.ylabel(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;label&#125;</span>(x)&quot;</span>)<br>    plt.grid(<span class="hljs-literal">True</span>)<br><br>plt.tight_layout<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030601160.png" srcset="/img/loading.gif" lazyload></p>
+<p>从图上可见 GELU 在有些位置会出现负数，虽然负数的值不大，但它的存在，能够让模型在训练过程中捕获到更细微的参数变化，从而让训练结果的收敛变得更加容易。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 实现一个简单的前馈网络，它由三个层构成，分别是两个线性层夹一个 GELU 激活层</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">FeedForward</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, cfg</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.layers = nn.Sequential(<br>            nn.Linear(cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>], cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>] * <span class="hljs-number">4</span>),<br>            GELU(),<br>            nn.Linear(cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>] * <span class="hljs-number">4</span>, cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>]),<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.layers(x)<br><br>ffn = FeedForward(GPT_CONFIG_124M)<br>x = torch.rand(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">768</span>)<br>out = ffn(x)<br><span class="hljs-built_in">print</span>(out.shape)<br><span class="hljs-comment"># torch.Size([2, 3, 768])</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030616589.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030618948.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>输入层的每个 token 原本是 768 维，然后线性层将其扩大 4 倍，映射为 768 * 4 &#x3D; 3072 维，据说这么做是为了带来更丰富的表达空间，有待观察其实际效果；</p>
+</blockquote>
+<p>至此已实现 Transformer block 里面的 GELU 激活层和前馈网络层（示例发下），下一步开始添加快捷连接。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030647367.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="添加跳跃连接"><a href="#添加跳跃连接" class="headerlink" title="添加跳跃连接"></a>添加跳跃连接</h3><p>Shortcut connections，跳跃连接，或者叫残差连接。它的目标是为了解决随着神经网络的深度增加，在反向逐级传播的过程中，出现梯度消失的问题，它的核心思想源自于计算机视觉中的残差网络（residual network，即大名鼎鼎的 ResNet）。其关键在于将输入重新加回到结果值中，这样一来，神经网络实际学习的并不是数据的映射，而是基于原始数据，进行一定程度的平移变换，这样可以保留原来的梯度；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030701369.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 构建一个由 5 个 layer 组成的简单神经网络模型</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleDeepNeuralNetwork</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, layer_sizes, use_shorcut</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.use_shorcut = use_shorcut<br>        <span class="hljs-variable language_">self</span>.layers = nn.ModuleList(<br>            [<br>                nn.Sequential(<br>                    nn.Linear(layer_sizes[<span class="hljs-number">0</span>], layer_sizes[<span class="hljs-number">1</span>]),<br>                    nn.GELU(),<br>                ),<br>                nn.Sequential(<br>                    nn.Linear(layer_sizes[<span class="hljs-number">1</span>], layer_sizes[<span class="hljs-number">2</span>]),<br>                    nn.GELU(),<br>                ),<br>                nn.Sequential(<br>                    nn.Linear(layer_sizes[<span class="hljs-number">2</span>], layer_sizes[<span class="hljs-number">3</span>]),<br>                    nn.GELU(),<br>                ),<br>                nn.Sequential(<br>                    nn.Linear(layer_sizes[<span class="hljs-number">3</span>], layer_sizes[<span class="hljs-number">4</span>]),<br>                    nn.GELU(),<br>                ),<br>                nn.Sequential(<br>                    nn.Linear(layer_sizes[<span class="hljs-number">4</span>], layer_sizes[<span class="hljs-number">5</span>]),<br>                    nn.GELU(),<br>                ),<br>            ]<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> <span class="hljs-variable language_">self</span>.layers:<br>            layer_output = layer(x)  <span class="hljs-comment"># 计算当前层的输出</span><br>            <span class="hljs-comment"># 如果输出和输入的维度一样，且 use_shorcut 为 True，则使用跳跃连接</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.use_shorcut <span class="hljs-keyword">and</span> x.shape == layer_output.shape:<br>                x = x + layer_output<br>            <span class="hljs-keyword">else</span>:<br>                x = layer_output<br>        <span class="hljs-keyword">return</span> x<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ExampleDeepNeuralNetwork 使用示例</span><br>layer_sizes = [<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]<br>sample_input = torch.tensor([[<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>]])  <span class="hljs-comment"># 模拟一个简单的输入</span><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>model_without_shortcut = ExampleDeepNeuralNetwork(layer_sizes, use_shorcut=<span class="hljs-literal">False</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_gradients</span>(<span class="hljs-params">model, x</span>):<br>    output = model(x)<br>    target = torch.tensor([[<span class="hljs-number">0.0</span>]])  <span class="hljs-comment"># 为简单起见，用 0 作为目标值</span><br>    loss = nn.MSELoss()  <span class="hljs-comment"># 初始化损失函数</span><br>    loss = loss(output, target)  <span class="hljs-comment"># 比较输出和目标值间的差距（即损失）</span><br>    loss.backward()  <span class="hljs-comment"># 反向传播，计算损失的梯度</span><br>    <span class="hljs-keyword">for</span> name, param <span class="hljs-keyword">in</span> model.named_parameters():<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;weight&quot;</span> <span class="hljs-keyword">in</span> name:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;name&#125;</span> has gradient mean of <span class="hljs-subst">&#123;param.grad.<span class="hljs-built_in">abs</span>().mean().item()&#125;</span>&quot;</span>)<br><br>print_gradients(model_without_shortcut, sample_input)<br><span class="hljs-comment"># 从下面打印结果可见，随着网络层数的增加，反向传播时，梯度越来越小，逐渐消失</span><br><span class="hljs-comment"># layers.0.0.weight has gradient mean of 0.0002017411752603948</span><br><span class="hljs-comment"># layers.1.0.weight has gradient mean of 0.00012011770741082728</span><br><span class="hljs-comment"># layers.2.0.weight has gradient mean of 0.0007152437465265393</span><br><span class="hljs-comment"># layers.3.0.weight has gradient mean of 0.0013988513965159655</span><br><span class="hljs-comment"># layers.4.0.weight has gradient mean of 0.005049604922533035</span><br><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>model_with_shortcut = ExampleDeepNeuralNetwork(layer_sizes, use_shorcut=<span class="hljs-literal">True</span>)<br>print_gradients(model_with_shortcut, sample_input)<br><span class="hljs-comment"># 从下面打印结果可见，使用跳跃连接后，梯度不会消失，保持稳定</span><br><span class="hljs-comment"># layers.0.0.weight has gradient mean of 0.22186797857284546</span><br><span class="hljs-comment"># layers.1.0.weight has gradient mean of 0.207092747092247</span><br><span class="hljs-comment"># layers.2.0.weight has gradient mean of 0.32923877239227295</span><br><span class="hljs-comment"># layers.3.0.weight has gradient mean of 0.2667771875858307</span><br><span class="hljs-comment"># layers.4.0.weight has gradient mean of 1.3268063068389893</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="在-Transformer-模块中连接注意力层和线性层"><a href="#在-Transformer-模块中连接注意力层和线性层" class="headerlink" title="在 Transformer 模块中连接注意力层和线性层"></a>在 Transformer 模块中连接注意力层和线性层</h3><p>一个 GPT 模型由多个 Transformer 模块组成，而一个 Transformer 模块由以下几个部分组成，它们分别是：</p>
+<ul>
+<li>Multi-head attention，多头注意力</li>
+<li>Normalization layer，归一化</li>
+<li>Dropout，随机失活</li>
+<li>Feed Forward layer，前向传播</li>
+<li>GELU activation，激活函数</li>
+</ul>
+<p>其中自注意力和多头注意力负责分析输入的各个 token 之间的相互关系，Feed Forward 则负责对单个 token 的数据进行转换。二者结合起来，不仅有助于模型更好的理解和处理输入数据，也有助于找到背后的规律。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504030801842.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个 Transformer 类，它主要由 MultiHeadAttention 和 FeedForward 两部分构成</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TransformerBlock</span>(nn.Modlue):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, cfg</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.att = MultiHeadAttention(<br>            d_in=cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>],<br>            d_out=cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>],<br>            context_length=cfg[<span class="hljs-string">&quot;context_length&quot;</span>],<br>            num_heads=cfg[<span class="hljs-string">&quot;num_heads&quot;</span>],<br>            dropout=cfg[<span class="hljs-string">&quot;drop_rate&quot;</span>],<br>            qkv_bias=cfg[<span class="hljs-string">&quot;qkv_bias&quot;</span>],<br>        )<br>        <span class="hljs-variable language_">self</span>.ff = FeedForward(cfg)<br>        <span class="hljs-variable language_">self</span>.norm1 = LayerNorm(cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>])<br>        <span class="hljs-variable language_">self</span>.norm2 = LayerNorm(cfg[<span class="hljs-string">&quot;emb_dim&quot;</span>])<br>        <span class="hljs-variable language_">self</span>.drop_shortcut = nn.Dropout(cfg[<span class="hljs-string">&quot;drop_rate&quot;</span>])<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-comment"># forward 由两部分构成，先使用多头注意力计算 token 间的相互关系，然后用 FeedForward 进行数据转换（激活），为下一轮计算做准备</span><br>        shortcut = x<br>        x = <span class="hljs-variable language_">self</span>.norm1(x)<br>        x = <span class="hljs-variable language_">self</span>.att(x)  <span class="hljs-comment"># att 即 MultiHeadAttention</span><br>        x = <span class="hljs-variable language_">self</span>.drop_shortcut(x)<br>        x = x + shortcut  <span class="hljs-comment"># 跳跃连接</span><br><br>        shortcut = x<br>        x = <span class="hljs-variable language_">self</span>.norm2(x)<br>        x = <span class="hljs-variable language_">self</span>.ff(x)  <span class="hljs-comment"># ff 即 FeedForward</span><br>        x = <span class="hljs-variable language_">self</span>.drop_shortcut(x)<br>        x = x + shortcut<br>        <span class="hljs-keyword">return</span> x<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># TransformerBlock 使用示例</span><br>torch.manual_seed(<span class="hljs-number">123</span>)<br>x = torch.rand(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">768</span>)<br>block = TransformerBlock(GPT_CONFIG_124M)<br>output = block(x)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Input shape:&quot;</span>, x.shape)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Output shape:&quot;</span>, output.shape)<br><span class="hljs-comment"># Input shape: torch.Size([2, 4, 768])</span><br><span class="hljs-comment"># Output shape: torch.Size([2, 4, 768])</span><br></code></pre></td></tr></table></figure>
+
+<p>从 Input shape 和 Output shape 可以看出输入和输出的 shape 保持不变，这并非意外，而是有意为之，以便可以在每一层 layer 的计算过程中，保持高效；虽然 shape 不变，但输出的张量已经包含了上下文信息。至此一个完整的 Transformer Block 组件已经形成。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504100800737.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="编写-GPT-模型"><a href="#编写-GPT-模型" class="headerlink" title="编写 GPT 模型"></a>编写 GPT 模型</h3><p>GPT-2 模型的结构如下，分别包含：</p>
+<ul>
+<li>token 转嵌入层 + 添加位置信息嵌入层；</li>
+<li>12 个 Transformer 模块（每个模块有四层，叠加后有 48 层）；</li>
+<li>最终归一化层  + 线性输出层；</li>
+</ul>
+<p>最终结果是一个 shape 为 [4, 50257] 的张量（形状跟输入一样）；模型的最终目前是基于该张量，得到下一个最大概率的 token 是什么。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202504110654926.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从零开始构建大模型</div>
+      <div>https://ccw1078.github.io/2025/03/10/从零开始构建大模型/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/19/%E9%87%91%E9%92%B1%E5%BF%83%E7%90%86%E5%AD%A6/" title="金钱心理学">
+                        <span class="hidden-mobile">金钱心理学</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
