@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="简介 structure query language, 结构化查询语言，用于访问和处理数据库 用途 查询 取数 插入新记录 更新记录 删除记录 创建数据库 创建新表 创建存储过程 类似于函数，可接收参数 好处：更快，更安全，可复用   创建视图 类似于虚拟表，由一个或多个基表组成，对表的一种抽象 好处 可实现应用程序和表之间的解耦，尽量减少一边的变动对另外一边的影响 更方便实现权限的控制">
+    <meta name="description" content="简介  structure query language, 结构化查询语言，用于访问和处理数据库 用途  查询 取数 插入新记录 更新记录 删除记录 创建数据库 创建新表 创建存储过程  类似于函数，可接收参数 好处：更快，更安全，可复用   创建视图  类似于虚拟表，由一个或多个基表组成，对表的一种抽象 好处  可实现应用程序和表之间的解耦，尽量减少一边的变动对另外一边的影响 更方便实现权限的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL">
 <meta property="og:url" content="https://ccw1078.github.io/2014/04/15/SQL/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="简介 structure query language, 结构化查询语言，用于访问和处理数据库 用途 查询 取数 插入新记录 更新记录 删除记录 创建数据库 创建新表 创建存储过程 类似于函数，可接收参数 好处：更快，更安全，可复用   创建视图 类似于虚拟表，由一个或多个基表组成，对表的一种抽象 好处 可实现应用程序和表之间的解耦，尽量减少一边的变动对另外一边的影响 更方便实现权限的控制">
+<meta property="og:description" content="简介  structure query language, 结构化查询语言，用于访问和处理数据库 用途  查询 取数 插入新记录 更新记录 删除记录 创建数据库 创建新表 创建存储过程  类似于函数，可接收参数 好处：更快，更安全，可复用   创建视图  类似于虚拟表，由一个或多个基表组成，对表的一种抽象 好处  可实现应用程序和表之间的解耦，尽量减少一边的变动对另外一边的影响 更方便实现权限的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-04-15T03:55:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T04:00:06.593Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.1k 字
+          5k 字
         
       </span>
     
@@ -278,9 +282,11 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>简介<ol>
+<li>简介
+<ol>
 <li>structure query language, 结构化查询语言，用于访问和处理数据库</li>
-<li>用途<ol>
+<li>用途
+<ol>
 <li>查询</li>
 <li>取数</li>
 <li>插入新记录</li>
@@ -288,14 +294,17 @@
 <li>删除记录</li>
 <li>创建数据库</li>
 <li>创建新表</li>
-<li>创建存储过程<ol>
+<li>创建存储过程
+<ol>
 <li>类似于函数，可接收参数</li>
 <li>好处：更快，更安全，可复用</li>
 </ol>
 </li>
-<li>创建视图<ol>
+<li>创建视图
+<ol>
 <li>类似于虚拟表，由一个或多个基表组成，对表的一种抽象</li>
-<li>好处<ol>
+<li>好处
+<ol>
 <li>可实现应用程序和表之间的解耦，尽量减少一边的变动对另外一边的影响</li>
 <li>更方便实现权限的控制</li>
 </ol>
@@ -307,19 +316,24 @@
 </li>
 </ol>
 </li>
-<li>语法<ol>
-<li>说明<ol>
+<li>语法
+<ol>
+<li>说明
+<ol>
 <li>SQL 对大小写不敏感；</li>
 <li>每条 SQL 语句之间，有些数据库需要使用分号分隔，有些不需要</li>
-<li>SQL 可以分成两部分，DML 和 DDL<ol>
-<li>DML，数据操作语言<ol>
+<li>SQL 可以分成两部分，DML 和 DDL
+<ol>
+<li>DML，数据操作语言
+<ol>
 <li>SELECT, 从数据库中选择数据</li>
 <li>UPDATE，更新数据库中的数据</li>
 <li>DELETE，删除数据库中的数据</li>
 <li>INSERT INTO，向数据库插入数据</li>
 </ol>
 </li>
-<li>DDL， 数据定义语言<ol>
+<li>DDL， 数据定义语言
+<ol>
 <li>CREATE DATABASE，创建新数据库</li>
 <li>ALTER DATABASE, 修改数据库</li>
 <li>CREATE TABLE，创建新表</li>
@@ -333,9 +347,11 @@
 </li>
 </ol>
 </li>
-<li>SQL SELECT 语句<ol>
+<li>SQL SELECT 语句
+<ol>
 <li>用于从表中选取数据，结果被存储在一个结果表中（结果集）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名称 FROM 表名称</li>
 <li>SELECT 列名称1, 列名称2 FROM 表名称</li>
 <li>SELECT * FROM 表名称（注：* 号表示所有列）</li>
@@ -343,39 +359,48 @@
 </li>
 </ol>
 </li>
-<li>SQL SELECT DISTINCT 语句<ol>
+<li>SQL SELECT DISTINCT 语句
+<ol>
 <li>从表中选择数据后，返回唯一不同的值，即去掉重复项</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT DISTINCT 列名称 FROM 表名称</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL WHERE 子句<ol>
+<li>SQL WHERE 子句
+<ol>
 <li>从表中有条件的选取数据</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名称 FROM 表名称 WHERE 列 运算符 值</li>
 </ol>
 </li>
-<li>运算符<ol>
-<li>&#x3D;，等于</li>
-<li>&lt;&gt;，不等于（某些版本可用 !&#x3D;）</li>
-<li><blockquote>
+<li>运算符
+<ol>
+<li>=，等于</li>
+<li>&lt;&gt;，不等于（某些版本可用 !=）</li>
+<li>
+<blockquote>
 <p>，大于</p>
 </blockquote>
 </li>
 <li>&lt;，小于</li>
-<li><blockquote>
-<p>&#x3D;，大于等于</p>
+<li>
+<blockquote>
+<p>=，大于等于</p>
 </blockquote>
 </li>
-<li>&lt;&#x3D;，小于等于</li>
+<li>&lt;=，小于等于</li>
 <li>BETWEEN，在某个范围内</li>
 <li>LIKE，搜索某种模式？</li>
 </ol>
 </li>
-<li>例子<ol>
-<li>SELECT 列名称 FROM 表名称 WHERE city&#x3D;’Beijing’<ol>
+<li>例子
+<ol>
+<li>SELECT 列名称 FROM 表名称 WHERE city=‘Beijing’
+<ol>
 <li>city 是表中某一列的名称</li>
 <li>由于 Beijing 是字符串，所以使用引号，如果是数值，则不需要用引号</li>
 </ol>
@@ -384,26 +409,32 @@
 </li>
 </ol>
 </li>
-<li>SQL AND &amp; OR 运算符<ol>
-<li>用于两个或以上的条件对记录进行过滤<ol>
+<li>SQL AND &amp; OR 运算符
+<ol>
+<li>用于两个或以上的条件对记录进行过滤
+<ol>
 <li>条件1 AND 条件2，需要满足两个条件</li>
 <li>条件1 OR 条件2，只需要满足其中一个条件</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>SELECT * FROM Persons WHERE FirstName&#x3D;’Thomas’ AND LastName&#x3D;’Carter’</li>
-<li>SELECT * FROM Persons WHERE FirstName&#x3D;’Thomas’ OR LastName&#x3D;’Carter’</li>
+<li>示例
+<ol>
+<li>SELECT * FROM Persons WHERE FirstName=‘Thomas’ AND LastName=‘Carter’</li>
+<li>SELECT * FROM Persons WHERE FirstName=‘Thomas’ OR LastName=‘Carter’</li>
 </ol>
 </li>
-<li>也可以将两个运算符结合起来，使用圆括号来组成复杂的表达式<ol>
-<li>SELECT * FROM Persons WHERE (FirstName&#x3D;’Thomas’ OR FirstName&#x3D;’William’) AND LastName&#x3D;’Carter’</li>
+<li>也可以将两个运算符结合起来，使用圆括号来组成复杂的表达式
+<ol>
+<li>SELECT * FROM Persons WHERE (FirstName=‘Thomas’ OR FirstName=‘William’) AND LastName=‘Carter’</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL ORDER BY 子句<ol>
+<li>SQL ORDER BY 子句
+<ol>
 <li>用于对结果集进行排序，默认升序（ASC），降序用 DESC</li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT Company, OrderNumber FROM Orders ORDER BY Company</li>
 <li>SELECT Company, OrderNumber FROM Orders ORDER BY Company, OrderNumber</li>
 <li>SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC</li>
@@ -412,35 +443,44 @@
 </li>
 </ol>
 </li>
-<li>SQL INSERT INTO 语句<ol>
+<li>SQL INSERT INTO 语句
+<ol>
 <li>用于向表中插入新行</li>
-<li>语法<ol>
-<li>INSERT INTO 表名称 VALUES （值1，值2，……）</li>
-<li>INSERT INTO 表名称 （列1，列2，……） VALUES （值1， 值2，……）<ol>
+<li>语法
+<ol>
+<li>INSERT INTO 表名称 VALUES （值1，值2，…）</li>
+<li>INSERT INTO 表名称 （列1，列2，…） VALUES （值1， 值2，…）
+<ol>
 <li>指定要插入数据的列</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>INSERT INTO Persons VALUES (‘Gates’, ‘Bill’, ‘Xuanwumen 10’, ‘Beijing’)</li>
 <li>INSERT INTO Persons (LastName, Address) VALUES (‘Wison’, ‘Champs-Elysees’)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL UPDATE 语句<ol>
+<li>SQL UPDATE 语句
+<ol>
 <li>用于修改表中的数据</li>
-<li>语法<ol>
-<li>UPDATE 表名称 SET 列名称 &#x3D; 新值 WHERE 列名称 &#x3D; 某值</li>
+<li>语法
+<ol>
+<li>UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>UPDATE Persons SET FirstName&#x3D;’Fred’ WHERE LastName&#x3D;’Wilson’<ol>
+<li>示例
+<ol>
+<li>UPDATE Persons SET FirstName=‘Fred’ WHERE LastName=‘Wilson’
+<ol>
 <li>更新一行中的一个列</li>
 </ol>
 </li>
-<li>UPDATE Persons SET Address&#x3D;’Zhongshan 23’, City&#x3D;’Nanjing’ WHERE LastName&#x3D;’Wilson’<ol>
+<li>UPDATE Persons SET Address=‘Zhongshan 23’, City=‘Nanjing’ WHERE LastName=‘Wilson’
+<ol>
 <li>更新一行中的多个列</li>
 </ol>
 </li>
@@ -448,18 +488,23 @@
 </li>
 </ol>
 </li>
-<li>SQL DELETE 语句<ol>
+<li>SQL DELETE 语句
+<ol>
 <li>用于删除表中的行</li>
-<li>语法<ol>
-<li>DELETE FROM 表名称 WHERE 列名称&#x3D;某值</li>
+<li>语法
+<ol>
+<li>DELETE FROM 表名称 WHERE 列名称=某值</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>删除某行<ol>
-<li>DELETE FROM Person WHERE LastName&#x3D;’Wilson’</li>
+<li>示例
+<ol>
+<li>删除某行
+<ol>
+<li>DELETE FROM Person WHERE LastName=‘Wilson’</li>
 </ol>
 </li>
-<li>删除所有行（不删除表的情况下）<ol>
+<li>删除所有行（不删除表的情况下）
+<ol>
 <li>DELETE FROM 表名称</li>
 <li>DELETE * FROM 表名称</li>
 </ol>
@@ -468,23 +513,29 @@
 </li>
 </ol>
 </li>
-<li>SQL TOP 子句<ol>
+<li>SQL TOP 子句
+<ol>
 <li>用于设定要返回的记录的数目（如果表很大，可能只需要返回部分）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT TOP 数字（或百分比）  FROM 表名称</li>
 <li>不同数据库此语法可能略有不同，不是所在数据库都支持 TOP 语法</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>MySQL<ol>
+<li>示例
+<ol>
+<li>MySQL
+<ol>
 <li>SELECT * FROM Persons LIMIT 5</li>
 </ol>
 </li>
-<li>Oracle<ol>
-<li>SELECT * FROM Persons WHERE ROWNUM &lt;&#x3D;5</li>
+<li>Oracle
+<ol>
+<li>SELECT * FROM Persons WHERE ROWNUM &lt;=5</li>
 </ol>
 </li>
-<li>SQL<ol>
+<li>SQL
+<ol>
 <li>SELECT TOP 2 * FROM Persons</li>
 <li>SELECT TOP 50 PERCENT * FROM Persons</li>
 </ol>
@@ -493,26 +544,33 @@
 </li>
 </ol>
 </li>
-<li>SQL LIKE 操作符<ol>
+<li>SQL LIKE 操作符
+<ol>
 <li>用于在 WHERE 子句中搜索列中的指定模式</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名称 FROM 表名称 WHERE 列名称 LIKE 模式</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>选择城市以”N”开头的记录<ol>
+<li>示例
+<ol>
+<li>选择城市以&quot;N&quot;开头的记录
+<ol>
 <li>SELECT * FROM Persons WHERE City LIKE ‘N%’</li>
 </ol>
 </li>
-<li>选择城市以”g”结尾的记录<ol>
+<li>选择城市以&quot;g&quot;结尾的记录
+<ol>
 <li>SELECT * FROM Persons WHERE City LIKE ‘%g’</li>
 </ol>
 </li>
-<li>选择城市包含”lon”的记录<ol>
+<li>选择城市包含&quot;lon&quot;的记录
+<ol>
 <li>SELECT * FROM Persons WHERE City LIKE ‘%lon%’</li>
 </ol>
 </li>
-<li>选择城市中不包含’lon’的记录（使用 NOT LIKE）<ol>
+<li>选择城市中不包含’lon’的记录（使用 NOT LIKE）
+<ol>
 <li>SELECT * FROM Persons WHERE City NOT LIKE ‘%lon%’</li>
 </ol>
 </li>
@@ -520,29 +578,36 @@
 </li>
 </ol>
 </li>
-<li>SQL 通配符<ol>
+<li>SQL 通配符
+<ol>
 <li>在搜索数据库中的数据时，可以使用 SQL 通配符</li>
-<li>通配符可以用来代替一个或者多个字符，通配符必须与 LIKE 运算符一起使用<ol>
+<li>通配符可以用来代替一个或者多个字符，通配符必须与 LIKE 运算符一起使用
+<ol>
 <li>“%”，替代一个或者多个字符</li>
 <li>“_”，替代一个字符</li>
 <li>[charlist]，字符列中的任何单一字符</li>
 <li>[^charlist] 或者 [!charlist] ，不在字符列中的任何单一字符</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>以任意一个字符开头，后面接着’eorge’<ol>
+<li>示例
+<ol>
+<li>以任意一个字符开头，后面接着’eorge’
+<ol>
 <li>SELECT * FROM Persons WHERE FirstName LIKE ‘_eorge’</li>
 </ol>
 </li>
-<li>以 C 开头，后面接着 r，再接任意字符，最后以 er 结尾<ol>
+<li>以 C 开头，后面接着 r，再接任意字符，最后以 er 结尾
+<ol>
 <li>SELECT * FROM Persons WHERE FirstName LIKE ‘C_r%er’</li>
 </ol>
 </li>
-<li>选取城市以A、L、N 开头<ol>
+<li>选取城市以A、L、N 开头
+<ol>
 <li>SELECT * FROM Persons WHERE City LIKE ‘[ALN]%’</li>
 </ol>
 </li>
-<li>选取城市不以A、L、N 开头<ol>
+<li>选取城市不以A、L、N 开头
+<ol>
 <li>SELECT * FROM Persons WHERE City LIKE ‘[!ALN]%’</li>
 </ol>
 </li>
@@ -550,45 +615,56 @@
 </li>
 </ol>
 </li>
-<li>SQL IN 操作符<ol>
+<li>SQL IN 操作符
+<ol>
 <li>用于在 WHERE 子句中规定多个值</li>
-<li>语法<ol>
-<li>SELECT 列名称 FROM 表名称 WHERE 列名称 IN （值1，值2，……）</li>
+<li>语法
+<ol>
+<li>SELECT 列名称 FROM 表名称 WHERE 列名称 IN （值1，值2，…）</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT * FROM Persons WHERE LastName IN (‘Adams’, ‘Carter’)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL BETWEEN 操作符<ol>
+<li>SQL BETWEEN 操作符
+<ol>
 <li>用在 WHERE 子句，用于选取两个值之间的数据范围</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名称 FROM 表名称 WHERE 列名称 BETWEEN 值1 AND 值2</li>
 <li>不同的数据库对 BETWEEN…AND… 的理解不同，有些包括前后，有些只前无后，有些不包括前后</li>
 <li>可以使用 NOT BETWEEN … AND … 来选取范围之外的数据；</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT * FROM Persons WHERE LastName BETWEEN ‘Adams’ AND ‘Carter’</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL Alias 别名<ol>
+<li>SQL Alias 别名
+<ol>
 <li>AS 可以用来为列名称或表名称指定别名，目的是让 SQL 容易阅读和书写（通过将语句重复出现的单词用简称来替代）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名称 FROM 表名称 AS 表别名</li>
 <li>SELECT 列名称 AS 列别名 FROM 表名称</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>表名称别名<ol>
-<li>SELECT po.OrderID, p.LastName, p.FirstName FROM Persons AS p, Product_Orders AS po WHERE p.LastName&#x3D;’Adams’ AND p.FirstName&#x3D;’John’</li>
+<li>示例
+<ol>
+<li>表名称别名
+<ol>
+<li>SELECT po.OrderID, p.LastName, p.FirstName FROM Persons AS p, Product_Orders AS po WHERE p.LastName=‘Adams’ AND p.FirstName=‘John’</li>
 </ol>
 </li>
-<li>列名称别名<ol>
+<li>列名称别名
+<ol>
 <li>SELECT FirstName AS FAMILY, LastName AS NAME FROM Persons</li>
 <li>在出来的结果集中，原列名称 FirstName 和 LastName 会分别显示为别名 FAMILY 和 NAME</li>
 </ol>
@@ -597,115 +673,145 @@
 </li>
 </ol>
 </li>
-<li>SQL JOIN<ol>
+<li>SQL JOIN
+<ol>
 <li>用于从两个或者多个表中查询数据</li>
-<li>语法<ol>
-<li>SELECT 列1，列2，… FROM 表1 INNER JOIN 表2 ON 列1&#x3D;列2<ol>
+<li>语法
+<ol>
+<li>SELECT 列1，列2，… FROM 表1 INNER JOIN 表2 ON 列1=列2
+<ol>
 <li>取两个表的交集</li>
 </ol>
 </li>
-<li>SELECT 列1，列2，…FROM 表1 LEFT JOIN 表2 ON 列1&#x3D;列2（有些数据库叫 LEFT OUTER JOIN）<ol>
+<li>SELECT 列1，列2，…FROM 表1 LEFT JOIN 表2 ON 列1=列2（有些数据库叫 LEFT OUTER JOIN）
+<ol>
 <li>取表1的完全集，如果表2中没有对应值，则默认NULL</li>
 </ol>
 </li>
-<li>SELECT 列1，列2，…FROM 表1 RIGHT JOIN 表2 ON 列1&#x3D;列2 （有些数据库叫 RIGHT OUTER JOIN）<ol>
+<li>SELECT 列1，列2，…FROM 表1 RIGHT JOIN 表2 ON 列1=列2 （有些数据库叫 RIGHT OUTER JOIN）
+<ol>
 <li>取表2的完全集，如果表1中没有对应值，则默认NULL</li>
 </ol>
 </li>
-<li>SELECT 列1，列2，…FROM 表1 FULL JOIN 表2 ON 列1&#x3D;列2 （有些数据库叫 FULL OUTER JOIN）<ol>
+<li>SELECT 列1，列2，…FROM 表1 FULL JOIN 表2 ON 列1=列2 （有些数据库叫 FULL OUTER JOIN）
+<ol>
 <li>取两个表的并集，包括两个表的全部行，不管有没有对应值，没有则默认NULL</li>
 </ol>
 </li>
-<li>SELECT 列1，列2，…FROM 表1 CROSS JOIN 表2 <ol>
+<li>SELECT 列1，列2，…FROM 表1 CROSS JOIN 表2
+<ol>
 <li>取两个表的笛卡尔乘积，表1*表2的集合，慎用</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>示例<ol>
-<li>INNER JOIN，交集，两个表都需要匹配<ol>
-<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons INNER JOIN Orders ON Persons.Id_P&#x3D;Orders.Id_P  ORDER BY Persons.LastName</li>
+<li>示例
+<ol>
+<li>INNER JOIN，交集，两个表都需要匹配
+<ol>
+<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons INNER JOIN Orders ON Persons.Id_P=Orders.Id_P  ORDER BY Persons.LastName</li>
 </ol>
 </li>
-<li>LEFT JOIN，左表所有行，右表有匹配行则返回右表值，没有匹配行则返回NULL<ol>
-<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons LEFT JOIN Orders ON Persons.Id_P&#x3D;Orders.Id_p ORDER BY Persons.LastName</li>
+<li>LEFT JOIN，左表所有行，右表有匹配行则返回右表值，没有匹配行则返回NULL
+<ol>
+<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons LEFT JOIN Orders ON Persons.Id_P=Orders.Id_p ORDER BY Persons.LastName</li>
 </ol>
 </li>
-<li>RIGHT JOIN, 右表所有行，左表有匹配行则返回左表值，没有匹配行则返回NULL<ol>
-<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons RIGHT JOIN Orders ON Persons.Id_P&#x3D;Orders.Id_P ORDER BY Persons.LastName</li>
+<li>RIGHT JOIN, 右表所有行，左表有匹配行则返回左表值，没有匹配行则返回NULL
+<ol>
+<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons RIGHT JOIN Orders ON Persons.Id_P=Orders.Id_P ORDER BY Persons.LastName</li>
 </ol>
 </li>
-<li>FULL JOIN，则要其中某个匹配存在，则返回行，没有值默认NULL<ol>
-<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons FULL JOIN Orders ON Persons.Id_P&#x3D;Orders.Id_P ORDER BY Persons.LastName</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>说明<ol>
-<li>可以通过增加条件，如 WHERE 列名称&#x3D;某值 来对结果集进一步筛选</li>
+<li>FULL JOIN，则要其中某个匹配存在，则返回行，没有值默认NULL
+<ol>
+<li>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons FULL JOIN Orders ON Persons.Id_P=Orders.Id_P ORDER BY Persons.LastName</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL UNION<ol>
-<li>合并两个或多个 SELECT 语句的结果集<ol>
+<li>说明
+<ol>
+<li>可以通过增加条件，如 WHERE 列名称=某值 来对结果集进一步筛选</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>SQL UNION
+<ol>
+<li>合并两个或多个 SELECT 语句的结果集
+<ol>
 <li>UNION，会去除重复的行</li>
 <li>UNION ALL，不会去重，展示所有</li>
 <li>两个 SELECT 语句必须有相同数量的列，列的数据类型相同，列的顺序相同</li>
 </ol>
 </li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名称 FROM 表1 UNION SELECT 列名称 FROM 表2</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT E_Name FROM Employees_China UNION SELECT E_Name FROM Employees_USA</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL SELECT INTO<ol>
+<li>SQL SELECT INTO
+<ol>
 <li>用于从一个表中选取数据，插入到另外一个表中（可以是在另外的数据库）</li>
-<li>语法<ol>
-<li>复制一个列或者多个列<ol>
+<li>语法
+<ol>
+<li>复制一个列或者多个列
+<ol>
 <li>SELECT 列名称 INTO 表名称2 FROM 表名称1</li>
 <li>示例：SELECT * INTO new_table_name FROM old_table_name</li>
 </ol>
 </li>
-<li>插入到另外数据库<ol>
+<li>插入到另外数据库
+<ol>
 <li>SELECT 列名称 INTO 表名称2 IN 数据库2 FROM 表名称1</li>
 <li>示例：SELECT * INTO Persons IN ‘Backup.mdb’ FROM Persons</li>
 </ol>
 </li>
-<li>可以增加 WHERE 子句<ol>
-<li>示例：SELECT LastName, FirstName INTO Persons_Backup FROM Persons WHERE City&#x3D;’Beijing’</li>
+<li>可以增加 WHERE 子句
+<ol>
+<li>示例：SELECT LastName, FirstName INTO Persons_Backup FROM Persons WHERE City=‘Beijing’</li>
 </ol>
 </li>
-<li>可以使用 JOIN 连接多个表<ol>
-<li>示例：SELECT Persons.LastName, Orders.OrderNo INTO Persons_Order_Backup FROM Persons INNER JOIN Orders ON Persons.Id_P&#x3D;Orders.Id_P</li>
+<li>可以使用 JOIN 连接多个表
+<ol>
+<li>示例：SELECT Persons.LastName, Orders.OrderNo INTO Persons_Order_Backup FROM Persons INNER JOIN Orders ON Persons.Id_P=Orders.Id_P</li>
 </ol>
 </li>
 </ol>
 </li>
 </ol>
 </li>
-<li>CREATE DATABASE<ol>
+<li>CREATE DATABASE
+<ol>
 <li>创建数据库</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>CREATE DATABASE 数据库名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>CREATE DATABASE my_db</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>CREATE TABLE<ol>
+<li>CREATE TABLE
+<ol>
 <li>创建表</li>
-<li>语法<ol>
-<li>CREATEA TABLE 表名称<ol>
-<li>（<ol>
+<li>语法
+<ol>
+<li>CREATEA TABLE 表名称
+<ol>
+<li>（
+<ol>
 <li>列名称1 数据类型1，</li>
 <li>列名称2 数据类型2，</li>
 <li>列名称3 数据类型3，</li>
@@ -716,34 +822,43 @@
 </li>
 </ol>
 </li>
-<li>数据类型<ol>
-<li>integer(size), int(size), smallint(size), tinyint(size)<ol>
+<li>数据类型
+<ol>
+<li>integer(size), int(size), smallint(size), tinyint(size)
+<ol>
 <li>仅容纳整数，size 用来设定最大位数</li>
 </ol>
 </li>
-<li>decimal(size, d), numeric(size,d)<ol>
+<li>decimal(size, d), numeric(size,d)
+<ol>
 <li>容纳带有小数的数字，size 用来设定数据的最大位数，d 设置小数点后的最大位数</li>
 </ol>
 </li>
-<li>char(size)<ol>
+<li>char(size)
+<ol>
 <li>容纳字符串（可容纳字母、数字及特殊字符）</li>
 <li>size 设定字符串的最大长度</li>
 </ol>
 </li>
-<li>varchar(size)<ol>
+<li>varchar(size)
+<ol>
 <li>容纳可变长度的字符串</li>
 <li>size 设定字符串的最大长度</li>
 </ol>
 </li>
-<li>date(yyyymmdd)<ol>
+<li>date(yyyymmdd)
+<ol>
 <li>容纳日期</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int,</li>
 <li>LastName varchar(255),</li>
 <li>FirstName varchar(255),</li>
@@ -758,20 +873,25 @@
 </li>
 </ol>
 </li>
-<li>SQL Contrains 约束，用来约束限制加入表的数据的类型<ol>
+<li>SQL Contrains 约束，用来约束限制加入表的数据的类型
+<ol>
 <li>NOT NULL</li>
 <li>UNIQUE</li>
 <li>PRIMARY KEY</li>
 <li>FOREIGN KEY</li>
-<li>CHECK </li>
+<li>CHECK</li>
 <li>DEFAULT</li>
 </ol>
 </li>
-<li>SQL NOT NULL<ol>
+<li>SQL NOT NULL
+<ol>
 <li>约束不接受空值，即如果没有值，则无法向表中插入数据</li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL,</li>
 <li>LastName varchar(255) NOT NULL,</li>
 <li>FirstName varchar(255),</li>
@@ -786,14 +906,19 @@
 </li>
 </ol>
 </li>
-<li>SQL UNIQUE<ol>
+<li>SQL UNIQUE
+<ol>
 <li>约束唯一标识表中的每条记录</li>
 <li>UNIQUE 和 PRIMARY KEY 都可以用来保证唯一性</li>
 <li>一个表可以有多个 UNIQUE 约束，但只可以有一个PRIMARY KEY</li>
-<li>示例<ol>
-<li>MySQL<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>MySQL
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL,</li>
 <li>LastName varchar(255) NOT NULL</li>
 <li>FirstName varchar(255),</li>
@@ -807,9 +932,12 @@
 </li>
 </ol>
 </li>
-<li>SQL Server &#x2F; Oracle &#x2F; MS Access<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>SQL Server / Oracle / MS Access
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL UNIQUE,</li>
 <li>LastName varchar(255) NOT NULL</li>
 <li>FirstName varchar(255),</li>
@@ -824,55 +952,69 @@
 </li>
 </ol>
 </li>
-<li>如果需要约束多个唯一标识<ol>
+<li>如果需要约束多个唯一标识
+<ol>
 <li>UNIQUE (Id_P) 更改为 UNIQUE (Id_P, LastName)</li>
 </ol>
 </li>
-<li>如果需要给约束命名，<ol>
-<li>语法：<ol>
+<li>如果需要给约束命名，
+<ol>
+<li>语法：
+<ol>
 <li>CONSTRAINT 约束名称 UNIQUE 列名称</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>CONSTRAINT uc_PersonID UNIQUE (Id_P, LastName)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>如果想要在表被创建后，再补上约束，可以使用 ALTER<ol>
-<li>语法<ol>
+<li>如果想要在表被创建后，再补上约束，可以使用 ALTER
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名</li>
 <li>ADD UNIQUE （列名称）</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>ADD UNIQUE (Id_P)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>如果要撤销 UNIQUE<ol>
-<li>MySQL<ol>
-<li>语法<ol>
+<li>如果要撤销 UNIQUE
+<ol>
+<li>MySQL
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名</li>
 <li>DROP INDEX 约束名称</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>DROP INDEX uc_PersonID</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL Server &#x2F; Oracle &#x2F; MS Access<ol>
-<li>语法<ol>
+<li>SQL Server / Oracle / MS Access
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名</li>
 <li>DROP CONSTRAINT 约束名称</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>DROP CONSTRAINT uc_PersonID</li>
 </ol>
@@ -883,17 +1025,24 @@
 </li>
 </ol>
 </li>
-<li>SQL PRIMARY KEY 约束<ol>
+<li>SQL PRIMARY KEY 约束
+<ol>
 <li>PRIMARY KEY 约束唯一标识表的记录，一个表必须有一个 PRIMARY KEY，也只能有一个，PRIMARY KEY 不能为空，且值需要是唯一的</li>
-<li>创建主键<ol>
-<li>MySQL<ol>
-<li>语法<ol>
+<li>创建主键
+<ol>
+<li>MySQL
+<ol>
+<li>语法
+<ol>
 <li>PRIMARY KEY 列名称</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL,</li>
 <li>FirstName varchar(255),</li>
 <li>LastName varchar(255),</li>
@@ -907,14 +1056,19 @@
 </li>
 </ol>
 </li>
-<li>SQL Server &#x2F; Oracle &#x2F; MS Access<ol>
-<li>语法<ol>
+<li>SQL Server / Oracle / MS Access
+<ol>
+<li>语法
+<ol>
 <li>列名称 值类型 PRIMARY KEY</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL PRIMARY KEY,</li>
 <li>FristName varchar(255)</li>
 </ol>
@@ -928,14 +1082,19 @@
 </li>
 </ol>
 </li>
-<li>如果需要给主键命名,MySQL &#x2F; SQL Server &#x2F; Oracle &#x2F; MS Access 都一样<ol>
-<li>语法<ol>
+<li>如果需要给主键命名,MySQL / SQL Server / Oracle / MS Access 都一样
+<ol>
+<li>语法
+<ol>
 <li>CONSTRAINT 约束名称 PRIMARY KEY （列名称）</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL,</li>
 <li>FristName varchar(255),</li>
 <li>CONTRAINT pk_PersonID PRIMARY KEY (Id_P, LastName)</li>
@@ -948,40 +1107,50 @@
 </li>
 </ol>
 </li>
-<li>给已存在的表创建主键约束<ol>
-<li>语法<ol>
+<li>给已存在的表创建主键约束
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名称</li>
 <li>ADD PRIMARY KEY （列名称）</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>ADD PRIMARY KEY (Id_P)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>撤销主键<ol>
-<li>MySQL<ol>
-<li>语法<ol>
+<li>撤销主键
+<ol>
+<li>MySQL
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名称</li>
 <li>DROP PRIMARY KEY</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>DROP PRIMARY KEY</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL Server &#x2F; Oracle &#x2F; MS Access<ol>
-<li>语法<ol>
+<li>SQL Server / Oracle / MS Access
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>DROP CONSTRAINT 约束名称</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>ALTER TABLE Persons</li>
 <li>DROP CONSTRAINT pk_PersonID</li>
 </ol>
@@ -992,15 +1161,21 @@
 </li>
 </ol>
 </li>
-<li>SQL FOREIGN KEY<ol>
+<li>SQL FOREIGN KEY
+<ol>
 <li>外键，一个表的外键指向另外一个表的主键</li>
 <li>可预防破坏表之间连接的动作</li>
 <li>也可防止非法数据插入外键列，因为它必须是指向的表中的值之一</li>
-<li>创建外键<ol>
-<li>MySQL<ol>
-<li>示例<ol>
-<li>CREATE TABLE Orders<ol>
-<li>(<ol>
+<li>创建外键
+<ol>
+<li>MySQL
+<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Orders
+<ol>
+<li>(
+<ol>
 <li>Id_O int NOT NULL,</li>
 <li>OrderNo int NOT NULL,</li>
 <li>Id_P int,</li>
@@ -1015,9 +1190,12 @@
 </li>
 </ol>
 </li>
-<li>SQL Server &#x2F; Oracle &#x2F; MS Access<ol>
-<li>CREATE TABLE Orders<ol>
-<li>(<ol>
+<li>SQL Server / Oracle / MS Access
+<ol>
+<li>CREATE TABLE Orders
+<ol>
+<li>(
+<ol>
 <li>Id_O int NOT NULL PRIMARY KEY,</li>
 <li>OrderNo int NOT NULL,</li>
 <li>Id_P int FOREIGN KEY REFERENCES Persons(Id_P)</li>
@@ -1030,32 +1208,41 @@
 </li>
 </ol>
 </li>
-<li>命名外键<ol>
-<li>语法<ol>
+<li>命名外键
+<ol>
+<li>语法
+<ol>
 <li>CONTRAINT fk_PerOrders</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>为已存在的表添加外键<ol>
-<li>语法<ol>
+<li>为已存在的表添加外键
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表1</li>
 <li>ADD FOREIGN KEY (列1）REFERENCES 表2（列2）</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>撤销外键<ol>
-<li>MySQL<ol>
-<li>语法<ol>
+<li>撤销外键
+<ol>
+<li>MySQL
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名称</li>
 <li>DROP FOREIGN KEY 约束名称</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL Server &#x2F; Oracle &#x2F; MS Access<ol>
-<li>语法<ol>
+<li>SQL Server / Oracle / MS Access
+<ol>
+<li>语法
+<ol>
 <li>ALTER TABLE 表名称</li>
 <li>DROP CONSTAINT 约束名称</li>
 </ol>
@@ -1066,16 +1253,21 @@
 </li>
 </ol>
 </li>
-<li>SQL CHECK 约束<ol>
+<li>SQL CHECK 约束
+<ol>
 <li>此约束用来限制表中某列的值范围，比例大于0的整数</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>CHECK （列名称 表达式）</li>
 <li>CONSTRAINT 约束名称 CHECK （列名称 表达式）</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_P int NOT NULL CHECK (Id_P &gt; 0),</li>
 <li>FirstName varchar(255) NOT NULL,</li>
 <li>LastName varchar(255),</li>
@@ -1084,18 +1276,21 @@
 <li>)</li>
 </ol>
 </li>
-<li>CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City&#x3D;’Sandnes’)</li>
-<li>ALTER TABLE Persons<ol>
+<li>CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City=‘Sandnes’)</li>
+<li>ALTER TABLE Persons
+<ol>
 <li>ADD CHECK (Id_P&gt;0)</li>
-<li>ADD CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City&#x3D;’Sanders’)</li>
-<li>ALTER TABLE Persons<ol>
+<li>ADD CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City=‘Sanders’)</li>
+<li>ALTER TABLE Persons
+<ol>
 <li>ADD CHECK (Id_P&gt;0)</li>
-<li>ADD CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City&#x3D;’Sanders’)</li>
+<li>ADD CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City=‘Sanders’)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>ALTER TABLE Persons<ol>
+<li>ALTER TABLE Persons
+<ol>
 <li>DROP CHECK chk_Person</li>
 <li>DROP CONSTRAINT chk_Person</li>
 </ol>
@@ -1104,15 +1299,20 @@
 </li>
 </ol>
 </li>
-<li>SQL DEFAULT 约束<ol>
+<li>SQL DEFAULT 约束
+<ol>
 <li>用于向列中插入默认值</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>列名称 数据类型 DEFAULT 默认值（默认值支持系统函数，如GETDATE()）</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>示例
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>Id_O int NOT NULL,</li>
 <li>OrderNo int NOT NULL,</li>
 <li>OrderDate date DEFAULT GETDATE(),</li>
@@ -1122,7 +1322,8 @@
 <li>)</li>
 </ol>
 </li>
-<li>ALTER TABLE Persons<ol>
+<li>ALTER TABLE Persons
+<ol>
 <li>ALTER City SET DEFAULT ‘sandnes’</li>
 <li>ALTER City DROP DEFAULT ‘sandne’</li>
 </ol>
@@ -1131,21 +1332,27 @@
 </li>
 </ol>
 </li>
-<li>SQL CREATE INDEX <ol>
+<li>SQL CREATE INDEX
+<ol>
 <li>用于给表创建索引，有索引的表搜索查询会更高效，但表更新会变慢，因为索引也要更新；因此，一般只给高频查询的表加索引</li>
-<li>语法<ol>
-<li>CREATE INDEX 索引名称<ol>
+<li>语法
+<ol>
+<li>CREATE INDEX 索引名称
+<ol>
 <li>ON TABLE 表名称（列名称）</li>
 </ol>
 </li>
-<li>CREATE UNIQUE INDEX 索引名称<ol>
+<li>CREATE UNIQUE INDEX 索引名称
+<ol>
 <li>唯一索引，表示表中的两个行不能有相同的索引值</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>示例<ol>
-<li>CREATE INDEX PersonIndex<ol>
+<li>示例
+<ol>
+<li>CREATE INDEX PersonIndex
+<ol>
 <li>ON Person(LastName)</li>
 <li>ON Person(LastName DESC)，降序</li>
 <li>ON Person(LatsName, FirstName)，索引两列</li>
@@ -1155,11 +1362,14 @@
 </li>
 </ol>
 </li>
-<li>SQL DROP 语句<ol>
+<li>SQL DROP 语句
+<ol>
 <li>用于删除表、索引、数据库等</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>DROP TABLE 表名称</li>
-<li>ALTER TABLE 表名称<ol>
+<li>ALTER TABLE 表名称
+<ol>
 <li>DROP INDEX 索引名称</li>
 </ol>
 </li>
@@ -1169,35 +1379,46 @@
 </li>
 </ol>
 </li>
-<li>SQL ALTER 语句<ol>
+<li>SQL ALTER 语句
+<ol>
 <li>用于在表中增加、删除、修改列</li>
-<li>语法<ol>
-<li>ALTER TABLE 表名称（增加列）<ol>
+<li>语法
+<ol>
+<li>ALTER TABLE 表名称（增加列）
+<ol>
 <li>ADD 列名称 数值类型</li>
 </ol>
 </li>
-<li>ALTER TALBE 表名称（删除列）<ol>
+<li>ALTER TALBE 表名称（删除列）
+<ol>
 <li>DROP COLUMN 列名称</li>
 </ol>
 </li>
-<li>ALTER TABLE 表名称（修改列的数据类型）<ol>
+<li>ALTER TABLE 表名称（修改列的数据类型）
+<ol>
 <li>ALTER COLUMN 表名称 数据类型</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>疑问<ol>
+<li>疑问
+<ol>
 <li>如何修改列名称？</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL AUTO_INCREMENT 语句<ol>
+<li>SQL AUTO_INCREMENT 语句
+<ol>
 <li>用来设定某个列，在每次插入新记录时，自动创建字段的值</li>
-<li>语法<ol>
-<li>MySQL<ol>
-<li>CREATE TABLE Persons<ol>
-<li>(<ol>
+<li>语法
+<ol>
+<li>MySQL
+<ol>
+<li>CREATE TABLE Persons
+<ol>
+<li>(
+<ol>
 <li>P_Id int NOT NULL AUTO_INCREMENT,</li>
 <li>LastName varchar(255) NOT NULL,</li>
 <li>FirstName varchar(255),</li>
@@ -1211,9 +1432,11 @@
 </li>
 </ol>
 </li>
-<li>说明<ol>
-<li>默认从1开始，每次递增1；如果想从100开始递增，则如下<ol>
-<li>ALTER TABLE 表名称 AUTO_INCREMENT&#x3D;100</li>
+<li>说明
+<ol>
+<li>默认从1开始，每次递增1；如果想从100开始递增，则如下
+<ol>
+<li>ALTER TABLE 表名称 AUTO_INCREMENT=100</li>
 </ol>
 </li>
 <li>当在表中插入新记录时，不必为递增的列赋值，它会自动创建值</li>
@@ -1221,11 +1444,14 @@
 </li>
 </ol>
 </li>
-<li>SQL VIEW 视图<ol>
+<li>SQL VIEW 视图
+<ol>
 <li>视图是基于 SQL 语句的结果集的可视化的表</li>
 <li>注：视图总是显示最新的数据。每当用户查询视图时，数据库引擎通过 SQL 语句来重建数据</li>
-<li>语法<ol>
-<li>CREATE VIEWE 视图名称<ol>
+<li>语法
+<ol>
+<li>CREATE VIEWE 视图名称
+<ol>
 <li>SELECT 列名称</li>
 <li>FROM 表名称</li>
 <li>WHERE 条件</li>
@@ -1233,19 +1459,23 @@
 </li>
 </ol>
 </li>
-<li>示例<ol>
-<li>创建<ol>
+<li>示例
+<ol>
+<li>创建
+<ol>
 <li>CREATE VIEW [Current Product List] AS</li>
 <li>SELECT ProductID, ProductName</li>
 <li>FROM Products</li>
-<li>WHERE Discontinued&#x3D;No</li>
+<li>WHERE Discontinued=No</li>
 </ol>
 </li>
-<li>查询<ol>
+<li>查询
+<ol>
 <li>SELECT * FROM [Current Product List]</li>
 </ol>
 </li>
-<li>撤消<ol>
+<li>撤消
+<ol>
 <li>DROP VIEW 视图名称</li>
 </ol>
 </li>
@@ -1253,10 +1483,13 @@
 </li>
 </ol>
 </li>
-<li>SQL DATE 函数<ol>
+<li>SQL DATE 函数
+<ol>
 <li>如果数据只包含日期，情况就会很简单；如果包含时间，情况就会比较复杂，且不容易维护，因此若非必要，尽量避免使用时间，如果实在需要，建议拆分成两个字段来存储比较好</li>
-<li>语法<ol>
-<li>MySQL<ol>
+<li>语法
+<ol>
+<li>MySQL
+<ol>
 <li>NOW()：返回当前的日期和时间</li>
 <li>CURDATE()：返回当前的日期</li>
 <li>CURTIME()：返回当前的时间</li>
@@ -1272,35 +1505,43 @@
 </li>
 </ol>
 </li>
-<li>SQL NULL <ol>
+<li>SQL NULL
+<ol>
 <li>NULL 值表示未知数据，表中的列默认可以存储NULL值</li>
 <li>使用 IS NULL 和 IS NOT NULL 来判断值是否为 NULL</li>
 <li>NULL 与 0 不等价，它们完全是两个概念</li>
-<li>NULL 不能使用一些运算符，例如 &gt;, &lt;, &#x3D;</li>
-<li>示例<ol>
+<li>NULL 不能使用一些运算符，例如 &gt;, &lt;, =</li>
+<li>示例
+<ol>
 <li>SELECT FirstName, LastName, Address FROM Persons</li>
 <li>WHERE Address IS NOT NULL</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL NULL 函数<ol>
+<li>SQL NULL 函数
+<ol>
 <li>ISNULL(), NVL(), IFNULL(), COALESCE()，这四个函数用来将 NULL 值转化为0，不过它们使用在不同的数据库中</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>ISNULL(列名称，0），微软</li>
 <li>NVA(列名称，0），Oracle</li>
 <li>IFNULL(列名称，0），或者 COALESCE(列名称，0），MySQL</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT ProductName, UnitPrice*(UnitsInStock+IFNULL(UnitsOnOrder, 0)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL 数据类型<ol>
-<li>MySQL<ol>
-<li>text 类型<ol>
+<li>SQL 数据类型
+<ol>
+<li>MySQL
+<ol>
+<li>text 类型
+<ol>
 <li>CHAR(size)，固定长度的字符串</li>
 <li>VARCHAR(size)，可变长度的字符串</li>
 <li>TINYTEXT，最大长度为255个字符的字符串</li>
@@ -1314,7 +1555,8 @@
 <li>SET，与ENUM类似，SET最多只能包含65个列表项，不过SET 可存储一个以上的值；</li>
 </ol>
 </li>
-<li>number 类型<ol>
+<li>number 类型
+<ol>
 <li>TINYINT(size)，常规，有正负，-128到+127；无正负符号，0到+128；可用 size 规定最大位数（符号通过添加UNSIGNED属性来标记）</li>
 <li>INT(size)，常规-32768到32767，无符号，0到65535</li>
 <li>SMALLINT(size)，常规-8388608到+8388607，无符号，0到16777215</li>
@@ -1322,7 +1564,8 @@
 <li>BIGINT(size)，常规-9223372036854775808到9223372036854775807；无符号，0到18446744073709551615</li>
 <li>FLOAT(size, d)，带有浮动小数点的小数字，size 规定最大位数，d 规定小数点右侧的最大位数</li>
 <li>DOUBLE(size, d)，带有浮动小数点的大数字，同上</li>
-<li>DECIMAL(size, d)<ol>
+<li>DECIMAL(size, d)
+<ol>
 <li>作为字符串存储的 DOUBLE 类型，小数点右侧位数固定</li>
 <li>size 用来指定最大位数，d 规定小数点右侧的最大位数</li>
 <li>最多支持28位，最后一位四舍五入</li>
@@ -1332,11 +1575,12 @@
 </li>
 </ol>
 </li>
-<li>date 类型<ol>
+<li>date 类型
+<ol>
 <li>DATE()：日期，格式YYYY-MM-DD，范围从1000-01-01到9999-01-01</li>
 <li>DATETIME()：时间，格式YYYY-MM-DD HH-MM-SS</li>
 <li>TIMESTAMP()：时间戳，使用Unix 纪元（1970-01-01 00:00:00 UTC）至今的描述来存储，格式：YYYY-MM-DD HH:MM:SS</li>
-<li>TIME()：时间，格式HH:MM:SS，支持范围从”-838:59:59”到”838:59:59”</li>
+<li>TIME()：时间，格式HH:MM:SS，支持范围从&quot;-838:59:59&quot;到&quot;838:59:59&quot;</li>
 <li>YEAR()：2位或4位格式的年，4位格式所允许的值为1901到2155；2位格式所允许的值：70到69，表示1970到2069</li>
 </ol>
 </li>
@@ -1344,14 +1588,17 @@
 </li>
 </ol>
 </li>
-<li>SQL 服务器 - RDBMS<ol>
+<li>SQL 服务器 - RDBMS
+<ol>
 <li>DBMS, database management system，数据库管理系统，提供各种函数用来对数据进行增删改查，使我们有能力在数据库中提取、修改或者存贮信息；</li>
 <li>RDBMS, relational database maganement system， 关系数据库管理系统</li>
 </ol>
 </li>
-<li>SQL 函数<ol>
+<li>SQL 函数
+<ol>
 <li>语法：SELECT 函数名(列) FROM 表名</li>
-<li>合计类函数，Aggregate，例如：<ol>
+<li>合计类函数，Aggregate，例如：
+<ol>
 <li>AVG（列名），返回某列的平均值；</li>
 <li>SUM（列名），返回某列的合计值；</li>
 <li>COUNT（列名），返回某列的行数（不含NULL值）</li>
@@ -1359,7 +1606,8 @@
 <li>MIN（列名），返回某列的最小值；</li>
 </ol>
 </li>
-<li>单一类函数，Scalar<ol>
+<li>单一类函数，Scalar
+<ol>
 <li>UCASE（c），将某个域转化成大写；</li>
 <li>LCASE（c），将某个域转化成小写；</li>
 <li>LEN（c），返回某个域的文本长度；</li>
@@ -1372,18 +1620,23 @@
 </li>
 </ol>
 </li>
-<li>SQL AVG 函数<ol>
+<li>SQL AVG 函数
+<ol>
 <li>用途：返回表格中“数值”列的平均值，NULL值不列入计算；</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT AVG（列名） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>SELECT AVG(OrderPrice) AS OrderAverage FROM Orders<ol>
+<li>示例
+<ol>
+<li>SELECT AVG(OrderPrice) AS OrderAverage FROM Orders
+<ol>
 <li>结果集：OrderAverage, 950</li>
 </ol>
 </li>
-<li>SELECT Customers FROM Orders<ol>
+<li>SELECT Customers FROM Orders
+<ol>
 <li>WHERE OrderPrice &gt; (AVG(OrderPrice) FROM Orders)</li>
 </ol>
 </li>
@@ -1391,104 +1644,130 @@
 </li>
 </ol>
 </li>
-<li>SQL COUNT 函数<ol>
+<li>SQL COUNT 函数
+<ol>
 <li>用途：返回匹配指定条件的行数</li>
-<li>语法：<ol>
+<li>语法：
+<ol>
 <li>SELECT COUNT（列名） FROM 表名</li>
 <li>SELECT COUNT （*） FROM 表名，返回表中的记录数（所有行都计算在内）；</li>
 <li>SELECT COUNT （DISTINCT 列名），返回指定列不同值的数目（即值相同会被视为忽略，只计算一次）</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>SELECT COUNT(Customer) AS CustomerNilsen FROM Orders WHERE Customer&#x3D;”Carter”</li>
+<li>示例
+<ol>
+<li>SELECT COUNT(Customer) AS CustomerNilsen FROM Orders WHERE Customer=“Carter”</li>
 <li>SELECT COUNT(*) AS NumberOfOrders FROM Orders</li>
 </ol>
 </li>
-<li>注意<ol>
+<li>注意
+<ol>
 <li>count 之后有带一个 AS， 用来对结果集进行列标题的命名；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL FIRST 函数<ol>
+<li>SQL FIRST 函数
+<ol>
 <li>用途：返回符合指定条件的查找结果集的指定列的第一个值（注：可以使用ORDER BY 对结果集进行排序）</li>
-<li>语法：<ol>
+<li>语法：
+<ol>
 <li>SELECT FIRST（列名） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT FIRST(OrderPrice) AS FirstOrderPrice FROM Orders</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL LAST 函数<ol>
+<li>SQL LAST 函数
+<ol>
 <li>用途：返回符合指定条件的查询结果集的指定列的最后一个值（注：可以使用 ORDER BY 结果集进行排序）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT LAST（列名） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT LAST(OrderPrice) AS LastOrderPrice FROM Orders</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL MAX 函数<ol>
+<li>SQL MAX 函数
+<ol>
 <li>用途：返回指定列的最大值（注：也可以用于文本列，可获得按字母排序的最大或最小值，NULL 值不计算在内 ）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT MAX（列名）AS 新列名 FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL MIN 函数<ol>
+<li>SQL MIN 函数
+<ol>
 <li>用途：返回指定列的最小值（注：可用于文本列，NULL 值不计算在内）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT MIN（列名） AS 新列名 FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT MIN(OrderPrice) AS SmallestOrderPrice FROM Orders</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL SUM 函数<ol>
+<li>SQL SUM 函数
+<ol>
 <li>用途：返回指定列的总和（注：只能是数值列）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT SUM（列名） AS 新列名 FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT SUM(OrderPrice) AS TotalPrice FROM Orders</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL GROUP BY 语句<ol>
+<li>SQL GROUP BY 语句
+<ol>
 <li>用途：用于对结果集，按指定列（一个或多个）的条件，进行分类统计</li>
-<li>语法<ol>
-<li>单列<ol>
+<li>语法
+<ol>
+<li>单列
+<ol>
 <li>SELECT 列名1，合计函数（列名2） FROM 表名 GROUP BY 列名1</li>
 </ol>
 </li>
-<li>多列<ol>
+<li>多列
+<ol>
 <li>SELECT 列名1，列名2，合计函数（列名3） FROM 表名 GROUP BY 列名1，列名2</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>示例<ol>
-<li>单列<ol>
+<li>示例
+<ol>
+<li>单列
+<ol>
 <li>SELECT Customer, SUM(OrderPrice) FROM Orders GROUP BY Customer</li>
 </ol>
 </li>
-<li>多列<ol>
+<li>多列
+<ol>
 <li>SELECT Customer, Orderdate, SUM(OrderPrice) FROM Orders GROUP BY Customer, Orderdate</li>
 </ol>
 </li>
@@ -1496,19 +1775,24 @@
 </li>
 </ol>
 </li>
-<li>SQL HAVING 子句<ol>
+<li>SQL HAVING 子句
+<ol>
 <li>用途：解决合计函数和 WHERE 关键字无法一起使用的问题</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT 列名，合计函数（列名）FROM 表名 HAVING 合计函数（列名）条件</li>
 </ol>
 </li>
-<li>示例<ol>
-<li>SELECT Customer, SUM(OrderPrice) FROM Orders<ol>
+<li>示例
+<ol>
+<li>SELECT Customer, SUM(OrderPrice) FROM Orders
+<ol>
 <li>GROUP BY Customer HAVING SUM(OrderPrice)&lt;2000</li>
 </ol>
 </li>
-<li>SELECT Customer, SUM(OrderPrice) FROM Orders<ol>
-<li>WHERE Customer&#x3D;’Bush’ OR Customer&#x3D;’Carter’</li>
+<li>SELECT Customer, SUM(OrderPrice) FROM Orders
+<ol>
+<li>WHERE Customer=‘Bush’ OR Customer=‘Carter’</li>
 <li>GROUP BY Customer</li>
 <li>HAVING SUM(OrderPrice)&gt;1500</li>
 </ol>
@@ -1517,86 +1801,107 @@
 </li>
 </ol>
 </li>
-<li>SQL UCASE 函数<ol>
+<li>SQL UCASE 函数
+<ol>
 <li>用途：将字段的值转换成大写</li>
-<li>语法：<ol>
+<li>语法：
+<ol>
 <li>SELECT UCASE（列名） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT UCASE(LastName) as LastName, FirstName FROM Persons</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL LCASE 函数<ol>
+<li>SQL LCASE 函数
+<ol>
 <li>用途：将字段的值转换成小写</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT LCASE（列名） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT LACASE(FirstName) as FirstName, LastName FROM Persons</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL MID 函数<ol>
+<li>SQL MID 函数
+<ol>
 <li>用途：用于从字段中提取指定长度的字符</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT MID（列名，start（超始值，长度）） FROM 表名</li>
 <li>长度的参数可选，如果不指定，表示从起始位置往后的所有剩余字符</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT MID(City, start(1,3)) AS ShortCity FROM Persons</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL LEN 函数<ol>
+<li>SQL LEN 函数
+<ol>
 <li>用途：用于返回字符串的长度</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT LEN（列名） AS 新列名 FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT LEN(City) AS CityLength FROM Persons</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL ROUND 函数<ol>
+<li>SQL ROUND 函数
+<ol>
 <li>用途：用于将数值进行四舍五入到指定的小数位数</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT ROUND（列名，小数位数） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT ProductName, ROUND(UnitPrice, 0) AS UnitPrice FROM Products</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL NOW 函数<ol>
+<li>SQL NOW 函数
+<ol>
 <li>用途：用于获取当前的日期和时间（注：如果使用SQL，则应用 getdate 函数）</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT NOW() FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT Product, UnitPrice, NOW() as Perdate FROM Products</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>SQL FORMAT 函数<ol>
+<li>SQL FORMAT 函数
+<ol>
 <li>用途：用于将值按指定格式进行转化</li>
-<li>语法<ol>
+<li>语法
+<ol>
 <li>SELECT FORMAT（列名，格式） FROM 表名</li>
 </ol>
 </li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>SELECT ProductName, UnitPrice, FORMAT(NOW(), ‘YYYY-MM-DD’) as PerDate FROM Products</li>
 </ol>
 </li>

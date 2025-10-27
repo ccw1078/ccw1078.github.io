@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基本知识 ubuntu 安装 caffe  sudo apt-get install git sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install –no-install-re">
+    <meta name="description" content="基本知识  ubuntu 安装 caffe  sudo apt-get install git sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install --no-install-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习-21天实战Caffe">
 <meta property="og:url" content="https://ccw1078.github.io/2019/04/04/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-21%E5%A4%A9%E5%AE%9E%E6%88%98Caffe/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="基本知识 ubuntu 安装 caffe  sudo apt-get install git sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install –no-install-re">
+<meta property="og:description" content="基本知识  ubuntu 安装 caffe  sudo apt-get install git sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sudo apt-get install --no-install-">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-04T04:10:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T23:08:43.598Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -278,11 +282,13 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>基本知识<ol>
-<li>ubuntu 安装 caffe <ol>
+<li>基本知识
+<ol>
+<li>ubuntu 安装 caffe
+<ol>
 <li>sudo apt-get install git</li>
 <li>sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler</li>
-<li>sudo apt-get install –no-install-recommends libboost-all-dev</li>
+<li>sudo apt-get install --no-install-recommends libboost-all-dev</li>
 <li>sudo apt-get install libatlas-base-dev</li>
 <li>sudo apt-get install python-dev</li>
 <li>sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</li>
@@ -292,35 +298,43 @@
 <li>caffe 使用 lmdb 和 leveldb 两个工具来实现数据格式的标准化，这样有助于简化模型，避免因为输入数据格式多种多样，产生适配困难；</li>
 </ol>
 </li>
-<li>Caffe 代码梳理<ol>
-<li>目录结构<ol>
+<li>Caffe 代码梳理
+<ol>
+<li>目录结构
+<ol>
 <li>include 存放头文件，src 存放源代码，tools 存放常用工具；</li>
 </ol>
 </li>
-<li>如何有效的阅读源码<ol>
-<li>从 src&#x2F;caffe&#x2F;proto&#x2F;caffe.proto 开始，了解基本数据结构的内存对象和磁盘文件的一一映射关系（将文件加载到内存对象，和将内存对象保存为文件）；</li>
+<li>如何有效的阅读源码
+<ol>
+<li>从 src/caffe/proto/caffe.proto 开始，了解基本数据结构的内存对象和磁盘文件的一一映射关系（将文件加载到内存对象，和将内存对象保存为文件）；</li>
 <li>看头文件：通过头文件声明理解整个框架（可以发挥想象力去猜测具体实现）</li>
 <li>有针对性的看 cpp 和 cu 文件；</li>
-<li>编写各种工具，集成到 tools 中<ol>
+<li>编写各种工具，集成到 tools 中
+<ol>
 <li>tools 下面本身已经有很多实用的工具，包括训练模型、测试模型、特征提取、转换数据格式等，可以根据需要修改；</li>
 <li>也可以使用 python 或者 matlab 包装 Caffe 的方法，便于调节模型训练效果；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>Caffe 支持哪些深度学习特性<ol>
-<li>卷积层<ol>
+<li>Caffe 支持哪些深度学习特性
+<ol>
+<li>卷积层
+<ol>
 <li>大自然中一种常见的运算，一切信号的观测、采集、传输、处理都可以使用卷积过程来实现；</li>
 <li>卷积层的计算为三维或四维的计算；与二维相比，在于增加了多个通道，每个通道仍然使用二维卷积的方法计算，多个通道与多个卷积核分别进行二维卷积，得到多通道的输出，之后再“合并”为一个通道；</li>
 <li>卷积计算时没有“翻转”，而是做滑动窗口计算；</li>
 </ol>
 </li>
-<li>全连接层<ol>
+<li>全连接层
+<ol>
 <li>每个节点与相邻的所有节点都有连接关系，所以叫“全连接层”；</li>
 <li>CNN 网络中，前几层卷积层参数量占比小，但计算量大；后几层全连接层参数占比大，但计算量小；因此，在做计算速度优化时，重点放在卷积层；而在做参数优化、权值剪裁时，重点放在全连接层；</li>
 </ol>
 </li>
-<li>激活函数<ol>
+<li>激活函数
+<ol>
 <li>激活函数是一个非线性处理单元；用来将前面一层的输入，压缩到特定的值域；</li>
 <li>当深度神经网络配备上激活函数后，理论就可以逼近任意函数；</li>
 <li>常用的激活函数有 Sigmoid、tanh、ReLU 等三类，其中前两个是饱和激活函数，最后一个是非饱和激活函数；</li>
@@ -330,34 +344,41 @@
 </li>
 </ol>
 </li>
-<li>Caffe 数据结构<ol>
-<li>Blob<ol>
-<li>Blob 基本用法<ol>
+<li>Caffe 数据结构
+<ol>
+<li>Blob
+<ol>
+<li>Blob 基本用法
+<ol>
 <li>Blob 是个四维数组，用来存储各种数据，例如图像、权值等；维度从低到高分别为 width, height, channels, num；</li>
 <li>在进行网络计算时，每层的输入和输出都需要通过 Blob 对象进行缓冲；它是 Caffe 的基本存储单元；</li>
 <li>Blob 可以通过下标，其访问方式跟数组下标的访问方式一致；</li>
-<li>据说 Blob 可以实现 CPU 和 GPU 的数组同步，好奇是如何实现的呢？<ol>
+<li>据说 Blob 可以实现 CPU 和 GPU 的数组同步，好奇是如何实现的呢？
+<ol>
 <li>猜测：如果仅仅是数组，正常应该是通过 CUDA 实现数据的拷贝吧；</li>
 </ol>
 </li>
-<li>blob 的方法<ol>
+<li>blob 的方法
+<ol>
 <li>count()，获取元素个数；</li>
 <li>mutable_cpu_data()，获取源值数组在 CPU 主存中的指针；</li>
 <li>mutable_gpu_data()，获取源值数组在 GPU 显存中的指针；</li>
 <li>mutable_cpu_diff()，获取差值数组在 CPU 主存中的指针；</li>
 <li>mutable_gpu_diff()，获取差值数组在 GPU 显存中的指针；</li>
-<li>Update()，将 mutable_cpu_data 与 mutable_cpu_diff 两个数组整合，实现 data &#x3D; data - diff 的操作；</li>
+<li>Update()，将 mutable_cpu_data 与 mutable_cpu_diff 两个数组整合，实现 data = data - diff 的操作；</li>
 <li>data_at()，获取指定下标位置的值；</li>
 <li>asum_data() ，用来实现所有元素的绝对值之和（L1 范数）；</li>
 <li>sumsq_data() ，用来实现所有元素的平方和（L2范数）；</li>
 <li>shape_string()，获取维度（字符串格式）；</li>
-<li>ToProto(&amp;bp, true)，将 Blob 对象序列化，第二个参数表示是否携带 diff 数组（默认不带）<ol>
+<li>ToProto(&amp;bp, true)，将 Blob 对象序列化，第二个参数表示是否携带 diff 数组（默认不带）
+<ol>
 <li>BlobProto bp;</li>
 <li>a.ToProto(&amp;bp, true);</li>
 <li>WriteProtoToBinaryFile(bp, “a.blob”);</li>
 </ol>
 </li>
-<li>FromProto(bp2, true)，从序列化对象中初始化 Blob 对象，第二个参数表示是否连同形状<ol>
+<li>FromProto(bp2, true)，从序列化对象中初始化 Blob 对象，第二个参数表示是否连同形状
+<ol>
 <li>BlobProto bp2;</li>
 <li>ReadProtoFromBinaryFileOrDie(“a.blob”, &amp;bp2);</li>
 <li>Blob<float> b;</li>
@@ -368,24 +389,30 @@
 </li>
 </ol>
 </li>
-<li>数据结构描述<ol>
+<li>数据结构描述
+<ol>
 <li>BlobShape 和 BlobProto 本质上是两个结构体，不过用对象进行了封装，这样可以隐藏复杂性，简化调用过程，减少出错概率；</li>
 </ol>
 </li>
-<li>Blob 实现<ol>
+<li>Blob 实现
+<ol>
 <li>Blob 类的详细源代码，各种方法的具体实现过程；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>Layer<ol>
-<li>基本原理<ol>
-<li>一般由四部分组成，它们都是使用 Blob 存储；<ol>
+<li>Layer
+<ol>
+<li>基本原理
+<ol>
+<li>一般由四部分组成，它们都是使用 Blob 存储；
+<ol>
 <li>必有：一个输入 Blob，一个输出 Blob；</li>
 <li>可选：权值(Weight) Blob ，偏置项(Bias) Blob；</li>
 </ol>
 </li>
-<li>两个运算方向<ol>
+<li>两个运算方向
+<ol>
 <li>前向传播(Forward)：对输入 Blob 进行处理，得到输出 Blob（如果有权值和偏置项，则它们会参与输出计算）；</li>
 <li>反向传播(backward)：对输出 Blob 的 diff 进行处理，得到输入 Blob 的 diff（如果有权值和偏置，则也可能会参与计算）；</li>
 </ol>
@@ -396,46 +423,55 @@
 <li>Layer 实现</li>
 </ol>
 </li>
-<li>Net<ol>
-<li>Net 基本用法<ol>
+<li>Net
+<ol>
+<li>Net 基本用法
+<ol>
 <li>对应的描述文件为 *.prototxt；</li>
 <li>一般既包含 Layer 对象，也包含 Blob 对象；</li>
 </ol>
 </li>
 <li>数据结构描述：</li>
-<li>Net 实现<ol>
+<li>Net 实现
+<ol>
 <li>两种类型的 Blob，一种是 param 开头的权值 Blob（归属模型），一种是以 blob 开头的输入和输出 Blob（归属数据）</li>
 <li>整个深度学习的过程，就是不断从输入和输出数据 Blob 提取知识，存储到权值 Blob 模型中，用于后来的计算；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>机制和策略<ol>
+<li>机制和策略
+<ol>
 <li>机制提供了使用的可能性；策略则提到了具体的使用方法；</li>
 <li>机制和策略是相对的概述，当前的策略也可以是上一层更大抽象规则下的机制；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>Caffe I&#x2F;O 模块<ol>
-<li>数据读取层：dataLayer 是 Layer 派生类，可以读取 LMDB、LEVELDB，还可以直接从原始图像读取(ImageDataLayer)；<ol>
+<li>Caffe I/O 模块
+<ol>
+<li>数据读取层：dataLayer 是 Layer 派生类，可以读取 LMDB、LEVELDB，还可以直接从原始图像读取(ImageDataLayer)；
+<ol>
 <li>数据结构描述</li>
 <li>数据读取层实现</li>
 </ol>
 </li>
-<li>数据变换器<ol>
-<li>提供了对原始输入图像的预处理方法，包括随机切块、随机镜像、幅度缩放、去均值、灰度&#x2F;色度变换等；</li>
+<li>数据变换器
+<ol>
+<li>提供了对原始输入图像的预处理方法，包括随机切块、随机镜像、幅度缩放、去均值、灰度/色度变换等；</li>
 <li>数据结构描述</li>
 <li>数据变换器的实现</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>Caffe 模型<ol>
+<li>Caffe 模型
+<ol>
 <li>prototxt 表示</li>
 <li>内存中的表示</li>
 <li>磁盘上的表示</li>
-<li>Caffe Model Zoo<ol>
+<li>Caffe Model Zoo
+<ol>
 <li>模型分享平台；各地研究人员分享模型和参数的平台，通过共享结果，节省人力物力，提高研究效率；</li>
 </ol>
 </li>
@@ -444,7 +480,8 @@
 <li>Caffe 前向传播计算</li>
 <li>Caffe 反向传播计算</li>
 <li>Caffe 最优化求解过程</li>
-<li>Caffe 实用工具<ol>
+<li>Caffe 实用工具
+<ol>
 <li>训练和预测</li>
 <li>特征提取</li>
 <li>转换图像格式</li>
@@ -452,11 +489,14 @@
 <li>自己编写工具</li>
 </ol>
 </li>
-<li>源码阅读<ol>
-<li>image_data_layer.cpp<ol>
+<li>源码阅读
+<ol>
+<li>image_data_layer.cpp
+<ol>
 <li>Image_data_layer 层的实现，实际上也是使用 opencv 来对图像进行变换；</li>
 <li>ReadImageToCVMat 函数，可以将图片读入的同时，进行尺寸设置；</li>
-<li>image_data_layer 继承自 BasePrefetchingDataLayer<ol>
+<li>image_data_layer 继承自 BasePrefetchingDataLayer
+<ol>
 <li>BasePrefetchingDataLayer 则双重继承自 BaseDataLayer 和 InternalThread</li>
 <li>BaseDataLayer 继承自 Layer；</li>
 </ol>
@@ -466,25 +506,31 @@
 </li>
 </ol>
 </li>
-<li>其他事项<ol>
-<li>待学习如何使用这两个工具；<ol>
+<li>其他事项
+<ol>
+<li>待学习如何使用这两个工具；
+<ol>
 <li>caffe train 使用训练数据集（图片+标签），对模型进行训练，最后得到的结果为权值文件</li>
 <li>caffe test ：用 train 的结果（即权值文件），对测试数据集进行测试，检查训练的结果是否达到预期；</li>
 </ol>
 </li>
-<li>专业名词<ol>
+<li>专业名词
+<ol>
 <li>antialias 抗锯齿</li>
 <li>high endian 大端法，low endian 小端法，intel 的处理器使用小端法</li>
 </ol>
 </li>
-<li>问题集<ol>
+<li>问题集
+<ol>
 <li>标签数据集是用来存储什么数据？</li>
 <li>如何使用训练好的模型，检测自己的图片？</li>
-<li>如何将自己的图片，转换成 Caffe 可以识别的格式？<ol>
+<li>如何将自己的图片，转换成 Caffe 可以识别的格式？
+<ol>
 <li>据说要转换成 LMDB 格式才能够被 caffe 识别；</li>
 </ol>
 </li>
-<li>如何使用 LMDB 工具转换图片的格式？<ol>
+<li>如何使用 LMDB 工具转换图片的格式？
+<ol>
 <li>估计可以在 caffe 目录下的 tools 常用工具文件夹中找找看；</li>
 </ol>
 </li>

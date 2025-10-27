@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -278,10 +282,9 @@
               <div class="markdown-body">
                 
                 <p>将函数做为参数传递给另外一个函数时，该函数不用写括号，原因：如果写了括号，相当于把函数的执行返回结果，做为参数传入，而不是传入一个函数对象本身了。</p>
-<pre><code class="javascript">function A();
+<pre><code class="language-javascript">function A();
 function B(func, args);
-// 注意区分B(A, args) 和 B(A(), args) 二者的区别；
-</code></pre>
+// 注意区分B(A, args) 和 B(A(), args) 二者的区别；</code></pre>
 
                 
               </div>

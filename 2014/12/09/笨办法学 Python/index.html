@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="单词符号表、名称、作用 print：打印； “”：双引号，表示引号内的内容是字符串； ‘’：单引号，表示引号内的内容是字符串，作用同双引号，区别在于双引号表示长内容，单引号常用于表示短单词；可与双引号配合使用，即在双引号表示的长句子内，用单引号表示某个需要加引号的单词； #：井号，表示单行注释 井号后面的内容不会被执行 多行注释则在每一行开头加井号； 注释不一定写在一行的开头，也可以写在一行的末">
+    <meta name="description" content="单词符号表、名称、作用  print：打印； “”：双引号，表示引号内的内容是字符串； ‘’：单引号，表示引号内的内容是字符串，作用同双引号，区别在于双引号表示长内容，单引号常用于表示短单词；可与双引号配合使用，即在双引号表示的长句子内，用单引号表示某个需要加引号的单词； #：井号，表示单行注释  井号后面的内容不会被执行 多行注释则在每一行开头加井号； 注释不一定写在一行的开头，也可以写在一行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笨办法学 Python">
 <meta property="og:url" content="https://ccw1078.github.io/2014/12/09/%E7%AC%A8%E5%8A%9E%E6%B3%95%E5%AD%A6%20Python/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="单词符号表、名称、作用 print：打印； “”：双引号，表示引号内的内容是字符串； ‘’：单引号，表示引号内的内容是字符串，作用同双引号，区别在于双引号表示长内容，单引号常用于表示短单词；可与双引号配合使用，即在双引号表示的长句子内，用单引号表示某个需要加引号的单词； #：井号，表示单行注释 井号后面的内容不会被执行 多行注释则在每一行开头加井号； 注释不一定写在一行的开头，也可以写在一行的末">
+<meta property="og:description" content="单词符号表、名称、作用  print：打印； “”：双引号，表示引号内的内容是字符串； ‘’：单引号，表示引号内的内容是字符串，作用同双引号，区别在于双引号表示长内容，单引号常用于表示短单词；可与双引号配合使用，即在双引号表示的长句子内，用单引号表示某个需要加引号的单词； #：井号，表示单行注释  井号后面的内容不会被执行 多行注释则在每一行开头加井号； 注释不一定写在一行的开头，也可以写在一行">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-12-09T00:32:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T23:08:43.585Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -235,7 +239,7 @@
         
         
         
-          109 分钟
+          112 分钟
         
       </span>
     
@@ -278,73 +282,86 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>单词符号表、名称、作用<ol>
+<li>单词符号表、名称、作用
+<ol>
 <li>print：打印；</li>
 <li>“”：双引号，表示引号内的内容是字符串；</li>
 <li>‘’：单引号，表示引号内的内容是字符串，作用同双引号，区别在于双引号表示长内容，单引号常用于表示短单词；可与双引号配合使用，即在双引号表示的长句子内，用单引号表示某个需要加引号的单词；</li>
-<li>#：井号，表示单行注释<ol>
+<li>#：井号，表示单行注释
+<ol>
 <li>井号后面的内容不会被执行</li>
 <li>多行注释则在每一行开头加井号；</li>
 <li>注释不一定写在一行的开头，也可以写在一行的末尾；</li>
 <li>如果被双引号括起来，则此时井号不会被当作注释符，例如：print “Hi, # here.”</li>
 </ol>
 </li>
-<li>+： 加号<ol>
+<li>+： 加号
+<ol>
 <li>数学运算符，对符号两侧的数值做加法运算；</li>
 <li>还可以用来在print表示字符串变量的拼接，例如print var1 + var2 + var3（如果变量是数值，则此时就会运算了，如果有些是数值，有些是字符串，则会报错）</li>
 </ol>
 </li>
 <li>-： 减号，同上，减法运算；</li>
-<li>*： 乘号<ol>
+<li>*： 乘号
+<ol>
 <li>乘法运算；</li>
 <li>还可以用来表示多次重复打印某个字符串，例如print “string” * 10（将string连续打印10遍）；</li>
 </ol>
 </li>
-<li>&#x2F;，斜杠，同上，除法运算；</li>
+<li>/，斜杠，同上，除法运算；</li>
 <li>%，百分号，同上，求余数运算；</li>
 <li>&lt;，小于号</li>
-<li>&#x2F;&gt;，大于号</li>
-<li>&lt;&#x3D;，小于等于号</li>
-<li>&#x2F;&gt;&#x3D;，大于等于号</li>
-<li>&#x3D;<ol>
+<li>/&gt;，大于号</li>
+<li>&lt;=，小于等于号</li>
+<li>/&gt;=，大于等于号</li>
+<li>=
+<ol>
 <li>等于号，赋值；</li>
-<li>可以这样用：a, b, c &#x3D; 1, 2, 3（在一行中一次性将3个值赋值给3个变量）<ol>
-<li>这样做有一个意想不到的好处，示例： a, b &#x3D; b, a+b（即在 a 改变数值前，将 a 原来的值用于运算得到新的 b 值）</li>
+<li>可以这样用：a, b, c = 1, 2, 3（在一行中一次性将3个值赋值给3个变量）
+<ol>
+<li>这样做有一个意想不到的好处，示例： a, b = b, a+b（即在 a 改变数值前，将 a 原来的值用于运算得到新的 b 值）</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>.  点<ol>
+<li>.  点
+<ol>
 <li>可用来表示浮点数</li>
 <li>使用函数，示例：file.read()</li>
 </ol>
 </li>
-<li>&#x3D;&#x3D;，双等号，用来判断两个值是否相同；</li>
-<li>%s<ol>
+<li>==，双等号，用来判断两个值是否相同；</li>
+<li>%s
+<ol>
 <li>将字符串类型的变量带到字符串中</li>
 <li>当变量是数值类型时，运行不会报错，仍然能够正常输出；（猜测可能将数值转成了字符串？）</li>
 </ol>
 </li>
-<li>%d<ol>
+<li>%d
+<ol>
 <li>将数值类型的变量带到字符串中；</li>
 <li>当变量值是字符串时，运行会报错，提示需要数值类型，而非字符串类型；</li>
 </ol>
 </li>
-<li>%r<ol>
+<li>%r
+<ol>
 <li>将任何类型的变量带到字符串中（不管什么都打印出来，只有在想获取某些东西的调试信息时使用，正常应该使用%s）（%r用于调试，%s用于显示）</li>
 <li>%r 用来输出原始格式，debug时使用比较好，平时用%s；使用%r会使得字符串中的“\n”换行符失效；</li>
 </ol>
 </li>
-<li>%：百分号<ol>
+<li>%：百分号
+<ol>
 <li>可在字符串中实现对变量的引用，经测试不能用来在字符串中做运算，但可以做好运算再引用到字符串中；</li>
 </ol>
 </li>
-<li>( )：括号<ol>
+<li>( )：括号
+<ol>
 <li>在字符串中引用变量时，可以用来容纳多个变量，例如 % (var1, var2)</li>
 <li>和函数一起使用，括号内可放函数的参数，多个参数之间用逗号隔开；</li>
 </ol>
 </li>
-<li>， 逗号<ol>
+<li>， 逗号
+<ol>
 <li>在字符串中引用变量时，可以用来连接两个变量；变量用逗号隔开，示例：% (var1, var2)</li>
 <li>在print中，可以用来表示连接两个变量，输出时两个变量会在同一行，逗号会变成空格，例如print var1, var2（输出结果为var1 var2，如果没有逗号，会报错）（此处如果使用+加号，则表示将变量的字符串拼接在一起，中间没有空格）</li>
 <li>print打印自带换行，有逗号则不会换行；即如果在print后面加逗号，则print结束后，不会输出换行符跑到下一行，例如 print var1,</li>
@@ -356,12 +373,14 @@
 <li>_ ：下划线：常在变量命名时用来连接单词，意指空格，函数的命名也是使用下划线，类的命名则使用驼峰大写</li>
 <li>False，开头字母大写时，是一个布尔值；类似的还有True；输出这两个值的时候，不需要加引号，它们是python的关键字；</li>
 <li>使用%r的时候，\n 就不灵了，因为%r会输出原始格式，例如：print “Hi %r here.” % Mon\nFeb</li>
-<li>“”” 或者 ‘’’，三个连续的双引号或者三个单引号，用来表示段落字符串；</li>
+<li>“”&quot; 或者 ‘’'，三个连续的双引号或者三个单引号，用来表示段落字符串；</li>
 <li>\n：换行；类似的还有\t（水平制表符），\v（垂直制表符），\r（回车符）；</li>
 <li>\： 反斜杠，转义符，用来输入一些做为关键字符的符号本身；</li>
-<li>raw_input()：<ol>
+<li>raw_input()：
+<ol>
 <li>获得用户在控制台的输入信息；</li>
-<li>raw_input和input：<ol>
+<li>raw_input和input：
+<ol>
 <li>通过读取控制台的输入，实现与用户的交互；</li>
 <li>二者的差别在于前者可以读取任何输入，后者希望读取一个合法的输入（合乎python的语法），例如字符串需要用引号括起来（会被当作代码处理，应该避开使用这个函数）；</li>
 </ol>
@@ -369,38 +388,43 @@
 <li>raw_input()的括号里面可以放提示；</li>
 </ol>
 </li>
-<li>from sys import argv：<ol>
+<li>from sys import argv：
+<ol>
 <li>从 sys 引入 argv 模块（全称：argument variable，参数变量；模块有一些特性，可以方便的产生一些作用；argv 的特性是会保存运行python脚本时传递给 python 脚本的参数</li>
 <li>如果有多个参数传递给脚本，在引用argv模块后，需要将argv解包，并将参数依次赋值给相应的变量</li>
 <li>import 导入的参数会当作字符串来解包并赋值给相应的变量</li>
 </ol>
 </li>
-<li>open(filename)：<ol>
+<li>open(filename)：
+<ol>
 <li>作用：打开文件，括号内的参数为要打开的文件的文件名；</li>
 <li>open返回的是文件对象本身，不是文件内容，可在这个对象中找出想要的内容；</li>
 <li>open(filename, ‘w’)：第二个参数 w 的意思是以写入模式打开，此种模式允许对文件进行写入；如果是 r 参数，则是只读模式；a 参数（append）表示追加模式；</li>
 <li>w+, r+, a+：将文件以同时读写的方式打开，不同符号实现在文件内的不同定位；</li>
 </ol>
 </li>
-<li>read()：<ol>
-<li>作用：读取文件，可将结果赋值给一个变量，示例：txt &#x3D; open(filename).read()；</li>
+<li>read()：
+<ol>
+<li>作用：读取文件，可将结果赋值给一个变量，示例：txt = open(filename).read()；</li>
 <li>read()一旦运行，文件会被python关掉，可以无需再运行open(filename).close()；</li>
 </ol>
 </li>
 <li>close()：关闭一个文件，示例：open(filename).close()；</li>
-<li>readline()：<ol>
+<li>readline()：
+<ol>
 <li>读取文件中的一行，示例open(filename).readline(3)；</li>
-<li>读完之后，会将“磁头”（游标）移动到该行的换行符”\n”后面；</li>
+<li>读完之后，会将“磁头”（游标）移动到该行的换行符&quot;\n&quot;后面；</li>
 <li>readline()会扫描文件，直至找到一个\n，然后返回前面的内容，同时停止在那个位置，位置信息记录在相应的文件中；下次再调用readline()时，会接着从停止的位置接着往下扫描；</li>
 <li>readlines() 会一次性将整个文件读入内存，而 readline() 一次只读一行，前者处理速度更快,但对内存大小有要求，后者则适合当文件超过内存大小时使用；</li>
 </ol>
 </li>
 <li>truncate()：清空文件，小心使用；</li>
-<li>write(stuff)：将stuff写入文件中，示例open(filename).write(stuff)；stuff如果是字符串，可以使用+将多个字符串连接起来（包括转义符）同时写入，示例：write(var1+”\n”+var2+”\n”)</li>
+<li>write(stuff)：将stuff写入文件中，示例open(filename).write(stuff)；stuff如果是字符串，可以使用+将多个字符串连接起来（包括转义符）同时写入，示例：write(var1+“\n”+var2+“\n”)</li>
 <li>CTRL^C：可以在脚本运行的过程中途退出，一种方法是使用raw_input()来获得用户的这个指令；</li>
 <li>from oa.path import exists：exists(filename)可以用来判断filename文件是否存在，如果存在返回True，如果不存在，返回False；</li>
 <li>len(string)：获得string字符串的长度，返回长度数值；示例：len(open(filename).read())</li>
-<li>def：<ol>
+<li>def：
+<ol>
 <li>定义一个函数（或者叫创建一个函数）；示例：def print_two(arg1, arg2)；</li>
 <li>函数里面的变量，和脚本里面的变量，是没有联系的；（目测在js里面叫做词法作用域？）</li>
 <li>函数可以返回某些东西；也可以不返回值（此点跟 js 不一样, js 如果没有指定返回值，会返回undefined值）（后来发现一样，没有指定返回值，会返回none）</li>
@@ -408,7 +432,8 @@
 </li>
 <li>*argv：可以用来接收多个参数，之后再解包依次赋值给变量，示例：def print_two(*argv)；</li>
 <li>函数的参数支持：单独的变量，数字与变量的运算、数字与数字的运算（如果参数是数值类型的话）、变量与变量的运算；</li>
-<li>seek()：<ol>
+<li>seek()：
+<ol>
 <li>作用：操作文件游标移动</li>
 <li>示例：f.seek(0)</li>
 <li>参数0表示从头，参数1表示从当前，参数2表示从末尾；</li>
@@ -417,29 +442,35 @@
 </ol>
 </li>
 <li><code># -*- coding: utf-8 -*-：转成utf-8编码，可以直接写成 #coding: utf-8，不知为什么作者写得那么复杂，为了好看？</code></li>
-<li>使用%s和%d，在字符串引用参数时，可以在语句后面直接写上参数名，也可以由函数返回参数值；示例：<ol>
-<li>print “%s, %d, %d” % function(var),  </li>
-<li>def function(var)<ol>
+<li>使用%s和%d，在字符串引用参数时，可以在语句后面直接写上参数名，也可以由函数返回参数值；示例：
+<ol>
+<li>print “%s, %d, %d” % function(var),</li>
+<li>def function(var)
+<ol>
 <li>{return var1, var2, var3)}</li>
 </ol>
 </li>
 </ol>
 </li>
 <li>from ex25 import *：将ex25文件里面的模块全部导出来，省得每次调用函数的时候老是需要写前缀“ex25.”；</li>
-<li>help(ex25)：用来显示ex25里面的帮助文档，或者叫“文档注释”；文档注释是这么写的<ol>
-<li>def function(var)<ol>
-<li>“””这里是文档注释，用三个双引号括起来”””</li>
+<li>help(ex25)：用来显示ex25里面的帮助文档，或者叫“文档注释”；文档注释是这么写的
+<ol>
+<li>def function(var)
+<ol>
+<li>“”“这里是文档注释，用三个双引号括起来”“”</li>
 </ol>
 </li>
 </ol>
 </li>
 <li>还可以这样：help(ex25.function1)，只显示其中某个函数的注释；</li>
-<li>布尔表达式<ol>
+<li>布尔表达式
+<ol>
 <li>and：从左到右找False，找到后返回False，找不到返回True；</li>
 <li>or：从左到右找True，找到后返回True，找不到返回False；</li>
 </ol>
 </li>
-<li>布尔表达式返回：按规则寻找，有找到时，按规则返回；没找到时，返回两个操作对象中后面的那个<ol>
+<li>布尔表达式返回：按规则寻找，有找到时，按规则返回；没找到时，返回两个操作对象中后面的那个
+<ol>
 <li>“test” and 1：返回1；</li>
 <li>1 and “test”，返回test</li>
 <li>1 and False：返回False；</li>
@@ -452,25 +483,30 @@
 <li>Ture or 1：返回True</li>
 </ol>
 </li>
-<li>+&#x3D;：此符号可以用来表示递增，用法示例：x +&#x3D; 2，表示：x &#x3D; x + 2；类似的有 x -&#x3D; 2, x *&#x3D; 2；x &#x2F;&#x3D; 2；</li>
-<li>print i +&#x3D; 1是不可接受的，会报错；需要这样子：i +&#x3D; 1, print i；另外，print i + 1，是允许的（目测在print语句中不能使用等号&#x3D;来给变量赋值）</li>
+<li>+=：此符号可以用来表示递增，用法示例：x += 2，表示：x = x + 2；类似的有 x -= 2, x *= 2；x /= 2；</li>
+<li>print i += 1是不可接受的，会报错；需要这样子：i += 1, print i；另外，print i + 1，是允许的（目测在print语句中不能使用等号=来给变量赋值）</li>
 <li>if 语句首先以冒号结束，接下来需要4个空格的缩进（经测试发现1个以上的空格就可以），如果不缩进，程序会报错；</li>
 <li>if, elif, else：组成段落后，python只会运行它遇到的第1个是True的块；</li>
-<li>列表list：<ol>
-<li>一个按顺序存放东西的容器；以方括号[]开头和结束，中间的东西用逗号隔开；可以用等号&#x3D;赋值给一个变量；</li>
+<li>列表list：
+<ol>
+<li>一个按顺序存放东西的容器；以方括号[]开头和结束，中间的东西用逗号隔开；可以用等号=赋值给一个变量；</li>
 <li>list.append(i)：在列表的尾部追加元素i；使用示例：list.append(i)；</li>
 <li>list[-1]：获取倒数第一个元素；list[-2]：获取列表中倒数第2个元素；</li>
 </ol>
 </li>
-<li>range(x, y)：x和y需要是整数；如果x是以零开头，则可以简写成range(y)；<ol>
-<li>range()函数的返回值是一个列表，因此可以写成：elements &#x3D; range(0, 6)，它的意思等同于 elements &#x3D; [], for i in range(0, 6), elements.append(i)；</li>
+<li>range(x, y)：x和y需要是整数；如果x是以零开头，则可以简写成range(y)；
+<ol>
+<li>range()函数的返回值是一个列表，因此可以写成：elements = range(0, 6)，它的意思等同于 elements = [], for i in range(0, 6), elements.append(i)；</li>
 </ol>
 </li>
 <li>目测列表才有pop属性，字符串好像没有，因为使用string.pop会报错，提示无此属性；</li>
-<li>字符串的操作<ol>
-<li>replace<ol>
+<li>字符串的操作
+<ol>
+<li>replace
+<ol>
 <li>用法：用来将字符串的旧字符替换为新字符，并且可以指定最大替换条目（次数）(可选参数），返回替换后的新字符串</li>
-<li>示例：<ol>
+<li>示例：
+<ol>
 <li>str_A.replace(old_str, new_str)</li>
 <li>str_B.replace(old_str, new_str，5)</li>
 </ol>
@@ -479,7 +515,8 @@
 </li>
 </ol>
 </li>
-<li>列表有很多操作，如下：<ol>
+<li>列表有很多操作，如下：
+<ol>
 <li>add</li>
 <li>contains</li>
 <li>deitem</li>
@@ -497,28 +534,33 @@
 <li>sizeof</li>
 <li>reversed</li>
 <li>imul</li>
-<li>pop：<ol>
+<li>pop：
+<ol>
 <li>pop( )：如果括号内没有数字，表示删除最后一个元素，并返回该元素</li>
 <li>pop(n)，删除列表中位置为 n 的元素,并返回该元素 ；</li>
 </ol>
 </li>
-<li>remove：<ol>
+<li>remove：
+<ol>
 <li>删除指定值的元素</li>
-<li>例如: list &#x3D; [1, 2, 3, 8, 9]，则 list.remove(8) 之后，list 为 [1, 2, 3, 9]</li>
+<li>例如: list = [1, 2, 3, 8, 9]，则 list.remove(8) 之后，list 为 [1, 2, 3, 9]</li>
 </ol>
 </li>
-<li>del<ol>
+<li>del
+<ol>
 <li>删除指定位置的元素</li>
-<li>例如： list &#x3D; [1, 2, 3, 8, 9]，则 del li[2] 之后， list 为 [1, 2, 8, 9]</li>
+<li>例如： list = [1, 2, 3, 8, 9]，则 del li[2] 之后， list 为 [1, 2, 8, 9]</li>
 </ol>
 </li>
 <li>reverse</li>
-<li>extend<ol>
+<li>extend
+<ol>
 <li>用法：给当前列表在尾部追加另外一个列表的所有元素，另外一个列表做为 extend 函数的参数，参数必须是列表类型</li>
 <li>示例：list_A.extend(list_B)</li>
 </ol>
 </li>
-<li>append<ol>
+<li>append
+<ol>
 <li>用法：给当前列表在尾部增加一个元素，需要添加的元素做为 append 函数的参数，参数可以是任意类型</li>
 <li>示例：list_A.append(var_B)</li>
 </ol>
@@ -532,11 +574,12 @@
 <li>for i in range():：循环开始的时候，定义了变量i；每次循环的时候，它会被重新定义一次；</li>
 <li>for i in range(1, 3)：只会循环2次，而不是3次；从第1个数开始，但不包括最后一个数；</li>
 <li>一行语句只要以冒号：结尾，下一行就需要缩进，不然会报错，例如函数和if语句；冒号的作用是告诉python接下来会创建一个新的代码块；if, elif, else, 函数等都是强制缩进的，首行以冒号结束</li>
-<li>while循环的规则<ol>
+<li>while循环的规则
+<ol>
 <li>尽量少用while循环，大部分情况for循环是更好的选择；</li>
 <li>重复检查while语句，确保测试的布尔表达式最终会变成False；</li>
 <li>如果不确定，就在while循环的结尾打印出要测试的值。看看它的变化 ；</li>
-<li>对于 while a !&#x3D; b 这种情况，目测好像 while 循环比 for 循环更好用一些；</li>
+<li>对于 while a != b 这种情况，目测好像 while 循环比 for 循环更好用一些；</li>
 </ol>
 </li>
 <li>raw_input()抓取的东西是字符串，即使录入数字也会当做字符串对待，因此需要使用int(raw_input())将输入转化成数字；</li>
@@ -546,7 +589,8 @@
 <li>基数：每个数有一个索引，对应一个地址，可以通过这个地址快速找到某个数；</li>
 <li>while True可以创建一个无限的循环；</li>
 <li>exit(0)可以中断某个程序，正常退出；exit(1)表示发生了错误；</li>
-<li>if 语句的规则<ol>
+<li>if 语句的规则
+<ol>
 <li>每一条 if 语句必须包含一个else；</li>
 <li>如果这个 else 永远都不应该被执行到，那就必须在else语句后面使用 die 函数，让它打印出错误信息并且死给你看，这样可以找到很多错误；</li>
 <li>if 语句的嵌套不要超过两层，尽量保持一层；如果if里面要再嵌套一个 if，考虑将第二个if弄到一个函数里；</li>
@@ -554,26 +598,32 @@
 <li>布尔测试应该很简单，如果很复杂，则将它们的运算先放到一个变量里，给变量取个好名字（会更容易阅读，避免阅读的时候，还要做运算，因为此时大脑在思考逻辑）；</li>
 </ol>
 </li>
-<li>循环的规则<ol>
+<li>循环的规则
+<ol>
 <li>只有在循环永不结束的时候使用while（显示这不可能，所以尽量别用while）</li>
 <li>其他循环使用for；</li>
 </ol>
 </li>
-<li>调试的技巧<ol>
+<li>调试的技巧
+<ol>
 <li>别用debugger：因为输出太多，干扰阅读</li>
 <li>使用print：打印出关键变量，判断程序是否如期运行；</li>
 <li>写一点，运行一点，再修改一点；不要等一个很长的脚本写完后再运行它；</li>
 </ol>
 </li>
-<li>关键字<ol>
-<li>and<ol>
+<li>关键字
+<ol>
+<li>and
+<ol>
 <li>与运算符，用来做逻辑运算；</li>
 <li>判断规则：从左往右寻找False，找到即返回，找不到返回True</li>
 </ol>
 </li>
-<li>del<ol>
+<li>del
+<ol>
 <li>对列表进行元素的删除操作</li>
-<li>示例，假设a &#x3D; [8, ‘ss’, ‘kk’, 20]<ol>
+<li>示例，假设a = [8, ‘ss’, ‘kk’, 20]
+<ol>
 <li>del a[0]：表示删除列表a的第1个元素；</li>
 <li>del a[1:3]：表示删除列表的第2到4个元素；</li>
 <li>del a #：表示删除整个列表，a会完全消失，跟没定义过一样；</li>
@@ -581,41 +631,50 @@
 </li>
 </ol>
 </li>
-<li>from<ol>
+<li>from
+<ol>
 <li>引入模块时使用，示例：from sys import argv</li>
-<li>from aa import bb与 import bb的区别<ol>
-<li>后者使用的时候需要写成：aa.bb()，前者不用，直接写 bb()，相当于把路径提前告知了；</li>
+<li>from aa import bb与 import bb的区别
+<ol>
+<li>后者使用的时候需要写成：<a target="_blank" rel="noopener" href="http://aa.bb">aa.bb</a>()，前者不用，直接写 bb()，相当于把路径提前告知了；</li>
 <li>如果不存在两个模块的重名问题，则可以写：from aa import *</li>
-<li>如果存在重名问题，则只能写 import bb，然后使用的时候写：aa.bb(), 或者 cc.bb()</li>
+<li>如果存在重名问题，则只能写 import bb，然后使用的时候写：<a target="_blank" rel="noopener" href="http://aa.bb">aa.bb</a>(), 或者 <a target="_blank" rel="noopener" href="http://cc.bb">cc.bb</a>()</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>not<ol>
+<li>not
+<ol>
 <li>非，逻辑运算符，将False变成True，反之亦然；</li>
 </ol>
 </li>
-<li>while<ol>
+<li>while
+<ol>
 <li>循环，如果条件为True，运行代码块；运行后再回到开头位置，再判断条件，如果为True，再次运行代码块；直至条件变为False为止；</li>
 </ol>
 </li>
-<li>as<ol>
+<li>as
+<ol>
 <li>跟with配套使用，示例：with aa as bb，意思是：执行aa对象的enter方法，将返回值赋值给bb，并执行aa对象的exit方法，结束；</li>
 <li>作用类同于try…finally…</li>
 </ol>
 </li>
-<li>elif<ol>
+<li>elif
+<ol>
 <li>条件判断，跟if一起配套使用</li>
 <li>常见句式：if…: elif…: else:</li>
 </ol>
 </li>
-<li>global<ol>
+<li>global
+<ol>
 <li>用来说明变量是全局的，以便在函数内部使用</li>
-<li>示例：<ol>
-<li>x &#x3D; 50</li>
-<li>def func():  <ol>
+<li>示例：
+<ol>
+<li>x = 50</li>
+<li>def func():
+<ol>
 <li>global x</li>
-<li>x &#x3D; x * 2</li>
+<li>x = x * 2</li>
 <li>print x</li>
 </ol>
 </li>
@@ -624,21 +683,26 @@
 <li>如果要指定多个，可以这样：global x, y, z</li>
 </ol>
 </li>
-<li>or<ol>
+<li>or
+<ol>
 <li>或，逻辑运算符</li>
 <li>规则：从左到右寻找 True，找到即返回，找不到返回 False；</li>
 </ol>
 </li>
-<li>with<ol>
+<li>with
+<ol>
 <li>跟 as 配套使用，with aa as bb，作用类同于 try…finallly…，执行 aa，将返回值赋值给 bb</li>
 </ol>
 </li>
-<li>assert<ol>
+<li>assert
+<ol>
 <li>用来将调试断点插入到程序中</li>
-<li>示例：assert expression（表达式）<ol>
-<li>示例1：assert n&gt;&#x3D;2</li>
-<li>示例2：assert expression1, expression2<ol>
-<li>assert 5 &gt; 3, print “肯定是错的”2</li>
+<li>示例：assert expression（表达式）
+<ol>
+<li>示例1：assert n&gt;=2</li>
+<li>示例2：assert expression1, expression2
+<ol>
+<li>assert 5 &gt; 3, print &quot;肯定是错的&quot;2</li>
 <li>assert 0 &gt; 3, print “肯定是对的”</li>
 </ol>
 </li>
@@ -647,23 +711,29 @@
 <li>作用类似于：if not expression: raise AssertionError</li>
 </ol>
 </li>
-<li>else<ol>
+<li>else
+<ol>
 <li>条件语句，跟 if 配套使用</li>
 </ol>
 </li>
-<li>if <ol>
+<li>if
+<ol>
 <li>条件语句，跟else，elif（如需）配套使用</li>
 <li>只会执行遇到的条件为 True 的代码块；</li>
 </ol>
 </li>
-<li>pass<ol>
+<li>pass
+<ol>
 <li>空操作：它是一个语句，这一点很重要，但同时告诉程序什么都不用做，往下走即可。如果没有它，有可能程序语法不完整导致报错</li>
 <li>它可以用来放置在一些没有想好怎么写的位置，类似于先占个位子；</li>
 </ol>
 </li>
-<li>yield<ol>
-<li>这个不简单，带有yield的函数有两个作用<ol>
-<li>生成器，每次调用的时候返回一个生成器对象，好处是内存占用小，因为使用迭代的方式来获得返回值，内存开销是一个固定值<ol>
+<li>yield
+<ol>
+<li>这个不简单，带有yield的函数有两个作用
+<ol>
+<li>生成器，每次调用的时候返回一个生成器对象，好处是内存占用小，因为使用迭代的方式来获得返回值，内存开销是一个固定值
+<ol>
 <li>例如生成斐波数列，如果上限很大，且使用列表的方式，会导致保存列表的内存占用很大；此时使用yield的好处是每次调用只返回一值，通过重复调用来获得完整的数列；</li>
 </ol>
 </li>
@@ -672,17 +742,21 @@
 </li>
 </ol>
 </li>
-<li>break<ol>
+<li>break
+<ol>
 <li>立即结束循环并退出，之后的代码不会被执行</li>
 </ol>
 </li>
-<li>except<ol>
+<li>except
+<ol>
 <li>用来处理异常，常与try配合使用；当try里面的代码块被执行后，有可能引发异常，此时如果有except语句，则程序会跳到第一个except语句，判断异常是否符合语句表达的条件，如果符合，则执行except下的代码块，如果不符合，则寻找下一个except语句；如果找完全部没找到，貌似会调用python的l默认处理器，自动终止程序退出；有except处理则不会自动终止退出；</li>
 </ol>
 </li>
-<li>import<ol>
+<li>import
+<ol>
 <li>import用来导入模块，模块包含一些类和函数，可以实现某些功能；当我们需要这些功能的时候，就使用import来导入</li>
-<li>模块<ol>
+<li>模块
+<ol>
 <li>模块是包含函数和变量的 python 文件</li>
 <li>可以导入这个文件</li>
 <li>然后可以使用 . 操作符访问模块中的函数和变量</li>
@@ -690,72 +764,88 @@
 </li>
 </ol>
 </li>
-<li>print<ol>
+<li>print
+<ol>
 <li>用来输出内容，包括整数、16进制数、8进制数、浮点数、字符串、列表等</li>
 </ol>
 </li>
-<li>class<ol>
+<li>class
+<ol>
 <li>用来定义类</li>
 <li>什么是类：用来快速的创建对象，制造对象的工厂</li>
-<li>类支持两种操作<ol>
+<li>类支持两种操作
+<ol>
 <li>一种是引用，即访问类中的属性；</li>
 <li>一种是实例化，即通过类创建对象；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>exec<ol>
+<li>exec
+<ol>
 <li>用来执行存储在字符串或文件中的python语句，例如 exec “print ‘Hello World’”</li>
 </ol>
 </li>
-<li>in<ol>
+<li>in
+<ol>
 <li>可用来判断一个元素是否在列表里面，示例：if a in list</li>
 </ol>
 </li>
-<li>raise<ol>
+<li>raise
+<ol>
 <li>可以用来引发一个异常</li>
 </ol>
 </li>
-<li>continue<ol>
+<li>continue
+<ol>
 <li>用来跳出当次循环，但继续执行后续的循环</li>
 <li>与break的区别：break跳出当次循环后，不再执行后续的循环，直接退出了</li>
 </ol>
 </li>
-<li>finally<ol>
+<li>finally
+<ol>
 <li>与 try 配合使用，执行完 try 的代码块后，继续执行 finally 的代码块，不管 try 是否抛出异常；</li>
 <li>与 try…except…相冲突，二者只能用其一；</li>
 <li>finally 的代码块必会被执行，但 except 不一定，如果 try 没有抛出异常， except 的代码块不会被执行</li>
 </ol>
 </li>
-<li>is <ol>
+<li>is
+<ol>
 <li>用来判断A对象是否是B对象，即它本人；对象有3个属性，分别是 id, type, value，is 的原理是判断两个对象的 id 是否相同</li>
-<li>&#x3D;&#x3D; 用来判断两个对象的值是否相等；</li>
+<li>== 用来判断两个对象的值是否相等；</li>
 </ol>
 </li>
-<li>return<ol>
+<li>return
+<ol>
 <li>用在函数中的返回，可以选择性的返回一个值；</li>
 <li>如果没有指定返回值，函数会默认返回None</li>
 <li>如果没有写 return 语句，函数其实会默认执行一条 return None 的语句</li>
 </ol>
 </li>
-<li>def<ol>
+<li>def
+<ol>
 <li>用来创建函数</li>
 </ol>
 </li>
-<li>for <ol>
+<li>for
+<ol>
 <li>用来创建循环，它可以遍历一个序列中的所有项目</li>
 <li>示例：for i in range(0, 6)</li>
 </ol>
 </li>
-<li>lambda<ol>
-<li>用来创建一个匿名函数，示例：g &#x3D; lambda x: x +1（类同于，def g(x): x+1）</li>
+<li>lambda
+<ol>
+<li>用来创建一个匿名函数，示例：g = lambda x: x +1（类同于，def g(x): x+1）</li>
 <li>好处：没有像普通 def 创建函数一样生成栈，更快更简洁，提高性能（不需多次调用的情况下）</li>
-<li>语法：支持多个参数，示例：g &#x3D; lambda x, y:  x + y（冒号左边是参数，右边是返回值）</li>
+<li>语法：支持多个参数，示例：g = lambda x, y:  x + y（冒号左边是参数，右边是返回值）</li>
 </ol>
 </li>
-<li>try<ol>
-<li>主要用来处理异常，有两种风格<ol>
-<li>try…except…else…<ol>
+<li>try
+<ol>
+<li>主要用来处理异常，有两种风格
+<ol>
+<li>try…except…else…
+<ol>
 <li>如果 try 发生异常，并没有匹配到 except，则会将异常抛给上一层 try （如果上一层 try 也法匹配呢？猜测要触发自动处理机制了）</li>
 <li>except: 捕获所有异常</li>
 <li>except name: 只捕获名字为 name 的特定异常；</li>
@@ -771,19 +861,21 @@
 </li>
 </ol>
 </li>
-<li>数据类型<ol>
+<li>数据类型
+<ol>
 <li>True：布尔值</li>
 <li>False：布尔值</li>
 <li>None：没有值</li>
-<li>strings：字符串，示例：’snow’, ‘winter’</li>
+<li>strings：字符串，示例：‘snow’, ‘winter’</li>
 <li>numbers：数字，示例：5, 4, 3</li>
 <li>floats：浮点数，示例：1.08</li>
-<li>lists：列表，示例：a &#x3D; [8, 10, 12, 14, 16]</li>
+<li>lists：列表，示例：a = [8, 10, 12, 14, 16]</li>
 </ol>
 </li>
-<li>字符串转义序列<ol>
+<li>字符串转义序列
+<ol>
 <li>\</li>
-<li>&#39;</li>
+<li>'</li>
 <li>&quot;</li>
 <li>\a：alarm，响铃，会出现一声铃声；</li>
 <li>\b：backspace，退格，会删除一个字符；</li>
@@ -794,7 +886,8 @@
 <li>\v：vertical，垂直制表符</li>
 </ol>
 </li>
-<li>字符串格式化<ol>
+<li>字符串格式化
+<ol>
 <li>%d：数字</li>
 <li>%i：据说等同于 %d，只是现在逐步不用了；</li>
 <li>%o：转成无符号八进制数</li>
@@ -813,34 +906,39 @@
 <li>%%：输出%</li>
 </ol>
 </li>
-<li>操作符<ol>
-<li><ul>
+<li>操作符
+<ol>
+<li>
+<ul>
 <li></li>
 </ul>
 </li>
-<li><ul>
+<li>
+<ul>
 <li></li>
 </ul>
 </li>
-<li><ul>
+<li>
+<ul>
 <li></li>
 </ul>
 </li>
 <li><strong>：乘方，示例：2</strong>4，表示2的4次方</li>
-<li>&#x2F;：浮点数除法，返回结果为浮点数</li>
-<li>&#x2F;&#x2F;：整数除法，返回结果为整数</li>
+<li>/：浮点数除法，返回结果为浮点数</li>
+<li>//：整数除法，返回结果为整数</li>
 <li>%</li>
 <li>&lt;</li>
-<li><blockquote>
+<li>
+<blockquote></blockquote>
+</li>
+<li>&lt;=</li>
+<li>
+<blockquote>
+<p>=</p>
 </blockquote>
 </li>
-<li>&lt;&#x3D;</li>
-<li><blockquote>
-<p>&#x3D;</p>
-</blockquote>
-</li>
-<li>&#x3D;&#x3D;</li>
-<li>!&#x3D;</li>
+<li>==</li>
+<li>!=</li>
 <li>&lt;&gt;</li>
 <li>( )：元组数据类型</li>
 <li>[ ]：列表数据类型</li>
@@ -849,26 +947,29 @@
 <li>, 逗号</li>
 <li>: 冒号</li>
 <li>. 点</li>
-<li>&#x3D; 等号</li>
+<li>= 等号</li>
 <li>; 分号</li>
-<li>+&#x3D; 自增</li>
-<li>-&#x3D; 自减</li>
-<li>*&#x3D; 自乘</li>
-<li>&#x2F;&#x3D; 自除</li>
-<li>&#x2F;&#x2F;&#x3D; （不知道啥意思，莫非是自整除？）</li>
-<li>%&#x3D; 自求余数</li>
-<li>**&#x3D; 自平方</li>
+<li>+= 自增</li>
+<li>-= 自减</li>
+<li>*= 自乘</li>
+<li>/= 自除</li>
+<li>//= （不知道啥意思，莫非是自整除？）</li>
+<li>%= 自求余数</li>
+<li>**= 自平方</li>
 </ol>
 </li>
-<li>‘ ‘.join(stuff)：python实际执行的动作为 join(‘ ‘, stuff)，前者翻译为：用空格 ‘ ‘ 连接 stuff，后者翻译为：为空格 ‘ ‘ 和 stuff 调用 join 函数，二者是一个意思</li>
-<li>dir(object)：查看对象 object 内的所有属性和方法；<ol>
-<li>示例： import sys<ol>
+<li>’ ‘.join(stuff)：python实际执行的动作为 join(’ ', stuff)，前者翻译为：用空格 ’ ’ 连接 stuff，后者翻译为：为空格 ’ ’ 和 stuff 调用 join 函数，二者是一个意思</li>
+<li>dir(object)：查看对象 object 内的所有属性和方法；
+<ol>
+<li>示例： import sys
+<ol>
 <li>dir(sys)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>字典<ol>
+<li>字典
+<ol>
 <li>作用之一：可以通过任何东西（不只是数字）找到元素；</li>
 <li>字典可以将一个物件和另外一个物件关联，不管它们的类型是什么；这是一种将一种东西对应到另外一种的方式</li>
 <li>可以通过字符串从字典里面提取东西，也可以通过字符串往字典里面添加东西；</li>
@@ -880,21 +981,25 @@
 <li>dict.items() : 提取字典里面的（key, value）组成一个元组列表返回；</li>
 </ol>
 </li>
-<li>字典与模块差不多<ol>
+<li>字典与模块差不多
+<ol>
 <li>相同点：从 Y 获取 X 的概念</li>
-<li>不同点<ol>
+<li>不同点
+<ol>
 <li>字典的语法：使用 [键]，示例：dict[x]（注：对于字典，键是一个字符串）</li>
 <li>模块的语法：使用点 “.”，示例：module.x（注：对于模块，键是一个函数或者一个变量）</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>类和模块差不多<ol>
+<li>类和模块差不多
+<ol>
 <li>模块的另外一种理解方法：一种特殊的字典，存储一些代码，可以通过点“.”操作符来访问这些代码；Python还有另外一种结构来实现类似的目的，即类，可以把一组函数和数据放到容器中，从而用“.”操作符来访问它们（函数和数据）（类有些类似于迷你模块）</li>
 <li>使用类而非模块的原因：可以用类重复创建出很多出来，它们之间不会互相干涉；而对于模块，一次导入后，整个程序里面只有一份内容；</li>
 <li>对象：相当于迷你导入；</li>
 <li>实例化：如果类和迷你模块差不多，则也会存在一个“导入”的动作，此动作称为“实例化”，名称很高深，其实就是“创建”的意思，实例化后，会得到一个“对象”</li>
-<li>过程：<ol>
+<li>过程：
+<ol>
 <li>调用类</li>
 <li>创建空对象（相当于创建迷你模块，然后导入它）</li>
 <li>如果有 init() 函数，调用该函数对空对象进行初始化（init 函数里面有一个多余的函数 self，即是 python 创建的空对象，可以对它进行类似模块、字典等操作，为它设置一些变量进去）</li>
@@ -904,7 +1009,8 @@
 </li>
 </ol>
 </li>
-<li>单词练习<ol>
+<li>单词练习
+<ol>
 <li>类（class）：告诉 python 创建新类型的东西（貌似类的起名首字母习惯用大写）</li>
 <li>对象（object）：两个意思，即最基本的东西，或者某个东西的实例；</li>
 <li>实例（instance）：这是让 Python 创建一个对象时得到的东西；</li>
@@ -917,19 +1023,21 @@
 <li>有什么（has-a）：用来描述某个东西是由另外一些东西组成的，或者某个东西有某个特征，如 Salmon has-a mouth.</li>
 </ol>
 </li>
-<li>语汇练习<ol>
+<li>语汇练习
+<ol>
 <li>class X(Y)：创建一个叫做 X 的类，它是 Y 的一种；（难道有好几种 Y？）</li>
 <li>class X(object)：def <em>init</em>(self, J)：类X有一个_init_接收 self 和 J 做为参数；</li>
 <li>class X(object)：def M(self, J)：类X有一个函数名称为M，它接收 self 和 J 做为参数；</li>
-<li>foo &#x3D; X()：将 foo 设为类 X 的一个实例；</li>
+<li>foo = X()：将 foo 设为类 X 的一个实例；</li>
 <li>foo.M(J)：从 foo 中找到 M 函数， 并使用 self 和 J 参数调用它；</li>
-<li>foo.K &#x3D; Q：从 foo 中获取 K 属性，并将其设为 Q；</li>
+<li>foo.K = Q：从 foo 中获取 K 属性，并将其设为 Q；</li>
 </ol>
 </li>
 <li>类和对象并没有真正的不同，它们其实是同样的对象，只是在不同的时间名字不同罢了。对象是类的一个实例；</li>
-<li>__init__，init的左右两侧是两个下划线，不是一个，注意！</li>
+<li><strong>init</strong>，init的左右两侧是两个下划线，不是一个，注意！</li>
 <li>__init__函数是默认存在的，它在创建类的实例时自动执行，不需要手动写class.function来运行；正常它什么都不做，但当在类中对其描述时，表示要让它做点什么；</li>
-<li>自顶向下<ol>
+<li>自顶向下
+<ol>
 <li>把要解决的问题写下来，或者画出流程图</li>
 <li>将第一条的关键概念摘录出来，并加以研究</li>
 <li>创建一个类和对象的层次结构图</li>
@@ -939,64 +1047,74 @@
 </li>
 <li>大部分使用继承的场合都可以用合成替代，而多重继承则需要不惜一切地避免之；</li>
 <li>类和模块各自的适用场景，什么时候用类，什么时候用模块？如果有一些代码会在不同的位置和场合应用到，那就用合成来把它们做成模块</li>
-<li>继承与合成<ol>
+<li>继承与合成
+<ol>
 <li>不惜一切代价避免使用多重继承，因为它们引发的问题比带来的好处多得多（如果非要用，得准备好专研类的层次结构，以及花时间寻找各种东西的来龙去脉）</li>
 <li>如果有一些代码会在不同的位置和场合应用到，那就用合成来把它们做成模块</li>
 <li>只有在代码之间有清楚关联，可以通过一个单独的共性联系起来的时候，使用继承；或者受现有代码或者别的不可抗力因素所限非用不可，那就用吧（程序员创建软件包，共享代码，是一种社交习俗，因此有时因为同事原因，需要打破这些习俗）</li>
 </ol>
 </li>
-<li>模块<ol>
-<li>为什么使用？<ol>
+<li>模块
+<ol>
+<li>为什么使用？
+<ol>
 <li>当函数很多的时候，进行分组，让每个文件的代码减少，提高可维护性；</li>
 <li>一次编写，多个场合引用</li>
 <li>避免函数名和变量名的冲突</li>
 </ol>
 </li>
-<li>其他<ol>
+<li>其他
+<ol>
 <li>模块可以放在包里，避免模块命名的冲突，引用示例：包名.模块名</li>
 <li>包可以有多层，即包上层还可以有包，支持多级结构，示例：大包名.小包名.模块名</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>函数的风格<ol>
+<li>函数的风格
+<ol>
 <li>在类中创建函数时，使用动词来命名，作为给类的一个命令；</li>
 <li>让函数保持简单小巧</li>
 </ol>
 </li>
-<li>类的风格<ol>
+<li>类的风格
+<ol>
 <li>类命名应该使用驼峰式大小写，例如：ThisIsClass</li>
 <li>函数命名应该使用下划线，例如：This_Is_Function</li>
 <li>__init__不应该做太多事情，这会让类变得很难用</li>
 </ol>
 </li>
-<li>注释<ol>
+<li>注释
+<ol>
 <li>写注释的时候，描述清楚为什么要这么做，代码本身表明“如何实现”，但为什么更重要</li>
 <li>函数的注释，用一两句话写写这个函数的用法，还是很有用的；</li>
 <li>尽量让注释短小精悍，一语中的（如果更新了代码，记得检查注释是否需要更新维护）</li>
 </ol>
 </li>
 <li>在测试文件所在目录的上一级目录运行测试文件，人们常犯的一个错误是在测试目录中运行测试文件；</li>
-<li>pip 的用法<ol>
-<li>pip：win10，先下载tar格式的压缩包，解压到某文件夹，powershell，cd命令进入该文件夹，输入指令：python setup.py install，即开始安装</li>
+<li>pip 的用法
+<ol>
+<li>pip：win10，先下载tar格式的压缩包，解压到某文件夹，powershell，cd命令进入该文件夹，输入指令：python <a target="_blank" rel="noopener" href="http://setup.py">setup.py</a> install，即开始安装</li>
 <li>有了pip后，其他几个就好办了，直接在powershell里面输入：pip install “包名字”.whl</li>
-<li>显示安装了什么版本的包：pip show –files SomePackage</li>
-<li>显示非最新版本的包：pip list –outdated</li>
-<li>安装最新版本的包：pip install –upgrade SomePackage</li>
+<li>显示安装了什么版本的包：pip show --files SomePackage</li>
+<li>显示非最新版本的包：pip list --outdated</li>
+<li>安装最新版本的包：pip install --upgrade SomePackage</li>
 <li>卸载不需要的包：pip uninstall SomePackage</li>
 </ol>
 </li>
-<li>dict.update(dict2)：将 dict2 添加到 dict 中<ol>
-<li>示例：dict &#x3D; {‘age’: 47, ‘sex’: male}, dict2 &#x3D; {‘tall’: 6’5”}</li>
+<li>dict.update(dict2)：将 dict2 添加到 dict 中
+<ol>
+<li>示例：dict = {‘age’: 47, ‘sex’: male}, dict2 = {‘tall’: 6’5&quot;}</li>
 <li>运行：dic.update(dict2)</li>
-<li>结果：dict &#x3D; {‘age’: 47, ‘sex’: male, ‘tall’: 6’5”}</li>
+<li>结果：dict = {‘age’: 47, ‘sex’: male, ‘tall’: 6’5&quot;}</li>
 </ol>
 </li>
 <li>dict.get(key, default)：从字典中取 key 对应的 value，如果取不到则返回 default 值</li>
-<li>测试用例应该保存在 test&#x2F; 下面，不然不会被 nosetests 执行；</li>
+<li>测试用例应该保存在 test/ 下面，不然不会被 nosetests 执行；</li>
 <li>测试用例的代码应该尽量保持整洁，尽量删除里面的重复代码，可以通过创建一些辅助函数来删除重复代码，这样在未来修改测试用例时，可以节省很多工作量；</li>
 <li>别太把测试当做一回事，有时候，最好的办法是把代码和测试全部删掉，然后重新设计代码；</li>
-<li>nosetests 的用法<ol>
+<li>nosetests 的用法
+<ol>
 <li>首先，是 nosetests，不是 notetests，名称别写错了</li>
 </ol>
 </li>
@@ -1007,7 +1125,8 @@
 <li>对象只能通过对类的实例化进行创建，不能创建不基于类的对象；</li>
 <li>列表的各个元素中间记得用逗号隔开！！！</li>
 <li>从raw_input获得的数字是字符串，但当使用 int() 转换成数字后，后续的使用可以直接作为数字，不需要再用引号包含起来作字符串使用</li>
-<li>字符串大小写转换的函数：<ol>
+<li>字符串大小写转换的函数：
+<ol>
 <li>upper( )：全部大写</li>
 <li>lower( )：全部小写</li>
 <li>capitalized( )：字符串的首字母大写</li>
@@ -1016,43 +1135,51 @@
 </ol>
 </li>
 <li>isdigit( ): 判断字符串是否为数字</li>
-<li>类可以被单独导入，对象也可以被单独导入，例如 test.py 文件中有一个类叫做 SampleClass，有一个对象为 sample_object &#x3D; SampleClass()，则可以如此导入：from test import sample_object</li>
+<li>类可以被单独导入，对象也可以被单独导入，例如 <a target="_blank" rel="noopener" href="http://test.py">test.py</a> 文件中有一个类叫做 SampleClass，有一个对象为 sample_object = SampleClass()，则可以如此导入：from test import sample_object</li>
 <li>通过导入模块，可以访问模块中的函数、对象、变量；</li>
-<li>对于字典来说，键是一个字符串，获得值的语法是“[键]”；对于模块来说，键是函数或者变量的名称，而语法是 “.键”</li>
+<li>对于字典来说，键是一个字符串，获得值的语法是“[键]”；对于模块来说，键是函数或者变量的名称，而语法是 “.键&quot;</li>
 <li>类的作用类似于一个迷你模块，在这个迷你模块中放了一些函数和数据，可以访问；相对模块，使用类的好处在于，它是一份模板，可以基于这份模板创建无数个对象，然后这些对象各自发挥作用并且不会相互影响，而使用模块，则无法实现这个效果；</li>
-<li>当想让模块发挥作用的时候，通过 import 导入这个模块；当想让类发挥作用时，通过实例化，即创建对象发挥作用，例如： thing &#x3D; SampleClass()</li>
-<li>面向对象编程的好处：<ol>
+<li>当想让模块发挥作用的时候，通过 import 导入这个模块；当想让类发挥作用时，通过实例化，即创建对象发挥作用，例如： thing = SampleClass()</li>
+<li>面向对象编程的好处：
+<ol>
 <li>封闭：统一接口，解藕（应付需求变更）</li>
 <li>归一：简化设计（寻求事物的本质）</li>
 </ol>
 </li>
-<li>类变量和实例变量的不同<ol>
+<li>类变量和实例变量的不同
+<ol>
 <li>类变量由所有对象共有</li>
 <li>实例变量由各个对象独有</li>
 <li>因此：当由类生成A、B两个对象时，如果A对象对类变量进行了变更，则B对象再访问类变量时，值已被更新</li>
-<li>另外，可以通过在变量名称前加双下划线“__”，来声明该类变量是类的内部私有（即只能在类的内部被访问，不能在类的外部访问）</li>
+<li>另外，可以通过在变量名称前加双下划线“__&quot;，来声明该类变量是类的内部私有（即只能在类的内部被访问，不能在类的外部访问）</li>
 </ol>
 </li>
-<li>在类的__init__创建变量时，记得加上前缀 self，例如：self.var &#x3D; value</li>
-<li>assert_raises的用法<ol>
+<li>在类的__init__创建变量时，记得加上前缀 self，例如：self.var = value</li>
+<li>assert_raises的用法
+<ol>
 <li>示例：assert_raises(ParseError, parse_verb, word.list1)</li>
 <li>释意：ParseError 表示应引发的异常， parse_verb是要调用的函数，word.list1是要传给要调用的函数的参数</li>
 </ol>
 </li>
-<li>assert的其他用法<ol>
-<li>assert 和 assert_equal，示例如下：<ol>
-<li>assert var1 &#x3D;&#x3D; var2</li>
+<li>assert的其他用法
+<ol>
+<li>assert 和 assert_equal，示例如下：
+<ol>
+<li>assert var1 == var2</li>
 <li>assert_equal(var1, var2)</li>
 </ol>
 </li>
-<li>try..except 和 assert_raises<ol>
+<li>try…except 和 assert_raises
+<ol>
 <li>assert_raises(Exception, func, var1, var2)</li>
-<li>try:<ol>
+<li>try:
+<ol>
 <li>func(var1, var2)</li>
 <li>except Exception</li>
 </ol>
 </li>
-<li>except Exception:<ol>
+<li>except Exception:
+<ol>
 <li>pass</li>
 </ol>
 </li>
@@ -1060,60 +1187,71 @@
 </li>
 </ol>
 </li>
-<li>web.py<ol>
-<li>python bin&#x2F;app.py 1234（用1234来指定访问的端口号（不写则默认为8080），此时可使用 localhost:1234 来访问）</li>
+<li><a target="_blank" rel="noopener" href="http://web.py">web.py</a>
+<ol>
+<li>python bin/app.py 1234（用1234来指定访问的端口号（不写则默认为8080），此时可使用 localhost:1234 来访问）</li>
 <li>$name 会将变量转义为字符串，如果变量中带有要执行的HTML代码，则可以使用 $:name 代替 $name（HTML文件中使用）</li>
-<li>通过 urls &#x3D; ( ‘&#x2F;(.<em>)’, ‘Index’)，中的 ‘&#x2F;(.</em>)’  替代之前的 ‘&#x2F;‘ ，以获取 ‘&#x2F;‘ 后面的字符并将其做为参数传递给 Index 类</li>
+<li>通过 urls = ( ‘/(.<em>)', ‘Index’)，中的 '/(.</em>)’  替代之前的 ‘/’ ，以获取 ‘/’ 后面的字符并将其做为参数传递给 Index 类</li>
 <li>可以在 urls 中放置多个元组（用逗号隔开），以便让不同的 url 指向不同的类</li>
-<li>seeother()：用来跳转到其他页面，例如：当通过 form 提交一个表单后，使用 seeother(‘&#x2F;someotherpage’)，此时POST方法将返回给浏览器 303状态值和一个新网址，浏览器会对这个新网址发出GET请求；</li>
-<li>redirect(‘&#x2F;someotherpage’)：用来重定向到新的页面</li>
-<li>web.header(“Content-Type”, “text&#x2F;html; charset&#x3D;utf-8”)：用来在输入内容前，向浏览器传送一些头部信息，目的是让浏览器能够正确识别内容；</li>
-<li>使用 cgi 模块来限制上传文件的大小，示例：<ol>
+<li>seeother()：用来跳转到其他页面，例如：当通过 form 提交一个表单后，使用 seeother(‘/someotherpage’)，此时POST方法将返回给浏览器 303状态值和一个新网址，浏览器会对这个新网址发出GET请求；</li>
+<li>redirect(‘/someotherpage’)：用来重定向到新的页面</li>
+<li>web.header(“Content-Type”, “text/html; charset=utf-8”)：用来在输入内容前，向浏览器传送一些头部信息，目的是让浏览器能够正确识别内容；</li>
+<li>使用 cgi 模块来限制上传文件的大小，示例：
+<ol>
 <li>import cgi</li>
-<li>cgi.maxlen &#x3D; 5<em>1024</em>1024 #表示最大为5M</li>
-<li>try:<ol>
+<li>cgi.maxlen = 5<em>1024</em>1024 #表示最大为5M</li>
+<li>try:
+<ol>
 <li>正常代码</li>
 </ol>
 </li>
-<li>except ValueError:<ol>
+<li>except ValueError:
+<ol>
 <li>return “File too large” #给出文件过大的提示</li>
 </ol>
 </li>
-<li>web.input()：包含一个从url（GET方法）或者header（POST方法）获取的变量的一个对象 web.stroage 对象（类似字典）；当表单提交多个值时，此时写成 web.input(id&#x3D;[])，以便告诉 input 默认传递值是一个多值列表，不然默认当成一个字符串处理（即使传递数字也会当作字符串处理）；</li>
+<li>web.input()：包含一个从url（GET方法）或者header（POST方法）获取的变量的一个对象 web.stroage 对象（类似字典）；当表单提交多个值时，此时写成 web.input(id=[])，以便告诉 input 默认传递值是一个多值列表，不然默认当成一个字符串处理（即使传递数字也会当作字符串处理）；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>re 模块：regular expression, 正则表达式<ol>
+<li>re 模块：regular expression, 正则表达式
+<ol>
 <li>怎么用？</li>
 </ol>
 </li>
-<li>if <strong>name</strong> &#x3D;&#x3D; “<strong>main</strong>“: app.run()<ol>
+<li>if <strong>name</strong> == “<strong>main</strong>”: app.run()
+<ol>
 <li>背景：模块有自带一个__name__属性</li>
 <li>如果 py 文件被直接运行，则 <strong>name</strong> 被赋值为__main__</li>
 <li>如果 py 文件被 import，则 <strong>name</strong> 被赋值为模块名（不带扩展名）</li>
 <li>以上语句表示，当 name 的值为 main 的时候，语句被执行；若不是，则不执行；</li>
 </ol>
 </li>
-<li>kill()：用来杀死进程，退出程序，还有其他两种方法，分别为：<ol>
+<li>kill()：用来杀死进程，退出程序，还有其他两种方法，分别为：
+<ol>
 <li>sys.exit()，参数可为0，正常退出；1，异常退出；</li>
 <li>os.exit()，</li>
 </ol>
 </li>
 <li>str(var) 和 repr(var)：将任意值转化成字符串，前者供人阅读的格式，后者为供机器阅读的格式</li>
-<li>HTML<ol>
+<li>HTML
+<ol>
 <li>pre 是 Preformatted text（预格式化文本） 的缩写。使用此标签可以把代码中的空格和换行直接显示到页面上。但是 &lt; 、 &gt; 和 &amp; 等特殊文字需要用 &lt; 、 &gt; 和 &amp; 的方式记述</li>
-<li>HTML 状态码<ol>
+<li>HTML 状态码
+<ol>
 <li>2系，成功</li>
 <li>3系，重定向</li>
 <li>4系，请求错误</li>
 <li>5系，服务器错误</li>
 </ol>
 </li>
-<li>HTML form 表单也可以通过 GET 方法提交，只是有些缺点，例如数据不安全（在 url 中可见），传输大小有限制；示例：&lt;form ,action&#x3D;”&#x2F;hello”, method&#x3D;”GET”&gt;</li>
-<li>在 HTML 中用 python 定义函数时，支持与 HTML 标签混编，但在调用函数时，需要在美元符后面加冒号<ol>
-<li>示例：$def hello(name):<ol>
-<li>&lt;h1&gt;$name&lt;&#x2F;h1&gt;</li>
+<li>HTML form 表单也可以通过 GET 方法提交，只是有些缺点，例如数据不安全（在 url 中可见），传输大小有限制；示例：&lt;form ,action=“/hello”, method=“GET”&gt;</li>
+<li>在 HTML 中用 python 定义函数时，支持与 HTML 标签混编，但在调用函数时，需要在美元符后面加冒号
+<ol>
+<li>示例：$def hello(name):
+<ol>
+<li>&lt;h1&gt;$name&lt;/h1&gt;</li>
 </ol>
 </li>
 <li>调用：$:hello(name)</li>
@@ -1121,132 +1259,342 @@
 </li>
 </ol>
 </li>
-<li>def foo(a, b&#x3D;0)<ol>
+<li>def foo(a, b=0)
+<ol>
 <li>函数有两个参数，其中第二个是可选参数，且有默认值0，此时如果调用函数的时候，只传递一个参数，则自动赋值给a；</li>
 </ol>
 </li>
-<li>def foo(a, b, *c)<ol>
+<li>def foo(a, b, *c)
+<ol>
 <li>函数有两个固定参数和一个可选参数c</li>
 <li>示例：foo(1, 2, 3, 4, 5)，此时 a 赋值1，b 赋值2, c 赋值（3，4，5）元组；</li>
 <li>如果只传递两个参数，则 c 会是一个空的元组；</li>
 </ol>
 </li>
-<li>foo(a&#x3D;100, b&#x3D;99) 和 foo(b&#x3D;99, a&#x3D;100) 是等价的，即使用关键字参数时，顺序就不重要了，可以被打乱；另外还可以固定位置和关键字组合，例如 foo( 100, b&#x3D;99, c&#x3D;98)，其中100会默认赋值给a</li>
-<li>foo(a, **b)，表示除了正常形参 a 以外，余下的参数都将组成一个字典参数传递给函数<ol>
-<li>示例： foo(100, b&#x3D;200, c&#x3D;”Hello”）<ol>
+<li>foo(a=100, b=99) 和 foo(b=99, a=100) 是等价的，即使用关键字参数时，顺序就不重要了，可以被打乱；另外还可以固定位置和关键字组合，例如 foo( 100, b=99, c=98)，其中100会默认赋值给a</li>
+<li>foo(a, **b)，表示除了正常形参 a 以外，余下的参数都将组成一个字典参数传递给函数
+<ol>
+<li>示例： foo(100, b=200, c=“Hello”）
+<ol>
 <li>print a，得到 100</li>
-<li>print b，得到 {b:200, c:”Hello”}</li>
+<li>print b，得到 {b:200, c:“Hello”}</li>
 </ol>
 </li>
 </ol>
 </li>
 <li>sys 模块包含了与 python 解释器和它的环境有关的函数</li>
 <li>sys.path 是一个模块搜索的路径集 list，可以使用 sys.path.append(path) 添加相关的路径，但退出 python 环境后自己添加的路径将消失；</li>
-<li>string.strip([chars])<ol>
-<li>如果参数 chars 为空，则默认裁剪删除 string 前后的空格（包括回车’&#x2F;n’，制表符’&#x2F;t’, ‘&#x2F;r’）</li>
+<li>string.strip([chars])
+<ol>
+<li>如果参数 chars 为空，则默认裁剪删除 string 前后的空格（包括回车’/n’，制表符’/t’, ‘/r’）</li>
 <li>如果参数 chars 不为空，则裁剪删除 string 前后落在 chars 中的字符，无关乎顺序；</li>
 <li>lstrip()，只裁剪头部； tstrip()，只裁剪尾部；</li>
 </ol>
 </li>
 <li>os.path.isdir(path) 可以用来判断路径是否为文件夹；os.path.dirname(path) 可以用来获取路径所在的文件夹；os.path 这个模块里面还有很多其他函数用来处理关于 path 的操作，点击查看</li>
-<li>疑问：<ol>
+<li>疑问：
+<ol>
 <li>web 类除了可以有 GET 和 POST，还有哪些？</li>
 <li>如果要从一个文件夹中导入文件，则此文件夹需要有一个 <strong>init</strong> 的文件（空内容也行），这样这个文件夹会被视作一个包；</li>
 </ol>
 </li>
 <li>app.run( )忘了写括号，导致没运行起来</li>
-<li>遍历列表值<ol>
-<li>方法1：<ol>
+<li>遍历列表值
+<ol>
+<li>方法1：
+<ol>
 <li>for x in list： print x</li>
 </ol>
 </li>
-<li>方法2：<ol>
+<li>方法2：
+<ol>
 <li>for x in range(len(list))： print list[x]</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>在 HTML 中给参数赋值，美元符号后面，变量名之前，需要有一个空格，正确示例 “$ a &#x3D; 10”,  错误示例 “$a &#x3D; 10”</li>
-<li>HTML，&lt;input type&#x3D;”radio” name&#x3D;”action”, value&#x3D;”render”&gt;，注意别把 value 给忘了，不然不会提交表单给服务器；</li>
+<li>在 HTML 中给参数赋值，美元符号后面，变量名之前，需要有一个空格，正确示例 “$ a = 10”,  错误示例 “$a = 10”</li>
+<li>HTML，&lt;input type=“radio” name=“action”, value=“render”&gt;，注意别把 value 给忘了，不然不会提交表单给服务器；</li>
 <li>抄写示例代码时，写完后，认真核对每一行的输入有没有遗漏，非常重要！！！</li>
-<li>如果提示 no moduble named something，如果单词没有拼写错误且模块也存在，则有可能是没有设置环境变量造成的；环境变量的设置方法，windows下，在 powershell 中输入以下内容：$env:PYTHONPATH &#x3D; “$env:PYTHONPATH;.”</li>
+<li>如果提示 no moduble named something，如果单词没有拼写错误且模块也存在，则有可能是没有设置环境变量造成的；环境变量的设置方法，windows下，在 powershell 中输入以下内容：
+    <span id="mjx-ca1936d">
+      <style>
+      #mjx-ca1936d{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="26.788ex" height="1.805ex" role="img" focusable="false" viewBox="0 -716 11840.3 798" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(466,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(1066,0)"><path data-c="1D463" d="M173 380Q173 405 154 405Q130 405 104 376T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Q21 294 29 316T53 368T97 419T160 441Q202 441 225 417T249 361Q249 344 246 335Q246 329 231 291T200 202T182 113Q182 86 187 69Q200 26 250 26Q287 26 319 60T369 139T398 222T409 277Q409 300 401 317T383 343T365 361T357 383Q357 405 376 424T417 443Q436 443 451 425T467 367Q467 340 455 284T418 159T347 40T241 -11Q177 -11 139 22Q102 54 102 117Q102 148 110 181T151 298Q173 362 173 380Z"></path></g><g data-mml-node="mo" transform="translate(1828.8,0)"><path data-c="3A" d="M78 370Q78 394 95 412T138 430Q162 430 180 414T199 371Q199 346 182 328T139 310T96 327T78 370ZM78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path></g><g data-mml-node="mi" transform="translate(2384.6,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mi" transform="translate(3135.6,0)"><path data-c="1D44C" d="M66 637Q54 637 49 637T39 638T32 641T30 647T33 664T42 682Q44 683 56 683Q104 680 165 680Q288 680 306 683H316Q322 677 322 674T320 656Q316 643 310 637H298Q242 637 242 624Q242 619 292 477T343 333L346 336Q350 340 358 349T379 373T411 410T454 461Q546 568 561 587T577 618Q577 634 545 637Q528 637 528 647Q528 649 530 661Q533 676 535 679T549 683Q551 683 578 682T657 680Q684 680 713 681T746 682Q763 682 763 673Q763 669 760 657T755 643Q753 637 734 637Q662 632 617 587Q608 578 477 424L348 273L322 169Q295 62 295 57Q295 46 363 46Q379 46 384 45T390 35Q390 33 388 23Q384 6 382 4T366 1Q361 1 324 1T232 2Q170 2 138 2T102 1Q84 1 84 9Q84 14 87 24Q88 27 89 30T90 35T91 39T93 42T96 44T101 45T107 45T116 46T129 46Q168 47 180 50T198 63Q201 68 227 171L252 274L129 623Q128 624 127 625T125 627T122 629T118 631T113 633T105 634T96 635T83 636T66 637Z"></path></g><g data-mml-node="mi" transform="translate(3898.6,0)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mi" transform="translate(4602.6,0)"><path data-c="1D43B" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 219 683Q260 681 355 681Q389 681 418 681T463 682T483 682Q499 682 499 672Q499 670 497 658Q492 641 487 638H485Q483 638 480 638T473 638T464 637T455 637Q416 636 405 634T387 623Q384 619 355 500Q348 474 340 442T328 395L324 380Q324 378 469 378H614L615 381Q615 384 646 504Q674 619 674 627T617 637Q594 637 587 639T580 648Q580 650 582 660Q586 677 588 679T604 682Q609 682 646 681T740 680Q802 680 835 681T871 682Q888 682 888 672Q888 645 876 638H874Q872 638 869 638T862 638T853 637T844 637Q805 636 794 634T776 623Q773 618 704 340T634 58Q634 51 638 51Q646 48 692 46H723Q729 38 729 37T726 19Q722 6 716 0H701Q664 2 567 2Q533 2 504 2T458 2T437 1Q420 1 420 10Q420 15 423 24Q428 43 433 45Q437 46 448 46H454Q481 46 514 49Q520 50 522 50T528 55T534 64T540 82T547 110T558 153Q565 181 569 198Q602 330 602 331T457 332H312L279 197Q245 63 245 58Q245 51 253 49T303 46H334Q340 38 340 37T337 19Q333 6 327 0H312Q275 2 178 2Q144 2 115 2T69 2T48 1Q31 1 31 10Q31 12 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mi" transform="translate(5490.6,0)"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mi" transform="translate(6253.6,0)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mi" transform="translate(7141.6,0)"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mi" transform="translate(7892.6,0)"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mi" transform="translate(8642.6,0)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mi" transform="translate(9346.6,0)"><path data-c="1D43B" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 219 683Q260 681 355 681Q389 681 418 681T463 682T483 682Q499 682 499 672Q499 670 497 658Q492 641 487 638H485Q483 638 480 638T473 638T464 637T455 637Q416 636 405 634T387 623Q384 619 355 500Q348 474 340 442T328 395L324 380Q324 378 469 378H614L615 381Q615 384 646 504Q674 619 674 627T617 637Q594 637 587 639T580 648Q580 650 582 660Q586 677 588 679T604 682Q609 682 646 681T740 680Q802 680 835 681T871 682Q888 682 888 672Q888 645 876 638H874Q872 638 869 638T862 638T853 637T844 637Q805 636 794 634T776 623Q773 618 704 340T634 58Q634 51 638 51Q646 48 692 46H723Q729 38 729 37T726 19Q722 6 716 0H701Q664 2 567 2Q533 2 504 2T458 2T437 1Q420 1 420 10Q420 15 423 24Q428 43 433 45Q437 46 448 46H454Q481 46 514 49Q520 50 522 50T528 55T534 64T540 82T547 110T558 153Q565 181 569 198Q602 330 602 331T457 332H312L279 197Q245 63 245 58Q245 51 253 49T303 46H334Q340 38 340 37T337 19Q333 6 327 0H312Q275 2 178 2Q144 2 115 2T69 2T48 1Q31 1 31 10Q31 12 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mo" transform="translate(10512.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(11290.3,0)"><g data-mml-node="mo"><g data-c="2033"><path data-c="2032" d="M79 43Q73 43 52 49T30 61Q30 68 85 293T146 528Q161 560 198 560Q218 560 240 545T262 501Q262 496 260 486Q259 479 173 263T84 45T79 43Z"></path><path data-c="2032" d="M79 43Q73 43 52 49T30 61Q30 68 85 293T146 528Q161 560 198 560Q218 560 240 545T262 501Q262 496 260 486Q259 479 173 263T84 45T79 43Z" transform="translate(275,0)"></path></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>e</mi><mi>n</mi><mi>v</mi><mo>:</mo><mi>P</mi><mi>Y</mi><mi>T</mi><mi>H</mi><mi>O</mi><mi>N</mi><mi>P</mi><mi>A</mi><mi>T</mi><mi>H</mi><mo>=</mo><mrow data-mjx-texclass="ORD"><mo data-mjx-pseudoscript="true">"</mo></mrow></math></mjx-assistive-mml></mjx-container>
+    </span>
+  env:PYTHONPATH;.&quot;</li>
 <li>元组的操作跟列表类似，唯一的区别是元组的内容不可修改；</li>
 <li>file.readlines( )：返回的列表中，会包括 file 里面每一行末尾的回车符，如果不需要它，可以通过 strip() 将其裁剪掉；</li>
 <li>函数可以有两种写法，一种直接改变传入的参数并返回；一种不改变传入的参数，通过新增变量来赋值并返回，感觉后者的副作用更小；</li>
-<li>如何给POST方法做测试？<br>1. 模拟数据提交，验证返回结果<br>2. 怎么模拟数据提交？<ol>
+<li>如何给POST方法做测试？<br>
+1. 模拟数据提交，验证返回结果<br>
+2. 怎么模拟数据提交？
+<ol>
 <li>原理：url 类里面的一种方法，通过传入参数，这个函数返回相应的结果，验证结果是否符合预期</li>
 <li>作者做了一个测试网站响应的 tool，通过调用这个工具来判断网站是否正确响应；</li>
-<li>除此之外，是否有更好的方法？<br>3. app.request( &#x2F;url ) 这个函数是干嘛用的？</li>
-<li>web.py中，web.application里面的一个函数，向 applicaiton 发送路径和方法进行请求，返回结果是一个 storage 对象，里面包含有：返回数据 data，状态 status，头部信息 header；<br>4. web.py 中的 application 类是干嘛的？</li>
-<li>作用：基于路径代理请求；</li>
-<li>application(self, mapping&#x3D;( ), fvars&#x3D;{ }, autoreload&#x3D;None)，其中：<ol>
-<li>mapping&#x3D;( )： 是一个存有 url 与 相应类之间的映射关系的元组，例如：urls &#x3D; (“&#x2F;hello”, “Hello”)，默认初始为空</li>
-<li>fvars&#x3D;{ }：默认初始为空的字典，这个字典存放命名空间，可以是局部的 locals( )，也可以是全局的 globals( )</li>
+<li>除此之外，是否有更好的方法？</li>
 </ol>
 </li>
 </ol>
-</li>
-<li>命名空间，一个很重要的概念<br>1. 函数的命名空间<ol>
+<pre><code class="hljs">3. app.request( /url ) 这个函数是干嘛用的？
+    1. web.py中，web.application里面的一个函数，向 applicaiton 发送路径和方法进行请求，返回结果是一个 storage 对象，里面包含有：返回数据 data，状态 status，头部信息 header；
+4. web.py 中的 application 类是干嘛的？
+    1. 作用：基于路径代理请求；
+    2. application(self, mapping=( ), fvars=&#123; &#125;, autoreload=None)，其中：
+        1. mapping=( )： 是一个存有 url 与 相应类之间的映射关系的元组，例如：urls = (&quot;/hello&quot;, &quot;Hello&quot;)，默认初始为空
+        2. fvars=&#123; &#125;：默认初始为空的字典，这个字典存放命名空间，可以是局部的 locals( )，也可以是全局的 globals( )
+</code></pre>
+<ol start="107">
+<li>命名空间，一个很重要的概念<br>
+1. 函数的命名空间
+<ol>
 <li>每个函数都有自己的命名空间，在这个空间里面，放着函数的参数、变量等</li>
-<li>这个空间类似于一个对象，放在里面的东西，用键来表示，键值则对应东西的值<br>2. 模块的命名空间</li>
-<li>模块的命名空间跟函数一样，只是放入了更多东西，包括：模块的参数、模块的变量、模块的类、模块的函数等</li>
-<li>对于 from module import something，它的原理是从 module 中调用 something，并放入当前的模块；</li>
-<li>对于 import module，它的原理是调入整个 module，，因此这个 module 还保留着自己的命名空间；</li>
-<li>对于后者，如果要访问 module 的函数，就需要加上 module 的名称作为前缀名，因为这样才能够访问到该命名空间；</li>
+<li>这个空间类似于一个对象，放在里面的东西，用键来表示，键值则对应东西的值</li>
 </ol>
 </li>
-<li>locals() 和 globals()：<br>1. 作为两个内置函数，提供了访问局部命名空间和全局命名空间的方式<br>2. 前者是只读的，后者不是；调用 locals() 时，它并没有返回命名空间，而只是返回了一个拷贝，所以对它进行操作并不影响原空间；而globals() 返回的是全局命名空间的字典，所以对它进行操作，都会对全局变量发生影响；<br>3. 用途：使用这两个函数，通过提供变量的字符串名称，可以动态的得到任何变量的值；</li>
-<li>vars(object )<br>1. 如果有参数，表示返回 object 的属性组成的字典，等同于 object.<strong>dict</strong><br>2. 如果没有参数，其作用与 locals() 相同</li>
-<li>dir(object )<br>1. dir() 会自动寻找一个对象的所有属性，不管它是字典还是列表，包括__dict__中的属性<br>2. dir() 返回所找到的属性组成的列表</li>
+</ol>
+<pre><code class="hljs">2. 模块的命名空间
+    1. 模块的命名空间跟函数一样，只是放入了更多东西，包括：模块的参数、模块的变量、模块的类、模块的函数等
+    2. 对于 from module import something，它的原理是从 module 中调用 something，并放入当前的模块；
+    3. 对于 import module，它的原理是调入整个 module，，因此这个 module 还保留着自己的命名空间；
+    4. 对于后者，如果要访问 module 的函数，就需要加上 module 的名称作为前缀名，因为这样才能够访问到该命名空间；
+</code></pre>
+<ol start="108">
+<li>locals() 和 globals()：<br>
+1. 作为两个内置函数，提供了访问局部命名空间和全局命名空间的方式<br>
+2. 前者是只读的，后者不是；调用 locals() 时，它并没有返回命名空间，而只是返回了一个拷贝，所以对它进行操作并不影响原空间；而globals() 返回的是全局命名空间的字典，所以对它进行操作，都会对全局变量发生影响；<br>
+3. 用途：使用这两个函数，通过提供变量的字符串名称，可以动态的得到任何变量的值；</li>
+<li>vars(object )<br>
+1. 如果有参数，表示返回 object 的属性组成的字典，等同于 object.<strong>dict</strong><br>
+2. 如果没有参数，其作用与 locals() 相同</li>
+<li>dir(object )<br>
+1. dir() 会自动寻找一个对象的所有属性，不管它是字典还是列表，包括__dict__中的属性<br>
+2. dir() 返回所找到的属性组成的列表</li>
 <li>python 的“非”运算符使用 “not”，而不是使用感叹号“！”</li>
 <li>据说：虽然可以随时给对象的属性赋值，但好的编程规范是将属性的初始操作都封装在 <strong>init</strong>() 中；</li>
 <li>对于在类的主体中初始化的属性，会立即被执行，但是使用 def 关键字声明的方法，则不会被立即执行，而是等到调用时才执行；</li>
 <li>如果通过 def 定义了一个函数，实际是在全局定义了一个变量；如果用同样的方法在类中定义一个函数，则是为这个类添加了一个属性；因此，实例的方法，实际上是在类中，而不是在实例中；当调用 类Foo 的实例 f 的方法 say() 时，实际上是调用了 Foo 的 say() 方法，并且把 f 做为第一个参数传到 say 中，因此 f.say() 和 Foo.say(f) 实际上没有本质上的区别；</li>
 <li>在 python 中，变量和属性的寻址略有不同；变量的查询遵循 LEGB 原则，即 local, enclosing, global, builtin；属性的查找原则则是：先查找属性声明的那个对象，然后是创建对象的类，然后顺着类的继承往上找，直到 object 对象；所以可以说，python 没有实例变量和类变量的说法，只有对象和属性（因为在 python 中，一切皆对象）；但我们应该避免类属性和实例属性重名；</li>
-<li>format() 函数，用来格式化输出字符串，示例：<br>1. 例子1：<ol>
-<li>age &#x3D; 25</li>
-<li>name &#x3D; Rudi</li>
-<li>print(‘{0} is {1} years old. ‘.format(name, age))   #输出参数</li>
-<li>结果：Rudi is 25 years old.<br>2. 例子2</li>
-<li>print(‘{0:.3} is a decimal. ‘.format(1&#x2F;3))   #小数点后三位 </li>
-<li>结果：0.333 is a decimal.<br>3. 例子3</li>
-<li>print(‘My name is {0.name}’.format(open(‘out.txt’, ‘w’)))    #调用方法</li>
-<li>结果： My name is Rudi.</li>
-<li>说明： 数字(0, 1, …)即代表format()里面的元素, 所以可以使用”.”调用元素的方法</li>
+<li>format() 函数，用来格式化输出字符串，示例：<br>
+1. 例子1：
+<ol>
+<li>age = 25</li>
+<li>name = Rudi</li>
+<li>print('{0} is {1} years old. '.format(name, age))   #输出参数</li>
+<li>结果：Rudi is 25 years old.</li>
 </ol>
 </li>
-<li>如果要导入 A 文件夹中的 B 文件的 C 类，如下：<br>1. from A.B import C<br>2. 注意：A 和 B 使用点“.”连接，而不是斜杠“&#x2F;”</li>
-<li>web.py 里面有很多是模块，使用之前需要先导入才行，例如： from web import form，之后才能使用 form.** 来创建一些对象；</li>
+</ol>
+<pre><code class="hljs">2. 例子2
+    1. print('&#123;0:.3&#125; is a decimal. '.format(1/3))   #小数点后三位 
+    2. 结果：0.333 is a decimal.
+3. 例子3
+    1. print('My name is &#123;0.name&#125;'.format(open('out.txt', 'w')))    #调用方法
+    2. 结果： My name is Rudi.
+    3. 说明： 数字(0, 1, ...)即代表format()里面的元素, 所以可以使用&quot;.&quot;调用元素的方法
+</code></pre>
+<ol start="117">
+<li>如果要导入 A 文件夹中的 B 文件的 C 类，如下：<br>
+1. from A.B import C<br>
+2. 注意：A 和 B 使用点“.”连接，而不是斜杠“/”</li>
+<li><a target="_blank" rel="noopener" href="http://web.py">web.py</a> 里面有很多是模块，使用之前需要先导入才行，例如： from web import form，之后才能使用 form.** 来创建一些对象；</li>
 <li>获取用户输入的选项，程序进行不同的处理，除了使用 if 来逐个判断外，更好的做法或是将选项与值组成一个字典 dict {key1:value1, key2:value2}，然后使用 dict.get(key) 来进行处理</li>
-<li>raise 关键字有什么作用？<br>1. 可以用来触发错误<br>2. 还有以下用法<ol>
-<li>class Foo(object):<ol>
-<li>def AA():<ol>
+<li>raise 关键字有什么作用？<br>
+1. 可以用来触发错误<br>
+2. 还有以下用法
+<ol>
+<li>class Foo(object):
+<ol>
+<li>def AA():
+<ol>
 <li>#处理业务逻辑</li>
-<li>raise web.seeother(‘&#x2F;‘)</li>
+<li>raise web.seeother(‘/’)</li>
 </ol>
 </li>
 </ol>
 </li>
 </ol>
 </li>
-<li>session 和 cookie<br>1. 目的：由于 http 是一个无状态协议，所以如果想达到个性化服务的效果，就需要有一种机制来识别客户端的状态；<br>2. cookie 采取在客户端保存状态，session 采取在服务端保持状态；<br>3. 如果是持久保存，session 的实现需要 cookie 配合；如果只是本次访问期间保存，则 session 可以通过 url 重写或者表单隐藏字段来实现；</li>
-<li>疑问汇总<br>1. 代码写在一个文件里，跟分开写成多个文件：什么时候使用前者，什么时候使用后者，各自的使用场景是什么？<br>2. GET 方法，服务器返回值时，此时的值是如何存储，以及应该如何读取？<ol>
-<li>通过 request( ) 函数向服务器发送请求，返回值是一个 storage 对象，里面带3个信息，分别是 data, header, status；可以使用 request(‘&#x2F;**’).data 来访问，返回的 data 是一个字符串；<br>3. class, type, 的区别？</li>
-<li>Classes are Instances of type.</li>
-<li>User-defined classes are instances of type classes.</li>
-<li>User-defined classes are types that generate instances of their own.<br>4. 可以根据需要再加载模块吗，而不是一次性都加载进来？</li>
-<li>可以动态的加载模块<br>5. web.config.get(‘_session’) 和 web.config._session 二者的区别是什么？</li>
-<li>前者表示获取字典 web.config 指定键 ‘_session’ 的值</li>
-<li>后者表示访问对象 web.config 指定属性 _session </li>
-<li>为什么 web.config 一会是字典，一会是对象呢？<ol>
-<li>在 python 里面，一切皆是对象，因此字典也是一种对象</li>
-<li>对象的属性储存在对象的 <strong>dict</strong> 属性中，<strong>dict</strong> 是一个字典，它的键即是属性名，键对应的值即是属性本身；</li>
+<li>session 和 cookie<br>
+1. 目的：由于 http 是一个无状态协议，所以如果想达到个性化服务的效果，就需要有一种机制来识别客户端的状态；<br>
+2. cookie 采取在客户端保存状态，session 采取在服务端保持状态；<br>
+3. 如果是持久保存，session 的实现需要 cookie 配合；如果只是本次访问期间保存，则 session 可以通过 url 重写或者表单隐藏字段来实现；</li>
+<li>疑问汇总<br>
+1. 代码写在一个文件里，跟分开写成多个文件：什么时候使用前者，什么时候使用后者，各自的使用场景是什么？<br>
+2. GET 方法，服务器返回值时，此时的值是如何存储，以及应该如何读取？
+<ol>
+<li>通过 request( ) 函数向服务器发送请求，返回值是一个 storage 对象，里面带3个信息，分别是 data, header, status；可以使用 request(‘/**’).data 来访问，返回的 data 是一个字符串；</li>
 </ol>
 </li>
 </ol>
-</li>
-</ol>
-<pre><code class="hljs">6. 点 &quot;.&quot; 操作符可以应用在哪些场景？
+<pre><code class="hljs">3. class, type, 的区别？
+    1. Classes are Instances of type.
+    2. User-defined classes are instances of type classes.
+    3. User-defined classes are types that generate instances of their own.
+4. 可以根据需要再加载模块吗，而不是一次性都加载进来？
+    1. 可以动态的加载模块 
+5. web.config.get('_session') 和 web.config._session 二者的区别是什么？
+    1. 前者表示获取字典 web.config 指定键 '_session' 的值
+    2. 后者表示访问对象 web.config 指定属性 _session 
+    3. 为什么 web.config 一会是字典，一会是对象呢？
+        1. 在 python 里面，一切皆是对象，因此字典也是一种对象
+        2. 对象的属性储存在对象的 __dict__ 属性中，__dict__ 是一个字典，它的键即是属性名，键对应的值即是属性本身；
+6. 点 &quot;.&quot; 操作符可以应用在哪些场景？
     1. 访问包中的模板
     2. 访问模板中的函数、变量、属性
     3. 访问对象内的函数、变量、属性
@@ -1258,16 +1606,36 @@
         3. 还可以在 content 下面设置一些变量，通过 content.var（变量名）来访问；
 </code></pre>
 <ol start="123">
-<li>错误总结<br>1. 在类中定义的函数，至少要有一个参数self，不能没有参数；<br>2. 取字典的键值，需要使用 get(key) 函数，而不能直接 dict.key，但可以这样 dict[key]；<br>3. 条件判断记得用 &#x3D;&#x3D;，而不是 &#x3D;<br>4. 思考<ol>
-<li>A 引入 B，B 引入 C，从而使用在执行A 的时候，获得了 C 的代码？待实践<br>5. 判断 A 字符串是否包含在 B 字符串中，使用 if A in B<br>6. 创建类的时候，记得写 (object)<br>7. 自增是 i +&#x3D; 1；而不是 i &#x3D;+1<br>8. 在函数中与全局变量同名的变量，如果在函数中有改变此变量的值，则函数内的变量会被识别为局部变量；如果确定两个变量是一样的，则需要在函数中给变量加上 global 关键字，用来告诉解释器，此处引用了一个全局变量；<br>9. 一行写多条语句的话，可以通过分号换行，不过不太推荐这种写法，建议一行一条语句，这样比较容易阅读<br>10. 多行一条语句，可以通过行的末尾加“&#x2F;“ 符号来表示本行未结束</li>
+<li>错误总结<br>
+1. 在类中定义的函数，至少要有一个参数self，不能没有参数；<br>
+2. 取字典的键值，需要使用 get(key) 函数，而不能直接 dict.key，但可以这样 dict[key]；<br>
+3. 条件判断记得用 ==，而不是 =<br>
+4. 思考
+<ol>
+<li>A 引入 B，B 引入 C，从而使用在执行A 的时候，获得了 C 的代码？待实践</li>
 </ol>
 </li>
-<li>其他知识<br>1. rsplit([sep[, maxsplit]]) <ol>
+</ol>
+<pre><code class="hljs">5. 判断 A 字符串是否包含在 B 字符串中，使用 if A in B
+6. 创建类的时候，记得写 (object) 
+7. 自增是 i += 1；而不是 i =+1
+8. 在函数中与全局变量同名的变量，如果在函数中有改变此变量的值，则函数内的变量会被识别为局部变量；如果确定两个变量是一样的，则需要在函数中给变量加上 global 关键字，用来告诉解释器，此处引用了一个全局变量；
+9. 一行写多条语句的话，可以通过分号换行，不过不太推荐这种写法，建议一行一条语句，这样比较容易阅读
+10. 多行一条语句，可以通过行的末尾加“/&quot; 符号来表示本行未结束
+</code></pre>
+<ol start="124">
+<li>其他知识<br>
+1. rsplit([sep[, maxsplit]])
+<ol>
 <li>rsplit 可以从右侧开始分割，因此对于获取文件名特别有用；</li>
-<li>maxsplit 可以用来指定分割次数，默认为 -1，即分割所有；若指定1，则只分割一次；<br>2. windows powershell 输入文件结束符的方式为 ctrl + z；linux 下输入文件结束符的方式为 ctrl + d<br>3. 偏函数：当某个函数的参数比较多时，或者其中某个参数是固定值，可以使用 functools.partial 来包装这个函数，生成一个新函数，目的是后续调用的时候更加方便，可以减少重复写固定值的参数的工作量；<br>4. zip 函数用于将多个可迭代对象中的元素，一一配对，组成元组列表后返回；</li>
+<li>maxsplit 可以用来指定分割次数，默认为 -1，即分割所有；若指定1，则只分割一次；</li>
 </ol>
 </li>
 </ol>
+<pre><code class="hljs">2. windows powershell 输入文件结束符的方式为 ctrl + z；linux 下输入文件结束符的方式为 ctrl + d
+3. 偏函数：当某个函数的参数比较多时，或者其中某个参数是固定值，可以使用 functools.partial 来包装这个函数，生成一个新函数，目的是后续调用的时候更加方便，可以减少重复写固定值的参数的工作量；
+4. zip 函数用于将多个可迭代对象中的元素，一一配对，组成元组列表后返回；
+</code></pre>
 
                 
               </div>

@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="开发事项 页面的展示； 页面上的用户交互事件； 页面间的切换逻辑； 数据存储与网络调用；   前端架构 service：业务逻辑层，按业务类型整合相关的方法，向上暴露接口，降低表现层对业务逻辑的关注； pages：表现层，一个页面一个文件夹，放置这个页面涉及的资源； common：放置一些和项目相关的公共代码，如转码，工具包，公共样式设置等； lib：放置一些最底层、第三方的库； widgets">
+    <meta name="description" content="开发事项  页面的展示； 页面上的用户交互事件； 页面间的切换逻辑； 数据存储与网络调用；   前端架构  service：业务逻辑层，按业务类型整合相关的方法，向上暴露接口，降低表现层对业务逻辑的关注； pages：表现层，一个页面一个文件夹，放置这个页面涉及的资源； common：放置一些和项目相关的公共代码，如转码，工具包，公共样式设置等； lib：放置一些最底层、第三方的库； widge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序">
 <meta property="og:url" content="https://ccw1078.github.io/2018/01/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="开发事项 页面的展示； 页面上的用户交互事件； 页面间的切换逻辑； 数据存储与网络调用；   前端架构 service：业务逻辑层，按业务类型整合相关的方法，向上暴露接口，降低表现层对业务逻辑的关注； pages：表现层，一个页面一个文件夹，放置这个页面涉及的资源； common：放置一些和项目相关的公共代码，如转码，工具包，公共样式设置等； lib：放置一些最底层、第三方的库； widgets">
+<meta property="og:description" content="开发事项  页面的展示； 页面上的用户交互事件； 页面间的切换逻辑； 数据存储与网络调用；   前端架构  service：业务逻辑层，按业务类型整合相关的方法，向上暴露接口，降低表现层对业务逻辑的关注； pages：表现层，一个页面一个文件夹，放置这个页面涉及的资源； common：放置一些和项目相关的公共代码，如转码，工具包，公共样式设置等； lib：放置一些最底层、第三方的库； widge">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-01-04T03:25:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T23:08:41.993Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2k 字
         
       </span>
     
@@ -278,14 +282,16 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>开发事项<ol>
+<li>开发事项
+<ol>
 <li>页面的展示；</li>
 <li>页面上的用户交互事件；</li>
 <li>页面间的切换逻辑；</li>
 <li>数据存储与网络调用；</li>
 </ol>
 </li>
-<li>前端架构<ol>
+<li>前端架构
+<ol>
 <li>service：业务逻辑层，按业务类型整合相关的方法，向上暴露接口，降低表现层对业务逻辑的关注；</li>
 <li>pages：表现层，一个页面一个文件夹，放置这个页面涉及的资源；</li>
 <li>common：放置一些和项目相关的公共代码，如转码，工具包，公共样式设置等；</li>
@@ -293,14 +299,19 @@
 <li>widgets：一些通用的带UI的小组件，独立闭环的交互；</li>
 </ol>
 </li>
-<li>项目目录<ol>
-<li>全局<ol>
-<li>app.js：小程序的全局脚本文件，用来监听并处理小程序的生命周期函数，声明全局变量，调用API等；<ol>
-<li>App({<ol>
-<li>onLaunch: function( ){ },  &#x2F;&#x2F;启动时的初始化操作</li>
-<li>onShow: function( ){ }, &#x2F;&#x2F;从后台进入前台的操作；</li>
-<li>onHide: function( ){ }, &#x2F;&#x2F;从前台进入后台的操作</li>
-<li>globalConf: {<ol>
+<li>项目目录
+<ol>
+<li>全局
+<ol>
+<li>app.js：小程序的全局脚本文件，用来监听并处理小程序的生命周期函数，声明全局变量，调用API等；
+<ol>
+<li>App({
+<ol>
+<li>onLaunch: function( ){ },  //启动时的初始化操作</li>
+<li>onShow: function( ){ }, //从后台进入前台的操作；</li>
+<li>onHide: function( ){ }, //从前台进入后台的操作</li>
+<li>globalConf: {
+<ol>
 <li>indexDate: ‘’,</li>
 <li>matchDate: ‘’</li>
 <li>}</li>
@@ -316,19 +327,26 @@
 <li>app.wxss：全局样式文件；</li>
 </ol>
 </li>
-<li>页面<ol>
-<li>pages<ol>
-<li>page1<ol>
-<li>page1.js<ol>
-<li>Page({<ol>
-<li>data: {},  &#x2F;&#x2F;页面数据</li>
-<li>onLoad: function( ){ }, &#x2F;&#x2F;页面加载时的初始化操作；</li>
-<li>onReady: function( ){ },  &#x2F;&#x2F;加载就绪后的操作；</li>
-<li>onShow: function( ){ },  &#x2F;&#x2F;页面打开时的操作；</li>
-<li>onHide: function( ){ },  &#x2F;&#x2F;页面隐藏时的操作；</li>
-<li>onUnLoad: function( ){ },  &#x2F;&#x2F;页面关闭时的操作；</li>
-<li>viewTap: function( ){  &#x2F;&#x2F;页面元素事件触发的操作；<ol>
-<li>this.setData({<ol>
+<li>页面
+<ol>
+<li>pages
+<ol>
+<li>page1
+<ol>
+<li>page1.js
+<ol>
+<li>Page({
+<ol>
+<li>data: {},  //页面数据</li>
+<li>onLoad: function( ){ }, //页面加载时的初始化操作；</li>
+<li>onReady: function( ){ },  //加载就绪后的操作；</li>
+<li>onShow: function( ){ },  //页面打开时的操作；</li>
+<li>onHide: function( ){ },  //页面隐藏时的操作；</li>
+<li>onUnLoad: function( ){ },  //页面关闭时的操作；</li>
+<li>viewTap: function( ){  //页面元素事件触发的操作；
+<ol>
+<li>this.setData({
+<ol>
 <li>test: ‘set some data for updating now’</li>
 <li>})</li>
 </ol>
@@ -352,24 +370,30 @@
 </li>
 </ol>
 </li>
-<li>两个开发步骤<ol>
+<li>两个开发步骤
+<ol>
 <li>创建实例：即编写3个 app 前缀的文件，定义、配置及页面执行关联；</li>
 <li>创建页面：编写页面结构与事务处理逻辑；</li>
 </ol>
 </li>
-<li>MIMA架构示意图<br> 1. </li>
-<li>结构<ol>
+<li>MIMA架构示意图<br>
+1.</li>
+<li>结构
+<ol>
 <li>页面层</li>
 <li>逻辑层</li>
-<li>数据层<ol>
+<li>数据层
+<ol>
 <li>页面临时数据或缓存：在 Page( ) 中，使用 setData 函数，将数据从逻辑层发往视图层；</li>
-<li>文件存储（本地存储），使用以下3个API：<ol>
+<li>文件存储（本地存储），使用以下3个API：
+<ol>
 <li>wx.getStorage：获取本地数据缓存；</li>
 <li>wx.setStorage：设置本地数据缓存；</li>
 <li>wx.clearStorage：清除本地数据缓存；</li>
 </ol>
 </li>
-<li>网络存储和调用<ol>
+<li>网络存储和调用
+<ol>
 <li>wx.request：发起网络请求；</li>
 <li>wx.uploadFile：上传文件</li>
 <li>wx.downloadFile：下载文件；</li>
@@ -381,36 +405,47 @@
 </li>
 </ol>
 </li>
-<li>开发流程<ol>
-<li>配置<ol>
+<li>开发流程
+<ol>
+<li>配置
+<ol>
 <li>全局配置：app.json</li>
 <li>页面配置：page.json</li>
 </ol>
 </li>
-<li>逻辑层<ol>
+<li>逻辑层
+<ol>
 <li>注册程序：app( ) 方法</li>
 <li>注册页面：page( ) 方法</li>
-<li>模块化<ol>
+<li>模块化
+<ol>
 <li>将一些公共的代码抽离一个或多个单独的 js 文件，作为一个模块；</li>
-<li>模块通过 module.exports 对外暴露接口以供其他 js 文件引入使用，示例如下：<ol>
-<li>&#x2F;&#x2F; common.js<ol>
-<li>function sayHello(name) {<ol>
-<li>console.log(‘Hello ‘ + name + ‘!’)</li>
+<li>模块通过 module.exports 对外暴露接口以供其他 js 文件引入使用，示例如下：
+<ol>
+<li>// common.js
+<ol>
+<li>function sayHello(name) {
+<ol>
+<li>console.log('Hello ’ + name + ‘!’)</li>
 <li>}</li>
 </ol>
 </li>
-<li>module.exports &#x3D; {<ol>
+<li>module.exports = {
+<ol>
 <li>sayHello: sayHello</li>
 <li>}</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>&#x2F;&#x2F; call.js  引用的文件<ol>
-<li>var common &#x3D; require(‘common.js’)</li>
-<li>Page({<ol>
-<li>helloMIMA: function( ){<ol>
-<li>common.sayHello(‘MIMA’)  &#x2F;&#x2F;使用的场景；</li>
+<li>// call.js  引用的文件
+<ol>
+<li>var common = require(‘common.js’)</li>
+<li>Page({
+<ol>
+<li>helloMIMA: function( ){
+<ol>
+<li>common.sayHello(‘MIMA’)  //使用的场景；</li>
 <li>}</li>
 </ol>
 </li>
@@ -422,7 +457,8 @@
 </li>
 </ol>
 </li>
-<li>微信的原生 API<ol>
+<li>微信的原生 API
+<ol>
 <li>八大类：网络、媒体、文件、数据缓存、位置、设备、界面、微信开放接口；</li>
 <li>API 的名字如果以 on 开头，例如 wx.onSocketOpen，表示监听某个事件发生，它接受一个回调函数为参数，当事件触发时，会调用这个回调函数；</li>
 <li>其他 API 接口接受一个 Object 对象做为参数，这个对象可以指定 success、fail、complete 三个参数，参数值为函数，分别代表接口调用成功、失败、完成后要执行的回调函数；</li>
@@ -430,52 +466,66 @@
 </li>
 </ol>
 </li>
-<li>视图层<ol>
-<li>WXML<ol>
-<li>数据绑定<ol>
+<li>视图层
+<ol>
+<li>WXML
+<ol>
+<li>数据绑定
+<ol>
 <li>简单绑定</li>
 <li>运算：<code>三元运算&#123;&#123; flag? true : false &#125;&#125;、算数运算&#123;&#123; a + b &#125;&#125;、逻辑判断&#123;&#123; length > 5 &#125;&#125;、字符串运算&#123;&#123; "hello" + name &#125;&#125;、数据路径运算&#123;&#123; object.key &#125;&#125;, &#123;&#123; array[0] &#125;&#125;</code>；</li>
-<li>组合：在花括号内组合元素，组成新的数组或对象、支持扩展运算符展开对象 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;&#123;[ zero, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-title class_">Data</span>: &#123; <span class="hljs-attr">zero</span>: <span class="hljs-number">0</span> &#125;&#125;&#125;；<br></code></pre></td></tr></table></figure></li>
+<li>组合：在花括号内组合元素，组成新的数组或对象、支持扩展运算符展开对象 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;&#123;[ zero, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-title class_">Data</span>: &#123; <span class="hljs-attr">zero</span>: <span class="hljs-number">0</span> &#125;&#125;&#125;；<br></code></pre></td></tr></table></figure>
+</li>
 </ol>
 </li>
-<li>条件语句<ol>
+<li>条件语句
+<ol>
 <li>wx: if 和 wx: else</li>
 <li>可以通过 block 加条件，一次判断多个标签；</li>
 </ol>
 </li>
-<li>列表语句<ol>
+<li>列表语句
+<ol>
 <li>wx: for，数组当前项的下标变量名默认为 index，变量名默认为 item；</li>
-<li>使用 wx: for-item 和 wx: for-index 可以用来指定元素和下标的变量名，例如： wx: for-item &#x3D; “itemName”    wx: for-index &#x3D; “indexName” </li>
+<li>使用 wx: for-item 和 wx: for-index 可以用来指定元素和下标的变量名，例如： wx: for-item = “itemName”    wx: for-index = “indexName”</li>
 <li>wx: for 支持嵌套；</li>
 <li>同样可以通过 block 来渲染一个包含多个节点的块；</li>
-<li>可以使用 wx: key 来指定项目的唯一标识符，并进行需要的操作，例如固定位置的排序<ol>
-<li>方法示例：给对象增加一个 unique 属性，然后每个 item 这个属性的值不同，然后在标签中设置 wx: key &#x3D; unique；由于每个 key 的值不同，这样就可以通过 unique 的值来唯一标识每个标签，对其进行操作；</li>
+<li>可以使用 wx: key 来指定项目的唯一标识符，并进行需要的操作，例如固定位置的排序
+<ol>
+<li>方法示例：给对象增加一个 unique 属性，然后每个 item 这个属性的值不同，然后在标签中设置 wx: key = unique；由于每个 key 的值不同，这样就可以通过 unique 的值来唯一标识每个标签，对其进行操作；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>模板<ol>
+<li>模板
+<ol>
 <li><code>可以通过定义模板 &lt;template name = &quot;templName&quot;&gt;，在模板内放代码段，然后通过 &lt;template is=&quot;templName&quot; data = &quot;&#123;&#123;... item&#125;&#125;&quot;&gt; 来引用模板</code>；</li>
 <li>模板有自己的作用域，只能使用 data 属性传入的数据；</li>
-<li><code>is 属性可以通过花括号放入语句来做一些运算，例如动态判断采用哪个模板名字，以渲染哪个模板，例如 is=&quot;&#123;&#123; value? even : odd &#125;&#125;</code>“</li>
+<li><code>is 属性可以通过花括号放入语句来做一些运算，例如动态判断采用哪个模板名字，以渲染哪个模板，例如 is=&quot;&#123;&#123; value? even : odd &#125;&#125;</code>&quot;</li>
 </ol>
 </li>
-<li>引用<ol>
-<li>import<ol>
+<li>引用
+<ol>
+<li>import
+<ol>
 <li>通过 import 可以在当前文件中使用目标文件定义的 template；</li>
 <li>import 有作用域的限制，只能一层，不能嵌套，即 A 引用 B ，B 引用 C，则 A 可以使用在 B 中定义的模板，但不能使用 C 中定义的模板；</li>
 </ol>
 </li>
-<li>include <ol>
+<li>include
+<ol>
 <li>include 可以将目标文件除模板代码块（<template/>）的所有代码引入，相当于拷贝到 include 的位置；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>事件绑定<ol>
+<li>事件绑定
+<ol>
 <li>与用户交互一般通过事件来进行，在组件上面绑定事件名称，被触发时，到该页面对应的 Page 实例中寻找对应的事件处理函数，参数是 event；</li>
-<li>事件类型<ol>
-<li>冒泡事件：触发后，会向父级节点传递；共有6个，分别为<ol>
+<li>事件类型
+<ol>
+<li>冒泡事件：触发后，会向父级节点传递；共有6个，分别为
+<ol>
 <li>touchstart：触摸</li>
 <li>touchmove：触摸后移动</li>
 <li>touchcancel：触摸中断</li>
@@ -484,20 +534,23 @@
 <li>longtap：长点击</li>
 </ol>
 </li>
-<li>非冒泡事件：触发后，不会向父级节点传递；除了以上6个冒泡事件外，其他事件都是非冒泡事件；<ol>
+<li>非冒泡事件：触发后，不会向父级节点传递；除了以上6个冒泡事件外，其他事件都是非冒泡事件；
+<ol>
 <li>冒泡的意思是，如果它被点击了，则它会触发它的父级节点上的事件，直到被阻止，或者到达根节点；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>事件写法：<ol>
+<li>事件写法：
+<ol>
 <li>key：以 bind 或 catch 开头，然后加上事件的类型，例如 bindtap, catchtouchstart；注：bind 不会阻止冒泡， catch 会阻止冒泡；</li>
 <li>value：一个字符串，对应 Page 中定义的同名函数；</li>
-<li>事件对象的属性<ol>
+<li>事件对象的属性
+<ol>
 <li>type：字符串，事件类型</li>
 <li>timeStamp：整数，当前页面打开，到事件触发，经过的毫秒数；</li>
 <li>target：对象，事件触发的源组件</li>
-<li>currentTarget：对象，事件触发的当前组件（如果是冒泡事件，父级组件的事件的 currentTarget 即是父级组件，而非源组件） </li>
+<li>currentTarget：对象，事件触发的当前组件（如果是冒泡事件，父级组件的事件的 currentTarget 即是父级组件，而非源组件）</li>
 <li>touches：数组，触摸点信息的数组</li>
 <li>changeTouches：数组，变化的解摸点信息的数组；</li>
 <li>detail：对象，其他额外的信息；</li>
@@ -513,8 +566,10 @@
 </li>
 </ol>
 </li>
-<li>错误集<ol>
-<li>页面间传递数据的方法<ol>
+<li>错误集
+<ol>
+<li>页面间传递数据的方法
+<ol>
 <li>在 app.js 中定义全局变量，由各个页面按需要赋值和获取；</li>
 <li>在缓存中定义属性值存储，由 setStorage 和 getStorage 方法进行赋值和读取；</li>
 <li>通过事件的 id 和 dataset 属性传递值到 js 逻辑层，然后在 navigate 或 redirectTo 的 url 中赋值参数，最后通过新页面的 onLoad 初始化的 options 参数获取值；</li>
@@ -524,9 +579,11 @@
 <li>如果想要在子元素中使用 width: 100% 或 height: 100%，则首先需要在其父级以上的元素中定义相应的宽度值，因为这个 100% 是相对父元素而言的，它的表现取决于父元素的实际宽度是多少；</li>
 <li><button> 元素有一个 open-type</li>
 <li><button> 元素有默认的 css 样式，如果要去除边框，需要使用 .class-name::after {border: none} 来实现；</li>
-<li>更新 data 某个对象的属性值<ol>
-<li>var prop &#x3D; ‘obj.key’</li>
-<li>this.setData({<ol>
+<li>更新 data 某个对象的属性值
+<ol>
+<li>var prop = ‘obj.key’</li>
+<li>this.setData({
+<ol>
 <li></li>
 </ol>
 </li>

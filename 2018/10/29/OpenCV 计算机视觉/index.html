@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装open cv 略   处理文件、摄像头和图形用户界面 色彩表示 RGB：三原色表示法 Gamma 校正的原因：由于历史原因，早期只使用 8 位来表示一个颜色维度，这就使得值的范围只能落在 0-255 之间，对于自然界中的颜色来说，这个值范围很小，不足完整表示；同时，人的肉眼，对颜色的感知却是有限的，这意味着有些连续的值，在我们的眼睛里看来，并没有什么变化；此时，这段表示值的数值空间，就存在">
+    <meta name="description" content="安装open cv  略   处理文件、摄像头和图形用户界面  色彩表示  RGB：三原色表示法  Gamma 校正的原因：由于历史原因，早期只使用 8 位来表示一个颜色维度，这就使得值的范围只能落在 0-255 之间，对于自然界中的颜色来说，这个值范围很小，不足完整表示；同时，人的肉眼，对颜色的感知却是有限的，这意味着有些连续的值，在我们的眼睛里看来，并没有什么变化；此时，这段表示值的数值空间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV 计算机视觉">
 <meta property="og:url" content="https://ccw1078.github.io/2018/10/29/OpenCV%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="安装open cv 略   处理文件、摄像头和图形用户界面 色彩表示 RGB：三原色表示法 Gamma 校正的原因：由于历史原因，早期只使用 8 位来表示一个颜色维度，这就使得值的范围只能落在 0-255 之间，对于自然界中的颜色来说，这个值范围很小，不足完整表示；同时，人的肉眼，对颜色的感知却是有限的，这意味着有些连续的值，在我们的眼睛里看来，并没有什么变化；此时，这段表示值的数值空间，就存在">
+<meta property="og:description" content="安装open cv  略   处理文件、摄像头和图形用户界面  色彩表示  RGB：三原色表示法  Gamma 校正的原因：由于历史原因，早期只使用 8 位来表示一个颜色维度，这就使得值的范围只能落在 0-255 之间，对于自然界中的颜色来说，这个值范围很小，不足完整表示；同时，人的肉眼，对颜色的感知却是有限的，这意味着有些连续的值，在我们的眼睛里看来，并没有什么变化；此时，这段表示值的数值空间">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-10-29T03:05:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T23:08:41.982Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          3.8k 字
         
       </span>
     
@@ -235,7 +239,7 @@
         
         
         
-          33 分钟
+          32 分钟
         
       </span>
     
@@ -278,20 +282,25 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>安装open cv<ol>
+<li>安装open cv
+<ol>
 <li>略</li>
 </ol>
 </li>
-<li>处理文件、摄像头和图形用户界面<ol>
-<li>色彩表示<ol>
-<li>RGB：三原色表示法<ol>
+<li>处理文件、摄像头和图形用户界面
+<ol>
+<li>色彩表示
+<ol>
+<li>RGB：三原色表示法
+<ol>
 <li>Gamma 校正的原因：由于历史原因，早期只使用 8 位来表示一个颜色维度，这就使得值的范围只能落在 0-255 之间，对于自然界中的颜色来说，这个值范围很小，不足完整表示；同时，人的肉眼，对颜色的感知却是有限的，这意味着有些连续的值，在我们的眼睛里看来，并没有什么变化；此时，这段表示值的数值空间，就存在浪费的问题；而同时还存在着某个连续的值，在我们的眼睛里看来，虽然每个值只增加或减少1，但是感受到变化很大，因为我们的肉眼在某些段有更高的分辨率，能够识别很微小的变化；而某些段则分辨能力很差，其实有很大的值变化，也分辨不出来；</li>
 <li>基于以上的背景，为了能够在 8 位的数值范围内，尽量多表示人类肉眼能够识别的颜色空间，我们就用一个函数，将颜色值进行非线性的校正，用少数的值代表我们不能分辨的区域；用多数的值，代表我们能够精细分辨的区域；</li>
 </ol>
 </li>
-<li>HSL&#x2F;HSV：<ol>
-<li>Hue 色相，Saturation 饱和度，Value&#x2F;Light 明亮&#x2F;亮度；</li>
-<li>HSL&#x2F;HSV：一种圆柱形的色彩表示方法，点在圆柱中轴（y 轴）上的位置表示明度，点离截面圆心的距离表示饱和度，点在截面上的角度表示色相；</li>
+<li>HSL/HSV：
+<ol>
+<li>Hue 色相，Saturation 饱和度，Value/Light 明亮/亮度；</li>
+<li>HSL/HSV：一种圆柱形的色彩表示方法，点在圆柱中轴（y 轴）上的位置表示明度，点离截面圆心的距离表示饱和度，点在截面上的角度表示色相；</li>
 <li>是三原色模式的一种非线性变换；</li>
 </ol>
 </li>
@@ -302,34 +311,39 @@
 <li>图像压缩：假设三原色数组中，每个原色使用8个二进制位，则可以表示 0-255（十进制） 之间的值；如果将8 位改为4位，则只能表示 0-32 之间的值，颜色的值变少了，但每个原色的位数少了一半，三个原色下来，总共少了8倍的位数；</li>
 <li>图像深度：使用多少个二进制位来表示一个原色，即是多少深度，比如8位，即深度为8；</li>
 <li>图像通道：使用多少个原色来合成一个像素点，即是多少通道，例如使用三原色，则通道数量为3；</li>
-<li>YUV：<ol>
+<li>YUV：
+<ol>
 <li>Y 明度，U 色度， V 浓度</li>
 <li>用途：一种颜色编码方法，考虑人眼对色彩感知的局限性，适当降低色度的带宽，</li>
 </ol>
 </li>
-<li>@property<ol>
+<li>@property
+<ol>
 <li>python 没有私有成员、保护成员的机制，因此可以通过单下划线（保护）、双下划线（私有）来区分；</li>
-<li>对成员的访问，使用 getter 和 setter 机制，但通过引入 @property ，可以方便的使用访问属性的方法，来间接使用 getter  和 setter；例如： obj.prop &#x3D; 60;  和 obj.prop 会自动映射到 setter 和 getter 方法；</li>
+<li>对成员的访问，使用 getter 和 setter 机制，但通过引入 @property ，可以方便的使用访问属性的方法，来间接使用 getter  和 setter；例如： obj.prop = 60;  和 obj.prop 会自动映射到 setter 和 getter 方法；</li>
 </ol>
 </li>
-<li>发光物体：加色模型，使用 rgb，红绿蓝<br> 1. </li>
-<li>反射物体：减色模型，使用 cmy, 青品黄（印刷为了省成本，单独增加了黑色，即 cmyk）<ol>
-<li></li>
+<li>发光物体：加色模型，使用 rgb，红绿蓝<br>
+1.</li>
+<li>反射物体：减色模型，使用 cmy, 青品黄（印刷为了省成本，单独增加了黑色，即 cmyk）<br>
+1.</li>
 </ol>
 </li>
-</ol>
-</li>
-<li>使用 opencv 处理图像<ol>
-<li>不同色彩空间的转换<ol>
+<li>使用 opencv 处理图像
+<ol>
+<li>不同色彩空间的转换
+<ol>
 <li>常用的色彩空间：灰度、BGR、HSV</li>
 </ol>
 </li>
-<li>傅里叶变换<ol>
+<li>傅里叶变换
+<ol>
 <li>高通滤波器：根据像素与周围像素的亮度差值，来提升该像素的亮度，可应用于边缘锐化；</li>
 <li>低通滤波器：当像素与周围像素的亮度差值低于某个阈值时，平滑该像素的亮度；主要用于去噪和模糊化，例如高斯模糊；</li>
 </ol>
 </li>
-<li>边缘检测<ol>
+<li>边缘检测
+<ol>
 <li>Canny 边缘检测</li>
 <li>轮廓检测</li>
 </ol>
@@ -337,18 +351,21 @@
 </ol>
 </li>
 <li>深度估计与分割</li>
-<li>人脸检测与识别<ol>
+<li>人脸检测与识别
+<ol>
 <li>Haar 级联</li>
 </ol>
 </li>
-<li>图像检索以及基于图像描述符的搜索<ol>
+<li>图像检索以及基于图像描述符的搜索
+<ol>
 <li>高斯金字塔：其实不是一组金字塔，而是多组；第1组，图片尺寸一样，但高斯滤波系数不同，每一层的滤波系数是上一层滤波系数的 k 倍；第2组，取第1组倒数第三张图片的一半尺寸做为该组第1张图片，然后按上一层的各个滤波系数，生成一组新图片，该组新图片的尺寸都为上一组的一半，每一层的滤波系数跟上一组同一层的滤波系数相同；最后得到 O组 * L 层张图片；</li>
 <li>尺度空间：高斯金字塔中，由于总共有 O 组 * L 层张图片，那么以 O 为横坐标，以 L 为纵坐标，就可以组成一个空间，并根据 (o, l）得到该空间中的某一张图片；</li>
 <li>差分金字塔（DoG）：当有了高斯金字塔后，将高斯金字塔中，同一组第 i + 1 层图片减去该组的第 i 层图片，即可以得到一个 O 组 * (L - 1) 层的差分金额塔，差分金字塔的信息，是由两张不同高斯滤波系数模糊后的图片相减得来的，因此，它就携带了一些图片上的比较稳定的特征，从而为提取关键特征创建了基础；</li>
 <li>FLANN：最近似邻居的快速库，fast library of approximate nearest neighor</li>
 </ol>
 </li>
-<li>目标检测与识别<ol>
+<li>目标检测与识别
+<ol>
 <li>直方图：它是一种显示统计分布情况的图，一般横轴表示数据类型，纵轴表示分布情况；常用于图像处理，例如亮度直方图（图片像素亮度的分布情况）、颜色直方图（图片像素颜色的分布情况）；</li>
 <li>颜色梯度：即颜色渐变或颜色变化，16*16的像素块，刚好构成一个九宫格，从中心向外八个方向，会有不同的颜色变化，这8个值，可以构成一个梯度直方图；</li>
 <li>图像金字塔：将一张图片，通过采样，生成多张不同分辨率的图片，分辨率从小（最上）到大（最下面），构成了一座金字塔；采样步骤：1，高斯模糊，平滑图像；2，对平滑图像进行抽样，形成新图片；</li>
@@ -356,9 +373,12 @@
 <li>Floating-point descriptors - SIFT, SURF, GLOH etc.</li>
 </ol>
 </li>
-<li>其他<ol>
-<li>图片扭曲：一种数字处理图像的过程，扭曲可以用于校正图像有损；（另外也可以用于图像变形）<ol>
-<li>在函数 f(x) &#x3D; y 中：<ol>
+<li>其他
+<ol>
+<li>图片扭曲：一种数字处理图像的过程，扭曲可以用于校正图像有损；（另外也可以用于图像变形）
+<ol>
+<li>在函数 f(x) = y 中：
+<ol>
 <li>单射函数：对于任意一个 y ，最多有一个 x 与其对应；（每个 y 最多只会被一个 x 射中 ）</li>
 <li>满射函数：对于任意一个 y，最少有一个 x 与其对应；（每个 y 都会被射中）</li>
 <li>双射函数（双向单射）：对于任意一个 y，有且仅有一个 x 与其对应；（每个 y 被一个唯一的 x 射中，它们结对了）</li>
@@ -366,19 +386,23 @@
 </li>
 </ol>
 </li>
-<li>L<em>a</em>b<ol>
+<li>L<em>a</em>b
+<ol>
 <li>L 表示亮度，a 正数时表示红色，a 负数时表示绿色，b 正数时表示黄色，b 负数时表示蓝色；</li>
 <li>Lab 能够表示的色域范围比 RGB 和 CMYK 大；</li>
 </ol>
 </li>
-<li>样条函数 spline function<ol>
+<li>样条函数 spline function
+<ol>
 <li>也叫齿函数，“样条”两个字的得名来源于工程中的放样；</li>
 <li>它是一种特殊的函数，由多项式分段定义；</li>
 </ol>
 </li>
-<li>插值：根据已知的、离散的数据点，在范围内求出新数据点的过程；<ol>
+<li>插值：根据已知的、离散的数据点，在范围内求出新数据点的过程；
+<ol>
 <li>在求解工程问题时，我们通过实验，只能获得数量有限的数据点，我们期望根据有限的数据点，得到一个连续的函数（也即曲线），这个过程叫做拟合；</li>
-<li>两种常用的拟合方法<ol>
+<li>两种常用的拟合方法
+<ol>
 <li>多项式插值：缺点是随着多项式阶数的增加，误差有可能反而增大，即龙格现象（以发现者卡尔龙格命名，即振荡现象）</li>
 <li>样条插值：使用分段的低阶多项式进行拟合，避免了龙格现象；</li>
 </ol>
@@ -387,40 +411,50 @@
 </li>
 <li>仿射：即仿射映射，指在几何中，一个向量空间进行一次线性变换（相加或缩放），并接上一个平移，变换为另外一个向量空间；</li>
 <li>向量空间：它是一些对象（即向量）的集合，这些对象可以进行相加和缩放；</li>
-<li>numpy<ol>
-<li>arr.shape<ol>
+<li>numpy
+<ol>
+<li>arr.shape
+<ol>
 <li>以元组的形式返回数组各个维度的个数；</li>
-<li>示例<ol>
-<li>group &#x3D; array([1, 1, 0, 0])</li>
+<li>示例
+<ol>
+<li>group = array([1, 1, 0, 0])</li>
 <li>print(group) # [1, 1, 0, 0]</li>
 <li>print(group.shape) # (4, )</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>numpy.arange(start, stop, step）<ol>
+<li>numpy.arange(start, stop, step）
+<ol>
 <li>返回开始到结束之间 step 步长的元素组成的数组</li>
-<li>示例<ol>
-<li>arr &#x3D; np.arange(0, 10, 2)</li>
+<li>示例
+<ol>
+<li>arr = np.arange(0, 10, 2)</li>
 <li>print(arr) # [0, 2, 4, 6, 8]</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>arr[1, 1]<ol>
+<li>arr[1, 1]
+<ol>
 <li>使用逗号进行对多维数组特定位置的访问</li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>arr[1, 1]</li>
 <li>表示访问 arr 数组第二行的第二列</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>np.argsort(arr, axis)<ol>
+<li>np.argsort(arr, axis)
+<ol>
 <li>对数组按指定轴 axis 的值进行排序，默认为最里面那轴（值为 -1，0表示最外面的轴）；</li>
 <li>返回结果：排序后的元素的下标</li>
-<li>示例<ol>
-<li>a &#x3D; [1, 3, 2, 0], np.argsort(a) 的结果为 [3, 0, 2, 1]<ol>
+<li>示例
+<ol>
+<li>a = [1, 3, 2, 0], np.argsort(a) 的结果为 [3, 0, 2, 1]
+<ol>
 <li>3 表示最小的元素的下标为3，第二小的元素的下标为0，以此类推；</li>
 </ol>
 </li>
@@ -428,18 +462,22 @@
 </li>
 </ol>
 </li>
-<li>挑出数组中指定位置的元素<ol>
-<li>arr &#x3D; [0, 1, 2, 3, 4]</li>
-<li>pick &#x3D; [0, 2]</li>
-<li>arr[pick] &#x3D; [0, 2]</li>
+<li>挑出数组中指定位置的元素
+<ol>
+<li>arr = [0, 1, 2, 3, 4]</li>
+<li>pick = [0, 2]</li>
+<li>arr[pick] = [0, 2]</li>
 </ol>
 </li>
-<li>np.where 两种用法<ol>
-<li>三个参数的情况<ol>
+<li>np.where 两种用法
+<ol>
+<li>三个参数的情况
+<ol>
 <li>np.where(cond, x, y)，依次遍历 cond，为 true 取 x, 为 false 取 y</li>
 </ol>
 </li>
-<li>一个参数的情况<ol>
+<li>一个参数的情况
+<ol>
 <li>np.where( x &gt; 5)，依次遍历 x 的元素，返回两个数组组成的元组(a, b)</li>
 <li>a 是满足条件的元素的第一维坐标</li>
 <li>b 是满足条件的元素的第二维坐标</li>
@@ -447,17 +485,20 @@
 </li>
 </ol>
 </li>
-<li>np.maximum(a, b)<ol>
+<li>np.maximum(a, b)
+<ol>
 <li>依次遍历比较 a、b 中对应的元素，取最大值；</li>
 <li>返回所有最大值元素组成的新数组；</li>
 <li>a 有可能只是一个整数；</li>
 <li>np.minimum 用法类似，只是取最小值；</li>
-<li>效果同 np.where(a &gt;&#x3D; b, a, b）</li>
+<li>效果同 np.where(a &gt;= b, a, b）</li>
 </ol>
 </li>
-<li>a &#x3D; np.array([1, 2, 3, 4])<ol>
-<li>b &#x3D; a + 1</li>
-<li><blockquote>
+<li>a = np.array([1, 2, 3, 4])
+<ol>
+<li>b = a + 1</li>
+<li>
+<blockquote>
 <blockquote>
 <p>b 为 [2, 3, 4, 5]</p>
 </blockquote>
@@ -465,10 +506,12 @@
 </li>
 </ol>
 </li>
-<li>numpy reshape<ol>
+<li>numpy reshape
+<ol>
 <li>如果参数为负数，则表示该维度值不固定，应以另外一个维度进行计算，剩余多出的即为维度值</li>
-<li>示例：假设有一个 shape 为 (4, 4) 的数组<ol>
-<li>如果 reshape(-1, 2)，则变成 (8, 2) ，因为 4 * 4 &#x2F; 2 &#x3D; 8</li>
+<li>示例：假设有一个 shape 为 (4, 4) 的数组
+<ol>
+<li>如果 reshape(-1, 2)，则变成 (8, 2) ，因为 4 * 4 / 2 = 8</li>
 <li>如果 reshape(2, -1)，则变成 (2, 8)；</li>
 <li>如果 reshape(-1)，则变成 (1, 16)；</li>
 <li>如果 reshape(-1, 1)，则变成 (16, 1)；</li>
@@ -476,76 +519,89 @@
 </li>
 </ol>
 </li>
-<li>python xrange 函数<ol>
+<li>python xrange 函数
+<ol>
 <li>xrange(start, stop, step)，按 step 步长在 start 和 stop 之间进行遍历；</li>
 <li>返回一个生成器；range 则是返回一个 list；</li>
 </ol>
 </li>
-<li>np.int0<ol>
-<li></li>
+<li>np.int0<br>
+1.</li>
 </ol>
 </li>
-</ol>
-</li>
-<li>opencv 函数<ol>
-<li>cv2.imread 参数说明<ol>
-<li>cv2.IMREAD_ANYCOLOR &#x3D; 4</li>
-<li>cv2.IMREAD_ANYDEPTH &#x3D; 2</li>
-<li>cv2.IMREAD_COLOR &#x3D; 1<ol>
+<li>opencv 函数
+<ol>
+<li>cv2.imread 参数说明
+<ol>
+<li>cv2.IMREAD_ANYCOLOR = 4</li>
+<li>cv2.IMREAD_ANYDEPTH = 2</li>
+<li>cv2.IMREAD_COLOR = 1
+<ol>
 <li>对于灰色的图片，如果按彩色模式打开，则每个通道都会填充为相同的值；</li>
 </ol>
 </li>
-<li>cv2.IMREAD_GRAYSCALE &#x3D; 0</li>
-<li>cv2.IMREAD_LOAD-GDAL &#x3D; 8</li>
-<li>cv2.IMREAD_UNCHANGED &#x3D; -1</li>
+<li>cv2.IMREAD_GRAYSCALE = 0</li>
+<li>cv2.IMREAD_LOAD-GDAL = 8</li>
+<li>cv2.IMREAD_UNCHANGED = -1</li>
 </ol>
 </li>
-<li>cv2.dilate 膨胀：<ol>
+<li>cv2.dilate 膨胀：
+<ol>
 <li>膨胀前景（白色的为前景），用一个核去计算每个像素点，该核内的元素，只要有一个为1，该像素点即取1，否则为0；</li>
 <li>膨胀的结果，会使得白色区域变大，黑色区域变小；</li>
 </ol>
 </li>
-<li>cv2.erode 腐蚀<ol>
+<li>cv2.erode 腐蚀
+<ol>
 <li>腐蚀前景（白色的为前景），用一个核去计算每个像素点，该核内的元素，需要全部为1，该像素点才取1，否则为0；</li>
 <li>腐蚀的结果，会使得白色区域变小，黑色区域变大；</li>
 </ol>
 </li>
-<li>膨胀与腐蚀的作用<ol>
+<li>膨胀与腐蚀的作用
+<ol>
 <li>膨胀可以用来消除噪声，减少干扰（膨胀）；</li>
 <li>寻找图像中的极大值区域（膨胀），或者极小值区域（腐蚀）；</li>
 <li>分割的图像元素成独立的状态（膨胀），或者连接相邻的元素成连接状态（腐蚀）</li>
 </ol>
 </li>
-<li>cv2.morphologyEx(src, cv.MORPH_OPEN, kernel)<ol>
+<li>cv2.morphologyEx(src, cv.MORPH_OPEN, kernel)
+<ol>
 <li>先腐蚀再膨胀，首先腐蚀可以连通一些断开的点，之后膨胀可以去除噪点；</li>
 </ol>
 </li>
-<li>cv2.split 函数<ol>
+<li>cv2.split 函数
+<ol>
 <li>分离图像通道，得到的结果为(r, g, b) 元组</li>
 <li>此时如果将得到的值直接用于显示，则实际上是一个灰度图，因为单个通道的图像，等同于黑白；</li>
 </ol>
 </li>
-<li>cv2.arcLength 函数<ol>
+<li>cv2.arcLength 函数
+<ol>
 <li>计算轮廓或曲线的周长（长度）；</li>
 </ol>
 </li>
-<li>cv2.approxPolyDP 函数<ol>
+<li>cv2.approxPolyDP 函数
+<ol>
 <li>使用多边形来对不规则的图形进行拟合，输入物体的轮廓，返回一个近似轮廓的多边形；</li>
 <li>可接受参数 epsilon 用来控制拟合的精确度，它表示原轮廓与多边形的最大减值，这个值越小，拟合就越精确；</li>
 <li>最后一个参数用来表示多边形是否闭合</li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>cv2.approxPolyDP( contour,  0.02 * cv2.arcLength(contour), True)</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>cv2.isContourConvex 函数<ol>
+<li>cv2.isContourConvex 函数
+<ol>
 <li>判断一个轮廓是否为凸多边形；</li>
 </ol>
 </li>
-<li>cv2.nameWindow 和 cv2.resizeWindow<ol>
+<li>cv2.nameWindow 和 cv2.resizeWindow
+<ol>
 <li>可用来改变窗口的大小；</li>
-<li>示例<ol>
+<li>示例
+<ol>
 <li>cv.namedWindow(“enhanced”, 0);</li>
 <li>cv.resizeWindow(“enhanced”, 900, 600);</li>
 <li>cv.imshow(“enhanced”,img)</li>
@@ -553,66 +609,79 @@
 </li>
 </ol>
 </li>
-<li>cv2.findContours<ol>
+<li>cv2.findContours
+<ol>
 <li>返回的结果 contours 中，每一个 contour 是由连续的点组成的数组，点本身由向量表示，例如二维平面的点表示为 (x, y)；</li>
 </ol>
 </li>
-<li>cv2.drawContours(img, contours, contourIdx, color, thickness, lineType, hierarchy, maxLevel, offset)<ol>
+<li>cv2.drawContours(img, contours, contourIdx, color, thickness, lineType, hierarchy, maxLevel, offset)
+<ol>
 <li>contourIdx 轮廓的索引，-1 表示画出所有轮廓</li>
 </ol>
 </li>
-<li>cv2.bitwise_and(img, img, mask)<ol>
+<li>cv2.bitwise_and(img, img, mask)
+<ol>
 <li>可以用来对 mask 区域进行计算，and, or, nor, not 都可以；</li>
 </ol>
 </li>
-<li>cv2.resize(src, dsize, fx, fy, interpolation)<ol>
+<li>cv2.resize(src, dsize, fx, fy, interpolation)
+<ol>
 <li>dsize：目标输出图像的尺寸</li>
 <li>fx：目标输入图像 x 轴缩放倍数</li>
 <li>fy:  目标输入图像 y 轴缩放倍数</li>
 <li>interpolation: 使用的插值方法，默认为 INTER_LINEAR，其他：INTER_AREA, INTER_CUBIC；</li>
 </ol>
 </li>
-<li>cv2.warpAffine(src, M, dsize, flags, borderMode, borderValue)<ol>
+<li>cv2.warpAffine(src, M, dsize, flags, borderMode, borderValue)
+<ol>
 <li>用途：实现对图像的变换，包括缩放、变形、偏移等；</li>
 <li>M：用来变换计算的矩阵</li>
 <li>flags: 插值方法，其中 WARP_INVERSE_MAP 表示 M 是 dst -&gt; src 的相反变换；</li>
 <li>borderMode：像素的外推法</li>
 <li>extrapolation: 外推法根据已知数据集合，外推构建新数据的方法，常用于预测未来产业走向，但结果意义较小，因为不确定性因素较多；</li>
-<li>偏移<ol>
+<li>偏移
+<ol>
 <li>假设偏移量 (tx, ty) 为 (100, 50)</li>
 <li>M 为 [(1, 0, 100], [0, 1, 50]]</li>
 </ol>
 </li>
-<li>旋转角度 N<ol>
+<li>旋转角度 N
+<ol>
 <li>M 为 [[cosN, -sinN], [sinN, cosN]]</li>
 </ol>
 </li>
-<li>带缩放倍数旋转<ol>
+<li>带缩放倍数旋转
+<ol>
 <li>M 为 [[ a, b, (1-a)<em>center.x - b</em>center.y], [-b, a, b*centerx + (1 - a)*center.y]]</li>
-<li>其中：<ol>
-<li>a &#x3D; scale * cosN</li>
-<li>b &#x3D; scale * sinN</li>
+<li>其中：
+<ol>
+<li>a = scale * cosN</li>
+<li>b = scale * sinN</li>
 </ol>
 </li>
 <li>M 可以使用内置函数 cv2.getRotationMatrix2D(center, angle, scale) 获得</li>
 </ol>
 </li>
-<li>仿射变换<ol>
+<li>仿射变换
+<ol>
 <li>M 可通过 cv2.getAffineTransform(pts1_input, pts_output) 获得</li>
 <li>其中 pts1_input 为输入图像三个点，pts_output 为输出图像的三个点；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>cv2.warpPerspective(src, M, dszie, dst, flags, borderMode, boderValue)  透视变换<ol>
+<li>cv2.warpPerspective(src, M, dszie, dst, flags, borderMode, boderValue)  透视变换
+<ol>
 <li>M 是一个 3*3 矩阵，可通过 cv2.getPerspectiveTransform(pts1_input, pts_output) 获得</li>
 <li>其中 pts1_input 为输入图像四个点，pts_output 为输出图像的四个点；</li>
 <li>四个点中，需要有三个点不在同一条直线上；</li>
 </ol>
 </li>
-<li>cv2.threshhold(src, thresh, maxValue, threshType)<ol>
+<li>cv2.threshhold(src, thresh, maxValue, threshType)
+<ol>
 <li>将一张灰度图片，按临界值，进行二值化</li>
-<li>threshType<ol>
+<li>threshType
+<ol>
 <li>THRESH_BINARY, 若大于临界值，取最大值，否则取0</li>
 <li>THRESH_BINARY_INV，跟上面的相反，大于临界值取0，否则取最大值；</li>
 <li>THRESH_TRUNC，若大于临界值，取临界值，否则不变；</li>
@@ -622,18 +691,21 @@
 </li>
 </ol>
 </li>
-<li>cv2.adaptiveThreshhod(src, maxValue, adaptiveMethod, thresholdType, blockSize, C)<ol>
+<li>cv2.adaptiveThreshhod(src, maxValue, adaptiveMethod, thresholdType, blockSize, C)
+<ol>
 <li>将一张灰度图片，分成多个小区域，每个小区域进行一次 threshhold</li>
-<li>adaptiveMethod 自适应方法<ol>
+<li>adaptiveMethod 自适应方法
+<ol>
 <li>cv.ADAPTIVE_THRESH_MEAN_C：取相邻区域的平均值；</li>
 <li>cv.ADAPTIVE_THRESH_GAUSSIAN_C：取相邻区域的加权平均值（加权算法按高斯窗口）</li>
 </ol>
 </li>
-<li>blockSize：用来指定相邻区域的大小，例如 9&#x2F;11&#x2F;13 等；</li>
+<li>blockSize：用来指定相邻区域的大小，例如 9/11/13 等；</li>
 <li>C ：常数，用于对计算结果（平均值或加权平均值）进行扣减；</li>
 </ol>
 </li>
-<li>cv2.minAreaRect( points )<ol>
+<li>cv2.minAreaRect( points )
+<ol>
 <li>给定一组点的集合，给出一个包含这些点的最小矩形（带角度）</li>
 <li>返回值(center, size, angle)</li>
 </ol>

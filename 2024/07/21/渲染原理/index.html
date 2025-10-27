@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="着色器着色器类似于一个计算器，用于根据给定的参数，制作特效； 法线贴图这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；  所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光线效">
+    <meta name="description" content="着色器 着色器类似于一个计算器，用于根据给定的参数，制作特效； 法线贴图 这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；  所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光">
 <meta property="og:type" content="article">
 <meta property="og:title" content="渲染原理">
 <meta property="og:url" content="https://ccw1078.github.io/2024/07/21/%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="着色器着色器类似于一个计算器，用于根据给定的参数，制作特效； 法线贴图这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；  所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光线效">
+<meta property="og:description" content="着色器 着色器类似于一个计算器，用于根据给定的参数，制作特效； 法线贴图 这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；  所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628616.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628272.png">
@@ -90,7 +90,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -282,38 +286,46 @@
             
               <div class="markdown-body">
                 
-                <h3 id="着色器"><a href="#着色器" class="headerlink" title="着色器"></a>着色器</h3><p>着色器类似于一个计算器，用于根据给定的参数，制作特效；</p>
-<h3 id="法线贴图"><a href="#法线贴图" class="headerlink" title="法线贴图"></a>法线贴图</h3><p>这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；</p>
+                <h3 id="%E7%9D%80%E8%89%B2%E5%99%A8" tabindex="-1" id="着色器">着色器</h3>
+<p>着色器类似于一个计算器，用于根据给定的参数，制作特效；</p>
+<h3 id="%E6%B3%95%E7%BA%BF%E8%B4%B4%E5%9B%BE" tabindex="-1" id="法线贴图">法线贴图</h3>
+<p>这个中文名称有点怪，英文名称是 Normal Map，即普通贴图；它主要用于展现凹凸效果；理论上凹凸效果也可以使用建模来实现，但是当细节很多时，工作量过大，因此不现实。更高效的做法是使用带凹凸参数的贴图；物体只由数量有限的多边形来表示，表现的纹理则基于贴图参数来计算；</p>
 <blockquote>
 <p>所谓的贴图参数，即是一种细节模拟，这些参数可用来计算光线效果，让相应的部位看起来像是有真实的模型存在一样。但实际上没有，完成是基于参数计算出来的效果；</p>
 </blockquote>
 <p>法线：垂直于某个平面的线，这条线可用来计算物体和光线之间的夹角。 有了夹角后，就可以计算物体表面接收到多少光线；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628616.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628616.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>物体呈现出体积形状，其实是由物体表面所反向的光线决定的。对于一个多边形圆柱体，如果我们将法线的角度变化，调整成圆柱形的，那么计算出来的着色也将是平滑过渡的，最后在我们肉眼看来，多边形变成了圆形。但实际上，底层的参数存储的是多边形；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628272.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628272.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>将表面的法线角度与真实角度的偏差，单独抽离出来存储，那么这个偏差值的集合，就是所谓的法线贴图；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628894.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="CPU-渲染逻辑"><a href="#CPU-渲染逻辑" class="headerlink" title="CPU 渲染逻辑"></a>CPU 渲染逻辑</h3><p>主要有四个工作：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408201628894.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="cpu-%E6%B8%B2%E6%9F%93%E9%80%BB%E8%BE%91" tabindex="-1" id="CPU-渲染逻辑">CPU 渲染逻辑</h3>
+<p>主要有四个工作：</p>
 <ul>
-<li>剔除工作：<ul>
+<li>剔除工作：
+<ul>
 <li>视锥体剔除；</li>
 <li>图层剔除；</li>
 <li>遮挡剔除；</li>
 </ul>
 </li>
-<li>设置渲染顺序：<ul>
+<li>设置渲染顺序：
+<ul>
 <li>不透明队列：根据距离摄像头的距离，由近到远依次渲染；</li>
 <li>半透明队列：从远到近渲染；</li>
 </ul>
 </li>
-<li>打包数据：将数据打包发送给 GPU 渲染；<ul>
+<li>打包数据：将数据打包发送给 GPU 渲染；
+<ul>
 <li>模型信息：顶点坐标、法线、UV、切线、顶点颜色、索引列表等；</li>
 <li>变换矩阵：世界变换矩阵、VP 矩阵（基于相机位置和 FOV 参数）；</li>
 <li>灯光、材质参数：着色器和材质参数，灯光信息等；</li>
 </ul>
 </li>
-<li>调用渲染函数<ul>
-<li>SetPassCall<ul>
+<li>调用渲染函数
+<ul>
+<li>SetPassCall
+<ul>
 <li>shader 脚本中的一个 Pass 语义块就是一个完整的渲染过程；一个着色器可包含多个 Pass 语义块；</li>
 </ul>
 </li>
@@ -322,10 +334,12 @@
 </li>
 </ul>
 <p>CPU 渲染阶段的一个重要输出是渲染图元，图元中包括 GPU 渲染需要用到的各种参数信息，例如点、线、面等几何信息；</p>
-<h3 id="GPU-渲染管线"><a href="#GPU-渲染管线" class="headerlink" title="GPU 渲染管线"></a>GPU 渲染管线</h3><p>GPU 渲染管线包含以下多个步骤：</p>
+<h3 id="gpu-%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF" tabindex="-1" id="GPU-渲染管线">GPU 渲染管线</h3>
+<p>GPU 渲染管线包含以下多个步骤：</p>
 <ul>
-<li>顶点处理<ul>
-<li>顶点着色器：主要执行坐标转换，将顶点的坐标转换到齐次裁剪 </li>
+<li>顶点处理
+<ul>
+<li>顶点着色器：主要执行坐标转换，将顶点的坐标转换到齐次裁剪</li>
 <li>曲面细分着色器（可选）</li>
 <li>几何着色器（可选）</li>
 </ul>
@@ -335,7 +349,7 @@
 <li>片元着色器</li>
 <li>输出合并</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408210825758.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202408210825758.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>

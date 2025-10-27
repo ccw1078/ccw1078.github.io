@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OD 寻找基址 附加进程 文件-&gt;附加-&gt;选择要附加的进程 附加后是暂停的状态，之后点击“运行”按钮，可以开始运行；   计算头像的基址 通过 CE 获得 DLL 基址 5FF10000 后，再通过 OD 查到头像的地址 6117DBE4，然后二者相减后可以计算偏移值为 126DBE4；     使用方法 t 按钮可以查看所有进程 c 按钮可以回到主界面； b 按钮可以进入断点界面">
+    <meta name="description" content="OD  寻找基址  附加进程  文件-&gt;附加-&gt;选择要附加的进程 附加后是暂停的状态，之后点击“运行”按钮，可以开始运行；   计算头像的基址  通过 CE 获得 DLL 基址 5FF10000 后，再通过 OD 查到头像的地址 6117DBE4，然后二者相减后可以计算偏移值为 126DBE4；     使用方法  t 按钮可以查看所有进程 c 按钮可以回到主界面； b 按钮可以进入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OD &amp; CheatEngine">
 <meta property="og:url" content="https://ccw1078.github.io/2019/08/16/OD&CheatEngine/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="OD 寻找基址 附加进程 文件-&gt;附加-&gt;选择要附加的进程 附加后是暂停的状态，之后点击“运行”按钮，可以开始运行；   计算头像的基址 通过 CE 获得 DLL 基址 5FF10000 后，再通过 OD 查到头像的地址 6117DBE4，然后二者相减后可以计算偏移值为 126DBE4；     使用方法 t 按钮可以查看所有进程 c 按钮可以回到主界面； b 按钮可以进入断点界面">
+<meta property="og:description" content="OD  寻找基址  附加进程  文件-&gt;附加-&gt;选择要附加的进程 附加后是暂停的状态，之后点击“运行”按钮，可以开始运行；   计算头像的基址  通过 CE 获得 DLL 基址 5FF10000 后，再通过 OD 查到头像的地址 6117DBE4，然后二者相减后可以计算偏移值为 126DBE4；     使用方法  t 按钮可以查看所有进程 c 按钮可以回到主界面； b 按钮可以进入">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-08-16T02:31:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T03:47:02.143Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          626 字
+          625 字
         
       </span>
     
@@ -278,23 +282,29 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>OD<ol>
-<li>寻找基址<ol>
-<li>附加进程<ol>
+<li>OD
+<ol>
+<li>寻找基址
+<ol>
+<li>附加进程
+<ol>
 <li>文件-&gt;附加-&gt;选择要附加的进程</li>
 <li>附加后是暂停的状态，之后点击“运行”按钮，可以开始运行；</li>
 </ol>
 </li>
-<li>计算头像的基址<ol>
+<li>计算头像的基址
+<ol>
 <li>通过 CE 获得 DLL 基址 5FF10000 后，再通过 OD 查到头像的地址 6117DBE4，然后二者相减后可以计算偏移值为 126DBE4；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>使用方法<ol>
+<li>使用方法
+<ol>
 <li>t 按钮可以查看所有进程</li>
 <li>c 按钮可以回到主界面；</li>
-<li>b 按钮可以进入断点界面<ol>
+<li>b 按钮可以进入断点界面
+<ol>
 <li>在断点界面，可以使用空格键切换断点的启用与否；</li>
 </ol>
 </li>
@@ -304,38 +314,46 @@
 </li>
 </ol>
 </li>
-<li>CE<ol>
+<li>CE
+<ol>
 <li>三个按钮，最左边的那个指打开一个进程，类似于 OD 里面的附加功能</li>
 <li>打开进程后，标题栏会显示进程名称和内存地址；</li>
-<li>通过 scan 按钮，可以搜索输入框中的值，支持多种格式，常用的是 String 格式；<ol>
+<li>通过 scan 按钮，可以搜索输入框中的值，支持多种格式，常用的是 String 格式；
+<ol>
 <li>如果要搜索微信窗口界面的内容，需要勾选 UTF-16，即眼睛看得到的；如果不勾选，则是搜索内存里面的内容，而不是界面上的内容；</li>
 </ol>
 </li>
 <li>搜索出来的结果中，如果地址是绿色的，则表示它是基址；黑色的则是动态的；</li>
-<li>基址是通过模块地址加上偏移之后计算出来的；<ol>
-<li>WeChatWin.dll+126D91C &#x3D; 6117D91C</li>
+<li>基址是通过模块地址加上偏移之后计算出来的；
+<ol>
+<li>WeChatWin.dll+126D91C = 6117D91C</li>
 <li>dll 的基址可以通过 6117D91C - 126D91C 反算得出；但更快的办法是在 CE 里面直接用按钮 Add Address Manully 打开窗口，然后输入 dll 名称即可获得，此处为 5FF10000</li>
 </ol>
 </li>
-<li>使用 Memory View 按钮可以打开浏览内存的窗口<ol>
+<li>使用 Memory View 按钮可以打开浏览内存的窗口
+<ol>
 <li>使用 ctrl + G 可以跳转到指定的地址位置</li>
 <li>通过跳转到指定位置，可以查看该地址附近的其他内容，因为有时候有些内容是相邻存储的；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>其他信息<ol>
+<li>其他信息
+<ol>
 <li>有些 wxid 如果是自动生成的，则可能会使用指针存储；</li>
 </ol>
 </li>
-<li>地址信息<ol>
+<li>地址信息
+<ol>
 <li>DLL 基址：5FF10000</li>
 <li>昵称偏移：WeChatWin.dll+126D91C</li>
-<li>头像偏移：WeChatWin.dll+126DBE4<ol>
+<li>头像偏移：WeChatWin.dll+126DBE4
+<ol>
 <li>长度需要200才放得下</li>
 </ol>
 </li>
-<li>ID 偏移：WeChatWin.dll+126D8A4‬<ol>
+<li>ID 偏移：WeChatWin.dll+126D8A4‬
+<ol>
 <li>如果是自动生成的ID，该地址存的是指针，需要加个判断，根据情况取值；</li>
 </ol>
 </li>

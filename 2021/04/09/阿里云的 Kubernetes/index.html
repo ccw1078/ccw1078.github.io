@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="简单介绍三个版本  专有版：自建 Master 和 Worker 节点，适用于所有场景，更加细颗粒度的管理；承担两种节点的费用； 托管版：自建 Worker  节点，适用于所有场景，无须管理 Master 节点；承担工作节点的费用； Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI&#x2F;CD 场景；    问：什么是 NAT 网关？">
+    <meta name="description" content="简单介绍 三个版本  专有版：自建 Master 和 Worker 节点，适用于所有场景，更加细颗粒度的管理；承担两种节点的费用； 托管版：自建 Worker  节点，适用于所有场景，无须管理 Master 节点；承担工作节点的费用； Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI&#x2F;CD 场景；    问：什么是 NAT 网关？ 答：它">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里云的 Kubernetes">
 <meta property="og:url" content="https://ccw1078.github.io/2021/04/09/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%20Kubernetes/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="简单介绍三个版本  专有版：自建 Master 和 Worker 节点，适用于所有场景，更加细颗粒度的管理；承担两种节点的费用； 托管版：自建 Worker  节点，适用于所有场景，无须管理 Master 节点；承担工作节点的费用； Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI&#x2F;CD 场景；    问：什么是 NAT 网关？">
+<meta property="og:description" content="简单介绍 三个版本  专有版：自建 Master 和 Worker 节点，适用于所有场景，更加细颗粒度的管理；承担两种节点的费用； 托管版：自建 Worker  节点，适用于所有场景，无须管理 Master 节点；承担工作节点的费用； Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI&#x2F;CD 场景；    问：什么是 NAT 网关？ 答：它">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211717272.png">
 <meta property="og:image" content="https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5862000161/p210946.png">
@@ -90,7 +90,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -229,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          646 字
+          645 字
         
       </span>
     
@@ -282,13 +286,14 @@
             
               <div class="markdown-body">
                 
-                <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>三个版本</p>
+                <h2 id="%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D" tabindex="-1" id="简单介绍">简单介绍</h2>
+<p>三个版本</p>
 <ul>
 <li>专有版：自建 Master 和 Worker 节点，适用于所有场景，更加细颗粒度的管理；承担两种节点的费用；</li>
 <li>托管版：自建 Worker  节点，适用于所有场景，无须管理 Master 节点；承担工作节点的费用；</li>
-<li>Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI&#x2F;CD 场景；</li>
+<li>Serverless 版：无须建任何节点，按容器实例的使用资源数量和时长收费；适用于批量任务、突发扩容、CI/CD 场景；</li>
 </ul>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211717272.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211717272.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p>问：什么是 NAT 网关？</p>
 <p>答：它是构成 VPC 虚拟专用网络的一个核心组成部分；机器实例通过网关对外提供服务，并且接受外部的服务请求，它的作用看起来很像局域网中的路由器；路由器管理着内部的电脑，以统一的 IP 地址对外访问，同时也接收外部的请求，并转发给相应的机器实例；</p>
@@ -299,8 +304,8 @@
 <p>答：弹性公网 IP，Elastic IP Address；它可以为 NAT 提供物理 IP 地址，这样 NAT 才能正常工作；</p>
 </blockquote>
 <blockquote>
-<p> 问：什么是公网 SLB？</p>
-<p> 答：Service Load Balance，负载均衡服务；用来将公网流量平均分发给多个机器实例；需要创建一个监听实例来实现；感觉相当于创建了一台部署了 Nginx 的实例一样；</p>
+<p>问：什么是公网 SLB？</p>
+<p>答：Service Load Balance，负载均衡服务；用来将公网流量平均分发给多个机器实例；需要创建一个监听实例来实现；感觉相当于创建了一台部署了 Nginx 的实例一样；</p>
 </blockquote>
 <blockquote>
 <p>问：什么是线下 IDC</p>
@@ -318,9 +323,11 @@
 <p>问：什么是 ECI？</p>
 <p>答：Elastic Container Instance，弹性容器实例</p>
 </blockquote>
-<h2 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h2><p><img src="https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5862000161/p210946.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211719693.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211719204.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7" tabindex="-1" id="命令行工具">命令行工具</h2>
+<p><img src="https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5862000161/p210946.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="%E4%BB%B7%E6%A0%BC" tabindex="-1" id="价格">价格</h3>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211719693.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211719204.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>

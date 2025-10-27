@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="背景对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker  注：以下方法是针对 Docker Toolbox 的场景，如果是 Docker for Windows，则方法不同；  原理docker 需要运行在 Linux 环境下，但 Windows 系统中没有 Linux 环境，因此需要先">
+    <meta name="description" content="背景 对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker  注：以下方法是针对 Docker Toolbox 的场景，如果是 Docker for Windows，则方法不同；  原理 docker 需要运行在 Linux 环境下，但 Windows 系统中没有 Linux 环境，因此需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="windows 如何共享本地文件夹到 docker machine">
 <meta property="og:url" content="https://ccw1078.github.io/2019/04/03/windows%20%E5%A6%82%E4%BD%95%E5%85%B1%E4%BA%AB%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%20docker%20machine/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="背景对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker  注：以下方法是针对 Docker Toolbox 的场景，如果是 Docker for Windows，则方法不同；  原理docker 需要运行在 Linux 环境下，但 Windows 系统中没有 Linux 环境，因此需要先">
+<meta property="og:description" content="背景 对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker  注：以下方法是针对 Docker Toolbox 的场景，如果是 Docker for Windows，则方法不同；  原理 docker 需要运行在 Linux 环境下，但 Windows 系统中没有 Linux 环境，因此需">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117193.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117295.png">
@@ -90,7 +90,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -282,17 +286,23 @@
             
               <div class="markdown-body">
                 
-                <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker</p>
+                <h4 id="%E8%83%8C%E6%99%AF" tabindex="-1" id="背景">背景</h4>
+<p>对于 win10 Home 及 win10 以下的系统，目前只能通过 Docker Toolbox 创建 docker machines 办法来使用 docker</p>
 <blockquote>
 <p>注：以下方法是针对 Docker Toolbox 的场景，如果是 Docker for Windows，则方法不同；</p>
 </blockquote>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>docker 需要运行在 Linux 环境下，但 Windows 系统中没有 Linux 环境，因此需要先通过 Docker Toolbox 程序中携带的 Oracle VM VisualBox 工具， 先虚拟出 Linux 环境（即 docker machine），之后便可以在这些虚拟环境中使用 docker，就像在一台原生 Linux系统的电脑中使用 docker 一样；我们可以根据需要虚拟出很多台远程的 linux 环境，每一台都有自己的 docker，它们之间不会相互干扰；每个 docker 下面有对应的 images 和 containers；</p>
-<h4 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h4><p>假设我们已经创建了一个叫 default 的虚拟 linux 环境（它以远程 linux 主机的形式出现），我们可以通过 <code>docker-machine ssh default</code> 命令，登录这台主机，进入 Linux 环境，然后在里面执行各种 docker 命令，就好像在原生的 Linux 系统上一样；</p>
-<h4 id="如何与本地-windows-共享文件夹"><a href="#如何与本地-windows-共享文件夹" class="headerlink" title="如何与本地 windows 共享文件夹"></a>如何与本地 windows 共享文件夹</h4><h5 id="方法一：使用-Oracle-VM-VisualBox"><a href="#方法一：使用-Oracle-VM-VisualBox" class="headerlink" title="方法一：使用 Oracle VM VisualBox"></a>方法一：使用 Oracle VM VisualBox</h5><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117193.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117295.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117215.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117322.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="方法二：使用命令行"><a href="#方法二：使用命令行" class="headerlink" title="方法二：使用命令行"></a>方法二：使用命令行</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 先暂停远程主机 default</span><br>docker-machine stop default<br><span class="hljs-comment"># 使用 vboxmanage sharedfolder add 添加共享文件夹</span><br>vboxmanage sharedfolder add default --name <span class="hljs-string">&quot;dir/path/on/linux&quot;</span> --hostpath <span class="hljs-string">&quot;dir/path/on/local/windows&quot;</span> --automount <br><span class="hljs-comment"># 最后重启远程主机</span><br>docker-machine start default<br></code></pre></td></tr></table></figure>
+<h4 id="%E5%8E%9F%E7%90%86" tabindex="-1" id="原理">原理</h4>
+<p>docker 需要运行在 Linux 环境下，但 Windows 系统中没有 Linux 环境，因此需要先通过 Docker Toolbox 程序中携带的 Oracle VM VisualBox 工具， 先虚拟出 Linux 环境（即 docker machine），之后便可以在这些虚拟环境中使用 docker，就像在一台原生 Linux系统的电脑中使用 docker 一样；我们可以根据需要虚拟出很多台远程的 linux 环境，每一台都有自己的 docker，它们之间不会相互干扰；每个 docker 下面有对应的 images 和 containers；</p>
+<h4 id="%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8" tabindex="-1" id="日常使用">日常使用</h4>
+<p>假设我们已经创建了一个叫 default 的虚拟 linux 环境（它以远程 linux 主机的形式出现），我们可以通过 <code>docker-machine ssh default</code> 命令，登录这台主机，进入 Linux 环境，然后在里面执行各种 docker 命令，就好像在原生的 Linux 系统上一样；</p>
+<h4 id="%E5%A6%82%E4%BD%95%E4%B8%8E%E6%9C%AC%E5%9C%B0-windows-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9" tabindex="-1" id="如何与本地-windows-共享文件夹">如何与本地 windows 共享文件夹</h4>
+<h5 id="%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8-oracle-vm-visualbox" tabindex="-1" id="方法一：使用-Oracle-VM-VisualBox">方法一：使用 Oracle VM VisualBox</h5>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117193.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117295.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117215.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211117322.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C" tabindex="-1" id="方法二：使用命令行">方法二：使用命令行</h5>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 先暂停远程主机 default</span><br>docker-machine stop default<br><span class="hljs-comment"># 使用 vboxmanage sharedfolder add 添加共享文件夹</span><br>vboxmanage sharedfolder add default --name <span class="hljs-string">&quot;dir/path/on/linux&quot;</span> --hostpath <span class="hljs-string">&quot;dir/path/on/local/windows&quot;</span> --automount <br><span class="hljs-comment"># 最后重启远程主机</span><br>docker-machine start default<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>注：此处假设远程主机名为 default，如果不是，则相应修改</p>
 </blockquote>

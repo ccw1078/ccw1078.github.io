@@ -86,7 +86,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -286,22 +290,14 @@
 <p>添加权限使用加号 +</p>
 <p>减少权限使用减号 -</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> g+rwx,u+w,o+x  &lt;file&gt;<br><span class="hljs-comment"># 以上命令的意思是</span><br><span class="hljs-comment"># g+rwx，为用户组增加 rwx 权限</span><br><span class="hljs-comment"># u+w，为用户增加 w 权限</span><br><span class="hljs-comment"># o+x，为其他用户增加 x 权限</span><br><br><span class="hljs-built_in">chmod</span> a-rwx &lt;file&gt;<br><span class="hljs-comment"># a 表示所有三个分组（即拥有者、用户组、其他用户），都取消 rwx 权限</span><br></code></pre></td></tr></table></figure>
-
 <p>rwx 除了用字母外，也可以用数字来表示，rwx 对应的数字分别是 4、2、1</p>
 <p>rwxrwxrwx 可以用 777 来表示，因为 rwx 三个数字相加，刚好等于 7，有三组的 rwx，因此有 3 个 7</p>
-<p>rwx—— 可以用 700 来表示</p>
+<p>rwx------ 可以用 700 来表示</p>
 <p>r—w—x 可以用 421 来表示</p>
 <p>rw-rw-r-x 可以用 665 来表示</p>
 <p>本质上来说，数字只是对字母的一种缩写，一种快捷方式，但它也增加了理解的成本；</p>
 <p>如果要将 chmod 运用于所用子目录，可以添加 -R 参数，示例如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> -R 777 &lt;file&gt;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-
 
                 
               </div>

@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="事实上，join 和 in 虽然有可能产生相同的结果，但它们表达的其实是两种不同的意思，示例如下： 123-- JOIN：对于 a 表的某一行，需要遍历出 b 表中，所有 b.col 和 a.col 相同的行；SELECT a.* FROM a JOIN bON a.col &#x3D; b.col;  12345-- IN：对于 a 表的某一行，只需要 b 表中存在一条与 a.col 相同的行即可返回，无">
+    <meta name="description" content="事实上，join 和 in 虽然有可能产生相同的结果，但它们表达的其实是两种不同的意思，示例如下： 123-- JOIN：对于 a 表的某一行，需要遍历出 b 表中，所有 b.col 和 a.col 相同的行；SELECT a.* FROM a JOIN bON a.col &#x3D; b.col; 12345-- IN：对于 a 表的某一行，只需要 b 表中存在一条与 a.col 相同的行即可返回，无须">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL join 和 in 性能比较">
 <meta property="og:url" content="https://ccw1078.github.io/2024/11/26/SQL%20join%20%E5%92%8C%20in%20%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="事实上，join 和 in 虽然有可能产生相同的结果，但它们表达的其实是两种不同的意思，示例如下： 123-- JOIN：对于 a 表的某一行，需要遍历出 b 表中，所有 b.col 和 a.col 相同的行；SELECT a.* FROM a JOIN bON a.col &#x3D; b.col;  12345-- IN：对于 a 表的某一行，只需要 b 表中存在一条与 a.col 相同的行即可返回，无">
+<meta property="og:description" content="事实上，join 和 in 虽然有可能产生相同的结果，但它们表达的其实是两种不同的意思，示例如下： 123-- JOIN：对于 a 表的某一行，需要遍历出 b 表中，所有 b.col 和 a.col 相同的行；SELECT a.* FROM a JOIN bON a.col &#x3D; b.col; 12345-- IN：对于 a 表的某一行，只需要 b 表中存在一条与 a.col 相同的行即可返回，无须">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-26T12:26:00.000Z">
 <meta property="article:modified_time" content="2024-11-26T22:57:28.125Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -279,9 +283,7 @@
                 
                 <p>事实上，join 和 in 虽然有可能产生相同的结果，但它们表达的其实是两种不同的意思，示例如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- JOIN：对于 a 表的某一行，需要遍历出 b 表中，所有 b.col 和 a.col 相同的行；</span><br><span class="hljs-keyword">SELECT</span> a.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> a <span class="hljs-keyword">JOIN</span> b<br><span class="hljs-keyword">ON</span> a.col <span class="hljs-operator">=</span> b.col;<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- IN：对于 a 表的某一行，只需要 b 表中存在一条与 a.col 相同的行即可返回，无须遍历 b 表所有行；</span><br><span class="hljs-keyword">SELECT</span> a.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> a<br><span class="hljs-keyword">WHERE</span> col <span class="hljs-keyword">in</span> (<br>    <span class="hljs-keyword">SELECT</span> col <span class="hljs-keyword">FROM</span> b<br>);<br></code></pre></td></tr></table></figure>
-
 <p>因此，如果我们将 b.col 显示声明为 unique 时，那么以上两条语句通常会生成相同的执行计划，速度差不多，示例如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> a.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> a <span class="hljs-keyword">JOIN</span> (<br>    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> col <span class="hljs-keyword">FROM</span> b<br>)<br><span class="hljs-keyword">ON</span> b.col <span class="hljs-operator">=</span> a.col;<br></code></pre></td></tr></table></figure>
                 

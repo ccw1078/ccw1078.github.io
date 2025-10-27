@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="新版本的 dockerfile 由五部分组成，分别是 services, volumes, network, configs, secrets，services 用来创建容器，其他四部分用于在容器间共享一些信息； services: 用来构建容器 build: 可以是一个字符串（指定 docker-compose.yml 文件的所在目录），也可以是一个对象 context：指定 docker-c">
+    <meta name="description" content="新版本的 dockerfile 由五部分组成，分别是 services, volumes, network, configs, secrets，services 用来创建容器，其他四部分用于在容器间共享一些信息； services: 用来构建容器  build: 可以是一个字符串（指定 docker-compose.yml 文件的所在目录），也可以是一个对象  context：指定 docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker-Compose">
 <meta property="og:url" content="https://ccw1078.github.io/2020/02/06/Docker-Compose/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="新版本的 dockerfile 由五部分组成，分别是 services, volumes, network, configs, secrets，services 用来创建容器，其他四部分用于在容器间共享一些信息； services: 用来构建容器 build: 可以是一个字符串（指定 docker-compose.yml 文件的所在目录），也可以是一个对象 context：指定 docker-c">
+<meta property="og:description" content="新版本的 dockerfile 由五部分组成，分别是 services, volumes, network, configs, secrets，services 用来创建容器，其他四部分用于在容器间共享一些信息； services: 用来构建容器  build: 可以是一个字符串（指定 docker-compose.yml 文件的所在目录），也可以是一个对象  context：指定 docker">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-06T02:33:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T03:44:20.631Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -279,17 +283,22 @@
                 
                 <ol>
 <li>新版本的 dockerfile 由五部分组成，分别是 services, volumes, network, configs, secrets，services 用来创建容器，其他四部分用于在容器间共享一些信息；</li>
-<li>services: 用来构建容器<ol>
-<li>build: 可以是一个字符串（指定 docker-compose.yml 文件的所在目录），也可以是一个对象<ol>
+<li>services: 用来构建容器
+<ol>
+<li>build: 可以是一个字符串（指定 docker-compose.yml 文件的所在目录），也可以是一个对象
+<ol>
 <li>context：指定 docker-compose.yml 文件的所在目录；</li>
 <li>dockerfile：指定 dockerfile 相对于 context 的文件路径名；</li>
-<li>args: 指定构建的环境变量，这些变量可以被 dockerfile 中引用；<ol>
+<li>args: 指定构建的环境变量，这些变量可以被 dockerfile 中引用；
+<ol>
 <li>变量名：变量值（若不指定变量值，则构建时将从环境变量中查询该变量名对应的值）</li>
 </ol>
 </li>
-<li>labels: 用来设置镜像的元数据<ol>
-<li>“属性名&#x3D;属性值”<ol>
-<li>注：此处的属性值若是域名，建议倒着写，即 docs.abc.com 写成 com.abc.docs，以避免跟某些软件的默认设置冲突；</li>
+<li>labels: 用来设置镜像的元数据
+<ol>
+<li>“属性名=属性值”
+<ol>
+<li>注：此处的属性值若是域名，建议倒着写，即 <a target="_blank" rel="noopener" href="http://docs.abc.com">docs.abc.com</a> 写成 com.abc.docs，以避免跟某些软件的默认设置冲突；</li>
 </ol>
 </li>
 </ol>
@@ -304,7 +313,8 @@
 <li>container_name: 可用来自定义容器名；但当构建多个相同容器时，该选项会带来冲突；</li>
 <li>configs：用来设置配置项，它支持将配置值放在一个文件中，然后在此处设置访问的路径；该选项有简版和长版两种写法；详细查看此链接；</li>
 <li>depends_on：显示声明当前容器所依赖的其他容器；它会让 compose 在启动或停止容器时，按相互依赖的顺序进行；虽然控制了顺序，但这不意味着后面的容器会等前面的容器准备好再启动；所以，有时候可能不一定能够达到完美的预期效果；</li>
-<li>deploy：用来设置部署的方式，此选项仅在 swarm 模式下起作用，在 compose 模式下会被忽略；<ol>
+<li>deploy：用来设置部署的方式，此选项仅在 swarm 模式下起作用，在 compose 模式下会被忽略；
+<ol>
 <li>endpoint_mode：用来设置某个容器服务被集群外的客户端发现的方式；</li>
 <li>mode：部署的模式，单节点单容器，或者单节点多容器；</li>
 <li>replicas：副本数量（仅在 mode 为单节点多容器的情况下有效）；</li>
@@ -317,18 +327,22 @@
 <li>devices：用来设置设备映射；</li>
 <li>dns：用来设置 DNS 服务器；可以是单个值，也可以是列表；</li>
 <li>entrypoint：入口点；设置后，会覆盖 dockerfile 里面的值；</li>
-<li>env_file：从文件中加载环境变量，可以单个值（单文件），也可以是列表（多文件）；文件中的键值对格式为：KEY&#x3D;value</li>
-<li>environment：用来设置环境变量；<ol>
+<li>env_file：从文件中加载环境变量，可以单个值（单文件），也可以是列表（多文件）；文件中的键值对格式为：KEY=value</li>
+<li>environment：用来设置环境变量；
+<ol>
 <li>KEY: value</li>
 </ol>
 </li>
 <li>expose：要暴露的端口；这些端口仅供已跟当前容器连接的其他容器访问，无法被主机访问；</li>
-<li>external_links：和那些不在当前 docker-compose.yml 文件定义的容器进行连接；不太推荐使用 links 这个遗留的历史功能，更推荐用 networks 来配置；<ol>
+<li>external_links：和那些不在当前 docker-compose.yml 文件定义的容器进行连接；不太推荐使用 links 这个遗留的历史功能，更推荐用 networks 来配置；
+<ol>
 <li>外部容器名：自定义别名</li>
 </ol>
 </li>
-<li>extra_hosts：添加外部主机的映射；<ol>
-<li><ul>
+<li>extra_hosts：添加外部主机的映射；
+<ol>
+<li>
+<ul>
 <li>“主机名:主机IP”</li>
 </ul>
 </li>
@@ -338,8 +352,10 @@
 <li>links：该选项即将在弃用，建议使用 networks 进行配置；</li>
 <li>logging：配置日志选项；</li>
 <li>network_mode：设置网络连接模式，默认值是 bridge，其他值有 host, join, none等等；</li>
-<li>networks：用来设置当前容器所属的网络，相关信息定义在上一级的 Networks 条目下；<ol>
-<li><ul>
+<li>networks：用来设置当前容器所属的网络，相关信息定义在上一级的 Networks 条目下；
+<ol>
+<li>
+<ul>
 <li>所属的网络名</li>
 </ul>
 <ol>
@@ -356,8 +372,10 @@
 <li>domainname, hostname, ipc, mac_address, privileged, read_only, shm_size, stdin_open, tty, user, working_dir：功能同 docker 命令下相应的参数；</li>
 </ol>
 </li>
-<li>volumes: 用来设置命名存储卷，以便在多个容器间共享；<ol>
-<li><ul>
+<li>volumes: 用来设置命名存储卷，以便在多个容器间共享；
+<ol>
+<li>
+<ul>
 <li>存储卷名称</li>
 </ul>
 <ol>
@@ -370,8 +388,10 @@
 </li>
 </ol>
 </li>
-<li>networks: 用来设置命令网络，以便多个容器间相互通讯；<ol>
-<li><ul>
+<li>networks: 用来设置命令网络，以便多个容器间相互通讯；
+<ol>
+<li>
+<ul>
 <li>网络名称</li>
 </ul>
 <ol>
@@ -384,8 +404,10 @@
 </li>
 </ol>
 </li>
-<li>configs: 用来设置让多个容器进行引用的配置项（来源于某个文件或者外部）；<ol>
-<li><ul>
+<li>configs: 用来设置让多个容器进行引用的配置项（来源于某个文件或者外部）；
+<ol>
+<li>
+<ul>
 <li>配置项名称</li>
 </ul>
 <ol>
@@ -396,8 +418,10 @@
 </li>
 </ol>
 </li>
-<li>secrets: 用来设置让多个容器进行引用的机密信息（来源于某个文件或者外部）<ol>
-<li><ul>
+<li>secrets: 用来设置让多个容器进行引用的机密信息（来源于某个文件或者外部）
+<ol>
+<li>
+<ul>
 <li>机密项名称</li>
 </ul>
 <ol>

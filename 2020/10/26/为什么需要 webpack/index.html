@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -282,7 +286,7 @@
 <li>按功能划分为多个 js 文件，在适当的位置以正确的顺序引入该 js 文件（因为文件之间可能存在依赖关系）；</li>
 <li>将所有功能放在一个大的 js 文件中，一次性引入；</li>
 </ul>
-<p>这两种方法有各自的优缺点，前者容易维护，但是多次引入需要牺牲一些性能；后者没有性能问题，但将所有 js 代码放在一个文件中，给维护和扩展增加了难度；Webpack 的出现，即是为了解决这个问题，它让我们的 js  代码可以分模块来编写，以提高可维护性；然后在正式使用时，它帮我们将多个 js 文件合成一个，这样在网页中可以一次性的引入，避免带来多次引入的性能问题； </p>
+<p>这两种方法有各自的优缺点，前者容易维护，但是多次引入需要牺牲一些性能；后者没有性能问题，但将所有 js 代码放在一个文件中，给维护和扩展增加了难度；Webpack 的出现，即是为了解决这个问题，它让我们的 js  代码可以分模块来编写，以提高可维护性；然后在正式使用时，它帮我们将多个 js 文件合成一个，这样在网页中可以一次性的引入，避免带来多次引入的性能问题；</p>
 
                 
               </div>

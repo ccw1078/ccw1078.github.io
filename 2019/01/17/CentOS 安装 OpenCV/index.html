@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装一些依赖包1sudo yum install -y cmake gcc gtk2-devel numpy unzip  1sudo yum install -y qt5-qtbase-devel python-devel jasper-devel  1sudo yum install -y openexr-devel libwebp-devel libjpeg-turbo-devel 1sud">
+    <meta name="description" content="安装一些依赖包 1sudo yum install -y cmake gcc gtk2-devel numpy unzip  1sudo yum install -y qt5-qtbase-devel python-devel jasper-devel  1sudo yum install -y openexr-devel libwebp-devel libjpeg-turbo-devel 1su">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 安装 OpenCV">
 <meta property="og:url" content="https://ccw1078.github.io/2019/01/17/CentOS%20%E5%AE%89%E8%A3%85%20OpenCV/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="安装一些依赖包1sudo yum install -y cmake gcc gtk2-devel numpy unzip  1sudo yum install -y qt5-qtbase-devel python-devel jasper-devel  1sudo yum install -y openexr-devel libwebp-devel libjpeg-turbo-devel 1sud">
+<meta property="og:description" content="安装一些依赖包 1sudo yum install -y cmake gcc gtk2-devel numpy unzip  1sudo yum install -y qt5-qtbase-devel python-devel jasper-devel  1sudo yum install -y openexr-devel libwebp-devel libjpeg-turbo-devel 1su">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211101762.png">
 <meta property="article:published_time" content="2019-01-17T12:13:08.000Z">
@@ -87,7 +87,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -279,7 +283,8 @@
             
               <div class="markdown-body">
                 
-                <h3 id="安装一些依赖包"><a href="#安装一些依赖包" class="headerlink" title="安装一些依赖包"></a>安装一些依赖包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install -y cmake gcc gtk2-devel numpy unzip <br></code></pre></td></tr></table></figure>
+                <h3 id="%E5%AE%89%E8%A3%85%E4%B8%80%E4%BA%9B%E4%BE%9D%E8%B5%96%E5%8C%85" tabindex="-1" id="安装一些依赖包">安装一些依赖包</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install -y cmake gcc gtk2-devel numpy unzip <br></code></pre></td></tr></table></figure>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">sudo yum <span class="hljs-keyword">install </span>-y qt5-qtbase-devel python-devel <span class="hljs-keyword">jasper-devel </span><br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install -y openexr-devel libwebp-devel libjpeg-turbo-devel<br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install -y freeglut-devel mesa-libGL mesa-libGL-devel libtiff-devel<br></code></pre></td></tr></table></figure>
@@ -287,25 +292,35 @@
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">sudo yum <span class="hljs-keyword">install </span>-y <span class="hljs-keyword">boost </span><span class="hljs-keyword">boost-thread </span><span class="hljs-keyword">boost-devel </span>libv4l-devel<br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> yum install -y gstreamer-plugins-base-devel<br></code></pre></td></tr></table></figure>
 <p>注：理论上以上依赖包可以用一行 sudo yum install -y 命令一次性安装，之所以分成多行，是因为单行屏幕显示不下，导致折行后看起来不太方便，故拆分成多行安装，方便阅读；</p>
-<h3 id="进入文件夹"><a href="#进入文件夹" class="headerlink" title="进入文件夹"></a>进入文件夹</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">mkdir downloads<br>cd downloads <br></code></pre></td></tr></table></figure>
+<h3 id="%E8%BF%9B%E5%85%A5%E6%96%87%E4%BB%B6%E5%A4%B9" tabindex="-1" id="进入文件夹">进入文件夹</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">mkdir downloads<br>cd downloads <br></code></pre></td></tr></table></figure>
 <p>注： 此处假定要将 opencv 安装包下载放在新创建的 downloads 文件夹中，如果不是，则相应修改文件夹名称</p>
-<h3 id="下载-opencv-安装包"><a href="#下载-opencv-安装包" class="headerlink" title="下载 opencv 安装包"></a>下载 opencv 安装包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">wget https://github.com/opencv/opencv/archive/<span class="hljs-number">3.4</span><span class="hljs-number">.5</span>.<span class="hljs-built_in">zip</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E4%B8%8B%E8%BD%BD-opencv-%E5%AE%89%E8%A3%85%E5%8C%85" tabindex="-1" id="下载-opencv-安装包">下载 opencv 安装包</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">wget https://github.com/opencv/opencv/archive/<span class="hljs-number">3.4</span><span class="hljs-number">.5</span>.<span class="hljs-built_in">zip</span><br></code></pre></td></tr></table></figure>
 <p>注： 此处假定要下载 3.4.5 版本，如果不是，则相应修改版本号</p>
-<h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">unzip</span> <span class="hljs-number">3</span>.<span class="hljs-number">4</span>.<span class="hljs-number">5</span>.zip<br></code></pre></td></tr></table></figure>
-
-<h3 id="进入解压后的安装包"><a href="#进入解压后的安装包" class="headerlink" title="进入解压后的安装包"></a>进入解压后的安装包</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">cd</span> opencv-<span class="hljs-number">3</span>.<span class="hljs-number">4</span>.<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
-<h3 id="创建-build-目录"><a href="#创建-build-目录" class="headerlink" title="创建 build 目录"></a>创建 build 目录</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">mkdir build<br></code></pre></td></tr></table></figure>
-<h3 id="进入-build-目录"><a href="#进入-build-目录" class="headerlink" title="进入 build 目录"></a>进入 build 目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build<br></code></pre></td></tr></table></figure>
-<h3 id="设置-make-参数"><a href="#设置-make-参数" class="headerlink" title="设置 make 参数"></a>设置 make 参数</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">cmake -D <span class="hljs-attribute">CMAKE_BUILD_TYPE</span>=Release -D <span class="hljs-attribute">CMAKE_INSTALL_PREFIX</span>=/usr/local <span class="hljs-built_in">..</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85%E5%8C%85" tabindex="-1" id="解压安装包">解压安装包</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">unzip</span> <span class="hljs-number">3</span>.<span class="hljs-number">4</span>.<span class="hljs-number">5</span>.zip<br></code></pre></td></tr></table></figure>
+<h3 id="%E8%BF%9B%E5%85%A5%E8%A7%A3%E5%8E%8B%E5%90%8E%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85" tabindex="-1" id="进入解压后的安装包">进入解压后的安装包</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">cd</span> opencv-<span class="hljs-number">3</span>.<span class="hljs-number">4</span>.<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E5%88%9B%E5%BB%BA-build-%E7%9B%AE%E5%BD%95" tabindex="-1" id="创建-build-目录">创建 build 目录</h3>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">mkdir build<br></code></pre></td></tr></table></figure>
+<h3 id="%E8%BF%9B%E5%85%A5-build-%E7%9B%AE%E5%BD%95" tabindex="-1" id="进入-build-目录">进入 build 目录</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build<br></code></pre></td></tr></table></figure>
+<h3 id="%E8%AE%BE%E7%BD%AE-make-%E5%8F%82%E6%95%B0" tabindex="-1" id="设置-make-参数">设置 make 参数</h3>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">cmake -D <span class="hljs-attribute">CMAKE_BUILD_TYPE</span>=Release -D <span class="hljs-attribute">CMAKE_INSTALL_PREFIX</span>=/usr/local <span class="hljs-built_in">..</span><br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>注：命令行最后有两个点，表示源代码在当前目录的父目录</p>
 </blockquote>
-<h3 id="开始构建"><a href="#开始构建" class="headerlink" title="开始构建"></a>开始构建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">make<br><span class="hljs-comment"># 注：此步需要等待较长时间</span><br></code></pre></td></tr></table></figure>
-<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">make <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure>
-<h3 id="安装-opencv-python-可选）"><a href="#安装-opencv-python-可选）" class="headerlink" title="安装 opencv-python (可选）"></a>安装 opencv-python (可选）</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> opencv-python<br></code></pre></td></tr></table></figure>
-<h3 id="测试（可选）"><a href="#测试（可选）" class="headerlink" title="测试（可选）"></a>测试（可选）</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">python</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA" tabindex="-1" id="开始构建">开始构建</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">make<br><span class="hljs-comment"># 注：此步需要等待较长时间</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85" tabindex="-1" id="开始安装">开始安装</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">make <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E5%AE%89%E8%A3%85-opencv-python-(%E5%8F%AF%E9%80%89%EF%BC%89" tabindex="-1" id="安装-opencv-python-可选）">安装 opencv-python (可选）</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> opencv-python<br></code></pre></td></tr></table></figure>
+<h3 id="%E6%B5%8B%E8%AF%95%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89" tabindex="-1" id="测试（可选）">测试（可选）</h3>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">python</span><br></code></pre></td></tr></table></figure>
 <p>用 python 命令启动 python 后，录入 import cv2，回车确认，若没有报错，表示安装成功</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211101762.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211101762.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>

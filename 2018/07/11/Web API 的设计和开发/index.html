@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是 Web API 软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API； API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力； 面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美”">
+    <meta name="description" content="什么是 Web API  软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API； API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力； 面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web API 的设计和开发">
 <meta property="og:url" content="https://ccw1078.github.io/2018/07/11/Web%20API%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="什么是 Web API 软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API； API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力； 面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美”">
+<meta property="og:description" content="什么是 Web API  软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API； API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力； 面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-07-11T01:14:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T23:08:41.984Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -278,21 +282,25 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>什么是 Web API<ol>
+<li>什么是 Web API
+<ol>
 <li>软件组件的外部接口；为了从外部调用软件的功能，需要指定调用该功能应该遵守的规则，这些规则，即是 API；</li>
 <li>API 的重要性：通过使用API，避免大包大揽，将一些非核心功能开放给第三方来开发，通过分工建立生态，建立更加强大的生命力；</li>
 <li>面向外部大量开发者群体的 API 和面向内部少量开发群体的 API，在设计思想上会有所区别，前者侧重普适通用性，后者侧重上手，二者对于“优美”的定义不同；</li>
 </ol>
 </li>
-<li>响应数据的格式<ol>
-<li>JSONP<ol>
+<li>响应数据的格式
+<ol>
+<li>JSONP
+<ol>
 <li>目的：规避同源策略的限制</li>
 <li>用法：将响应数据作为 script 进行引用；</li>
 <li>原理：因为 Script 的加载不受同源策略约束；</li>
 <li>建议：能不支持尽量不支持，原因：安全问题，可以会被攻击；</li>
 </ol>
 </li>
-<li>数据内部结构<ol>
+<li>数据内部结构
+<ol>
 <li>原则：尽量减少 API 请求次数，一次性返回所需要的数据；</li>
 <li>让用户选择响应的内容；指定单个字段太麻烦的话，可以考虑使用小组及组合或嵌套的策略，将所需要的字段根据场景做进一步的抽象；</li>
 <li>封装可以让响应格式统一，但有点浪费 HTTP 协议本身自带的封装效果；</li>
@@ -301,14 +309,16 @@
 <li>列表的响应，可以添加 hasNext 字段，来表示是否还有后续内容；</li>
 </ol>
 </li>
-<li>数据的格式<ol>
+<li>数据的格式
+<ol>
 <li>JSON：驼峰命名法</li>
 <li>性别：GENDER 是社会意义的，SEX 是生物意义的；</li>
 <li>日期的格式： RFC3339，2015-10-12T11:30:22+09:00</li>
 <li>大数据：由于JS处理64bit长度的局限性，可以转成字符串传输；</li>
 </ol>
 </li>
-<li>响应数据的格式<ol>
+<li>响应数据的格式
+<ol>
 <li>出错信息用状态码表示，遵循HTTP的规范，即2开头表示成功，4开头表示客户端请求有误，5开头表示服务器内部处理有误（原因：更加易懂）；</li>
 <li>向客户端返回详细的错误信息，以便其了解原因，方便调试</li>
 <li>可以考虑使用 devMsg 和 userMsg 来区分显示给用户和开发人员的消息内容；</li>
@@ -318,7 +328,8 @@
 </li>
 </ol>
 </li>
-<li>尽量利用 HTTP 协议<ol>
+<li>尽量利用 HTTP 协议
+<ol>
 <li>尽量使用通用规范的好处：让他人的学习成本更低，易于理解；</li>
 <li>状态码：2、3、4、5，每个数字下面，都对应有几十种细分，非常丰富，所以应尽量使用它们来表示想要的状态；</li>
 <li>202：表示服务端已经开始处理，但还没有弄好；此时可以在响应消息的 Retry-after 字段里面，放上时间（目测这个功能可以用来在客户端显示进度？）</li>
@@ -328,7 +339,8 @@
 <li>5开头：内部错，存在不可用；</li>
 </ol>
 </li>
-<li>缓存与HTTP规范<ol>
+<li>缓存与HTTP规范
+<ol>
 <li>涉及方：客户端缓存、客户端代理服务器缓存、服务端代理服务器缓存；</li>
 <li>过期模型：通过在首部指定过期时间（绝对时间，相对时间等），可以有效减少请求次数；</li>
 <li>校验模型：通过判断资源是否更新（虽然没有减少请求次数，但适用于大数据交互的场景）；通过 Entity Tag 来实现，即 ETAG，在首部加上这个信息用于判断；根据场景可分为强验证和弱验证两种；</li>
@@ -341,30 +353,38 @@
 <li>x- 也常用于表示私有首部；</li>
 </ol>
 </li>
-<li>API 的设计要方便更改<ol>
+<li>API 的设计要方便更改
+<ol>
 <li>常用做法：在 URI  中嵌入主版本号</li>
 <li>最大程度的减少 API 的更新；如果必须更新，注意向下兼容；</li>
 <li>发布新版 API 后，如果需要停止对老版本的支持，则建议正常先保留老版本半年；</li>
 </ol>
 </li>
-<li>安全性与可靠性<ol>
-<li>安全问题<ol>
-<li>劫持服务端与客户端之间的通讯信息；<ol>
+<li>安全性与可靠性
+<ol>
+<li>安全问题
+<ol>
+<li>劫持服务端与客户端之间的通讯信息；
+<ol>
 <li>应对措施：使用 HTTPS 进行加密；缺点：会增加一些访问的时间，性能有所下降；</li>
 </ol>
 </li>
 <li>攻击服务器获取服务端的数据；</li>
 </ol>
 </li>
-<li>攻击类型<ol>
-<li>XSS：在传输的数据中，注入恶意的代码（例如 js），然后触发它被执行；例如先伪造一个 URL，吸引用户点击，之后传输包含恶意代码的网页给用户，用户端的浏览器显示该网页时，触发恶意代码被执行；该攻击有3种类型，其中一些只危害用户端，另2种会危害服务器端<ol>
+<li>攻击类型
+<ol>
+<li>XSS：在传输的数据中，注入恶意的代码（例如 js），然后触发它被执行；例如先伪造一个 URL，吸引用户点击，之后传输包含恶意代码的网页给用户，用户端的浏览器显示该网页时，触发恶意代码被执行；该攻击有3种类型，其中一些只危害用户端，另2种会危害服务器端
+<ol>
 <li>防范：对用户的输入进行检查，确保其中不包含恶意的代码</li>
 </ol>
 </li>
-<li>XSRF：跨站点请求伪造；站点 B 伪造成用户的身份登录站点 A 进行操作；<ol>
+<li>XSRF：跨站点请求伪造；站点 B 伪造成用户的身份登录站点 A 进行操作；
+<ol>
 <li>前提：用户登录了 站点 A，同时，用户打开了站点 B</li>
 <li>原理：当用户点击 B 时，执行恶意代码，获取了站点 A 给用户的 Cookie，凭借这个 Cookie，站点 B 假装自己是用户，向站点 A 发起了非法的请求；</li>
-<li>防范：除了 Cookie 外，增加其他验证用户身份的方式；比如：<ol>
+<li>防范：除了 Cookie 外，增加其他验证用户身份的方式；比如：
+<ol>
 <li>只能使用 POST 方法进行数据更新的操作（原因：因为 GET 方法缺少验证）</li>
 <li>使用 TOKEN 验证；</li>
 <li>使用 一些只能人工识别的验证方式，例如识别图片上面的字符</li>
@@ -372,51 +392,62 @@
 </li>
 </ol>
 </li>
-<li>来自怀有恶意的用户的攻击<ol>
+<li>来自怀有恶意的用户的攻击
+<ol>
 <li>修改参数达到有利自己的目的（防范：仔细检查参数的有效性）</li>
 <li>多次发送（防范：增加状态的判断，例如通过增加虚拟的订单和收据，然后根据单据的状态变化，来判断是否允许再次操作）</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>同安全相关的 HTTP 首部<ol>
-<li>X-XSS-Protection: 1<ol>
+<li>同安全相关的 HTTP 首部
+<ol>
+<li>X-XSS-Protection: 1
+<ol>
 <li>开户后，浏览器可以检测和防御 XSS 攻击（Chrome 和 Safari 此功能是默认开启的，且无法禁用）</li>
 </ol>
 </li>
-<li>X-Frame-Options: Deny<ol>
+<li>X-Frame-Options: Deny
+<ol>
 <li>攻击者在用户的页面上添加透明的 iFrame 元素，当用户点击时，执行了恶意代码（即点击劫持）</li>
 </ol>
 </li>
-<li>Content-Security-Policy: default-src ‘none’<ol>
+<li>Content-Security-Policy: default-src ‘none’
+<ol>
 <li>用于指定读取的HTML内元素指向的资源范围（例如：IMG, SCRIPT, LINK 等元素），用于降低 XSS 攻击的风险；</li>
 </ol>
 </li>
-<li>Strict-Transport-Security： max-age&#x3D;15768000<ol>
+<li>Strict-Transport-Security： max-age=15768000
+<ol>
 <li>预先告知浏览器只能通过 HTTPS 进行访问</li>
 <li>max-age 值，即是告知浏览器，在这个时间期限内，只能使用 HTTPS 访问；</li>
 <li>该首部只有通过 HTTPS 发放时才会生效，通过 HTTP 发放是不生效的；</li>
 <li>缺点：第一次使用 HTTPS 访问前，如果已经通过 HTTP 访问过，则该首部不会产生效果</li>
 </ol>
 </li>
-<li>Set-Cookie: session&#x3D;e827ea…..3i1689jp; Path&#x3D;&#x2F;; Secure; HttpOnly<ol>
+<li>Set-Cookie: session=e827ea…3i1689jp; Path=/; Secure; HttpOnly
+<ol>
 <li>Secure 表示 session 值只能在 HTTPS 下发送，HTTP 下不发送（避免泄露）</li>
 <li>HttpOnly 表示仅在 HTTP 通信方式下，才能读取该 session 值，不能通过其他方式读取，避免被恶意脚本获取 session 值；</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>应对大规模访问<ol>
-<li>限制每个用户的访问：<ol>
+<li>应对大规模访问
+<ol>
+<li>限制每个用户的访问：
+<ol>
 <li>前提：需要能够识别用户</li>
 <li>方法：给每个用户设置 Token 或 key 来识别；</li>
 </ol>
 </li>
 <li>设置访问次数的上限：时间单位需要考虑用户如果超出限制，需要等待多久；</li>
 <li>当超出次数限制时，返回 429 状态码，Too many requests</li>
-<li>告知用户详细的限制信息，包括：单位时间允许次数，剩余次数，重置时间；<ol>
+<li>告知用户详细的限制信息，包括：单位时间允许次数，剩余次数，重置时间；
+<ol>
 <li>方式一：通过专门的API，让用户主动查询</li>
-<li>方式二：在返回的消息的首部注明，包括：<ol>
+<li>方式二：在返回的消息的首部注明，包括：
+<ol>
 <li>X-RateLimit-Limit，单位时间的访问上限；</li>
 <li>X-RateLimit-Remaining，剩余的访问次数；</li>
 <li>X-RateLimit-Reset，访问次数重置的时间；</li>
@@ -429,15 +460,18 @@
 </li>
 </ol>
 </li>
-<li>附录<ol>
-<li>公开 Web API 的准备工作<ol>
-<li>提供文档，可参考 <a target="_blank" rel="noopener" href="https://apiblueprint.org/">https://apiblueprint.org</a> 倡导的规范；</li>
+<li>附录
+<ol>
+<li>公开 Web API 的准备工作
+<ol>
+<li>提供文档，可参考 <a target="_blank" rel="noopener" href="https://apiblueprint.org">https://apiblueprint.org</a> 倡导的规范；</li>
 <li>提供沙盒，让用户可以在这个环境中随意测试；</li>
 <li>提供 console，让用户可以通过浏览器对 API 进行操作测试；例如：<a target="_blank" rel="noopener" href="https://developers.facebook.com/tools/explorer">https://developers.facebook.com/tools/explorer</a></li>
 <li>提供 SDK，让开发人员能够快速上手使用，避免自己写代码进行连接的工作；缺点：如果 API 更新频率很高，则维护 SDK 的工作量也很大；</li>
 </ol>
 </li>
-<li>确认清单<ol>
+<li>确认清单
+<ol>
 <li>URI 是否短小且容易输入</li>
 <li>URI 是否能够让人一眼看懂；</li>
 <li>URI 是否只由小写字母组成；</li>
@@ -476,7 +510,7 @@
 <li>有没有在 URI 里嵌入主版本编号，并且能够让人一目了然；</li>
 <li>有没有考虑 API 终止提供时的相关事项；</li>
 <li>有没有在文档里注明 API 的最低提供期限；</li>
-<li>有没有使用 HTTPS 提供 API </li>
+<li>有没有使用 HTTPS 提供 API</li>
 <li>有没有执行 JSON 转义；</li>
 <li>能不能识别 X-Requested-With 首部，让浏览器无法通过 Scrip 元素读取 JSON 数据；</li>
 <li>通过浏览器访问的API 有没有使用 XSRF Token</li>

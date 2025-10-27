@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式">
+    <meta name="description" content="基本概念 Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flutter">
 <meta property="og:url" content="https://ccw1078.github.io/2022/01/01/Flutter/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="基本概念Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式">
+<meta property="og:description" content="基本概念 Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等； 官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png">
@@ -91,7 +91,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -283,7 +287,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等；</p>
+                <h1 id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" tabindex="-1">基本概念</h1>
+<p>Vue 中的组件在这里叫做 Widget，组件可以包含组件，组件可以通过继承实现快速构建；组件通过内置的 build 方法来实现渲染，有点像小程序中的 setData；组件也有一些内置的属性，用来设置组件的相关信息，例如标题，主体等；</p>
 <p>官方的 Material 组件库里面有很多前人写好的组件，可以用来快速构建应用；这些组件自带样式，可以自适应不同的终端，非常方便；有些组件甚至可以只负责样式，然后再内置包含内容的其他组件，很灵活，实现了样式和内容的解耦；</p>
 <p>有个 pubspec.yaml 文件很像 nodejs 里面的 package.json 文件，用来定义项目的相关信息以及依赖的库；同时还有一个 pub.dev 仓库网站，类似 nodejs 里面的 npm 仓库，可以方便的实现第三方库的集中管理和下载；另外还有一个 pubspec.lock 文件，貌似也跟 nodejs 里面的 package_json.lock 功能差不多；</p>
 <p>flutter pub 命令很像 npm ，用来管理包，例如 flutter pub get 类似 npm install，用来安装依赖文件中指定的各种包，flutter pub add 则用来添加包（发现添加后，好像并没有自动下载，而是需要再运行一下 pub get 才行，但是看 pub.dev 网站的文档好像只需要 add 就可以了）；</p>
@@ -293,12 +298,12 @@
 </blockquote>
 <p>创建 State 时，有一个很有意思的点，即新创建的 state 并不是直接继承某个 StateWidget 来实现的，而是给 State 传递一个 StatefulWidegt 来实现，示例如下：</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_RandomWordsState</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">State</span>&lt;<span class="hljs-title">RandomWords</span>&gt;  </span>&#123;&#125;<br><span class="hljs-comment">// 此处的 RandomWords 是一个 StatefulWidget</span><br></code></pre></td></tr></table></figure>
-
 <p>Widget 类有一个内置的 build 方法，用来初始化对象，一般继承父类后，会通过重写 build 方法覆盖父类的方法；</p>
 <p>StatefulWidget 类有一个内置的 createState 方法，用来初始化 State 对象，通过对其进行重写，实现自定义的 State；</p>
 <p>在类内部定义的函数，直接就是该类的方法，如果加上下划线作为前缀，则成为该类的私有方法；</p>
 <p>ListView 有一个内置的 itemBuilder 方法，貌似列表滚动到底后，会自动触发该方法；</p>
-<h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><p>在 Flutter 里面，一切均是 Widget，它既负责展示，也负责交互，很像 Vue 里面的组件；</p>
+<h1 id="%E5%B8%83%E5%B1%80" tabindex="-1">布局</h1>
+<p>在 Flutter 里面，一切均是 Widget，它既负责展示，也负责交互，很像 Vue 里面的组件；</p>
 <p>通常来说，内置的组件已经设定好了默认样式；如果想修改这些默认样式，例如 margin, padding, border, backgroud 等，有两种方法：</p>
 <ul>
 <li>通过外加一层 Container 的 Widget 来实现，自定义的样式放在 Container 当中去实现，同时将内置 Widget 放在 Container 中，而不是去修改内置 Widget，这样实现了更好的解耦，也方便将来进行统一的管理，例如当更新某些全局设置时，所有内置 Widget 都会相应更新，而不会因为自行修改导致失效；</li>
@@ -316,32 +321,21 @@
 <li>children ：拥有多个子元素，例如 Row，Column，ListView 或 Stack 等；</li>
 </ul>
 <p>大部分 Widget 都有一个 build 方法，当该方法被调用时，将生成界面；</p>
-<h1 id="常用-Widget"><a href="#常用-Widget" class="headerlink" title="常用 Widget"></a>常用 Widget</h1><p>Scaffold：包含顶部标题栏，标题，背景色等元素；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="%E5%B8%B8%E7%94%A8-widget" tabindex="-1">常用 Widget</h1>
+<p>Scaffold：包含顶部标题栏，标题，背景色等元素；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101084534.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Row：表示一行，里面可以嵌套各种东西；</p>
 <p>Column：表示一列，里面可以嵌套各种东西；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145532.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101145552.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Row 或 Column 内部元素的对齐，通过其属性 mainAxisAllignment 和 crossAxisAlignment 来实现；</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  mainAxisAlignment: MainAxisAlignment.spaceEvenly,<br>  children: [<br>    Image.asset(<span class="hljs-string">&#x27;images/pic1.jpg&#x27;</span>),<br>    Image.asset(<span class="hljs-string">&#x27;images/pic2.jpg&#x27;</span>),<br>    Image.asset(<span class="hljs-string">&#x27;images/pic3.jpg&#x27;</span>),<br>  ],<br>);<br></code></pre></td></tr></table></figure>
-
 <p>如果图片的大小跟所设定的区域尺寸不匹配，可通过将其放到  Expanded 中，来实现自动缩放，示例如下：</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  crossAxisAlignment: CrossAxisAlignment.center,<br>  children: [<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic1.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic2.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic3.jpg&#x27;</span>),<br>    ),<br>  ],<br>);<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  crossAxisAlignment: CrossAxisAlignment.center,<br>  children: [<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic1.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      flex: <span class="hljs-number">2</span>,<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic2.jpg&#x27;</span>),<br>    ),<br>    Expanded(<br>      child: Image.asset(<span class="hljs-string">&#x27;images/pic3.jpg&#x27;</span>),<br>    ),<br>  ],<br>);<br></code></pre></td></tr></table></figure>
-
-
-
-
-
 <p>默认情况下，Row 或 Column 内部的元素会占据整行或整列的空间，如果需要各个元素按指定尺寸挨着显示，则可以通过设置 mainAxisSize 来实现</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20220101150634.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dart">Row(<br>  mainAxisSize: MainAxisSize.min, <span class="hljs-comment">// 设置尺寸</span><br>  children: [<br>    Icon(Icons.star, color: Colors.green[<span class="hljs-number">500</span>]),<br>    Icon(Icons.star, color: Colors.green[<span class="hljs-number">500</span>]),<br>    Icon(Icons.star, color: Colors.green[<span class="hljs-number">500</span>]),<br>    <span class="hljs-keyword">const</span> Icon(Icons.star, color: Colors.black),<br>    <span class="hljs-keyword">const</span> Icon(Icons.star, color: Colors.black),<br>  ],<br>)<br></code></pre></td></tr></table></figure>
-
-
-
-
-
 
                 
               </div>

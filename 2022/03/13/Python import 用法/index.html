@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="常规导入模块 Modules一个 py 文件即相当于一个模块 Module；它可以被其他 py 导入，以便复用其中的代码； 12import mathmath.pi()  被导入的 py 文件，同时充当了一个命名空间（Namespace），可通过该命名空间访问其内部的变量和函数； 当使用 from  A import B 时，就把 B 导入到全局命名空间中了，这个时候并没有导入 A；而且导入时 B">
+    <meta name="description" content="常规导入 模块 Modules 一个 py 文件即相当于一个模块 Module；它可以被其他 py 导入，以便复用其中的代码； 12import mathmath.pi() 被导入的 py 文件，同时充当了一个命名空间（Namespace），可通过该命名空间访问其内部的变量和函数； 当使用 from  A import B 时，就把 B 导入到全局命名空间中了，这个时候并没有导入 A；而且导入时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python import 用法">
 <meta property="og:url" content="https://ccw1078.github.io/2022/03/13/Python%20import%20%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="常规导入模块 Modules一个 py 文件即相当于一个模块 Module；它可以被其他 py 导入，以便复用其中的代码； 12import mathmath.pi()  被导入的 py 文件，同时充当了一个命名空间（Namespace），可通过该命名空间访问其内部的变量和函数； 当使用 from  A import B 时，就把 B 导入到全局命名空间中了，这个时候并没有导入 A；而且导入时 B">
+<meta property="og:description" content="常规导入 模块 Modules 一个 py 文件即相当于一个模块 Module；它可以被其他 py 导入，以便复用其中的代码； 12import mathmath.pi() 被导入的 py 文件，同时充当了一个命名空间（Namespace），可通过该命名空间访问其内部的变量和函数； 当使用 from  A import B 时，就把 B 导入到全局命名空间中了，这个时候并没有导入 A；而且导入时">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-13T07:05:00.000Z">
 <meta property="article:modified_time" content="2024-09-21T23:18:26.811Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -277,14 +281,15 @@
             
               <div class="markdown-body">
                 
-                <h1 id="常规导入"><a href="#常规导入" class="headerlink" title="常规导入"></a>常规导入</h1><h2 id="模块-Modules"><a href="#模块-Modules" class="headerlink" title="模块 Modules"></a>模块 Modules</h2><p>一个 py 文件即相当于一个模块 Module；它可以被其他 py 导入，以便复用其中的代码；</p>
+                <h1 id="%E5%B8%B8%E8%A7%84%E5%AF%BC%E5%85%A5" tabindex="-1">常规导入</h1>
+<h2 id="%E6%A8%A1%E5%9D%97-modules" tabindex="-1" id="模块-Modules">模块 Modules</h2>
+<p>一个 py 文件即相当于一个模块 Module；它可以被其他 py 导入，以便复用其中的代码；</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br>math.pi()<br></code></pre></td></tr></table></figure>
-
 <p>被导入的 py 文件，同时充当了一个命名空间（Namespace），可通过该命名空间访问其内部的变量和函数；</p>
 <p>当使用 from  A import B 时，就把 B 导入到全局命名空间中了，这个时候并没有导入 A；而且导入时 B 还可以重命名 B，例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> pi <span class="hljs-keyword">as</span> PI<br></code></pre></td></tr></table></figure>
-
-<h2 id="包-Packages"><a href="#包-Packages" class="headerlink" title="包 Packages"></a>包 Packages</h2><p>Pacage 也是一个模块，它跟普通模块的区别在于它内部包含了其他模块或者其他 Package</p>
+<h2 id="%E5%8C%85-packages" tabindex="-1" id="包-Packages">包 Packages</h2>
+<p>Pacage 也是一个模块，它跟普通模块的区别在于它内部包含了其他模块或者其他 Package</p>
 <blockquote>
 <p>Python 官方文档对 Package 的解释为，当一个模块的内置 path 属性有值时，即是一个 Package；个人感觉包和模块很像目录和文件的关系；</p>
 </blockquote>
@@ -303,43 +308,30 @@
 </blockquote>
 <p>模块本质上面是一个对象，因此可以通过对象的内置方法来访问来模块中的内容，示例如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br>math.__dict__[<span class="hljs-string">&#x27;pi&#x27;</span>]<br></code></pre></td></tr></table></figure>
-
 <p>在 init 文件中导入包中的模块，可以让包的使用者更方便的使用这些模块，而无须记住相应的路径</p>
-<h2 id="绝对导入和相对导入"><a href="#绝对导入和相对导入" class="headerlink" title="绝对导入和相对导入"></a>绝对导入和相对导入</h2><p>如果代码只在本地使用，不需要共享给他人使用时，使用绝对路径导入是一个不错的方法。但是如果它成为一个包，需要被其他人复用时，那么使用绝对路径就会报错了，此时需要在包中使用相对路径。同时引用该包的人，可通过 pip 安装该包。安装后，包就会被存放在默认的 site_packages 文件夹中，这样在运行脚本时就可以被解释器找到；不然就得修改 PYTHONPATH 环境变量或者调用 sys.path 方法添加包的路径；</p>
+<h2 id="%E7%BB%9D%E5%AF%B9%E5%AF%BC%E5%85%A5%E5%92%8C%E7%9B%B8%E5%AF%B9%E5%AF%BC%E5%85%A5" tabindex="-1" id="绝对导入和相对导入">绝对导入和相对导入</h2>
+<p>如果代码只在本地使用，不需要共享给他人使用时，使用绝对路径导入是一个不错的方法。但是如果它成为一个包，需要被其他人复用时，那么使用绝对路径就会报错了，此时需要在包中使用相对路径。同时引用该包的人，可通过 pip 安装该包。安装后，包就会被存放在默认的 site_packages 文件夹中，这样在运行脚本时就可以被解释器找到；不然就得修改 PYTHONPATH 环境变量或者调用 sys.path 方法添加包的路径；</p>
 <p>当解释器遇到 import 语句时，它会到三个地方寻找包，分别如下：</p>
-<blockquote>
-</blockquote>
+<blockquote></blockquote>
 <ul>
 <li>当前脚本所在的目录；</li>
 <li>环境变量 PYTHONPATH 指向的目录；</li>
 <li>pip 存放依赖的目录；</li>
 </ul>
-<h2 id="安装本地包"><a href="#安装本地包" class="headerlink" title="安装本地包"></a>安装本地包</h2><p>添加配置文件 setup.py，在里面 </p>
+<h2 id="%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E5%8C%85" tabindex="-1" id="安装本地包">安装本地包</h2>
+<p>添加配置文件 <a target="_blank" rel="noopener" href="http://setup.py">setup.py</a>，在里面</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><br><span class="hljs-keyword">import</span> io<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">from</span> shutil <span class="hljs-keyword">import</span> rmtree<br><br><span class="hljs-keyword">from</span> setuptools <span class="hljs-keyword">import</span> find_packages, setup, Command<br><br><span class="hljs-comment"># Package meta-data.</span><br>NAME = <span class="hljs-string">&#x27;mypackage&#x27;</span><br>DESCRIPTION = <span class="hljs-string">&#x27;My short description for my project.&#x27;</span><br>URL = <span class="hljs-string">&#x27;https://github.com/me/myproject&#x27;</span><br>EMAIL = <span class="hljs-string">&#x27;me@example.com&#x27;</span><br>AUTHOR = <span class="hljs-string">&#x27;Awesome Soul&#x27;</span><br>REQUIRES_PYTHON = <span class="hljs-string">&#x27;&gt;=3.6.0&#x27;</span><br>VERSION = <span class="hljs-string">&#x27;0.1.0&#x27;</span><br><br><span class="hljs-comment"># What packages are required for this module to be executed?</span><br>REQUIRED = [<br>    <span class="hljs-comment"># &#x27;requests&#x27;, &#x27;maya&#x27;, &#x27;records&#x27;,</span><br>]<br><br><span class="hljs-comment"># What packages are optional?</span><br>EXTRAS = &#123;<br>    <span class="hljs-comment"># &#x27;fancy feature&#x27;: [&#x27;django&#x27;],</span><br>&#125;<br><br><span class="hljs-comment"># The rest you shouldn&#x27;t have to touch too much :)</span><br><span class="hljs-comment"># ------------------------------------------------</span><br><span class="hljs-comment"># Except, perhaps the License and Trove Classifiers!</span><br><span class="hljs-comment"># If you do change the License, remember to change the Trove Classifier for that!</span><br><br>here = os.path.abspath(os.path.dirname(__file__))<br><br><span class="hljs-comment"># Import the README and use it as the long-description.</span><br><span class="hljs-comment"># Note: this will only work if &#x27;README.md&#x27; is present in your MANIFEST.in file!</span><br><span class="hljs-keyword">try</span>:<br>    <span class="hljs-keyword">with</span> io.<span class="hljs-built_in">open</span>(os.path.join(here, <span class="hljs-string">&#x27;README.md&#x27;</span>), encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>        long_description = <span class="hljs-string">&#x27;\n&#x27;</span> + f.read()<br><span class="hljs-keyword">except</span> FileNotFoundError:<br>    long_description = DESCRIPTION<br><br><span class="hljs-comment"># Load the package&#x27;s __version__.py module as a dictionary.</span><br>about = &#123;&#125;<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> VERSION:<br>    project_slug = NAME.lower().replace(<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;_&quot;</span>).replace(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;_&quot;</span>)<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(os.path.join(here, project_slug, <span class="hljs-string">&#x27;__version__.py&#x27;</span>)) <span class="hljs-keyword">as</span> f:<br>        <span class="hljs-built_in">exec</span>(f.read(), about)<br><span class="hljs-keyword">else</span>:<br>    about[<span class="hljs-string">&#x27;__version__&#x27;</span>] = VERSION<br><br><span class="hljs-comment"># Where the magic happens:</span><br>setup(<br>    name=NAME,<br>    version=about[<span class="hljs-string">&#x27;__version__&#x27;</span>],<br>    description=DESCRIPTION,<br>    long_description=long_description,<br>    long_description_content_type=<span class="hljs-string">&#x27;text/markdown&#x27;</span>,<br>    author=AUTHOR,<br>    author_email=EMAIL,<br>    python_requires=REQUIRES_PYTHON,<br>    url=URL,<br>    packages=find_packages(exclude=[<span class="hljs-string">&quot;tests&quot;</span>, <span class="hljs-string">&quot;*.tests&quot;</span>, <span class="hljs-string">&quot;*.tests.*&quot;</span>, <span class="hljs-string">&quot;tests.*&quot;</span>]),<br>    <span class="hljs-comment"># If your package is a single module, use this instead of &#x27;packages&#x27;:</span><br>    <span class="hljs-comment"># py_modules=[&#x27;mypackage&#x27;],</span><br><br>    <span class="hljs-comment"># entry_points=&#123;</span><br>    <span class="hljs-comment">#     &#x27;console_scripts&#x27;: [&#x27;mycli=mymodule:cli&#x27;],</span><br>    <span class="hljs-comment"># &#125;,</span><br>    install_requires=REQUIRED,<br>    extras_require=EXTRAS,<br>    include_package_data=<span class="hljs-literal">True</span>,<br>    license=<span class="hljs-string">&#x27;MIT&#x27;</span>,<br>    classifiers=[<br>        <span class="hljs-comment"># Trove classifiers</span><br>        <span class="hljs-comment"># Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers</span><br>        <span class="hljs-string">&#x27;License :: OSI Approved :: MIT License&#x27;</span>,<br>        <span class="hljs-string">&#x27;Programming Language :: Python&#x27;</span>,<br>        <span class="hljs-string">&#x27;Programming Language :: Python :: 3&#x27;</span>,<br>        <span class="hljs-string">&#x27;Programming Language :: Python :: 3.6&#x27;</span>,<br>        <span class="hljs-string">&#x27;Programming Language :: Python :: Implementation :: CPython&#x27;</span>,<br>        <span class="hljs-string">&#x27;Programming Language :: Python :: Implementation :: PyPy&#x27;</span><br>    ],<br>    <span class="hljs-comment"># $ setup.py publish support.</span><br>    cmdclass=&#123;<br>        <span class="hljs-string">&#x27;upload&#x27;</span>: UploadCommand,<br>    &#125;,<br>)<br></code></pre></td></tr></table></figure>
-
 <p>安装命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python -m pip install -e .<br></code></pre></td></tr></table></figure>
-
-
-
-<h1 id="Resources-导入"><a href="#Resources-导入" class="headerlink" title="Resources 导入"></a>Resources 导入</h1><p>在 3.7 版本之后，静态资源文件也支持像包一样处理，只需要在资源所有的文件中添加一个 init 文件即可；然后引入包后，只需要使用内置的 importlib.resources 模块，即可实现对资源文件的读取</p>
+<h1 id="resources-%E5%AF%BC%E5%85%A5" tabindex="-1">Resources 导入</h1>
+<p>在 3.7 版本之后，静态资源文件也支持像包一样处理，只需要在资源所有的文件中添加一个 init 文件即可；然后引入包后，只需要使用内置的 importlib.resources 模块，即可实现对资源文件的读取</p>
 <p>假设包中有如下资源：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">books/<br>│<br>├── <span class="hljs-strong">__init__</span>.py<br>├── alice<span class="hljs-emphasis">_in_</span>wonderland.png<br>└── alice<span class="hljs-emphasis">_in_</span>wonderland.txt<br></code></pre></td></tr></table></figure>
-
 <p>则可以通过如下方式读取其中的资源文件：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> importlib <span class="hljs-keyword">import</span> resources<br><br><span class="hljs-keyword">with</span> resources.open_text(<span class="hljs-string">&quot;books&quot;</span>, <span class="hljs-string">&quot;alice.txt&quot;</span>) <span class="hljs-keyword">as</span> fid:<br>    alice = fid.readlines()<br></code></pre></td></tr></table></figure>
-
 <p>示例二：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">data/<br>│<br>├── <span class="hljs-strong">__init__</span>.py<br>└── WPP2019<span class="hljs-emphasis">_TotalPopulationBySex.csv</span><br></code></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> importlib <span class="hljs-keyword">import</span> resources<br><br><span class="hljs-keyword">with</span> resources.open_text(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-string">&quot;WPP2019_TotalPopulationBySex.csv&quot;</span>) <span class="hljs-keyword">as</span> fid:<br>	rows = csv.DictReader(fid)<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-
 
                 
               </div>

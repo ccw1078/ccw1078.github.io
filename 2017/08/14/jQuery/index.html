@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基础语法：$(selector).action() $ 定义jQuery selector，选择器，选择需要操作的 HTML 元素； action( )，操作；   $(document).ready(function(){…}); 所有的 jQuery 函数放在了 document ready 的函数中，目的，避免在 HTML 文档加载结束之前，就开始执行 jQuery，因为这样有可能导致操作">
+    <meta name="description" content="基础语法：$(selector).action()  $ 定义jQuery selector，选择器，选择需要操作的 HTML 元素； action( )，操作；   $(document).ready(function(){…});  所有的 jQuery 函数放在了 document ready 的函数中，目的，避免在 HTML 文档加载结束之前，就开始执行 jQuery，因为这样有可能导致">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery">
 <meta property="og:url" content="https://ccw1078.github.io/2017/08/14/jQuery/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="基础语法：$(selector).action() $ 定义jQuery selector，选择器，选择需要操作的 HTML 元素； action( )，操作；   $(document).ready(function(){…}); 所有的 jQuery 函数放在了 document ready 的函数中，目的，避免在 HTML 文档加载结束之前，就开始执行 jQuery，因为这样有可能导致操作">
+<meta property="og:description" content="基础语法：$(selector).action()  $ 定义jQuery selector，选择器，选择需要操作的 HTML 元素； action( )，操作；   $(document).ready(function(){…});  所有的 jQuery 函数放在了 document ready 的函数中，目的，避免在 HTML 文档加载结束之前，就开始执行 jQuery，因为这样有可能导致">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-08-14T03:25:00.000Z">
 <meta property="article:modified_time" content="2024-09-22T03:58:54.394Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          593 字
+          586 字
         
       </span>
     
@@ -278,49 +282,58 @@
               <div class="markdown-body">
                 
                 <ol>
-<li>基础语法：$(selector).action()<ol>
+<li>基础语法：$(selector).action()
+<ol>
 <li>$ 定义jQuery</li>
 <li>selector，选择器，选择需要操作的 HTML 元素；</li>
 <li>action( )，操作；</li>
 </ol>
 </li>
-<li>$(document).ready(function(){…});<ol>
+<li>$(document).ready(function(){…});
+<ol>
 <li>所有的 jQuery 函数放在了 document ready 的函数中，目的，避免在 HTML 文档加载结束之前，就开始执行 jQuery，因为这样有可能导致操作失败；</li>
 <li>但说不定在某种场景下，在加载前执行函数，或者是有意义的；</li>
 </ol>
 </li>
-<li>jQuery 使用 CSS 选择器来选择 HTML 元素，示例如下：<ol>
+<li>jQuery 使用 CSS 选择器来选择 HTML 元素，示例如下：
+<ol>
 <li>$(“p”)：选择 <P> 元素；</li>
-<li>$(“p.intro”)：选择 class &#x3D; “intro” 的 <p> 元素（点后面表示类）</li>
-<li>$(“p#demo”)：选择 id &#x3D; “demo” 的 <p> 元素（#后面表示 id）</li>
+<li>$(“p.intro”)：选择 class = “intro” 的 <p> 元素（点后面表示类）</li>
+<li>$(“p#demo”)：选择 id = “demo” 的 <p> 元素（#后面表示 id）</li>
 <li>$(“ul li:first”)：选择所有 <ul> 的第一个 <li> 元素</li>
-<li>$(“div#intro.head”)：选择 id &#x3D; ‘demo’ 中类名 class &#x3D; ‘head’ 的 <div> 元素；</li>
+<li>$(“div#intro.head”)：选择 id = ‘demo’ 中类名 class = ‘head’ 的 <div> 元素；</li>
 </ol>
 </li>
-<li>jQuery 使用 XPath 来选择带有给属性的元素；<ol>
+<li>jQuery 使用 XPath 来选择带有给属性的元素；
+<ol>
 <li>$(“[href]”) ：选择带有 href 属性的元素；</li>
-<li>$(“[href &#x3D; ‘#’]”)：选择 href 属性值为 # 的元素；</li>
-<li>$(“[href !&#x3D; ‘#’]”)：选择 href 属性值不为 # 元素；</li>
-<li>$(‘[href $&#x3D; ‘.jpg’]”)：选择 href 属性值以 .jpg 结尾的属性；</li>
+<li>$(“[href = ‘#’]”)：选择 href 属性值为 # 的元素；</li>
+<li>$(“[href != ‘#’]”)：选择 href 属性值不为 # 元素；</li>
+<li>$('[href $= ‘.jpg’]&quot;)：选择 href 属性值以 .jpg 结尾的属性；</li>
 </ol>
 </li>
-<li>一些编码原则<ol>
+<li>一些编码原则
+<ol>
 <li>把所有的 jQuery 代码置于事件处理函数中；</li>
 <li>所有事件处理函数置于文档就绪事件处理器；</li>
 <li>所 jQuery 代码置于单独的 .js 文件中；</li>
-<li>如果存在名称冲突，则重命名 jQuery 库；<ol>
-<li>var jq &#x3D; jQuery.noConflict(); 用来取代原来的 $()，变成 js()</li>
+<li>如果存在名称冲突，则重命名 jQuery 库；
+<ol>
+<li>var jq = jQuery.noConflict(); 用来取代原来的 $()，变成 js()</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>动画<ol>
-<li>几乎所有 CSS 属性都是可以通过 jQuery 的 animate 方法来操作，但有几个注意事项<ol>
+<li>动画
+<ol>
+<li>几乎所有 CSS 属性都是可以通过 jQuery 的 animate 方法来操作，但有几个注意事项
+<ol>
 <li>CSS 属性需要改成驼峰大小写，例如：padding-left 更新为 paddingLeft；margin-right 更新为 marginRight；（这是因为两个单词 css 使用中横杠进行区隔，js 使用驼峰区隔）</li>
 <li>色彩动画不包括在 jQuery 的核心库中，需要单独下载 color animation 插件才能实现；</li>
 </ol>
 </li>
-<li>stop( ) 方法有两个参数：<ol>
+<li>stop( ) 方法有两个参数：
+<ol>
 <li>stopAll，是否停止当前所有的动画，默认 false，即只停止队列当前执行的动画，未执行的继续执行；true 则停止所有队列中的动画；</li>
 <li>goToEnd，是否立即完成当前播放的动画，然后忽略队列中余下的动画；默认 false；</li>
 </ol>

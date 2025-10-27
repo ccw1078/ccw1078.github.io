@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="官方文档-m: run library module as a script（将模块当作脚本运行） 解释在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import  导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文件内">
+    <meta name="description" content="官方文档 -m: run library module as a script（将模块当作脚本运行） 解释 在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import  导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python -m 参数释义">
 <meta property="og:url" content="https://ccw1078.github.io/2019/01/02/python%20-m%20%E5%8F%82%E6%95%B0%E9%87%8A%E4%B9%89/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="官方文档-m: run library module as a script（将模块当作脚本运行） 解释在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import  导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文件内">
+<meta property="og:description" content="官方文档 -m: run library module as a script（将模块当作脚本运行） 解释 在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import  导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-01-02T03:16:34.000Z">
 <meta property="article:modified_time" content="2024-09-21T23:18:02.349Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          345 字
+          344 字
         
       </span>
     
@@ -277,13 +281,16 @@
             
               <div class="markdown-body">
                 
-                <h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p>-m: run library module as a script（将模块当作脚本运行）</p>
-<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import <module> 导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文件内部，我们一般通过下面的代码来区分当前脚本，是作为模块导入，还是作为脚本直接运行。</p>
+                <h2 id="%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3" tabindex="-1" id="官方文档">官方文档</h2>
+<p>-m: run library module as a script（将模块当作脚本运行）</p>
+<h2 id="%E8%A7%A3%E9%87%8A" tabindex="-1" id="解释">解释</h2>
+<p>在 python 中，所谓的模块，其实也是一个由代码组成的普通脚本文件。这些文件通常会提供一些有用的东西，例如函数或者类，然后我们通过 import <module> 导入使用，而且当我们引入模块的时候，不会产生副作用。但实际上如果我们在 shell 中直接运行这个脚本文件，很有可能会看到有副作用产生。在文件内部，我们一般通过下面的代码来区分当前脚本，是作为模块导入，还是作为脚本直接运行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;模块直接运行&#x27;</span>);<br></code></pre></td></tr></table></figure>
-<p>当文件作为脚本直接运行时，这段代码会产生副作用，输出字符串“模块直接运行”；<br>当文件作为模块被导入时，不会产生副作用，不输出字符串“模块直接运行”；</p>
+<p>当文件作为脚本直接运行时，这段代码会产生副作用，输出字符串“模块直接运行”；<br>
+当文件作为模块被导入时，不会产生副作用，不输出字符串“模块直接运行”；</p>
 <p>回到正题，当我们知道一个模块的名字，但不知道它的路径时，我们可以通过 -m 参数，在 shell 中将该模块当作脚本运行，例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">python -m module_name<br></code></pre></td></tr></table></figure>
-<p>事实上，如果我们知道模块的完整路径（此处假设为”&#x2F;path&#x2F;to&#x2F;module.py”），上述命令的效果，以下面的命令等同</p>
+<p>事实上，如果我们知道模块的完整路径（此处假设为&quot;/path/to/module.py&quot;），上述命令的效果，以下面的命令等同</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">python /path/to/module.py<br></code></pre></td></tr></table></figure>
                 
               </div>

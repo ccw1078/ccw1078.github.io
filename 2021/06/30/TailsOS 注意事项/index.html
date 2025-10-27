@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="保护个人身份信息可能泄露个人身份信息的活动：  分享带有元信息的文件，常见的文件元信息包含日期、时间、定位、设备信息等； 将 Tails 同时用于多种场景；  Tor 的缺陷 当使用 Tor 时，不管对于 ISP，还是对于目标网站，都是透明的，只要它们收集一份 Tor 的中继服务器列表，即可知道当前的访问请求来自 Tor 网络； 当所访问的目标网站没有使用 HTTPS 建立连接时，出口节点可以监听">
+    <meta name="description" content="保护个人身份信息 可能泄露个人身份信息的活动：  分享带有元信息的文件，常见的文件元信息包含日期、时间、定位、设备信息等； 将 Tails 同时用于多种场景；  Tor 的缺陷  当使用 Tor 时，不管对于 ISP，还是对于目标网站，都是透明的，只要它们收集一份 Tor 的中继服务器列表，即可知道当前的访问请求来自 Tor 网络； 当所访问的目标网站没有使用 HTTPS 建立连接时，出口节点可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TailsOS 注意事项">
 <meta property="og:url" content="https://ccw1078.github.io/2021/06/30/TailsOS%20%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="保护个人身份信息可能泄露个人身份信息的活动：  分享带有元信息的文件，常见的文件元信息包含日期、时间、定位、设备信息等； 将 Tails 同时用于多种场景；  Tor 的缺陷 当使用 Tor 时，不管对于 ISP，还是对于目标网站，都是透明的，只要它们收集一份 Tor 的中继服务器列表，即可知道当前的访问请求来自 Tor 网络； 当所访问的目标网站没有使用 HTTPS 建立连接时，出口节点可以监听">
+<meta property="og:description" content="保护个人身份信息 可能泄露个人身份信息的活动：  分享带有元信息的文件，常见的文件元信息包含日期、时间、定位、设备信息等； 将 Tails 同时用于多种场景；  Tor 的缺陷  当使用 Tor 时，不管对于 ISP，还是对于目标网站，都是透明的，只要它们收集一份 Tor 的中继服务器列表，即可知道当前的访问请求来自 Tor 网络； 当所访问的目标网站没有使用 HTTPS 建立连接时，出口节点可以">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-29T23:33:00.000Z">
 <meta property="article:modified_time" content="2024-09-21T23:18:51.726Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -277,17 +281,20 @@
             
               <div class="markdown-body">
                 
-                <h2 id="保护个人身份信息"><a href="#保护个人身份信息" class="headerlink" title="保护个人身份信息"></a>保护个人身份信息</h2><p>可能泄露个人身份信息的活动：</p>
+                <h2 id="%E4%BF%9D%E6%8A%A4%E4%B8%AA%E4%BA%BA%E8%BA%AB%E4%BB%BD%E4%BF%A1%E6%81%AF" tabindex="-1" id="保护个人身份信息">保护个人身份信息</h2>
+<p>可能泄露个人身份信息的活动：</p>
 <ul>
 <li>分享带有元信息的文件，常见的文件元信息包含日期、时间、定位、设备信息等；</li>
 <li>将 Tails 同时用于多种场景；</li>
 </ul>
-<h2 id="Tor-的缺陷"><a href="#Tor-的缺陷" class="headerlink" title="Tor 的缺陷"></a>Tor 的缺陷</h2><ul>
+<h2 id="tor-%E7%9A%84%E7%BC%BA%E9%99%B7" tabindex="-1" id="Tor-的缺陷">Tor 的缺陷</h2>
+<ul>
 <li>当使用 Tor 时，不管对于 ISP，还是对于目标网站，都是透明的，只要它们收集一份 Tor 的中继服务器列表，即可知道当前的访问请求来自 Tor 网络；</li>
 <li>当所访问的目标网站没有使用 HTTPS 建立连接时，出口节点可以监听请求内容，甚至伪装成目标网站；</li>
 <li>因为 Tor 使用三节点的固定线路，因此通过监听入口节点和出口节点，比对请求时间和数据包，有可能识别出用户身份（这种方法称为端到端关联攻击）；</li>
 </ul>
-<h2 id="使用事项"><a href="#使用事项" class="headerlink" title="使用事项"></a>使用事项</h2><ul>
+<h2 id="%E4%BD%BF%E7%94%A8%E4%BA%8B%E9%A1%B9" tabindex="-1" id="使用事项">使用事项</h2>
+<ul>
 <li>仅当电脑处于关机状态时，再插入并启动，避免在其他系统处于运行状态时插入 U 盘；</li>
 <li>Tails U 盘只用于运行操作系统，避免用它跟其他操作系统拷贝文件；</li>
 <li>尽量避免使用公共电脑运行 Tails，因为其硬件有可能被修改（例如增加键盘记录器来获取输入的各种信息，此时需要通过密码管理器来复制粘贴密码，避免使用键盘输入；或者使用屏幕键盘来点击输入密码）；</li>

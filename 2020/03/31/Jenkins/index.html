@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率； 流水线 pipeline pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以随">
+    <meta name="description" content="Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率； 流水线 pipeline  pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jenkins">
 <meta property="og:url" content="https://ccw1078.github.io/2020/03/31/Jenkins/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率； 流水线 pipeline pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以随">
+<meta property="og:description" content="Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率； 流水线 pipeline  pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221131824.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221134930.png">
@@ -103,7 +103,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -242,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          920 字
+          919 字
         
       </span>
     
@@ -296,36 +300,50 @@
               <div class="markdown-body">
                 
                 <p>Jenkins 的本质，其实是将原来平时手工操作的测试、部署用脚本实现自动化，并提供了一个可视化的界面，来查看自动化操作之后的结果。它让很多常规的测试和部署工作在操作一次，后续可以重复使用，提高了开发效率；</p>
-<h2 id="流水线-pipeline"><a href="#流水线-pipeline" class="headerlink" title="流水线 pipeline"></a>流水线 pipeline</h2><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221131824.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="%E6%B5%81%E6%B0%B4%E7%BA%BF-pipeline" tabindex="-1" id="流水线-pipeline">流水线 pipeline</h2>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221131824.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>pipeline 是一个不错的理念，它通过 DSL（支持声明式或脚本式两种风格），将前述的自动化操作，用代码的方式表达出来，这样让每个团队成员更容易阅读理解，并可以随着代码进行版本管理，实现跟实际代码版本的匹配，以及实现可追溯；</p>
-<h3 id="名称解释"><a href="#名称解释" class="headerlink" title="名称解释"></a>名称解释</h3><p><strong>pipeline</strong>： 用来定义构建流程，包括构建、测试、部署等环节；<br><strong>node</strong>：节点，表示一台机器，是构建环境的组成部分，可用来执行 pipeline 代码；<br><strong>stage</strong>: 阶段，流水线任务中的不同阶段，例如构建阶段、测试阶段、部署阶段等；每个阶段由1到多个任务组成，<br><strong>step</strong>: 任务，用来告知 jenkins 在某个时点，应该做的操作，例如执行某个 shell 命令；</p>
-<h4 id="声明式-Pipeline"><a href="#声明式-Pipeline" class="headerlink" title="声明式 Pipeline"></a>声明式 Pipeline</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221134930.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135204.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="使用-Pipeline"><a href="#使用-Pipeline" class="headerlink" title="使用 Pipeline"></a>使用 Pipeline</h3><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><ul>
+<h3 id="%E5%90%8D%E7%A7%B0%E8%A7%A3%E9%87%8A" tabindex="-1" id="名称解释">名称解释</h3>
+<p><strong>pipeline</strong>： 用来定义构建流程，包括构建、测试、部署等环节；<br>
+<strong>node</strong>：节点，表示一台机器，是构建环境的组成部分，可用来执行 pipeline 代码；<br>
+<strong>stage</strong>: 阶段，流水线任务中的不同阶段，例如构建阶段、测试阶段、部署阶段等；每个阶段由1到多个任务组成，<br>
+<strong>step</strong>: 任务，用来告知 jenkins 在某个时点，应该做的操作，例如执行某个 shell 命令；</p>
+<h4 id="%E5%A3%B0%E6%98%8E%E5%BC%8F-pipeline" tabindex="-1" id="声明式-Pipeline">声明式 Pipeline</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221134930.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135204.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="%E4%BD%BF%E7%94%A8-pipeline" tabindex="-1" id="使用-Pipeline">使用 Pipeline</h3>
+<h4 id="%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6" tabindex="-1" id="前提条件">前提条件</h4>
+<ul>
 <li>Jenkins 2.x 以上版本；</li>
 <li>已安装 Pipeline 插件；</li>
 </ul>
-<h4 id="定义-Pipeline"><a href="#定义-Pipeline" class="headerlink" title="定义 Pipeline"></a>定义 Pipeline</h4><p>有三种方法：</p>
+<h4 id="%E5%AE%9A%E4%B9%89-pipeline" tabindex="-1" id="定义-Pipeline">定义 Pipeline</h4>
+<p>有三种方法：</p>
 <ul>
 <li>使用 Blue Ocean 插件；</li>
 <li>使用 UI 界面；</li>
 <li>在源代码中手写 Jenkinsfile 文件；</li>
 </ul>
-<h4 id="自动生成代码片段"><a href="#自动生成代码片段" class="headerlink" title="自动生成代码片段"></a>自动生成代码片段</h4><blockquote>
+<h4 id="%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5" tabindex="-1" id="自动生成代码片段">自动生成代码片段</h4>
+<blockquote>
 <p>创建 Pipeline 项目后，在项目主页的左侧，有一个 Pipeline Syntax 菜单项，可以用来学习如何写 Jenkinsfile；</p>
 </blockquote>
-<h4 id="使用全局变量"><a href="#使用全局变量" class="headerlink" title="使用全局变量"></a>使用全局变量</h4><ul>
-<li>env </li>
+<h4 id="%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F" tabindex="-1" id="使用全局变量">使用全局变量</h4>
+<ul>
+<li>env</li>
 <li>params</li>
 <li>currentBuild</li>
 </ul>
-<h3 id="使用-Jenkinsfile"><a href="#使用-Jenkinsfile" class="headerlink" title="使用 Jenkinsfile"></a>使用 Jenkinsfile</h3><p>将 Jenkinsfile 放入代码所在的文件夹，一同纳入版本管理后，当 git push 到 github 后，通过 github 的 webhook，会触发 Jenkins 的自动构建；之后 Jenkins 会从 github 摘取最新版本的代码，并按照 Jenkinsfile 中写法的 pipeline 内容自动进行构建、测试和部署等操作；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135141.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>def str &#x3D; “World”</p>
+<h3 id="%E4%BD%BF%E7%94%A8-jenkinsfile" tabindex="-1" id="使用-Jenkinsfile">使用 Jenkinsfile</h3>
+<p>将 Jenkinsfile 放入代码所在的文件夹，一同纳入版本管理后，当 git push 到 github 后，通过 github 的 webhook，会触发 Jenkins 的自动构建；之后 Jenkins 会从 github 摘取最新版本的代码，并按照 Jenkinsfile 中写法的 pipeline 内容自动进行构建、测试和部署等操作；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135141.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E5%AD%97%E7%AC%A6%E4%B8%B2" tabindex="-1" id="字符串">字符串</h4>
+<p>def str = “World”</p>
 <blockquote>
 <p>注意需要使用双引号来包含字符串，因为只有双引号括起来的字符串，后续才可以使用美元符 $ 进行引用，例如: ${str}</p>
 </blockquote>
-<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><ul>
+<h4 id="%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" tabindex="-1" id="环境变量">环境变量</h4>
+<ul>
 <li>BUILD_ID</li>
 <li>BUILD_NUMBER</li>
 <li>BUILD_TAG</li>
@@ -337,30 +355,44 @@
 <li>NODE_NAME：机器节点名称，例如 master</li>
 <li>WORKSPACE: WORKSPACE 绝对路径</li>
 </ul>
-<p>环境变量通过 $ {env.变量名} 进行访问，例如：”${env.BUILD_ID}”</p>
-<h4 id="设置静态环境变量"><a href="#设置静态环境变量" class="headerlink" title="设置静态环境变量"></a>设置静态环境变量</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135829.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="设置动态环境变量"><a href="#设置动态环境变量" class="headerlink" title="设置动态环境变量"></a>设置动态环境变量</h4><p>调用 sh 执行命令，获取 returnStdout 或者 returnStatus 的返回结果，赋值给相应的变量；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136270.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="处理机密信息"><a href="#处理机密信息" class="headerlink" title="处理机密信息"></a>处理机密信息</h4><h5 id="文本、用户名、密码和机密文件"><a href="#文本、用户名、密码和机密文件" class="headerlink" title="文本、用户名、密码和机密文件"></a>文本、用户名、密码和机密文件</h5><p>声明式的 Pipeline 通过在 environment 指令中使用 credentials(“凭据ID”) 函数来读取在全局凭据中提前设置好的文本、用户名、密码、机密文件等机密信息，并赋值给相应的变量，以便后续阶段可用凭据 ID 进行调用；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136699.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136144.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="处理参数"><a href="#处理参数" class="headerlink" title="处理参数"></a>处理参数</h4><p>使用 parameters 指令，可以在运行时接用户指定的参数；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221137814.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="处理失败"><a href="#处理失败" class="headerlink" title="处理失败"></a>处理失败</h4><p>通过在 post 代码块中，指定一些构建结束后要运行的操作；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138157.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="使用多个-agents"><a href="#使用多个-agents" class="headerlink" title="使用多个 agents"></a>使用多个 agents</h4><p>适用一些复杂的用例，例如构建后，在不同平台(linux\windows)进行测试</p>
-<h4 id="可选的命令参数"><a href="#可选的命令参数" class="headerlink" title="可选的命令参数"></a>可选的命令参数</h4><p>命令的参数可以不用括号，并直接指定参数名称；</p>
+<p>环境变量通过 $ {env.变量名} 进行访问，例如：“${env.BUILD_ID}”</p>
+<h4 id="%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" tabindex="-1" id="设置静态环境变量">设置静态环境变量</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221135829.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E8%AE%BE%E7%BD%AE%E5%8A%A8%E6%80%81%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F" tabindex="-1" id="设置动态环境变量">设置动态环境变量</h4>
+<p>调用 sh 执行命令，获取 returnStdout 或者 returnStatus 的返回结果，赋值给相应的变量；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136270.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E5%A4%84%E7%90%86%E6%9C%BA%E5%AF%86%E4%BF%A1%E6%81%AF" tabindex="-1" id="处理机密信息">处理机密信息</h4>
+<h5 id="%E6%96%87%E6%9C%AC%E3%80%81%E7%94%A8%E6%88%B7%E5%90%8D%E3%80%81%E5%AF%86%E7%A0%81%E5%92%8C%E6%9C%BA%E5%AF%86%E6%96%87%E4%BB%B6" tabindex="-1" id="文本、用户名、密码和机密文件">文本、用户名、密码和机密文件</h5>
+<p>声明式的 Pipeline 通过在 environment 指令中使用 credentials(“凭据ID”) 函数来读取在全局凭据中提前设置好的文本、用户名、密码、机密文件等机密信息，并赋值给相应的变量，以便后续阶段可用凭据 ID 进行调用；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136699.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221136144.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E5%A4%84%E7%90%86%E5%8F%82%E6%95%B0" tabindex="-1" id="处理参数">处理参数</h4>
+<p>使用 parameters 指令，可以在运行时接用户指定的参数；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221137814.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E5%A4%84%E7%90%86%E5%A4%B1%E8%B4%A5" tabindex="-1" id="处理失败">处理失败</h4>
+<p>通过在 post 代码块中，指定一些构建结束后要运行的操作；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138157.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA-agents" tabindex="-1" id="使用多个-agents">使用多个 agents</h4>
+<p>适用一些复杂的用例，例如构建后，在不同平台(linux\windows)进行测试</p>
+<h4 id="%E5%8F%AF%E9%80%89%E7%9A%84%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0" tabindex="-1" id="可选的命令参数">可选的命令参数</h4>
+<p>命令的参数可以不用括号，并直接指定参数名称；</p>
 <p>以下两种格式都是可以的：</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138254.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138254.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>当命令只有一个参数时，则还可以省略参数名</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138167.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="高级的指令"><a href="#高级的指令" class="headerlink" title="高级的指令"></a>高级的指令</h4><h5 id="并行执行"><a href="#并行执行" class="headerlink" title="并行执行"></a>并行执行</h5><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138460.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="使用-Docker"><a href="#使用-Docker" class="headerlink" title="使用 Docker"></a>使用 Docker</h3><p>当在 Jenkinsfile 中指定了镜像后，Jenkins 会自动创建基于该镜像的容器，并在容器中执行相应的指令；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221141403.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="容器数据缓存"><a href="#容器数据缓存" class="headerlink" title="容器数据缓存"></a>容器数据缓存</h4><p>通过映射本地目录，可以存储容器中的数据</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139073.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="使用多个容器"><a href="#使用多个容器" class="headerlink" title="使用多个容器"></a>使用多个容器</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139363.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="使用-Dockerfile"><a href="#使用-Dockerfile" class="headerlink" title="使用 Dockerfile"></a>使用 Dockerfile</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221140749.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138167.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E9%AB%98%E7%BA%A7%E7%9A%84%E6%8C%87%E4%BB%A4" tabindex="-1" id="高级的指令">高级的指令</h4>
+<h5 id="%E5%B9%B6%E8%A1%8C%E6%89%A7%E8%A1%8C" tabindex="-1" id="并行执行">并行执行</h5>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221138460.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="%E4%BD%BF%E7%94%A8-docker" tabindex="-1" id="使用-Docker">使用 Docker</h3>
+<p>当在 Jenkinsfile 中指定了镜像后，Jenkins 会自动创建基于该镜像的容器，并在容器中执行相应的指令；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221141403.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98" tabindex="-1" id="容器数据缓存">容器数据缓存</h4>
+<p>通过映射本地目录，可以存储容器中的数据</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139073.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E5%AE%B9%E5%99%A8" tabindex="-1" id="使用多个容器">使用多个容器</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221139363.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E4%BD%BF%E7%94%A8-dockerfile" tabindex="-1" id="使用-Dockerfile">使用 Dockerfile</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409221140749.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>

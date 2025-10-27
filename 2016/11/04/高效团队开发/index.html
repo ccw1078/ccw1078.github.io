@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 什么是团队开发待解决的问题 “谁”“到何时为止”做了“什么事情”，“怎样”算做“完成”等； 在团队内部共享代码等各类工作成果； 保证各成员能够利用工作成果并行作业，同时防止工作成果遭到破坏； 在团队中共享从项目中学到的知识； 证明开发出的软件，在任何时间都是可以正常运行的； 构建自动化的工作流程，确保任何人都可以正确的开发、测试和发布；  如何解决问题 版本管理 缺陷管理 持续集成 持续交付">
+    <meta name="description" content="1. 什么是团队开发 待解决的问题  “谁”“到何时为止”做了“什么事情”，“怎样”算做“完成”等； 在团队内部共享代码等各类工作成果； 保证各成员能够利用工作成果并行作业，同时防止工作成果遭到破坏； 在团队中共享从项目中学到的知识； 证明开发出的软件，在任何时间都是可以正常运行的； 构建自动化的工作流程，确保任何人都可以正确的开发、测试和发布；  如何解决问题  版本管理 缺陷管理 持续集成 持">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高效团队开发">
 <meta property="og:url" content="https://ccw1078.github.io/2016/11/04/%E9%AB%98%E6%95%88%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="1. 什么是团队开发待解决的问题 “谁”“到何时为止”做了“什么事情”，“怎样”算做“完成”等； 在团队内部共享代码等各类工作成果； 保证各成员能够利用工作成果并行作业，同时防止工作成果遭到破坏； 在团队中共享从项目中学到的知识； 证明开发出的软件，在任何时间都是可以正常运行的； 构建自动化的工作流程，确保任何人都可以正确的开发、测试和发布；  如何解决问题 版本管理 缺陷管理 持续集成 持续交付">
+<meta property="og:description" content="1. 什么是团队开发 待解决的问题  “谁”“到何时为止”做了“什么事情”，“怎样”算做“完成”等； 在团队内部共享代码等各类工作成果； 保证各成员能够利用工作成果并行作业，同时防止工作成果遭到破坏； 在团队中共享从项目中学到的知识； 证明开发出的软件，在任何时间都是可以正常运行的； 构建自动化的工作流程，确保任何人都可以正确的开发、测试和发布；  如何解决问题  版本管理 缺陷管理 持续集成 持">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151311.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151415.png">
@@ -93,7 +93,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -285,7 +289,9 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-什么是团队开发"><a href="#1-什么是团队开发" class="headerlink" title="1. 什么是团队开发"></a>1. 什么是团队开发</h2><h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><ul>
+                <h2 id="1.-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91" tabindex="-1" id="1-什么是团队开发">1. 什么是团队开发</h2>
+<h3 id="%E5%BE%85%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98" tabindex="-1" id="待解决的问题">待解决的问题</h3>
+<ul>
 <li>“谁”“到何时为止”做了“什么事情”，“怎样”算做“完成”等；</li>
 <li>在团队内部共享代码等各类工作成果；</li>
 <li>保证各成员能够利用工作成果并行作业，同时防止工作成果遭到破坏；</li>
@@ -293,74 +299,102 @@
 <li>证明开发出的软件，在任何时间都是可以正常运行的；</li>
 <li>构建自动化的工作流程，确保任何人都可以正确的开发、测试和发布；</li>
 </ul>
-<h3 id="如何解决问题"><a href="#如何解决问题" class="headerlink" title="如何解决问题"></a>如何解决问题</h3><ul>
+<h3 id="%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" tabindex="-1" id="如何解决问题">如何解决问题</h3>
+<ul>
 <li>版本管理</li>
 <li>缺陷管理</li>
 <li>持续集成</li>
 <li>持续交付</li>
 <li>回归测试</li>
 </ul>
-<h2 id="2-团队开发中的问题"><a href="#2-团队开发中的问题" class="headerlink" title="2. 团队开发中的问题"></a>2. 团队开发中的问题</h2><h3 id="重要的邮件太多，无法确定处理的优先顺序"><a href="#重要的邮件太多，无法确定处理的优先顺序" class="headerlink" title="重要的邮件太多，无法确定处理的优先顺序"></a>重要的邮件太多，无法确定处理的优先顺序</h3><p>使用邮件交流问题并不是一个好的方法，因为邮件算不上一种格式化的数据，很难归类整理；</p>
+<h2 id="2.-%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98" tabindex="-1" id="2-团队开发中的问题">2. 团队开发中的问题</h2>
+<h3 id="%E9%87%8D%E8%A6%81%E7%9A%84%E9%82%AE%E4%BB%B6%E5%A4%AA%E5%A4%9A%EF%BC%8C%E6%97%A0%E6%B3%95%E7%A1%AE%E5%AE%9A%E5%A4%84%E7%90%86%E7%9A%84%E4%BC%98%E5%85%88%E9%A1%BA%E5%BA%8F" tabindex="-1" id="重要的邮件太多，无法确定处理的优先顺序">重要的邮件太多，无法确定处理的优先顺序</h3>
+<p>使用邮件交流问题并不是一个好的方法，因为邮件算不上一种格式化的数据，很难归类整理；</p>
 <p>解决方法：使用版本缺陷系统进行问题的管理；</p>
-<h3 id="没有能用于验证的环境"><a href="#没有能用于验证的环境" class="headerlink" title="没有能用于验证的环境"></a>没有能用于验证的环境</h3><p>如果没有用于验证的环境，将导致每次复现 BUG 需要花费很长的时间，导致效率很低；</p>
+<h3 id="%E6%B2%A1%E6%9C%89%E8%83%BD%E7%94%A8%E4%BA%8E%E9%AA%8C%E8%AF%81%E7%9A%84%E7%8E%AF%E5%A2%83" tabindex="-1" id="没有能用于验证的环境">没有能用于验证的环境</h3>
+<p>如果没有用于验证的环境，将导致每次复现 BUG 需要花费很长的时间，导致效率很低；</p>
 <p>解决方法：搭建多个环境，分别用于开发、验证、测试、发布等；</p>
-<h3 id="用别名目录管理分支"><a href="#用别名目录管理分支" class="headerlink" title="用别名目录管理分支"></a>用别名目录管理分支</h3><p>用于实现谁、何时、做了什么样的修改；</p>
-<h3 id="重新制作数据库比较困难"><a href="#重新制作数据库比较困难" class="headerlink" title="重新制作数据库比较困难"></a>重新制作数据库比较困难</h3><p>数据库的变更操作也应纳入版本系统进行管理，确保每次的操作内容、顺序在各个环境都是一致的，而不是各个开发环境执行自己的；</p>
-<h3 id="不运行系统就无法察觉的问题"><a href="#不运行系统就无法察觉的问题" class="headerlink" title="不运行系统就无法察觉的问题"></a>不运行系统就无法察觉的问题</h3><p>测试时，需要确保将全员的代码集中到一起运行，以免发生退化；</p>
+<h3 id="%E7%94%A8%E5%88%AB%E5%90%8D%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%88%86%E6%94%AF" tabindex="-1" id="用别名目录管理分支">用别名目录管理分支</h3>
+<p>用于实现谁、何时、做了什么样的修改；</p>
+<h3 id="%E9%87%8D%E6%96%B0%E5%88%B6%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%9B%B0%E9%9A%BE" tabindex="-1" id="重新制作数据库比较困难">重新制作数据库比较困难</h3>
+<p>数据库的变更操作也应纳入版本系统进行管理，确保每次的操作内容、顺序在各个环境都是一致的，而不是各个开发环境执行自己的；</p>
+<h3 id="%E4%B8%8D%E8%BF%90%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%B0%B1%E6%97%A0%E6%B3%95%E5%AF%9F%E8%A7%89%E7%9A%84%E9%97%AE%E9%A2%98" tabindex="-1" id="不运行系统就无法察觉的问题">不运行系统就无法察觉的问题</h3>
+<p>测试时，需要确保将全员的代码集中到一起运行，以免发生退化；</p>
 <p>解决方案：持续集成，每次提交新代码，就合并代码并自动化测试，在第一时间暴露问题；</p>
-<h3 id="覆盖了其他组员修正的代码"><a href="#覆盖了其他组员修正的代码" class="headerlink" title="覆盖了其他组员修正的代码"></a>覆盖了其他组员修正的代码</h3><p>当合并其他成员的代码时，如果出现冲突，有些开发人员可能直接将其他成员的代码进行覆盖，导致出现问题；</p>
+<h3 id="%E8%A6%86%E7%9B%96%E4%BA%86%E5%85%B6%E4%BB%96%E7%BB%84%E5%91%98%E4%BF%AE%E6%AD%A3%E7%9A%84%E4%BB%A3%E7%A0%81" tabindex="-1" id="覆盖了其他组员修正的代码">覆盖了其他组员修正的代码</h3>
+<p>当合并其他成员的代码时，如果出现冲突，有些开发人员可能直接将其他成员的代码进行覆盖，导致出现问题；</p>
 <p>解决方案：持续集成；</p>
-<h3 id="无法自信的地进行代码重构"><a href="#无法自信的地进行代码重构" class="headerlink" title="无法自信的地进行代码重构"></a>无法自信的地进行代码重构</h3><p>缺少措施避免出现退化；</p>
+<h3 id="%E6%97%A0%E6%B3%95%E8%87%AA%E4%BF%A1%E7%9A%84%E5%9C%B0%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84" tabindex="-1" id="无法自信的地进行代码重构">无法自信的地进行代码重构</h3>
+<p>缺少措施避免出现退化；</p>
 <p>解决方案：自动化测试；</p>
-<h3 id="不知道-BUG-的修正日期，也不能追踪退化"><a href="#不知道-BUG-的修正日期，也不能追踪退化" class="headerlink" title="不知道 BUG 的修正日期，也不能追踪退化"></a>不知道 BUG 的修正日期，也不能追踪退化</h3><p>缺少缺陷跟踪系统，导致需要从一堆邮件中查询当时的情况；</p>
+<h3 id="%E4%B8%8D%E7%9F%A5%E9%81%93-bug-%E7%9A%84%E4%BF%AE%E6%AD%A3%E6%97%A5%E6%9C%9F%EF%BC%8C%E4%B9%9F%E4%B8%8D%E8%83%BD%E8%BF%BD%E8%B8%AA%E9%80%80%E5%8C%96" tabindex="-1" id="不知道-BUG-的修正日期，也不能追踪退化">不知道 BUG 的修正日期，也不能追踪退化</h3>
+<p>缺少缺陷跟踪系统，导致需要从一堆邮件中查询当时的情况；</p>
 <p>解决方案：CI、缺陷跟踪、版本管理三个工具是确保项目高效开发的神器；甚至还应该考虑使用自动化部署；</p>
-<h3 id="没有灵活使用分支和标签"><a href="#没有灵活使用分支和标签" class="headerlink" title="没有灵活使用分支和标签"></a>没有灵活使用分支和标签</h3><p>导致合并的时候容易出现混乱；有时在切换分支修复某些 BUG，切换回新功能分支时，忘了合并刚才的 BUG 分支；</p>
-<h3 id="在测试环境、正式环境上无法运行"><a href="#在测试环境、正式环境上无法运行" class="headerlink" title="在测试环境、正式环境上无法运行"></a>在测试环境、正式环境上无法运行</h3><p>缺少统一管理第三方模块，确保在各个环境的依赖实现一致性的办法；</p>
+<h3 id="%E6%B2%A1%E6%9C%89%E7%81%B5%E6%B4%BB%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF%E5%92%8C%E6%A0%87%E7%AD%BE" tabindex="-1" id="没有灵活使用分支和标签">没有灵活使用分支和标签</h3>
+<p>导致合并的时候容易出现混乱；有时在切换分支修复某些 BUG，切换回新功能分支时，忘了合并刚才的 BUG 分支；</p>
+<h3 id="%E5%9C%A8%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E3%80%81%E6%AD%A3%E5%BC%8F%E7%8E%AF%E5%A2%83%E4%B8%8A%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C" tabindex="-1" id="在测试环境、正式环境上无法运行">在测试环境、正式环境上无法运行</h3>
+<p>缺少统一管理第三方模块，确保在各个环境的依赖实现一致性的办法；</p>
 <p>解决方案： docker；</p>
-<h3 id="发布太复杂，以至于需要发布手册"><a href="#发布太复杂，以至于需要发布手册" class="headerlink" title="发布太复杂，以至于需要发布手册"></a>发布太复杂，以至于需要发布手册</h3><p>涉及如何更新DDL、依赖的库以及配置文件；</p>
+<h3 id="%E5%8F%91%E5%B8%83%E5%A4%AA%E5%A4%8D%E6%9D%82%EF%BC%8C%E4%BB%A5%E8%87%B3%E4%BA%8E%E9%9C%80%E8%A6%81%E5%8F%91%E5%B8%83%E6%89%8B%E5%86%8C" tabindex="-1" id="发布太复杂，以至于需要发布手册">发布太复杂，以至于需要发布手册</h3>
+<p>涉及如何更新DDL、依赖的库以及配置文件；</p>
 <p>解决方案：持续交付；</p>
-<h2 id="3-版本管理系统"><a href="#3-版本管理系统" class="headerlink" title="3. 版本管理系统"></a>3. 版本管理系统</h2><p>Git 等分布式版本管理系统</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<h2 id="3.-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F" tabindex="-1" id="3-版本管理系统">3. 版本管理系统</h2>
+<p>Git 等分布式版本管理系统</p>
+<h3 id="%E4%BC%98%E7%82%B9" tabindex="-1" id="优点">优点</h3>
+<ul>
 <li>能将代码完整地复制到本地</li>
 <li>运行速度快</li>
 <li>临时作业的提交易于管理</li>
 <li>分支、合并简单方便</li>
 <li>可以不受地点的限制进行协作开发</li>
 </ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<h3 id="%E7%BC%BA%E7%82%B9" tabindex="-1" id="缺点">缺点</h3>
+<ul>
 <li>系统中没有真正意义上的最新版本</li>
 <li>没有真正意义上的版本号</li>
 <li>工作流程的配置过于灵活，容易产生混乱</li>
 <li>有一定的学习成本</li>
 </ul>
-<h3 id="需纳入版本管理的内容"><a href="#需纳入版本管理的内容" class="headerlink" title="需纳入版本管理的内容"></a>需纳入版本管理的内容</h3><ul>
+<h3 id="%E9%9C%80%E7%BA%B3%E5%85%A5%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%9A%84%E5%86%85%E5%AE%B9" tabindex="-1" id="需纳入版本管理的内容">需纳入版本管理的内容</h3>
+<ul>
 <li>代码</li>
 <li>需求定义和设计等文档</li>
 <li>库的依赖</li>
 <li>数据库初始化命令</li>
 <li>环境配置文件</li>
 </ul>
-<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><p>Git 的每次提交有一个唯一识别码，但是它比较难记，为了让它更具备可识别性，可以为该提交添加标签，通过标签来识别；</p>
+<h3 id="%E6%A0%87%E7%AD%BE" tabindex="-1" id="标签">标签</h3>
+<p>Git 的每次提交有一个唯一识别码，但是它比较难记，为了让它更具备可识别性，可以为该提交添加标签，通过标签来识别；</p>
 <blockquote>
 <p>虽然分支也可以使用标签，但我发现好像并不是很有必要，貌似直接用分支名就够了；</p>
 </blockquote>
-<h3 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h3><h4 id="中央集权型工作流"><a href="#中央集权型工作流" class="headerlink" title="中央集权型工作流"></a>中央集权型工作流</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151311.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="Github-型工作流"><a href="#Github-型工作流" class="headerlink" title="Github 型工作流"></a>Github 型工作流</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151415.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="分支策略模式"><a href="#分支策略模式" class="headerlink" title="分支策略模式"></a>分支策略模式</h3><h4 id="Git-flow"><a href="#Git-flow" class="headerlink" title="Git-flow"></a>Git-flow</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151453.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h5><ul>
+<h3 id="%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F" tabindex="-1" id="工作模式">工作模式</h3>
+<h4 id="%E4%B8%AD%E5%A4%AE%E9%9B%86%E6%9D%83%E5%9E%8B%E5%B7%A5%E4%BD%9C%E6%B5%81" tabindex="-1" id="中央集权型工作流">中央集权型工作流</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151311.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="github-%E5%9E%8B%E5%B7%A5%E4%BD%9C%E6%B5%81" tabindex="-1" id="Github-型工作流">Github 型工作流</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151415.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="%E5%88%86%E6%94%AF%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F" tabindex="-1" id="分支策略模式">分支策略模式</h3>
+<h4 id="git-flow" tabindex="-1" id="Git-flow">Git-flow</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151453.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="%E4%B8%BB%E5%88%86%E6%94%AF" tabindex="-1" id="主分支">主分支</h5>
+<ul>
 <li>master：为发布而建的分支，每次发布时都打上标签</li>
 <li>develop：开发用的分支，发布前的最新版本</li>
 </ul>
-<h5 id="临时分支"><a href="#临时分支" class="headerlink" title="临时分支"></a>临时分支</h5><ul>
+<h5 id="%E4%B8%B4%E6%97%B6%E5%88%86%E6%94%AF" tabindex="-1" id="临时分支">临时分支</h5>
+<ul>
 <li>feature：分离自 develop，开发特定功能的分支</li>
 <li>release：分离自 develop，为发布做准备的分支，避免混入多余的 feature；</li>
 <li>hotfix：分离自 master，修复 master 分支的故障；修复后，需要被合并到 master\develop\release 三个分支；</li>
 </ul>
 <blockquote>
-<p>有专门的 git-flow 脚本实现以上的管理模式；<br>git-flow 的缺点是有些复杂，需要学习适应一下；同时不支持 GUI 可视化工具；</p>
+<p>有专门的 git-flow 脚本实现以上的管理模式；<br>
+git-flow 的缺点是有些复杂，需要学习适应一下；同时不支持 GUI 可视化工具；</p>
 </blockquote>
-<h4 id="Github-flow"><a href="#Github-flow" class="headerlink" title="Github-flow"></a>Github-flow</h4><p>git-flow 的优点是非常清晰可靠，缺点是看上去有点复杂不易理解，因此产生了 github-flow 模式来降低学习成本；</p>
-<h5 id="Github-flow-流程"><a href="#Github-flow-流程" class="headerlink" title="Github-flow 流程"></a>Github-flow 流程</h5><ul>
+<h4 id="github-flow" tabindex="-1" id="Github-flow">Github-flow</h4>
+<p>git-flow 的优点是非常清晰可靠，缺点是看上去有点复杂不易理解，因此产生了 github-flow 模式来降低学习成本；</p>
+<h5 id="github-flow-%E6%B5%81%E7%A8%8B" tabindex="-1" id="Github-flow-流程">Github-flow 流程</h5>
+<ul>
 <li>master 分支的内容都可以进行发布；</li>
 <li>添加内容时，直接从 master 分支新建分支</li>
 <li>建立的分支在本地环境上提交，并以同名的分支定期向远程代码库进行 push</li>
@@ -370,67 +404,83 @@
 <blockquote>
 <p>Jenkins 可以监控仓库中中的所有分支，这样每个分支 push 到仓库后，都会触发自动构建和测试，确保代码没有问题；</p>
 </blockquote>
-<h3 id="数据库模式和数据的管理"><a href="#数据库模式和数据的管理" class="headerlink" title="数据库模式和数据的管理"></a>数据库模式和数据的管理</h3><p>问题发生的原因在于如果不同的开发人员，在设置数据库初始化的命令顺序上面，可能存在冲突，导致一些功能无法正常运行；</p>
+<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%A1%E7%90%86" tabindex="-1" id="数据库模式和数据的管理">数据库模式和数据的管理</h3>
+<p>问题发生的原因在于如果不同的开发人员，在设置数据库初始化的命令顺序上面，可能存在冲突，导致一些功能无法正常运行；</p>
 <p>数据库版本管理的必要条件</p>
 <ul>
 <li>在任意环境中，都能使用相同的步骤来构建数据库</li>
 <li>能够反复执行多次</li>
 <li>格式为文件</li>
 </ul>
-<h4 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h4><p>基本原理：将数据库初始化需要用的 SQL 命令写入文件，这些文件按数字进行顺序命令，每次启动程序时，按照这些文件进行数据库初始化；</p>
+<h4 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB" tabindex="-1" id="数据库迁移">数据库迁移</h4>
+<p>基本原理：将数据库初始化需要用的 SQL 命令写入文件，这些文件按数字进行顺序命令，每次启动程序时，按照这些文件进行数据库初始化；</p>
 <p>由于是分布式开发，每个开发人员新添加的 SQL 文件可能存在命名冲突，当合并分支时，Git 会报错，此时需要解决冲突，并再次提效修改后的版本；由于修改后的版本是最新版本，因此其他人在合并该版本时，会自动覆盖其本地的版本，因此，仍然能够实现正确的初始化；</p>
 <p>SQL 文件中的初始化命令是成对出现的，它提供了回滚机制，当出现冲突时，先回滚当前的数据库，再按照最新的版本，重新初始化；</p>
 <p>由于冲突是通过手工合并 SQL 命令来解决的，因此不可避免存在错误的可能性，此时就需要通过增加测试代码，来确保万无一失；</p>
-<h3 id="配置文件的管理"><a href="#配置文件的管理" class="headerlink" title="配置文件的管理"></a>配置文件的管理</h3><p>配置文件包括环境变量、密码等信息，这些信息不适合纳入版本管理，因此需要单独上传部署的服务器，此时可以通过编写一个部署脚本，来实现自动上传；而上传的信息，同样可以写在配置文件中，而脚本本身可以纳入版本管理；</p>
+<h3 id="%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E7%AE%A1%E7%90%86" tabindex="-1" id="配置文件的管理">配置文件的管理</h3>
+<p>配置文件包括环境变量、密码等信息，这些信息不适合纳入版本管理，因此需要单独上传部署的服务器，此时可以通过编写一个部署脚本，来实现自动上传；而上传的信息，同样可以写在配置文件中，而脚本本身可以纳入版本管理；</p>
 <p>常用部署的工具：Chef, Puppet, Capistrano, Fabric, ServerSepc；</p>
-<h3 id="依赖关系的管理"><a href="#依赖关系的管理" class="headerlink" title="依赖关系的管理"></a>依赖关系的管理</h3><p>大多数语言都有自己的依赖管理工具和公共仓库，例如 Java 的 Maven，Node 的 npm，Python 的 Pypi 等；</p>
+<h3 id="%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%9A%84%E7%AE%A1%E7%90%86" tabindex="-1" id="依赖关系的管理">依赖关系的管理</h3>
+<p>大多数语言都有自己的依赖管理工具和公共仓库，例如 Java 的 Maven，Node 的 npm，Python 的 Pypi 等；</p>
 <p>这些现成的工具的原理：</p>
 <ul>
 <li>设置一个中央仓库；</li>
 <li>使用一个文件来定义对库的依赖；</li>
 <li>执行上述依赖文件的脚本；</li>
 </ul>
-<h2 id="4-任务管理"><a href="#4-任务管理" class="headerlink" title="4. 任务管理"></a>4. 任务管理</h2><h4 id="任务管理系统的优点"><a href="#任务管理系统的优点" class="headerlink" title="任务管理系统的优点"></a>任务管理系统的优点</h4><ul>
+<h2 id="4.-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86" tabindex="-1" id="4-任务管理">4. 任务管理</h2>
+<h4 id="%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BC%98%E7%82%B9" tabindex="-1" id="任务管理系统的优点">任务管理系统的优点</h4>
+<ul>
 <li>“有须做什么”的任务定义</li>
 <li>“谁来做”的职责分配</li>
 <li>“什么时候完成”的期限管理</li>
 <li>“作业中或已完成”的状态管理</li>
 </ul>
-<h4 id="其他优点"><a href="#其他优点" class="headerlink" title="其他优点"></a>其他优点</h4><ul>
+<h4 id="%E5%85%B6%E4%BB%96%E4%BC%98%E7%82%B9" tabindex="-1" id="其他优点">其他优点</h4>
+<ul>
 <li>直观性</li>
 <li>方便检索</li>
 <li>对信息统一管理及共享</li>
 <li>能够生成各类报表</li>
 <li>能够与其他系统进行关联，具备可扩展性；</li>
 </ul>
-<h4 id="任务驱动开发"><a href="#任务驱动开发" class="headerlink" title="任务驱动开发"></a>任务驱动开发</h4><p>将新功能或者 BUG 任务登记在缺陷管理系统中，每次代码的提交，都与某一个具体的任务单相对应，禁止没有任务单号的提交；</p>
+<h4 id="%E4%BB%BB%E5%8A%A1%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91" tabindex="-1" id="任务驱动开发">任务驱动开发</h4>
+<p>将新功能或者 BUG 任务登记在缺陷管理系统中，每次代码的提交，都与某一个具体的任务单相对应，禁止没有任务单号的提交；</p>
 <p>通过设置 Github 的 Webhook，可以实现将 commit 和相应的任务单进行关联；</p>
-<h3 id="开发新功能、修改BUG的工作流程"><a href="#开发新功能、修改BUG的工作流程" class="headerlink" title="开发新功能、修改BUG的工作流程"></a>开发新功能、修改BUG的工作流程</h3><ul>
+<h3 id="%E5%BC%80%E5%8F%91%E6%96%B0%E5%8A%9F%E8%83%BD%E3%80%81%E4%BF%AE%E6%94%B9bug%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B" tabindex="-1" id="开发新功能、修改BUG的工作流程">开发新功能、修改BUG的工作流程</h3>
+<ul>
 <li>建立任务单</li>
 <li>指定责任人</li>
 <li>开发</li>
 <li>提交：提交的时候，记得标注对应哪个问题单号；这样可以通过问题单，查询到代码修改了哪些内容、什么时候修改的；也可以反向查询，即找到当前代码的修改，对应到哪些问题单，从而知道当时什么要做如此的修改；</li>
 <li>Push 到代码库</li>
 </ul>
-<h3 id="管理对象"><a href="#管理对象" class="headerlink" title="管理对象"></a>管理对象</h3><ul>
+<h3 id="%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1" tabindex="-1" id="管理对象">管理对象</h3>
+<ul>
 <li>epic</li>
 <li>story</li>
 <li>task</li>
 <li>bug</li>
 </ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="Redmine-安装"><a href="#Redmine-安装" class="headerlink" title="Redmine 安装"></a>Redmine 安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python">version: <span class="hljs-string">&#x27;3.7&#x27;</span><br><br>services:<br><br>  redmine:<br>    image: redmine<br>    restart: always<br>    ports:<br>      - <span class="hljs-number">8080</span>:<span class="hljs-number">3000</span><br>    environment:<br>      REDMINE_DB_POSTGRES: db<br>      REDMINE_DB_PASSWORD: secret<br>      REDMINE_DB_USERNAME: redmine<br>    networks:<br>      redmine-network:<br>    depends_on:<br>      - db<br><br>  db:<br>    image: postgres<br>    restart: always<br>    environment:<br>      POSTGRES_PASSWORD: secret<br>      POSTGRES_USER: redmine<br>    networks:<br>      redmine-network:<br><br><br>networks:<br>  redmine-network:<br></code></pre></td></tr></table></figure>
-
-<h4 id="Redmine-访问"><a href="#Redmine-访问" class="headerlink" title="Redmine 访问"></a>Redmine 访问</h4><p>localhost:8080</p>
-<h2 id="5-CI-持续集成"><a href="#5-CI-持续集成" class="headerlink" title="5. CI 持续集成"></a>5. CI 持续集成</h2><h3 id="主要的-CI-工具"><a href="#主要的-CI-工具" class="headerlink" title="主要的 CI 工具"></a>主要的 CI 工具</h3><ul>
+<h3 id="%E5%85%B6%E4%BB%96" tabindex="-1" id="其他">其他</h3>
+<h4 id="redmine-%E5%AE%89%E8%A3%85" tabindex="-1" id="Redmine-安装">Redmine 安装</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python">version: <span class="hljs-string">&#x27;3.7&#x27;</span><br><br>services:<br><br>  redmine:<br>    image: redmine<br>    restart: always<br>    ports:<br>      - <span class="hljs-number">8080</span>:<span class="hljs-number">3000</span><br>    environment:<br>      REDMINE_DB_POSTGRES: db<br>      REDMINE_DB_PASSWORD: secret<br>      REDMINE_DB_USERNAME: redmine<br>    networks:<br>      redmine-network:<br>    depends_on:<br>      - db<br><br>  db:<br>    image: postgres<br>    restart: always<br>    environment:<br>      POSTGRES_PASSWORD: secret<br>      POSTGRES_USER: redmine<br>    networks:<br>      redmine-network:<br><br><br>networks:<br>  redmine-network:<br></code></pre></td></tr></table></figure>
+<h4 id="redmine-%E8%AE%BF%E9%97%AE" tabindex="-1" id="Redmine-访问">Redmine 访问</h4>
+<p>localhost:8080</p>
+<h2 id="5.-ci-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90" tabindex="-1" id="5-CI-持续集成">5. CI 持续集成</h2>
+<h3 id="%E4%B8%BB%E8%A6%81%E7%9A%84-ci-%E5%B7%A5%E5%85%B7" tabindex="-1" id="主要的-CI-工具">主要的 CI 工具</h3>
+<ul>
 <li>Jenkins：插件众多，可配置性强；缺点是上手成本高；</li>
 <li>Travis：需要配合 Github 使用，优点是上手简单；</li>
 </ul>
-<h3 id="build-工具"><a href="#build-工具" class="headerlink" title="build 工具"></a>build 工具</h3><p>以 Java 为例，常用的构建工具有：</p>
+<h3 id="build-%E5%B7%A5%E5%85%B7" tabindex="-1" id="build-工具">build 工具</h3>
+<p>以 Java 为例，常用的构建工具有：</p>
 <ul>
 <li>Maven：适用于新项目；</li>
 <li>Ant：适用于已开发一半的项目；</li>
 </ul>
-<h3 id="测试代码的写法"><a href="#测试代码的写法" class="headerlink" title="测试代码的写法"></a>测试代码的写法</h3><p>常见的测试类型：</p>
+<h3 id="%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81%E7%9A%84%E5%86%99%E6%B3%95" tabindex="-1" id="测试代码的写法">测试代码的写法</h3>
+<p>常见的测试类型：</p>
 <ul>
 <li>单元测试</li>
 <li>集成测试</li>
@@ -440,13 +490,15 @@
 <blockquote>
 <p>编写测试代码是要付出时间成本的，理想的情况下当然是覆盖以上所有的测试场景；如果不允许，则应至少包括单元测试和集成测试；</p>
 </blockquote>
-<h3 id="棘手的测试"><a href="#棘手的测试" class="headerlink" title="棘手的测试"></a>棘手的测试</h3><ul>
+<h3 id="%E6%A3%98%E6%89%8B%E7%9A%84%E6%B5%8B%E8%AF%95" tabindex="-1" id="棘手的测试">棘手的测试</h3>
+<ul>
 <li>和外部系统有交互的测试</li>
 <li>使用 mock 框架进行测试</li>
 <li>使用内存数据进行测试：可避免跟数据库中的数据产生耦合；常用工具如 H2 数据库；</li>
 <li>UI 相关的测试</li>
 </ul>
-<h3 id="Jenkins-使用流程"><a href="#Jenkins-使用流程" class="headerlink" title="Jenkins 使用流程"></a>Jenkins 使用流程</h3><ul>
+<h3 id="jenkins-%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B" tabindex="-1" id="Jenkins-使用流程">Jenkins 使用流程</h3>
+<ul>
 <li>新建任务：一个任务对应一个项目；</li>
 <li>下载代码：将 Github 代码地址与项目进行关联，并设置 Github 的 Webhook，在收到 push 请求后，调用 Jenkins 接口拉取最新的代码；</li>
 <li>自动执行 Build 和测试：制作一个构建的脚本，并由 Jenkins 进行调用即可；脚本中需设置退出值，以便 Jenkins 判断任务的执行是失败还是成功；</li>
@@ -455,34 +507,47 @@
 <li>静态分析：常用工具 Checkstyle, PMD, Findbugs等；</li>
 <li>配置通知：对构建结果进行通知，选择常用插件即可，支持邮件、Twitter、IRC、XFD等；</li>
 </ul>
-<h3 id="构建失败的惩罚"><a href="#构建失败的惩罚" class="headerlink" title="构建失败的惩罚"></a>构建失败的惩罚</h3><p>设计一个搞笑的仪式，例如警报灯闪烁、弹射球、戴礼帽等；</p>
+<h3 id="%E6%9E%84%E5%BB%BA%E5%A4%B1%E8%B4%A5%E7%9A%84%E6%83%A9%E7%BD%9A" tabindex="-1" id="构建失败的惩罚">构建失败的惩罚</h3>
+<p>设计一个搞笑的仪式，例如警报灯闪烁、弹射球、戴礼帽等；</p>
 <p>当构建发生失败时，基于该构建的分支之后编写的代码，将需要禁止提交，直到构建修复成功为止；为了避免出现这种等待的情况，可考虑使用 Github flow 中的 pull request 流程；当收到 pull request 后会自动进行构建，如果成功，则合并到主分支；如果失败，则不合并；</p>
 <p>以上功能在 Jenkins 中需要使用 Github pull request builder 插件实现；</p>
-<h3 id="确保可追溯性"><a href="#确保可追溯性" class="headerlink" title="确保可追溯性"></a>确保可追溯性</h3><p>通过相应的插件，可实现 Jenkins 和 缺陷管理系统的任务单相关，并可以方便的查看每次代码提交的差异；</p>
-<h2 id="6-自动化部署–持续交付"><a href="#6-自动化部署–持续交付" class="headerlink" title="6. 自动化部署–持续交付"></a>6. 自动化部署–持续交付</h2><h3 id="由谁负责"><a href="#由谁负责" class="headerlink" title="由谁负责"></a>由谁负责</h3><p>由想实施部署自动化的人着手去做即可，因此一般来说是运维人员牵头；</p>
-<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><ul>
+<h3 id="%E7%A1%AE%E4%BF%9D%E5%8F%AF%E8%BF%BD%E6%BA%AF%E6%80%A7" tabindex="-1" id="确保可追溯性">确保可追溯性</h3>
+<p>通过相应的插件，可实现 Jenkins 和 缺陷管理系统的任务单相关，并可以方便的查看每次代码提交的差异；</p>
+<h2 id="6.-%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E2%80%93%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98" tabindex="-1" id="6-自动化部署–持续交付">6. 自动化部署–持续交付</h2>
+<h3 id="%E7%94%B1%E8%B0%81%E8%B4%9F%E8%B4%A3" tabindex="-1" id="由谁负责">由谁负责</h3>
+<p>由想实施部署自动化的人着手去做即可，因此一般来说是运维人员牵头；</p>
+<h3 id="%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6" tabindex="-1" id="前提条件">前提条件</h3>
+<ul>
 <li>全部团队成员都采用版本管理；</li>
 <li>所有的环境使用相同的方式构建；</li>
 <li>实现发布工作的自动化，并事先进行验证</li>
 <li>要反复多次进行测试</li>
 </ul>
-<h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><ul>
+<h3 id="%E5%B7%A5%E5%85%B7%E9%93%BE" tabindex="-1" id="工具链">工具链</h3>
+<ul>
 <li>引导：服务器 OS 的配置自动化；</li>
 <li>配置：服务器及中间件的配置自动化；</li>
 <li>业务流程：代码部署及发布的自动化；</li>
 </ul>
-<h4 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h4><h5 id="Kickstart"><a href="#Kickstart" class="headerlink" title="Kickstart"></a>Kickstart</h5><p>原理：安装 Linux 时，给内核参数加上 ks&#x3D;&lt;…&gt; 选项，即可开启从外部设备加载配置文件，实现安装自动化；背后的本质是将安装过程中的选项，以配置文件的形式提前写好；</p>
+<h4 id="%E5%BC%95%E5%AF%BC" tabindex="-1" id="引导">引导</h4>
+<h5 id="kickstart" tabindex="-1" id="Kickstart">Kickstart</h5>
+<p>原理：安装 Linux 时，给内核参数加上 ks=&lt;…&gt; 选项，即可开启从外部设备加载配置文件，实现安装自动化；背后的本质是将安装过程中的选项，以配置文件的形式提前写好；</p>
 <blockquote>
 <p>仅适用于 RHEL 系统的 Linux 系统，不适用于 Debian 系列；</p>
 </blockquote>
-<h5 id="Vagrant"><a href="#Vagrant" class="headerlink" title="Vagrant"></a>Vagrant</h5><p>用途：用来创建和配置虚拟环境，可以最大化的利用单台机器的性能；</p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>应用程序总是运行在一定的进程环境中，复杂的应用程序，可能涉及非常多的环境配置选项，从而带来很大的工作量；</p>
-<h5 id="Chef"><a href="#Chef" class="headerlink" title="Chef"></a>Chef</h5><p>根据提前写好的配置规则（cookbooks），让服务器安装软件包和配置中间件，实现自动化；</p>
+<h5 id="vagrant" tabindex="-1" id="Vagrant">Vagrant</h5>
+<p>用途：用来创建和配置虚拟环境，可以最大化的利用单台机器的性能；</p>
+<h4 id="%E9%85%8D%E7%BD%AE" tabindex="-1" id="配置">配置</h4>
+<p>应用程序总是运行在一定的进程环境中，复杂的应用程序，可能涉及非常多的环境配置选项，从而带来很大的工作量；</p>
+<h5 id="chef" tabindex="-1" id="Chef">Chef</h5>
+<p>根据提前写好的配置规则（cookbooks），让服务器安装软件包和配置中间件，实现自动化；</p>
 <blockquote>
 <p>可以为应用服务器和数据库服务器分别编写 cookbook，这样就能够复制搭建服务器的步骤，实现批量化；</p>
 </blockquote>
-<h5 id="Serverspec"><a href="#Serverspec" class="headerlink" title="Serverspec"></a>Serverspec</h5><p>用途：一个测试框架，可对服务器的配置进行单元测试，确保服务器如预期的正常运行；</p>
-<h4 id="最佳实践1：使用虚拟环境"><a href="#最佳实践1：使用虚拟环境" class="headerlink" title="最佳实践1：使用虚拟环境"></a>最佳实践1：使用虚拟环境</h4><ul>
+<h5 id="serverspec" tabindex="-1" id="Serverspec">Serverspec</h5>
+<p>用途：一个测试框架，可对服务器的配置进行单元测试，确保服务器如预期的正常运行；</p>
+<h4 id="%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B51%EF%BC%9A%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83" tabindex="-1" id="最佳实践1：使用虚拟环境">最佳实践1：使用虚拟环境</h4>
+<ul>
 <li>使用 Vagrant 创建干净的虚拟环境；（怀疑之处可考虑结合 docker 来创建虚拟环境）；</li>
 <li>拉取 Chef 的 cookbook 和 Serverspec 的测试用例；</li>
 <li>执行 Chef，完成服务器的配置；</li>
@@ -492,70 +557,113 @@
 <blockquote>
 <p>以上各个工具都有相应的替代器，因此无须局限于以上工具的使用，重点在于选择最适合团队使用的工具；</p>
 </blockquote>
-<h4 id="最佳实践2：使用物理机"><a href="#最佳实践2：使用物理机" class="headerlink" title="最佳实践2：使用物理机"></a>最佳实践2：使用物理机</h4><p>Kickstart + Chef + Serverspec 的组合；</p>
+<h4 id="%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B52%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%89%A9%E7%90%86%E6%9C%BA" tabindex="-1" id="最佳实践2：使用物理机">最佳实践2：使用物理机</h4>
+<p>Kickstart + Chef + Serverspec 的组合；</p>
 <blockquote>
 <p>与实践1的差别在于将 Vagrant 替换为 Kickstart；</p>
 </blockquote>
-<h3 id="发布自动化"><a href="#发布自动化" class="headerlink" title="发布自动化"></a>发布自动化</h3><h4 id="Capistrano"><a href="#Capistrano" class="headerlink" title="Capistrano"></a>Capistrano</h4><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151546.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="%E5%8F%91%E5%B8%83%E8%87%AA%E5%8A%A8%E5%8C%96" tabindex="-1" id="发布自动化">发布自动化</h3>
+<h4 id="capistrano" tabindex="-1" id="Capistrano">Capistrano</h4>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151546.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>Capistrano 使用 Push 的方式，无须在应用程序和数据库服务上面安装，只需执行服务器能够通过 SSH 登录前两种服务器即可；</p>
-<h4 id="Fabric"><a href="#Fabric" class="headerlink" title="Fabric"></a>Fabric</h4><p>功能同 Capistrano，差别在于使用 Python，而非 Ruby；另外 Fabric 任务可以顺序执行，也可以并行，甚至还可以分组顺序执行，组内则是并行；相当灵活；</p>
-<h4 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h4><p>Jenkins 同样可以用来实现发布的自动化，不过需要在从节点上安装 Jenkins 才行，还好只需能够 SSH 登录从节点，即可在主节点上远程进行安装；</p>
+<h4 id="fabric" tabindex="-1" id="Fabric">Fabric</h4>
+<p>功能同 Capistrano，差别在于使用 Python，而非 Ruby；另外 Fabric 任务可以顺序执行，也可以并行，甚至还可以分组顺序执行，组内则是并行；相当灵活；</p>
+<h4 id="jenkins" tabindex="-1" id="Jenkins">Jenkins</h4>
+<p>Jenkins 同样可以用来实现发布的自动化，不过需要在从节点上安装 Jenkins 才行，还好只需能够 SSH 登录从节点，即可在主节点上远程进行安装；</p>
 <p>相对于前面两个工具，Jenkins 的优点在于：</p>
 <ul>
 <li>可视化的控制台；</li>
 <li>可实现发布任务的权限管理</li>
 <li>可查询发布的详细历史记录；</li>
 </ul>
-<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><p>组合使用 Jenkins + Fabric，这样既可以利用 Jenkins 的日志功能，又可以获得 Fabric 灵活易用的功能；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151632.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="手动部署的工具"><a href="#手动部署的工具" class="headerlink" title="手动部署的工具"></a>手动部署的工具</h4><p>如果可能，尽量所有部署工作设置为自动化；如果出现少数需要手动部署的特例，例如某台机器磁盘空间不足，则有以下工具可以使用：</p>
+<h4 id="%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5" tabindex="-1" id="最佳实践">最佳实践</h4>
+<p>组合使用 Jenkins + Fabric，这样既可以利用 Jenkins 的日志功能，又可以获得 Fabric 灵活易用的功能；</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151632.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2%E7%9A%84%E5%B7%A5%E5%85%B7" tabindex="-1" id="手动部署的工具">手动部署的工具</h4>
+<p>如果可能，尽量所有部署工作设置为自动化；如果出现少数需要手动部署的特例，例如某台机器磁盘空间不足，则有以下工具可以使用：</p>
 <ul>
 <li>RLogin</li>
 <li>Tera Term</li>
 </ul>
 <p>以上两个工具可以实现一个终端输入，在多台机器上实施相同操作的效果；</p>
 <p>当机器数据很多时，有时可能存在少数几台机器的命令执行不成功，此时在执行下一条指令前，应先就上一条指令的结果进行验证，确保无误后，再执行下一条指令；</p>
-<h3 id="其他相关问题"><a href="#其他相关问题" class="headerlink" title="其他相关问题"></a>其他相关问题</h3><h4 id="不中断服务的部署方法"><a href="#不中断服务的部署方法" class="headerlink" title="不中断服务的部署方法"></a>不中断服务的部署方法</h4><h5 id="蓝绿部署"><a href="#蓝绿部署" class="headerlink" title="蓝绿部署"></a>蓝绿部署</h5><p>原理：将机器分成两组，先部署其他的一组，成功后，再部署剩下的一组；</p>
+<h3 id="%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98" tabindex="-1" id="其他相关问题">其他相关问题</h3>
+<h4 id="%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95" tabindex="-1" id="不中断服务的部署方法">不中断服务的部署方法</h4>
+<h5 id="%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2" tabindex="-1" id="蓝绿部署">蓝绿部署</h5>
+<p>原理：将机器分成两组，先部署其他的一组，成功后，再部署剩下的一组；</p>
 <p>缺点：部署过程中会暂停一半的机器资源，会给系统带来比较大的压力，除非增加备用机器，但那样做的成功过高；</p>
-<h5 id="云蓝绿部署"><a href="#云蓝绿部署" class="headerlink" title="云蓝绿部署"></a>云蓝绿部署</h5><p>原理：机器不分组，部署前增加一批新机器进行部署，部署成功后，删除旧机器；</p>
+<h5 id="%E4%BA%91%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2" tabindex="-1" id="云蓝绿部署">云蓝绿部署</h5>
+<p>原理：机器不分组，部署前增加一批新机器进行部署，部署成功后，删除旧机器；</p>
 <blockquote>
 <p>该方法克服了传统蓝绿部署的缺点，但会增加复杂性和出错概率，因为务必要先实现部署的自动化和自动测试；</p>
 </blockquote>
-<h4 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h4><p>部署失败不可避免，因此应随时有回滚的机制，包括代码回滚、数据库回滚两种；</p>
+<h4 id="%E5%9B%9E%E6%BB%9A" tabindex="-1" id="回滚">回滚</h4>
+<p>部署失败不可避免，因此应随时有回滚的机制，包括代码回滚、数据库回滚两种；</p>
 <blockquote>
 <p>回滚时，除了回滚源代码外，还应以服务器的环境进行验证，确保可用；同时还需考虑数据库的迁移；</p>
 </blockquote>
 <p>数据库的回滚分为两种情况，一种是允许新数据的丢弃，一种是不允许；后一种情况比较麻烦，因此，在发布新代码前，应分成两步进行测试，先确保只更新数据库的情况下，旧代码能够顺利进行；之后再进行新代码的发布；此时如果出现问题，也只需回滚代码部分，无须回滚数据库部分；</p>
-<h4 id="PasS"><a href="#PasS" class="headerlink" title="PasS"></a>PasS</h4><p>自动化部署需要花费一定的学习和时间成本，因此也有一个选项是考虑使用 PasS 服务；只需 push 代码到相应的平台，即可实现自动化部署；</p>
-<h5 id="PasS-适用场景"><a href="#PasS-适用场景" class="headerlink" title="PasS 适用场景"></a>PasS 适用场景</h5><ul>
+<h4 id="pass" tabindex="-1" id="PasS">PasS</h4>
+<p>自动化部署需要花费一定的学习和时间成本，因此也有一个选项是考虑使用 PasS 服务；只需 push 代码到相应的平台，即可实现自动化部署；</p>
+<h5 id="pass-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF" tabindex="-1" id="PasS-适用场景">PasS 适用场景</h5>
+<ul>
 <li>没有足够资源，但希望快速推出产品，收集反馈的项目；（创新项目）</li>
 <li>无法预测峰值负荷的服务；（新上线的手机游戏）</li>
 <li>生命周期短的服务（例如展会）；</li>
 <li>与现有产品进行配合的小项目；</li>
 </ul>
-<h5 id="PasS-缺点"><a href="#PasS-缺点" class="headerlink" title="PasS 缺点"></a>PasS 缺点</h5><ul>
+<h5 id="pass-%E7%BC%BA%E7%82%B9" tabindex="-1" id="PasS-缺点">PasS 缺点</h5>
+<ul>
 <li>当流量很大时，费用成本出现不成比例的上升；</li>
 <li>有时难以获得想要的日志进行问题分析；</li>
 <li>获得的服务等级和合同约定可能不相符；</li>
 </ul>
-<h2 id="7-回归测试"><a href="#7-回归测试" class="headerlink" title="7. 回归测试"></a>7. 回归测试</h2><h3 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h3><p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151658.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h3><p>Selenium 并不是单个软件，而是一套工具集；</p>
-<h4 id="几个常用的-Selenium-工具"><a href="#几个常用的-Selenium-工具" class="headerlink" title="几个常用的 Selenium 工具"></a>几个常用的 Selenium 工具</h4><h5 id="Selenium-IDE"><a href="#Selenium-IDE" class="headerlink" title="Selenium IDE"></a>Selenium IDE</h5><p>以 Firefox 的插件形式出现，可以录制键盘和鼠标动作，因此对于非技术人员依然非常友好；</p>
-<h5 id="Selenium-Remote-Control"><a href="#Selenium-Remote-Control" class="headerlink" title="Selenium Remote Control"></a>Selenium Remote Control</h5><p>在测试脚本和浏览器之间，增加了一个服务器作为中间层；由于这个抽象层后，可以使用各种语言编写测试脚本，使得测试更加灵活，例如可以实现循环和分支等；</p>
-<h5 id="Selenium-WebDriver"><a href="#Selenium-WebDriver" class="headerlink" title="Selenium WebDriver"></a>Selenium WebDriver</h5><p>出于安全考虑，主流的浏览器都会对 Javascript 的调用进行限制，WebDriver 的目标即是绕开这些限制，实现调用  OS 的原生接口；在结合 Selenium 后，推出了 Selenium2；</p>
-<h4 id="制作测试用例"><a href="#制作测试用例" class="headerlink" title="制作测试用例"></a>制作测试用例</h4><p>测试由测试用例组成，多个测试用例可以组合一个测试组；测试组内部的用例是顺序执行的；而测试组之间则是并发执行的；好的测试应该能够尽量缩短测试时间，因此，应考虑将测试用例设计成可以并行测试的模式；好的测试组之间不应相互依赖；</p>
+<h2 id="7.-%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95" tabindex="-1" id="7-回归测试">7. 回归测试</h2>
+<h3 id="%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95" tabindex="-1" id="回归测试">回归测试</h3>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151658.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="selenium" tabindex="-1" id="Selenium">Selenium</h3>
+<p>Selenium 并不是单个软件，而是一套工具集；</p>
+<h4 id="%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84-selenium-%E5%B7%A5%E5%85%B7" tabindex="-1" id="几个常用的-Selenium-工具">几个常用的 Selenium 工具</h4>
+<h5 id="selenium-ide" tabindex="-1" id="Selenium-IDE">Selenium IDE</h5>
+<p>以 Firefox 的插件形式出现，可以录制键盘和鼠标动作，因此对于非技术人员依然非常友好；</p>
+<h5 id="selenium-remote-control" tabindex="-1" id="Selenium-Remote-Control">Selenium Remote Control</h5>
+<p>在测试脚本和浏览器之间，增加了一个服务器作为中间层；由于这个抽象层后，可以使用各种语言编写测试脚本，使得测试更加灵活，例如可以实现循环和分支等；</p>
+<h5 id="selenium-webdriver" tabindex="-1" id="Selenium-WebDriver">Selenium WebDriver</h5>
+<p>出于安全考虑，主流的浏览器都会对 Javascript 的调用进行限制，WebDriver 的目标即是绕开这些限制，实现调用  OS 的原生接口；在结合 Selenium 后，推出了 Selenium2；</p>
+<h4 id="%E5%88%B6%E4%BD%9C%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B" tabindex="-1" id="制作测试用例">制作测试用例</h4>
+<p>测试由测试用例组成，多个测试用例可以组合一个测试组；测试组内部的用例是顺序执行的；而测试组之间则是并发执行的；好的测试应该能够尽量缩短测试时间，因此，应考虑将测试用例设计成可以并行测试的模式；好的测试组之间不应相互依赖；</p>
 <blockquote>
-<p>由于测试用例的执行是代码级别的速度，而网页的加载则跟网速有关，因此 Selenium<br>的自动化测试会容易出现失败；解决办法在于执行下一条指令前，应对上一条指令的结果进行确认；如果确认失败，应该重复上一条指令；如果确认成功，再开始执行下一条指令；</p>
+<p>由于测试用例的执行是代码级别的速度，而网页的加载则跟网速有关，因此 Selenium<br>
+的自动化测试会容易出现失败；解决办法在于执行下一条指令前，应对上一条指令的结果进行确认；如果确认失败，应该重复上一条指令；如果确认成功，再开始执行下一条指令；</p>
 </blockquote>
-<h3 id="Jenkins-和-Selenium-的协作"><a href="#Jenkins-和-Selenium-的协作" class="headerlink" title="Jenkins 和 Selenium 的协作"></a>Jenkins 和 Selenium 的协作</h3><p>安装相应的插件，然后配置好相应的参数即可；</p>
-<h3 id="Selenium-测试的高速化"><a href="#Selenium-测试的高速化" class="headerlink" title="Selenium 测试的高速化"></a>Selenium 测试的高速化</h3><ul>
+<h3 id="jenkins-%E5%92%8C-selenium-%E7%9A%84%E5%8D%8F%E4%BD%9C" tabindex="-1" id="Jenkins-和-Selenium-的协作">Jenkins 和 Selenium 的协作</h3>
+<p>安装相应的插件，然后配置好相应的参数即可；</p>
+<h3 id="selenium-%E6%B5%8B%E8%AF%95%E7%9A%84%E9%AB%98%E9%80%9F%E5%8C%96" tabindex="-1" id="Selenium-测试的高速化">Selenium 测试的高速化</h3>
+<ul>
 <li>利用 Jenkins 的分布式机制，设置主从节点，通过启动多个浏览器，实现并发测试；</li>
 <li>为每个浏览器客户端匹配相应的应用程序服务器，实现服务端测试的负载均衡（不太理解为什么不使用 nginx 之类的工具来实现，而是改动 hosts 文件）</li>
 </ul>
-<h3 id="多个应用程序版本的测试"><a href="#多个应用程序版本的测试" class="headerlink" title="多个应用程序版本的测试"></a>多个应用程序版本的测试</h3><p>通过 Jenkins 的 Parameterized Trigger plugin”插件，可实现对指定版本进行测试；</p>
+<h3 id="%E5%A4%9A%E4%B8%AA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%89%88%E6%9C%AC%E7%9A%84%E6%B5%8B%E8%AF%95" tabindex="-1" id="多个应用程序版本的测试">多个应用程序版本的测试</h3>
+<p>通过 Jenkins 的 Parameterized Trigger plugin”插件，可实现对指定版本进行测试；</p>
 <p>使用 Git 拉取相应版本的测试用例时，需要配置插件选项，为每个版本生成相应的目录，避免不同版本的测试用例混在一起；</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151733.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="8-实践"><a href="#8-实践" class="headerlink" title="8. 实践"></a>8. 实践</h2><p>在 Github 上面新建一个项目<br>拉取该项目的代码到本地<br>初始化 package.json<br>npm install 安装依赖<br>简单写一些代码，实现 hello world<br>运行代码，确保顺利<br>写一些单元测试代码<br>写测试脚本<br>设置测试脚本的文件为可执行<br>推送代码到 Github<br>登录生产服务器，新增用户，安装git，拉取代码，安装依赖，运行应用<br>登录 Jenkins 服务器，新增用户，安装 Jenkins，启动 Jenkins<br>配置 jenkins，安装插件，更改密码，新建任务，配置构建脚本；<br>配置 Github 的 Webhooks，以便 push 后触发 Jenkins 的构建；<br>生成 SSH-KEY，将公钥存放到应用程序服务器，开放存放文件夹的访问权限；<br>创建部署文件夹，创建部署的自动化脚本，设置脚本为可执行</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20201104151733.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="8.-%E5%AE%9E%E8%B7%B5" tabindex="-1" id="8-实践">8. 实践</h2>
+<p>在 Github 上面新建一个项目<br>
+拉取该项目的代码到本地<br>
+初始化 package.json<br>
+npm install 安装依赖<br>
+简单写一些代码，实现 hello world<br>
+运行代码，确保顺利<br>
+写一些单元测试代码<br>
+写测试脚本<br>
+设置测试脚本的文件为可执行<br>
+推送代码到 Github<br>
+登录生产服务器，新增用户，安装git，拉取代码，安装依赖，运行应用<br>
+登录 Jenkins 服务器，新增用户，安装 Jenkins，启动 Jenkins<br>
+配置 jenkins，安装插件，更改密码，新建任务，配置构建脚本；<br>
+配置 Github 的 Webhooks，以便 push 后触发 Jenkins 的构建；<br>
+生成 SSH-KEY，将公钥存放到应用程序服务器，开放存放文件夹的访问权限；<br>
+创建部署文件夹，创建部署的自动化脚本，设置脚本为可执行</p>
 
                 
               </div>

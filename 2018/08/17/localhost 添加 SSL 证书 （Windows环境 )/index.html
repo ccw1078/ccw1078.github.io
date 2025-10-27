@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装 OpenSSL由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装；下载链接：http:&#x2F;&#x2F;downloads.sourceforge.net&#x2F;gnuwin32&#x2F;openssl-0.9.8h-1-setup.exe点此下载 安装过程略，假设按默认的安装位置为 C:\Program Files (x86)\GnuWin32 新建配置文件使用记事本或者">
+    <meta name="description" content="安装 OpenSSL 由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装； 下载链接：http:&#x2F;&#x2F;downloads.sourceforge.net&#x2F;gnuwin32&#x2F;openssl-0.9.8h-1-setup.exe 点此下载 安装过程略，假设按默认的安装位置为 C:\Program Files (x86)\GnuWin32 新建配置文件 使用记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="localhost 添加 SSL 证书 （Windows环境 )">
 <meta property="og:url" content="https://ccw1078.github.io/2018/08/17/localhost%20%E6%B7%BB%E5%8A%A0%20SSL%20%E8%AF%81%E4%B9%A6%20%EF%BC%88Windows%E7%8E%AF%E5%A2%83%20)/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="安装 OpenSSL由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装；下载链接：http:&#x2F;&#x2F;downloads.sourceforge.net&#x2F;gnuwin32&#x2F;openssl-0.9.8h-1-setup.exe点此下载 安装过程略，假设按默认的安装位置为 C:\Program Files (x86)\GnuWin32 新建配置文件使用记事本或者">
+<meta property="og:description" content="安装 OpenSSL 由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装； 下载链接：http:&#x2F;&#x2F;downloads.sourceforge.net&#x2F;gnuwin32&#x2F;openssl-0.9.8h-1-setup.exe 点此下载 安装过程略，假设按默认的安装位置为 C:\Program Files (x86)\GnuWin32 新建配置文件 使用记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053193.png">
 <meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053188.png">
@@ -92,7 +92,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -284,27 +288,43 @@
             
               <div class="markdown-body">
                 
-                <h1 id="安装-OpenSSL"><a href="#安装-OpenSSL" class="headerlink" title="安装 OpenSSL"></a>安装 OpenSSL</h1><p>由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装；<br>下载链接：<a target="_blank" rel="noopener" href="http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe">http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe</a><br><a target="_blank" rel="noopener" href="http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe">点此下载</a></p>
+                <h1 id="%E5%AE%89%E8%A3%85-openssl" tabindex="-1">安装 OpenSSL</h1>
+<p>由于 Windows 不像 Mac OS 和 Linux 自带 openssl，需要另外下载安装；<br>
+下载链接：<a target="_blank" rel="noopener" href="http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe">http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe</a><br>
+<a target="_blank" rel="noopener" href="http://downloads.sourceforge.net/gnuwin32/openssl-0.9.8h-1-setup.exe">点此下载</a></p>
 <p>安装过程略，假设按默认的安装位置为 C:\Program Files (x86)\GnuWin32</p>
-<h1 id="新建配置文件"><a href="#新建配置文件" class="headerlink" title="新建配置文件"></a>新建配置文件</h1><p>使用记事本或者其他编辑器，新建文件，命名为 localhost.cnf （注：后缀为 cnf，不是 txt）<br>文件内容设置如下并保存：</p>
+<h1 id="%E6%96%B0%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" tabindex="-1">新建配置文件</h1>
+<p>使用记事本或者其他编辑器，新建文件，命名为 localhost.cnf （注：后缀为 cnf，不是 txt）<br>
+文件内容设置如下并保存：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[dn]</span><br><span class="hljs-attr">CN</span>=localhost<br><br><span class="hljs-section">[req]</span><br><span class="hljs-attr">distinguished_name</span> = dn<br><br><span class="hljs-section">[EXT]</span><br><span class="hljs-attr">subjectAltName</span>=DNS:localhost<br><span class="hljs-attr">keyUsage</span>=digitalSignature<br><span class="hljs-attr">extendedKeyUsage</span>=serverAuth<br></code></pre></td></tr></table></figure>
-
 <p>假设以上文件的保存位置为 d:\localhost.cnf，后续会用到</p>
-<h1 id="进入命令行界面"><a href="#进入命令行界面" class="headerlink" title="进入命令行界面"></a>进入命令行界面</h1><p>注：需以管理员身份进入命令行界面<br>进入方式：可以通过右键点击左下角的“开始”按钮<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053193.png" srcset="/img/loading.gif" lazyload><br>或者<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053188.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="进入-OpenSSL-安装文件夹"><a href="#进入-OpenSSL-安装文件夹" class="headerlink" title="进入 OpenSSL 安装文件夹"></a>进入 OpenSSL 安装文件夹</h1><p>注：假设 OpenSSL 的安装位置为 ‘C:\Program Files (x86)\GnuWin32’，</p>
+<h1 id="%E8%BF%9B%E5%85%A5%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2" tabindex="-1">进入命令行界面</h1>
+<p>注：需以管理员身份进入命令行界面<br>
+进入方式：可以通过右键点击左下角的“开始”按钮<br>
+<img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053193.png" srcset="/img/loading.gif" lazyload alt=""><br>
+或者<br>
+<img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053188.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1 id="%E8%BF%9B%E5%85%A5-openssl-%E5%AE%89%E8%A3%85%E6%96%87%E4%BB%B6%E5%A4%B9" tabindex="-1">进入 OpenSSL 安装文件夹</h1>
+<p>注：假设 OpenSSL 的安装位置为 ‘C:\Program Files (x86)\GnuWin32’，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-string">&#x27;C:\Program Files (x86)\GnuWin32\bin&#x27;</span><br></code></pre></td></tr></table></figure>
-<p>执行后类似下面截图：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053023.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h1><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">.\openssl req -x509 -out localhost.crt -keyout localhost.key -newkey rsa:<span class="hljs-number">2048</span> -nodes -<span class="hljs-keyword">sha256 </span> -<span class="hljs-keyword">subj </span><span class="hljs-string">&#x27;/CN=localhost&#x27;</span> -<span class="hljs-keyword">extensions </span><span class="hljs-keyword">EXT </span>-<span class="hljs-built_in">config</span> d:\localhost.cnf<br></code></pre></td></tr></table></figure>
+<p>执行后类似下面截图：<br>
+<img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211053023.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1 id="%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4" tabindex="-1">执行命令</h1>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">.\openssl req -x509 -out localhost.crt -keyout localhost.key -newkey rsa:<span class="hljs-number">2048</span> -nodes -<span class="hljs-keyword">sha256 </span> -<span class="hljs-keyword">subj </span><span class="hljs-string">&#x27;/CN=localhost&#x27;</span> -<span class="hljs-keyword">extensions </span><span class="hljs-keyword">EXT </span>-<span class="hljs-built_in">config</span> d:\localhost.cnf<br></code></pre></td></tr></table></figure>
 <p>注：</p>
 <ul>
 <li>由于没有将 openssl 所在路径添加的系统变量 path 中，所以此处 openssl 命令前面需要有 .\ 两个符号，别漏了；</li>
 <li>命令行中，最后的路径 d:\localhost.cnf 为上一步骤创建的配置文件的保存位置，如果路径不同，则相应修改；</li>
-<li>执行后类似下面的截图：<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054057.png" srcset="/img/loading.gif" lazyload></li>
+<li>执行后类似下面的截图：<br>
+<img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054057.png" srcset="/img/loading.gif" lazyload alt=""></li>
 </ul>
 <p>证书生成成功</p>
-<h1 id="拷贝证书"><a href="#拷贝证书" class="headerlink" title="拷贝证书"></a>拷贝证书</h1><p>进入 openssl 的安装文件夹，拷贝已经生成好的证书到需要使用的位置</p>
-<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054091.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="使用证书示例"><a href="#使用证书示例" class="headerlink" title="使用证书示例"></a>使用证书示例</h1><p>以下示例假设在 Express 中使用<br><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054247.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="%E6%8B%B7%E8%B4%9D%E8%AF%81%E4%B9%A6" tabindex="-1">拷贝证书</h1>
+<p>进入 openssl 的安装文件夹，拷贝已经生成好的证书到需要使用的位置</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054091.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1 id="%E4%BD%BF%E7%94%A8%E8%AF%81%E4%B9%A6%E7%A4%BA%E4%BE%8B" tabindex="-1">使用证书示例</h1>
+<p>以下示例假设在 Express 中使用<br>
+<img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/202409211054247.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>

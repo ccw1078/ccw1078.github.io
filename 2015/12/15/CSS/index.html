@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -235,7 +239,7 @@
         
         
         
-          28 分钟
+          29 分钟
         
       </span>
     
@@ -279,45 +283,51 @@
                 
                 <ol>
 <li>可以通过display:none来控制一个元素从界面上面消失，而且是纯的消失，不再占用任何空间；如果是只是隐藏，可以通过visibility: hidden来控制；</li>
-<li>可以通过display: inline将li元素转成横向排列，我发现它对顶部导航的水平菜单可能很有作用；（经测试发现，需要弄成display: inline-block才能控制高度和宽度，inline只是内联元素，inline-block是块元素）（对所有的块元素应该都适用，而不仅仅是li；另外内联元素不能控制高度，也不能控制宽度和margin&#x2F;pading的top&#x2F;bottom）（内联元素的内容是否自动垂直居中？可以，但不能设置高度，所以没用）</li>
+<li>可以通过display: inline将li元素转成横向排列，我发现它对顶部导航的水平菜单可能很有作用；（经测试发现，需要弄成display: inline-block才能控制高度和宽度，inline只是内联元素，inline-block是块元素）（对所有的块元素应该都适用，而不仅仅是li；另外内联元素不能控制高度，也不能控制宽度和margin/pading的top/bottom）（内联元素的内容是否自动垂直居中？可以，但不能设置高度，所以没用）</li>
 <li>可以通过width:定宽和margin：0 auto的配合，来让一个块级元素在浏览器窗口中进行居中（这个居中是整个块在屏幕的水平居中，不包括文字，如果要加上文字部分，还得加一个text-align: center）；但如果浏览器小于定宽值，会导致出现水平滚动条，这种情况可以用max-width来替代width，就可以避免水平滚动条的出现了； 这个功能对于手机浏览器这种小尺寸屏幕的设备特别有用；(max-width的意义是给块指定了最大的宽度，但没有限制最小的宽度，这样一来，当浏览器窗口比较小时，它就会自动跟着缩小）</li>
 <li>盒模型中的width其实是指设置内容的宽度，不包括内边距和边框的宽度，当后两者有值时，实际盒模型的宽度会比width的值来得大；不过呢，可以通过box-sizing: border-box来解决，但是为了兼容safari和firefox，需要加以下两段：-webkit-box-sizing: border-box和-moz-box-sizing: border-box;（看英文的意思，大概翻译一下好，盒子尺寸：以边框为界，我觉得这个作用挺好，因为它比较符合常规的认知，另外需要在开头直接设置所有元素，用*{}）</li>
-<li>所有元素的默认position为static，所以static表示不对这个元素做任何定位措施；（那意思应该是按默认的流模式了）<ol>
-<li>position: relative的意思是指相对它原来的位置进行的偏移，使用top&#x2F;left&#x2F;bottom&#x2F;right来指定偏移的值（偏移后原位置会留白，没有人会故意移动来填补空缺）（relative如何不赋值的话，它的表现就是static，但是又不一样的地方是，此时它是一个有position身份的元素了，它的子元素如果想做绝对定位的话，就可以根据它的位置来定位，但如果它是static就不行，它的子元素就会跳过它找上一级）</li>
+<li>所有元素的默认position为static，所以static表示不对这个元素做任何定位措施；（那意思应该是按默认的流模式了）
+<ol>
+<li>position: relative的意思是指相对它原来的位置进行的偏移，使用top/left/bottom/right来指定偏移的值（偏移后原位置会留白，没有人会故意移动来填补空缺）（relative如何不赋值的话，它的表现就是static，但是又不一样的地方是，此时它是一个有position身份的元素了，它的子元素如果想做绝对定位的话，就可以根据它的位置来定位，但如果它是static就不行，它的子元素就会跳过它找上一级）</li>
 <li>position: fixed的意思是指元素将相对于页面进行固定定位(确切的说是相对于body元素来定位的）（固定的意思是它不会随着滚动条进行移动）（而且，它移走后其他元素会来填补它的空缺位置）；</li>
 <li>position: absolute是一个比较特殊的定位，它是相对于它最近一级有定位值的祖先元素（如果所有的祖先元素都没有定位，那它最后就只能追随body这个祖宗来定位了）</li>
 </ol>
 </li>
-<li><p>的级别好像很低，下一级好像不能再放块级子元素了；（经百度后证实果然没错，p内部只能装内联元素了，再放块级元素会出错）</li>
-<li>float: right&#x2F;left，主要用来实现文字环绕图片，如果文字段落的高度还没有图片高，那么可以使用overflow: auto来搞定；如果老旧的浏览器不兼容这个CSS属性的话，可以再加上zoom:1来解决；overflow跟float配合在同一个元素中使用的，而不能放到父元素中去；另外float是在父元素的容器中进行浮动；（float好像可以用来放置展示图片，如dribble那种样式？）</li>
+<li>
+<p>的级别好像很低，下一级好像不能再放块级子元素了；（经百度后证实果然没错，p内部只能装内联元素了，再放块级元素会出错）
+</li>
+<li>float: right/left，主要用来实现文字环绕图片，如果文字段落的高度还没有图片高，那么可以使用overflow: auto来搞定；如果老旧的浏览器不兼容这个CSS属性的话，可以再加上zoom:1来解决；overflow跟float配合在同一个元素中使用的，而不能放到父元素中去；另外float是在父元素的容器中进行浮动；（float好像可以用来放置展示图片，如dribble那种样式？）</li>
 <li>容器的width使用百分比来表示的话，会使得容器中的内容相应的根据浏览器窗口的大小，来缩放大小，经常用于图片的显示效果调整；（难道百分比不是相对父容器？待查证）（经查证是相对父容器）</li>
 <li>对于屏幕很小的移动设备浏览器来说，可以使用@media screen and (min-width: 600px){} 和 @media screen and (max-width: 599px) {}来使得内容变成纵向排列；前者控制在设备最小宽度为多少时，布局应该呈现什么样子的；后者表示当设备最大宽度为多少时，布局应该呈现什么样子的；类似于if…else…，是一个判断语句；（这个大括号是要括住所有的css代码吗？不是，而是括住在该条件下生效的代码）</li>
-<li>display: inline-block的几个注意事项：<ol>
+<li>display: inline-block的几个注意事项：
+<ol>
 <li>vertical-align的属性会影响到inline-block的表现（如果有好几个inline-block的话，vertical-align会按照高度最大的那个block来进行居中对齐）（这个属性可以用来神奇的对图片在容器中设置垂直居中）；</li>
 <li>需要设置每一列的宽度（不设置的话，就会换照内部的文字内容自动取宽度；如果没有文字内容，那么它就不显示出来了）</li>
 <li>如果HTML源代码中元素之间有空格，那么列与列之间会产生空隙（经试验好像没有发现这个问题，暂时搞不清楚怎么重现它）(现在我发现了，原来换行也算是一种空格，所以导致正常情况下inline-block的元素间肯定会有间距，除非去掉换行，但这样会影响代码的可读性，也搜索了一些其他的方法，都没有非常完美的解决方案）（后来我找到了完美的解决方案，它就是即将出场的flex）；</li>
 </ol>
 </li>
 <li>如果要使文字呈现多列布局，可以考虑使用column-count和colomn-gap，假设要搞成3列，那么column-count:3; column-gap:1em;（由于这个属性比较新，所以，老规矩，加上-webkit和-moz，以确保兼容性）</li>
-<li>接下来要出场的是一位牛逼的布局高手：display: flex;接下来写两段示例<ol>
-<li>父元素{display:-webkit-flex; display:flex;} 子元素{-webkit-flex: initial&#x2F;none&#x2F;1&#x2F;2}</li>
+<li>接下来要出场的是一位牛逼的布局高手：display: flex;接下来写两段示例
+<ol>
+<li>父元素{display:-webkit-flex; display:flex;} 子元素{-webkit-flex: initial/none/1/2}</li>
 <li>align-items:center; justify-content: center;</li>
 <li>算了，功能很强大，看下面这个链接中的详细教程：FLEX布局， Flex语法</li>
 <li>不管容器内是块元素或行内元素，flex都适用；</li>
 </ol>
 </li>
 <li>可以通过{line-height: 等于所在块高度}来实现块内文字（确切的说是内联元素，包括span）的垂直居中对齐；（如果行内元素有设置高度，那么需要再配合使用vertical-align来使得行内元素本身的文字居中对齐）（疑问，行内元素可以设置高度吗？回答：不可以）</li>
-<li>HTML5增加的一些新元素，有利于定义内容：<ol>
-<li>大的：header&#x2F;footer&#x2F;nav&#x2F;aside;</li>
-<li>小的：section&#x2F;article</li>
+<li>HTML5增加的一些新元素，有利于定义内容：
+<ol>
+<li>大的：header/footer/nav/aside;</li>
+<li>小的：section/article</li>
 </ol>
 </li>
 <li>如果想设置一个元素满屏，首先得确保它的父元素能够满屏，不然正常情况下它的100%高度等于父元素的高度；如果网页是满屏布局的，如evernote，则可以一开始直接设置body的高度为100%；</li>
-<li>h1~h6跟div的使用情况竟然是不一样的，我用h2&#x2F;h5来表示文字，然后用绝对定位一直出现不了想要的效果，于是改成了div，结果就OK了，为什么它们的展示效果是不同的呢？</li>
+<li>h1~h6跟div的使用情况竟然是不一样的，我用h2/h5来表示文字，然后用绝对定位一直出现不了想要的效果，于是改成了div，结果就OK了，为什么它们的展示效果是不同的呢？</li>
 <li>可以通过overflow:scroll来展示滚动条，或者overflow:auto用来当溢出内容时显示滚动条；</li>
 <li>如果想让一个div占据上一级div减去头顶上一个div的余下高度，可以很巧妙的通过postion:absolute来解决，将top设置为顶上div的高度，bottom设置为0；</li>
 <li>使用绝对定位的时候，需要指定宽度，不然默认宽度为0；</li>
-<li>text-overflow:ellipsis 当内容超出div宽度时，显示为”…”，同时需要配合overflow:hidden和white-space:nowrap进行使用；</li>
+<li>text-overflow:ellipsis 当内容超出div宽度时，显示为&quot;…&quot;，同时需要配合overflow:hidden和white-space:nowrap进行使用；</li>
 <li>white-space:nowrap控制文本单行显示不折行；</li>
 <li>BOX默认在占据父元素的整个宽度，所以不需要特别加width:100%,否则会引起一些奇怪的麻烦，比如出现不应该出现的水平滚动条；</li>
 <li>如何解决给行内元素设定宽度的问题？通过display:inline-block来实现；</li>
@@ -327,49 +337,47 @@
 <li>可以通过A元素的:hover+B元素的类组合的复合筛选，来实现当鼠标悬停A元素时B元素的样式出现变化；</li>
 <li>图片的等比缩放显示：父元素div指定长宽及text-align:center后（水平居中），子img元素再设置max-width和max-height以及verticle-align:middle来垂直居中即可；</li>
 <li>绝对定位的元素可以设置z-index，数值越大，表示叠在最上面，有时候一些悬停效果没有按预期实现，有可能是这个绝对定位的元素被其他元素遮住了；</li>
-<li>如何设置两个并排挨在一起的按钮：<ol>
+<li>如何设置两个并排挨在一起的按钮：
+<ol>
 <li>一种方法是通过display:inline-block，同时2个div间不换行无空格来实现（以便使两个按钮没有间距，不然display:inline-block会默认有间距）；</li>
 <li>第二个方法：暂时没想到；</li>
 </ol>
 </li>
 <li>可以通过大于号&gt;，例如div&gt;p，来只选择下一级的某一种类别的子元素，不选到孙元素的层级；</li>
-<li>title&#x3D;”文字内容”，可以用来显示鼠标悬停时的提示文字；</li>
-<li>换行后，前后的文本是否仍然算是在同一个行内？是的，并没有创建一个新的块；</li>
-<li>块内有两行文本，如何让它们垂直居中？设置上下的padding值一样即可；（但此方法也有局限性）</li>
-<li>如何做自适应的布局？<ol>
-<li>可以通过HTML<meta>中注明不同的屏幕尺寸下，选择性加载不同的CSS文件，以达到自适应布局的效果；</li>
-<li>也可以通过在CSS文件中备注不同的@media screen and (max-width: 40rem) 规则来实现；</li>
-<li>img{max-width:100%;}可以实现图片的自动缩放；</li>
-<li>网页宽度自适应：<meta name="viewport" content="width=device-width, initial-scale=1" />；</li>
-<li>宽度和字体使用相对值，不使用绝对值，如px；</li>
-<li>用float来布局，这样当宽度不足时，元素会自动移动到下一行；</li>
-<li>配合flex估计可以实现很好的效果，待实践一下；(经证实用flex-wray: wrap 加上设置item的最小宽度及等比缩放flex:1后即可实现）；</li>
+<li>title=“文字内容”，可以用来显示鼠标悬停时的提示文字；</li>
+<li></li>
 </ol>
-</li>
-<li>伪类first-child需要指定元素名，例如：.类名&gt;span:first-child（其中span记得不能省略）；</li>
-<li>box-shadow: h-shadow（水平） v-shadow（垂直） blur（模糊程度） spread（阴影的远近，会影响大小） color（阴影的颜色） inset（内部阴影）;  </li>
-<li>font-weight 如果用数字表示的话，400等于normal无加粗，700等于bold；</li>
-<li>用<select>和子元素<option>来创建下拉列表；</li>
-<li>background-size:contain可以将背景图像设置在容器的包含中；即背景图像扩展至最大，但高度和宽度刚好适应并完整显示中容器中；</li>
-<li>图片如何实现按固定大小截剪?</li>
-<li>链接去掉下划线：a{text-decoration:none}</li>
-<li>有必要了解一下input的各种类型，以及他们的样式处理；（注：input是一个空元素，不需要结束标签）<ol>
-<li>搜索框 type&#x3D;”search”；</li>
-<li>文本输入框 type&#x3D;”text”；</li>
-<li>按钮 type&#x3D;”button”;</li>
-<li>多选框 type&#x3D;”checkbox”;用name&#x3D;”相同的值”来归类为同一组；</li>
-<li>单选框 type&#x3D;”radio”; 用name&#x3D;”相同的值”来控制这一组按钮单选；</li>
-<li>上传文件 type&#x3D;”file”；</li>
-<li>隐藏字段 type&#x3D;”hidden”；隐藏字段用户看不见，但会存储一个默认值；这个值可以通过JS来修改，实现某些目的；</li>
-<li>密码 type&#x3D;”password”；输入密码时会显示星号；</li>
-<li>重置按钮 type&#x3D;”reset”；点击后会清空表单中的所有数据，好像是清除哪个表单？经测试，只会清除当前父元素form底下的表单数据；</li>
-<li>提交按钮 type&#x3D;”submit”；</li>
-</ol>
-</li>
-<li>悬停划出抽屉；</li>
-<li>“utf-8 无bom”两种格式编码，会导致IE或者EDGE的浏览器产生乱码，需要改成“utf-8”才能显示正常；</li>
-<li>chrome的最小字体大小是12px，所以设置body的font-size：62.5% 并没有真正实现效果，后台仍默认为12px，而不是预期的10px; 我在考虑既然62.5%不能有效，或者直接按100%即默认的16px？</li>
-</ol>
+<p>换行后，前后的文本是否仍然算是在同一个行内？是的，并没有创建一个新的块；<br>
+34. 块内有两行文本，如何让它们垂直居中？设置上下的padding值一样即可；（但此方法也有局限性）<br>
+35. 如何做自适应的布局？<br>
+1. 可以通过HTML<meta>中注明不同的屏幕尺寸下，选择性加载不同的CSS文件，以达到自适应布局的效果；<br>
+2. 也可以通过在CSS文件中备注不同的@media screen and (max-width: 40rem) 规则来实现；<br>
+3. img{max-width:100%;}可以实现图片的自动缩放；<br>
+4. 网页宽度自适应：<meta name="viewport" content="width=device-width, initial-scale=1" />；<br>
+5. 宽度和字体使用相对值，不使用绝对值，如px；<br>
+6. 用float来布局，这样当宽度不足时，元素会自动移动到下一行；<br>
+7. 配合flex估计可以实现很好的效果，待实践一下；(经证实用flex-wray: wrap 加上设置item的最小宽度及等比缩放flex:1后即可实现）；<br>
+36. 伪类first-child需要指定元素名，例如：.类名&gt;span:first-child（其中span记得不能省略）；<br>
+37. box-shadow: h-shadow（水平） v-shadow（垂直） blur（模糊程度） spread（阴影的远近，会影响大小） color（阴影的颜色） inset（内部阴影）;<br>
+38. font-weight 如果用数字表示的话，400等于normal无加粗，700等于bold；<br>
+39. 用<select>和子元素<option>来创建下拉列表；<br>
+40. background-size:contain可以将背景图像设置在容器的包含中；即背景图像扩展至最大，但高度和宽度刚好适应并完整显示中容器中；<br>
+41. 图片如何实现按固定大小截剪?<br>
+42. 链接去掉下划线：a{text-decoration:none}<br>
+43. 有必要了解一下input的各种类型，以及他们的样式处理；（注：input是一个空元素，不需要结束标签）<br>
+1. 搜索框 type=“search”；<br>
+2. 文本输入框 type=“text”；<br>
+3. 按钮 type=“button”;<br>
+4. 多选框 type=“checkbox”;用name=&quot;相同的值&quot;来归类为同一组；<br>
+5. 单选框 type=“radio”; 用name=&quot;相同的值&quot;来控制这一组按钮单选；<br>
+6. 上传文件 type=“file”；<br>
+7. 隐藏字段 type=“hidden”；隐藏字段用户看不见，但会存储一个默认值；这个值可以通过JS来修改，实现某些目的；<br>
+8. 密码 type=“password”；输入密码时会显示星号；<br>
+9. 重置按钮 type=“reset”；点击后会清空表单中的所有数据，好像是清除哪个表单？经测试，只会清除当前父元素form底下的表单数据；<br>
+10. 提交按钮 type=&quot;submit”；<br>
+44. 悬停划出抽屉；<br>
+45.  “utf-8 无bom”两种格式编码，会导致IE或者EDGE的浏览器产生乱码，需要改成“utf-8”才能显示正常；<br>
+46. chrome的最小字体大小是12px，所以设置body的font-size：62.5% 并没有真正实现效果，后台仍默认为12px，而不是预期的10px; 我在考虑既然62.5%不能有效，或者直接按100%即默认的16px？</p>
 
                 
               </div>

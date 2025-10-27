@@ -19,12 +19,12 @@
   <meta name="author" content="ccw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="组件组件由三部分组成：  class：数据、功能（函数）； template：HTML 模板 style：样式  在 HTML 标签中，点击事件绑定用以下方法来表示： 1&lt;button (click)&#x3D;&quot;doSomething&quot;&gt;do something&lt;button&gt;  HTML 模板中所需要的数据，通过使用依赖注入的方法，实现动态更新的效果，示例如下">
+    <meta name="description" content="组件 组件由三部分组成：  class：数据、功能（函数）； template：HTML 模板 style：样式  在 HTML 标签中，点击事件绑定用以下方法来表示： 1&lt;button (click)&#x3D;&quot;doSomething&quot;&gt;do something&lt;button&gt; HTML 模板中所需要的数据，通过使用依赖注入的方法，实现动态更新的效果，示例如下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angularjs">
 <meta property="og:url" content="https://ccw1078.github.io/2021/11/18/Angularjs/index.html">
 <meta property="og:site_name" content="Ccw&#39;s Blogs">
-<meta property="og:description" content="组件组件由三部分组成：  class：数据、功能（函数）； template：HTML 模板 style：样式  在 HTML 标签中，点击事件绑定用以下方法来表示： 1&lt;button (click)&#x3D;&quot;doSomething&quot;&gt;do something&lt;button&gt;  HTML 模板中所需要的数据，通过使用依赖注入的方法，实现动态更新的效果，示例如下">
+<meta property="og:description" content="组件 组件由三部分组成：  class：数据、功能（函数）； template：HTML 模板 style：样式  在 HTML 标签中，点击事件绑定用以下方法来表示： 1&lt;button (click)&#x3D;&quot;doSomething&quot;&gt;do something&lt;button&gt; HTML 模板中所需要的数据，通过使用依赖注入的方法，实现动态更新的效果，示例如下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-17T23:55:00.000Z">
 <meta property="article:modified_time" content="2024-09-21T23:13:21.407Z">
@@ -85,7 +85,11 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
 </head>
 
 
@@ -277,7 +281,8 @@
             
               <div class="markdown-body">
                 
-                <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>组件由三部分组成：</p>
+                <h2 id="%E7%BB%84%E4%BB%B6" tabindex="-1" id="组件">组件</h2>
+<p>组件由三部分组成：</p>
 <ul>
 <li>class：数据、功能（函数）；</li>
 <li>template：HTML 模板</li>
@@ -285,21 +290,19 @@
 </ul>
 <p>在 HTML 标签中，点击事件绑定用以下方法来表示：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">&quot;doSomething&quot;</span>&gt;</span>do something<span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>HTML 模板中所需要的数据，通过使用依赖注入的方法，实现动态更新的效果，示例如下：</p>
 <p>单向绑定</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;hero.name | uppercase&#125;&#125; Details<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>此处的“| uppercase” 是一个管道连接符 + 一个内置格式转换函数，它可以将字符串转成大写。在 angular 中，这种方式被称为 pipe 函数，包括 DatePipe, UppercasePipe, LowercasePipe, CurrencyPipe, DecimalPipe, PercentPipe 等；</p>
 </blockquote>
 <p>双向绑定</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;hero-name&quot;</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">&quot;hero.name&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>此处通过 [(ngModel)] 实现双向绑定，这样就不需要在 JS 中监听 input 事件，并手工更新 JS 中的数据，确实方便很多；</p>
 </blockquote>
-<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p>组件的数据可以依赖服务来注入，实现数据和组件之间的解耦。这样当数据的实现发生变化时，不需要变更组件，只需要更新服务内部的代码即可；数据来源可以是本地存储、硬编码、网络接口等；</p>
+<h2 id="%E6%9C%8D%E5%8A%A1" tabindex="-1" id="服务">服务</h2>
+<p>组件的数据可以依赖服务来注入，实现数据和组件之间的解耦。这样当数据的实现发生变化时，不需要变更组件，只需要更新服务内部的代码即可；数据来源可以是本地存储、硬编码、网络接口等；</p>
 <p>通过将服务注入组件内部的 constructor 构建函数，之后在组件的 onInit hook 中调用初始化函数，来实现内部对数据的自定义处理</p>
 <blockquote>
 <p>此处非常有意思，首先外部引入的 HeroService 本身就是一个类（或函数），已经实现了第一层的解耦，但之后在组件中引入该服务时，只是将其添加为组件 Class 的私有属性，同时组件又定义了自己的 Service 函数，在该 Service 函数中调用 HeroSerivice，这样一样就实现了双重解耦，如果 HeroService 的实现有任何变化，都只需要更新组件自己定义的 Service 函数，而不会影响到组件内部的其他位置的代码；</p>
@@ -311,16 +314,17 @@
 <p>为了支持异常，ng 引入了一个 Observable 类，这个类有点像是 Promise，它会返回一个对象，该对象有一个 Subscribe 方法；该方法接受一个回调函数，并将最终数据做为参数，传递给回调函数；</p>
 <p>constructor 构建函数的初始化很有意思，它有一个快捷方式，即在参数定义中，可以直接将参数赋值给相应名称的属性，这个做法跟 c++ 不太一样，示例如下：</p>
 <blockquote>
-<p> constructor*(private <em>messageService</em>: MessageService) { }</p>
+<p>constructor*(private <em>messageService</em>: MessageService) { }</p>
 </blockquote>
-<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>理论上路由貌似应该是一个全局的东西，当用户在浏览器中，或者在页面上点击某个链接时，根据链接中的 path，从路由表中查到对应的组件，然后展示该组件（有点类似后端的路由，只是后端的路由是调用某个视图函数，而前端变成了调用某个视图组件）；</p>
+<h2 id="%E8%B7%AF%E7%94%B1" tabindex="-1" id="路由">路由</h2>
+<p>理论上路由貌似应该是一个全局的东西，当用户在浏览器中，或者在页面上点击某个链接时，根据链接中的 path，从路由表中查到对应的组件，然后展示该组件（有点类似后端的路由，只是后端的路由是调用某个视图函数，而前端变成了调用某个视图组件）；</p>
 <p><router-outlet> 貌似是一个内置的组件，用来展示路由返回的结果</p>
 <p>RouterModule 的方法</p>
 <ul>
 <li>forRoot，用来添加路由表；</li>
 <li>routerLink 属性用来在 HTML 页面上的 <a> 标签中指定路由路径；</li>
 </ul>
-<p>定义路径时，可以用冒号来表示变量，例如 “&#x2F;detail&#x2F;:id”，此处 id 是一个变量；</p>
+<p>定义路径时，可以用冒号来表示变量，例如 “/detail/:id&quot;，此处 id 是一个变量；</p>
 <p>当用户点击某个包含 routerLink 属性的链接时，路由器将接受到事件对象，并跳转到对应的组件，之后组件有可能需要接受参数数据来完成初始化，此时需要用到 ActivatedRoute 对象来获得所需的参数数据；</p>
 <ul>
 <li>示例：ActivatedRoute.snapshot.paramMap.get(“id”)</li>
@@ -329,21 +333,22 @@
 <p>但是有时候可能该参数很大，例如是一个对象，此时该如何传递数据呢？</p>
 </blockquote>
 <p>当用户从 A 组件页面跳转到 B 组件页面后，如果需要返回原来的 A 组件页面，貌似有两种方法，一种是在 B 页面上面放置 A 页面的链接。这种方法需要多一些工作量；如果此时能够记住原来的页面栈，而用一个通用返回方法，回到页面栈的上一层就会非常的方便，此时需要用到一个内置的 Location 服务，来获得该页面栈；</p>
-<h3 id="添加路由的过程"><a href="#添加路由的过程" class="headerlink" title="添加路由的过程"></a>添加路由的过程</h3><ul>
+<h3 id="%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1%E7%9A%84%E8%BF%87%E7%A8%8B" tabindex="-1" id="添加路由的过程">添加路由的过程</h3>
+<ul>
 <li>创建：创建 routing 路由模块；通过 CLI 创建时，它会自动在 app 根模块中引入路由模块；</li>
 <li>映射：路由模块中定义路径和组件的映射关系，以便当用户点击或在浏览器中输入路径时，可以展示相应的组件；记得定义一个默认路径，让其重定向到指定的路径；</li>
 <li>展示：在需要展示组件的位置，添加内置的 router-outlet 组件，它会将路由返回的组件展示出来；一般此时还会在 HTML 页面上添加导航，以便在不同的版块之间切换；</li>
 <li>链接：给需要进行跳转的组件添加 routerLink 属性，当用户点击时，实现跳转；</li>
 </ul>
-<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p> 通过引入内置的 HttpClient 模块，可以实现发送 HTTP 请求；由于请求返回的结果是异步的，因此 angular 使用 RxJS 库来处理异步，RxJS 将请求结果封装为 Observable 对象，有点类似 promise，可以调用该对象的 subscribe 方法，来获得异步返回的数据；</p>
-<p>HttpClient 拥有常见的各种请求方法，例如 get&#x2F;post&#x2F;put&#x2F;delete 等，它的调用方式有点特别，需要使用类似 C++ 中的泛型来定义返回数据的类型，例如：</p>
+<h2 id="http" tabindex="-1" id="HTTP">HTTP</h2>
+<p>通过引入内置的 HttpClient 模块，可以实现发送 HTTP 请求；由于请求返回的结果是异步的，因此 angular 使用 RxJS 库来处理异步，RxJS 将请求结果封装为 Observable 对象，有点类似 promise，可以调用该对象的 subscribe 方法，来获得异步返回的数据；</p>
+<p>HttpClient 拥有常见的各种请求方法，例如 get/post/put/delete 等，它的调用方式有点特别，需要使用类似 C++ 中的泛型来定义返回数据的类型，例如：</p>
 <blockquote>
 <p>HttpClient.get&lt;Hero[]&gt;(url)，此处 url 为参数，不同的请求方法，接受的参数个数不同；所有的请求方法都会返回一个 RxJS 中的 Observable 对象；</p>
 </blockquote>
 <p>RxJS 的 Observable 对象有一个 pipe 方法，该方法可用来将多个函数组合成一个函数。当条件满足时，该组合函数会被触发（调用），然后它会依次执行组合中的各个函数；例如：</p>
 <blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">http</span>.<span class="hljs-property">get</span>&lt;<span class="hljs-title class_">Hero</span>&gt;(url)<br>.<span class="hljs-title function_">pipe</span>(<br> <span class="hljs-title function_">tap</span>(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`fetched hero id=<span class="hljs-subst">$&#123;id&#125;</span>`</span>)),<br> <span class="hljs-title function_">catchError</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">handleError</span>&lt;<span class="hljs-title class_">Hero</span>&gt;(<span class="hljs-string">`getHero id=<span class="hljs-subst">$&#123;id&#125;</span>`</span>))<br>);<br></code></pre></td></tr></table></figure>
-
 <p>此处的 tap 和 catchError 都是内置函数，但是它们的执行场景不同，tap 一定会执行，而 catchError 仅在 HTTP Response 报错的情况下才会执行；这两个函数都接受一个回调函数做为其参数，并在得到 Response 后，调用该回调函数；</p>
 </blockquote>
 <p>因此，在 HttpClient 请求中结合 pipe，我们就可以对返回的结果加入一些我们想要实现的额外操作，例如 log 和错误处理等；</p>
@@ -353,22 +358,23 @@
 <p>RxJS 库中还有另外一个特别的东西叫 Subject，本质上它是一个特定类型的 Observable 对象，因此它同样支持 Observable 的各种方法，它的作用原理很像是一个 EventEmitter，它有一个 next 方法，当调用该方法时，给它传递一个参数，然后就会触发之前通过 pipe 传递进去的那些函数，示例如下：</p>
 <blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 初始化一个 Subject 对象</span><br>searchTerm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Subject</span>&lt;string&gt;();<br><br><span class="hljs-comment">// 调用 Subject 的 pipe 方法，放入回调函数</span><br>heroes$ = searchTerm.<span class="hljs-title function_">pipe</span>(<br> <span class="hljs-comment">// 在用户输入关键字后，等待 300 毫秒，如果用户没有继续输入，再触发关键字搜索</span><br> <span class="hljs-title function_">debounceTime</span>(<span class="hljs-number">300</span>),<br> <span class="hljs-comment">// 如果输入和之前的关键字相同，则不触发搜索</span><br> <span class="hljs-title function_">distinctUntilChanged</span>(),<br> <span class="hljs-comment">// 当关键字变化时，切换到新的搜索结果</span><br> <span class="hljs-title function_">switchMap</span>(<span class="hljs-function">(<span class="hljs-params">term: string</span>) =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">heroService</span>.<span class="hljs-title function_">searchHeroes</span>(term)),<br>)<br><br><span class="hljs-comment">// 定义事件处理函数，当事件发生时，调用 Subject 对象的 next 方法，传递最新的参数数据</span><br><span class="hljs-title function_">search</span>(<span class="hljs-attr">term</span>: string): <span class="hljs-keyword">void</span> &#123;<br> <span class="hljs-variable language_">this</span>.<span class="hljs-property">searchTerm</span>.<span class="hljs-title function_">next</span>(term);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>由于 Observable 的 pipe 方法返回的是一个 Observable  对象，因此这里加了特殊的符号 heroes$ 来表示该类型，而不是直接用 heroes 的常见变量名，这也直接导致随后在 Component 的 HTML 模板中绑定该变量时，需要使用 angular 内置的 async 来处理，示例如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">&quot;let hero of heroes$ | async&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-
 </blockquote>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ul>
+<h2 id="%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" tabindex="-1" id="常用命令">常用命令</h2>
+<h3 id="%E5%88%9B%E5%BB%BA" tabindex="-1" id="创建">创建</h3>
+<ul>
 <li>组件：ng generate component <name></li>
 <li>服务：ng generate service <name></li>
-<li>模块：ng generate module <name> –flat –module&#x3D;app<ul>
-<li>–flat：表示不需要为该模块创建单独的文件夹，而是放在根文件夹下面，即 src&#x2F;app 文件夹中；</li>
-<li>–module&#x3D;app：表示将该模块注册登录在 AppModule 模块中（即在 AppModule 模块中 import）；</li>
+<li>模块：ng generate module <name> --flat --module=app
+<ul>
+<li>–flat：表示不需要为该模块创建单独的文件夹，而是放在根文件夹下面，即 src/app 文件夹中；</li>
+<li>–module=app：表示将该模块注册登录在 AppModule 模块中（即在 AppModule 模块中 import）；</li>
 </ul>
 </li>
 </ul>
-<h3 id="启动调试服务器"><a href="#启动调试服务器" class="headerlink" title="启动调试服务器"></a>启动调试服务器</h3><p>ng serve –open</p>
+<h3 id="%E5%90%AF%E5%8A%A8%E8%B0%83%E8%AF%95%E6%9C%8D%E5%8A%A1%E5%99%A8" tabindex="-1" id="启动调试服务器">启动调试服务器</h3>
+<p>ng serve --open</p>
 
                 
               </div>
