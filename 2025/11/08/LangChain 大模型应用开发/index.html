@@ -1,0 +1,1313 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="什么是生成式人工智能 生成式人工智能简介 传统的机器学习主要是预测式的（例如预测天气、房价、检测目标位置等），或者分析式的（例如对数据进行分类、标注等）。LLM 大语言模型则有所不同，它是生成式的，能够合成新数据，而不再局限于决策或预测。因此它在文本、图像、音乐和视频等需要生成内容的领域得到广泛使用。 2022 年后，人们发现可以通过提供示范和反馈，即使用提示词工程，显著提升模型的表现。  随着模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LangChain 大模型应用开发">
+<meta property="og:url" content="https://ccw1078.github.io/2025/11/08/LangChain%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="什么是生成式人工智能 生成式人工智能简介 传统的机器学习主要是预测式的（例如预测天气、房价、检测目标位置等），或者分析式的（例如对数据进行分类、标注等）。LLM 大语言模型则有所不同，它是生成式的，能够合成新数据，而不再局限于决策或预测。因此它在文本、图像、音乐和视频等需要生成内容的领域得到广泛使用。 2022 年后，人们发现可以通过提供示范和反馈，即使用提示词工程，显著提升模型的表现。  随着模">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171038.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171106.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171130.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251114112746.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251114112818.png">
+<meta property="og:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251116195408.png">
+<meta property="article:published_time" content="2025-11-07T23:18:00.000Z">
+<meta property="article:modified_time" content="2025-11-17T08:27:23.006Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="人工智能">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171038.png">
+  
+  
+  
+  <title>LangChain 大模型应用开发 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ccw1078.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ccw&#39;s blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LangChain 大模型应用开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-08 07:18" pubdate>
+          2025年11月8日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          71 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LangChain 大模型应用开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD" tabindex="-1">什么是生成式人工智能</h1>
+<h2 id="%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%80%E4%BB%8B" tabindex="-1" id="生成式人工智能简介">生成式人工智能简介</h2>
+<p>传统的机器学习主要是预测式的（例如预测天气、房价、检测目标位置等），或者分析式的（例如对数据进行分类、标注等）。LLM 大语言模型则有所不同，它是生成式的，能够合成新数据，而不再局限于决策或预测。因此它在文本、图像、音乐和视频等需要生成内容的领域得到广泛使用。</p>
+<p>2022 年后，人们发现可以通过提供示范和反馈，即使用提示词工程，显著提升模型的表现。</p>
+<blockquote>
+<p>随着模型参数量的不断增加，例如 20-70 亿个参数，模型开始表现出新的能力，即能够生成创意型的新内容，并能够提供丰富的信息来回答一些开放性和挑战性的问题。</p>
+</blockquote>
+<h2 id="%E4%BA%86%E8%A7%A3%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B" tabindex="-1" id="了解大规模语言模型">了解大规模语言模型</h2>
+<blockquote>
+<p>表征学习：模型不会被明确的指示要学习哪些特征，而是根据原始数据，自己找出那些重要的特征。</p>
+</blockquote>
+<p>目前模型在处理数学或复杂的推理任务时，结果表现不佳。而且，我们还无法确定，通过不断增加参数规模，是否一定能够克服这个障碍。对于复杂和严谨的推理任务来说，正确的答案有可能在现有经验之外。而大模型的训练是基于过往提供的数据，推测一个可能性的最大答案，因此该答案一般是现有经验范围之内。</p>
+<h2 id="%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%87%E6%9C%AC%E5%88%B0%E5%9B%BE%E5%83%8F%E6%A8%A1%E5%9E%8B" tabindex="-1" id="什么是文本到图像模型">什么是文本到图像模型</h2>
+<p>有几种文生图的模型类型，其优缺点分别如下：</p>
+<table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>图像质量</th>
+<th>文本对齐</th>
+<th>推理速度</th>
+<th>训练难度</th>
+<th>典型代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GAN</td>
+<td>高</td>
+<td>中</td>
+<td>快</td>
+<td>高</td>
+<td>AttnGAN, StyleGAN+CLIP</td>
+</tr>
+<tr>
+<td>VAE</td>
+<td>低~中</td>
+<td>弱</td>
+<td>快</td>
+<td>低</td>
+<td>VQ-VAE（组件）</td>
+</tr>
+<tr>
+<td>自回归</td>
+<td>高</td>
+<td>强</td>
+<td>慢</td>
+<td>极高</td>
+<td>DALL·E, Parti</td>
+</tr>
+<tr>
+<td>扩散模型</td>
+<td>极高</td>
+<td>强~极强</td>
+<td>中~慢*</td>
+<td>极高</td>
+<td>Stable Diffusion, Imagen</td>
+</tr>
+<tr>
+<td>混合/新兴</td>
+<td>极高</td>
+<td>极强</td>
+<td>中</td>
+<td>高</td>
+<td>FLUX.1, Ideogram</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>*注：扩散模型可通过蒸馏、Few-step采样（如DDIM、LCM）显著加速。</p>
+</blockquote>
+<p>扩散模型的实现过程貌似跟人类的作图过程有点类似，先从一张白纸开始（随机噪声），然后先画个轮廓，之后不断细化添加更细节，直至和脑海中想要的结果对齐（对于模型来说则是与输入的文字对齐）。</p>
+<h2 id="%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9C%A8%E5%85%B6%E4%BB%96%E9%A2%86%E5%9F%9F%E7%9A%84%E4%BD%9C%E7%94%A8" tabindex="-1" id="人工智能在其他领域的作用">人工智能在其他领域的作用</h2>
+<p>文本、图像、音频、视频、结构化数据，这些数据类型都可以通过大模型来实现从 A 类型到 B 类型的生成。</p>
+<table>
+<thead>
+<tr>
+<th>输入 \输出类型</th>
+<th>文本</th>
+<th>图像</th>
+<th>音频</th>
+<th>视频</th>
+<th>结构化数据（如表格、代码等）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>文本</strong></td>
+<td>- 语言模型（如 GPT 系列）<br>- 问答系统<br>- 文本摘要<br>- 机器翻译</td>
+<td>- 文生图模型（如 DALL·E、Stable Diffusion）</td>
+<td>- 文本转语音（TTS，如 Tacotron、VITS）</td>
+<td>- 文本生成视频（如 Sora、Phenaki）</td>
+<td>- 文本生成代码（如 Codex、CodeLlama）<br>- 文本生成结构化数据（如 JSON、SQL）</td>
+</tr>
+<tr>
+<td><strong>图像</strong></td>
+<td>- 图像描述生成（Image Captioning）<br>- OCR + 语义理解</td>
+<td>- 图像编辑/增强<br>- 图像超分辨率<br>- 图像到图像翻译（如 Pix2Pix）</td>
+<td>- 图像驱动语音合成（较少见）</td>
+<td>- 图像插帧/视频预测<br>- 单图生成视频（如 Make-A-Video）</td>
+<td>- 图像内容结构化（如图表识别、表格提取）</td>
+</tr>
+<tr>
+<td><strong>音频</strong></td>
+<td>- 语音识别（ASR，如 Whisper）<br>- 音频内容摘要</td>
+<td>- 声音可视化（如声谱图生成图像，较少主流应用）</td>
+<td>- 语音转换（Voice Conversion）<br>- 音频修复/增强</td>
+<td>- 音频驱动视频生成（如 talking head 模型）</td>
+<td>- 音频转结构化信息（如音乐转 MIDI、语音转命令）</td>
+</tr>
+<tr>
+<td><strong>视频</strong></td>
+<td>- 视频描述生成（Video Captioning）<br>- 视频问答</td>
+<td>- 视频风格迁移<br>- 视频超分辨率<br>- 视频编辑</td>
+<td>- 视频中语音提取与合成</td>
+<td>- 视频预测/补全<br>- 视频重生成</td>
+<td>- 视频行为识别结果<br>- 视频内容结构化标注</td>
+</tr>
+<tr>
+<td><strong>结构化数据</strong></td>
+<td>- 数据解释/自然语言描述（如 NL2SQL 的反向）</td>
+<td>- 表格/数据可视化生成</td>
+<td>- 数据驱动语音播报</td>
+<td>- 数据驱动动画/演示生成</td>
+<td>- 数据清洗/转换<br>- 数据补全/预测（如时间序列模型）</td>
+</tr>
+</tbody>
+</table>
+<h1 id="%E9%9D%A2%E5%90%91%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F" tabindex="-1">面向大规模语言模型应用程序</h1>
+<h2 id="%E8%B6%85%E8%B6%8A%E9%9A%8F%E6%9C%BA%E9%B9%A6%E9%B9%89" tabindex="-1" id="超越随机鹦鹉">超越随机鹦鹉</h2>
+<p>鹦鹉能够模仿人类说话，听起来就像真的一样，但鹦鹉本身并不理解这些话的意思。这也是大语言模型目前面临的困境，它并不真正的理解内容本身，因此它在一些复杂的逻辑推理和数学计算场景表现不佳。</p>
+<p>缓解大模型局限性的一些方法：</p>
+<ul>
+<li>提示词工程和微调：有针对性的训练数据让大模型更契合特定业务场景，结构性的提示词引导模型输出预期结果；</li>
+<li>自我任务提示：有助于将复杂的问题拆分成多个小问题进行解决；</li>
+<li>连接外部数据：避免训练数据过时的问题；</li>
+<li>过滤和监控：对模型的输出进行过滤和调整，及时纠结小错误；</li>
+</ul>
+<h2 id="langchain-%E7%AE%80%E4%BB%8B" tabindex="-1" id="LangChain-简介">LangChain 简介</h2>
+<p>LangChain 通过提供合理的抽象，让开发大模型应用变得简单和灵活。其核心功能包括：</p>
+<ul>
+<li>组件模块化：各模块可进行自由组合、替换、复用；同时更加易读和维护；</li>
+<li>与外部服务进行连接；</li>
+<li>实现智能体间的交互，取代孤立的 API 调用；</li>
+<li>实现记忆和数据的持久性；</li>
+</ul>
+<p>相关生态：</p>
+<ul>
+<li>LangSmith：提供应用的测试、调试和监控功能；</li>
+<li>LangChain 模板：模板仓库，方便开发人员复用，避免重复造轮子；</li>
+<li>LangServe：方便部署和管理开发好的应用；</li>
+<li>LangGraph：帮忙开发循环数据流和多角色互动的应用；</li>
+</ul>
+<h2 id="%E6%8E%A2%E7%B4%A2-langchain-%E7%9A%84%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6" tabindex="-1" id="探索-LangChain-的关键组件">探索 LangChain 的关键组件</h2>
+<h3 id="%E9%93%BE" tabindex="-1" id="链">链</h3>
+<p>功能：将不同模块，组合成一个可以复用的管道（类似流水线），以实现特定的功能；例如：</p>
+<ul>
+<li>LLMMath：实现数学相关查询</li>
+<li>SQLDatabaseChain：数据库查询；</li>
+<li>LLMCheckerChain：对输入进行验证；</li>
+<li>RouterChain：根据输入判断应使用哪种工具；</li>
+</ul>
+<h3 id="%E6%99%BA%E8%83%BD%E4%BD%93" tabindex="-1" id="智能体">智能体</h3>
+<p>链是多个模块的组合，智能体则是多个链的组合；</p>
+<p>在智能体中，大模型可用来帮助完成推理任务。模型会收到提示词、可用工具、历史信息等内容，然后模型选择下一步的动作，可能是使用某个工具，也可能是给出最终的响应。</p>
+<blockquote>
+<p>由于模型需要判断是否使用工具以及使用哪个工具，因此工具必然包括功能描述，以便模型进行判断。</p>
+</blockquote>
+<h3 id="%E8%AE%B0%E5%BF%86" tabindex="-1" id="记忆">记忆</h3>
+<p>智能体和链是无状态的，记忆则用来保存每次执行之间的状态。</p>
+<p>部分常见的记忆选项：</p>
+<ul>
+<li>ConversationBufferMemory：在模型历史中存储所有消息</li>
+<li>ConversationBufferWindowMemory：只保留最近的几条消息</li>
+<li>ConversationKGMemory：将交流总结为知识图谱，并集成到提示中；</li>
+<li>ConversationEntityMemory：存储对话中的一些事实；</li>
+</ul>
+<p>另外也可以连接多种数据库，实现持久化存储；</p>
+<h3 id="%E5%B7%A5%E5%85%B7" tabindex="-1" id="工具">工具</h3>
+<p>工具可帮助智能体实现特定的功能，例如内置的文档加载器、向量存储等；</p>
+<p>部分常见的工具：</p>
+<ul>
+<li>机器翻译；</li>
+<li>计算器；</li>
+<li>地图查询；</li>
+<li>股票查询；</li>
+<li>天气查询；</li>
+<li>幻灯片制作；</li>
+<li>表格处理；</li>
+<li>搜索引擎；</li>
+<li>维基百科；</li>
+<li>在线购物；</li>
+<li>知识图谱：从知识库中查询提取相关信息；</li>
+</ul>
+<h2 id="langchain-%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C" tabindex="-1" id="LangChain-如何工作">LangChain 如何工作</h2>
+<p>LangChain 封装了一系列组件，这些组件可相互协作，同时也可以自定义（只需实现统一的接口即可）。通过组件的共同协作完成复杂的任务。</p>
+<p>主要组成部分包括：</p>
+<ul>
+<li>准备数据
+<ul>
+<li>文档加载器；</li>
+<li>文本划分器；</li>
+</ul>
+</li>
+<li>准备提示
+<ul>
+<li>基于用户的输入，代入模板，生成结构性的提示，引导模型生成预期结果；</li>
+</ul>
+</li>
+<li>内容生成
+<ul>
+<li>由大模型负责完成；</li>
+</ul>
+</li>
+<li>利用工具
+<ul>
+<li>检索信息；</li>
+<li>调用工具完成特定任务；</li>
+</ul>
+</li>
+<li>记忆
+<ul>
+<li>存储对话信息，以便保持上下文；</li>
+</ul>
+</li>
+<li>监控
+<ul>
+<li>记录调用过程，以便进行调试和改进；</li>
+</ul>
+</li>
+<li>整合：借助以下两个工具串联以上各部分内容
+<ul>
+<li>链</li>
+<li>智能体</li>
+</ul>
+</li>
+</ul>
+<h2 id="langchain-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%BB%93%E6%9E%84" tabindex="-1" id="LangChain-软件包结构">LangChain 软件包结构</h2>
+<p>主要划分如下：</p>
+<ul>
+<li>langchain-core：只包含基础组件的抽象和方法，以及几个核心组件，例如模型、向量存储、检索器等；</li>
+<li>langchain：链、智能体、检索策略；</li>
+<li>langchain-community：由社区维护的第三方集成；</li>
+<li>合作伙伴各自的软件包</li>
+</ul>
+<h2 id="langchain-%E5%92%8C%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6%E6%AF%94%E8%BE%83" tabindex="-1" id="LangChain-和其他框架比较">LangChain 和其他框架比较</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>开发者</th>
+<th>类型</th>
+<th>主要用途</th>
+<th>是否开源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AutoGen</strong></td>
+<td>Microsoft</td>
+<td>框架</td>
+<td>多智能体协作系统构建</td>
+<td>✅ 开源（MIT）</td>
+</tr>
+<tr>
+<td><strong>MetaGPT</strong></td>
+<td>OpenBMB / 社区</td>
+<td>框架</td>
+<td>基于角色的多智能体软件工程自动化</td>
+<td>✅ 开源（Apache 2.0）</td>
+</tr>
+<tr>
+<td><strong>LangChain</strong></td>
+<td>LangChain Inc.</td>
+<td>框架</td>
+<td>构建 LLM 驱动的应用（链式调用、记忆、工具集成等）</td>
+<td>✅ 开源（MIT）</td>
+</tr>
+<tr>
+<td><strong>LlamaIndex</strong></td>
+<td>LlamaIndex Inc.</td>
+<td>框架</td>
+<td>数据连接与检索增强生成（RAG）</td>
+<td>✅ 开源（MIT）</td>
+</tr>
+<tr>
+<td><strong>Dify</strong></td>
+<td><a target="_blank" rel="noopener" href="http://Dify.AI">Dify.AI</a></td>
+<td>平台（低代码+API）</td>
+<td>快速构建 AI 应用（支持 Agent、RAG、Workflow）</td>
+<td>✅ 开源（部分）+ 商业版</td>
+</tr>
+<tr>
+<td><strong>Coze</strong></td>
+<td>字节跳动</td>
+<td>平台（无代码/低代码）</td>
+<td>构建聊天机器人、插件、工作流（面向 C 端和 B 端）</td>
+<td>❌ 闭源（SaaS 平台）</td>
+</tr>
+</tbody>
+</table>
+<h1 id="langchain-%E5%85%A5%E9%97%A8" tabindex="-1">LangChain 入门</h1>
+<h2 id="%E8%AE%BE%E7%BD%AE%E4%BE%9D%E8%B5%96" tabindex="-1" id="设置依赖">设置依赖</h2>
+<p>开发环境适合用 conda，生产环境适合用 docker</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>pip</th>
+<th>Poetry</th>
+<th>Conda</th>
+<th>Docker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要用途</td>
+<td>安装 Python 包</td>
+<td>依赖+项目管理</td>
+<td>包+环境管理</td>
+<td>应用容器化</td>
+</tr>
+<tr>
+<td>环境隔离</td>
+<td>❌（需 venv）</td>
+<td>✅（自动）</td>
+<td>✅</td>
+<td>✅（操作系统级）</td>
+</tr>
+<tr>
+<td>依赖解析能力</td>
+<td>弱</td>
+<td>强</td>
+<td>强（含二进制）</td>
+<td>依赖内部工具（如 pip）</td>
+</tr>
+<tr>
+<td>锁文件支持</td>
+<td>❌（需扩展）</td>
+<td>✅（poetry.lock）</td>
+<td>✅（environment.yml + explicit）</td>
+<td>❌（但可通过固定版本实现）</td>
+</tr>
+<tr>
+<td>支持非 Python 依赖</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅（通过系统安装）</td>
+</tr>
+<tr>
+<td>适合数据科学</td>
+<td>一般</td>
+<td>一般</td>
+<td>✅</td>
+<td>✅（配合 Conda/pip）</td>
+</tr>
+<tr>
+<td>适合生产部署</td>
+<td>❌</td>
+<td>⚠️（需打包）</td>
+<td>⚠️</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>学习成本</td>
+<td>低</td>
+<td>中</td>
+<td>中</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E9%9B%86%E6%88%90%E6%A8%A1%E5%9E%8B" tabindex="-1" id="集成模型">集成模型</h2>
+<p>在环境变量中配置 API KEY 即可；</p>
+<h2 id="%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92" tabindex="-1" id="大模型交互">大模型交互</h2>
+<h3 id="%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B" tabindex="-1" id="大语言模型">大语言模型</h3>
+<p>各家模型提供了相应的软件包来初始化模型，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> OpenAI<br><span class="hljs-keyword">from</span> langchain_google_genai <span class="hljs-keyword">import</span> GoogleGenerativeAI<br><span class="hljs-keyword">from</span> langchain_community.chat_models <span class="hljs-keyword">import</span> ChatTongyi<br><br><span class="hljs-comment"># Gemini</span><br>gemini_pro = GoogleGenerativeAI(model=<span class="hljs-string">&quot;gemini-2.0-flash&quot;</span>)<br><br><span class="hljs-comment"># OpenAI</span><br>openai_llm = OpenAI()<br><br><span class="hljs-comment"># 通义千问</span><br>qwen_llm = ChatTongyi(model_name=<span class="hljs-string">&quot;qwen-turbo&quot;</span>, temperature=<span class="hljs-number">0.7</span>)<br><br><span class="hljs-comment"># 不管哪个模型，方法是相同的，例如都有 invoke 方法</span><br>response = gemini_pro.invoke(<span class="hljs-string">&quot;Tell me a joke about light bulbs!&quot;</span>)<br><span class="hljs-built_in">print</span>(response)<br></code></pre></td></tr></table></figure>
+<h3 id="%E6%A8%A1%E6%8B%9F%E5%A4%A7%E6%A8%A1%E5%9E%8B" tabindex="-1" id="模拟大模型">模拟大模型</h3>
+<p>在开发应用时，对模型的调用不一定要使用真实的 API 接口，也可以返回模拟的响应结果。这样的好处是让结果更稳定，二来响应速度更快，也更省钱；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_community.llms <span class="hljs-keyword">import</span> FakeListLLM<br><br><span class="hljs-comment"># 创建一个虚拟的 LLM，总是返回固定的响应结果</span><br>fake_llm = FakeListLLM(responses=[<span class="hljs-string">&quot;Hello&quot;</span>])<br><br>result = fake_llm.invoke(<span class="hljs-string">&quot;Any input will return Hello&quot;</span>)<br><span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># Output: Hello</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E8%81%8A%E5%A4%A9%E6%A8%A1%E5%9E%8B" tabindex="-1" id="聊天模型">聊天模型</h3>
+<p>Langchain 为聊天对话设计了结构化的形式，以便区分不同角色的发言内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_anthropic <span class="hljs-keyword">import</span> ChatAnthropic<br><span class="hljs-keyword">from</span> langchain_core.messages <span class="hljs-keyword">import</span> SystemMessage, HumanMessage<br><br>chat = ChatAnthropic(model=<span class="hljs-string">&quot;claude-3-opus-20240229&quot;</span>)<br><br><span class="hljs-comment"># 整合多条消息，区分不同角色</span><br>messages = [<br>    SystemMessage(content=<span class="hljs-string">&quot;You&#x27;re a helpful programming assistant&quot;</span>),<br>    HumanMessage(content=<span class="hljs-string">&quot;Write a Python function to calculate factorial&quot;</span>)<br>]<br>response = chat.invoke(messages)<br></code></pre></td></tr></table></figure>
+<h3 id="%E6%8F%90%E7%A4%BA%E8%AF%8D" tabindex="-1" id="提示词">提示词</h3>
+<p>LangChain 支持提示词模板，可在模板中使用占位符变量，实际调用时，动态的替换变量内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_core.prompts <span class="hljs-keyword">import</span> PromptTemplate<br><span class="hljs-keyword">from</span> langchain_google_genai <span class="hljs-keyword">import</span> GoogleGenerativeAI<br><br><span class="hljs-comment"># 编写模板内容，设置变量 text</span><br>template = <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">Summarize this text in one sentence:</span><br><span class="hljs-string"></span><br><span class="hljs-string">&#123;text&#125;</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>llm = GoogleGenerativeAI(model=<span class="hljs-string">&quot;gemini-1.5-pro&quot;</span>)<br><br><span class="hljs-comment"># 初始化提示词模板</span><br>prompt = PromptTemplate.from_template(template)<br><br><span class="hljs-comment"># 传入 text 变量内容，生成最终提示词</span><br>formatted_prompt = prompt.<span class="hljs-built_in">format</span>(text=<span class="hljs-string">&quot;Some long story about AI...&quot;</span>)<br><br><span class="hljs-comment"># 调用模型</span><br>result = llm.invoke(formatted_prompt)<br><span class="hljs-built_in">print</span>(result)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_core.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate<br><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> ChatOpenAI<br><br>template = ChatPromptTemplate.from_messages([<br>    (<span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;You are an English to French translator.&quot;</span>),<br>    (<span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;Translate this to French: &#123;text&#125;&quot;</span>)  <span class="hljs-comment"># 此处 text 可动态替换</span><br>])<br><br>chat = ChatOpenAI()<br>formatted_messages = template.format_messages(text=<span class="hljs-string">&quot;Hello, how are you?&quot;</span>)<br>result = chat.invoke(formatted_messages)<br><span class="hljs-built_in">print</span>(result.content)<br></code></pre></td></tr></table></figure>
+<h3 id="%E9%93%BE%E5%92%8Clcel-%E8%A1%A8%E8%BE%BE%E5%BC%8F" tabindex="-1" id="链和LCEL-表达式">链和LCEL 表达式</h3>
+<p>使用链将多个动作串联起来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_core.prompts <span class="hljs-keyword">import</span> PromptTemplate<br><span class="hljs-keyword">from</span> langchain_core.output_parsers <span class="hljs-keyword">import</span> StrOutputParser<br><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> ChatOpenAI<br><br><span class="hljs-comment"># 创建模板</span><br>prompt = PromptTemplate.from_template(<span class="hljs-string">&quot;Tell me a joke about &#123;topic&#125;&quot;</span>)<br>llm = ChatOpenAI()<br>output_parser = StrOutputParser()<br><br><span class="hljs-comment"># 串联多个动作, 返回一个链对象</span><br>chain = prompt | llm | output_parser<br><br><span class="hljs-comment"># 链对象也有 invoke 方法</span><br>result = chain.invoke(&#123;<span class="hljs-string">&quot;topic&quot;</span>: <span class="hljs-string">&quot;programming&quot;</span>&#125;)<br><span class="hljs-built_in">print</span>(result)<br></code></pre></td></tr></table></figure>
+<h3 id="%E6%96%87%E6%9C%AC%E5%88%B0%E5%9B%BE%E5%83%8F" tabindex="-1" id="文本到图像">文本到图像</h3>
+<p>可先使用文本 LLM 将用户输入的文本进行扩充，补充更丰富的细节信息。之后再提交给图像 LLM 生成图片。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = PromptTemplate(<br>	input_variables=[<span class="hljs-string">&quot;image_desc&quot;</span>],<br>    template=(<br>    	<span class="hljs-string">&quot;Generate a concise prompt to generate an image based on the following description:&quot;</span><br>        <span class="hljs-string">&quot;&#123;image_desc&#125;&quot;</span><br>    )<br>)<br>chain = LLMChain(llm=llm, prompt=prompt)<br><br>image_url = DallEAPIWrapper().run(<br>    <span class="hljs-comment"># 先用 LLM 完善图片细节</span><br>    chain.run(<span class="hljs-string">&quot;halloween night at a haunted museum&quot;</span>)<br>)<br></code></pre></td></tr></table></figure>
+<h3 id="replicate" tabindex="-1" id="Replicate">Replicate</h3>
+<p>Replicate 是一个可以部署大模型的云平台，LangChain 已经封装了 API，可以很方便的调用已经部署好的模型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_community.llms <span class="hljs-keyword">import</span> Replicate<br><br>llm = Replicate(<br>    model=<span class="hljs-string">&quot;meta/llama-2-7b-chat:&lt;模型ID&gt;&quot;</span><br>    <span class="hljs-comment"># 完整模型版本ID 示例</span><br>    <span class="hljs-comment"># &quot;meta/llama-2-7b-chat:8e6975e5ed6174911a6ff3d60540dfd4844201974602551e10e9e87ab143d81e&quot;</span><br>)<br><br>response = llm.invoke(<span class="hljs-string">&quot;你好！介绍一下你自己。&quot;</span>)<br><span class="hljs-built_in">print</span>(response)<br></code></pre></td></tr></table></figure>
+<h3 id="%E5%9B%BE%E5%83%8F%E7%90%86%E8%A7%A3" tabindex="-1" id="图像理解">图像理解</h3>
+<p>有些模型是多模态的，能够理解用户上传的图片，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_core.messages <span class="hljs-keyword">import</span> HumanMessage<br><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> ChatOpenAI<br><br>chat = ChatOpenAI(model=<span class="hljs-string">&quot;gpt-4-turbo&quot;</span>, max_tokens=<span class="hljs-number">256</span>)<br>image_url = <span class="hljs-string">&quot;https://image_example_url&quot;</span><br><br>chat.invoke([<br>    HumanMessage(<br>    	content=[<br>            &#123;<br>                <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;text&quot;</span>, <br>                <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;What is this image showing&quot;</span><br>            &#125;,<br>            &#123;<br>                <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;image_url&quot;</span>,<br>                <span class="hljs-string">&quot;image_url&quot;</span>: &#123;<br>                    <span class="hljs-string">&quot;url&quot;</span>: image_url,<br>                    <span class="hljs-string">&quot;detail&quot;</span>: <span class="hljs-string">&quot;auto&quot;</span><br>                &#125;<br>            &#125;<br>        ]<br>    )<br>])<br></code></pre></td></tr></table></figure>
+<h2 id="%E8%BF%90%E8%A1%8C%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B" tabindex="-1" id="运行本地模型">运行本地模型</h2>
+<p>除了调用云端的模型 API，LangChain 也支持在本地运行模型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方法一：调用运行在本地的模型，模型使用 Ollama 部署</span><br><span class="hljs-keyword">from</span> langchain_ollama <span class="hljs-keyword">import</span> ChatOllama<br><br>chat = ChatOllama(<br>    model=<span class="hljs-string">&quot;deepseek-r1:1.5b&quot;</span>,<br>    temperature=<span class="hljs-number">0</span>,<br>)<br><br>messages = [<br>    (<br>        <span class="hljs-string">&quot;system&quot;</span>,<br>        <span class="hljs-string">&quot;You are a helpful assistant.&quot;</span>,<br>    ),<br>    (<span class="hljs-string">&quot;human&quot;</span>, <span class="hljs-string">&quot;What makes LangChain great for working with LLMs?&quot;</span>),<br>]<br>ai_msg = chat.invoke(messages)<br><span class="hljs-built_in">print</span>(ai_msg.content)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方法二：从 HuggingFace 直接下载模型，并由 LangChain 运行</span><br><span class="hljs-keyword">from</span> langchain_core.messages <span class="hljs-keyword">import</span> SystemMessage, HumanMessage<br><span class="hljs-keyword">from</span> langchain_huggingface <span class="hljs-keyword">import</span> ChatHuggingFace, HuggingFacePipeline<br><br><span class="hljs-comment"># 下载并运行模型</span><br>llm = HuggingFacePipeline.from_model_id(<br>    model_id=<span class="hljs-string">&quot;TinyLlama/TinyLlama-1.1B-Chat-v1.0&quot;</span>,<br>    task=<span class="hljs-string">&quot;text-generation&quot;</span>,<br>    pipeline_kwargs=<span class="hljs-built_in">dict</span>(<br>        max_new_tokens=<span class="hljs-number">512</span>,<br>        do_sample=<span class="hljs-literal">False</span>,<br>        repetition_penalty=<span class="hljs-number">1.03</span>,<br>    ),<br>)<br><br>chat_model = ChatHuggingFace(llm=llm)<br><br><span class="hljs-comment"># 初始化提示</span><br>messages = [<br>    SystemMessage(content=<span class="hljs-string">&quot;You&#x27;re a helpful assistant&quot;</span>),<br>    HumanMessage(<br>        content=<span class="hljs-string">&quot;Explain the concept of machine learning in simple terms&quot;</span><br>    ),<br>]<br>ai_msg = chat_model.invoke(messages)<br><span class="hljs-built_in">print</span>(ai_msg.content)<br></code></pre></td></tr></table></figure>
+<h2 id="%E6%9E%84%E5%BB%BA%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F" tabindex="-1" id="构建客户服务应用程序">构建客户服务应用程序</h2>
+<p>客服类应用程序涉及以下一些功能：</p>
+<ul>
+<li>情感分类：识别客户的情绪；</li>
+<li>生成摘要：抓取客户消息中的重点；</li>
+<li>意图分类：理解客户想要达成的目标；</li>
+<li>生成回复：根据历史回复数据和知识库，生成合适的回复；</li>
+</ul>
+<h4 id="map-reduce-%E6%96%B9%E6%B3%95" tabindex="-1" id="map-reduce-方法">map-reduce 方法</h4>
+<p>有些文档比较大，可能超过了模型的输入限制。此时可使用 map-reduce 方法进行处理。map 方法将文档拆分成多个小段，每个小段的长度满足模型的输入限制。之后大模型可以并行处理这些小段，生成摘要。最后通过 reduce 方法合并摘要，生成最终的结果。</p>
+<h1 id="%E6%9E%84%E5%BB%BA%E5%BE%97%E5%8A%9B%E5%8A%A9%E6%89%8B" tabindex="-1">构建得力助手</h1>
+<h2 id="%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E5%9B%9E%E7%AD%94%E9%97%AE%E9%A2%98" tabindex="-1" id="使用工具回答问题">使用工具回答问题</h2>
+<h3 id="%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7" tabindex="-1" id="使用工具">使用工具</h3>
+<p>工具由以下几部分构成：</p>
+<ul>
+<li>名称：str，必需</li>
+<li>描述：str，必需，以便模型决定是否调用该函数；</li>
+<li>函数：function，必需，执行的主体；</li>
+<li>args_schema：Pydantic BaseModel，可选但推荐，有助于验证参数、少样本示例等；</li>
+<li>返回方式：bool，是否将计算结果直接返回给用户</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用内置的工具 WikipediaQueryRun 示例</span><br><span class="hljs-keyword">from</span> langchain_community.tools <span class="hljs-keyword">import</span> WikipediaQueryRun<br><span class="hljs-keyword">from</span> langchain_community.utilities <span class="hljs-keyword">import</span> WikipediaAPIWrapper<br><br>api_wrapper = WikipediaAPIWrapper(top_k_results=<span class="hljs-number">1</span>, doc_content_chars_max=<span class="hljs-number">100</span>)<br><br>tool = WikipediaQueryRun(api_wrapper=api_wrapper)<br><br><span class="hljs-built_in">print</span>(tool.name)<br><span class="hljs-built_in">print</span>(tool.description)<br><span class="hljs-built_in">print</span>(tool.args)<br><span class="hljs-built_in">print</span>(tool.return_direct)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">wikipedia<br>A wrapper around Wikipedia. Useful <span class="hljs-keyword">for</span> when you need to answer general questions about people, places, companies, facts, historical events, or other subjects. Input should be a search query.<br>&#123;<span class="hljs-string">&#x27;query&#x27;</span>: &#123;<span class="hljs-string">&#x27;description&#x27;</span>: <span class="hljs-string">&#x27;query to look up on wikipedia&#x27;</span>, <span class="hljs-string">&#x27;title&#x27;</span>: <span class="hljs-string">&#x27;Query&#x27;</span>, <span class="hljs-string">&#x27;type&#x27;</span>: <span class="hljs-string">&#x27;string&#x27;</span>&#125;&#125;<br>False<br></code></pre></td></tr></table></figure>
+<h3 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7" tabindex="-1" id="自定义工具">自定义工具</h3>
+<p>自定义工具的几种方法：</p>
+<ul>
+<li>@tool 装饰器</li>
+<li>创建 BaseTool 子类</li>
+<li>创建 StructuredTool 子类</li>
+</ul>
+<h3 id="%E5%B7%A5%E5%85%B7%E8%A3%85%E9%A5%B0%E5%99%A8" tabindex="-1" id="工具装饰器">工具装饰器</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain.tools <span class="hljs-keyword">import</span> tool<br><br><span class="hljs-meta">@tool</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">search</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;Searches things online.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> tool.run(querys=query)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain.pydantic_v1 <span class="hljs-keyword">import</span> BaseModel, Field<br><br><span class="hljs-comment"># pydantic 用于对数据进行校验、格式转换，有点类似 Nodejs 中的 Validator</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SearchInput</span>(<span class="hljs-title class_ inherited__">BaseModel</span>):<br>    <span class="hljs-comment"># Field 用于给字段 query 添加元信息，对字段进行描述，以便模型理解该字段</span><br>    query: <span class="hljs-built_in">str</span> = Field(description=<span class="hljs-string">&quot;The search query string.&quot;</span>) <br><br><span class="hljs-comment"># 使用 args_schema 表示模型调用工具前，需要提供指定结构的参数</span><br><span class="hljs-meta">@tool(<span class="hljs-params"><span class="hljs-string">&quot;search-tool&quot;</span>, args_schema=SearchInput, return_direct=<span class="hljs-literal">True</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">search</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;Searches things online.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;LangChain is awesome!&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="%E5%AD%90%E7%B1%BB%E5%8C%96-basetool" tabindex="-1" id="子类化-BaseTool">子类化 BaseTool</h3>
+<p>子类化 BaseTool 能够更灵活的自定义工具，常用于以下场景：</p>
+<ul>
+<li>复杂的处理逻辑；</li>
+<li>异步；</li>
+<li>自定义异常处理；</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 子类化 BaseTool 的示例，涉及定义：名称、描述、输入格式、同步或异步方法、异常处理等；</span><br><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">Optional</span>, <span class="hljs-type">Type</span><br><span class="hljs-keyword">from</span> langchain.tools <span class="hljs-keyword">import</span> BaseTool<br><span class="hljs-keyword">from</span> langchain.callbacks.manager <span class="hljs-keyword">import</span> CallbackManagerForToolRun, AsyncCallbackManagerForToolRun<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SearchInput</span>(<span class="hljs-title class_ inherited__">BaseModel</span>):<br>    query: <span class="hljs-built_in">str</span> = Field(description=<span class="hljs-string">&quot;The search query string.&quot;</span>)<br>    <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomSearchTool</span>(<span class="hljs-title class_ inherited__">BaseTool</span>):<br>    name = <span class="hljs-string">&quot;custom-search-tool&quot;</span><br>    description = <span class="hljs-string">&quot;A tool that searches things online.&quot;</span><br>    args_schema: <span class="hljs-type">Type</span>[BaseModel] = SearchInput<br>    return_direct = <span class="hljs-literal">True</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_run</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">        query: <span class="hljs-built_in">str</span>,</span><br><span class="hljs-params">        run_manager: <span class="hljs-type">Optional</span>[CallbackManagerForToolRun] = <span class="hljs-literal">None</span>,</span><br><span class="hljs-params">    </span>) -&gt; <span class="hljs-built_in">str</span>:<br>        <span class="hljs-string">&quot;&quot;&quot;use the tool synchronously.&quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;LangChain is awesome!&quot;</span><br><br>    <span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">_arun</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">        query: <span class="hljs-built_in">str</span>,</span><br><span class="hljs-params">        run_manager: <span class="hljs-type">Optional</span>[AsyncCallbackManagerForToolRun] = <span class="hljs-literal">None</span>,</span><br><span class="hljs-params">    </span>) -&gt; <span class="hljs-built_in">str</span>:<br>        <span class="hljs-string">&quot;&quot;&quot;use the tool asynchronously.&quot;&quot;&quot;</span><br>        <span class="hljs-keyword">raise</span> NotImplementedError(<span class="hljs-string">&quot;CustomSearchTool does not support async&quot;</span>)<br>    <br>search = CustomSearchTool()<br>search(query=<span class="hljs-string">&quot;What is LangChain?&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="structuredtool-%E5%AF%B9%E8%B1%A1" tabindex="-1" id="StructuredTool-对象">StructuredTool 对象</h3>
+<p>StructuredTool 比 BaseTool 简单，但同时又比 tool 装饰器更灵活一些，相当于折衷；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain.tools <span class="hljs-keyword">import</span> StructuredTool<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">search_function</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;Searches things online.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;LangChain is awesome!&quot;</span><br><br>search = StructuredTool.from_function(<br>    func=search_function,<br>    name=<span class="hljs-string">&quot;structured-search-tool&quot;</span>,<br>    description=<span class="hljs-string">&quot;A tool that searches things online.&quot;</span>,<br>    return_direct=<span class="hljs-literal">True</span>,<br>)<br>search(query=<span class="hljs-string">&quot;What is LangChain?&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CalcatorInput</span>(<span class="hljs-title class_ inherited__">BaseModel</span>):<br>    a: <span class="hljs-built_in">int</span> = Field(description=<span class="hljs-string">&quot;The first number.&quot;</span>)<br>    b: <span class="hljs-built_in">int</span> = Field(description=<span class="hljs-string">&quot;The second number.&quot;</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">multiply</span>(<span class="hljs-params">a: <span class="hljs-built_in">int</span>, b: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;Multiplies two numbers.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">return</span> a * b<br><br>calculator = StructuredTool.from_function(<br>    func=multiply,<br>    name=<span class="hljs-string">&quot;multiplier-tool&quot;</span>,<br>    description=<span class="hljs-string">&quot;A tool that multiplies two numbers.&quot;</span>,<br>    args_schema=CalcatorInput, <span class="hljs-comment"># 也可以自定义数据校验功能</span><br>    return_direct=<span class="hljs-literal">True</span>,<br>)<br>calculator(<span class="hljs-built_in">dict</span>(a=<span class="hljs-number">3</span>, b=<span class="hljs-number">5</span>))<br></code></pre></td></tr></table></figure>
+<h3 id="%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86" tabindex="-1" id="错误处理">错误处理</h3>
+<p>当工具在调用过程中出现异常时，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_core.tools <span class="hljs-keyword">import</span> ToolException<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">search_function</span>(<span class="hljs-params">query: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-string">&quot;&quot;&quot;Searches things online.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> query:<br>        <span class="hljs-keyword">raise</span> ToolException(<span class="hljs-string">&quot;Query cannot be empty.&quot;</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;LangChain is awesome!&quot;</span><br><br>search = StructuredTool.from_function(<br>    func=search_function,<br>    name=<span class="hljs-string">&quot;structured-search-tool&quot;</span>,<br>    description=<span class="hljs-string">&quot;A tool that searches things online.&quot;</span>,<br>    return_direct=<span class="hljs-literal">True</span>,<br>    handle_tool_exception=<span class="hljs-literal">True</span>, <span class="hljs-comment"># 此处明确启用异常处理，当异常发生时，Tool 不会抛出异常，而是将异常封装为消息返回给调用者</span><br>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 另外也可以自定义异常处理逻辑，只需将 handle_tool_exception 设置为处理异常的函数即可</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">custom_error_handler</span>(<span class="hljs-params">error: ToolException</span>) -&gt; <span class="hljs-built_in">str</span>:<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;[错误] 无法执行操作: <span class="hljs-subst">&#123;error.args[<span class="hljs-number">0</span>]&#125;</span>&quot;</span><br><br>multiply_tool = StructuredTool.from_function(<br>    func=multiply,<br>    name=<span class="hljs-string">&quot;Multiply&quot;</span>,<br>    description=<span class="hljs-string">&quot;将两个整数相乘&quot;</span>,<br>    args_schema=MultiplyInput,<br>    handle_tool_error=custom_error_handler  <span class="hljs-comment"># 传入自定义函数</span><br>)<br></code></pre></td></tr></table></figure>
+<h2 id="%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0%E7%A0%94%E7%A9%B6%E5%8A%A9%E6%89%8B" tabindex="-1" id="使用工具实现研究助手">使用工具实现研究助手</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python">mport dashscope<br><span class="hljs-keyword">import</span> os<br><br>api_key = os.getenv(<span class="hljs-string">&quot;DASHSCOPE_API_KEY&quot;</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> api_key:<br>    api_key = st.text_input(<span class="hljs-string">&quot;请输入你的 DashScope API Key（阿里云）&quot;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;password&quot;</span>)<br><br><span class="hljs-keyword">if</span> api_key:<br>    dashscope.api_key = api_key<br><br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;messages&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> st.session_state:<br>        st.session_state.messages = [&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;你是一个乐于助人的助手。&quot;</span>&#125;]<br><br>    <span class="hljs-comment"># 显示历史（跳过 system 消息）</span><br>    <span class="hljs-keyword">for</span> msg <span class="hljs-keyword">in</span> st.session_state.messages:<br>        <span class="hljs-keyword">if</span> msg[<span class="hljs-string">&quot;role&quot;</span>] != <span class="hljs-string">&quot;system&quot;</span>:<br>            st.chat_message(msg[<span class="hljs-string">&quot;role&quot;</span>]).write(msg[<span class="hljs-string">&quot;content&quot;</span>])<br><br>    <span class="hljs-keyword">if</span> prompt := st.chat_input(<span class="hljs-string">&quot;请输入你的问题&quot;</span>):<br>        st.session_state.messages.append(&#123;<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: prompt&#125;)<br>        st.chat_message(<span class="hljs-string">&quot;user&quot;</span>).write(prompt)<br><br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_response</span>():<br>            messages = [HumanMessage(content=prompt)]<br>            <span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> model.stream(messages):<br>                <span class="hljs-comment"># chunk 是 AIMessageChunk，取 content</span><br>                <span class="hljs-keyword">yield</span> chunk.content<br>                <br>        <span class="hljs-comment"># 流式输出</span><br>        <span class="hljs-keyword">with</span> st.chat_message(<span class="hljs-string">&quot;assistant&quot;</span>):<br>            response = st.write_stream(generate_response())<br><span class="hljs-keyword">else</span>:<br>    st.warning(<span class="hljs-string">&quot;请提供 DashScope API Key（可在阿里云控制台获取）&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E7%AD%96%E7%95%A5" tabindex="-1" id="探索推理策略">探索推理策略</h2>
+<p>大模型本身并不擅长复杂的符号推理，因此如果我们设计一个符号推理辅助的框架，将有助于模型完成一些更高级的复杂推理功能，例如：</p>
+<ul>
+<li>任务规划：将一个大任务拆分成多个小任务；</li>
+<li>多步推理：从一系列收集到的事实信息中获得结论；</li>
+<li>数学推理：进行符号变换求解方程；</li>
+</ul>
+<p>规划器（Planner）、执行器（Worker）、求解器（Solver）的协作示例：</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171038.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>有两种推理策略：</p>
+<ul>
+<li>
+<p>方法一：依赖观察推理（零样本智能体）：模型做一个判断，工具执行，智能体将工具的执行结果做为新的信息，交给模型再次判断。重复这个循环，直到得出最终的结果。这个方法的优点是直观容易理解，缺点是随着循环次数增多，上下文会越来越大，成本很高。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171106.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>方法二：不依赖观察推理（规划+求解，ReWOO）：规划器模型先规划任务，然后调用不同的工具来完成每一个规划的任务，收集信息。最终汇总规划列表和证据，统一让求解器模型生成最终的输出。其中规划器和求解器可以各自使用专用的模型，以获得更好的效果。</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251113171130.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">Literal</span><br><span class="hljs-keyword">from</span> langchain <span class="hljs-keyword">import</span> hub<br><span class="hljs-keyword">from</span> langchain.agents <span class="hljs-keyword">import</span> create_react_agent, AgentExecutor<br><span class="hljs-keyword">from</span> langchain.chains.base <span class="hljs-keyword">import</span> Chain<br><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> ChatOpenAI<br><span class="hljs-keyword">from</span> langchain_experimental.plan_and_execute <span class="hljs-keyword">import</span> (<br>    PlanAndExecute, <span class="hljs-comment"># 内置了该推理策略</span><br>    load_agent_executor, <span class="hljs-comment"># 求解器</span><br>    load_chat_planner, <span class="hljs-comment"># 规划器</span><br>)<br><span class="hljs-keyword">from</span> langchain_community.tools <span class="hljs-keyword">import</span> load_tools<br><br>ReasoningStrategies = <span class="hljs-type">Literal</span>[<span class="hljs-string">&quot;zero-shot-react&quot;</span>, <span class="hljs-string">&quot;plan-and-execute&quot;</span>]<br><br> <span class="hljs-comment"># 支持两种不同推理策略</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">load_agent</span>(<span class="hljs-params">tool_names: <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>], strategy: ReasoningStrategies = <span class="hljs-string">&quot;zero-shot-react&quot;</span></span>) -&gt; Chain:<br>    <br>    llm = ChatOpenAI(temperature=<span class="hljs-number">0</span>, streaming=<span class="hljs-literal">True</span>)<br>    tools = load_tools(tool_names=tool_names, llm=llm)<br>    <br>    <span class="hljs-keyword">if</span> strategy == <span class="hljs-string">&quot;plan-and-execute&quot;</span>:<br>        planner = load_chat_planner(llm)<br>        executor = load_agent_executor(llm, tools, verbose=<span class="hljs-literal">True</span>)<br>        <span class="hljs-keyword">return</span> PlanAndExecute(planner=planner, executor=executor, verbose=<span class="hljs-literal">True</span>)<br>    <br>    prompt = hub.pull(<span class="hljs-string">&quot;hwchase17/react&quot;</span>)<br>    agent = create_react_agent(llm, tools, verbose=<span class="hljs-literal">True</span>, prompt=prompt)<br>    <span class="hljs-keyword">return</span> AgentExecutor(agent=agent, tools=tools)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>没有哪个策略是万能的，不同的策略有不同的使用场景。当使用场景不对时，不可避免会出现一些失败，例如步骤规划遗漏、语义理解错误、计算错误等；</p>
+</blockquote>
+<h2 id="%E4%BB%8E%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AF%BB%E5%8F%96%E7%BB%93%E6%9E%84%E5%8C%96%E4%BF%A1%E6%81%AF" tabindex="-1" id="从文件中读取结构化信息">从文件中读取结构化信息</h2>
+<p>LangChain 内置的输出解析器，支持从文件中提取出结构化的信息，例如 PDF、CSV、XML、YAML 等；</p>
+<blockquote>
+<p>有时候大模型的信息提取并不完美，会遗漏一些信息。</p>
+</blockquote>
+<h2 id="%E9%80%9A%E8%BF%87%E4%BA%8B%E5%AE%9E%E6%A0%B8%E6%9F%A5%E5%87%8F%E5%B0%91%E5%B9%BB%E8%A7%89" tabindex="-1" id="通过事实核查减少幻觉">通过事实核查减少幻觉</h2>
+<p>这个世界上充斥着各种虚假信息，如果大模型不加分辨的将它们做为自己的数据来源，其所得出的结论自然也是不真实的。为避免出现这种虚假的幻觉，有必要对信息进行核查。</p>
+<p>核查的原理并不复杂，跟人类的行为类似，涉及以下三个动作：</p>
+<ul>
+<li>判断哪些信息需要核实；</li>
+<li>搜集关于该信息的正反两方面的观点和数据；</li>
+<li>整合以上信息，进行评估判断，得出结论；</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251114112746.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>LangChain 有专门内置了一个链用来做事实核查的工作，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMCheckerChain<br><span class="hljs-keyword">from</span> langchain.llms <span class="hljs-keyword">import</span> OpenAI<br><br>llm = OpenAI(temperature=<span class="hljs-number">0</span>)<br>text = <span class="hljs-string">&quot;What type of mammal lays the biggest eggs?&quot;</span><br>checker_chain = LLMCheckerChain.from_llm(llm, verbose=<span class="hljs-literal">True</span>)<br>checker_chain.run(text)<br></code></pre></td></tr></table></figure>
+<p>它背后的提示词设计大致如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 第1步：让模型罗列得出此结论背后的假设是什么</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">Here&#x27;s the statement: &#123;statement&#125;</span><br><span class="hljs-string">Make a bullet point list of the assumptions you made when producing the above statement.</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 第2步：根据模型返回的假设清单，逐一判断每一条假设是否正确</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">Here is a bullet point list of assertings:</span><br><span class="hljs-string">&#123;assertions&#125;</span><br><span class="hljs-string">For each assertion, determine whether it is true or false. If it is false, explain why.</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 第3步：让模型综合以上信息，给出问题的最终回答</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">In light of the above facts, how would you answer the question</span><br><span class="hljs-string">&#123;question&#125;</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>以上 LLMChecker 提示词工程并不能保证最终的答案一定是正确的，它只是尽可能减少错误的概率。</p>
+</blockquote>
+<h1 id="%E6%9E%84%E5%BB%BA%E7%B1%BB%E4%BC%BC-chatgpt-%E7%9A%84%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA" tabindex="-1">构建类似 ChatGPT 的聊天机器人</h1>
+<h2 id="%E4%BB%80%E4%B9%88%E6%98%AF%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA" tabindex="-1" id="什么是聊天机器人">什么是聊天机器人</h2>
+<p>一些应用场景：</p>
+<ul>
+<li>个性化教育的虚拟导师；</li>
+<li>法律问题咨询回复；</li>
+<li>心理问题咨询回复；</li>
+<li>在线购物售后客服；</li>
+<li>医疗问题咨询回复；</li>
+<li>虚拟助理：帮忙起草邮件、消息回复、提醒事项等；</li>
+<li>招聘助理：自动筛选和分析简历；</li>
+</ul>
+<p>有两种聊天机器人，一种是被动型的，会话由用户主动发起，然后它进行回复，满足用户需求。还有一种是主动型的，它根据上下文预测用户的需求，然后主动发起会话，主动创造满足需求的机会。</p>
+<h2 id="%E4%BB%8E%E5%90%91%E9%87%8F%E5%88%B0-rag" tabindex="-1" id="从向量到-RAG">从向量到 RAG</h2>
+<h3 id="%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5" tabindex="-1" id="向量嵌入">向量嵌入</h3>
+<p>嵌入即向量化，将内容转换成用多维度的数字来表示。多维的数字有些类似空间的概念，通过计算点之间的距离，可以区别它们的相似性，甚至可以进行延伸，例如向量 king - man + woman 的值很接近 queen;</p>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251114112818.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="langchain-%E7%9A%84%E5%B5%8C%E5%85%A5" tabindex="-1" id="LangChain-的嵌入">LangChain 的嵌入</h3>
+<p>LangChain 提供了一个 Embedding 基础类，各家模型开发商基于该基础类设计自己的嵌入类，以适应不同模型自身的嵌入转换方法。</p>
+<blockquote>
+<p>即使是同一家模型开发商，可能也存在参数规模大小不同的模型。每个模型有可能使用不同的嵌入转换方法，以便实现模型的最佳性能。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> OpenAIEmbeddings<br><br>embeddings = OpenAIEmbeddings(model=<span class="hljs-string">&quot;text-embedding-3-large&quot;</span>)<br>text = <span class="hljs-string">&quot;This is a test text.&quot;</span><br>query_embedding = embeddings.embed_query(text)<br></code></pre></td></tr></table></figure>
+<h3 id="%E5%90%91%E9%87%8F%E5%AD%98%E5%82%A8" tabindex="-1" id="向量存储">向量存储</h3>
+<p>向量一般基于相似度进行搜索，因此如何存储向量很重要，因为设计合理的索引能够极大的提高搜索效率。</p>
+<h3 id="%E5%90%91%E9%87%8F%E7%B4%A2%E5%BC%95" tabindex="-1" id="向量索引">向量索引</h3>
+<p>向量搜索的目标，是找出相似的内容。因此存储的核心原理是将类似的东西，凑在一起存储，这样一抓抓一窝。</p>
+<blockquote>
+<p>为提高写入速度以及充分利用存储空间，初步想法是在索引层面建立虚拟的空间结构，通过树或图来实现分门别类，底层存储则仍然跟传统存储方法类似。</p>
+</blockquote>
+<p>一些常见的搜索算法：</p>
+<ul>
+<li>
+<p>点积量化：Product Quantization，将向量空间逐级划分为更小的子空间，这样搜索起来有点类似二分查找。子空间的划分有多种方法，例如：</p>
+<ul>
+<li>k-d tree 树：k 维树，每一维做一次二分查找，对于低维向量效果不错，但维数越高，效果越来越差；</li>
+<li>嵌套超球
+<ul>
+<li>ball tree：球树，二叉或多叉，每个数据点仅会出现在一个叶节点上；</li>
+<li>cover tree：覆盖树，多层嵌套，同一个数据点可能会出现在多个层中；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>局部敏感哈希：LSH，locality sensitive hashing将相似的数据点映射到相同的哈希桶中；为避免假阳性或者假阴性，会使用多个哈希函数。</p>
+</li>
+<li>
+<p>分层导航小世界：HNSW，Hierarchical Navigable Small World</p>
+<ul>
+<li>每个数据节点先指数概率随机分配层数，这样会导致越顶数的节点数越少，越底层的节点数越多。0 层拥有所有的数据节点；例如第 0 层的概率是 1，第 1 层的概率是 1/10，第 2 层的概率是 0.01，第3 层的概率是千分之一，以此类推。层数是按指数概率进行分配的，比如将概率基数定为 16，那么出现在第 10 层的概率是 (1/16)^10；假设总共有100亿个数据节点，那么出现在第 10 层的节点数 = 100亿 * (1/16)^10 &lt; 1;</li>
+<li>每个数据节点在每层找最邻近的若干个（例如32个）节点做为邻居；这意味着这些邻居会成簇集中，越顶层簇数越少，越底层簇数越多。不同节点之间在下一层的簇是存在重叠的数据节点的，因为它们可能互为邻居。</li>
+<li>0 层在使用贪心算法遍历邻居后，不再像其他层只返回最邻近点，而是会返回一个 top-k 列表做为结果；</li>
+<li>张三想在这个世界上找一批和自己长得比较像的人，整个搜索过程有点类似：
+<ul>
+<li>全世界每个国家派出一个代表，张三先在这批代表里面比对，哪个国家的人和自己长得最像；</li>
+<li>假设上一步的结果是中国代表李四，接下来张三从李四所在的微信群里面继续找第二批候选人。这个微信群的群主是李四，是李四之前按照面相相似度组的群。</li>
+<li>每个群的成员，都有外一个以自己做为群主的微信群，同时群主本人也是别人的微信群的成员。</li>
+<li>就这样逐级向下寻找，直到最后一层（0层）的群，从中选出最像的 n 个人，然后停止查找，返回结果。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://lhwccw.oss-cn-shenzhen.aliyuncs.com/20251116195408.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>很好的平衡了性能和复杂度，因此使用广泛，是 Milvus、Pinecone、Qdrant 的默认索引之一（通常向量数据库会同时支持多种索引算法，这样用户可以根据使用场景，使用最合适的算法）；</p>
+</li>
+</ul>
+<h3 id="%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93" tabindex="-1" id="向量数据库">向量数据库</h3>
+<p>向量数据库的一些使用场景：</p>
+<ul>
+<li>个性化推荐；</li>
+<li>异常数据识别：例如检测危险的数据输入、欺诈等；</li>
+<li>自然语言处理：例如语义分析、情感分析、文本分类等；</li>
+</ul>
+<p>向量数据库的一些特点：</p>
+<ul>
+<li>高效的相似性搜索；</li>
+<li>支持高维数据；</li>
+<li>支持一些高级的搜索功能（这些功能在常规数据库不容易实现，比如内容推荐）；</li>
+</ul>
+<p>一些主流的开源向量数据库：Milvus、Pinecone、Qdrant、Chroma、Weaviate 等；</p>
+<p>LangChain 有一个 vecstores 模块用来实现向量存储，一般各向量数据库的接口放在该模块中；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> Chroma<br><span class="hljs-keyword">from</span> langchain_text_splitters <span class="hljs-keyword">import</span> CharacterTextSplitter<br><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> OpenAIEmbeddings<br><br>docs = <span class="hljs-string">&quot;I am a very long document.&quot;</span><br>text_splitter = CharacterTextSplitter(chunk_size=<span class="hljs-number">500</span>, chunk_overlap=<span class="hljs-number">0</span>, separator=<span class="hljs-string">&quot;/n&quot;</span>)<br>split_docs = text_splitter.split_text(docs)<br><br>embedding = OpenAIEmbeddings(model=<span class="hljs-string">&quot;text-embedding-3-large&quot;</span>)<br>vectorstore = Chroma.from_texts(split_docs, embedding)<br><br><span class="hljs-comment"># k 是待搜索返回的文本数量</span><br>similar_docs = vectorstore.similarity_search(<span class="hljs-string">&quot;I am a very long document.&quot;</span>, k=<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="%E6%96%87%E6%A1%A3%E5%8A%A0%E8%BD%BD%E5%99%A8" tabindex="-1" id="文档加载器">文档加载器</h3>
+<p>针对不同格式的内容，LangChain 内置了很多对应的加载器，例如：</p>
+<ul>
+<li>TextLoader</li>
+<li>WebBaseLoader</li>
+<li>ArxivLoader</li>
+<li>YoutubeLoader</li>
+<li>ImageCaptionLoader</li>
+<li>WikipediaLoader</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># txt 文件示例</span><br><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> TextLoader<br><br>loder = TextLoader(<span class="hljs-string">&quot;./demo/data/demo.txt&quot;</span>)<br>docs = loder.load()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Arvix 示例</span><br><span class="hljs-keyword">from</span> langchain_core.output_parsers <span class="hljs-keyword">import</span> StrOutputParser<br><span class="hljs-keyword">from</span> langchain_anthropic <span class="hljs-keyword">import</span> ChatAnthropic<br><span class="hljs-keyword">from</span> langchain_community.document_loaders <span class="hljs-keyword">import</span> ArxivLoader<br><br>docs = ArxivLoader(query=<span class="hljs-string">&quot;2201.11903&quot;</span>, max_results=<span class="hljs-number">3</span>).load()<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># LangChain hub 中内置了一些预设定的提示模板</span><br><span class="hljs-keyword">from</span> langchain <span class="hljs-keyword">import</span> hub<br><br><span class="hljs-comment"># 一个有关学术问答的提示模板</span><br>prompt = hub.pull(<span class="hljs-string">&quot;hwchase17/anthropic-paper-qa&quot;</span>)<br><span class="hljs-built_in">print</span>(prompt)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">input_variables=[<span class="hljs-string">&#x27;text&#x27;</span>] input_types=&#123;&#125; partial_variables=&#123;&#125; metadata=&#123;<span class="hljs-string">&#x27;lc_hub_owner&#x27;</span>: <span class="hljs-string">&#x27;hwchase17&#x27;</span>, <span class="hljs-string">&#x27;lc_hub_repo&#x27;</span>: <span class="hljs-string">&#x27;anthropic-paper-qa&#x27;</span>, <span class="hljs-string">&#x27;lc_hub_commit_hash&#x27;</span>: <span class="hljs-string">&#x27;0b8e75415e4d1314431e2a22176dce33c65375d4b3be7a2e21c91819da6dfbf7&#x27;</span>&#125; messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=[<span class="hljs-string">&#x27;text&#x27;</span>], input_types=&#123;&#125;, partial_variables=&#123;&#125;, template=<span class="hljs-string">&#x27;Here is an academic paper: &lt;paper&gt;&#123;text&#125;&lt;/paper&gt;\n\nPlease do the following:\n1. Summarize the abstract at a kindergarten reading level. (In &lt;kindergarten_abstract&gt; tags.)\n2. Write the Methods section as a recipe from the Moosewood Cookbook. (In &lt;moosewood_methods&gt; tags.)\n3. Compose a short poem epistolizing the results in the style of Homer. (In &lt;homer_results&gt; tags.)\n4. Write a grouchy critique of the paper from a wizened PI. (In &lt;grouchy_critique&gt; tags.)&#x27;</span>), additional_kwargs=&#123;&#125;)]<br><br></code></pre></td></tr></table></figure>
+<h3 id="langchain-%E7%9A%84%E6%A3%80%E7%B4%A2%E5%99%A8" tabindex="-1" id="LangChain-的检索器">LangChain 的检索器</h3>
+<p>检索器（Retriever）的职责是完成查询，查询的目标可以是本地的数据库，但也可以是网页或者其他数据来源。针对不同的来源，LangChain 内置了一些常用的检索器，用于完成不同内容的检索查询，例如 kNN 和 PubMed。</p>
+<h4 id="knn-%E6%A3%80%E7%B4%A2%E5%99%A8" tabindex="-1" id="kNN-检索器">kNN 检索器</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_community.retrievers <span class="hljs-keyword">import</span> KNNRetriever<br><span class="hljs-keyword">from</span> langchain_openai <span class="hljs-keyword">import</span> OpenAIEmbeddings<br><br>words = [<span class="hljs-string">&quot;cat&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span>, <span class="hljs-string">&quot;fish&quot;</span>, <span class="hljs-string">&quot;bird&quot;</span>, <span class="hljs-string">&quot;elephant&quot;</span>, <span class="hljs-string">&quot;giraffe&quot;</span>, <span class="hljs-string">&quot;lion&quot;</span>, <span class="hljs-string">&quot;tiger&quot;</span>]<br>retriever = KNNRetriever.from_texts(<br>    texts=words,<br>    embeddings=OpenAIEmbeddings(),<br>    k=<span class="hljs-number">3</span>,<br>)<br>result = retriever.get_relevant_documents(<span class="hljs-string">&quot;cat&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="pubmed-%E6%A3%80%E7%B4%A2%E5%99%A8" tabindex="-1" id="PubMed-检索器">PubMed 检索器</h4>
+<p>PubMed 是一个用于医学文献领域的检索器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_community.retrievers.pubmed <span class="hljs-keyword">import</span> PubMedRetriever<br><br>retriever = PubMedRetriever()<br>documents = retriever.get_relevant_documents(<span class="hljs-string">&quot;cancer&quot;</span>)<br><span class="hljs-keyword">for</span> document <span class="hljs-keyword">in</span> documents:<br>    <span class="hljs-built_in">print</span>(document.metadata[<span class="hljs-string">&quot;title&quot;</span>])<br></code></pre></td></tr></table></figure>
+<h4 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A3%80%E7%B4%A2%E5%99%A8" tabindex="-1" id="自定义检索器">自定义检索器</h4>
+<p>继承 BaseRetriever 类，实现一个 get_relevant_documents 的方法。根据查询参数，返回相关文档</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRetriever</span>(<span class="hljs-title class_ inherited__">BaseRetriever</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;My retriever.&quot;&quot;&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_relevant_documents</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">        query: <span class="hljs-built_in">str</span>,</span><br><span class="hljs-params">    </span>) -&gt; <span class="hljs-type">List</span>[Document]:<br>        <span class="hljs-string">&quot;&quot;&quot;Get relevant documents.&quot;&quot;&quot;</span><br>        relevant_documents = []<br><br>        <span class="hljs-comment"># 根据query进行检索</span><br>        <br>        <span class="hljs-keyword">return</span> relevant_documents<br></code></pre></td></tr></table></figure>
+<h2 id="%E4%BD%BF%E7%94%A8%E6%A3%80%E7%B4%A2%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA" tabindex="-1" id="使用检索器实现聊天机器人">使用检索器实现聊天机器人</h2>
+<p>使用检索器实现聊天机器人涉及三个部分：</p>
+<ul>
+<li>使用文档加载器读取领域知识；</li>
+<li>将知识转换成向量存储到数据库中；</li>
+<li>聊天回复时，使用检索器从数据库中读取知识，作为上下文和问题一起输入大模型生成答案；</li>
+</ul>
+<p>为提高上下文的 token 使用效率，检索器支持对上下文进行压缩，常见的压缩方法包括：</p>
+<ul>
+<li>LLMChainExtractor：使用模型从检索到的文档中提取内容</li>
+<li>LLMChainFilter：使用模型过滤掉无关文档</li>
+<li>EmbeddingsFilter：基于相似性得分进行过滤；</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> langchain_community.vectorstores.docarray <span class="hljs-keyword">import</span> DocArrayInMemorySearch<br><span class="hljs-keyword">from</span> langchain_community.embeddings.huggingface <span class="hljs-keyword">import</span> HuggingFaceEmbeddings<br><span class="hljs-keyword">from</span> langchain_text_splitters <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter<br><span class="hljs-keyword">from</span> langchain_core.retrievers <span class="hljs-keyword">import</span> BaseRetriever<br><span class="hljs-keyword">from</span> langchain.schema <span class="hljs-keyword">import</span> Document<br><span class="hljs-keyword">from</span> langchain.retrievers.document_compressors.embeddings_filter <span class="hljs-keyword">import</span> EmbeddingsFilter<br><span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> ContextualCompressionRetriever<br><br><span class="hljs-comment"># 创建检索器，带过滤功能</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">configure_retriever</span>(<span class="hljs-params"></span><br><span class="hljs-params">    docs: <span class="hljs-built_in">list</span>[Document], use_compress: <span class="hljs-built_in">bool</span> = <span class="hljs-literal">True</span></span><br><span class="hljs-params"></span>) -&gt; BaseRetriever:<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    配置并返回一个文档检索器</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        docs: 文档列表，用于创建检索器</span><br><span class="hljs-string">        use_compress: 是否使用嵌入过滤器进行上下文压缩，默认为True</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Returns:</span><br><span class="hljs-string">        BaseRetriever: 配置好的文档检索器实例</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 将文档分割成较小的片段以便更好地检索</span><br>    text_splitter = RecursiveCharacterTextSplitter(chunk_size=<span class="hljs-number">1500</span>, chunk_overlap=<span class="hljs-number">200</span>)<br>    splits = text_splitter.split_documents(docs)<br>    embeddings = HuggingFaceEmbeddings(<br>        model_name=<span class="hljs-string">&quot;sentence-transformers/all-MiniLM-L6-v2&quot;</span><br>    )<br>    <span class="hljs-comment"># 此处使用 DocArrayInMemorySearch 模拟向量数据库，提供存储和检索功能</span><br>    vectordb = DocArrayInMemorySearch.from_documents(splits, embeddings)<br>    <span class="hljs-comment"># 创建一个向量数据库检索器，使用最大边际相关性（MMR）进行搜索，它优先处理相似的同时，还会兼具结果多样性</span><br>    retriever = vectordb.as_retriever(<br>        search_type=<span class="hljs-string">&quot;mmr&quot;</span>, search_kwargs=&#123;<span class="hljs-string">&quot;k&quot;</span>: <span class="hljs-number">3</span>, <span class="hljs-string">&quot;fetch_k&quot;</span>: <span class="hljs-number">4</span>&#125;<br>    )<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> use_compress:<br>        <span class="hljs-keyword">return</span> retriever<br><br>    <span class="hljs-comment"># 创建嵌入过滤器以提高检索结果的相关性</span><br>    embeddings_filter = EmbeddingsFilter(<br>        embeddings=embeddings, similarity_threshold=<span class="hljs-number">0.8</span><br>    )<br>    <span class="hljs-comment"># 创建一个上下文压缩检索器，使用嵌入过滤器进行上下文压缩</span><br>    <span class="hljs-keyword">return</span> ContextualCompressionRetriever(<br>        base_compressor=embeddings_filter,<br>        base_retriever=retriever,<br>    )<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个链，以便融合各个功能对象，和用户聊天并回答问题</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">configure_chain</span>(<span class="hljs-params">retriever: BaseRetriever</span>) -&gt; Chain:<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    配置并返回一个链，用于处理用户输入并生成响应</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        retriever: 文档检索器实例</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Returns:</span><br><span class="hljs-string">        Chain: 配置好的链实例</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    llm = ChatOpenAI(model_name=<span class="hljs-string">&quot;gpt-3.5-turbo&quot;</span>, temperature=<span class="hljs-number">0</span>, streaming=<span class="hljs-literal">True</span>)<br>    memory = ConversationBufferMemory(memory_key=<span class="hljs-string">&quot;chat_history&quot;</span>, return_messages=<span class="hljs-literal">True</span>)<br>    max_tokens_limit = <span class="hljs-number">4000</span><br>    <span class="hljs-keyword">return</span> ConversationalRetrievalChain.from_llm(<br>        llm,<br>        retriever=retriever,<br>        memory=memory,<br>        verbose=<span class="hljs-literal">True</span>,<br>        max_tokens_limit=max_tokens_limit,<br>    )<br></code></pre></td></tr></table></figure>
+<h3 id="%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BF%86" tabindex="-1" id="对话记忆">对话记忆</h3>
+<p>对于聊天机器人来说，保持一定的历史对话记录是很重要的。LangChain 有多种管理记忆的方法，分别如下：</p>
+<ul>
+<li>临时会话记忆
+<ul>
+<li>ConversationBufferMemory：简单缓存，保留所有历史对话；</li>
+<li>ConversationBufferWindowMemory：保留最近的 N 轮对话；</li>
+<li>ConversationTokenBufferMemory：保留多少个 Token 以内的对话（用来控制上下文长度）；</li>
+<li>ConversationSummaryMemory：从历史对话中提取摘要，节省上下文的长度；</li>
+<li>ConversationSummaryBufferMemory：摘要 + 最近 N 轮对话</li>
+</ul>
+</li>
+<li>长久会议记忆：需要外部数据库进行存储
+<ul>
+<li>RedisChatMessageHistory</li>
+<li>PostgresChatMessageHistory</li>
+</ul>
+</li>
+</ul>
+<p>以上多种对话缓存机制可以同时使用，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">llm = OpenAI(temperature=<span class="hljs-number">0.9</span>)<br><span class="hljs-comment"># 保留所有聊天记录</span><br>conv_memory = ConversationBufferMemory(<br>    memory_key=<span class="hljs-string">&quot;chat_history_lines&quot;</span>, input_key=<span class="hljs-string">&quot;input&quot;</span><br>)<br><span class="hljs-comment"># 仅保留聊天记录摘要</span><br>summary_memory = ConversationSummaryMemory(<br>    llm=llm, memory_key=<span class="hljs-string">&quot;chat_history_summary&quot;</span>, input_key=<span class="hljs-string">&quot;input&quot;</span><br>)<br><span class="hljs-comment"># 合并两种聊天记录记忆类型</span><br>memory = CombinedMemory(memories=[conv_memory, summary_memory])<br></code></pre></td></tr></table></figure>
+<h2 id="%E8%B0%83%E8%8A%82%E5%93%8D%E5%BA%94" tabindex="-1" id="调节响应">调节响应</h2>
+<p>大模型的答案需要合乎法律和道德规范，因此有必要设立一个检查机制，包括：</p>
+<ul>
+<li>过滤仇恨言论、攻击性内容等</li>
+<li>符合公司的品牌形象；</li>
+<li>防止用户的非法输入和滥用；</li>
+<li>遵守法律；</li>
+</ul>
+<p>LangChain 有内置了一个 OpenAIModerationChain 用于实现此目标，它会对待输出内容进行检查，确保内容安全。如果内容违反规则，则会触反一些警报机制或错误信息。</p>
+<h2 id="%E9%98%B2%E6%8A%A4" tabindex="-1" id="防护">防护</h2>
+<p>用来控制大模型的回答方向，包括：</p>
+<ul>
+<li>避免讨论敏感的政治议题；</li>
+<li>预定义会话路径：确保模型的聊天按照设定的流程进行，而不是随意发挥；</li>
+<li>设定语言风格；</li>
+<li>提取结构化数据；</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-chain-item">计算机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="print-no-link">#人工智能</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LangChain 大模型应用开发</div>
+      <div>https://ccw1078.github.io/2025/11/08/LangChain 大模型应用开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/26/%E5%85%B1%E6%9C%89%E4%BA%A7%E6%9D%83%E6%88%BF%E7%9A%84%E6%8E%A2%E7%B4%A2/" title="共有产权房的探索">
+                        <span class="hidden-mobile">共有产权房的探索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
