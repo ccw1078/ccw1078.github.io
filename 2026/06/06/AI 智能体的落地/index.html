@@ -1,0 +1,675 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ccw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="存在的问题 数据脏乱差 数据是多种格式、多种版本混合的，例如 PDF、Word、Excel、HTML、关系数据库等；即使在同一种格式的数据中，也存在异常情况需要处理，例如 Excel 中的合并单元格、不同经办人员自定义的数据格式、Word 和 Excel 文档中夹杂着图片、少量的业务规则零落分散在几万字的文档中等等。数据库中有些字段因为历史遗留原因（文档缺失，人员离职等），甚至语义可能已经模糊不清">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 智能体的落地">
+<meta property="og:url" content="https://ccw1078.github.io/2026/06/06/AI%20%E6%99%BA%E8%83%BD%E4%BD%93%E7%9A%84%E8%90%BD%E5%9C%B0/index.html">
+<meta property="og:site_name" content="Ccw&#39;s Blogs">
+<meta property="og:description" content="存在的问题 数据脏乱差 数据是多种格式、多种版本混合的，例如 PDF、Word、Excel、HTML、关系数据库等；即使在同一种格式的数据中，也存在异常情况需要处理，例如 Excel 中的合并单元格、不同经办人员自定义的数据格式、Word 和 Excel 文档中夹杂着图片、少量的业务规则零落分散在几万字的文档中等等。数据库中有些字段因为历史遗留原因（文档缺失，人员离职等），甚至语义可能已经模糊不清">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-06T08:19:00.000Z">
+<meta property="article:modified_time" content="2026-07-05T09:10:26.954Z">
+<meta property="article:author" content="ccw">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>AI 智能体的落地 - Ccw&#39;s Blogs</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ccw1078.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Ccw's Blogs" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ccw&#39;s blogs</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI 智能体的落地"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-06 16:19" pubdate>
+          2026年6月6日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI 智能体的落地</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98" tabindex="-1">存在的问题</h1>
+<h2 id="%E6%95%B0%E6%8D%AE%E8%84%8F%E4%B9%B1%E5%B7%AE" tabindex="-1" id="数据脏乱差">数据脏乱差</h2>
+<p>数据是多种格式、多种版本混合的，例如 PDF、Word、Excel、HTML、关系数据库等；即使在同一种格式的数据中，也存在异常情况需要处理，例如 Excel 中的合并单元格、不同经办人员自定义的数据格式、Word 和 Excel 文档中夹杂着图片、少量的业务规则零落分散在几万字的文档中等等。数据库中有些字段因为历史遗留原因（文档缺失，人员离职等），甚至语义可能已经模糊不清。</p>
+<p>因为模型本身是基于概率的，天然存在不确定性。如果直接将原始数据喂给模型，那么整个数据的处理过程，变成了一个黑盒，难以追溯，难以复现，也难以优化。</p>
+<h2 id="%E6%9C%89%E9%99%90%E4%B8%8A%E4%B8%8B%E6%96%87" tabindex="-1" id="有限上下文">有限上下文</h2>
+<p>虽然模型支持百万 Token，但实际处理时，输入的信息是会被筛选或压缩的。这会导致相关内容虽然出现在提示词中，但模型有可能会忽略它。在实际的业务场景中，每一条业务规则可能都很重要，被忽略掉的信息有可能会带来要命的后果。例如原本不属于违约或侵权的场景，误判为侵权。</p>
+<h2 id="%E6%A8%A1%E7%B3%8A%E7%9A%84%E8%A7%84%E5%88%99" tabindex="-1" id="模糊的规则">模糊的规则</h2>
+<p>业务规则本身可能自带模糊性，有一定的解释空间。不像代码，编译后能否运行通过是确定性的。业务规则的模糊性会导致每次跑模型出来的结果可能都不一样，这对需要审计的场景来说是难以接受的。</p>
+<h2 id="%E6%A8%A1%E7%B3%8A%E7%9A%84%E9%9C%80%E6%B1%82" tabindex="-1" id="模糊的需求">模糊的需求</h2>
+<p>用户常常无法描述清楚自己的业务需求，既没有 Prompt，也没有示例，并且还经常要求能够准确、快速、低成本的获得结果。</p>
+<h2 id="%E9%94%99%E8%AF%AF%E9%9A%BE%E4%BB%A5%E6%81%A2%E5%A4%8D" tabindex="-1" id="错误难以恢复">错误难以恢复</h2>
+<p>代码出错可以回退，但在实际业务运行的场景中，由于是将结果交付给客户，如果出错有可能直接变成事故，造成的损失不可恢复或者恢复的代价很大。</p>
+<h1 id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" tabindex="-1">解决方案</h1>
+<h2 id="%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86" tabindex="-1" id="数据处理">数据处理</h2>
+<p>所有确定性的数据（金额、日期、合同编号、关联方等）使用确定性的方法（如正则、OCR等）进行预处理，模型只负责处理非确定性的数据（即需要依赖于人的经验进行解释的数据）。对于模糊的数据，也尽量做确定性的定义。然后在处理过程中，模型只负责在已知的几个选项中进行判断选择即可，转成确定性规则的好处是方便维护。</p>
+<blockquote>
+<p>如果硬编码的规则无法应对所有的解析场景，那么可以考虑添加 LLM 解析进行交叉验证；</p>
+</blockquote>
+<p>使用图结构，为数据创建结构化的索引，而不是将数据直接写入向量库。图结构能够更好的表达数据之间的结构化关系，也方便后续进行准确的查询定位，查询顺序由浅到深为：索引 -&gt; 摘要 -&gt; 原文片段。</p>
+<h2 id="%E8%A7%84%E5%88%99%E6%98%BE%E5%8C%96" tabindex="-1" id="规则显化">规则显化</h2>
+<p>将原本模糊或者存放在经办人员脑袋中的的业务经验，用明确的逻辑和数值（可量化）显式的定义出来。这些规则在显式定义和版本化了以后，除了方便不同人员进行协商调整外，还非常方便未来的维护。当业务需求随时间出现更新时，规则只需随之更新即可。这样做还有一个额外的好处，即无形中构建了公司的知识库。新入职的人员能够基于该知识库，更好更快的上手相关业务。</p>
+<h2 id="%E5%88%86%E8%80%8C%E6%B2%BB%E4%B9%8B" tabindex="-1" id="分而治之">分而治之</h2>
+<p>将长上下文的大任务，分解成多个短上下文的小任务，尽量命中模型的最佳上下文窗口（可能只有 8k-32lk），避免模型出现失忆。将多个小任务之间的关系，放在模型之外的 Harness 工程中进行处理，而不是让模型自行判断。</p>
+<h2 id="%E7%BB%93%E6%9E%9C%E8%AF%84%E4%BC%B0" tabindex="-1" id="结果评估">结果评估</h2>
+<p>如果缺少评估，整个 Agent 就变成了一个黑盒。当修改 Prompt 后，不知道它整体是变好了还是变差了，因此必须构建自动化的评测数据集。Agent 的每个功能，通过该测试集的评估后，能够知道它具体的性能和准确率如何。以及每次的迭代，是否影响了其他地方。简而言之，测试驱动开发。</p>
+<p>评测可将线下的人工处理作为评估的基线，不追求完美，而是追求相对于基线的改进。例如人工出报告用时 3 小时，现在用时变成了 10 分钟。人工错误率是 20%，现在是 10%；</p>
+<p>有些模糊地带有可能人工处理也不一定能够判断得准确，甚至两个不同的人来处理，会得出来不同的结论。针对这种情况，显然要求 Agent 100% 准确是不合理的。我们只需要让 Agent 如实回答不知道，或者如实说它没有把握，要求人工介入复核即可。而不是一本正经的胡说八道，误导用户。</p>
+<p>考虑到市场需求在不断变化，业务规则和数据分布很可能也在跟着变化，因此评估需要定期进行，以便能够第一时间发现 Agent 的能力是否出现飘移，从而调整规则，及时迭代改进。</p>
+<h2 id="%E9%A2%84%E6%9C%9F%E7%AE%A1%E7%90%86" tabindex="-1" id="预期管理">预期管理</h2>
+<p>模型用得越多越深，生成结果的时间越久，成本也越高。但有些场景用户可能并不需要这种深度报告式的结果，因此有必要将功能进行分层，例如分成快速模式、标准模式、思考模式，以实现耗时和精度之间的平衡。将选择权交给用户，让用户根据业务场景，调用不同的模式。在功能开始运行之前，就让用户对结果精度和耗时有了合理的预期。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%96%87%E7%AB%A0/" class="category-chain-item">文章</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/Agent/" class="print-no-link">#Agent</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI 智能体的落地</div>
+      <div>https://ccw1078.github.io/2026/06/06/AI 智能体的落地/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ccw</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/28/%E7%A1%AC%E4%BB%B6%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E6%89%8B%E5%86%8C/" title="硬件产品经理手册">
+                        <span class="hidden-mobile">硬件产品经理手册</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
